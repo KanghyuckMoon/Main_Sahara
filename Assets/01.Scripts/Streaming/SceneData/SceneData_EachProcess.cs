@@ -9,21 +9,21 @@ namespace Streaming
 	{
 		partial void InitScene(string _sceneName)
 		{
-			if (sceneName.Contains("Map("))
-			{
-				for (int i = 0; i < 100; ++i)
-				{
-					ObjectData obj1 = new ObjectData();
-					obj1.address = "Camera";
-					obj1.lodType = LODType.On;
-					obj1.lodAddress = "CameraLOD";
-					obj1.key = ObjectData.totalKey++;
-					obj1.position = StringToVector3(sceneName) * 100f + new Vector3(0,10,0);
-					obj1.rotation = Quaternion.identity;
-					obj1.scale = new Vector3(1, 1, 1) * 10f;
-					objectDataList.Add(obj1);
-				}
-			}
+			//if (sceneName.Contains("Map("))
+			//{
+			//	for (int i = 0; i < 100; ++i)
+			//	{
+			//		ObjectData obj1 = new ObjectData();
+			//		obj1.address = "Camera";
+			//		obj1.lodType = LODType.On;
+			//		obj1.lodAddress = "CameraLOD";
+			//		obj1.key = ObjectData.totalKey++;
+			//		obj1.position = StringToVector3(sceneName) * 100f + new Vector3(0,10,0);
+			//		obj1.rotation = Quaternion.identity;
+			//		obj1.scale = new Vector3(1, 1, 1) * 10f;
+			//		objectDataList.Add(obj1);
+			//	}
+			//}
 
 			//switch (sceneName)
 			//{
