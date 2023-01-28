@@ -10,6 +10,7 @@ namespace LoadScene
         void Start()
         {
             LoadSceneAddressableStatic.LoadSceneAsync("InGame", UnityEngine.SceneManagement.LoadSceneMode.Single);
+            LoadSceneAddressableStatic.LoadSceneAsync("PlayerScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
             LoadSceneAddressableStatic.LoadSceneAsync("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         }
     }
