@@ -10,8 +10,33 @@ namespace Streaming
 {
 	public class StreamingManager : MonoSingleton<StreamingManager>
 	{
-		[SerializeField] 
-		private Transform viewer;
+		private Transform Viewer
+		{
+			get
+			{
+				if (useDebugViewer)
+				{
+					return debugViewer;
+				}
+
+				if (viewer is null)
+				{
+					viewer = GameObject.FindGameObjectWithTag("Player").transform;
+				}
+
+				return viewer;
+			}
+		}
+
+		//[SerializeField]
+		private Transform viewer = null;
+
+		[SerializeField]
+		private bool useDebugViewer = false;
+
+		[SerializeField]
+		private Transform debugViewer = null;
+
 
 		private Dictionary<Vector3, SubSceneObj> chunkDictionary = new Dictionary<Vector3, SubSceneObj>(); //¾À µ¥ÀÌÅÍ µñ¼Å³Ê¸®
 		private List<Vector3> chunksCurrentVisibleList = new List<Vector3>(); //ÇöÀç È°¼ºÈ­µÇ¾î¾ß ¾À ¸ñ·Ï
@@ -29,11 +54,6 @@ namespace Streaming
 
 		private void Start()
 		{
-			if (viewer == null)
-			{
-				viewer = GameObject.FindGameObjectWithTag("Player").transform;
-			}
-
 			InitSubScene();
 			InitChunk();
 			UnLoadVisibleChunk();
@@ -41,8 +61,17 @@ namespace Streaming
 
 		private void Update()
 		{
+			if (Viewer is null)
+			{
+				return;
+			}
+
 			if (Time.frameCount % interval == 0)
 			{
+				if (viewer is null)
+				{
+					return;
+				}
 				viewerPosition = new Vector3(viewer.position.x, viewer.position.y, viewer.position.z);
 				CheckOutChunk();
 			}
