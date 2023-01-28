@@ -8,13 +8,13 @@ namespace LoadScene
 {
 	public static class LoadSceneAddressableStatic
 	{
-		public static void LoadScene(string sceneName)
+		public static void LoadScene(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode)
 		{
-			AddressablesManager.Instance.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single, null);
+			AddressablesManager.Instance.LoadScene(sceneName, loadSceneMode, null);
 		}
-		public static void LoadSceneAsync(string sceneName)
+		public static void LoadSceneAsync(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode)
 		{
-			AddressablesManager.Instance.LoadSceneAsync(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single, null);
+			AddressablesManager.Instance.LoadSceneAsync(sceneName, loadSceneMode, null);
 		}
 	}
 
