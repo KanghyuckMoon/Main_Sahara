@@ -9,8 +9,9 @@ namespace LoadScene
         // Start is called before the first frame update
         void Start()
         {
-            //LoadSceneAddressableStatic.LoadSceneAsync("UIScene");
-            LoadSceneAddressableStatic.LoadSceneAsync("InGame");
+            LoadSceneAddressableStatic.LoadSceneAsync("InGame", UnityEngine.SceneManagement.LoadSceneMode.Single);
+            LoadSceneAddressableStatic.LoadSceneAsync("PlayerScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            LoadSceneAddressableStatic.LoadSceneAsync("UIScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         }
     }
 
