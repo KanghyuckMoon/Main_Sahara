@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="HpUxml" src="project://database/Assets/UIToolkit/Uxml/HpUxml.uxml?fileID=9197481963319205126&amp;guid=6ea040c5b5130ee42976630991fb45cf&amp;type=3#HpUxml" />
+    <ui:Template name="MpUxml" src="project://database/Assets/UIToolkit/Uxml/MpUxml.uxml?fileID=9197481963319205126&amp;guid=c4f8359ec8e60de4fa57a3ac11b7efea&amp;type=3#MpUxml" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Hud.uss?fileID=7433441132597879392&amp;guid=1841124dd9e19824ab71e01edca4d30f&amp;type=3#Hud" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Container.uss?fileID=7433441132597879392&amp;guid=fb415ed2a98934248b9610f643b8b73f&amp;type=3#Container" />
+    <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%;">
+        <ui:VisualElement name="top_panel" class="top_panel">
+            <ui:VisualElement name="top_left_panel" style="flex-basis: 30%; flex-grow: 1;">
+                <ui:Instance template="HpUxml" name="HpUxml" />
+                <ui:Instance template="MpUxml" name="MpUxml" />
+                <ui:VisualElement name="buff_container" class="Container" />
+            </ui:VisualElement>
+            <ui:VisualElement name="top_mid_panel" style="flex-basis: 30%; flex-grow: 1;" />
+            <ui:VisualElement name="top_right_panel" style="flex-basis: 30%; flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="mid_panel" class="mid_panel" />
+        <ui:VisualElement name="bottom_panel" class="bottom_panel" />
+    </ui:VisualElement>
+</ui:UXML>

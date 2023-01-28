@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!641289076 &-8548647605372956485
+AudioBuildInfo:
+  m_IsAudioDisabled: 0
+  m_AudioClipCount: 0
+  m_AudioMixerCount: 0
+--- !u!382020655 &-6061210071773385906
+PluginBuildInfo:
+  m_RuntimePlugins:
+  - Newtonsoft.Json
+  - UnityAdsInitializationListener
+  - UnityAdsShowListener
+  - DOTween
+  - nunit.framework
+  - Unity.Burst.Unsafe
+  - Unity.VisualScripting.Antlr3.Runtime
+  - UnityAdsLoadListener
+  m_EditorPlugins:
+  - Unity.VisualScripting.IonicZip
+  - Unity.Burst.Cecil.Pdb
+  - log4netPlastic
+  - ReportGeneratorMerged
+  - Unity.Plastic.Newtonsoft.Json
+  - Unity.Analytics.Editor
+  - Unity.Plastic.Antlr3.Runtime
+  - Unity.VisualScripting.YamlDotNet
+  - DOTweenEditor
+  - Unity.Burst.Cecil.Mdb
+  - Unity.VisualScripting.TextureAssets
+  - zlib64Plastic
+  - unityplastic
+  - liblz4Plastic
+  - Unity.Burst.Cecil
+  - Unity.Burst.Cecil.Rocks
+  - lz4x64Plastic
+  - Unity.Analytics.Tracker
+  - Unity.VisualScripting.sqlite3
+  - AppleEventIntegration
+--- !u!1521398425 &-2011957801799302514
+VideoBuildInfo:
+  m_VideoClipCount: 0
+  m_IsVideoModuleDisabled: 0
+--- !u!1125 &1
+BuildReport:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Build_2023-01-24-22-20-16
+  m_Summary:
+    buildStartTime:
+      serializedVersion: 2
+      ticks: 638101631721238881
+    buildGUID: 7d855c5ac712f8146aa9fa5f4da7aff9
+    platformName: Win
+    platformGroupName: Standalone
+    subtarget: 0
+    options: 0
+    assetBundleOptions: 0
+    outputPath: D:/Unity/TestProject_Sahara/Windows64Build
+    crc: 0
+    totalSize: 0
+    totalTimeTicks: 436507428
+    totalErrors: 1
+    totalWarnings: 9
+    buildType: 1
+    buildResult: 2
+  m_Files: []
+  m_BuildSteps:
+  - stepName: Build player
+    durationTicks: 436507428
+    depth: 0
+    messages: []
+  - stepName: Preprocess Player
+    durationTicks: 3946762
+    depth: 1
+    messages:
+    - type: 2
+      content: Unity.Tutorials.Core.Editor.BuildStartedCriterion must be instantiated
+        using the ScriptableObject.CreateInstance method instead of new BuildStartedCriterion.
+    - type: 2
+      content: '[ServicesCore]: To use Unity''s dashboard services, you need to link
+        your Unity project to a project ID. To do this, go to Project Settings to
+        select your organization, select your project and then link a project ID.
+        You also need to make sure your organization has access to the required products.
+        Visit https://dashboard.unity3d.com to sign up.'
+    - type: 3
+      content: '3 HDRP assets included in build:
+
+        - HDRPHighQuality
+
+        -
+        HDRPMediumQuality
+
+        - HDRPLowQuality'
+  - stepName: Prepare For Build
+    durationTicks: 39443
+    depth: 1
+    messages: []
+  - stepName: ProducePlayerScriptAssemblies
+    durationTicks: 420761549
+    depth: 1
+    messages: []
+  - stepName: Prebuild Cleanup and Recompile
+    durationTicks: 397282409
+    depth: 2
+    messages: []
+  - stepName: Compile scripts
+    durationTicks: 356261106
+    depth: 3
+    messages:
+    - type: 2
+      content: Assembly for Assembly Definition File 'Assets/01.Scripts/UI/UI.asmdef'
+        will not be compiled, because it has no scripts associated with it.
+    - type: 2
+      content: 'Assets\01.Scripts\Utill\Addressable\AddressablesManager.cs(92,19):
+        warning CS0612: ''Addressables.LoadScene(object, LoadSceneMode, bool, int)''
+        is obsolete'
+    - type: 2
+      content: 'Assets\01.Scripts\Utill\Addressable\AddressablesManager.cs(131,19):
+        warning CS0612: ''Addressables.UnloadScene(AsyncOperationHandle<SceneInstance>,
+        bool)'' is obsolete'
+    - type: 2
+      content: 'Assets\01.Scripts\Streaming\Test\TargetMove.cs(13,16): warning CS0414:
+        The field ''TargetMove.rotateSpeed'' is assigned but its value is never used'
+    - type: 2
+      content: 'Assets\01.Scripts\Streaming\SubSceneReferenceManager.cs(26,16): warning
+        CS0414: The field ''SubSceneReferenceManager.isUseStreamingScene'' is assigned
+        but its value is never used'
+    - type: 2
+      content: 'Assets\01.Scripts\Quest\QuestManager.cs(16,16): warning CS0114: ''QuestManager.Awake()''
+        hides inherited member ''MonoSingleton<QuestManager>.Awake()''. To make the
+        current member override that implementation, add the override keyword. Otherwise
+        add the new keyword.'
+    - type: 2
+      content: 'Assets\01.Scripts\Player\ThirdPersonCameraController.cs(49,23): warning
+        CS0414: The field ''ThirdPersonCameraController.desiredCameraSide'' is assigned
+        but its value is never used'
+  - stepName: Generate and validate platform script types
+    durationTicks: 40073293
+    depth: 3
+    messages: []
+  - stepName: Verify Build setup
+    durationTicks: 288070
+    depth: 1
+    messages:
+    - type: 0
+      content: '''Assets/Scene1.unity'' is an incorrect path for a scene file. BuildPlayer
+        expects paths relative to the project folder.'
+  m_Appendices:
+  - {fileID: -6061210071773385906}
+  - {fileID: -8548647605372956485}
+  - {fileID: -2011957801799302514}
