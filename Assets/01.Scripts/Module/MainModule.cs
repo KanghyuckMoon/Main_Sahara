@@ -32,7 +32,7 @@ namespace Module
         [Header("중력크기")] public float gravityScale = -9.8f;
         [Header("땅체크 사거리")] public float groundOffset;
 
-        [Space] 
+        [Space]
         [Header("락온")] public bool LockOn;
         [Header("발 각도 조절")] public csHomebrewIK footRotate;
 
@@ -40,6 +40,10 @@ namespace Module
         [Header("서있을 수 있는 물체")] public LayerMask groundLayer;
 
         [Header("최대경사면")] public float maxSlope;
+
+        [Header("레이캐스트 쏠위치")]
+        public Transform raycastTarget;
+        public RaycastHit slopeHit;
 
         private Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 
@@ -57,6 +61,8 @@ namespace Module
             AddModule(ModuleType.Animation, new AnimationModule(this));
             AddModule(ModuleType.Pysics, new PysicsModule(this));
             AddModule(ModuleType.UI, new UIModule(this));
+
+            raycastTarget = transform.parent.Find("RayCastPoint");
         }
 
         private void Start()
