@@ -19,10 +19,7 @@ namespace Streaming
 					return debugViewer;
 				}
 
-				if (viewer is null)
-				{
-					viewer = GameObject.FindGameObjectWithTag("Player").transform;
-				}
+				viewer ??= GameObject.FindGameObjectWithTag("Player")?.transform;
 
 				return viewer;
 			}

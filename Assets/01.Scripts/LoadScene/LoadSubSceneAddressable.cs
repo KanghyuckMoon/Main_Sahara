@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadSubSceneAddressable : MonoBehaviour
+namespace LoadScene
 {
-    // Start is called before the first frame update
-    void Start()
+    public class LoadSubSceneAddressable : MonoBehaviour
     {
-        
-    }
+        [SerializeField]
+        private List<string> subSceneAddressList = new List<string>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		private void Start()
+		{
+			foreach (string address in subSceneAddressList)
+			{
+				LoadSceneAddressableStatic.LoadScene(address, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+			}
+		}
+	}
 }
