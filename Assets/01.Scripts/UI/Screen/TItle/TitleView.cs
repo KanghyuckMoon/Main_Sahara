@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using System; 
 namespace UI
 {
+    [Serializable]
     public class TitleView : AbUI_Base
     {
         enum Buttons
@@ -16,7 +17,7 @@ namespace UI
         public override void Cashing()
         {
             base.Cashing();
-            BindVisualElements(typeof(Buttons));
+            BindButtons(typeof(Buttons));
         }
 
         public override void Init()
