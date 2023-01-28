@@ -24,6 +24,14 @@ namespace UI
         private void Awake()
         {
             InitScreenPresenters();
+
+            screenDic.Add(ScreenType.Inventory, inventoryPresenter);
+            screenDic.Add(ScreenType.Map, mapPresenter);
+        }
+
+        private void Start()
+        {
+            EnabledAllScreens();
         }
 
         private void Update()
@@ -35,9 +43,6 @@ namespace UI
         {
             inventoryPresenter = GetComponentInChildren<InventoryPresenter>();
             mapPresenter = GetComponentInChildren<MapPresenter>();
-
-            screenDic.Add(ScreenType.Inventory, inventoryPresenter);
-            screenDic.Add(ScreenType.Map, mapPresenter);
         }
         private void UIInput()
         {
@@ -53,11 +58,14 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// 모든 스크린 비활성화 
+        /// </summary>
         private void EnabledAllScreens()
         {
             foreach(var v in screenDic)
             {
-                screenDic[v.Key].ActiveView(); 
+                screenDic[v.Key].ActiveView(false); 
             }
         }
     }

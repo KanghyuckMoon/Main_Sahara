@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements; 
+using UnityEngine.UIElements;
+using Module; 
 
 /// <summary>
 /// IUIOwner에 의해 캐싱 초기화 UI업데이트 것을 다른 클래스에 관리 받아라 
@@ -13,7 +14,7 @@ namespace UI
     {
         public UIDocument RootUIDocument { get; set; }
         public void Awake();
-        public void Start();
+        public void Start(StateData _stateData);
         public void UpdateUI();
 
     }

@@ -27,8 +27,12 @@ namespace UI
             //marker.contentContainer.transform.position = new Vector3(-mapView.Map.transform.position.x /*+ mapView.Map.style.width.value.value * 0.5f*/ - 35,// (-marker.contentContainer.style.width.value.value *0.5f),
             //                                                                  -mapView.Map.transform.position.y/* + mapView.Map.style.width.value.value * 0.5f*/ - 35,//(-marker.contentContainer.transform.position.y * 0.5f),
             //                                                                  0);
-            marker.contentContainer.transform.position = _pos; 
-            markerList.Add(marker); 
+            float _w = marker.ElementAt(0).style.width.value.value;
+            float _h = marker.ElementAt(0).style.height.value.value;
+            Debug.Log("RECT" + _w + " ," + _h);
+            _pos += new Vector2(_w / 2, _h / 2);
+            marker.contentContainer.transform.position = _pos;
+            markerList.Add(marker);
         }
 
         /// <summary>

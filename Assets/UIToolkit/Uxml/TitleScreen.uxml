@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Title.uss?fileID=7433441132597879392&amp;guid=364faedf34a0e58498083a843b61a208&amp;type=3#Title" />
+    <ui:VisualElement class="screen">
+        <ui:VisualElement name="top_panel" class="panel top_panel">
+            <ui:Label text="종점" display-tooltip-when-elided="true" name="title_label" class="title_label" style="font-size: 100px;" />
+            <ui:VisualElement />
+        </ui:VisualElement>
+        <ui:VisualElement name="mid_panel" class="panel mid_panel">
+            <ui:VisualElement name="button_group" class="vertical_group">
+                <ui:Button text="시작하기" display-tooltip-when-elided="true" name="start_button" class="button_base title_button" style="font-size: 60px;" />
+                <ui:Button text="종료하기" display-tooltip-when-elided="true" name="end_button" class="button_base title_button" style="font-size: 60px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="bottom_panel" class="panel" />
+    </ui:VisualElement>
+</ui:UXML>

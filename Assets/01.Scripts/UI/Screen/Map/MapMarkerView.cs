@@ -36,6 +36,18 @@ namespace UI
         //    marker.style.left = new StyleLength(-pos.x);
         //    marker.style.top = new StyleLength(-pos.y);
         }
+        public void SetPosAndRot(Vector2 _pos, Vector3 _rot)
+        {
+            marker.transform.position = _pos;
+            marker.style.rotate = new StyleRotate(new Rotate(_rot.y));
+        }
+        public void SetPosAndRot(Vector2 _pos, float _rot)
+        {
+            marker.transform.position = _pos;
+            marker.style.rotate = new StyleRotate(new Rotate(_rot));
+        }
+
+
     }
 }
 
