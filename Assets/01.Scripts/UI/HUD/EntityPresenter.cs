@@ -41,6 +41,7 @@ namespace UI
         }
         public void Awake()
         {
+            uiDocument ??= GetComponent<UIDocument>(); 
             ContructPresenters();
             AwakePresenters();
         }

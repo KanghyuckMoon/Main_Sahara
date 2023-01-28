@@ -93,7 +93,7 @@ namespace UI
         public void SetMarkerPosAndRot()
         {
             Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
-            markerView.SetPosAndRot(_uiPos,transform.eulerAngles - camTrm.eulerAngles);
+            markerView.SetPosAndRot(_uiPos, 0);
         }
         public void SetMarkerPosAndRot(float _rot)
         {

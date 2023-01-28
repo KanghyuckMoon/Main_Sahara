@@ -28,13 +28,15 @@ namespace UI
         public void Init(MapView _mapView)
         {
             this.mapView = _mapView;
-            this.camTrm = Camera.main.transform; 
+            this.camTrm = Camera.main.transform;
             // MapInfo 초기화 
+
+            playerMarker ??= GameObject.FindWithTag("Player").GetComponentInChildren<FollowObjMarker>(); 
 
             mapInfo.UIMapSize = new Vector2(mapView.Map.style.width.value.value, mapView.Map.style.height.value.value);
             mapInfo.UIMapCenterPos = new Vector2(mapView.Map.style.width.value.value / 2, mapView.Map.style.height.value.value / 2);
-            mapInfo.sceneSize.x = mapInfo.maxScenePos.position.x - mapInfo.minScenePos.position.x;
-            mapInfo.sceneSize.y = mapInfo.maxScenePos.position.z - mapInfo.minScenePos.position.z;
+            mapInfo.sceneSize.x = mapInfo.MaxScenePos.x - mapInfo.MinScenePos.x;
+            mapInfo.sceneSize.y = mapInfo.MaxScenePos.y - mapInfo.MinScenePos.y;
         }
 
         public void UpdateUI()
@@ -77,15 +79,15 @@ namespace UI
         {
             prevMapAngle = mapView.MinimapMask.style.rotate.value.angle.value;
 
-            mapView.MinimapMask.style.rotate = new Rotate(new Angle(camTrm.eulerAngles.y));
+            mapView.MinimapMask.style.rotate = new Rotate(new Angle(-camTrm.eulerAngles.y));
             angleDiff = mapView.MinimapMask.style.rotate.value.angle.value - prevMapAngle;
             var _markers = mapView.MarkerParent.Children();
             foreach (var m in _markers)
             {
-                if (m == playerMarker.MarkerUI) continue; 
-                m.style.rotate = new Rotate(new Angle(m.style.rotate.value.angle.value - angleDiff)); // 마커는 방향 유지해야하닌 
+                if (m == playerMarker.MarkerUI) continue;
+                //  m.style.rotate = new Rotate(new Angle(m.style.rotate.value.angle.value - angleDiff)); // 마커는 방향 유지해야하닌 
             }
-           // playerMarker.SetMarkerPosAndRot(-camTrm.eulerAngles.y);
+            playerMarker.SetMarkerPosAndRot(-mapView.MinimapMask.style.rotate.value.angle.value);
 
         }
         // 마커UI가 오브젝트 따라가는거 (플레이어, 몬스터)
