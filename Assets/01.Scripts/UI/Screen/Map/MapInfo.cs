@@ -25,6 +25,25 @@ namespace UI
 
         public Transform minScenePos;
         public Transform maxScenePos;
+
+        public Vector2 MinScenePos
+        {
+            get
+            {
+                if (minScenePos == null)
+                    return new Vector2(-500, -500);
+                return new Vector2(minScenePos.position.x,minScenePos.position.z);
+            }
+        }
+        public Vector2 MaxScenePos
+        {
+            get
+            {
+                if (maxScenePos == null)
+                    return new Vector2(500, 500);
+                return new Vector2(maxScenePos.position.x, maxScenePos.position.z);
+            }
+        }
         //[HideInInspector]
         public Vector2 sceneSize;
 

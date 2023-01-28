@@ -20,7 +20,7 @@ namespace UI
         private FollowObjMarker playerMarker; // 일단 임시로, 나중에 플레이어 가져와서 할거야  
         // 프라이빗 변수 
         private MapView mapView;
-
+        private Transform camTrm; 
         // 프로퍼티 
 
         public MapInfo MapInfo => mapInfo;
@@ -28,13 +28,15 @@ namespace UI
         public void Init(MapView _mapView)
         {
             this.mapView = _mapView;
-
+            this.camTrm = Camera.main.transform;
             // MapInfo 초기화 
+
+            playerMarker ??= GameObject.FindWithTag("Player").GetComponentInChildren<FollowObjMarker>(); 
 
             mapInfo.UIMapSize = new Vector2(mapView.Map.style.width.value.value, mapView.Map.style.height.value.value);
             mapInfo.UIMapCenterPos = new Vector2(mapView.Map.style.width.value.value / 2, mapView.Map.style.height.value.value / 2);
-            mapInfo.sceneSize.x = mapInfo.maxScenePos.position.x - mapInfo.minScenePos.position.x;
-            mapInfo.sceneSize.y = mapInfo.maxScenePos.position.z - mapInfo.minScenePos.position.z;
+            mapInfo.sceneSize.x = mapInfo.MaxScenePos.x - mapInfo.MinScenePos.x;
+            mapInfo.sceneSize.y = mapInfo.MaxScenePos.y - mapInfo.MinScenePos.y;
         }
 
         public void UpdateUI()
@@ -62,11 +64,32 @@ namespace UI
             //mapView.Map.style.left = new Length(_mapPos.x);
             //mapView.Map.style.top = new Length(_mapPos.y);
            //mapView.MapTrm.position = Vector2.Lerp(mapView.MapTrm.position,_mapPos,Time.deltaTime * 20f); 
-            mapView.MapTrm.position = _mapPos; 
-            
+            mapView.MapTrm.position = _mapPos;
+
+            // 맵 회전 
+            RotateMap(); 
         }
 
+        private float prevMapAngle = 0f;
+        private float angleDiff = 0f; 
+        /// <summary>
+        /// 카메라 회전값에 따른 미니맵 회전 
+        /// </summary>
+        private void RotateMap()
+        {
+            prevMapAngle = mapView.MinimapMask.style.rotate.value.angle.value;
 
+            mapView.MinimapMask.style.rotate = new Rotate(new Angle(-camTrm.eulerAngles.y));
+            angleDiff = mapView.MinimapMask.style.rotate.value.angle.value - prevMapAngle;
+            var _markers = mapView.MarkerParent.Children();
+            foreach (var m in _markers)
+            {
+                if (m == playerMarker.MarkerUI) continue;
+                //  m.style.rotate = new Rotate(new Angle(m.style.rotate.value.angle.value - angleDiff)); // 마커는 방향 유지해야하닌 
+            }
+            playerMarker.SetMarkerPosAndRot(-mapView.MinimapMask.style.rotate.value.angle.value);
+
+        }
         // 마커UI가 오브젝트 따라가는거 (플레이어, 몬스터)
         // obj -> UI 
         // mapView 가져와서 밑으로 가야해 

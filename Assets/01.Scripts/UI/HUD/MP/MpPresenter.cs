@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UIElements;
+using Module; 
 
 namespace UI
 {
@@ -18,7 +19,7 @@ namespace UI
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set; }
 
-        // private EntityData _entityData; 
+        private StateData stateData; 
 
         public void Awake()
         {
@@ -26,10 +27,10 @@ namespace UI
             _mpView.Cashing();
         }
 
-        public void Start()
+        public void Start(StateData _stateData)
         {
             _mpView.Init();
-            // _entityData = new EntityData();
+            this.stateData = _stateData; 
         }
 
         // 선택한 오브젝트의 스크립트 가져오고 

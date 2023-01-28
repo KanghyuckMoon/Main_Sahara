@@ -1,4 +1,7 @@
-.item__list-buttonGroup {
+.inventory_select_group {
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .unity-radio-button-group > .unity-text-element {
@@ -29,7 +32,7 @@
 .unity-radio-button > .unity-base-field__input > .unity-radio-button__checkmark-background {
     display: flex;
     background-image: url('project://database/Packages/com.unity.timeline/Editor/StyleSheets/Images/Icons/d_TrackLockButtonEnabled@2x.png?fileID=2800000&guid=2c85066ea99cfbe4f90294bf295ce543&type=3#d_TrackLockButtonEnabled@2x');
-    background-color: rgb(58, 55, 55);
+    background-color: rgba(58, 55, 55, 0);
     -unity-background-scale-mode: scale-to-fit;
     -unity-background-image-tint-color: rgb(236, 233, 148);
     align-items: center;
@@ -38,8 +41,12 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     justify-content: center;
-    width: 100px;
+    width: 80px;
     height: 100%;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
 }
 
 .unity-radio-button > .unity-base-field__input > .unity-radio-button__checkmark-background > .unity-radio-button__checkmark {
@@ -126,10 +133,76 @@
 .inventory_panel {
 }
 
-#item__grid-panel .unity-scroller > #unity-low-button {
+#inventory_scroll_panel .unity-scroller > #unity-low-button {
     display: none;
 }
 
-#item__grid-panel .unity-scroller > #unity-high-button {
+#inventory_scroll_panel .unity-scroller > #unity-high-button {
     display: none;
+}
+
+.left_content_panel {
+    flex-basis: 45%;
+    align-items: center;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.content_panel {
+    height: 90%;
+    flex-direction: row;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 3%;
+    margin-bottom: 4%;
+}
+
+.header {
+    height: 11%;
+    padding-top: 0.7%;
+    padding-bottom: 0.7%;
+}
+
+.center_content_panel {
+    flex-grow: 1.5;
+    max-width: 37.5%;
+    padding-left: 5%;
+}
+
+.right_content_panel {
+    max-width: 25%;
+    display: flex;
+    flex-grow: 1;
+    overflow: visible;
+}
+
+.inventory_select {
+    height: 100px;
+    display: flex;
+    border-bottom-width: 5px;
+    border-top-width: 0;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.inventory_scroll_panel {
+    width: 100%;
+}
+
+#inventory_scroll_panel .unity-scroll-view__content-container {
 }

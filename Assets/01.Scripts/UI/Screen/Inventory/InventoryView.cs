@@ -40,6 +40,7 @@ namespace UI
         {
             base.Init();
 
+            inventoryPanelList.Clear(); 
             // 인벤토리 패널 리스트에 추가 
             inventoryPanelList.Add(GetVisualElement((int)Elements.weapon_panel));
             inventoryPanelList.Add(GetVisualElement((int)Elements.armor_panel));

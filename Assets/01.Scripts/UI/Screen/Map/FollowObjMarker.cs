@@ -24,17 +24,24 @@ namespace UI
         [SerializeField]
         private Sprite sprite;
 
+        private Transform camTrm; 
         private MapPresenter mapPresenter;
         private MapMarkerView markerView; 
         private VisualElement markerUI;
 
-        private bool isUpdatePos = true; 
+        [SerializeField, Header("동적 이동 회전 여부")]
+        private bool isUpdatePosAndRot = true; 
 
         // 프로퍼티 
         public VisualElement MarkerUI => markerUI; 
         private MapView MapView => mapPresenter.MapView;
         private MapInfo MapInfo => mapPresenter.MapInfo;
-        public bool IsUpdatePos => isUpdatePos; 
+        public bool IsUpdatePos => isUpdatePosAndRot;
+
+        private void Awake()
+        {
+            camTrm = Camera.main.transform; 
+        }
         private void Start()
         {
             this.mapPresenter = GameObject.FindGameObjectWithTag("UIParent").GetComponentInChildren<ScreenUIController>().MapPresenter;
@@ -44,7 +51,7 @@ namespace UI
 
         private void Update()
         {
-            if (isUpdatePos == false) return; 
+            if (isUpdatePosAndRot == false) return; 
             SetMarkerPosAndRot(); 
         }
 
@@ -86,7 +93,12 @@ namespace UI
         public void SetMarkerPosAndRot()
         {
             Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
-            markerView.SetPosAndRot(_uiPos,transform.rotation);
+            markerView.SetPosAndRot(_uiPos, 0);
+        }
+        public void SetMarkerPosAndRot(float _rot)
+        {
+            Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
+            markerView.SetPosAndRot(_uiPos, transform.eulerAngles.y - camTrm.eulerAngles.y + _rot);
         }
     }
 }

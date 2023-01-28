@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UIElements;
+using Module; 
 
 namespace UI
 {
@@ -18,7 +19,7 @@ namespace UI
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set ; }
 
-        // private EntityData _entityData; 
+        private StateData stateData; 
 
         public void Awake()
         {
@@ -26,9 +27,10 @@ namespace UI
             _hpView.Cashing();
         }
 
-        public void Start()
+        public void Start(StateData _stateData)
         {
-            _hpView.Init(); 
+            _hpView.Init();
+            this.stateData = _stateData; 
             // _entityData = new EntityData();
         }
 
@@ -38,7 +40,7 @@ namespace UI
         public void UpdateUI()
         {
             //    _hpView.SetBarUI(_entityData.hp);
-            _hpView.SetBarUI(_testHp);
+            _hpView.SetBarUI(stateData.currentHp / stateData.maxHp);
         }
     }
 
