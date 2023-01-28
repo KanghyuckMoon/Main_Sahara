@@ -11,9 +11,17 @@ namespace UI
         enum Buttons
         {
             start_button,
-            end_button 
+            end_button
         }
 
+        enum ButtonCallbacks
+        {
+            start,
+            end
+        }
+
+        private Dictionary<ButtonCallbacks, Action> callbackDic = new Dictionary<ButtonCallbacks, Action>(); 
+        private Action a;
         public override void Cashing()
         {
             base.Cashing();
