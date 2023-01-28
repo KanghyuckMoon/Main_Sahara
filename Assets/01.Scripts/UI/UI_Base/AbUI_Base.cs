@@ -112,6 +112,11 @@ namespace UI
             ShowVisualElement(parentElement, !IsVisible());
         }
 
+        public void ActiveScreen(bool _isActive)
+        {
+            ShowVisualElement(parentElement, _isActive);
+        }
+
         /// <summary>
         /// elements 바인딩 하기 (enum으로 쭉 쓰고 넣어줘) 
         /// </summary>

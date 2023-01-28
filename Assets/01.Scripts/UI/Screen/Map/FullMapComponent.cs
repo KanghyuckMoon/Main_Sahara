@@ -28,8 +28,6 @@ namespace UI
         private float xMoveValue;
         private float yMoveValue;
 
-        private int width, height;
-
         // 프로퍼티 
         private Vector2 MoveDir => new Vector2(xMoveValue, yMoveValue).normalized;
         public MarkersComponent MarkersComponent => markersComponent; 
@@ -37,8 +35,6 @@ namespace UI
         public void Init(MapView _mapView)
         {
             this.mapView = _mapView;
-            width = Screen.width;
-            height = Screen.height; 
         }
 
         public void UpdateUI()

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System; 
+using System;
+using Module; 
 
 namespace UI
 {
@@ -14,6 +15,7 @@ namespace UI
         private BuffContainer buffControlView;
         // private BuffData buffData; 
 
+        private StateData stateData; 
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set; }
 
@@ -23,9 +25,10 @@ namespace UI
             buffControlView.Cashing(); 
         }
 
-        public void Start()
+        public void Start(StateData _stateData)
         {
-            buffControlView.Init(); 
+            buffControlView.Init();
+            this.stateData = _stateData; 
         }
 
         public void UpdateUI()

@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements; 
+using UnityEngine.UIElements;
+using Module; 
 
 namespace UI
 {
     public class EntityPresenter : MonoBehaviour, IUIOwner 
     {
+        // 디버그용
+        public float a, b; 
+        [SerializeField]
+        private Transform target;
+        [SerializeField]
+        private Renderer targetRenderer; 
         [SerializeField]
         private UIDocument uiDocument; 
 
@@ -15,26 +22,38 @@ namespace UI
         [SerializeField]
         private MpPresenter mpPresenter;
         [SerializeField]
-        private BuffPresenter buffPresenter; 
+        private BuffPresenter buffPresenter;
 
+        private VisualElement hudElement; 
+        private PresenterFollower presenterFollower; 
+        private StateData stateData; 
+        
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
-
         public UIDocument Root { get; set; }
-
         public UIDocument RootUIDocument => uiDocument;
+        public List<IUIFollower> PresenterList => _presenterList;
 
-        public List<IUIFollower> PresenterList => _presenterList; 
+        private void OnEnable()
+        {
+            hudElement = uiDocument.rootVisualElement.ElementAt(0);
+            presenterFollower = new PresenterFollower(this, hudElement, target, targetRenderer);
 
+        }
         public void Awake()
         {
             ContructPresenters();
-            AwakePresenters(); 
+            AwakePresenters();
         }
         public void Start()
         {
-            StartPresenters(); 
+            StartCoroutine(Init()); 
         }
 
+        private void LateUpdate()
+        {
+            presenterFollower.UpdateUI();
+
+        }
         [ContextMenu("테스트")]
         public void UpdateUI()
         {
@@ -66,7 +85,7 @@ namespace UI
         {
             foreach (var p in _presenterList)
             {
-                p.Start();
+                p.Start(stateData);
             }
         }
 
@@ -74,6 +93,19 @@ namespace UI
        public void TestCreateBuffIcon()
         {
             buffPresenter.CreateBuffIcon(); 
+        }
+
+        IEnumerator Init()
+        {
+            while(stateData == null)
+            {
+                stateData = transform.parent.GetComponentInChildren<MainModule>().GetModuleComponent<UIModule>(ModuleType.UI).stateData; // 부모 오브젝트의 데이터 가져오기 
+                if(stateData != null)
+                {
+                    StartPresenters();
+                }
+                yield return null;
+            }
         }
     }
 

@@ -99,6 +99,18 @@ namespace UI
             ShowMiniMap();
         }
 
+        public void ShowMap(bool _isAcitve)
+        {
+            if(_isAcitve == true)
+            {
+                mapType = MapType.FullMap;
+                ShowFullMap();
+                return; 
+            }
+            mapType = MapType.MiniMap;
+            ShowMiniMap();
+        }
+
         private void ShowFullMap()
         {
             // 전체맵 UI 활성화하고 

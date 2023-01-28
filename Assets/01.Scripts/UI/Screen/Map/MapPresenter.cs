@@ -30,11 +30,14 @@ namespace UI
             uiDocument ??= GetComponent<UIDocument>(); 
 
             mapView.InitUIDocument(uiDocument);
+        }
+        private void OnEnable()
+        {
             mapView.Cashing();
+            mapView.Init();
         }
         private void Start()
         {
-            mapView.Init();
             fullMapComponent.Init(mapView);
             miniMapComponent.Init(mapView); 
         }
@@ -57,6 +60,10 @@ namespace UI
         {
             mapView.ShowMap(); 
         }
+        public void ActiveView(bool _isActive)
+        {
+            mapView.ShowMap(_isActive); 
+        }
 
         [ContextMenu("마커 활성화")]
         public void ActiveMarkers()
@@ -69,6 +76,8 @@ namespace UI
         {
             fullMapComponent.MarkersComponent.ActiveMarkers(false);
         }
+
+
     }
 }
 
