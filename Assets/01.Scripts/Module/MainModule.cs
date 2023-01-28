@@ -13,7 +13,7 @@ namespace Module
 
         //Dictionary<ModuleType, BaseModule> modules = new Dictionary<ModuleType, BaseModule>();
 
-        [Header("캐릭터 컨트롤러")] public Rigidbody rigidBody;
+        [Header("캐릭터 컨트롤러")] public CharacterController characterController;
         [Header("캐릭터가 갈 방향")] public Vector2 objDir;
         [Header("카메라의 회전")] public Quaternion objRotation;
 
@@ -34,7 +34,7 @@ namespace Module
 
         [Space]
         [Header("락온")] public bool LockOn;
-        [Header("발 각도 조절")] public csHomebrewIK footRotate;
+        //[Header("발 각도 조절")] public csHomebrewIK footRotate;
 
         [Space]
         [Header("서있을 수 있는 물체")] public LayerMask groundLayer;
@@ -50,8 +50,8 @@ namespace Module
         private void Awake()
         {
             moduleComponentsDic = new();
-            rigidBody = GetComponentInParent<Rigidbody>();
-            footRotate = GetComponentInParent<csHomebrewIK>();
+            characterController = GetComponentInParent<CharacterController>();
+            //footRotate = GetComponentInParent<csHomebrewIK>();
             AddModule(ModuleType.Input, new InputModule(this));
             AddModule(ModuleType.Move, new MoveModule(this));
             AddModule(ModuleType.State, new StateModule(this));

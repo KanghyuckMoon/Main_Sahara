@@ -30,17 +30,18 @@ namespace Module
         /// </summary>
         public void Move()
         {
-            float _targetSpeed = mainModule.isSprint ? moveSpeed + 5 : moveSpeed;
+            #region 속도 관련 부분
+            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4 : moveSpeed;
             float _speed;
 
             if (mainModule.objDir == Vector2.zero) _targetSpeed = 0.0f;
 
-            float currentSpeed = new Vector3(mainModule.rigidBody.velocity.x, 0, mainModule.rigidBody.velocity.z).magnitude;
+            float currentSpeed = new Vector3(mainModule.characterController.velocity.x, 0, mainModule.characterController.velocity.z).magnitude;
 
             if (currentSpeed > _targetSpeed + speedOffset ||
                 currentSpeed < _targetSpeed - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed /* inputMagnitude*/, 7 * Time.deltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 7 * Time.deltaTime);
             }
             else
             {
@@ -49,43 +50,29 @@ namespace Module
 
             animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * 7);
             if (animationBlend < 0.01f) animationBlend = 0f;
+            #endregion
 
             Vector3 _targetDirection = new Vector3(mainModule.objDir.x, 0, mainModule.objDir.y);
 
-            Vector3 _velocity = NextStepGroundAngle(_speed) < mainModule.maxSlope ? _targetDirection : Vector3.zero;
+            //Vector3 _velocity = NextStepGroundAngle(_speed, _targetDirection) > mainModule.maxSlope ? _targetDirection : Vector3.zero;
 
             Vector3 _rotate = mainModule.transform.eulerAngles;
-            Vector3 _dir = _velocity.normalized;
-            Vector3 _gravity = Vector3.down * Mathf.Abs(mainModule.rigidBody.velocity.y);
+            Vector3 _dir = _targetDirection.normalized;
+            float _gravity = mainModule.gravity;//Vector3.down * Mathf.Abs(mainModule.characterController.velocity.y);
             Vector3 _moveValue;
 
-            //_dir += _rotate;
             if (mainModule.objDir != Vector2.zero)
             {
                 targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
                                   mainModule.objRotation.eulerAngles.y;
                 rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.12f);
 
-                mainModule.rigidBody.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                mainModule.transform.parent.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
 
-            if (mainModule.isGround && mainModule.isSlope)
-            {
-                //_moveValue = 
-                _direction = SlopVelocity(_direction);
-                _gravity = Vector3.zero;
-                mainModule.rigidBody.useGravity = false;
-            }
-            else
-            {
-                _direction = _direction.normalized;
-                mainModule.rigidBody.useGravity = true;
-            }
-
-            _moveValue = _direction * _speed;// * Time.deltaTime);// + (new Vector3(0, mainModule.gravity, 0) * Time.deltaTime);
-            mainModule.rigidBody.velocity = _moveValue + _gravity;//.MovePosition(mainModule.transform.position + _moveValue);
-            //mainModule.moveSpeed = Mathf.Abs(mainModule.characterController.velocity.x) + Mathf.Abs(mainModule.characterController.velocity.z);
+            _moveValue = _direction.normalized * _speed * Time.fixedDeltaTime;
+            mainModule.characterController.Move(_moveValue + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
 
             animator.SetFloat("MoveSpeed", animationBlend);
         }
@@ -96,9 +83,8 @@ namespace Module
             return _dirVelocity;
         }
 
-        public float NextStepGroundAngle(float moveSpeed)
+        public float NextStepGroundAngle(float moveSpeed, Vector3 _targetDirection)
         {
-            Vector3 _targetDirection = new Vector3(mainModule.objDir.x, 0, mainModule.objDir.y);
             var _nextPosition = mainModule.raycastTarget.position + _targetDirection * moveSpeed * Time.fixedDeltaTime;
 
             if (Physics.Raycast(_nextPosition, Vector3.down, out RaycastHit _hitInfo, 2f, mainModule.groundLayer))
@@ -108,23 +94,22 @@ namespace Module
             return 0f;
         }
 
-        private void OnAir()
+        /// <summary>
+        /// 중력을 계속 계산해 준다.
+        /// </summary>
+        private void Gravity()
         {
-            //if (mainModule.isGround)
-            //{
-            //    currentDirection = mainModule.transform.parent.eulerAngles;
-            //    currentSpeed = moveSpeed;
-            //}
-            //else
-            //{
-            //    Vector3 _curPos = mainModule.transform.parent.eulerAngles;
-            //    Vector3 _savedPos = currentDirection;
-
-            //    bool _isDirectionCurrect = _savedPos.y + 15 >= _curPos.y && _savedPos.y - 15 <= _curPos.y;
-
-            //    float _correctionRate = _isDirectionCurrect ? 1.4F : 0.86f;
-            //    currentSpeed = moveSpeed * _correctionRate;
-            //}
+            if (mainModule.isGround)
+            {
+                if (mainModule.gravity < 0.0f)
+                {
+                    mainModule.gravity = -2f;
+                }
+            }
+            if (mainModule.gravity < 100)
+            {
+                mainModule.gravity += mainModule.gravityScale * Time.fixedDeltaTime * 2;
+            }
         }
 
         /// <summary>
@@ -132,16 +117,13 @@ namespace Module
         /// </summary>
         private void ETC()
         {
-            mainModule.footRotate.enabled = mainModule.isGround;
-            //if (mainModule.isGround) mainModule.characterController.center = new Vector3(0, 0.75f, 0);
-            //else mainModule.characterController.center = new Vector3(0, 1f, 0);
+            //mainModule.footRotate.enabled = mainModule.isGround;
         }
 
         public override void FixedUpdate()
         {
             Move();
-            OnAir();
-
+            Gravity();
             ETC();
         }
 
@@ -149,17 +131,6 @@ namespace Module
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
             animationBlend = 0;
-            //moveSpeed = mainModule.GetModuleComponent<StateModule>(ModuleType.State).Speed;
-            //Input = _mainModule.dic<InputModule>(ModuleType.INPUT);
-        }
-
-        public override void Update()
-        {
-
-        }
-
-        public override void Awake()
-        {
         }
     }
 }
