@@ -29,24 +29,19 @@ namespace Module
             }
         }
 
-        public override void Update()
-        {
-            Gravity();
-        }
-
         public override void FixedUpdate()
         {
-            Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
-                mainModule.transform.position.z);
-            mainModule.isGround = Physics.CheckSphere(_spherePosition, 0.35f, mainModule.groundLayer,
-                QueryTriggerInteraction.Ignore);
+            GroundCheack();
 
             Slope();
         }
 
         private void Slope()
         {
-            Ray ray = new Ray(mainModule.transform.position, Vector3.down);
+            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
+                mainModule.transform.position.z);
+
+            Ray ray = new Ray(rayPos, Vector3.down);
             if (Physics.Raycast(ray, out mainModule.slopeHit, rayDistance, mainModule.groundLayer))
             {
                 var angle = Vector3.Angle(Vector3.up, mainModule.slopeHit.normal);
@@ -55,12 +50,12 @@ namespace Module
             mainModule.isSlope = false;
         }
 
-        public void Gravity()
+        private void GroundCheack()
         {
-            //if (mainModule.gravity < 60)
-            //{
-            //    mainModule.gravity += mainModule.gravityScale * Time.deltaTime;
-            //}
+            Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
+                mainModule.transform.position.z);
+            mainModule.isGround = Physics.CheckSphere(_spherePosition, 0.35f, mainModule.groundLayer,
+                QueryTriggerInteraction.Ignore);
         }
     }
 }

@@ -59,8 +59,8 @@ namespace Module
             else
             {
                 calculatedTime = jumpDelay;
-                
-                if(calculatedFallTime >= 0.0f)
+
+                if (calculatedFallTime >= 0.0f)
                 {
                     calculatedFallTime -= Time.deltaTime;
                 }
@@ -77,8 +77,8 @@ namespace Module
 
         void Jumping()
         {
-            //mainModule.gravity = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
-            mainModule.rigidBody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            mainModule.gravity = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
+            //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
     }
 }
