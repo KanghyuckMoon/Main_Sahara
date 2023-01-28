@@ -108,7 +108,6 @@ namespace UI
         private void RotateMap()
         {
             if (CamTrm == null) return; 
-
             prevMapAngle = mapView.MinimapMask.style.rotate.value.angle.value;
 
             mapView.MinimapMask.style.rotate = new Rotate(new Angle(-CamTrm.eulerAngles.y));

@@ -5,9 +5,10 @@ using UnityEngine.UIElements;
 
 namespace UI
 {
+
     public class PresenterFollower 
     {
-        private GameObject player; 
+        private GameObject player; // 플레이어랑 거리체크해서 UI 위치 조정하기 위해 필요 
         private Camera cam; // 카메라 
         private Transform targetTrm; // UI 띄울 오브젝트 
         private VisualElement followElement; // UI   
@@ -16,10 +17,19 @@ namespace UI
         private int maxL = 25; // UI 
         //디벅
         private EntityPresenter e; 
+
+        // 프로퍼티 
+        private GameObject Player
+        {
+            get
+            {
+                player ??= GameObject.FindWithTag("Player");
+                return Player; 
+            }
+        }
         public PresenterFollower(EntityPresenter e,VisualElement _follow ,Transform _target, Renderer _renderer)
         {
             this.e = e;
-            this.player = GameObject.FindGameObjectWithTag("Player"); 
 
             this.followElement = _follow;
             this.targetTrm = _target;
@@ -32,6 +42,7 @@ namespace UI
 
         public void UpdateUI()
         {
+            if (Player == null) return; 
             MoveToWorldPosition(followElement, targetTrm.position, new Vector2(e.a, e.b));  
         }
 
@@ -48,7 +59,7 @@ namespace UI
             // 월드 좌표를 현재 스크린 좌표로
             Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(element.panel, worldPosition + new Vector3(0,bounds.extents.y,0), worldSize, cam);
 
-            float l = Mathf.Clamp(maxL - (player.transform.position - targetTrm.position).magnitude, 0, maxL) / maxL; // 0~ 1
+            float l = Mathf.Clamp(maxL - (Player.transform.position - targetTrm.position).magnitude, 0, maxL) / maxL; // 0~ 1
             Debug.Log("Length" + l);
             
             // UI가 오브젝트 중앙에 오도록 width /2 를 더해준다 

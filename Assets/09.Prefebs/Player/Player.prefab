@@ -44,15 +44,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fd29ce5ba5f9243bc60ad261f11bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
-  objDir: {x: 0, y: 0, z: 0}
+  rigidBody: {fileID: 0}
+  objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   hitCollider: []
   moveSpeed: 0
+  isSprint: 0
   isGround: 0
+  isJump: 0
+  isFreeFall: 0
+  isSlope: 0
   gravity: 0
+  gravityScale: -9.8
+  groundOffset: 0
   LockOn: 0
   footRotate: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxSlope: 0
+  raycastTarget: {fileID: 0}
 --- !u!1 &4020872868707821578
 GameObject:
   m_ObjectHideFlags: 0
