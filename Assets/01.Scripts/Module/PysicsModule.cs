@@ -54,8 +54,10 @@ namespace Module
         {
             Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
-            mainModule.isGround = Physics.CheckSphere(_spherePosition, 0.35f, mainModule.groundLayer,
+            mainModule.isGround = Physics.CheckSphere(_spherePosition, 0.42f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
+
+
         }
     }
 }

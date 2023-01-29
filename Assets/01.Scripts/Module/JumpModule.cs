@@ -26,8 +26,8 @@ namespace Module
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
             jumpHeight = mainModule.GetModuleComponent<StateModule>(ModuleType.State).JumpPower;
-            jumpDelay = 0.5f;
-            antiFallTime = 0.19f;
+            jumpDelay = 0.6f;
+            antiFallTime = 0.16f;
         }
 
         public override void FixedUpdate()

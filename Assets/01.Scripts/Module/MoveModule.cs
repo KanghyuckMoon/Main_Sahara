@@ -18,6 +18,8 @@ namespace Module
 
         private float speedOffset = 0.1f;
 
+        private float addSpeed;
+
         private Vector3 currentDirection;
 
         public MoveModule(MainModule _mainModule) : base(_mainModule)
@@ -41,14 +43,14 @@ namespace Module
             if (currentSpeed > _targetSpeed + speedOffset ||
                 currentSpeed < _targetSpeed - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 7 * Time.deltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 6.5f * Time.deltaTime);
             }
             else
             {
                 _speed = _targetSpeed;
             }
 
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * 7);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * 6.5f);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
@@ -71,27 +73,40 @@ namespace Module
             }
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
 
-            _moveValue = _direction.normalized * _speed * Time.fixedDeltaTime;
+            _direction = VelocityOnSlope(_direction, _targetDirection);
+
+            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * Time.fixedDeltaTime;
             mainModule.characterController.Move(_moveValue + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
 
             animator.SetFloat("MoveSpeed", animationBlend);
         }
 
-        private Vector3 SlopVelocity(Vector3 direction)
+        private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
-            Vector3 _dirVelocity = Vector3.ProjectOnPlane(direction, mainModule.slopeHit.normal).normalized;
-            return _dirVelocity;
-        }
+            Vector3 _rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
+                mainModule.transform.position.z);
+            var _ray = new Ray(_rayPos, Vector3.down);
 
-        public float NextStepGroundAngle(float moveSpeed, Vector3 _targetDirection)
-        {
-            var _nextPosition = mainModule.raycastTarget.position + _targetDirection * moveSpeed * Time.fixedDeltaTime;
+            if (dir == Vector3.zero) { mainModule.StopOrNot = 0; }
+            else mainModule.StopOrNot = 1;
 
-            if (Physics.Raycast(_nextPosition, Vector3.down, out RaycastHit _hitInfo, 2f, mainModule.groundLayer))
+            if (Physics.Raycast(_ray, out RaycastHit _hitInfo, 0.2f))
             {
-                return Vector3.Angle(Vector3.up, _hitInfo.normal);
+                var _slopRotation = Quaternion.FromToRotation(Vector3.up, _hitInfo.normal);
+                var _adjustedVelocity = _slopRotation * velocity;
+
+                if (_adjustedVelocity.y < 0)// && _adjustedVelocity.y > 60)
+                {
+                    addSpeed = ((0.5f - _adjustedVelocity.y) * (0.3f - _adjustedVelocity.y) * 1.1f);
+                    Debug.Log(addSpeed);
+                    //if (dir == Vector3.zero) { addSpeed = 0; mainModule.StopOrNot = 0; }
+                    //else mainModule.StopOrNot = 1;
+                    return _adjustedVelocity;
+                }
             }
-            return 0f;
+
+            addSpeed = 0;
+            return velocity;
         }
 
         /// <summary>

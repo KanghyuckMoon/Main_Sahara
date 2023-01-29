@@ -13,6 +13,8 @@ namespace Module
 
         //Dictionary<ModuleType, BaseModule> modules = new Dictionary<ModuleType, BaseModule>();
 
+        [Header("멈출까말까")] public int StopOrNot;
+
         [Header("캐릭터 컨트롤러")] public CharacterController characterController;
         [Header("캐릭터가 갈 방향")] public Vector2 objDir;
         [Header("카메라의 회전")] public Quaternion objRotation;
@@ -26,6 +28,8 @@ namespace Module
         [Header("점프했나?")] public bool isJump;
         [Header("떨어졌나?")] public bool isFreeFall;
         [Header("경사정도")] public bool isSlope;
+        [Header("점프버퍼링타임")] public bool isJumpBuf;
+        [Header("움직일수 있나?")] public bool canMove;
 
         [Space]
         [Header("중력")] public float gravity;
@@ -49,6 +53,8 @@ namespace Module
 
         private void Awake()
         {
+            StopOrNot = 1;
+
             moduleComponentsDic = new();
             characterController = GetComponentInParent<CharacterController>();
             //footRotate = GetComponentInParent<csHomebrewIK>();
