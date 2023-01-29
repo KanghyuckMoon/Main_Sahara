@@ -155,6 +155,10 @@ namespace UI
         {
             Bind<RadioButton>(type); 
         }
+        public void BindLabels(Type type)
+        {
+            Bind<Label>(type); 
+        }
 
         /// <summary>
         /// element 가져오기 (idx는 enum을 통해 ) 
@@ -186,6 +190,10 @@ namespace UI
         public RadioButton GetRadioButton(int _idx)
         {
             return Get<RadioButton>(_idx); 
+        }
+        public Label GetLabel(int _idx)
+        {
+            return Get<Label>(_idx); 
         }
         // == 이벤트 관련 == //
 
