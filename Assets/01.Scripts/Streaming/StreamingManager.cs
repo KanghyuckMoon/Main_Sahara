@@ -48,6 +48,7 @@ namespace Streaming
 		private const int chunksVisibleInViewDst = 2;
 		private const int LODDst = 1;
 		private const int interval = 3;
+		private Vector3 defaultPosition = new Vector3(0,4050,0);
 
 		private void Start()
 		{
@@ -58,18 +59,16 @@ namespace Streaming
 
 		private void Update()
 		{
-			if (Viewer is null)
-			{
-				return;
-			}
-
 			if (Time.frameCount % interval == 0)
 			{
-				if (viewer is null)
+				if (Viewer is null)
 				{
-					return;
+					viewerPosition = defaultPosition;
 				}
-				viewerPosition = new Vector3(viewer.position.x, viewer.position.y, viewer.position.z);
+				else
+				{
+					viewerPosition = new Vector3(viewer.position.x, viewer.position.y, viewer.position.z);
+				}
 				CheckOutChunk();
 			}
 		}
