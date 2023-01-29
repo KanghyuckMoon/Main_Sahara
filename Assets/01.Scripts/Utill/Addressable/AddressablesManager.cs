@@ -17,6 +17,7 @@ namespace Utill.Addressable
 	{
 		private List<string> loadedScene = new List<string>();
 		private Dictionary<string, AsyncOperationHandle<SceneInstance>> sceneInstanceDic = new Dictionary<string, AsyncOperationHandle<SceneInstance>>();
+		private Queue<string> loadMessageQueue = new Queue<string>();
 
 		/// <summary>
 		/// 리소스를 가져오는 함수
