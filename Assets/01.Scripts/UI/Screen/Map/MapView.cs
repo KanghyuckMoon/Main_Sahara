@@ -129,6 +129,7 @@ namespace UI
             // 미니맵 마스크 끄고 
             VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
             ShowVisualElement(_minimapMask, false);
+            Test2();
 
             _panel.Add(map);
         }
@@ -137,7 +138,7 @@ namespace UI
         {
             // 전체맵 UI 비활성화하고 
             ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), false);
-            
+
             // 입력 차단하고 
 
             // 패널 설정
@@ -150,15 +151,25 @@ namespace UI
             //map.AddToClassList("minimap");    
 
             // 초기화 
-            map.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(new Length(50, LengthUnit.Percent),new Length(50, LengthUnit.Percent)));
+            map.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(new Length(50, LengthUnit.Percent), new Length(50, LengthUnit.Percent)));
             MapTrm.scale = Vector3.one;
-            MapTrm.position = Vector3.zero; 
+            MapTrm.position = Vector3.zero;
 
             // 마스크 키고
             VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
+
             ShowVisualElement(_minimapMask, true);
 
             _minimapMask.Add(map);
+        }
+        public void Test()
+        {
+            GetVisualElement((int)Elements.minimap_mask).style.overflow = Overflow.Hidden;
+        }
+        public void Test2()
+        {
+            GetVisualElement((int)Elements.minimap_mask).style.overflow = Overflow.Visible;
+
         }
     }
 }

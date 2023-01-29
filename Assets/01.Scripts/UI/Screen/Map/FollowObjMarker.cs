@@ -24,6 +24,7 @@ namespace UI
         [SerializeField]
         private Sprite sprite;
 
+        [SerializeField]
         private Transform camTrm; 
         private MapPresenter mapPresenter;
         private MapMarkerView markerView; 

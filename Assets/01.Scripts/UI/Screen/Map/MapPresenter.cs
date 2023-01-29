@@ -54,15 +54,28 @@ namespace UI
                 // 미니맵 렌더링
                 miniMapComponent.UpdateUI();
             }
+            if(Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                mapView.Test(); 
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                mapView.Test2();
+            }
         }
 
         public void ActiveView()
         {
-            mapView.ShowMap(); 
+            mapView.ShowMap();
+            if (mapView.CurMapType == MapType.MiniMap)
+            { } StartCoroutine(Test());
         }
         public void ActiveView(bool _isActive)
         {
-            mapView.ShowMap(_isActive); 
+            mapView.ShowMap(_isActive);
+
+            if (_isActive == false) { }
+                //StartCoroutine(Test());
         }
 
         [ContextMenu("마커 활성화")]
@@ -75,6 +88,13 @@ namespace UI
         public void DisableMarkers()
         {
             fullMapComponent.MarkersComponent.ActiveMarkers(false);
+        }
+
+        IEnumerator Test()
+        {
+            mapView.Test2();
+            yield return new WaitForSeconds(1f); 
+            mapView.Test();
         }
 
 
