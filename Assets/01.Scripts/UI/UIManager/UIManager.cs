@@ -37,15 +37,6 @@ namespace UI
             markerUI = AddressablesManager.Instance.GetResource<GameObject>("MarkerUI");
             playerHudUI = AddressablesManager.Instance.GetResource<GameObject>("PlayerHudUI");
         }
-        void Start()
-        {
-
-        }
-
-        void Update()
-        {
-            if (Player == null) { }
-        }
 
         /// <summary>
         ///  오브젝트에 UI 넣어주기 

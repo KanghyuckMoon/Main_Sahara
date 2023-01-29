@@ -32,24 +32,37 @@ namespace UI
         private StateData stateData;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
+
+        // 프로퍼티 
         public UIDocument Root { get; set; }
         public UIDocument RootUIDocument => uiDocument;
         public List<IUIFollower> PresenterList => _presenterList;
+        private Transform Target
+        {
+            get
+            {
+                if(target is null)
+                {
+                    target ??= GetComponentInParent<Transform>();
+                    if(target is not null)
+                    {
+                        targetRenderer ??= target?.GetComponentInChildren<Animator>()?.GetComponentInChildren<Renderer>();
+                    }
+                    else return null; 
+                }
+                return target; 
 
+            }
+        }
         private void OnEnable()
         {
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
-            if(isPlayerHud == false) // 머리 위에 hud 띄워야해 
-            {
-                presenterFollower = new PresenterFollower(this, hudElement, target, targetRenderer);
-            }
+
 
         }
         public void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>();
-            target ??= GetComponentInParent<Transform>();
-            targetRenderer ??= target.GetComponentInChildren<Animator>().GetComponentInChildren<Renderer>();
             ContructPresenters();
             AwakePresenters();
         }
@@ -57,7 +70,15 @@ namespace UI
         {
             StartCoroutine(Init());
         }
-
+        private void Update()
+        {
+            if (Target == null || targetRenderer == null) return;
+            
+            if (presenterFollower == null && isPlayerHud == false) // 머리 위에 hud 띄워야해 
+            {
+                presenterFollower = new PresenterFollower(this, hudElement, target, targetRenderer);
+            }
+        }
         private void LateUpdate()
         {
             if (presenterFollower != null)
