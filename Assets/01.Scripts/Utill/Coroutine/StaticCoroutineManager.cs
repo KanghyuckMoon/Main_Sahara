@@ -10,6 +10,11 @@ namespace Utill.Coroutine
 	/// </summary>
 	public class StaticCoroutineManager : MonoSingleton<StaticCoroutineManager>
 	{
+		public void InstanceDoCoroutine(IEnumerator _coroutine)
+		{
+			StartCoroutine(Instance.Perform(_coroutine));
+		}
+
 		/// <summary>
 		/// 스태틱 코루틴 함수
 		/// </summary>
