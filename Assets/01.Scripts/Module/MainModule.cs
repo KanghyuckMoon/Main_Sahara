@@ -54,6 +54,7 @@ namespace Module
         private void Awake()
         {
             StopOrNot = 1;
+            canMove = true;
 
             moduleComponentsDic = new();
             characterController = GetComponentInParent<CharacterController>();
