@@ -82,15 +82,7 @@ namespace UI
             _mapPos.y = Mathf.Clamp(mapView.Map.style.height.value.value * 0.5f - (_playerMarkerPos.y + mapInfo.UIMapCenterPos.y),
                                                        -mapInfo.UIMapSize.y * 0.5f + mapView.MinimapMaskH * 0.5f,
                                                         mapInfo.UIMapSize.y * 0.5f - mapView.MinimapMaskH * 0.5f);
-            Debug.Log("mapPos" + _mapPos);
-            Debug.Log("mapTrans" + mapView.Map.transform.position);
 
-            Debug.Log("maskWorldBound" + mapView.MinimapMask.worldBound);
-            Debug.Log("maskLocalBound" + mapView.MinimapMask.localBound);
-            Debug.Log("maskContentRect" + mapView.MinimapMask.contentRect);
-            Debug.Log("maskLayout" + mapView.MinimapMask.layout);
-            Debug.Log("maskWidth" + mapView.MinimapMask.style.width);
-            Debug.Log("maskHeight" + mapView.MinimapMask.style.height);
             //mapView.Map.style.left = new Length(_mapPos.x);
             //mapView.Map.style.top = new Length(_mapPos.y);
            //mapView.MapTrm.position = Vector2.Lerp(mapView.MapTrm.position,_mapPos,Time.deltaTime * 20f); 

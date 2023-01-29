@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using LoadScene; 
+using LoadScene;
+using UnityEngine.SceneManagement; 
 namespace UI
 {
     public class TitlePresenter : MonoBehaviour
@@ -25,7 +26,8 @@ namespace UI
             titleView.AddButtonEventToDic(TitleView.Buttons.start_button,
                 () =>
                 {
-                    LoadSceneAddressableStatic.LoadSceneAsync("InGameLoadScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+                    SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
+                    //LoadSceneAddressableStatic.LoadSceneAsync("InGameLoadScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
                 });
            
             titleView.AddButtonEventToDic(TitleView.Buttons.end_button, () => Debug.Log("Á¾·á"));

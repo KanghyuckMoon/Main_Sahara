@@ -10,6 +10,13 @@ using Utill.Pattern;
 
 namespace Utill.Addressable
 {
+	public struct LoadSceneData
+	{
+		public string name;
+		public LoadSceneMode loadSceneMode;
+		public System.Action<AsyncOperationHandle<SceneInstance>> action;
+	}
+
 	/// <summary>
 	/// 어드레서블 리소스 전반을 담당하는 유틸 스크립트
 	/// </summary>
@@ -17,6 +24,7 @@ namespace Utill.Addressable
 	{
 		private List<string> loadedScene = new List<string>();
 		private Dictionary<string, AsyncOperationHandle<SceneInstance>> sceneInstanceDic = new Dictionary<string, AsyncOperationHandle<SceneInstance>>();
+		private Queue<LoadSceneData> loadMessageQueue = new Queue<LoadSceneData>();
 
 		/// <summary>
 		/// 리소스를 가져오는 함수
@@ -106,17 +114,43 @@ namespace Utill.Addressable
 		/// <param name="_action"></param>
 		public void LoadSceneAsync(string _name, LoadSceneMode _loadSceneMode, System.Action<AsyncOperationHandle<SceneInstance>> _action)
 		{
-			if (!loadedScene.Contains(_name))
-			{
-				loadedScene.Add(_name);
-				var _handle = Addressables.LoadSceneAsync(_name, _loadSceneMode);
-				_handle.Completed += (x) =>
-				{
-					sceneInstanceDic.Add(_name, _handle);
-				};
-				_handle.Completed += _action;
-			}
+			LoadSceneData loadSceneData = new LoadSceneData();
+			loadSceneData.name = _name;
+			loadSceneData.loadSceneMode = _loadSceneMode;
+			loadSceneData.action = _action;
 
+			loadMessageQueue.Enqueue(loadSceneData);
+			LoadSceneQueue();
+			//if (!loadedScene.Contains(_name))
+			//{
+			//	loadedScene.Add(_name);
+			//	var _handle = Addressables.LoadSceneAsync(_name, _loadSceneMode);
+			//	_handle.Completed += (x) =>
+			//	{
+			//		sceneInstanceDic.Add(_name, _handle);
+			//	};
+			//	_handle.Completed += _action;
+			//}
+
+		}
+
+		private void LoadSceneQueue()
+		{
+			if (loadMessageQueue.Count > 0)
+			{
+				LoadSceneData _loadSceneData = loadMessageQueue.Dequeue();
+				if (!loadedScene.Contains(_loadSceneData.name))
+				{
+					loadedScene.Add(_loadSceneData.name);
+					var _handle = Addressables.LoadSceneAsync(_loadSceneData.name, _loadSceneData.loadSceneMode);
+					_handle.Completed += (x) =>
+					{
+						sceneInstanceDic.Add(_loadSceneData.name, _handle);
+					};
+					_handle.Completed += _loadSceneData.action;
+				}
+				LoadSceneQueue();
+			}
 		}
 		
 		/// <summary>

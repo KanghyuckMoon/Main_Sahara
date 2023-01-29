@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System; 
+using System;
 
 namespace UI
 {
@@ -29,7 +29,8 @@ namespace UI
             //                                                                  0);
             float _w = marker.ElementAt(0).style.width.value.value;
             float _h = marker.ElementAt(0).style.height.value.value;
-            Debug.Log("RECT" + _w + " ," + _h);
+            
+            //Debug.Log("RECT" + _w + " ," + _h);
             _pos += new Vector2(_w / 2, _h / 2);
             marker.contentContainer.transform.position = _pos;
             markerList.Add(marker);
