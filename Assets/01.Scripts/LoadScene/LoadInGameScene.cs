@@ -18,7 +18,6 @@ namespace LoadScene
 
         private IEnumerator LoadingScene()
         {
-            SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
             var op2 = SceneManager.LoadSceneAsync("InGame", LoadSceneMode.Additive);
             //op.priority = 4;
             //op.allowSceneActivation = true;
