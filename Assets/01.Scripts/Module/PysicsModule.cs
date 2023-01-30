@@ -13,11 +13,6 @@ namespace Module
 
         }
 
-        public override void Start()
-        {
-
-        }
-
         public override void OnCollisionEnter(Collision collision)
         {
             foreach (string _tagName in mainModule.hitCollider)
