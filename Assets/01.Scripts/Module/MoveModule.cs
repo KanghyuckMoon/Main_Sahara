@@ -126,20 +126,10 @@ namespace Module
                 mainModule.gravity += mainModule.gravityScale * Time.fixedDeltaTime * 2;
             }
         }
-
-        /// <summary>
-        /// 기타 설정해줄 것들. 공중에서는 IK꺼주기
-        /// </summary>
-        private void ETC()
-        {
-            //mainModule.footRotate.enabled = mainModule.isGround;
-        }
-
         public override void FixedUpdate()
         {
             Move();
             Gravity();
-            ETC();
         }
 
         public override void Start()
