@@ -33,7 +33,7 @@ namespace Module
         public void Move()
         {
             #region 속도 관련 부분
-            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4 : moveSpeed;
+            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4.5f : moveSpeed;
             float _speed;
 
             if (mainModule.objDir == Vector2.zero) _targetSpeed = 0.0f;
