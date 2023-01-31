@@ -46,7 +46,7 @@ namespace Quest
 			}
 		}
 
-		public QuestData(string questKey, string nameKey, string explanationKey, QuestState earlyQuestState, QuestConditionType questConditionType, List<QuestCreateObjectSO> questCreateObjectSOList, List<string> linkQuestKeyList)
+		public QuestData(string questKey, string nameKey, string explanationKey, QuestState earlyQuestState, QuestConditionType questConditionType, List<QuestCreateObjectSO> questCreateObjectSOList, List<string> linkQuestKeyList, bool isTalkQuest)
 		{
 			this.questKey = questKey;
 			this.nameKey = nameKey;
@@ -55,6 +55,7 @@ namespace Quest
 			this.questConditionType = questConditionType;
 			this.questCreateObjectSOList = questCreateObjectSOList;
 			this.linkQuestKeyList = linkQuestKeyList;
+			this.isTalkQuest = isTalkQuest;
 		}
 
 		public void SetCondition<T>(Predicate<T> clearCondition, T paremeter)
@@ -145,9 +146,21 @@ namespace Quest
 				questCreateObjectSOList = value;
 			}
 		}
+		public bool IsTalkQuest
+		{
+			get
+			{
+				return isTalkQuest;
+			}
+		}
 
 		public bool IsClear()
 		{
+			if (condition is null)
+			{
+				return false;
+			}
+
 			return condition.IsClear();
 		}
 
@@ -159,5 +172,6 @@ namespace Quest
 		private List<string> linkQuestKeyList; 
 		private List<QuestCreateObjectSO> questCreateObjectSOList;
 		private IQuestCondition condition;
+		private bool isTalkQuest = false;
 	}
 }

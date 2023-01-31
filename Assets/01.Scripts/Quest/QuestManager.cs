@@ -4,6 +4,7 @@ using UnityEngine;
 using Streaming;
 using Utill.Addressable;
 using Utill.Pattern;
+using Utill.Measurement;
 using System.Linq;
 
 namespace Quest
@@ -76,6 +77,15 @@ namespace Quest
 			return activeAndClearQuestList;
 		}
 
+		public void ChangeQuestActive(string key)
+		{
+			questDataDic[key].QuestState = QuestState.Active;
+		}
+		public void ChangeQuestClear(string key)
+		{
+			QuestClear(questDataDic[key]);
+		}
+
 		partial void InitQuestData();
 
 		private List<QuestData> GetWhereQuset(QuestState questState)
@@ -114,24 +124,37 @@ namespace Quest
 		{
 			foreach (var _quest in questDataDic)
 			{
-				if (_quest.Value.QuestState == QuestState.Disable || _quest.Value.QuestState == QuestState.Clear)
+				if (_quest.Value.QuestState == QuestState.Disable || _quest.Value.QuestState == QuestState.Clear || _quest.Value.QuestState == QuestState.Achievable)
 				{
 					continue;
 				}
 
 				if (_quest.Value.IsClear())
 				{
-					Debug.Log($"퀘스트 클리어 : {_quest.Key}");
-					_quest.Value.QuestState = QuestState.Clear;
-
-					foreach (var _linkQuest in _quest.Value.LinkQuestKeyList)
+					if (_quest.Value.IsTalkQuest)
 					{
-						if (questDataDic[_linkQuest].QuestState == QuestState.Disable)
-						{
-							questDataDic[_linkQuest].QuestState = QuestState.Discoverable;
-							CreateAllObject(questDataDic[_linkQuest].QuestCreateObjectSOList);
-						}
+						_quest.Value.QuestState = QuestState.Achievable;
+						//NPC 대화 데이터 설정
 					}
+					else
+					{
+						QuestClear(_quest.Value);
+					}
+				}
+			}
+		}
+
+		private void QuestClear(QuestData questData)
+		{
+			Logging.Log($"퀘스트 클리어 : {questData.QuestKey}");
+			questData.QuestState = QuestState.Clear;
+
+			foreach (var _linkQuest in questData.LinkQuestKeyList)
+			{
+				if (questDataDic[_linkQuest].QuestState == QuestState.Disable)
+				{
+					questDataDic[_linkQuest].QuestState = QuestState.Discoverable;
+					CreateAllObject(questDataDic[_linkQuest].QuestCreateObjectSOList);
 				}
 			}
 		}
