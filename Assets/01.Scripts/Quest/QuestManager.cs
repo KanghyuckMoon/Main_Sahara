@@ -98,6 +98,11 @@ namespace Quest
 		{
 			SceneData _sceneData = SceneDataManager.Instance.GetSceneData(_sceneName);
 
+			if (_sceneData is null || _objectDataSOList is null)
+			{
+				return;
+			}
+
 			foreach (var _objectDataSO in _objectDataSOList)
 			{
 				ObjectData _objectData = new ObjectData();
