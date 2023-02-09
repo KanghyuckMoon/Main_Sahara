@@ -60,6 +60,8 @@ namespace LoadScene
             op3.allowSceneActivation = true;
             op4.allowSceneActivation = true;
 
+            LoadScene.LoadSceneAddressableStatic.LoadSceneAsync("Quest", LoadSceneMode.Additive);
+
         }
     }
 

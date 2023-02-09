@@ -4,21 +4,10 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Screen.uss?fileID=7433441132597879392&amp;guid=5dba91076603c0e41894cfb7125df7f8&amp;type=3#Screen" />
     <ui:VisualElement name="map_screen" class="screen">
         <ui:VisualElement name="map_view" style="width: 100%; height: 100%;">
-            <ui:VisualElement name="map_panel_" class="map_panel" style="display: none;">
-                <ui:VisualElement name="minimap_mask_" class="minimap_mask" style="display: none;">
-                    <ui:VisualElement name="map_" class="minimap">
-                        <ui:VisualElement style="position: absolute; width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/01.Scripts/Utill/MightyTerrainMesh/Res/64.png?fileID=2800000&amp;guid=41a988d2c4b3634499bbac9c8b5f872a&amp;type=3#64&apos;); top: 60px; left: 77px;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UIToolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=3316425174430470091&amp;guid=0c59483ae80942c49a8ed8c34f22783d&amp;type=3#arrow-up@2x&apos;); width: 50px; height: 50px; -unity-background-scale-mode: scale-to-fit;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="map_" class="map" style="display: flex;">
-                    <ui:VisualElement name="VisualElement" style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/01.Scripts/Utill/MightyTerrainMesh/Res/64.png?fileID=2800000&amp;guid=41a988d2c4b3634499bbac9c8b5f872a&amp;type=3#64&apos;); position: absolute;" />
-                </ui:VisualElement>
-            </ui:VisualElement>
             <ui:VisualElement name="map_panel" class="minimap_panel">
                 <ui:VisualElement name="minimap_mask" class="minimap_mask" style="display: flex;">
-                    <ui:VisualElement name="map" class="map" style="width: 4000px; height: 4000px;">
-                        <ui:VisualElement name="markers" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <ui:VisualElement name="map" class="map" style="background-image: url(&apos;project://database/Assets/12.Texture/UI/MinmapImg.png?fileID=2800000&amp;guid=293cbd5026311674d980fa8cea290804&amp;type=3#MinmapImg&apos;);">
+                        <ui:VisualElement name="markers" style="width: 100%; height: 100%; align-items: center; justify-content: center;">
                             <ui:VisualElement name="player_marker" style="background-image: url(&apos;project://database/Assets/UIToolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=3316425174430470091&amp;guid=0c59483ae80942c49a8ed8c34f22783d&amp;type=3#arrow-up@2x&apos;); width: 200px; height: 200px; -unity-background-scale-mode: scale-to-fit; scale: 0.1 0.1; position: absolute;" />
                         </ui:VisualElement>
                     </ui:VisualElement>

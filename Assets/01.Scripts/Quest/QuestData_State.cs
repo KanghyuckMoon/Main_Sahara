@@ -9,6 +9,7 @@ namespace Quest
 		Disable, //비활성화
 		Discoverable, //발견 가능
 		Active, //활성화
+		Achievable, //달성가능
 		Clear, //클리어
 	}
 
@@ -25,6 +26,11 @@ namespace Quest
 		Mission, //미션
 		TargetNPC, //타겟 NPC
 		TargetInteractionItem, //타겟 상호작용 아이템
+		Time,
+		/// <summary>
+		/// 프로그래머가 수작업하는 조건
+		/// </summary>
+		Handwork, //수작업
 	}
 
 	public partial class QuestData

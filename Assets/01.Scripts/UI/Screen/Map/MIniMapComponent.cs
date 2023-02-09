@@ -22,6 +22,7 @@ namespace UI
         // 프라이빗 변수 
         private GameObject player;
         private MapView mapView;
+        [SerializeField]
         private Camera cam;
 
         // 프로퍼티 
@@ -40,7 +41,7 @@ namespace UI
             {
                 if (playerMarker == null && Player != null)
                 {
-                    playerMarker = Player.GetComponentInChildren<FollowObjMarker>();
+                    playerMarker = UIManager.Instance.Player.GetComponentInChildren<FollowObjMarker>();
                 }
                 return playerMarker;
             }
@@ -73,7 +74,7 @@ namespace UI
             // 그에 맞게 맵 이돟 
             // Vector2 _playerMarkerPos = new Vector2(playerMarker.MarkerUI.style.left.value.value, playerMarker.MarkerUI.style.top.value.value);
 
-            if (PlayerMarker == null) return; 
+            if (PlayerMarker == null ||PlayerMarker.MarkerUI == null) return; 
             Vector2 _playerMarkerPos = PlayerMarker.MarkerUI.transform.position; 
             Vector2 _mapPos; // 맵 포지션 
             _mapPos.x = Mathf.Clamp(mapView.Map.style.width.value.value * 0.5f - (_playerMarkerPos.x + mapInfo.UIMapCenterPos.x),

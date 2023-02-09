@@ -33,7 +33,7 @@ namespace Module
         public void Move()
         {
             #region 속도 관련 부분
-            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4 : moveSpeed;
+            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4.5f : moveSpeed;
             float _speed;
 
             if (mainModule.objDir == Vector2.zero) _targetSpeed = 0.0f;
@@ -126,20 +126,10 @@ namespace Module
                 mainModule.gravity += mainModule.gravityScale * Time.fixedDeltaTime * 2;
             }
         }
-
-        /// <summary>
-        /// 기타 설정해줄 것들. 공중에서는 IK꺼주기
-        /// </summary>
-        private void ETC()
-        {
-            //mainModule.footRotate.enabled = mainModule.isGround;
-        }
-
         public override void FixedUpdate()
         {
             Move();
             Gravity();
-            ETC();
         }
 
         public override void Start()
