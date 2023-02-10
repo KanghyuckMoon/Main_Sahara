@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 744071967}
-  - component: {fileID: 744071969}
   m_Layer: 0
   m_Name: Module
   m_TagString: Untagged
@@ -155,40 +154,6 @@ Transform:
   m_Father: {fileID: 1265982166}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &744071969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744071966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17fd29ce5ba5f9243bc60ad261f11bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StopOrNot: 0
-  characterController: {fileID: 0}
-  objDir: {x: 0, y: 0}
-  objRotation: {x: 0, y: 0, z: 0, w: 0}
-  hitCollider: []
-  moveSpeed: 0
-  isSprint: 0
-  isGround: 0
-  isJump: 0
-  isFreeFall: 0
-  isSlope: 0
-  isJumpBuf: 0
-  canMove: 0
-  gravity: 0
-  gravityScale: -15
-  groundOffset: 0.1
-  LockOn: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  maxSlope: 30
-  raycastTarget: {fileID: 0}
 --- !u!1 &850774595
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +197,8 @@ GameObject:
   - component: {fileID: 1265982168}
   - component: {fileID: 1265982171}
   - component: {fileID: 1265982172}
+  - component: {fileID: 1265982173}
+  - component: {fileID: 1265982174}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -358,6 +325,61 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &1265982173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265982165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325afc7641fdb9a4e8671887fc0b58aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StopOrNot: 0
+  characterController: {fileID: 0}
+  objDir: {x: 0, y: 0}
+  objRotation: {x: 0, y: 0, z: 0, w: 0}
+  dataSOPath: PlayerData_SO_Test
+  hitCollider:
+  - EnemyWeapon
+  moveSpeed: 0
+  isSprint: 0
+  isGround: 0
+  isJump: 0
+  isFreeFall: 0
+  isSlope: 0
+  isJumpBuf: 0
+  canMove: 0
+  isDead: 0
+  isAttack: 0
+  isWeaponExist: 0
+  attacking: 0
+  strongAttacking: 0
+  gravity: 0
+  gravityScale: -9.8
+  groundOffset: 0
+  LockOn: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  maxSlope: 0
+  raycastTarget: {fileID: 0}
+--- !u!114 &1265982174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265982165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f3ae5526ec80545a039466feb6e7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneMoveTime: 5
+  sceneMoveName: TestScene
 --- !u!1 &1572420777
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +433,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 31.2
+  field of view: 25.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -675,7 +697,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1914848778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c53090f9cb2eac84eb33cab60836a6fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 27876b9fc5a04a64d8ec8034cf3442a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &45147478244510585
@@ -1883,7 +1905,12 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 850774596}
-    m_RemovedComponents: []
+    - target: {fileID: 4632501980750910763, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 25.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4632501980750910740, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
 --- !u!4 &4698950735755658526
 Transform:
