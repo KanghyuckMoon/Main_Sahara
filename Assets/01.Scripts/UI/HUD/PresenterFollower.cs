@@ -6,17 +6,17 @@ using UnityEngine.UIElements;
 namespace UI
 {
 
-    public class PresenterFollower 
+    public class PresenterFollower
     {
         private GameObject player; // 플레이어랑 거리체크해서 UI 위치 조정하기 위해 필요 
         private Camera cam; // 카메라 
         private Transform targetTrm; // UI 띄울 오브젝트 
         private VisualElement followElement; // UI   
-        private Renderer renderer; 
+        private Renderer renderer;
         private int width, height;
         private int maxL = 25; // UI 
         //디벅
-        private EntityPresenter e; 
+        private EntityPresenter e;
 
         // 프로퍼티 
         private GameObject Player
@@ -24,9 +24,21 @@ namespace UI
             get
             {
                 player ??= GameObject.FindWithTag("Player");
-                return player; 
+                return player;
             }
         }
+        private Camera Cam
+        {
+            get
+            {
+                if (cam == null)
+                {
+                    cam = Camera.main; 
+                }
+                return cam; 
+            }
+        }
+
         public PresenterFollower(EntityPresenter e,VisualElement _follow ,Transform _target, Renderer _renderer)
         {
             this.e = e;
@@ -35,7 +47,6 @@ namespace UI
             this.targetTrm = _target;
             this.renderer = _renderer; 
 
-            this.cam = Camera.main;
             width = Screen.width;
             height = Screen.height; 
         }
@@ -53,11 +64,12 @@ namespace UI
         /// <param name="worldPosition"></param>
         /// <param name="worldSize"></param>
         private void MoveToWorldPosition(VisualElement element, Vector3 worldPosition, Vector2 worldSize)
-        {   
+        {
             // 오브젝트 크기(높이) 구하기 
-            Bounds bounds = GetTotalMeshFilterBounds(targetTrm);
+            //            Bounds bounds = GetTotalMeshFilterBounds(targetTrm);
+            Bounds bounds = renderer.bounds; 
             // 월드 좌표를 현재 스크린 좌표로
-            Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(element.panel, worldPosition + new Vector3(0,bounds.extents.y,0), worldSize, cam);
+            Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(element.panel, worldPosition + new Vector3(0, bounds.extents.y, 0), worldSize, Cam);
 
             float l = Mathf.Clamp(maxL - (Player.transform.position - targetTrm.position).magnitude, 0, maxL) / maxL; // 0~ 1
             Debug.Log("Length" + l);
