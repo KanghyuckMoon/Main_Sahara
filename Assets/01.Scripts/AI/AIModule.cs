@@ -84,6 +84,7 @@ namespace Module
 					if (currentAIHostileState is AIHostileState.Unknow || currentAIHostileState is AIHostileState.Suspicion || currentAIHostileState is AIHostileState.Investigate)
 					{
 						DynamicBGMManager.Instance.RemoveEnemyCount();
+						UIModule.IsRender = false;
 					}
 				}
 				else if (previousAIHostileState is not AIHostileState.Discovery)
@@ -91,6 +92,7 @@ namespace Module
 					if (currentAIHostileState is AIHostileState.Discovery)
 					{
 						DynamicBGMManager.Instance.AddEnemyCount();
+						UIModule.IsRender = true;
 					}
 				}
 			}
@@ -114,6 +116,15 @@ namespace Module
 				return (mainModule as IEnemy).NavMeshAgent;
 			}
 		}
+		public UIModule UIModule
+		{
+			get
+			{
+				uiModule ??= mainModule.GetModuleComponent<UIModule>(ModuleType.UI);
+				return uiModule;
+			}
+		}
+
 		private Transform player;
 		protected INode _rootNode;
 		private bool isInit = false;
@@ -122,6 +133,7 @@ namespace Module
 		private RootNodeMaker rootNodeMaker;
 		private AIHostileState currentAIHostileState;
 		private AIHostileState previousAIHostileState;
+		private UIModule uiModule;
 		private float suspicionGauge = 0f;
 
 		public AIModule(AbMainModule _mainModule) : base(_mainModule)
