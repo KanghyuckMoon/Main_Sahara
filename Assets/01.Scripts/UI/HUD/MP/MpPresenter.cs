@@ -19,8 +19,8 @@ namespace UI
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set; }
 
-        private StateData stateData; 
-
+        private StateData stateData;
+        private StateModule stateModule; 
         public void Awake()
         {
             _mpView.InitUIDocument(RootUIDocument); 
@@ -31,6 +31,11 @@ namespace UI
         {
             _mpView.Init();
             this.stateData = _stateData; 
+        }
+        public void Start(StateModule _stateData)
+        {
+            _mpView.Init();
+            this.stateModule = _stateData;
         }
 
         // 선택한 오브젝트의 스크립트 가져오고 

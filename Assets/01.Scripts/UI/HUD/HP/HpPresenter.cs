@@ -19,7 +19,8 @@ namespace UI
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set ; }
 
-        private StateData stateData; 
+        private StateData stateData;
+        private StateModule stateModule;
 
         public void Awake()
         {
@@ -33,6 +34,11 @@ namespace UI
             this.stateData = _stateData; 
             // _entityData = new EntityData();
         }
+        public void Start(StateModule _stateData)
+        {
+            _hpView.Init();
+            this.stateModule = _stateData; 
+        }
 
         // 선택한 오브젝트의 스크립트 가져오고 
         // 함수 리플렉션으로 쭉 빼와서 드롭다운으로 설정 
@@ -42,6 +48,8 @@ namespace UI
             //    _hpView.SetBarUI(_entityData.hp);
             _hpView.SetBarUI(stateData.currentHp / stateData.maxHp);
         }
+
+
     }
 
 }
