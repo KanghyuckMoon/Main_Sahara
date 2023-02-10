@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
+using Pool;
 
 namespace Module
 {
@@ -23,7 +24,7 @@ namespace Module
 			}
 
             //UI 동적 생성
-            GameObject _hudUI = AddressablesManager.Instance.GetResource<GameObject>(address);
+            GameObject _hudUI = ObjectPoolManager.Instance.GetObject(address);
             _hudUI.transform.SetParent(mainModule.transform);
             _hudUI.SetActive(true);
         }
