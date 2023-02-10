@@ -11,6 +11,10 @@ namespace Module
     {
         private float rayDistance = 0.5f;
         private HitModule hitModule;
+        private PlayerLandEffectSO effect;
+
+        private float effectSpownDelay = 1.2f;
+        private float currenteffectSpownDelay;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -20,6 +24,7 @@ namespace Module
         public override void Start()
         {
             hitModule = mainModule.GetModuleComponent<HitModule>(ModuleType.Hit);
+            effect = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
         }
 
         public override void OnTriggerEnter(Collider other)
@@ -38,7 +43,7 @@ namespace Module
         public override void FixedUpdate()
         {
             GroundCheack();
-
+            SetEffect();
             Slope();
         }
 
@@ -58,7 +63,6 @@ namespace Module
 
         private void GroundCheack()
         {
-            
             Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
             bool _isLand = Physics.CheckSphere(_spherePosition, 0.42f, mainModule.groundLayer,
@@ -66,10 +70,26 @@ namespace Module
 
             if(!mainModule.isGround && _isLand)
             {
-                EffectManager.Instance.SetEffectDefault("LandSandHitEffect", mainModule.transform.position, Quaternion.identity);
+                EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
             }
 
             mainModule.isGround = _isLand;
+        }
+
+        private void SetEffect()
+        {
+            if(mainModule.isGround && mainModule.objDir != Vector2.zero)
+            {
+                if(currenteffectSpownDelay > effectSpownDelay)
+                {
+                    currenteffectSpownDelay = 0;
+                    if (mainModule.isSprint)
+                        EffectManager.Instance.SetEffectDefault(effect.runEffectName, mainModule.transform.position, Quaternion.identity);
+                    else
+                        EffectManager.Instance.SetEffectDefault(effect.walkEffectName, mainModule.transform.position, Quaternion.identity);
+                }
+                currenteffectSpownDelay += Time.deltaTime;
+            }
         }
     }
 }
