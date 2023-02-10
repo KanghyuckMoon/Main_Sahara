@@ -9,7 +9,7 @@ namespace Weapon
 
     public class BaseWeapon : MonoBehaviour
     {
-        public WeaponSkills weaponSkills;
+        
         public string weaponName;
         public string tagName;
         public WeaponPositionSO WeaponPositionSO => weaponPositionSO;

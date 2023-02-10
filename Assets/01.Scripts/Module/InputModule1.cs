@@ -72,8 +72,7 @@ namespace Module
         {
 			if (Input.GetKeyDown(KeyCode.E))
 			{
-				mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).BaseWeapon.weaponSkills.Invoke();
-
+				mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).UseWeaponSkills();//.BaseWeapon.weaponSkills.Invoke();
 			}
         }
         //public Vector2 move;

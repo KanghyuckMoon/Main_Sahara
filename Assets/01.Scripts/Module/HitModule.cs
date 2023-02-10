@@ -31,7 +31,7 @@ namespace Module
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
         }
 
-        public void GetHit(int dmg, Vector3 pos)
+        public void GetHit(int dmg)
         {
             HitFeedBack();
             hpModule.GetDamage(dmg);
@@ -41,7 +41,7 @@ namespace Module
             }
             else
             {
-                Hit(pos);
+                Hit();
             }
         }
 
@@ -51,7 +51,7 @@ namespace Module
             mainModule.transform.DOShakePosition(0.15f, 0.2f, 180, 160);
         }
 
-        private void Hit(Vector3 pos)
+        private void Hit()
         {
             //animationModule.animator.St 
             animationModule.animator.Play("Hit", -1, 0);

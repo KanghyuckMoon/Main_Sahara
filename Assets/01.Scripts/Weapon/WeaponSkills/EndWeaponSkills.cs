@@ -6,19 +6,12 @@ using Pool;
 
 namespace Weapon
 {
-    public class EndWeaponSkills : MonoBehaviour
+    public class EndWeaponSkills : MonoBehaviour, IWeaponSkills
     {
         public BaseWeapon baseWeapon;
 
         private Animator animator;
         private GameObject effect;
-
-        private void Start()
-        {
-            baseWeapon.weaponSkills = new WeaponSkills(WeaponSkills);
-            //effect = AddressablesManager.Instance.GetResource<GameObject>("EndSword_SkillEffect");
-            //baseWeapon.weaponSkills += WeaponSkills;
-        }
 
         public void WeaponSkills()
         {
@@ -44,6 +37,11 @@ namespace Weapon
             yield return new WaitForSecondsRealtime(2f);
             effect.SetActive(false);
             ObjectPoolManager.Instance.RegisterObject("EndSword_SkillEffect", effect);
+        }
+
+        public void Skills()
+        {
+            WeaponSkills();
         }
     }
 }
