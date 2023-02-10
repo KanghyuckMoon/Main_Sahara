@@ -19,7 +19,6 @@ namespace UI
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set; }
 
-        private StateData stateData;
         private StateModule stateModule; 
         public void Awake()
         {
@@ -27,11 +26,6 @@ namespace UI
             _mpView.Cashing();
         }
 
-        public void Start(StateData _stateData)
-        {
-            _mpView.Init();
-            this.stateData = _stateData; 
-        }
         public void Start(StateModule _stateData)
         {
             _mpView.Init();
