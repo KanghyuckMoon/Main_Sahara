@@ -9,11 +9,14 @@ namespace Module
 	{
 		public override void Update()
 		{
-			InputMove();
-			InputJump();
-			InputSprint();
-			InputAttack();
-			InputSkill();
+			if (!mainModule.isDead)
+			{
+				InputMove();
+				InputJump();
+				InputSprint();
+				InputAttack();
+				InputSkill();
+			}
 		}
 
 		private void InputAttack()
@@ -70,7 +73,7 @@ namespace Module
 
         private void InputSkill()
         {
-			if (Input.GetKeyDown(KeyCode.E))
+			if (Input.GetKeyDown(KeyCode.E) && !mainModule.isDead)
 			{
 				mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).UseWeaponSkills();//.BaseWeapon.weaponSkills.Invoke();
 			}

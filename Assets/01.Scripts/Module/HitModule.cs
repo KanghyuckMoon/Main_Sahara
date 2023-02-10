@@ -55,12 +55,13 @@ namespace Module
         {
             //animationModule.animator.St 
             mainModule.isHit = true;
-            animationModule.animator.Play("Hit", -1, 0);
+            animationModule.animator.Play("Hit", 0, 0);
+            animationModule.animator.Play("Hit", 2, 0);
         }
 
         private void Dead()
         {
-            animationModule.animator.Play("Dead", -1, 0);
+            animationModule.animator.Play("Dead");
             mainModule.isDead = true;
             mainModule.characterController.enabled = false;
 

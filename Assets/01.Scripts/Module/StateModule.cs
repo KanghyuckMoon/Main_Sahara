@@ -125,7 +125,7 @@ namespace Module
 
 
 
-        private static List<Observer> observers = new List<Observer>();
+        private List<Observer> observers = new List<Observer>();
         private HpModule hpModule;
         private int mana;
         private int maxMana;
