@@ -28,7 +28,7 @@ namespace UI
         private void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>(); 
-
+        
             mapView.InitUIDocument(uiDocument);
         }
         private void OnEnable()
@@ -66,15 +66,23 @@ namespace UI
 
         public void ActiveView()
         {
-            mapView.ShowMap();
-            if (mapView.CurMapType == MapType.MiniMap)
-            { } StartCoroutine(Test());
+            //mapView.ShowMap();
+            StartCoroutine(TestCo()); 
+           // StartCoroutine(T()); 
+            // mapView.ShowMap();
+            // if (mapView.CurMapType == MapType.MiniMap)
+            // {
+            //     StartCoroutine(Test());
+            // } 
         }
         public void ActiveView(bool _isActive)
         {
             mapView.ShowMap(_isActive);
+           // StartCoroutine(TestCo());
 
-            if (_isActive == false) { }
+            if (_isActive == false) 
+            { 
+            }
                 //StartCoroutine(Test());
         }
 
@@ -90,13 +98,15 @@ namespace UI
             fullMapComponent.MarkersComponent.ActiveMarkers(false);
         }
 
-        IEnumerator Test()
+        IEnumerator TestCo()
         {
+            if (mapView.ShowMap() == true) yield break; 
+            
             mapView.Test2();
-            yield return new WaitForSeconds(1f); 
+            yield return null;
             mapView.Test();
+            mapView.SetMask(true);
         }
-
 
     }
 }

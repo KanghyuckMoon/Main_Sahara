@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System; 
-namespace UI
+using System;
+using Inventory; 
+
+namespace UI.Inventory
 {
     [Serializable]
     public class InventoryPresenter : MonoBehaviour, IScreen
@@ -25,21 +27,39 @@ namespace UI
         private void OnEnable()
         {
             inventoryView.Cashing();
+            inventoryView.Init();
         }
         void Start()
         {
-            inventoryView.Init(); 
+            UpdateUI(); 
         }
         
         public void ActiveView()
         {
-            inventoryView.ActiveScreen(); 
+            bool _isActive = inventoryView.ActiveScreen();
+            inventoryCam.gameObject.SetActive(_isActive);
         }
 
         public void ActiveView(bool _isActive)
         {
             inventoryCam.gameObject.SetActive(_isActive); // 인벤토리 활성화시에만 카메라 활성화 
             inventoryView.ActiveScreen(_isActive);
+        }
+
+        public void UpdateUI()
+        {
+            List<ItemData> _itemList = InventoryManager.Instance.GetWeaponAndConsumptionList(); 
+            foreach(var _itemData in _itemList)
+            {
+                this.inventoryView.UpdateInventoryUI(_itemData); 
+            }
+
+            for (int i = 0; i <5; i++ )
+            {
+                ItemData _quickSlotData = InventoryManager.Instance.GetQuickSlotItem(i);
+                this.inventoryView.UpdateQuickSlotUI(_quickSlotData, i); 
+            }
+
         }
     }
 

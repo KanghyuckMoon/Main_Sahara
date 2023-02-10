@@ -97,6 +97,14 @@ namespace UI
         }
 
         /// <summary>
+        /// hud 활성화 비활성화 
+        /// </summary>
+        public void SetActive(bool _isActive)
+        {
+            hudElement.style.display = _isActive == true ? DisplayStyle.Flex : DisplayStyle.None; 
+        }
+
+        /// <summary>
         /// Presenter 생성
         /// </summary>
         private void ContructPresenters()
@@ -132,7 +140,7 @@ namespace UI
         {
             while (stateData == null)
             {
-                stateData = transform.parent.GetComponentInChildren<MainModule>().GetModuleComponent<UIModule>(ModuleType.UI).stateData; // 부모 오브젝트의 데이터 가져오기 
+                stateData = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI).stateData; // 부모 오브젝트의 데이터 가져오기 
                 if (stateData != null)
                 {
                     StartPresenters();

@@ -22,7 +22,7 @@ namespace Module
 
         private Vector3 currentDirection;
 
-        public MoveModule(MainModule _mainModule) : base(_mainModule)
+        public MoveModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
         }
@@ -33,24 +33,24 @@ namespace Module
         public void Move()
         {
             #region 속도 관련 부분
-            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4.5f : moveSpeed;
+            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4 : moveSpeed;
             float _speed;
 
-            if (mainModule.objDir == Vector2.zero) _targetSpeed = 0.0f;
+            if (mainModule.objDir == Vector2.zero || mainModule.attacking || mainModule.strongAttacking) _targetSpeed = 0.0f;
 
             float currentSpeed = new Vector3(mainModule.characterController.velocity.x, 0, mainModule.characterController.velocity.z).magnitude;
 
             if (currentSpeed > _targetSpeed + speedOffset ||
                 currentSpeed < _targetSpeed - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 6.5f * Time.deltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 13.7f * Time.deltaTime);
             }
             else
             {
                 _speed = _targetSpeed;
             }
 
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * 6.5f);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * 20);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
@@ -67,9 +67,9 @@ namespace Module
             {
                 targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
                                   mainModule.objRotation.eulerAngles.y;
-                rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.12f);
+                rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.05f);
 
-                mainModule.transform.parent.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
 
@@ -126,10 +126,20 @@ namespace Module
                 mainModule.gravity += mainModule.gravityScale * Time.fixedDeltaTime * 2;
             }
         }
+
+        /// <summary>
+        /// 기타 설정해줄 것들. 공중에서는 IK꺼주기
+        /// </summary>
+        private void ETC()
+        {
+            //mainModule.footRotate.enabled = mainModule.isGround;
+        }
+
         public override void FixedUpdate()
         {
             Move();
             Gravity();
+            ETC();
         }
 
         public override void Start()

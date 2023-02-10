@@ -54,7 +54,7 @@ namespace Module
         //// where we are in the transition from side to side
         //private float desiredCameraSide = 1f;
 
-        public CameraModule(MainModule _mainModule) : base(_mainModule)
+        public CameraModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
         }

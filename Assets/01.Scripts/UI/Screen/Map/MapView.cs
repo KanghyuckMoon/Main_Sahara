@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
-
+using Utill.Measurement; 
 namespace UI
 {
     public enum MapType
@@ -24,7 +24,7 @@ namespace UI
         private VisualElement minimapMask;// 미니맵 마스크 요소 
 
         int width, height; 
-
+        
         // 프로퍼티 
         public VisualElement Map => map;
         public ITransform MapTrm => map.transform; 
@@ -87,16 +87,22 @@ namespace UI
 
         }
 
-        public void ShowMap()
+        /// <summary>
+        /// 전체맵 활성화시 true, 미니맵 활성화시 false 
+        /// </summary>
+        /// <returns></returns>
+        public bool ShowMap()
         {
             if(mapType == MapType.MiniMap)
             {
                 mapType = MapType.FullMap; 
                 ShowFullMap();
-                return; 
+                return true;
             }
-            mapType = MapType.MiniMap; 
-            ShowMiniMap();
+            mapType = MapType.MiniMap;
+            //testMap.Test(() => ShowMiniMap(), () => SetMask(true)); 
+           ShowMiniMap();
+            return false;
         }
 
         public void ShowMap(bool _isAcitve)
@@ -109,6 +115,7 @@ namespace UI
             }
             mapType = MapType.MiniMap;
             ShowMiniMap();
+            SetMask(true); 
         }
 
         private void ShowFullMap()
@@ -129,7 +136,6 @@ namespace UI
             // 미니맵 마스크 끄고 
             VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
             ShowVisualElement(_minimapMask, false);
-            Test2();
 
             _panel.Add(map);
         }
@@ -137,14 +143,11 @@ namespace UI
         private void ShowMiniMap()
         {
             // 전체맵 UI 비활성화하고 
-            ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), false);
 
             // 입력 차단하고 
 
             // 패널 설정
-            VisualElement _panel = GetVisualElement((int)Elements.map_panel);
-            _panel.RemoveFromClassList("map_panel");
-            _panel.AddToClassList("minimap_panel");
+
 
             // 맵 사이즈 설정 
             //map.RemoveFromClassList("map");  
@@ -155,19 +158,48 @@ namespace UI
             MapTrm.scale = Vector3.one;
             MapTrm.position = Vector3.zero;
 
+            SetMapPanel(_isMinimap: true); 
             // 마스크 키고
+            //SetMask(true); 
+            //SetMask(true); 
+         }
+
+        public void SetMask(bool _isActive)
+        {
             VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
-
-            ShowVisualElement(_minimapMask, true);
-
             _minimapMask.Add(map);
+
+            ShowVisualElement(_minimapMask, _isActive);
+            ShowVisualElement(GetVisualElement((int)Elements.map_panel), true); 
         }
+
+        private void SetMapPanel(bool _isMinimap)
+        {
+            VisualElement _panel = GetVisualElement((int)Elements.map_panel);
+            ShowVisualElement(_panel, false);
+            if (_isMinimap == true)
+            {
+                // 전체맵 UI 비활성화하고 
+                ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), ! _isMinimap); 
+                _panel.RemoveFromClassList("map_panel");
+                _panel.AddToClassList("minimap_panel");
+                return; 
+            }
+
+            // 전체맵 UI 활성화하고 
+            ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), _isMinimap); 
+            _panel.AddToClassList("map_panel");
+            _panel.RemoveFromClassList("minimap_panel");
+        }
+
         public void Test()
         {
+            Logging.Log("Overflow Hidden");
             GetVisualElement((int)Elements.minimap_mask).style.overflow = Overflow.Hidden;
         }
         public void Test2()
         {
+            Logging.Log("Overflow Visible");
             GetVisualElement((int)Elements.minimap_mask).style.overflow = Overflow.Visible;
 
         }

@@ -24,7 +24,7 @@ namespace UI
             get
             {
                 player ??= GameObject.FindWithTag("Player");
-                return Player; 
+                return player; 
             }
         }
         public PresenterFollower(EntityPresenter e,VisualElement _follow ,Transform _target, Renderer _renderer)

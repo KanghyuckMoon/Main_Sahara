@@ -60,7 +60,7 @@ namespace UI
         /// <summary>
         /// 甘UI惑俊辑 付目UI 积己 
         /// </summary>
-        public void CreateMarker()
+        private void CreateMarker()
         {
             TemplateContainer _markerContainter = markerUxml.Instantiate();
             //markerUI = _markerContainter.contentContainer.children(); // 积己 
@@ -91,7 +91,7 @@ namespace UI
             MapView.MarkerParent.Remove(markerUI);
         }
 
-        public void SetMarkerPosAndRot()
+        private void SetMarkerPosAndRot()
         {
             Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
             markerView.SetPosAndRot(_uiPos, 0);

@@ -6,11 +6,11 @@ using UnityEngine.Animations;
 
 public class Landing : StateMachineBehaviour
 {
-    MainModule _mainModule;
+    AbMainModule _mainModule;
 
     private void Awake()
     {
-        _mainModule = GameObject.Find("Player").GetComponentInChildren<MainModule>();
+        _mainModule = GameObject.Find("Player").GetComponentInChildren<AbMainModule>();
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

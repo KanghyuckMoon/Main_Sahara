@@ -30,7 +30,7 @@ namespace Module
 
         public StateData stateData;
 
-        public UIModule(MainModule _mainModule) : base(_mainModule)
+        public UIModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
         }

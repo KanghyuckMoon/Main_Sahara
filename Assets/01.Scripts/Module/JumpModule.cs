@@ -17,7 +17,7 @@ namespace Module
         private float antiFallTime;
         private float calculatedFallTime;
 
-        public JumpModule(MainModule _mainModule) : base(_mainModule)
+        public JumpModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
         }
@@ -78,6 +78,7 @@ namespace Module
         void Jumping()
         {
             mainModule.gravity = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
+            //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
     }
 }

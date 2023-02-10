@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
+using TimeManager;
 
 namespace PhysicsTime
 {
@@ -14,7 +15,7 @@ namespace PhysicsTime
             if (Physics.autoSimulation)
                 return; // do nothing if the automatic simulation is enabled
 
-            timer += Time.deltaTime;
+            timer += StaticTime.PhysicsDeltaTime;
 
             // Catch up with the game time.
             // Advance the physics simulation in portions of Time.fixedDeltaTime
