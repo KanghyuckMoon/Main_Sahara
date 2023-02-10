@@ -116,8 +116,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.75
+      scalar: 0.1
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -151,7 +151,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -536,7 +536,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 14.617361
+    angle: 38.96
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -622,7 +622,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.01
+      value: 0.05
       mode: 0
       spread: 0
       speed:
@@ -4635,7 +4635,7 @@ ParticleSystemRenderer:
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 0
-  m_Pivot: {x: 0, y: 0, z: 0}
+  m_Pivot: {x: 0, y: 0.3, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 0
@@ -4769,8 +4769,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.5
+      scalar: 0.5
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4804,7 +4804,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5189,7 +5189,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 14.617361
+    angle: 38.96
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -5275,7 +5275,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.01
+      value: 0.05
       mode: 0
       spread: 0
       speed:
@@ -9279,7 +9279,7 @@ ParticleSystemRenderer:
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 0
-  m_Pivot: {x: 0, y: 0, z: 0}
+  m_Pivot: {x: 0, y: 0.3, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 0
@@ -9309,7 +9309,7 @@ GameObject:
   - component: {fileID: 3731343271854811657}
   - component: {fileID: 8257529762227938227}
   m_Layer: 0
-  m_Name: LandSandHitEffect
+  m_Name: RunSandHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9341,7 +9341,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4151738533025840498}
   serializedVersion: 8
-  lengthInSec: 0.1
+  lengthInSec: 0.05
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -9416,7 +9416,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14146,7 +14146,7 @@ GameObject:
   - component: {fileID: 7506489374117890293}
   - component: {fileID: -2783646244776331813}
   m_Layer: 0
-  m_Name: LandSandHitEffect
+  m_Name: RunSandHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14180,8 +14180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eaae9a820f8959498b01921422238f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  address: LandSandHitEffect
-  disableDelay: 3
+  address: RunSandHitEffect
+  disableDelay: 1
   isInvokeDisable: 1
 --- !u!114 &-2783646244776331813
 MonoBehaviour:
@@ -14195,7 +14195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f71004023ae1b499ae41f44bfc2ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effName: Mt_Sand_HrsPl_LandBrake_Front00
+  _effName: Mt_Sand_Pl_MoveFast_HeelAccent00
 --- !u!1 &8898060933964721422
 GameObject:
   m_ObjectHideFlags: 0
