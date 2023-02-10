@@ -22,6 +22,16 @@ namespace UI.EventAlarm
         {
             GetVisualElement((int)Elements.top_panel).Add(_v); 
         }
+
+        public void ActiveView()
+        {
+            ShowVisualElement(parentElement,! IsVisible()); 
+        }
+
+        public void ActiveView(bool _isActive)
+        {
+            ShowVisualElement(parentElement, _isActive);
+        }
     }
 
 }

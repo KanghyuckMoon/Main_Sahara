@@ -11,7 +11,7 @@ using Utill.Addressable;
 
 namespace UI.Inventory
 {
-   
+
     [Serializable]
     public class InventoryView : AbUI_Base
     {
@@ -22,10 +22,10 @@ namespace UI.Inventory
             weapon_panel,
             armor_panel,
             consumation_panel,
-            skill_panel, 
-            accessories_panel, 
-            material_panel, 
-            valuable_panel 
+            skill_panel,
+            accessories_panel,
+            material_panel,
+            valuable_panel
         }
 
         enum Elements
@@ -36,7 +36,7 @@ namespace UI.Inventory
             armor_equip_panel, // 장비 장착
             accessoire_equip_panel, // 장신구 장착
             skill_equip_panel, // 스킬 장착 
-           
+
 
         }
 
@@ -59,7 +59,7 @@ namespace UI.Inventory
             inventory_scroll_panel
         }
         #endregion
-        private InvenItemUISO invenItemUISO;    
+        private InvenItemUISO invenItemUISO;
 
         private List<VisualElement> inventoryPanelList = new List<VisualElement>();
         private Dictionary<ItemType, InventoryPanelUI> itemSlotDic = new Dictionary<ItemType, InventoryPanelUI>();
@@ -85,7 +85,7 @@ namespace UI.Inventory
 
             // 드래그 아이템 초기화 
             dragItemView = new SlotItemView();
-            VisualElement _v = GetVisualElement((int)Elements.drag_item); 
+            VisualElement _v = GetVisualElement((int)Elements.drag_item);
             dragItemView.InitUIParent(_v);
             dragItemView.Cashing();
             dragItemView.Init();
@@ -96,12 +96,12 @@ namespace UI.Inventory
             // 슬롯 생성 
             CreateAllSlots();
             // 인벤토리 패널 리스트에 넣고 weapon패널만 활성화 
-            InitPanelList(); 
+            InitPanelList();
             // 버튼 이벤트 추가 
             AddButtonEvents();
             //    ItemTypeList.Add()
 
-            InitEquipSlots(); 
+            InitEquipSlots();
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace UI.Inventory
         /// </summary>
         public void UpdateQuickSlotUI(ItemData _itemData, int _index)
         {
-            itemSlotDic[ItemType.Weapon].SetEquipItemDataUI(_itemData, _index); 
+            itemSlotDic[ItemType.Weapon].SetEquipItemDataUI(_itemData, _index);
         }
 
         /// <summary>
@@ -129,12 +129,13 @@ namespace UI.Inventory
             if (_ui.slotItemViewList.Count <= _ui.index)
             {
                 CreateRow(invenItemUISO.GetItemUIType(_itemData.itemType));
-            }else if(_ui.slotItemViewList.Count > _row * _col) // 기본 인벤토리보다 더 많은데 아이템이 있는 것도 아니면 
+            }
+            else if (_ui.slotItemViewList.Count > _row * _col) // 기본 인벤토리보다 더 많은데 아이템이 있는 것도 아니면 
             {
                 //_ui.RemoveSlotView(); 
             }
             _ui.SetItemDataUI(_itemData);
-            
+
         }
 
         /// <summary>
@@ -143,9 +144,9 @@ namespace UI.Inventory
         private void AddButtonEvents()
         {
             // 패널 활성화 
-            foreach(var _p in Enum.GetValues(typeof(InvenPanelElements)))
+            foreach (var _p in Enum.GetValues(typeof(InvenPanelElements)))
             {
-                AddRadioBtnChangedEvent((int)_p, (x) => ActiveInventoryPanel((InvenPanelElements)_p,x));
+                AddRadioBtnChangedEvent((int)_p, (x) => ActiveInventoryPanel((InvenPanelElements)_p, x));
             }
         }
 
@@ -153,16 +154,16 @@ namespace UI.Inventory
         /// 인벤토리 패널 활성화or비활성화 시키기 
         /// </summary>
         /// <param name="_elementType"></param>
-        private void ActiveInventoryPanel(InvenPanelElements _elementType,bool _isActive)
+        private void ActiveInventoryPanel(InvenPanelElements _elementType, bool _isActive)
         {
             // 바뀌었으면 
-            if(curPanelType != _elementType)
+            if (curPanelType != _elementType)
             {
                 // 스크롤 초기화 
                 curPanelType = _elementType;
-                GetScrollView((int)ScrollViews.inventory_scroll_panel).scrollOffset = Vector2.zero; 
+                GetScrollView((int)ScrollViews.inventory_scroll_panel).scrollOffset = Vector2.zero;
             }
-            if(_elementType == InvenPanelElements.weapon_panel || _elementType == InvenPanelElements.consumation_panel)
+            if (_elementType == InvenPanelElements.weapon_panel || _elementType == InvenPanelElements.consumation_panel)
             {
                 ShowVisualElement(GetVisualElement((int)Elements.right_content_panel), _isActive);
             }
@@ -183,12 +184,21 @@ namespace UI.Inventory
             ShowVisualElement(_v, _isActive);
         }
 
+ //       private EquipInventoryPanelUI equipInvenPanel;
+        /// <summary>
+        /// 장착 슬롯 캐싱 초기화 
+        /// </summary>
         private void InitEquipSlots()
         {
+   //         equipInvenPanel = new EquipInventoryPanelUI();
             List<VisualElement> _list = GetVisualElement((int)Elements.right_content_panel).Query<VisualElement>(className: "quick_slot").ToList();
             for (int i = 0; i < _list.Count(); i++)
             {
-                itemSlotDic[ItemType.Weapon].AddEquipSlotView(new SlotItemView(_list[i],i)); 
+     //           equipInvenPanel.AddEquipSlotView(new SlotItemView(_list[i]));
+                // 버튼 2개에서 
+                // 하나는 자기가 꺼지면 팬러끄고 
+                // 하는ㄴ 자기가 키면 패널 키고 
+                itemSlotDic[ItemType.Weapon].AddEquipSlotView(new SlotItemView(_list[i],i));
             }
         }
 
@@ -229,7 +239,7 @@ namespace UI.Inventory
             itemSlotDic.Clear();
             foreach (var _v in Enum.GetValues(typeof(InvenPanelElements)))
             {
-                itemSlotDic.Add(invenItemUISO.GetItemType((InvenPanelElements)_v), new InventoryPanelUI()); 
+                itemSlotDic.Add(invenItemUISO.GetItemType((InvenPanelElements)_v), new InventoryPanelUI());
                 for (int j = 0; j < _row; j++)
                 {
                     CreateRow((InvenPanelElements)_v);
@@ -248,9 +258,9 @@ namespace UI.Inventory
                 ItemType _i = invenItemUISO.GetItemType(_itemType);
 
                 SlotItemView _slotView = _v.Item2 as SlotItemView;
-                _slotView.AddDragger(dragItemView.Item, () => ClickItem(_slotView)); 
+                _slotView.AddDragger(dragItemView.Item, () => ClickItem(_slotView));
                 itemSlotDic[_i].AddSlotView(_v.Item2 as SlotItemView);
-                SetParent(_itemType,_v.Item1); 
+                SetParent(_itemType, _v.Item1);
             }
         }
 
@@ -262,17 +272,17 @@ namespace UI.Inventory
             // 떨어뜨린 곳이 슬롯이 있는지 체크 
             VisualElement _v = GetVisualElement((int)Elements.drag_item);
 
-           IEnumerable<SlotItemView> slots = itemSlotDic[invenItemUISO.GetItemType(curPanelType)].equipItemViewList.
-                                                                    Where((x) => x.Item.worldBound.Overlaps(dragItemView.Item.worldBound));
-            
+            IEnumerable<SlotItemView> slots = itemSlotDic[invenItemUISO.GetItemType(curPanelType)].equipItemViewList.
+                                                                     Where((x) => x.Item.worldBound.Overlaps(dragItemView.Item.worldBound));
+
             // 슬롯에 드랍 했다면
-            if(slots.Count() != 0)
+            if (slots.Count() != 0)
             {
                 // 가장 가깝게 드랍한 슬롯 
                 SlotItemView _closedSlot = slots.OrderBy(x => Vector2.Distance(x.Item.worldBound.position, dragItemView.Item.worldBound.position)).First();
 
                 _closedSlot.SetSprite(dragItemView.ItemSprite);
-                _closedSlot.IsStackable = dragItemView.IsStackable; 
+                _closedSlot.IsStackable = dragItemView.IsStackable;
                 _closedSlot.SetText(dragItemView.ItemCount);
 
                 // SO 데이터도 
@@ -282,7 +292,7 @@ namespace UI.Inventory
             {
 
             }
-            ActiveDragItem(false); 
+            ActiveDragItem(false);
         }
 
         private void ClickItem(SlotItemView _slotView)
@@ -290,7 +300,7 @@ namespace UI.Inventory
             //dragItemView 에 클릭한 슬롯의 아이템 넘겨주기 
             dragItemView.SetSpriteAndText(_slotView.ItemSprite, _slotView.ItemCount);
 
-            ActiveDragItem(true); 
+            ActiveDragItem(true);
         }
         private void ActiveDragItem(bool _isActive)
         {
@@ -301,12 +311,12 @@ namespace UI.Inventory
         /// </summary>
         /// <param name="_itemType"></param>
         /// <param name="_v"></param>
-        private void SetParent(InvenPanelElements _itemType,VisualElement _v)
+        private void SetParent(InvenPanelElements _itemType, VisualElement _v)
         {
-            GetVisualElement((int)_itemType).Add(_v); 
+            GetVisualElement((int)_itemType).Add(_v);
         }
 
-     //   private void 
+        //   private void 
     }
 }
 
