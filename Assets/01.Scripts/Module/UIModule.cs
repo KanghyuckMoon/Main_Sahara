@@ -1,57 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utill.Addressable;
+using Utill.Pattern;
+using Pool;
 
 namespace Module
 {
-    public class StateData
-    {
-        public StateData()
-        {
-            maxHp = 0;
-            currentHp = 0;
-            speed = 0;
-            jumpScale = 0;
-        }
-
-        public int maxHp;
-        public int currentHp;
-
-        public float speed;
-        public float jumpScale;
-
-    }
-
     public class UIModule : AbBaseModule
     {
-        public StateModule stateModule => mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-        public HpModule hpModule => mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
+        private string address = null;
 
-
-        public StateData stateData;
-
-        public UIModule(AbMainModule _mainModule) : base(_mainModule)
+        public UIModule(AbMainModule _mainModule, string _address = null) : base(_mainModule)
         {
-
+            address = _address;
         }
 
         public override void Start()
         {
-            stateData = new StateData();
+            if (address is null)
+			{
+                return;
+			}
 
-            SetState();
-        }
-
-        public void SetState()
-        {
-            stateData.jumpScale = stateModule.JumpPower;
-            stateData.speed = stateModule.Speed;
-            stateData.maxHp = stateModule.MaxHp;
-        }
-
-        public override void Update()
-        {
-            stateData.currentHp = hpModule.CurrentHp;
+            //UI 동적 생성
+            GameObject _hudUI = ObjectPoolManager.Instance.GetObject(address);
+            _hudUI.transform.SetParent(mainModule.transform);
+            _hudUI.SetActive(true);
         }
     }
 }

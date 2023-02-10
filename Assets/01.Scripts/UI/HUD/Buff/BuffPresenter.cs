@@ -15,7 +15,6 @@ namespace UI
         private BuffContainer buffControlView;
         // private BuffData buffData; 
 
-        private StateData stateData;
         private StateModule stateModule; 
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set; }
@@ -26,11 +25,6 @@ namespace UI
             buffControlView.Cashing(); 
         }
 
-        public void Start(StateData _stateData)
-        {
-            buffControlView.Init();
-            this.stateData = _stateData;
-        }
         public void Start(StateModule _stateData)
         {
             buffControlView.Init();

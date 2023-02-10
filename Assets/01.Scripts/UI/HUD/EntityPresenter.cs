@@ -29,7 +29,6 @@ namespace UI
 
         private VisualElement hudElement;
         private PresenterFollower presenterFollower;
-        private StateData stateData;
         private StateModule stateModule;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
@@ -144,7 +143,7 @@ namespace UI
             while (stateModule == null)
             {
                 this.stateModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
-                if (stateData != null)
+                if (stateModule != null)
                 {
                     StartPresenters();
                     this.stateModule.AddObserver(this);
