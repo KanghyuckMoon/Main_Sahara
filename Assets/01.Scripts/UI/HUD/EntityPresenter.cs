@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Module;
+using Utill.Measurement; 
 
 namespace UI
 {
@@ -41,19 +42,26 @@ namespace UI
         {
             get
             {
-                if (target is null)
+                if (target == null)
                 {
-                    target ??= GetComponentInParent<Transform>();
-                    if (target is not null)
+                    //target = GetComponentInParent<Transform>();
+                    target = transform.parent; 
+                    Logging.Log("타겟 찾는중..");
+                    if (target != null)
                     {
-                        targetRenderer ??= target?.GetComponentInChildren<Animator>()?.GetComponentInChildren<Renderer>();
+                        Logging.Log("타겟렌더러 찾는중..");
+                        targetRenderer = target?.GetComponentInChildren<Renderer>();
                     }
                     else return null;
                 }
+                Logging.Log("타겟 반환");
                 return target;
 
             }
         }
+
+
+
         private void OnEnable()
         {
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
@@ -84,6 +92,7 @@ namespace UI
             if (presenterFollower != null)
             {
                 presenterFollower.UpdateUI();
+                Debug.Log("따라가는중");
             }
 
         }

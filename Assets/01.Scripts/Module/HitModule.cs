@@ -54,6 +54,7 @@ namespace Module
         private void Hit()
         {
             //animationModule.animator.St 
+            mainModule.isHit = true;
             animationModule.animator.Play("Hit", -1, 0);
         }
 

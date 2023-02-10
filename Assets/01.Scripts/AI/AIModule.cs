@@ -145,7 +145,7 @@ namespace Module
 			{
 				isInit = true;
 				WeaponModule _weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
-				_weaponModule.ChangeWeapon("EndSword", "GreatSword");
+				_weaponModule.ChangeWeapon("EndSword", "Sword");
 			}
 
 			if (mainModule.isDead)

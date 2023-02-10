@@ -37,6 +37,7 @@ namespace Module
         [Header("죽었나?")] public bool isDead;
         [Header("공격중인가?")] public bool isAttack;
         [Header("무기를 가지고 있나?")] public bool isWeaponExist;
+        [Header("맞았냐?")] public bool isHit;
 
         [Space]
         [Header("공격하나?")] public bool attacking;
