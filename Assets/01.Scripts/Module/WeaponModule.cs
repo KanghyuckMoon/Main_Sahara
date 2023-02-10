@@ -99,7 +99,7 @@ namespace Module
 
         public void UseWeaponSkills()
         {
-            if (stateModule.Mana > baseWeapon.WeaponDataSO.manaConsumed)
+            if (stateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
             {
                 weaponSkills?.Invoke();
                 stateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
