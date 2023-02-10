@@ -24,15 +24,18 @@ namespace Module
         public override void Awake()
         {
             animator = mainModule.GetComponent<Animator>();
-            swordLayerIndex = animator.GetLayerIndex("GreatSword");
+            swordLayerIndex = animator.GetLayerIndex("Sword");
             
             StaticTime.Instance.AddObserver(this);
         }
 
         public override void Update()
         {
-            animator.SetBool("Attack", mainModule.attacking);
-            animator.SetBool("StrongAttack", mainModule.strongAttacking);
+            if (!mainModule.isHit)
+            {
+                animator.SetBool("Attack", mainModule.attacking);
+                animator.SetBool("StrongAttack", mainModule.strongAttacking);
+            }
         }
 
         public override void FixedUpdate()
