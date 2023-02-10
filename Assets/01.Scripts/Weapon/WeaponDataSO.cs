@@ -17,6 +17,9 @@ namespace Weapon
         [Space]
         [Header("이펙트 이름")] public string effectName;
 
+        [Space]
+        [Header("스킬 마나 사용량")] public int manaConsumed;
+
         [TextArea]
         [Header("무긴 설명")]
         public string weaponExplanation;

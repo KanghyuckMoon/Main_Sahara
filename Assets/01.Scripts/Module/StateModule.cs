@@ -154,7 +154,12 @@ namespace Module
         {
             hpModule = mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
             maxMana = playerdata.mana;
-            Mana = maxMana;
+            mana = maxMana;
+        }
+
+        public void ChargeMana(int addMana)
+        {
+            mana = (mana + addMana) > maxMana ? maxMana : mana + addMana;
         }
 
         public void SetAttackDamage(WeaponDataSO weaponDataSO)

@@ -26,13 +26,11 @@ namespace Module
         {
             foreach (string _tagName in mainModule.hitCollider)
             {
-                if (other.CompareTag(_tagName))
+                if (other.CompareTag(_tagName) && !mainModule.isDead)
                 {
-                    if (!mainModule.isDead)
-                    {
-                        hitModule.GetHit(other.GetComponentInParent<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State).AdAttack, other.ClosestPoint(mainModule.transform.position));
-                        //mainModule.transform.DOShakePosition(0.15f, 0.2f, 180, 160);
-                    }
+                    StateModule otherStateModule = other.GetComponentInParent<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
+                    hitModule.GetHit(otherStateModule.AdAttack);
+                    otherStateModule.ChargeMana(10);
                 }
             }
         }
