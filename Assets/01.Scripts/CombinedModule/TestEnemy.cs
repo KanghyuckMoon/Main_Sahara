@@ -29,7 +29,7 @@ namespace CondinedModule
             AddModule(ModuleType.Hp, new HpModule(this));
             AddModule(ModuleType.Animation, new AnimationModule(this));
             AddModule(ModuleType.Physics, new PhysicsModule(this));
-            AddModule(ModuleType.UI, new UIModule(this));
+            AddModule(ModuleType.UI, new UIModule(this, "HudUI"));
             AddModule(ModuleType.Attack, new AttackModule(this));
             AddModule(ModuleType.Weapon, new WeaponModule(this));
             AddModule(ModuleType.Hit, new HitModule(this));
