@@ -14,21 +14,126 @@ namespace Module
         public Vector3 position;
     }
 
-    public class StateModule : AbBaseModule
+    public class StateModule : AbBaseModule, Obserble
     {
-        public float Speed => playerdata.speed;
-        public float JumpPower => playerdata.jumpPower;
-        public int MaxHp => playerdata.hp;
-        public int AdAttack => adAttack;
-        public int ApAttack => apAttack;
-        public int mana;
-        public int maxMana;
+        public float Speed
+        {
+            get
+            {
+                return speed;
+            }
+            set
+            {
+                speed = value;
+                Send();
+            }
+        }
+        public float JumpPower
+        {
+            get
+            {
+                return jumpPower;
+            }
+            set
+            {
+                jumpPower = value;
+                Send();
+            }
+        }
+        public int MaxHp
+        {
+            get
+            {
+                return maxHp;
+            }
+            set
+            {
+                maxHp = value;
+                Send();
+            }
+        }
+        public int AdAttack
+        {
+            get
+            {
+                return adAttack;
+            }
+            set
+            {
+                adAttack = value;
+                Send();
+            }
+        }
+        public int ApAttack
+        {
+            get
+            {
+                return apAttack;
+            }
+            set
+            {
+                apAttack = value;
+                Send();
+            }
+        }
+        public int Mana
+        {
+            get
+            {
+                return mana;
+            }
+            set
+            {
+                mana = value;
+                Send();
+            }
+        }
+        public int MaxMana
+        {
+            get
+            {
+                return maxMana;
+            }
+            set
+            {
+                maxMana = value;
+                Send();
+            }
+        }
+        public int CurrentHp
+        {
+            get
+            {
+                return hpModule.CurrentHp;
+            }
+            set
+            {
+                hpModule.CurrentHp = value;
+                Send();
+            }
+        }
+
 
         public SaveData saveData;
+        public List<Observer> Observers
+        {
+            get
+            {
+                return observers;
+            }
+        }
 
+
+
+        private static List<Observer> observers = new List<Observer>();
         private HpModule hpModule;
+        private int mana;
+        private int maxMana;
         private int adAttack;
         private int apAttack;
+        private int maxHp;
+        private float jumpPower;
+        private float speed;
         
         private PlayerData_TesSO playerdata;
 
@@ -41,12 +146,15 @@ namespace Module
         {
             playerdata = AddressablesManager.Instance.GetResource<PlayerData_TesSO>(mainModule.dataSOPath);
             saveData = new SaveData();
+            maxHp = playerdata.hp;
+            jumpPower = playerdata.jumpPower;
+            speed = playerdata.speed;
         }
         public override void Start()
         {
             hpModule = mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
             maxMana = playerdata.mana;
-            mana = maxMana;
+            Mana = maxMana;
         }
 
         public void SetAttackDamage(WeaponDataSO weaponDataSO)
@@ -58,7 +166,7 @@ namespace Module
         public void SaveData()
         {
             saveData.hp = hpModule.CurrentHp;
-            saveData.mana = mana;
+            saveData.mana = Mana;
             saveData.position = mainModule.transform.position;
             //saveData.mana = 
         }
@@ -66,8 +174,26 @@ namespace Module
         public void LoadData()
         {
             hpModule.CurrentHp = saveData.hp;
-            mana = saveData.mana;
+            Mana = saveData.mana;
             mainModule.transform.position = saveData.position;
+        }
+
+        public void AddObserver(Observer _observer)
+        {
+            Observers.Add(_observer);
+        }
+
+        public void RemoveObserver(Observer _observer)
+        {
+            Observers.Remove(_observer);
+        }
+
+        public void Send()
+        {
+            foreach (Observer observer in Observers)
+            {
+                observer.Receive();
+            }
         }
     }
 }
