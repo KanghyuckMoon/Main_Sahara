@@ -10,7 +10,18 @@ namespace Module
     public class PhysicsModule : AbBaseModule
     {
         private float rayDistance = 0.5f;
+
+        private HitModule HitModule
+        {
+            get
+            {
+                hitModule ??= mainModule.GetModuleComponent<HitModule>(ModuleType.Hit);
+                return hitModule;
+            }
+        }
+
         private HitModule hitModule;
+
         private PlayerLandEffectSO effect;
 
         private float effectSpownDelay = 1.2f;
@@ -23,7 +34,6 @@ namespace Module
 
         public override void Start()
         {
-            hitModule = mainModule.GetModuleComponent<HitModule>(ModuleType.Hit);
             effect = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
         }
 
@@ -34,7 +44,7 @@ namespace Module
                 if (other.CompareTag(_tagName) && !mainModule.isDead)
                 {
                     StateModule otherStateModule = other.GetComponentInParent<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
-                    hitModule.GetHit(otherStateModule.AdAttack);
+                    HitModule.GetHit(otherStateModule.AdAttack);
                     otherStateModule.ChargeMana(10);
                 }
             }

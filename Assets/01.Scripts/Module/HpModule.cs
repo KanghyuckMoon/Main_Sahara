@@ -18,6 +18,15 @@ namespace Module
         private int maxHp;
         private int currentHp;
 
+        private StateModule StateModule
+        {
+            get
+            {
+                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+                return stateModule;
+            }
+        }
+
         private StateModule stateModule;
 
         public HpModule(AbMainModule _mainModule) : base(_mainModule)
@@ -27,8 +36,7 @@ namespace Module
 
         public override void Start()
         {
-            stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-            maxHp = stateModule.MaxHp;
+            maxHp = StateModule.MaxHp;
             currentHp = maxHp;
         }
 
@@ -46,7 +54,7 @@ namespace Module
 
         private void ChangeHpValue(int value)
         {
-            stateModule.CurrentHp += value;
+            StateModule.CurrentHp += value;
             if (currentHp > maxHp) currentHp = maxHp;
             if (currentHp < 0) currentHp = 0;
         }

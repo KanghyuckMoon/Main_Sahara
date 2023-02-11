@@ -10,12 +10,36 @@ namespace Module
 {
     public class HitModule : AbBaseModule
     {
+        private HpModule HpModule
+        {
+            get
+            {
+                hpModule ??= mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
+                return hpModule;
+            }
+        }
+        private StateModule StateModule
+        {
+            get
+            {
+                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+                return stateModule;
+            }
+        }
+        private AnimationModule AnimationModule
+        {
+            get
+            {
+                animationModule ??= mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation); ;
+                return animationModule;
+            }
+        }
+        private PlayerLandEffectSO effectSO;
+        //private 
+
         private HpModule hpModule;
         private StateModule stateModule;
         private AnimationModule animationModule;
-
-        private PlayerLandEffectSO effectSO;
-        //private 
 
         public HitModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -24,18 +48,14 @@ namespace Module
 
         public override void Start()
         {
-            hpModule = mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
-            stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-            animationModule = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation);
-
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
         }
 
         public void GetHit(int dmg)
         {
             HitFeedBack();
-            hpModule.GetDamage(dmg);
-            if (hpModule.CurrentHp == 0)
+            HpModule.GetDamage(dmg);
+            if (HpModule.CurrentHp == 0)
             {
                 Dead();
             }
@@ -55,13 +75,13 @@ namespace Module
         {
             //animationModule.animator.St 
             mainModule.isHit = true;
-            animationModule.animator.Play("Hit", 0, 0);
-            animationModule.animator.Play("Hit", 2, 0);
+            AnimationModule.animator.Play("Hit", 0, 0);
+            AnimationModule.animator.Play("Hit", 2, 0);
         }
 
         private void Dead()
         {
-            animationModule.animator.Play("Dead");
+            AnimationModule.animator.Play("Dead");
             mainModule.isDead = true;
             mainModule.characterController.enabled = false;
 

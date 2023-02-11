@@ -23,8 +23,16 @@ namespace Module
         private GameObject weaponRight;
         private Animator animator;
         private BaseWeapon baseWeapon;
-        private StateModule stateModule;
 
+        private StateModule StateModule
+        {
+            get
+            {
+                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+                return stateModule;
+            }
+        }
+        private StateModule stateModule;
         private IWeaponSkills iWeaponSkills;
 
         public WeaponModule(AbMainModule _mainModule) : base(_mainModule)
@@ -36,7 +44,6 @@ namespace Module
         {
             weaponRight = mainModule.GetComponentInChildren<WeaponSpownObject>().gameObject;//.Find("Weapon_r").gameObject;
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
-            stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
             animationIndex = int.MaxValue;
         }
 
@@ -69,7 +76,7 @@ namespace Module
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 baseWeapon.tagName = _tagname;
 
-                stateModule.SetAttackDamage(baseWeapon.WeaponDataSO);
+                StateModule.SetAttackDamage(baseWeapon.WeaponDataSO);
 
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;
@@ -99,10 +106,10 @@ namespace Module
 
         public void UseWeaponSkills()
         {
-            if (stateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
+            if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
             {
                 weaponSkills?.Invoke();
-                stateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
+                StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
             }
         }
     }
