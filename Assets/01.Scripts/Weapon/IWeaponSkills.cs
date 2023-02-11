@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IWeaponSkills
 {
+
     public void Skills();
 }

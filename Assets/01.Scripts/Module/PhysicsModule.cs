@@ -24,7 +24,7 @@ namespace Module
 
         private PlayerLandEffectSO effect;
 
-        private float effectSpownDelay = 1.2f;
+        private float effectSpownDelay => effect.effectDelayTime;
         private float currenteffectSpownDelay;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
@@ -43,9 +43,16 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.isDead)
                 {
-                    StateModule otherStateModule = other.GetComponentInParent<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
-                    HitModule.GetHit(otherStateModule.AdAttack);
-                    otherStateModule.ChargeMana(10);
+                    StateModule otherStateModule = other.GetComponentInParent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
+                    if (otherStateModule != null)
+                    {
+                        HitModule.GetHit(otherStateModule.AdAttack);
+                        otherStateModule.ChargeMana(10);
+                    }
+                    else
+                    {
+                        HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
+                    }
                 }
             }
         }
@@ -90,15 +97,20 @@ namespace Module
         {
             if(mainModule.isGround && mainModule.objDir != Vector2.zero)
             {
+                float delay = 1;
                 if(currenteffectSpownDelay > effectSpownDelay)
                 {
                     currenteffectSpownDelay = 0;
+
                     if (mainModule.isSprint)
+                    {
+                        delay = effect.runEffectDelay;
                         EffectManager.Instance.SetEffectDefault(effect.runEffectName, mainModule.transform.position, Quaternion.identity);
+                    }
                     else
                         EffectManager.Instance.SetEffectDefault(effect.walkEffectName, mainModule.transform.position, Quaternion.identity);
                 }
-                currenteffectSpownDelay += Time.deltaTime;
+                currenteffectSpownDelay += Time.deltaTime * delay;
             }
         }
     }

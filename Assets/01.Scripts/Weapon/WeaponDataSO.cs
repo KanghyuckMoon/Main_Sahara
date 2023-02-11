@@ -16,9 +16,13 @@ namespace Weapon
 
         [Space]
         [Header("이펙트 이름")] public string effectName;
+        [Header("휘두를 때 이펙트 이름")] public string attackEffectName;
+        [Header("강하게 휘두를 때 이펙트 이름")] public string strongAttackEffectName;
+
 
         [Space]
         [Header("스킬 마나 사용량")] public int manaConsumed;
+        [Header("스킬 데미지")] public int skillDamage;
 
         [TextArea]
         [Header("무긴 설명")]
