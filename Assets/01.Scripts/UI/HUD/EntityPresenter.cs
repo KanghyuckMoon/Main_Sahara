@@ -181,7 +181,7 @@ namespace UI
 
         IEnumerator Init()
         {
-            while (stateModule == null)
+            while (transform.parent != null && stateModule == null)
             {
                 this.uiModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI);
                 this.stateModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);

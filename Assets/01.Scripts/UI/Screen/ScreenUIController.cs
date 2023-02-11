@@ -45,7 +45,7 @@ namespace UI
             screenDic.Add(ScreenType.Map, mapPresenter);
             screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
             screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
-         //   screenDic.Add(ScreenType.Quest, questPresenter);
+            screenDic.Add(ScreenType.Quest, questPresenter);
         }
 
         private void Start()
@@ -64,7 +64,7 @@ namespace UI
             mapPresenter = GetComponentInChildren<MapPresenter>();
             dialoguePresenter = GetComponentInChildren<DialoguePresenter>();
             eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
-            //questPresenter = GetComponentInChildren<QuestPresenter>(); 
+            questPresenter = GetComponentInChildren<QuestPresenter>(); 
         }
         private void UIInput()
         {
