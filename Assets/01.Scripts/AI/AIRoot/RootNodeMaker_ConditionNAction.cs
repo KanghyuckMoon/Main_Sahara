@@ -146,6 +146,20 @@ namespace AI
 			return false;
 		}
 
+		private bool HitCheck()
+		{
+			if (aiModule.MainModule.isHit)
+			{
+				return true;
+			}
+			return false;
+		}
+
+		private bool HostileCheck()
+		{
+			return aiModule.IsHostilities;
+		}
+
 		//Action
 		private void SuspicionGaugeSet()
 		{
@@ -332,6 +346,11 @@ namespace AI
 			Vector3 _vec = (aiModule.Player.position - Position).normalized;
 			_vec.y = aiModule.MainModule.transform.forward.y;
 			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime);
+		}
+
+		private void HostileStart()
+		{
+			aiModule.IsHostilities = true;
 		}
 
 		//Utill

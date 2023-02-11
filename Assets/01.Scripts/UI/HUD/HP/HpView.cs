@@ -36,8 +36,11 @@ namespace UI
             base.Init();
          
             // »ý¼º 
-            _frontBarView = new SliderView(Get<ProgressBar>((int)ProgressBars.front_bar));
-            _backBarView = new SliderView(Get<ProgressBar>((int)ProgressBars.back_bar));
+     //       _frontBarView = new SliderView(Get<ProgressBar>((int)ProgressBars.front_bar));
+      //      _backBarView = new SliderView(Get<ProgressBar>((int)ProgressBars.back_bar));
+
+            _frontBarView = new SliderView(parentElement,"front_bar");
+            _backBarView = new SliderView(parentElement,"back_bar");
         }
 
         /// <summary>
@@ -55,6 +58,12 @@ namespace UI
 
             //_frontBarView.SetSlider(endV);
            // _backBarView.SetSlider(endV); 
+        }
+
+        public void Test(float endV)
+        {
+        //      _frontBarView.Bar.value = endV;
+            _frontBarView.Bar.style.display = _frontBarView.Bar.resolvedStyle.display == DisplayStyle.Flex ? DisplayStyle.None : DisplayStyle.Flex;
         }
     }
 

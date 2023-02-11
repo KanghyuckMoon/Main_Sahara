@@ -67,16 +67,6 @@ namespace UI.Quest
             InitListView(); 
         }
 
-        public void ActiveView()
-        {
-            ShowVisualElement(parentElement, ! IsVisible());
-        }
-
-        public void ActiveView(bool _isActive)
-        {
-            ShowVisualElement(parentElement, _isActive); 
-        }
-        
         /// <summary>
         /// 퀘스트 이름, 설명 나타내기 
         /// </summary>

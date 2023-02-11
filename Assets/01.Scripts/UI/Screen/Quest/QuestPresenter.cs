@@ -76,12 +76,12 @@ namespace UI.Quest
 
         public void ActiveView()
         {
-            questView.ActiveView(); 
+            questView.ActiveScreen(); 
         }
 
         public void ActiveView(bool _isActive)
         {
-            questView.ActiveView(_isActive);
+            questView.ActiveScreen(_isActive);
         }
 
         /*

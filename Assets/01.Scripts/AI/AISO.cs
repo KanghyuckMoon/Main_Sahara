@@ -7,6 +7,7 @@ public class AISO : ScriptableObject
 {
 	public string aiAddress = "TestEnemy";
 	public float ferDistance = 10f;
+	public bool isFirstAttack = true;
 
 	//의심게이지
 	public float maxSuspicionGauge = 100f;

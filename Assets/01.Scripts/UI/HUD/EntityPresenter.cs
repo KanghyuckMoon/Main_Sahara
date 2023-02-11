@@ -30,7 +30,9 @@ namespace UI
 
         private VisualElement hudElement;
         private PresenterFollower presenterFollower;
+        [SerializeField]
         private UIModule uiModule; 
+        [SerializeField]
         private StateModule stateModule;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
@@ -61,28 +63,49 @@ namespace UI
             }
         }
 
-
+        public void DebugTest()
+        {
+            hpPresenter.Test1(); 
+        }
+        public void DebugTest2()
+        {
+            hpPresenter.Test2();
+        }
 
         private void OnEnable()
         {
+            uiDocument ??= GetComponent<UIDocument>();
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
 
+            ContructPresenters();
+            AwakePresenters();
+            StartCoroutine(Init());
 
         }
         public void Awake()
         {
-            uiDocument ??= GetComponent<UIDocument>();
-            ContructPresenters();
-            AwakePresenters();
+
         }
         public void Start()
         {
-            StartCoroutine(Init());
         }
         private void Update()
         {
             if (Target == null || targetRenderer == null) return;
 
+            //if(Input.GetKeyDown(KeyCode.Tab))
+            //{
+            //    DebugTest(); 
+            //}
+
+            //if (Input.GetKeyDown(KeyCode.CapsLock))
+            //{
+            //    DebugTest2(); 
+            //}
+            //if (Input.GetKeyDown(KeyCode.Backspace))
+            //{
+            //    hpPresenter.Test3();
+            //}
             if (presenterFollower == null && isPlayerHud == false) // 머리 위에 hud 띄워야해 
             {
                 presenterFollower = new PresenterFollower(this, hudElement, target, targetRenderer);
@@ -158,7 +181,7 @@ namespace UI
 
         IEnumerator Init()
         {
-            while (stateModule == null)
+            while (transform.parent != null && stateModule == null)
             {
                 this.uiModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI);
                 this.stateModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);

@@ -11,5 +11,7 @@ namespace Module.Talk
 
 		public List<string> defaultTalkCodeList = new List<string>();
 		public List<string> defaultAutherCodeList = new List<string>();
+
+		public float talkRange = 1f; //대화 가능 거리
 	}
 }
