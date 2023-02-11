@@ -1,39 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine;
 using Module;
 using Module.Talk;
 using Module.Shop;
 
 namespace CondinedModule
 {
-	public class TestTalkNPC : AbMainModule
-    {
-        public string textSOAddress;
-        public string shopSOAddress;
+	public class TestTalkNPC : AbMainModule, IEnemy
+	{
+		public string aiSOAddress = "TestEnemySO";
+		public string AIAddress => aiSOAddress;
+
+		public string textSOAddress;
 
         private void Awake()
         {
-			//StopOrNot = 1;
-			//canMove = true;
+            StopOrNot = 1;
+            canMove = true;
 
-			moduleComponentsDic = new();
-			//characterController = GetComponentInParent<CharacterController>();
+            moduleComponentsDic = new();
+            characterController = GetComponent<CharacterController>();
+            //footRotate = GetComponentInParent<csHomebrewIK>();
+            AddModule(ModuleType.Input, new AIModule(this));
+            AddModule(ModuleType.Move, new MoveModule(this));
+            AddModule(ModuleType.State, new StateModule(this));
+            //AddModule(ModuleType.Camera, new CameraModule(this));
+            AddModule(ModuleType.Jump, new JumpModule(this));
+            AddModule(ModuleType.Hp, new HpModule(this));
+            AddModule(ModuleType.Animation, new AnimationModule(this));
+            AddModule(ModuleType.Physics, new PhysicsModule(this));
+            AddModule(ModuleType.UI, new UIModule(this, "HudUI"));
+            AddModule(ModuleType.Attack, new AttackModule(this));
+            AddModule(ModuleType.Weapon, new WeaponModule(this));
+            AddModule(ModuleType.Hit, new HitModule(this));
 
-			//AddModule(ModuleType.Input, new InputModule(this));
-			//AddModule(ModuleType.Move, new MoveModule(this));
-			//AddModule(ModuleType.State, new StateModule(this));
-			//AddModule(ModuleType.Camera, new CameraModule(this));
-			//AddModule(ModuleType.Jump, new JumpModule(this));
-			//AddModule(ModuleType.Hp, new HpModule(this));
-			//AddModule(ModuleType.Animation, new AnimationModule(this));
-			//AddModule(ModuleType.Pysics, new PysicsModule(this));
-			//AddModule(ModuleType.UI, new UIModule(this));
-
-			//raycastTarget = transform.parent.Find("RayCastPoint");
-			AddModule(ModuleType.Talk, new TalkModule(this, textSOAddress));
-			AddModule(ModuleType.Shop, new ShopModule(this, shopSOAddress));
+            raycastTarget = transform.Find("RayCastPoint");
+            AddModule(ModuleType.Talk, new TalkModule(this, textSOAddress));
         }
     }
 

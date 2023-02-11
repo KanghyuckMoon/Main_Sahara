@@ -12,10 +12,6 @@ namespace Module
 		{
 			get;
 		}
-		public NavMeshAgent NavMeshAgent
-		{
-			get;
-		}
 	}
 
 	public partial class AIModule : AbBaseModule
@@ -109,19 +105,36 @@ namespace Module
 				suspicionGauge = value;
 			}
 		}
-		public NavMeshAgent NavMeshAgent
-		{
-			get
-			{
-				return (mainModule as IEnemy).NavMeshAgent;
-			}
-		}
 		public UIModule UIModule
 		{
 			get
 			{
 				uiModule ??= mainModule.GetModuleComponent<UIModule>(ModuleType.UI);
 				return uiModule;
+			}
+		}
+
+		public bool IsFirstAttack
+		{
+			get
+			{
+				return isFirstAttack;
+			}
+			set
+			{
+				isFirstAttack = value;
+			}
+		}
+
+		public bool IsHostilities
+		{
+			get
+			{
+				return isHostilities;
+			}
+			set
+			{
+				isHostilities = value;
 			}
 		}
 
@@ -135,6 +148,8 @@ namespace Module
 		private AIHostileState previousAIHostileState;
 		private UIModule uiModule;
 		private float suspicionGauge = 0f;
+		private bool isFirstAttack = true;
+		private bool isHostilities = true;
 
 		public AIModule(AbMainModule _mainModule) : base(_mainModule)
 		{

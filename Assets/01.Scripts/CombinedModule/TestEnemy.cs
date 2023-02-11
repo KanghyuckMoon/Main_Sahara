@@ -10,8 +10,6 @@ namespace CondinedModule
     {
         public string aiSOAddress = "TestEnemySO";
 		public string AIAddress => aiSOAddress;
-        public NavMeshAgent navMeshAgent;
-		public NavMeshAgent NavMeshAgent => navMeshAgent;
 
 		private void Awake()
         {

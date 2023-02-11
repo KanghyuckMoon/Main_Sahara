@@ -34,6 +34,8 @@ namespace AI
 		{
 			aiModule = _aiModule;
 			aiSO = AddressablesManager.Instance.GetResource<AISO>(_address);
+			aiModule.IsFirstAttack = aiSO.isFirstAttack;
+			aiModule.IsHostilities = aiSO.isFirstAttack;
 			aiModule.SetNode(ReturnRootNode());
 		}
 
@@ -44,12 +46,15 @@ namespace AI
 				default:
 					NodeMakeSO nodeMakeSO = AddressablesManager.Instance.GetResource<NodeMakeSO>(aiSO.aiAddress);
 					return NodeModelToINode(nodeMakeSO.nodeModel, null);
+				case "TestTalkNPC":
+					return TestTalkNPC();
 				case "TestEnemy":
 					return TestEnemy();
 			}
 		}
 
 		private partial INode TestEnemy();
+		private partial INode TestTalkNPC();
 
 		public void Dead()
 		{

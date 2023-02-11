@@ -14,12 +14,16 @@ namespace Module.Talk
 {
 	public class TalkModule : AbBaseModule
 	{
-		[SerializeField]
+		//public AIModule AIModule
+		//{
+		//
+		//}
 		private string talkCode;
 		[SerializeField]
 		private string authorCode;
 
 		private int index = 0;
+		private AIModule aiModule;
 		private Transform Player
 		{
 			get
@@ -51,25 +55,41 @@ namespace Module.Talk
 
 		public override void Update()
 		{
-			//Debug.Log("대화 가능");
-			if (Input.GetKeyDown(KeyCode.E))
+			if(CanTalk())
 			{
-				if (ShopModule is not null)
+				if (Input.GetKeyDown(KeyCode.E))
 				{
-					ShopManager.Instance.SetShopModule(ShopModule);
-				}
+					if (ShopModule is not null)
+					{
+						ShopManager.Instance.SetShopModule(ShopModule);
+					}
 
-				//이벤트로 사용된 대화가 있는가?
-				if (GetText())
-				{
+					//이벤트로 사용된 대화가 있는가?
+					if (GetText())
+					{
 
-				}
-				else
-				{
-					//없을시 기본 대화
-					RandomDefaultText();
+					}
+					else
+					{
+						//없을시 기본 대화
+						RandomDefaultText();
+					}
 				}
 			}
+		}
+
+		private bool CanTalk()
+		{
+			//적대 상태인지 아닌지
+			if(true)
+			{
+				Vector3 _distancePos = Player.position - mainModule.transform.position;
+				if(_distancePos.sqrMagnitude < talkDataSO.talkRange * talkDataSO.talkRange)
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 
 		private bool GetText()
