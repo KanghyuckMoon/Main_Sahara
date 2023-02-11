@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/Quest.uss?fileID=7433441132597879392&amp;guid=8c1e71513faf6494bb1ff9e03e7cb48a&amp;type=3#Quest" />
-    <ui:VisualElement name="quest_screen" class="screen" style="background-color: rgb(29, 27, 27);">
+    <ui:VisualElement name="quest_screen" class="screen" style="background-color: rgb(29, 27, 27); cursor: url(&apos;project://database/Assets/11.Prefebs/SandTextScene/2.png?fileID=2800000&amp;guid=00c1fbb961ec5ac48b94d922eb2d4bb5&amp;type=3#2&apos;);">
         <ui:VisualElement name="Header" class="header" style="margin-left: 6%; margin-right: 5%; height: 15%; padding-bottom: 0; padding-top: 2%;">
             <ui:Label text="퀘스트&#10;" display-tooltip-when-elided="true" class="font_base header_text" />
         </ui:VisualElement>
@@ -30,7 +30,7 @@
                                 <ui:RadioButton label="Radio Button" name="sub_button" />
                             </ui:RadioButtonGroup>
                         </ui:VisualElement>
-                        <ui:ListView focusable="true" name="quest_listview" fixed-item-height="110" horizontal-scrolling="true" style="width: 100%; height: 100%; padding-bottom: 50px; display: flex;" />
+                        <ui:ListView focusable="true" name="quest_listview" fixed-item-height="110" horizontal-scrolling="false" style="width: 100%; height: 100%; padding-bottom: 50px; display: flex;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="right_panel" class="left_quest_panel" style="flex-basis: 50%; padding-left: 60px; padding-right: 100px; padding-bottom: 50px; padding-top: 50px;">
                         <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%; background-color: rgb(36, 36, 36); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;">
