@@ -42,11 +42,13 @@ namespace Module
 		public void AddObserver(Observer _observer)
 		{
 			Observers.Add(_observer);
+			_observer.Receive();
 		}
 
 		public void RemoveObserver(Observer _observer)
 		{
 			Observers.Remove(_observer);
+			_observer.Receive();
 		}
 
 		public void Send()
@@ -60,7 +62,8 @@ namespace Module
         {
             if (address is null)
 			{
-                return;
+				IsRender = true;
+				return;
 			}
 
             //UI 동적 생성

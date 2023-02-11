@@ -6,15 +6,11 @@ using UnityEngine.Animations;
 
 public class Attack : StateMachineBehaviour
 {
-    AbMainModule mainModule;
-
-    private void Awake()
-    {
-        mainModule = GameObject.Find("Player").GetComponentInChildren<AbMainModule>();
-    }
+    private AbMainModule mainModule;
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller)
     {
+        mainModule ??= animator.GetComponent<AbMainModule>();
         mainModule.attacking = false;
         mainModule.strongAttacking = false;
     }

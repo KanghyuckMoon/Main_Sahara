@@ -104,11 +104,11 @@ namespace Module
         {
             get
             {
-                return hpModule.CurrentHp;
+                return HpModule.CurrentHp;
             }
             set
             {
-                hpModule.CurrentHp = value;
+                HpModule.CurrentHp = value;
                 Send();
             }
         }
@@ -126,7 +126,17 @@ namespace Module
 
 
         private List<Observer> observers = new List<Observer>();
+        private HpModule HpModule
+        {
+            get
+            {
+                hpModule ??= mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
+                return hpModule;
+            }
+        }
+
         private HpModule hpModule;
+
         private int mana;
         private int maxMana;
         private int adAttack;
@@ -152,7 +162,6 @@ namespace Module
         }
         public override void Start()
         {
-            hpModule = mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
             maxMana = playerdata.mana;
             mana = maxMana;
         }
@@ -170,7 +179,7 @@ namespace Module
 
         public void SaveData()
         {
-            saveData.hp = hpModule.CurrentHp;
+            saveData.hp = HpModule.CurrentHp;
             saveData.mana = Mana;
             saveData.position = mainModule.transform.position;
             //saveData.mana = 
@@ -178,7 +187,7 @@ namespace Module
 
         public void LoadData()
         {
-            hpModule.CurrentHp = saveData.hp;
+            HpModule.CurrentHp = saveData.hp;
             Mana = saveData.mana;
             mainModule.transform.position = saveData.position;
         }
