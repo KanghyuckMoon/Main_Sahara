@@ -168,7 +168,7 @@ namespace Module
 
         public void ChargeMana(int addMana)
         {
-            mana = (mana + addMana) > maxMana ? maxMana : mana + addMana;
+            Mana = (mana + addMana) > maxMana ? maxMana : mana + addMana;
         }
 
         public void SetAttackDamage(WeaponDataSO weaponDataSO)
