@@ -41,7 +41,7 @@ namespace Module
 		{
 			get
 			{
-				player ??= GameObject.FindGameObjectWithTag("Player").transform;
+				player ??= GameObject.FindGameObjectWithTag("Player")?.transform;
 				return player;
 			}
 		}
