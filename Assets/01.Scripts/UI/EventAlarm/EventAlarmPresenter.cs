@@ -41,10 +41,12 @@ namespace UI.EventAlarm
         }
         public void ActiveView()
         {
+            alarmScreenView.ActiveView(); 
         }
 
         public void ActiveView(bool _isActive)
         {
+            alarmScreenView.ActiveView(_isActive);
         }
     }
     
