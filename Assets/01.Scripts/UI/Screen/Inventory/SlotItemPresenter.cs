@@ -7,8 +7,8 @@ using UI.Production;
 using GoogleSpreadSheet;
 using Utill.Addressable;
 using UI.ConstructorManager;
-using System; 
-
+using System;
+using UI.Base; 
 
 namespace UI.Inventory
 {
@@ -24,7 +24,9 @@ namespace UI.Inventory
         public int Index => index;
         public SlotItemView SlotItemView => slotItemView;
         public VisualElement Parent => parent;
+        public VisualElement Item => slotItemView.Item; 
         public ItemData ItemData => itemData;
+
 
         /// <summary>
         /// 생성 
@@ -42,28 +44,55 @@ namespace UI.Inventory
         /// <param name="_v"></param>
         public SlotItemPresenter(VisualElement _v, int _idx)
         {
-            //slotItemView = new SlotItemView(_v);
-            slotItemView.InitUIParent(_v);
-            slotItemView.Cashing();
-            slotItemView.Init();
+            slotItemView = new SlotItemView(_v);
             this.index = _idx;
         }
 
+        /// <summary>
+        /// 있는거 캐싱
+        /// </summary>
+        /// <param name="_v"></param>
+        public SlotItemPresenter(VisualElement _v)
+        {
+            slotItemView = new SlotItemView(_v);
+        }
         public void SetItemData(ItemData _itemData)
         {
             this.itemData = _itemData;
             slotItemView.IsStackable = _itemData.IsStackble;
-            slotItemView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey),
-                                                              _itemData.count);
+            if(_itemData.spriteKey != "")
+            {
+                slotItemView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey),
+                                                          _itemData.count);
+            }
         }
 
+        public void RemoveView()
+        {
+            slotItemView.RemoveView(); 
+        }
+
+        /// <summary>
+        /// 드래거기능 추가
+        /// </summary>
+        /// <param name="_target"></param>
+        /// <param name="startCallback"></param>
         public void AddDragger(VisualElement _target, Action startCallback)
         {
-            slotItemView.AddDragger(_target, startCallback);
+            slotItemView.AddManipulator(new Dragger(_target, startCallback));
         }
+        
+        /// <summary>
+        /// 드롭퍼 기능추가
+        /// </summary>
+        /// <param name="_dropCallback"></param>
         public void AddDropper(Action _dropCallback)
         {
-            slotItemView.AddDropper(_dropCallback);
+            slotItemView.AddManipulator(new Dropper((x) =>
+            {
+                _dropCallback?.Invoke();
+                slotItemView.ActiveScreen(false);
+            }));
         }
 
     }

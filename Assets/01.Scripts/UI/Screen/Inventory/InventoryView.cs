@@ -66,7 +66,7 @@ namespace UI.Inventory
 
         private InvenPanelElements curPanelType; // 현재 활성화중인 패널 
 
-        private SlotItemView dragItemView; // 드래그앤 드랍시 활성화될 뷰 
+        private SlotItemPresenter dragItemPresenter; // 드래그앤 드랍시 활성화될 뷰 
 
         // 프로퍼티
         private VisualElement DragItem => GetVisualElement((int)Elements.drag_item);
@@ -84,12 +84,8 @@ namespace UI.Inventory
             base.Init();
 
             // 드래그 아이템 초기화 
-            dragItemView = new SlotItemView();
-            VisualElement _v = GetVisualElement((int)Elements.drag_item);
-            dragItemView.InitUIParent(_v);
-            dragItemView.Cashing();
-            dragItemView.Init();
-            dragItemView.AddDropper(() => DropItem()); ;
+            dragItemPresenter = new SlotItemPresenter(DragItem);
+            dragItemPresenter.AddDropper(() => DropItem()); ;
 
             // SO 불러오기 
             invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
@@ -198,7 +194,7 @@ namespace UI.Inventory
                 // 버튼 2개에서 
                 // 하나는 자기가 꺼지면 팬러끄고 
                 // 하는ㄴ 자기가 키면 패널 키고 
-                itemSlotDic[ItemType.Weapon].AddEquipSlotView(new SlotItemView(_list[i],i));
+                itemSlotDic[ItemType.Weapon].AddEquipSlotView(new SlotItemPresenter(_list[i],i));
             }
         }
 
@@ -257,10 +253,10 @@ namespace UI.Inventory
                 (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(SlotItemView));
                 ItemType _i = invenItemUISO.GetItemType(_itemType);
 
-                SlotItemView _slotView = _v.Item2 as SlotItemView;
-                _slotView.AddDragger(dragItemView.Item, () => ClickItem(_slotView));
-                itemSlotDic[_i].AddSlotView(_v.Item2 as SlotItemView);
-                SetParent(_itemType, _v.Item1);
+                SlotItemPresenter _slotPr = new SlotItemPresenter();
+                _slotPr.AddDragger(this.dragItemPresenter.Item, () => ClickItem(_slotPr));
+                itemSlotDic[_i].AddSlotView(_slotPr);
+                SetParent(_itemType, _slotPr.Parent);
             }
         }
 
@@ -272,21 +268,19 @@ namespace UI.Inventory
             // 떨어뜨린 곳이 슬롯이 있는지 체크 
             VisualElement _v = GetVisualElement((int)Elements.drag_item);
 
-            IEnumerable<SlotItemView> slots = itemSlotDic[invenItemUISO.GetItemType(curPanelType)].equipItemViewList.
-                                                                     Where((x) => x.Item.worldBound.Overlaps(dragItemView.Item.worldBound));
+            IEnumerable<SlotItemPresenter> slots = itemSlotDic[invenItemUISO.GetItemType(curPanelType)].equipItemViewList.
+                                                                     Where((x) => x.Item.worldBound.Overlaps(dragItemPresenter.Item.worldBound));
 
             // 슬롯에 드랍 했다면
             if (slots.Count() != 0)
             {
                 // 가장 가깝게 드랍한 슬롯 
-                SlotItemView _closedSlot = slots.OrderBy(x => Vector2.Distance(x.Item.worldBound.position, dragItemView.Item.worldBound.position)).First();
+                SlotItemPresenter _closedSlot = slots.OrderBy(x => Vector2.Distance(x.Item.worldBound.position, dragItemPresenter.Item.worldBound.position)).First();
 
-                _closedSlot.SetSprite(dragItemView.ItemSprite);
-                _closedSlot.IsStackable = dragItemView.IsStackable;
-                _closedSlot.SetText(dragItemView.ItemCount);
+                _closedSlot.SetItemData(dragItemPresenter.ItemData); 
 
                 // SO 데이터도 
-                //InventoryManager.Instance.SetQuickSlotItem(_closedSlot,_closedSlot.Index);
+                InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData,_closedSlot.Index);
             }
             else
             {
@@ -295,10 +289,10 @@ namespace UI.Inventory
             ActiveDragItem(false);
         }
 
-        private void ClickItem(SlotItemView _slotView)
+        private void ClickItem(SlotItemPresenter _slotView)
         {
             //dragItemView 에 클릭한 슬롯의 아이템 넘겨주기 
-            dragItemView.SetSpriteAndText(_slotView.ItemSprite, _slotView.ItemCount);
+            dragItemPresenter.SetItemData(_slotView.ItemData);
 
             ActiveDragItem(true);
         }

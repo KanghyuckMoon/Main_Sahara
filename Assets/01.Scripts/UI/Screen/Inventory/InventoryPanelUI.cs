@@ -16,21 +16,21 @@ namespace UI.Inventory
     {
         public int index = 0; // 남은 칸의 위치 인덱스 
         public int addRow;
-        public List<SlotItemView> slotItemViewList = new List<SlotItemView>();
-        public List<SlotItemView> equipItemViewList = new List<SlotItemView>(); 
+        public List<SlotItemPresenter> slotItemViewList = new List<SlotItemPresenter>();
+        public List<SlotItemPresenter> equipItemViewList = new List<SlotItemPresenter>(); 
 
         public InventoryPanelUI()
         {
 
         }
 
-        public void AddSlotView(SlotItemView _slotItemView)
+        public void AddSlotView(SlotItemPresenter _slotItemView)
         {
             this.slotItemViewList.Add(_slotItemView);
         }
 
         // 매니저에서 데이터 받아와서 
-        public void AddEquipSlotView(SlotItemView _slotItemView)
+        public void AddEquipSlotView(SlotItemPresenter _slotItemView)
         {
             this.equipItemViewList.Add(_slotItemView);
         }
@@ -53,13 +53,8 @@ namespace UI.Inventory
         /// </summary>
         public void SetItemDataUI(ItemData _itemData)
         {
-            SlotItemView _slotView = slotItemViewList[index];
-            _slotView.IsStackable = _itemData.stackble;
-            if (_slotView.IsStackable == true)
-            {
-                _slotView.SetText(_itemData.count);
-            }
-            _slotView.SetSprite(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey));
+            SlotItemPresenter _slotView = slotItemViewList[index];
+            _slotView.SetItemData(_itemData); 
             ++index;
         }
 
@@ -69,16 +64,8 @@ namespace UI.Inventory
         /// </summary>
         public void SetEquipItemDataUI(ItemData _itemData, int _index)
         {
-            SlotItemView _slotView = equipItemViewList[_index];
-            _slotView.IsStackable = _itemData.stackble;
-            if (_slotView.IsStackable == true)
-            {
-                _slotView.SetText(_itemData.count);
-            }
-            if(_itemData.spriteKey != "")
-            {
-                _slotView.SetSprite(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey));
-            }
+            SlotItemPresenter _slotView = equipItemViewList[_index];
+            _slotView.SetItemData(_itemData);
         }
 
     }

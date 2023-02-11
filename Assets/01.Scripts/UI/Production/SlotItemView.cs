@@ -26,7 +26,6 @@ namespace UI.Production
             text
         }
 
-        private int index; 
         private bool isStackable; // 셀수 있냐 
 
         // 프로퍼티 
@@ -34,18 +33,16 @@ namespace UI.Production
         public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
         public Texture2D ItemSprite => GetVisualElement((int)Elements.image).style.backgroundImage.value.texture;
         public int ItemCount => int.Parse(GetLabel((int)Labels.text).text);
-        public int Index => index; 
 
         public SlotItemView()
         {
 
         }
-        public SlotItemView(VisualElement _parent, int _index)
+        public SlotItemView(VisualElement _parent)
         {
             InitUIParent(_parent);
             Cashing();
             Init();
-            this.index = _index; 
         }
         public override void Cashing()
         {
@@ -58,33 +55,18 @@ namespace UI.Production
         {
             base.Init();
         }
-
-        public void AddDragger(VisualElement _target, Action startCallback)
+        
+        public void AddManipulator(MouseManipulator _manipulator)
         {
-            GetVisualElement((int)Elements.item).AddManipulator(new Dragger(_target, startCallback));
-        }
-        public void AddDropper(Action _dropCallback)
-        {
-            GetVisualElement((int)Elements.item).AddManipulator(new Dropper((x) =>
-            {
-                ShowVisualElement(parentElement, false);
-                _dropCallback?.Invoke();
-            }));
-        }
-        private void EndDrag(Vector2 _v)
-        {
-            Debug.Log("끝 " + _v);
+            GetVisualElement((int)Elements.item).AddManipulator(_manipulator);
         }
 
         public void RemoveView()
         {
             parentElement.RemoveFromHierarchy();
         }
-        public void SetStackable(bool _isStackable)
-        {
-            ShowVisualElement(GetVisualElement((int)Labels.text), _isStackable);
-        }
-
+        
+        // === UI 설정 관련 === //
         public void SetSpriteAndText(Texture2D _sprite, int _count)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);
