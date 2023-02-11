@@ -12,7 +12,7 @@ namespace UI
     {
         // 인스펙터 참조 변수 
         [SerializeField]
-        private int _testHp;
+        private float _testHp;
         [SerializeField]
         private HpView _hpView;
 
@@ -45,7 +45,25 @@ namespace UI
             _hpView.SetBarUI(_hp);
         }
 
+        public void Test1()
+        {
+            _hpView.SetBarUI(_testHp);
 
+        }
+
+        public void Test2()
+        {
+       //     _hpView.ActiveScreen(); 
+        _hpView.Test(_testHp);
+
+        }
+
+        public void Test3()
+        {
+                 _hpView.ActiveScreen(); 
+            //_hpView.Test(_testHp);
+
+        }
     }
 
 }
