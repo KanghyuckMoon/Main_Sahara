@@ -19,6 +19,7 @@ namespace Weapon
 
         [Space]
         [Header("스킬 마나 사용량")] public int manaConsumed;
+        [Header("스킬 데미지")] public int skillDamage;
 
         [TextArea]
         [Header("무긴 설명")]

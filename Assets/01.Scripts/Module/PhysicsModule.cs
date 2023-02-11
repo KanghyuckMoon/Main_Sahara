@@ -43,9 +43,16 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.isDead)
                 {
-                    StateModule otherStateModule = other.GetComponentInParent<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
-                    HitModule.GetHit(otherStateModule.AdAttack);
-                    otherStateModule.ChargeMana(10);
+                    StateModule otherStateModule = other.GetComponentInParent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
+                    if (otherStateModule != null)
+                    {
+                        HitModule.GetHit(otherStateModule.AdAttack);
+                        otherStateModule.ChargeMana(10);
+                    }
+                    else
+                    {
+                        HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
+                    }
                 }
             }
         }
