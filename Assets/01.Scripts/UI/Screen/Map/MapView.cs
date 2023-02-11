@@ -158,7 +158,11 @@ namespace UI
             MapTrm.scale = Vector3.one;
             MapTrm.position = Vector3.zero;
             MarkerParent.transform.scale = Vector3.one;
-
+            var _markers = MarkerParent.Children();
+            foreach (var _marker in _markers)
+            {
+                _marker.transform.scale = Vector2.one; 
+            }
             SetMapPanel(_isMinimap: true); 
             // 마스크 키고
             //SetMask(true); 
