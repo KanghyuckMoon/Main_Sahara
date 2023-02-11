@@ -39,7 +39,7 @@ namespace UI
         public void UpdateUI()
         {
             //    _hpView.SetBarUI(_entityData.hp);
-            _hpView.SetBarUI(stateModule.CurrentHp / stateModule.MaxHp);
+            _hpView.SetBarUI((float)stateModule.CurrentHp / stateModule.MaxHp);
         }
 
 

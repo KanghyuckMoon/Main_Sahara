@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Utill.Measurement;
 
 namespace UI
 {
@@ -44,6 +45,8 @@ namespace UI
 
         private void LateUpdate()
         {
+            Logging.Log("MarkerParent Scale : " + mapView.MarkerParent.transform.scale);
+            Logging.Log("MarkerParent Origin : " + mapView.MarkerParent.resolvedStyle.transformOrigin);
             if (mapView.CurMapType == MapType.FullMap)
             {
                 // ÀüÃ¼¸Ê ·»´õ¸µ
@@ -54,14 +57,14 @@ namespace UI
                 // ¹Ì´Ï¸Ê ·»´õ¸µ
                 miniMapComponent.UpdateUI();
             }
-            if(Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                mapView.Test(); 
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                mapView.Test2();
-            }
+            //if(Input.GetKeyDown(KeyCode.Alpha2))
+            //{
+            //    mapView.Test(); 
+            //}
+            //if (Input.GetKeyDown(KeyCode.Alpha3))
+            //{
+            //    mapView.Test2();
+            //}
         }
 
         public void ActiveView()
