@@ -30,6 +30,8 @@ namespace Module
 
 					mainModule.attacking = _inputatk;
 					mainModule.strongAttacking = _inputStratk;
+
+					AttackModule.SpownAttackEffect();
 				}
 			}
 		}

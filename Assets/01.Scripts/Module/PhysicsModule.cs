@@ -24,7 +24,7 @@ namespace Module
 
         private PlayerLandEffectSO effect;
 
-        private float effectSpownDelay = 1.2f;
+        private float effectSpownDelay => effect.effectDelayTime;
         private float currenteffectSpownDelay;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
@@ -97,15 +97,20 @@ namespace Module
         {
             if(mainModule.isGround && mainModule.objDir != Vector2.zero)
             {
+                float delay = 1;
                 if(currenteffectSpownDelay > effectSpownDelay)
                 {
                     currenteffectSpownDelay = 0;
+
                     if (mainModule.isSprint)
+                    {
+                        delay = effect.runEffectDelay;
                         EffectManager.Instance.SetEffectDefault(effect.runEffectName, mainModule.transform.position, Quaternion.identity);
+                    }
                     else
                         EffectManager.Instance.SetEffectDefault(effect.walkEffectName, mainModule.transform.position, Quaternion.identity);
                 }
-                currenteffectSpownDelay += Time.deltaTime;
+                currenteffectSpownDelay += Time.deltaTime * delay;
             }
         }
     }

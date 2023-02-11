@@ -22,7 +22,7 @@ namespace Weapon
 
             GameObject _windObj = ObjectPoolManager.Instance.GetObject(windObjName);
 
-            _windObj.transform.position = animator.gameObject.transform.position + new Vector3(0, 1.1f, 0.8f);
+            _windObj.transform.position = animator.gameObject.transform.position + (new Vector3(0, 1.1f, 0) + animator.gameObject.transform.forward);
             _windObj.transform.rotation = animator.gameObject.transform.rotation;
             _windObj.SetActive(true);
 

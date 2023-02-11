@@ -10,6 +10,10 @@ namespace Effect
         public string walkEffectName;
         public string landEffectName;
         public string runEffectName;
+
+        [Space]
+        public float effectDelayTime;
+        public float runEffectDelay;
         //ad
     }
 }

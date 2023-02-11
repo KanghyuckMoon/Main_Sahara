@@ -7,7 +7,19 @@ namespace Module
 {
     public partial class InputModule : AbBaseModule
     {
-        PlayerInput playerInput;
+        private PlayerInput playerInput;
+
+        private AttackModule AttackModule
+        {
+            get
+            {
+                attackModule ??= mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
+                return attackModule;
+            }
+        }
+
+
+        private AttackModule attackModule;
 
         public InputModule(AbMainModule _mainModule) : base(_mainModule)
         {
