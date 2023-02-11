@@ -62,7 +62,8 @@ namespace Module
         {
             if (address is null)
 			{
-                return;
+				IsRender = true;
+				return;
 			}
 
             //UI 동적 생성
