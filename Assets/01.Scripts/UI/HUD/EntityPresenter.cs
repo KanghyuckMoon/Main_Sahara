@@ -30,6 +30,7 @@ namespace UI
 
         private VisualElement hudElement;
         private PresenterFollower presenterFollower;
+        private UIModule uiModule; 
         private StateModule stateModule;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
@@ -106,6 +107,14 @@ namespace UI
         }
 
         /// <summary>
+        /// 활성화 여부 액티브 
+        /// </summary>
+        private void UpdateUIActive()
+        {
+            hudElement.style.display = uiModule.IsRender ? DisplayStyle.Flex : DisplayStyle.None; 
+        }
+
+        /// <summary>
         /// hud 활성화 비활성화 
         /// </summary>
         public void SetActive(bool _isActive)
@@ -151,11 +160,13 @@ namespace UI
         {
             while (stateModule == null)
             {
+                this.uiModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI);
                 this.stateModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
                 if (stateModule != null)
                 {
                     StartPresenters();
                     this.stateModule.AddObserver(this);
+                    this.uiModule.AddObserver(this);
                 }
                 yield return null;
             }
@@ -176,6 +187,7 @@ namespace UI
         public void Receive()
         {
             UpdateUI();
+            UpdateUIActive(); 
         }
     }
 
