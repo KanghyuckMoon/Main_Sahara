@@ -14,10 +14,15 @@ namespace Module.Talk
 {
 	public class TalkModule : AbBaseModule
 	{
-		//public AIModule AIModule
-		//{
-		//
-		//}
+		public AIModule AIModule
+		{
+			get
+			{
+				aiModule ??= mainModule.GetModuleComponent<AIModule>(ModuleType.Input);
+				return aiModule;
+			}
+		}
+
 		private string talkCode;
 		[SerializeField]
 		private string authorCode;
@@ -57,6 +62,7 @@ namespace Module.Talk
 		{
 			if(CanTalk())
 			{
+				Logging.Log("대화 가능");
 				if (Input.GetKeyDown(KeyCode.E))
 				{
 					if (ShopModule is not null)
@@ -65,11 +71,7 @@ namespace Module.Talk
 					}
 
 					//이벤트로 사용된 대화가 있는가?
-					if (GetText())
-					{
-
-					}
-					else
+					if (!GetText())
 					{
 						//없을시 기본 대화
 						RandomDefaultText();
@@ -81,7 +83,7 @@ namespace Module.Talk
 		private bool CanTalk()
 		{
 			//적대 상태인지 아닌지
-			if(true)
+			if(!AIModule.IsHostilities)
 			{
 				Vector3 _distancePos = Player.position - mainModule.transform.position;
 				if(_distancePos.sqrMagnitude < talkDataSO.talkRange * talkDataSO.talkRange)

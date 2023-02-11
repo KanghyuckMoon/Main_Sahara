@@ -1405,7 +1405,7 @@ GameObject:
   - component: {fileID: 3699875109982235523}
   - component: {fileID: 7808644355584603933}
   m_Layer: 0
-  m_Name: TestNPC
+  m_Name: TestTalkNPC
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1497,8 +1497,9 @@ MonoBehaviour:
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
-  dataSOPath: 
-  hitCollider: []
+  dataSOPath: EnemyData_TesSO
+  hitCollider:
+  - Player_Weapon
   moveSpeed: 0
   isSprint: 0
   isGround: 0
@@ -1514,7 +1515,7 @@ MonoBehaviour:
   attacking: 0
   strongAttacking: 0
   gravity: 0
-  gravityScale: -9.8
+  gravityScale: -19.8
   groundOffset: 0
   LockOn: 0
   groundLayer:
@@ -1522,6 +1523,7 @@ MonoBehaviour:
     m_Bits: 1024
   maxSlope: 0
   raycastTarget: {fileID: 0}
+  aiSOAddress: TestTalkNPCSO
   textSOAddress: TestTalkDataSO
 --- !u!1 &3699875109997962231
 GameObject:
