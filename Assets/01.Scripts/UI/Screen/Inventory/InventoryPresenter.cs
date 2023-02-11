@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
-using Inventory; 
+using Inventory;
+using UI.EventManage; 
 
 namespace UI.Inventory
 {
@@ -34,10 +35,14 @@ namespace UI.Inventory
             UpdateUI(); 
         }
         
-        public void ActiveView()
+        public bool ActiveView()
         {
             bool _isActive = inventoryView.ActiveScreen();
             inventoryCam.gameObject.SetActive(_isActive);
+
+            EventManager.Instance.TriggerEvent(EventsType.UpdateQuickSlot);
+
+            return _isActive; 
         }
 
         public void ActiveView(bool _isActive)

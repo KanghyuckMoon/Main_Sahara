@@ -4,11 +4,12 @@ using UnityEngine;
 using Utill.Pattern;
 using System; 
 
-namespace UI.Manager
+namespace UI.EventManage
 {
     public enum EventsType
     {
-        ClearEvents
+        UpdateQuickSlot = 50, 
+        ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>
     {

@@ -39,9 +39,9 @@ namespace UI.EventAlarm
         {
         //    eventAlarmConstructor.UIList
         }
-        public void ActiveView()
+        public bool ActiveView()
         {
-            alarmScreenView.ActiveView(); 
+            return alarmScreenView.ActiveScreen(); 
         }
 
         public void ActiveView(bool _isActive)

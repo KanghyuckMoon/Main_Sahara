@@ -188,9 +188,9 @@ namespace UI.Dialogue
             dialogueView.SetNameText(_name);
             dialogueView.SetDialogueText(_dialogue);
         }
-        public void ActiveView()
+        public bool ActiveView()
         {
-            dialogueView.ActiveView(); 
+            return dialogueView.ActiveScreen(); 
         }
 
         public void ActiveView(bool _isActive)

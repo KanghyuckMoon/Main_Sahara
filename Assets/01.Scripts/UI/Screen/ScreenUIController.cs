@@ -72,7 +72,7 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.I))
             {
                 // 인벤토리 활성화 
-                inventoryPresenter.ActiveView();
+                ActiveCursor(inventoryPresenter.ActiveView());
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
@@ -82,7 +82,7 @@ namespace UI
             if(Input.GetKeyDown(KeyCode.Q))
             {
                 // 퀘스트 활성화
-                questPresenter.ActiveView(); 
+                ActiveCursor(questPresenter.ActiveView());
             }
 
         }
@@ -96,6 +96,19 @@ namespace UI
             {
                 screenDic[v.Key].ActiveView(false); 
             }
+        }
+
+        private void ActiveCursor(bool _isActive)
+        {
+            if(_isActive == true)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                return; 
+            }
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
         }
     }
 }

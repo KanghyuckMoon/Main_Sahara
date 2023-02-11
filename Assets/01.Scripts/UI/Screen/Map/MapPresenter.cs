@@ -67,16 +67,17 @@ namespace UI
             //}
         }
 
-        public void ActiveView()
+        public bool ActiveView()
         {
             //mapView.ShowMap();
-            StartCoroutine(TestCo()); 
-           // StartCoroutine(T()); 
+            StartCoroutine(TestCo());
+            // StartCoroutine(T()); 
             // mapView.ShowMap();
             // if (mapView.CurMapType == MapType.MiniMap)
             // {
             //     StartCoroutine(Test());
             // } 
+            return MapView.CurMapType == MapType.FullMap ? true : false;  
         }
         public void ActiveView(bool _isActive)
         {

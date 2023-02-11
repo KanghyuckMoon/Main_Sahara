@@ -74,9 +74,9 @@ namespace UI.Quest
             this.questView.InitListView(); 
         }
 
-        public void ActiveView()
+        public bool ActiveView()
         {
-            questView.ActiveScreen(); 
+            return questView.ActiveScreen(); 
         }
 
         public void ActiveView(bool _isActive)
