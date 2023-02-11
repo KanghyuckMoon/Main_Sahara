@@ -35,11 +35,14 @@ namespace UI
 
         // 선택한 오브젝트의 스크립트 가져오고 
         // 함수 리플렉션으로 쭉 빼와서 드롭다운으로 설정 
-        // 
+        
+
         public void UpdateUI()
         {
-            //    _hpView.SetBarUI(_entityData.hp);
-            _hpView.SetBarUI(stateModule.CurrentHp / stateModule.MaxHp);
+            float _hp = (float)stateModule.CurrentHp / (float)stateModule.MaxHp;
+
+            //    _hpView.SetBarUI(_entityData.hp)  ;
+            _hpView.SetBarUI(_hp);
         }
 
 

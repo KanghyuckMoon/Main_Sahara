@@ -157,6 +157,7 @@ namespace UI
             map.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(new Length(50, LengthUnit.Percent), new Length(50, LengthUnit.Percent)));
             MapTrm.scale = Vector3.one;
             MapTrm.position = Vector3.zero;
+            MarkerParent.transform.scale = Vector3.one;
 
             SetMapPanel(_isMinimap: true); 
             // 마스크 키고

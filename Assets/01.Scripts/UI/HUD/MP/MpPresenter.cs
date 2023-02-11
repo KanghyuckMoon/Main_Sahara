@@ -38,7 +38,7 @@ namespace UI
         public void UpdateUI()
         {
             //    _hpView.SetBarUI(_entityData.hp);
-            _mpView.SetBarUI(_testMp);
+            _mpView.SetBarUI((float)stateModule.Mana/ stateModule.MaxMana);
         }
     }
 }
