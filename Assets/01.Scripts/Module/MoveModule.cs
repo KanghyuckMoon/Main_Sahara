@@ -33,12 +33,12 @@ namespace Module
         public void Move()
         {
             #region 속도 관련 부분
-            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4 : moveSpeed;
+            float _targetSpeed = mainModule.IsSprint ? moveSpeed + 4 : moveSpeed;
             float _speed;
 
-            if (mainModule.objDir == Vector2.zero || mainModule.attacking || mainModule.strongAttacking) _targetSpeed = 0.0f;
+            if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
-            float currentSpeed = new Vector3(mainModule.characterController.velocity.x, 0, mainModule.characterController.velocity.z).magnitude;
+            float currentSpeed = new Vector3(mainModule.CharacterController.velocity.x, 0, mainModule.CharacterController.velocity.z).magnitude;
 
             if (currentSpeed > _targetSpeed + speedOffset ||
                 currentSpeed < _targetSpeed - speedOffset)// && mainModule.objDir != Vector2.up)
@@ -54,19 +54,19 @@ namespace Module
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
-            Vector3 _targetDirection = new Vector3(mainModule.objDir.x, 0, mainModule.objDir.y);
+            Vector3 _targetDirection = new Vector3(mainModule.ObjDir.x, 0, mainModule.ObjDir.y);
 
             //Vector3 _velocity = NextStepGroundAngle(_speed, _targetDirection) > mainModule.maxSlope ? _targetDirection : Vector3.zero;
 
             Vector3 _rotate = mainModule.transform.eulerAngles;
             Vector3 _dir = _targetDirection.normalized;
-            float _gravity = mainModule.gravity;//Vector3.down * Mathf.Abs(mainModule.characterController.velocity.y);
+            float _gravity = mainModule.Gravity;//Vector3.down * Mathf.Abs(mainModule.characterController.velocity.y);
             Vector3 _moveValue;
 
-            if (mainModule.objDir != Vector2.zero)
+            if (mainModule.ObjDir != Vector2.zero)
             {
                 targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
-                                  mainModule.objRotation.eulerAngles.y;
+                                  mainModule.ObjRotation.eulerAngles.y;
                 rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.05f);
 
                 mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
@@ -76,14 +76,14 @@ namespace Module
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * Time.fixedDeltaTime;
-            mainModule.characterController.Move(_moveValue + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
+            mainModule.CharacterController.Move(_moveValue + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
 
             animator.SetFloat("MoveSpeed", animationBlend);
         }
 
         private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
-            Vector3 _rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
+            Vector3 _rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.GroundOffset,
                 mainModule.transform.position.z);
             var _ray = new Ray(_rayPos, Vector3.down);
 
@@ -114,16 +114,16 @@ namespace Module
         /// </summary>
         private void Gravity()
         {
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
-                if (mainModule.gravity < 0.0f)
+                if (mainModule.Gravity < 0.0f)
                 {
-                    mainModule.gravity = -2f;
+                    mainModule.Gravity = -2f;
                 }
             }
-            if (mainModule.gravity < 100)
+            if (mainModule.Gravity < 100)
             {
-                mainModule.gravity += mainModule.gravityScale * Time.fixedDeltaTime * 2;
+                mainModule.Gravity += mainModule.GravityScale * Time.fixedDeltaTime * 2;
             }
         }
 

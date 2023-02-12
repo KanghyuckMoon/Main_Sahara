@@ -175,7 +175,7 @@ namespace Module
 				_weaponModule.ChangeWeapon("EndSword", "Sword");
 			}
 
-			if (mainModule.isDead)
+			if (mainModule.IsDead)
 			{
 				rootNodeMaker.Dead();
 				return;

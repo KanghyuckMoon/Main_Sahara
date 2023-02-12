@@ -11,7 +11,7 @@ public class Attack : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
-        mainModule.attacking = false;
-        mainModule.strongAttacking = false;
+        mainModule.Attacking = false;
+        mainModule.StrongAttacking = false;
     }
 }

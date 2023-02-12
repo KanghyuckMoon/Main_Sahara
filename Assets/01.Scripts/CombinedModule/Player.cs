@@ -10,10 +10,10 @@ namespace CondinedModule
         private void Awake()
         {
             StopOrNot = 1;
-            canMove = true;
+            CanMove = true;
 
             moduleComponentsDic = new();
-            characterController = GetComponent<CharacterController>();
+            CharacterController = GetComponent<CharacterController>();
             //footRotate = GetComponentInParent<csHomebrewIK>();
             AddModule(ModuleType.Input, new InputModule(this));
             AddModule(ModuleType.Move, new MoveModule(this));
@@ -28,7 +28,7 @@ namespace CondinedModule
             AddModule(ModuleType.Weapon, new WeaponModule(this));
             AddModule(ModuleType.Hit, new HitModule(this));
 
-            raycastTarget = transform.Find("RayCastPoint");
+            RaycastTarget = transform.Find("RayCastPoint");
         }
     }
 }

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utill.Pattern;
 
 namespace Module
 {
-    public class PlayerDead : MonoBehaviour
+    public class PlayerDead : MonoBehaviour, Observer
     {
         public float sceneMoveTime;
         public string sceneMoveName;
@@ -16,23 +17,30 @@ namespace Module
         private void Start()
         {
             abMainModule = GetComponent<AbMainModule>();
-        }
-
-        private void Update()
-        {
-            if(abMainModule.isDead)
-            {
-                sceneMoveTime -= Time.deltaTime;
-                if(sceneMoveTime <= 0)
-                {
-                    ChangeScene();
-                }
-            }
+            abMainModule.AddObserver(this);
         }
 
         private void ChangeScene()
         {
             SceneManager.LoadScene(sceneMoveName);
         }
-    }
+
+		public void Receive()
+        {
+            if (abMainModule.IsDead)
+            {
+                StartCoroutine(SceneMove());
+            }
+        }
+
+        private IEnumerator SceneMove()
+        {
+            while (sceneMoveTime <= 0)
+            {
+                sceneMoveTime -= Time.deltaTime;
+                yield return null;
+            }
+            ChangeScene();
+        }
+	}
 }
