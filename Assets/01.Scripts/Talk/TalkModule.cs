@@ -137,7 +137,7 @@ namespace Module.Talk
 			}
 			else
 			{
-				_index = Random.Range(1, talkDataSO.defaultTalkCodeList.Count);
+				_index = Random.Range(0, talkDataSO.defaultTalkCodeList.Count);
 			}
 			DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 		}
