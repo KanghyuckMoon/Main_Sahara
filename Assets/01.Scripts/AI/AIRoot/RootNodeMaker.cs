@@ -58,6 +58,7 @@ namespace AI
 
 		public void Dead()
 		{
+			aiModule.AIModuleHostileState = AIModule.AIHostileState.Unknow;
 			aiModule.MainModule.objDir = Vector3.zero;
 			Reset();
 		}
