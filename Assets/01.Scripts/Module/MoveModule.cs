@@ -83,7 +83,7 @@ namespace Module
 
         private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
-            Vector3 _rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.GroundOffset,
+            Vector3 _rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
             var _ray = new Ray(_rayPos, Vector3.down);
 
@@ -114,7 +114,7 @@ namespace Module
         /// </summary>
         private void Gravity()
         {
-            if (mainModule.IsGround)
+            if (mainModule.isGround)
             {
                 if (mainModule.Gravity < 0.0f)
                 {

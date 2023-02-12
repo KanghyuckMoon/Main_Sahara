@@ -95,18 +95,6 @@ namespace Module
 			}
         }
 
-        public bool IsGround
-        {
-            get
-            {
-                return isGround;
-
-            }
-            set
-			{
-                IsGround = value;
-			}
-        }
         public bool IsJump
 		{
             get
@@ -240,27 +228,12 @@ namespace Module
                 return gravityScale;
 			}
 		}
-        public float GroundOffset
-		{
-            get
-			{
-                return groundOffset;
-			}
-		}
 
         public bool LockOn
 		{
             get
 			{
                 return lockOn;
-			}
-		}
-
-        public LayerMask GroundLayer
-		{
-            get
-			{
-                return GroundLayer;
 			}
 		}
 
@@ -317,9 +290,10 @@ namespace Module
         [SerializeField, Header("달리기중?")] 
         private bool isSprint;
 
+        //물리 관련은 최적화를 위해 Public을 사용
         [Space]
         [SerializeField, Header("공중인가?")] 
-        private bool isGround;
+        public bool isGround; 
         [SerializeField, Header("점프했나?")] 
         private bool isJump;
         [SerializeField, Header("떨어졌나?")] 
@@ -351,7 +325,7 @@ namespace Module
         [SerializeField, Header("중력크기")] 
         private float gravityScale = -9.8f;
         [SerializeField, Header("땅체크 사거리")] 
-        private float groundOffset;
+        public float groundOffset;
 
         [Space]
         [SerializeField, Header("락온")] 
@@ -359,7 +333,7 @@ namespace Module
 
         [Space]
         [SerializeField, Header("서있을 수 있는 물체")] 
-        private LayerMask groundLayer;
+        public LayerMask groundLayer;
 
         [SerializeField, Header("최대경사면")] 
         private float maxSlope;

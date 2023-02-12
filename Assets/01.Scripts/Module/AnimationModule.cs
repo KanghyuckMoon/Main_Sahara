@@ -42,7 +42,7 @@ namespace Module
         {
             //animator.SetFloat("MoveSpeed", mainModule.moveSpeed);
             //animator.SetFloat("Jump", mainModule.objDir.y);
-            animator.SetBool("IsGround", mainModule.IsGround);
+            animator.SetBool("IsGround", mainModule.isGround);
             animator.SetBool("JumpBuf", mainModule.IsJumpBuf);
             animator.SetBool("WeaponExist", mainModule.IsWeaponExist);
         }

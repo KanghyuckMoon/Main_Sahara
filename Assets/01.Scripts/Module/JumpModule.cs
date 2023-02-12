@@ -37,7 +37,7 @@ namespace Module
 
         void Jump()
         {
-            if (mainModule.IsGround)
+            if (mainModule.isGround)
             {
                 calculatedFallTime = antiFallTime;
 

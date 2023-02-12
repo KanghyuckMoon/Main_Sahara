@@ -128,7 +128,7 @@ namespace AI
 			jumpCheckVector.y = Position.y + 100;
 			jumpCheckVector.x += Position.x;
 			jumpCheckVector.z += Position.z;
-			if (Physics.Raycast(jumpCheckVector, Vector3.down, out raycastHit, aiModule.MainModule.GroundLayer))
+			if (Physics.Raycast(jumpCheckVector, Vector3.down, out raycastHit, aiModule.MainModule.groundLayer))
 			{
 				NavMeshPath tempPath = new NavMeshPath();
 				NavMesh.CalculatePath(raycastHit.point, aiModule.Player.position, NavMesh.AllAreas, tempPath);

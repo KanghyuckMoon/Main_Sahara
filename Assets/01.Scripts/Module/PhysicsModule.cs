@@ -67,12 +67,12 @@ namespace Module
 
         private void Slope()
         {
-            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.GroundOffset,
+            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
 
             Ray ray = new Ray(rayPos, Vector3.down);
             RaycastHit _raycastHit;
-            if (Physics.Raycast(ray, out _raycastHit, rayDistance, mainModule.GroundLayer))
+            if (Physics.Raycast(ray, out _raycastHit, rayDistance, mainModule.groundLayer))
             {
                 mainModule.SlopeHit = _raycastHit;
                    var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
@@ -87,22 +87,22 @@ namespace Module
 
         private void GroundCheack()
         {
-            Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.GroundOffset,
+            Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
-            bool _isLand = Physics.CheckSphere(_spherePosition, 0.42f, mainModule.GroundLayer,
+            bool _isLand = Physics.CheckSphere(_spherePosition, 0.42f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
-            if(!mainModule.IsGround && _isLand)
+            if(!mainModule.isGround && _isLand)
             {
                 EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
             }
 
-            mainModule.IsGround = _isLand;
+            mainModule.isGround = _isLand;
         }
 
         private void SetEffect()
         {
-            if(mainModule.IsGround && mainModule.ObjDir != Vector2.zero)
+            if(mainModule.isGround && mainModule.ObjDir != Vector2.zero)
             {
                 float delay = 1;
                 if(currenteffectSpownDelay > effectSpownDelay)
