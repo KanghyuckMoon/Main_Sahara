@@ -155,6 +155,7 @@ namespace Module
 			set
 			{
 				isDead = value;
+                Send();
 			}
 		}
 		public bool IsAttack
@@ -351,7 +352,7 @@ namespace Module
                 return observers;
 			}
 		}
-        private List<Observer> observers;
+        private List<Observer> observers = new List<Observer>();
 
 		private void Start()
         {
