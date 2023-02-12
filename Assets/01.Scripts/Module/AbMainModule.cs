@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using FischlWorks;
+using UpdateManager;
 
 namespace Module
 {
-    public abstract class AbMainModule : MonoBehaviour
+    public abstract class AbMainModule : MonoBehaviour, IUpdateObj
     {
         //메인 모듈에서 지금 오브젝트가 가지고 있는 모든 모듈을 가지고 와야해
         //그건 풀링 할때 각각의 모듈을 밑에 복합데이터에 넣어주는 형식으로 한다. 메인모듈에 넣어준다.
@@ -71,7 +72,18 @@ namespace Module
             }
         }
 
-        private void Update()
+		private void OnEnable()
+		{
+            UpdateManager.UpdateManager.Add(this);
+		}
+
+		private void OnDisable()
+		{
+
+            UpdateManager.UpdateManager.Remove(this);
+        }
+
+		void IUpdateObj.UpdateManager_Update()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -79,7 +91,7 @@ namespace Module
             }
         }
 
-        private void FixedUpdate()
+        void IUpdateObj.UpdateManager_FixedUpdate()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -87,7 +99,7 @@ namespace Module
             }
         }
 
-        private void LateUpdate()
+        void IUpdateObj.UpdateManager_LateUpdate()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -136,5 +148,6 @@ namespace Module
         {
             moduleComponentsDic.Add(moduleType, baseModule);
         }
-    }
+
+	}
 }

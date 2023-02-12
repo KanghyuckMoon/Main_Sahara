@@ -9,6 +9,8 @@ namespace UpdateManager
     public interface IUpdateObj
 	{
         public void UpdateManager_Update();
+        public void UpdateManager_FixedUpdate();
+        public void UpdateManager_LateUpdate();
 
     }
 
@@ -64,6 +66,54 @@ namespace UpdateManager
 
 				}
 				SW.Stop();
+                StopWatchStoppedCallback?.Invoke();
+            }
+            void FixedUpdate()
+            {
+                SW.Restart();
+                try
+                {
+                    foreach (var mover in _updateables)
+                    {
+                        try
+                        {
+                            mover.UpdateManager_FixedUpdate();
+                        }
+                        catch
+                        {
+                            break;
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+                SW.Stop();
+                StopWatchStoppedCallback?.Invoke();
+            }
+            void LateUpdate()
+            {
+                SW.Restart();
+                try
+                {
+                    foreach (var mover in _updateables)
+                    {
+                        try
+                        {
+                            mover.UpdateManager_LateUpdate();
+                        }
+                        catch
+                        {
+                            break;
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+                SW.Stop();
                 StopWatchStoppedCallback?.Invoke();
             }
         }
