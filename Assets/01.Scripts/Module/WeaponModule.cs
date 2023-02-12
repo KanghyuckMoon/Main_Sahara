@@ -115,7 +115,10 @@ namespace Module
         }
         private void SetWeaponSkills()
         {
-            weaponSkills = new WeaponSkills(iWeaponSkills.Skills);
+            if (iWeaponSkills is not null)
+			{
+                weaponSkills = new WeaponSkills(iWeaponSkills.Skills);
+			}
         }
 
         public void UseWeaponSkills()
