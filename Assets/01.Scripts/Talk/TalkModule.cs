@@ -63,7 +63,7 @@ namespace Module.Talk
 			if(CanTalk())
 			{
 				Logging.Log("대화 가능");
-				if (Input.GetKeyDown(KeyCode.E))
+				if (Input.GetKeyDown(KeyCode.F))
 				{
 					if (ShopModule is not null)
 					{
