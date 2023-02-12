@@ -26,6 +26,7 @@ namespace Module
 
         private float effectSpownDelay => effect.effectDelayTime;
         private float currenteffectSpownDelay;
+        private bool isRight;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -105,10 +106,13 @@ namespace Module
                     if (mainModule.isSprint)
                     {
                         delay = effect.runEffectDelay;
-                        EffectManager.Instance.SetEffectDefault(effect.runEffectName, mainModule.transform.position, Quaternion.identity);
+                        EffectManager.Instance.SetEffectDefault(isRight ? effect.runREffectName : effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
                     }
                     else
-                        EffectManager.Instance.SetEffectDefault(effect.walkEffectName, mainModule.transform.position, Quaternion.identity);
+					{
+                        EffectManager.Instance.SetEffectDefault(isRight ? effect.walkRffectName : effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
+					}
+                    isRight = !isRight;
                 }
                 currenteffectSpownDelay += Time.deltaTime * delay;
             }

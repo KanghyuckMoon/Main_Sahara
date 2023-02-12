@@ -7,9 +7,11 @@ namespace Effect
     [CreateAssetMenu(menuName = "SO/PlayerLandEffectSO")]
     public class PlayerLandEffectSO : ScriptableObject
     {
-        public string walkEffectName;
         public string landEffectName;
-        public string runEffectName;
+        public string walkRffectName;
+        public string walkLffectName;
+        public string runREffectName;
+        public string runLEffectName;
 
         [Space]
         public float effectDelayTime;
