@@ -120,6 +120,11 @@ namespace Module
 
         public void UseWeaponSkills()
         {
+            if (baseWeapon is null)
+			{
+                return;
+			}
+
             if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
             {
                 weaponSkills?.Invoke();
