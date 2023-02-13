@@ -32,12 +32,12 @@ namespace UI.Inventory
         {
             // 패널 다음 인덱스부터 시작 
             right_content_panel = 7, // 퀵슬롯
-            drag_item,
             armor_equip_panel, // 장비 장착
             accessoire_equip_panel, // 장신구 장착
             skill_equip_panel, // 스킬 장착 
 
-
+            drag_item,
+            description_panel,
         }
 
         enum RadioButtons
@@ -66,10 +66,12 @@ namespace UI.Inventory
 
         private InvenPanelElements curPanelType; // 현재 활성화중인 패널 
 
-        private SlotItemPresenter dragItemPresenter; // 드래그앤 드랍시 활성화될 뷰 
+        private SlotItemPresenter dragItemPresenter; // 드래그시 활성화될 뷰( 아이템 이미지 그대로 복사해서 커서 따라가는 )  
+        private ItemDescriptionPresenter descriptionPresenter; // 설명창 - 아이템에 커서 갖다댈시 활성화 
 
         // 프로퍼티
         private VisualElement DragItem => GetVisualElement((int)Elements.drag_item);
+        private VisualElement Description => GetVisualElement((int)Elements.description_panel); 
         public override void Cashing()
         {
             base.Cashing();
@@ -86,6 +88,8 @@ namespace UI.Inventory
             // 드래그 아이템 초기화 
             dragItemPresenter = new SlotItemPresenter(DragItem);
             dragItemPresenter.AddDropper(() => DropItem()); ;
+            // 설명창 초기화 
+            descriptionPresenter = new ItemDescriptionPresenter(Description); 
 
             // SO 불러오기 
             invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
@@ -254,7 +258,13 @@ namespace UI.Inventory
                 ItemType _i = invenItemUISO.GetItemType(_itemType);
 
                 SlotItemPresenter _slotPr = new SlotItemPresenter();
+                // 슬롯 이벤트 등록 
                 _slotPr.AddDragger(this.dragItemPresenter.Item, () => ClickItem(_slotPr));
+
+                _slotPr.AddHoverEvent(() => descriptionPresenter.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
+                    new Vector2(_slotPr.WorldPos.x + _slotPr.ItemSize.x /2, _slotPr.WorldPos.y + _slotPr.ItemSize.y))); 
+                _slotPr.AddOutEvent(() => descriptionPresenter.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
+                                                                                    
                 itemSlotDic[_i].AddSlotView(_slotPr);
                 SetParent(_itemType, _slotPr.Parent);
             }

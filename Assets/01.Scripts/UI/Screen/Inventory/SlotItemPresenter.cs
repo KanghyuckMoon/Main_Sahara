@@ -26,7 +26,8 @@ namespace UI.Inventory
         public VisualElement Parent => parent;
         public VisualElement Item => slotItemView.Item; 
         public ItemData ItemData => itemData;
-
+        public Vector2 WorldPos => slotItemView.SlotWorldBound.position;
+        public Vector2 ItemSize => new Vector2(slotItemView.SlotWorldBound.width, slotItemView.SlotWorldBound.height);
 
         /// <summary>
         /// 생성 
@@ -95,6 +96,22 @@ namespace UI.Inventory
             }));
         }
 
+        /// <summary>
+        /// 마우스 위에 둘시 이벤트 
+        /// </summary>
+        public void AddHoverEvent(Action _callback)
+        {
+            this.slotItemView.AddHoverEvent(_callback);
+        }
+
+        /// <summary>
+        /// 마우스 위에서 떠날시 이벤트 
+        /// </summary>
+        /// <param name="_callback"></param>
+        public void AddOutEvent(Action _callback)
+        {
+            this.slotItemView.AddOutEvent(_callback);
+        }
     }
 
 }
