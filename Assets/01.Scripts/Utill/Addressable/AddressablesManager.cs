@@ -26,6 +26,13 @@ namespace Utill.Addressable
 		private Dictionary<string, AsyncOperationHandle<SceneInstance>> sceneInstanceDic = new Dictionary<string, AsyncOperationHandle<SceneInstance>>();
 		private Queue<LoadSceneData> loadMessageQueue = new Queue<LoadSceneData>();
 
+		public void LodedSceneClear()
+		{
+			loadedScene.Clear();
+			sceneInstanceDic.Clear();
+			loadMessageQueue.Clear();
+		}
+
 		/// <summary>
 		/// 리소스를 가져오는 함수
 		/// </summary>
