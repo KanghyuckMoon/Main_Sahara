@@ -29,7 +29,7 @@ namespace UI.Inventory
         /// <summary>
         /// 설명창 설정 
         /// </summary>
-        public void SetItemData(ItemData _itemData,Vector2 _pos)
+        public void SetItemData(ItemData _itemData,Vector2 _slotPos, Vector2 _slotSize)
         {
             if (_itemData == null) return; // 빈 슬롯이면 리턴 
 
@@ -38,6 +38,13 @@ namespace UI.Inventory
             itemDescriptionView.SetNameAndDesciption(TextManager.Instance.GetText(_itemData.nameKey),
                                                                                     TextManager.Instance.GetText(_itemData.explanationKey));
             // 위치 설정 
+            Vector2 _pos = new Vector2(_slotPos.x + _slotSize.x / 2, _slotPos.y + _slotSize.y);
+            // 범위가 넘어가서 설명창이 안보이는 부분이 있다면 위로 올려서  
+            if(_pos.y + 300/*itemDescriptionView.Height */> Screen.height)
+            {
+                _pos = new Vector2(_slotPos.x + _slotSize.x / 2, _slotPos.y - 300);
+            }
+
             itemDescriptionView.SetPos(_pos); 
             ActiveView(true); 
         }

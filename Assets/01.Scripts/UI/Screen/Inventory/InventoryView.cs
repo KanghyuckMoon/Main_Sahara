@@ -88,9 +88,10 @@ namespace UI.Inventory
             // 드래그 아이템 초기화 
             dragItemPresenter = new SlotItemPresenter(DragItem);
             dragItemPresenter.AddDropper(() => DropItem()); ;
+            ActiveDragItem(false); 
             // 설명창 초기화 
-            descriptionPresenter = new ItemDescriptionPresenter(Description); 
-
+            descriptionPresenter = new ItemDescriptionPresenter(Description);
+            descriptionPresenter.ActiveView(false); 
             // SO 불러오기 
             invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
             // 슬롯 생성 
@@ -262,7 +263,7 @@ namespace UI.Inventory
                 _slotPr.AddDragger(this.dragItemPresenter.Item, () => ClickItem(_slotPr));
 
                 _slotPr.AddHoverEvent(() => descriptionPresenter.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
-                    new Vector2(_slotPr.WorldPos.x + _slotPr.ItemSize.x /2, _slotPr.WorldPos.y + _slotPr.ItemSize.y))); 
+                   _slotPr.WorldPos, _slotPr.ItemSize)); 
                 _slotPr.AddOutEvent(() => descriptionPresenter.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
                                                                                     
                 itemSlotDic[_i].AddSlotView(_slotPr);

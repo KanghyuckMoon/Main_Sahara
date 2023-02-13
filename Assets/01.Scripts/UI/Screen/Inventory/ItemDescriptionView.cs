@@ -9,6 +9,7 @@ namespace UI.Inventory
     {
         enum Elements
         {
+            description_panel,
             image, // 아이템 이미지 
         }
         enum Labels
@@ -16,6 +17,8 @@ namespace UI.Inventory
             name_label, // 아이템 이름 텍스트 
             description_label, // 아이템 설명 텍스트 
         }
+
+        public float Height => GetVisualElement((int)Elements.description_panel).layout.height; 
 
         public override void Cashing()
         {
@@ -53,8 +56,8 @@ namespace UI.Inventory
         {
             parentElement.style.left = _pos.x;
             parentElement.style.top = _pos.y;
-
         }
+
     }
 
 }
