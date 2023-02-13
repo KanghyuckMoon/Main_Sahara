@@ -12,7 +12,9 @@ namespace Quest
     public partial class QuestManager : MonoSingleton<QuestManager>
     {
         private QuestDataAllSO questDataAllSO;
+		private QuestSaveDataSO questSaveDataSO;
         public Dictionary<string, QuestData> questDataDic = new Dictionary<string, QuestData>();
+		private bool isInit = false;
 
 		private void Awake()
 		{
@@ -20,9 +22,11 @@ namespace Quest
 			{
 				Destroy(gameObject);
 			}
-
-			questDataAllSO = AddressablesManager.Instance.GetResource<QuestDataAllSO>("QuestAllDataSO");
-			InitQuestData();
+			if (!isInit)
+			{
+				InitQuestData();
+			}
+			isInit = true;
 		}
 
 
@@ -31,40 +35,63 @@ namespace Quest
 			ClearCheckQuest();
 		}
 
+		public void LoadQuestSaveData(QuestSaveDataSO _questSaveDataSO)
+		{
+			if (!isInit)
+			{
+				InitQuestData();
+			}
+			for (int i = 0; i < _questSaveDataSO.questSaveDataList.Count; ++i)
+			{
+				QuestSaveData _questSaveData = _questSaveDataSO.questSaveDataList[i];
+				questDataDic[_questSaveData.key].QuestState = _questSaveData.questState;
+			}
+		}
+
+		public QuestData GetQuestData(string _key)
+		{
+			QuestData _questData = null;
+			if (questDataDic.TryGetValue(_key, out _questData))
+			{
+				return _questData;
+			}
+			return null;
+		}
+
 		/// <summary>
 		/// 비활성화중인 퀘스트들을 가져온다
 		/// </summary>
 		/// <returns></returns>
-		public List<QuestData> GetDisableQuest()
+		public List<QuestData> GetDisableQuest(QuestCategory _questCategory = QuestCategory.Main)
 		{
-			List<QuestData> disableQuestList = GetWhereQuset(QuestState.Disable);
+			List<QuestData> disableQuestList = GetWhereQuset(QuestState.Disable, _questCategory);
 			return disableQuestList;
 		}
 		/// <summary>
 		/// 발견 가능한 퀘스트들을 가져온다
 		/// </summary>
 		/// <returns></returns>
-		public List<QuestData> GetDiscoverableQuest()
+		public List<QuestData> GetDiscoverableQuest(QuestCategory _questCategory = QuestCategory.Main)
 		{
-			List<QuestData> discoverableQuestList = GetWhereQuset(QuestState.Discoverable);
+			List<QuestData> discoverableQuestList = GetWhereQuset(QuestState.Discoverable, _questCategory);
 			return discoverableQuestList;
 		}
 		/// <summary>
 		/// 발견한 퀘스트들을 가져온다
 		/// </summary>
 		/// <returns></returns>
-		public List<QuestData> GetActiveQuest()
+		public List<QuestData> GetActiveQuest(QuestCategory _questCategory = QuestCategory.Main)
 		{
-			List<QuestData> activeQuestList = GetWhereQuset(QuestState.Active);
+			List<QuestData> activeQuestList = GetWhereQuset(QuestState.Active, _questCategory);
 			return activeQuestList;
 		}
 		/// <summary>
 		/// 클리어한 퀘스트들을 가져온다
 		/// </summary>
 		/// <returns></returns>
-		public List<QuestData> GetClearQuest()
+		public List<QuestData> GetClearQuest(QuestCategory _questCategory = QuestCategory.Main)
 		{
-			List<QuestData> clearQuestList = GetWhereQuset(QuestState.Clear);
+			List<QuestData> clearQuestList = GetWhereQuset(QuestState.Clear, _questCategory);
 			return clearQuestList;
 		}
 		/// <summary>
@@ -77,20 +104,20 @@ namespace Quest
 			return activeAndClearQuestList;
 		}
 
-		public void ChangeQuestActive(string key)
+		public void ChangeQuestActive(string _key)
 		{
-			questDataDic[key].QuestState = QuestState.Active;
+			questDataDic[_key].QuestState = QuestState.Active;
 		}
-		public void ChangeQuestClear(string key)
+		public void ChangeQuestClear(string _key)
 		{
-			QuestClear(questDataDic[key]);
+			QuestClear(questDataDic[_key]);
 		}
 
 		partial void InitQuestData();
 
-		private List<QuestData> GetWhereQuset(QuestState questState)
+		private List<QuestData> GetWhereQuset(QuestState _questState, QuestCategory questCategory)
 		{
-			List<QuestData> disableQuestList = questDataDic.Where(item => item.Value.QuestState == questState).Select(item => item.Value).ToList();
+			List<QuestData> disableQuestList = questDataDic.Where(item => item.Value.QuestState == _questState && item.Value.QuestCategory == questCategory).Select(item => item.Value).ToList();
 			return disableQuestList;
 		}
 
@@ -98,17 +125,12 @@ namespace Quest
 		{
 			SceneData _sceneData = SceneDataManager.Instance.GetSceneData(_sceneName);
 
-			if (_sceneData is null || _objectDataSOList is null)
-			{
-				return;
-			}
-
 			foreach (var _objectDataSO in _objectDataSOList)
 			{
 				ObjectData _objectData = new ObjectData();
 				_objectData.CopyObjectDataSO(_objectDataSO);
 				_objectData.key = ObjectData.totalKey++;
-				_sceneData.AddObjectData(_objectData);
+				_sceneData?.AddObjectData(_objectData);
 			}
 		}
 
@@ -139,6 +161,7 @@ namespace Quest
 					if (_quest.Value.IsTalkQuest)
 					{
 						_quest.Value.QuestState = QuestState.Achievable;
+						questSaveDataSO.ChangeQuestSaveData(_quest.Value.QuestKey, _quest.Value.QuestState);
 						//NPC 대화 데이터 설정
 					}
 					else
@@ -149,16 +172,18 @@ namespace Quest
 			}
 		}
 
-		private void QuestClear(QuestData questData)
+		private void QuestClear(QuestData _questData)
 		{
-			Logging.Log($"퀘스트 클리어 : {questData.QuestKey}");
-			questData.QuestState = QuestState.Clear;
+			Logging.Log($"퀘스트 클리어 : {_questData.QuestKey}");
+			_questData.QuestState = QuestState.Clear;
+			questSaveDataSO.ChangeQuestSaveData(_questData.QuestKey, _questData.QuestState);
 
-			foreach (var _linkQuest in questData.LinkQuestKeyList)
+			foreach (var _linkQuest in _questData.LinkQuestKeyList)
 			{
 				if (questDataDic[_linkQuest].QuestState == QuestState.Disable)
 				{
 					questDataDic[_linkQuest].QuestState = QuestState.Discoverable;
+					questSaveDataSO.ChangeQuestSaveData(questDataDic[_linkQuest].QuestKey, questDataDic[_linkQuest].QuestState);
 					CreateAllObject(questDataDic[_linkQuest].QuestCreateObjectSOList);
 				}
 			}

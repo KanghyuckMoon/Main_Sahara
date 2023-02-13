@@ -33,6 +33,12 @@ namespace Quest
 		Handwork, //¼öÀÛ¾÷
 	}
 
+	public enum QuestCategory
+	{
+		Main,
+		Sub
+	}
+
 	public partial class QuestData
 	{
 	}

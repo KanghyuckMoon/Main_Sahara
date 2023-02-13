@@ -19,18 +19,17 @@ namespace UI
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set; }
 
-        private StateData stateData; 
-
+        private StateModule stateModule; 
         public void Awake()
         {
             _mpView.InitUIDocument(RootUIDocument); 
             _mpView.Cashing();
         }
 
-        public void Start(StateData _stateData)
+        public void Start(StateModule _stateData)
         {
             _mpView.Init();
-            this.stateData = _stateData; 
+            this.stateModule = _stateData;
         }
 
         // 선택한 오브젝트의 스크립트 가져오고 
@@ -39,7 +38,7 @@ namespace UI
         public void UpdateUI()
         {
             //    _hpView.SetBarUI(_entityData.hp);
-            _mpView.SetBarUI(_testMp);
+            _mpView.SetBarUI((float)stateModule.Mana/ stateModule.MaxMana);
         }
     }
 }

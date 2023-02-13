@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System; 
+using System;
+using GoogleSpreadSheet; 
+
 namespace UI
 {
     [Serializable]
     public class TitleView : AbUI_Base
     {
+        enum Labels
+        {
+            title_label
+        }
+
         public enum Buttons
         {
             start_button,
+            setting_button,
             end_button
         }
 
@@ -20,13 +28,18 @@ namespace UI
         public override void Cashing()
         {
             base.Cashing();
+            BindLabels(typeof(Labels));
             BindButtons(typeof(Buttons));
         }
 
         public override void Init()
         {
             base.Init();
-            AddButtonEvents(); 
+            GetLabel((int)Labels.title_label).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.title));;
+            GetButton((int)Buttons.start_button).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.titleStart));
+            GetButton((int)Buttons.setting_button).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.titleSetting));
+            GetButton((int)Buttons.end_button).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.titleEnd));
+            AddButtonEvents();
         }
 
         private void AddButtonEvents()

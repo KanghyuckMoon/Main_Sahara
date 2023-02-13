@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Dialogue.uss?fileID=7433441132597879392&amp;guid=43f24aefca7f53245a2ea7ae3fcedb29&amp;type=3#Dialogue" />
+    <Style src="project://database/Assets/UIToolkit/Uss/EventAlarm.uss?fileID=7433441132597879392&amp;guid=c7befbdc02cf5bd4ebe9b50938b35a68&amp;type=3#EventAlarm" />
+    <ui:VisualElement name="dialogue_view" class="screen" style="display: flex; opacity: 1;">
+        <ui:VisualElement name="top_panel" class="panel center_align">
+            <ui:VisualElement name="EventAlarm" style="display: none;">
+                <ui:VisualElement name="event_alarm_view" class="center_align event_alarm" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;">
+                    <ui:VisualElement style="position: absolute; width: 100%; height: 100%;">
+                        <ui:Label text="Label" display-tooltip-when-elided="true" name="event_name_label" class="font_base" style="bottom: 30px; font-size: 25px; color: rgb(255, 255, 255);" />
+                    </ui:VisualElement>
+                    <ui:Label text="Label" display-tooltip-when-elided="true" name="event_detail_label" class="font_base" style="font-size: 30px; color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="mid_panel" class="panel" />
+        <ui:VisualElement name="bottom_panel" class="panel center_align" style="flex-basis: 20%; padding-left: 15%; padding-right: 15%; padding-bottom: 2%;">
+            <ui:VisualElement name="select_panel" style="width: 100%; justify-content: flex-end; align-items: flex-end; flex-grow: 1; padding-bottom: 20px; flex-direction: column-reverse; position: absolute; bottom: 100%;">
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button1" class="select_button font_base" style="display: none;" />
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button2" class="select_button font_base" style="display: none;" />
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button3" class="select_button font_base" style="display: none;" />
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button4" class="select_button font_base" style="display: none;" />
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button5" class="select_button font_base" style="display: none;" />
+            </ui:VisualElement>
+            <Gradient left-color="#000000E6" right-color="#000000F6" name="Gradient" r="false" direction="vertical" class="center_align" style="width: 100%; height: 80%;">
+                <ui:Label text="&lt;color=blue&gt;안녕하세요&lt;/color&gt; &lt;voffset=30&gt;저는&lt;/voffset&gt; &lt;size=150%&gt;정정배&lt;/size&gt;입니다 " display-tooltip-when-elided="true" name="dialogue_label" enable-rich-text="true" class="font_base" style="font-size: 30px; color: rgb(255, 255, 255); width: 80%; height: 80%; -unity-text-align: upper-center; white-space: normal;" />
+                <ui:VisualElement class="dialogue_background" style="align-items: center;">
+                    <ui:Label text="정정배" display-tooltip-when-elided="false" enable-rich-text="true" name="name_label" class="font_base" style="font-size: 35px; color: rgb(255, 255, 255); border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; padding-left: 30px; padding-right: 30px; padding-top: 0; bottom: 24px;" />
+                </ui:VisualElement>
+            </Gradient>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

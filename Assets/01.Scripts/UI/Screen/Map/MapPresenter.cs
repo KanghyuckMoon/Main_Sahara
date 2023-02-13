@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Utill.Measurement;
 
 namespace UI
 {
@@ -28,7 +29,7 @@ namespace UI
         private void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>(); 
-
+        
             mapView.InitUIDocument(uiDocument);
         }
         private void OnEnable()
@@ -44,6 +45,8 @@ namespace UI
 
         private void LateUpdate()
         {
+            Logging.Log("MarkerParent Scale : " + mapView.MarkerParent.transform.scale);
+            Logging.Log("MarkerParent Origin : " + mapView.MarkerParent.resolvedStyle.transformOrigin);
             if (mapView.CurMapType == MapType.FullMap)
             {
                 // ÀüÃ¼¸Ê ·»´õ¸µ
@@ -54,27 +57,36 @@ namespace UI
                 // ¹Ì´Ï¸Ê ·»´õ¸µ
                 miniMapComponent.UpdateUI();
             }
-            if(Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                mapView.Test(); 
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                mapView.Test2();
-            }
+            //if(Input.GetKeyDown(KeyCode.Alpha2))
+            //{
+            //    mapView.Test(); 
+            //}
+            //if (Input.GetKeyDown(KeyCode.Alpha3))
+            //{
+            //    mapView.Test2();
+            //}
         }
 
-        public void ActiveView()
+        public bool ActiveView()
         {
-            mapView.ShowMap();
-            if (mapView.CurMapType == MapType.MiniMap)
-            { } StartCoroutine(Test());
+            //mapView.ShowMap();
+            StartCoroutine(TestCo());
+            // StartCoroutine(T()); 
+            // mapView.ShowMap();
+            // if (mapView.CurMapType == MapType.MiniMap)
+            // {
+            //     StartCoroutine(Test());
+            // } 
+            return MapView.CurMapType == MapType.FullMap ? true : false;  
         }
         public void ActiveView(bool _isActive)
         {
             mapView.ShowMap(_isActive);
+           // StartCoroutine(TestCo());
 
-            if (_isActive == false) { }
+            if (_isActive == false) 
+            { 
+            }
                 //StartCoroutine(Test());
         }
 
@@ -90,13 +102,15 @@ namespace UI
             fullMapComponent.MarkersComponent.ActiveMarkers(false);
         }
 
-        IEnumerator Test()
+        IEnumerator TestCo()
         {
+            if (mapView.ShowMap() == true) yield break; 
+            
             mapView.Test2();
-            yield return new WaitForSeconds(1f); 
+            yield return null;
             mapView.Test();
+            mapView.SetMask(true);
         }
-
 
     }
 }

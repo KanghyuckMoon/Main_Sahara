@@ -1,57 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utill.Addressable;
+using Utill.Pattern;
+using Pool;
 
 namespace Module
 {
-    public class StateData
-    {
-        public StateData()
+    public class UIModule : AbBaseModule, Obserble
+	{
+		public List<Observer> Observers
+		{
+			get
+			{
+				return observers;
+			}
+		}
+
+		public bool IsRender
+		{
+			get
+			{
+				return	isRender;
+			}
+			set
+			{
+				isRender = value;
+				Send();
+			}
+
+		}
+		private string address = null;
+        private List<Observer> observers = new List<Observer>();
+		private bool isRender;
+
+        public UIModule(AbMainModule _mainModule, string _address = null) : base(_mainModule)
         {
-            maxHp = 0;
-            currentHp = 0;
-            speed = 0;
-            jumpScale = 0;
+            address = _address;
         }
 
-        public int maxHp;
-        public int currentHp;
+		public void AddObserver(Observer _observer)
+		{
+			Observers.Add(_observer);
+			_observer.Receive();
+		}
 
-        public float speed;
-        public float jumpScale;
+		public void RemoveObserver(Observer _observer)
+		{
+			Observers.Remove(_observer);
+			_observer.Receive();
+		}
 
-    }
-
-    public class UIModule : AbBaseModule
-    {
-        public StateModule stateModule => mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-        public HpModule hpModule => mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
-
-
-        public StateData stateData;
-
-        public UIModule(MainModule _mainModule) : base(_mainModule)
+		public void Send()
+		{
+			foreach (Observer observer in Observers)
+			{
+				observer.Receive();
+			}
+		}
+		public override void Start()
         {
+            if (address is null)
+			{
+				IsRender = true;
+				return;
+			}
 
-        }
-
-        public override void Start()
-        {
-            stateData = new StateData();
-
-            SetState();
-        }
-
-        public void SetState()
-        {
-            stateData.jumpScale = stateModule.JumpPower;
-            stateData.speed = stateModule.Speed;
-            stateData.maxHp = stateModule.MaxHp;
-        }
-
-        public override void Update()
-        {
-            stateData.currentHp = hpModule.CurrentHp;
+            //UI 동적 생성
+            GameObject _hudUI = ObjectPoolManager.Instance.GetObject(address);
+            _hudUI.transform.SetParent(mainModule.transform);
+            _hudUI.SetActive(true);
         }
     }
 }

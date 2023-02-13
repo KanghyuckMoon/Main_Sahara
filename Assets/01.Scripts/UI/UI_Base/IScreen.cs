@@ -6,7 +6,7 @@ namespace UI
 {
     public interface IScreen
     {
-        public void ActiveView();
+        public bool ActiveView();
         public void ActiveView(bool _isActive);
     }
 

@@ -1,3 +1,9 @@
+.header {
+    height: 11%;
+    padding-top: 0.7%;
+    padding-bottom: 0.7%;
+}
+
 .screen {
     position: absolute;
     left: 0;
@@ -78,7 +84,7 @@
 }
 
 .font_base {
-    -unity-font-definition: url('project://database/Assets/08.Fonts/HeirofLightRegular%20SDF.asset?fileID=11400000&guid=efb1d4335ff2b4944aa8b4f5342cca0f&type=2#HeirofLightRegular SDF');
+    -unity-font-definition: url('project://database/Assets/08.Fonts/HeirofLightRegular%20SDF%201.asset?fileID=11400000&guid=ebebd600cf9e0d8438140e33f3c2ec01&type=2#HeirofLightRegular SDF 1');
 }
 
 .topleft_margin_panel {
@@ -94,4 +100,98 @@
 .rightbot_margin {
     margin-right: 3%;
     margin-bottom: 3%;
+}
+
+.center_align {
+    align-items: center;
+    justify-content: center;
+}
+
+.dialogue_background {
+    align-items: flex-start;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.5s;
+}
+
+.middle_size_font {
+}
+
+.quest_panel {
+    width: 85%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+}
+
+.midsize_font {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+}
+
+.unity-radio-button-group > .unity-text-element {
+    display: none;
+}
+
+.unity-radio-button-group > .unity-base-field__input {
+    display: none;
+}
+
+.unity-radio-button > .unity-label {
+    display: none;
+}
+
+.unity-radio-button > .unity-base-field__input {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.unity-radio-button > .unity-base-field__input > .unity-radio-button__checkmark-background {
+    display: flex;
+    background-image: url('project://database/Packages/com.unity.timeline/Editor/StyleSheets/Images/Icons/d_TrackLockButtonEnabled@2x.png?fileID=2800000&guid=2c85066ea99cfbe4f90294bf295ce543&type=3#d_TrackLockButtonEnabled@2x');
+    background-color: rgba(58, 55, 55, 0);
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(236, 233, 148);
+    align-items: center;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    justify-content: center;
+    width: 80px;
+    height: 100%;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    overflow: visible;
+}
+
+.content_panel {
+    height: 90%;
+    flex-direction: row;
+    border-left-color: rgba(255, 255, 255, 0.48);
+    border-right-color: rgba(255, 255, 255, 0.48);
+    border-top-color: rgba(255, 255, 255, 0.48);
+    border-bottom-color: rgba(255, 255, 255, 0.48);
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 3%;
+    margin-bottom: 4%;
+}
+
+.header_text {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 55px;
+    -unity-font-style: bold;
 }

@@ -51,12 +51,12 @@
 
 .unity-radio-button > .unity-base-field__input > .unity-radio-button__checkmark-background > .unity-radio-button__checkmark {
     display: flex;
-    background-image: url('project://database/Assets/06.Sprites/UI_atlas.psd?fileID=2091360171&guid=c54cf63a895b66b468f5f4294d94afa6&type=3#UI_atlas_57');
-    -unity-background-scale-mode: scale-and-crop;
-    -unity-background-image-tint-color: rgba(255, 0, 47, 0.33);
-    width: 100%;
-    height: 90%;
+    width: 120%;
+    height: 120%;
     background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgba(231, 95, 55, 0.17);
+    background-image: url('project://database/Assets/12.Texture/Effects/SandImpact/BulletHoleRockHeight.tif?fileID=2800000&guid=c948ff4a46d9e134ab96d61acf2022ab&type=3#BulletHoleRockHeight');
+    -unity-background-scale-mode: scale-and-crop;
 }
 
 .item-ui {
@@ -85,12 +85,6 @@
     justify-content: center;
 }
 
-.unity-scroll-view__content-container {
-    width: 100%;
-    height: 120%;
-    align-items: stretch;
-}
-
 .row {
     flex-direction: row;
     height: 120px;
@@ -100,29 +94,33 @@
 }
 
 .slot {
-    width: 100px;
-    height: 100px;
-    background-image: url('project://database/Assets/Download/ppPaper_1001_BaseColor.jpg?fileID=2800000&guid=f7298ff3cfaf8c34c83af4084755c8ae&type=3#ppPaper_1001_BaseColor');
+    width: 120px;
+    height: 120px;
+    background-image: none;
     -unity-background-scale-mode: scale-to-fit;
     -unity-background-image-tint-color: rgba(58, 58, 58, 0.64);
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 8px;
-    border-left-color: rgba(70, 57, 50, 0.76);
-    border-right-color: rgba(70, 57, 50, 0.76);
-    border-top-color: rgba(70, 57, 50, 0.76);
-    border-bottom-color: rgba(70, 57, 50, 0.76);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    margin-right: 10px;
-    background-color: rgba(43, 16, 16, 0.53);
+    margin-right: 20px;
+    background-color: rgba(29, 29, 29, 0.9);
     align-items: center;
     justify-content: center;
-    padding-right: 10px;
     display: flex;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 30px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(53, 53, 53, 0.93);
+    border-right-color: rgba(53, 53, 53, 0.93);
+    border-top-color: rgba(53, 53, 53, 0.93);
+    border-bottom-color: rgba(53, 53, 53, 0.93);
 }
 
 .unity-base-slider__drag-container {
@@ -131,6 +129,18 @@
 }
 
 .inventory_panel {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 0;
+    flex-grow: 1;
 }
 
 #inventory_scroll_panel .unity-scroller > #unity-low-button {
@@ -146,7 +156,7 @@
     align-items: center;
     padding-left: 3%;
     padding-right: 3%;
-    padding-top: 3%;
+    padding-top: 2%;
     padding-bottom: 3%;
 }
 
@@ -163,6 +173,7 @@
     margin-right: 5%;
     margin-top: 3%;
     margin-bottom: 4%;
+    background-color: rgba(87, 0, 255, 0.01);
 }
 
 .header {
@@ -172,31 +183,37 @@
 }
 
 .center_content_panel {
-    flex-grow: 1.5;
-    max-width: 37.5%;
-    padding-left: 5%;
+    flex-grow: 1;
+    padding-left: 2%;
+    padding-right: 2%;
+    justify-content: center;
+    padding-top: 8%;
+    padding-bottom: 3%;
+    flex-basis: 20%;
 }
 
 .right_content_panel {
-    max-width: 25%;
     display: flex;
     flex-grow: 1;
     overflow: visible;
+    padding-top: 8%;
+    padding-bottom: 3%;
+    padding-right: 3%;
 }
 
 .inventory_select {
-    height: 100px;
+    height: 130px;
     display: flex;
     border-bottom-width: 5px;
     border-top-width: 0;
-    border-left-color: rgb(255, 255, 255);
-    border-right-color: rgb(255, 255, 255);
-    border-top-color: rgb(255, 255, 255);
-    border-bottom-color: rgb(255, 255, 255);
+    border-left-color: rgba(255, 255, 255, 0.51);
+    border-right-color: rgba(255, 255, 255, 0.51);
+    border-top-color: rgba(255, 255, 255, 0.51);
+    border-bottom-color: rgba(255, 255, 255, 0.51);
     padding-bottom: 10px;
     padding-top: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 0;
+    margin-top: 0;
     width: 100%;
 }
 
@@ -205,4 +222,94 @@
 }
 
 #inventory_scroll_panel .unity-scroll-view__content-container {
+    flex-shrink: 0;
+}
+
+.center_content_panel:hover {
+    flex-grow: 1;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.quick_slot_panel {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(109, 209, 139);
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    justify-content: space-around;
+    flex-direction: column-reverse;
+}
+
+.quick_slot {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(236, 194, 114);
+    margin-bottom: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.quick_slot_frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.quick_slot_image {
+    background-image: url('project://database/Assets/12.Texture/UI/images/ui_seekbar_tick.png?fileID=21300000&guid=1adf29ff7b5a1bc4297eebc83ae2e262&type=3#ui_seekbar_tick');
+    width: 100%;
+    height: 100%;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.equip_slots {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.equip_slot {
+    height: 100%;
+    width: 200px;
+    background-color: rgb(130, 130, 130);
+}
+
+.quick_slot_text {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    margin-right: 1.5%;
+    margin-bottom: 1.5%;
+}
+
+#weapon_button .unity-radio-button__checkmark-background {
+    background-image: url('project://database/Assets/12.Texture/UI/Aim.png?fileID=2800000&guid=7473636c314856f44b01a0df5573f32a&type=3#Aim');
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.equip_panel {
+    background-color: rgb(135, 156, 129);
+    width: 100%;
+    height: 200px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: row;
+    justify-content: space-around;
 }

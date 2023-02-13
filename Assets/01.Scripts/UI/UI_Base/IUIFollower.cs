@@ -14,7 +14,8 @@ namespace UI
     {
         public UIDocument RootUIDocument { get; set; }
         public void Awake();
-        public void Start(StateData _stateData);
+        //public void Start(StateData _stateData);
+        public void Start(StateModule _stateData);
         public void UpdateUI();
 
     }

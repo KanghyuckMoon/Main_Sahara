@@ -15,18 +15,22 @@ namespace Module
         Hp,
         Attack,
         Animation,
-        Pysics,
+        Physics,
         UI,
+        Talk,
+        Weapon,
+        Hit,
+        Shop,
         None
     }
 
     public abstract class AbBaseModule
     {
-        public MainModule MainModule => mainModule;
+        public AbMainModule MainModule => mainModule;
 
-        protected MainModule mainModule;
+        protected AbMainModule mainModule;
 
-        public AbBaseModule(MainModule _mainModule)
+        public AbBaseModule(AbMainModule _mainModule)
         {
             mainModule = _mainModule;
             Awake();
@@ -38,5 +42,7 @@ namespace Module
         public virtual void FixedUpdate() { }
         public virtual void LateUpdate() { }
         public virtual void OnCollisionEnter(Collision collision) { }
+        public virtual void OnTriggerEnter(Collider other) { }
+        public virtual void OnDrawGizmos() { }
     }
 }

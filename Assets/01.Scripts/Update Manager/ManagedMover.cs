@@ -24,7 +24,6 @@ namespace UpdateManager
 
 		public void UpdateManager_Update()
 		{
-			moveUpAndDown();
 		}
 
 		void moveUpAndDown()
@@ -39,5 +38,19 @@ namespace UpdateManager
 			UpdateManager.Remove(this);
 		}
 
+		void IUpdateObj.UpdateManager_Update()
+		{
+			moveUpAndDown();
+		}
+
+		void IUpdateObj.UpdateManager_FixedUpdate()
+		{ 
+
+		}
+
+		void IUpdateObj.UpdateManager_LateUpdate()
+		{
+
+		}
 	}
 }

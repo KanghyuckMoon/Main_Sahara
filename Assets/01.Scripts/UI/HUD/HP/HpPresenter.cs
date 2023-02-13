@@ -12,14 +12,14 @@ namespace UI
     {
         // 인스펙터 참조 변수 
         [SerializeField]
-        private int _testHp;
+        private float _testHp;
         [SerializeField]
         private HpView _hpView;
 
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set ; }
 
-        private StateData stateData; 
+        private StateModule stateModule;
 
         public void Awake()
         {
@@ -27,20 +27,42 @@ namespace UI
             _hpView.Cashing();
         }
 
-        public void Start(StateData _stateData)
+        public void Start(StateModule _stateData)
         {
             _hpView.Init();
-            this.stateData = _stateData; 
-            // _entityData = new EntityData();
+            this.stateModule = _stateData; 
         }
 
         // 선택한 오브젝트의 스크립트 가져오고 
         // 함수 리플렉션으로 쭉 빼와서 드롭다운으로 설정 
-        // 
+        
+
         public void UpdateUI()
         {
-            //    _hpView.SetBarUI(_entityData.hp);
-            _hpView.SetBarUI(stateData.currentHp / stateData.maxHp);
+            float _hp = (float)stateModule.CurrentHp / (float)stateModule.MaxHp;
+
+            //    _hpView.SetBarUI(_entityData.hp)  ;
+            _hpView.SetBarUI(_hp);
+        }
+
+        public void Test1()
+        {
+            _hpView.SetBarUI(_testHp);
+
+        }
+
+        public void Test2()
+        {
+       //     _hpView.ActiveScreen(); 
+        _hpView.Test(_testHp);
+
+        }
+
+        public void Test3()
+        {
+                 _hpView.ActiveScreen(); 
+            //_hpView.Test(_testHp);
+
         }
     }
 

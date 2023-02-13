@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using LoadScene;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using GoogleSpreadSheet;
+
 namespace UI
 {
     public class TitlePresenter : MonoBehaviour
@@ -13,7 +14,7 @@ namespace UI
 
         [SerializeField]
         private TitleView titleView;
-
+        
         private void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>();
@@ -27,15 +28,20 @@ namespace UI
                 () =>
                 {
                     SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
-                    //LoadSceneAddressableStatic.LoadSceneAsync("InGameLoadScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
                 });
            
             titleView.AddButtonEventToDic(TitleView.Buttons.end_button, () => Debug.Log("Á¾·á"));
 
         }
-        void Start()
+
+        IEnumerator Start()
         {
+            while(TextManager.Instance.IsInit is false)
+            {
+                yield return null; 
+            }
             titleView.Init();
+
         }
 
     }
