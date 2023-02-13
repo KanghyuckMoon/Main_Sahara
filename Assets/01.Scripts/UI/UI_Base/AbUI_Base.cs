@@ -259,12 +259,23 @@ namespace UI
         /// <typeparam name="T"></typeparam>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
-        protected void AddVisualElementEvent<T>(int _idx, Action _event) where T : EventBase<T>, new()
+        protected void AddElementEvent<T>(int _idx, Action _event) where T : EventBase<T>, new()
         {
             // Get<타입> 
             Get<VisualElement>(_idx).RegisterCallback<T>((e) => _event?.Invoke());
         }
 
+        /// <summary>
+        /// VisualElement에 이벤트 삭제 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_idx"></param>
+        /// <param name="_event"></param>
+        protected void RemoveElementEvent<T>(int _idx, Action _event) where T : EventBase<T>, new()
+        {
+            // Get<타입> 
+            Get<VisualElement>(_idx).UnregisterCallback<T>((e) => _event?.Invoke());
+        }
         //== 값이 변경될 때 이벤트 == 
 
         /// <summary>

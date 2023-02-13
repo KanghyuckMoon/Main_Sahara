@@ -9,6 +9,7 @@ using UI.ConstructorManager;
 using Utill.Pattern;
 using GoogleSpreadSheet;
 using System.Linq; 
+//using Utill.M
 
 namespace UI.Quest
 {
@@ -87,6 +88,9 @@ namespace UI.Quest
             GetVisualElement((int)Elements.quest_list_panel).Add(_v); 
         }
 
+        /// <summary>
+        /// 리스트뷰 초기화(생성, 바인딩)
+        /// </summary>
         public void InitListView()
         {
             Debug.Log("AAA");
