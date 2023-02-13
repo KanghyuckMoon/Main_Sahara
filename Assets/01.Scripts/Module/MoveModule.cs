@@ -22,7 +22,7 @@ namespace Module
 
         private Vector3 currentDirection;
 
-        public MoveModule(MainModule _mainModule) : base(_mainModule)
+        public MoveModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
         }
@@ -33,50 +33,50 @@ namespace Module
         public void Move()
         {
             #region 속도 관련 부분
-            float _targetSpeed = mainModule.isSprint ? moveSpeed + 4.5f : moveSpeed;
+            float _targetSpeed = mainModule.IsSprint ? moveSpeed + 4 : moveSpeed;
             float _speed;
 
-            if (mainModule.objDir == Vector2.zero) _targetSpeed = 0.0f;
+            if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
-            float currentSpeed = new Vector3(mainModule.characterController.velocity.x, 0, mainModule.characterController.velocity.z).magnitude;
+            float currentSpeed = new Vector3(mainModule.CharacterController.velocity.x, 0, mainModule.CharacterController.velocity.z).magnitude;
 
             if (currentSpeed > _targetSpeed + speedOffset ||
                 currentSpeed < _targetSpeed - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 6.5f * Time.deltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 13.7f * Time.deltaTime);
             }
             else
             {
                 _speed = _targetSpeed;
             }
 
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * 6.5f);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * 20);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
-            Vector3 _targetDirection = new Vector3(mainModule.objDir.x, 0, mainModule.objDir.y);
+            Vector3 _targetDirection = new Vector3(mainModule.ObjDir.x, 0, mainModule.ObjDir.y);
 
             //Vector3 _velocity = NextStepGroundAngle(_speed, _targetDirection) > mainModule.maxSlope ? _targetDirection : Vector3.zero;
 
             Vector3 _rotate = mainModule.transform.eulerAngles;
             Vector3 _dir = _targetDirection.normalized;
-            float _gravity = mainModule.gravity;//Vector3.down * Mathf.Abs(mainModule.characterController.velocity.y);
+            float _gravity = mainModule.Gravity;//Vector3.down * Mathf.Abs(mainModule.characterController.velocity.y);
             Vector3 _moveValue;
 
-            if (mainModule.objDir != Vector2.zero)
+            if (mainModule.ObjDir != Vector2.zero)
             {
                 targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
-                                  mainModule.objRotation.eulerAngles.y;
-                rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.12f);
+                                  mainModule.ObjRotation.eulerAngles.y;
+                rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.05f);
 
-                mainModule.transform.parent.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * Time.fixedDeltaTime;
-            mainModule.characterController.Move(_moveValue + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
+            mainModule.CharacterController.Move(_moveValue + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
 
             animator.SetFloat("MoveSpeed", animationBlend);
         }
@@ -116,20 +116,30 @@ namespace Module
         {
             if (mainModule.isGround)
             {
-                if (mainModule.gravity < 0.0f)
+                if (mainModule.Gravity < 0.0f)
                 {
-                    mainModule.gravity = -2f;
+                    mainModule.Gravity = -2f;
                 }
             }
-            if (mainModule.gravity < 100)
+            if (mainModule.Gravity < 100)
             {
-                mainModule.gravity += mainModule.gravityScale * Time.fixedDeltaTime * 2;
+                mainModule.Gravity += mainModule.GravityScale * Time.fixedDeltaTime * 2;
             }
         }
+
+        /// <summary>
+        /// 기타 설정해줄 것들. 공중에서는 IK꺼주기
+        /// </summary>
+        private void ETC()
+        {
+            //mainModule.footRotate.enabled = mainModule.isGround;
+        }
+
         public override void FixedUpdate()
         {
             Move();
             Gravity();
+            ETC();
         }
 
         public override void Start()

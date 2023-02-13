@@ -123,6 +123,17 @@ namespace Quest
 				questConditionType = value;
 			}
 		}
+		public QuestCategory QuestCategory
+		{
+			get
+			{
+				return questCategory;
+			}
+			set
+			{
+				questCategory = value;
+			}
+		}
 
 		public List<string> LinkQuestKeyList
 		{
@@ -169,6 +180,7 @@ namespace Quest
 		private string explanationKey;
 		private QuestState questState;
 		private QuestConditionType questConditionType;
+		private QuestCategory questCategory;
 		private List<string> linkQuestKeyList; 
 		private List<QuestCreateObjectSO> questCreateObjectSOList;
 		private IQuestCondition condition;

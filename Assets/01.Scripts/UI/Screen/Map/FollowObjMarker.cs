@@ -25,47 +25,55 @@ namespace UI
         private Sprite sprite;
 
         [SerializeField]
-        private Transform camTrm; 
+        private Transform camTrm;
         private MapPresenter mapPresenter;
-        private MapMarkerView markerView; 
+        private MapMarkerView markerView;
         private VisualElement markerUI;
 
         [SerializeField, Header("동적 이동 회전 여부")]
-        private bool isUpdatePosAndRot = true; 
+        private bool isUpdatePosAndRot = true;
 
         // 프로퍼티 
-        public VisualElement MarkerUI => markerUI; 
+        public VisualElement MarkerUI => markerUI;
         private MapView MapView => mapPresenter.MapView;
         private MapInfo MapInfo => mapPresenter.MapInfo;
+        private Transform CamTrm
+        {
+            get
+            {
+                if (camTrm == null)
+                {
+                    camTrm = Camera.main.transform;
+                }
+                return camTrm;
+            }
+        }
+
         public bool IsUpdatePos => isUpdatePosAndRot;
 
-        private void Awake()
-        {
-            camTrm = Camera.main.transform; 
-        }
         private void Start()
         {
             this.mapPresenter = GameObject.FindGameObjectWithTag("UIParent").GetComponentInChildren<ScreenUIController>().MapPresenter;
-            CreateMarker(); 
+            CreateMarker();
 
         }
 
         private void Update()
         {
-            if (isUpdatePosAndRot == false) return; 
-            SetMarkerPosAndRot(); 
+            if (isUpdatePosAndRot == false) return;
+            SetMarkerPosAndRot();
         }
 
         [ContextMenu("마커 생성")]
         /// <summary>
         /// 맵UI상에서 마커UI 생성 
         /// </summary>
-        public void CreateMarker()
+        private void CreateMarker()
         {
             TemplateContainer _markerContainter = markerUxml.Instantiate();
             //markerUI = _markerContainter.contentContainer.children(); // 생성 
 
-            markerView = new MapMarkerView(_markerContainter,sprite); //스프라이트, 위치 설정 
+            markerView = new MapMarkerView(_markerContainter, sprite); //스프라이트, 위치 설정 
             //_mapMarkerView.Init();
             SetMarkerPosAndRot(); // 위치 설정 
 
@@ -73,7 +81,7 @@ namespace UI
             MapView.MarkerParent.Add(markerUI); // 자식으로 추가 
 
             // 현재오브젝트 위치 -> UI
-            
+
 
         }
 
@@ -91,7 +99,7 @@ namespace UI
             MapView.MarkerParent.Remove(markerUI);
         }
 
-        public void SetMarkerPosAndRot()
+        private void SetMarkerPosAndRot()
         {
             Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
             markerView.SetPosAndRot(_uiPos, 0);
@@ -99,7 +107,7 @@ namespace UI
         public void SetMarkerPosAndRot(float _rot)
         {
             Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
-            markerView.SetPosAndRot(_uiPos, transform.eulerAngles.y - camTrm.eulerAngles.y + _rot);
+            markerView.SetPosAndRot(_uiPos, transform.eulerAngles.y - CamTrm.eulerAngles.y + _rot);
         }
     }
 }

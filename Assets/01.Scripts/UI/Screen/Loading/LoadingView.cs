@@ -5,11 +5,13 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using System;
 
-namespace UI.Screens
+namespace UI.Loading
 {
     [Serializable]
     public class LoadingView : AbUI_Base
     {
+        [SerializeField, Header("로딩팁 유지 시간")]
+        private float time = 2f; 
         enum Labels
         {
             tip_label
@@ -47,7 +49,7 @@ namespace UI.Screens
         public void LoopLoadingImg()
         {
             VisualElement _icon = GetVisualElement((int)Elements.loading_icon);
-            DOTween.To(() => 1f, x => _icon.style.opacity = new StyleFloat(x), 0.5f, 1.4f)
+            DOTween.To(() => 1f, x => _icon.style.opacity = new StyleFloat(x), 0.5f, time)
                 .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.OutQuad);
         }
 

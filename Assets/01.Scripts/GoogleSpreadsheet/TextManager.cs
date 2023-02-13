@@ -9,15 +9,34 @@ namespace GoogleSpreadSheet
 {
 	public class TextManager : MonoSingleton<TextManager>
 	{
+		public TextSO TextSO
+		{
+			get
+			{
+				if (!isInit)
+				{
+					textSO.InitTextDatas();
+
+					//추후 언어에 따라 다르게 설정
+					StartCoroutine(GetText());
+				}
+				return textSO;
+			}
+		}
+		public bool IsInit => isInit;
+
 		[SerializeField]
 		private TextSO textSO = null;
+		private bool isInit =	false;
 
 		public void Start()
 		{
-			textSO.InitTextDatas();
-
-			//추후 언어에 따라 다르게 설정
-			StartCoroutine(GetText());
+			if (!isInit)
+			{
+				textSO.InitTextDatas();
+				//추후 언어에 따라 다르게 설정
+				StartCoroutine(GetText());
+			}
 		}
 
 		/// <summary>
@@ -27,7 +46,7 @@ namespace GoogleSpreadSheet
 		/// <returns></returns>
 		public string GetText(string key)
 		{
-			return textSO.GetText(key);
+			return TextSO.GetText(key);
 		}
 
 		private IEnumerator GetText()
@@ -51,6 +70,7 @@ namespace GoogleSpreadSheet
 			UnityWebRequest wwwQUEST = UnityWebRequest.Get(URL.QUEST);
 			yield return wwwQUEST.SendWebRequest();
 			SetTextQUEST(wwwQUEST.downloadHandler.text);
+			isInit = true;
 		}
 
 		private void SetTextOTHER(string tsv)

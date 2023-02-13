@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
-using Utill.Pattern; 
+using Utill.Pattern;
 
 namespace UI
 {
@@ -12,8 +12,17 @@ namespace UI
         private GameObject playerHudUI;
 
         private GameObject player;
-
+        private TextKeySO textKeySO;
+        private EntityPresenter playerHud; 
         // 프로퍼티 
+        public TextKeySO TextKeySO
+        {
+            get
+            {
+                textKeySO ??= AddressablesManager.Instance.GetResource<TextKeySO>("TextKeySO");
+                return textKeySO; 
+            }
+        }
         public GameObject Player
         {
             get
@@ -24,18 +33,32 @@ namespace UI
                     if(player is not null) // 한 번 실행됨
                     {
                         AddUIToObj(); // UI 초기화 
+                        playerHud = player.GetComponentInChildren<EntityPresenter>();
                     }
 
                 }
                 return player; 
             }
         }
+
+        ///private ScreenUI
         public override void Awake()
         {
             base.Awake();
             // 어드레서블로 받아오기 
             markerUI = AddressablesManager.Instance.GetResource<GameObject>("MarkerUI");
             playerHudUI = AddressablesManager.Instance.GetResource<GameObject>("PlayerHudUI");
+            textKeySO ??= AddressablesManager.Instance.GetResource<TextKeySO>("TextKeySO");
+        }
+
+        public void ActiveHud(bool _isActive)
+        {
+            if (playerHud == null)
+            {
+                Debug.LogWarning("playerHud 없어요");
+                return;
+            }
+            playerHud.SetActive(_isActive); 
         }
 
         /// <summary>
@@ -46,6 +69,7 @@ namespace UI
             Instantiate(markerUI, player.transform);
             Instantiate(playerHudUI, player.transform);
         }
+
     }
 
 }

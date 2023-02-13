@@ -40,12 +40,22 @@ namespace Streaming
 			}
 		}
 
-		public void UpdateManager_Update()
+		void IUpdateObj.UpdateManager_Update()
 		{
 			for (int i = 0; i < objectClassList.Count; ++i)
 			{
 				objectClassList[i]?.Update();
 			}
+		}
+
+		void IUpdateObj.UpdateManager_FixedUpdate()
+		{
+
+		}
+
+		void IUpdateObj.UpdateManager_LateUpdate()
+		{
+
 		}
 	}
 

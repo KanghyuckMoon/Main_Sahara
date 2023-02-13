@@ -40,9 +40,11 @@ namespace LoadScene
 
 
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
-            var op4 = SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
+            var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);
+            var op5 = SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
             op3.allowSceneActivation = false;
             op4.allowSceneActivation = false;
+            op5.allowSceneActivation = false;
 
             while (op3.progress < 0.9f)
             {
@@ -54,13 +56,17 @@ namespace LoadScene
                 Logging.Log(op4.progress);
                 yield return null;
             }
+            while (op5.progress < 0.9f)
+            {
+                Logging.Log(op4.progress);
+                yield return null;
+            }
 
             var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 
             op3.allowSceneActivation = true;
             op4.allowSceneActivation = true;
-
-            LoadScene.LoadSceneAddressableStatic.LoadSceneAsync("Quest", LoadSceneMode.Additive);
+            op5.allowSceneActivation = true;
 
         }
     }

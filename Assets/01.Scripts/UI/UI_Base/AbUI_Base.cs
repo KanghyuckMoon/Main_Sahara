@@ -18,11 +18,13 @@ namespace UI
         protected string parentElementName; // 자기 자신 이름 
         protected VisualElement parentElement; // 자기 자신 
 
-        protected Dictionary<string, VisualElement> elementsDic = new Dictionary<string, VisualElement>(); // 모든 자식 요소들 
-        protected Dictionary<Type, VisualElement[]> elements = new Dictionary<Type, VisualElement[]>(); // 모든 자식 요소들 
+        protected Dictionary<Type, List<VisualElement>> elementsDic = new Dictionary<Type, List<VisualElement>>(); // 모든 자식 요소들 
+
+        // 프로퍼티 
+        public VisualElement ParentElement => parentElement; 
 
         /// <summary>
-        /// Element 캐싱 
+        /// parentElement 캐싱 
         /// </summary>
         public virtual void Cashing()
         {
@@ -46,7 +48,7 @@ namespace UI
         /// </summary>
         public virtual void Init() { }
 
-        public VisualElement GetElementByName(string _name)
+        protected VisualElement GetElementByName(string _name)
         {
             return new VisualElement(); 
         }
@@ -56,17 +58,17 @@ namespace UI
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
-        public VisualElement GetElementClassName(string _className)
+        protected VisualElement GetElementClassName(string _className)
         {
             return parentElement.Q(className: _className);
         }
-        
+
         /// <summary>
         /// 이름으로 element 가져오고 캐싱하기 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public VisualElement GetElement(string name)
+        protected VisualElement GetElement(string name)
         {
             // 이미 캐싱되어 있으면 딕셔너리에서 가져오기
             //VisualElement element = _elementsDic.Where(e => e.Key == name).Select(e => e.Value).First();
@@ -87,7 +89,7 @@ namespace UI
         /// </summary>
         /// <param name="_visualElement"></param>
         /// <param name="_state"></param>
-        public static void ShowVisualElement(VisualElement _visualElement, bool _state)
+        protected static void ShowVisualElement(VisualElement _visualElement, bool _state)
         {
             if (_visualElement == null)
                 return;
@@ -98,7 +100,7 @@ namespace UI
         /// 현재 활성화되어 있는가 ( element가 null이면 자신 ) 
         /// </summary>
         /// <returns></returns>
-        public bool IsVisible(VisualElement _element = null)
+        protected bool IsVisible(VisualElement _element = null)
         {
             VisualElement e = _element != null ? _element : parentElement; 
             return e.style.display == DisplayStyle.Flex; 
@@ -107,9 +109,10 @@ namespace UI
         /// <summary>
         /// 현재 스크린이 활성화면 비활성화 , 비활성화면 활성화 
         /// </summary>
-        public void ActiveScreen()
+        public bool ActiveScreen()
         {
             ShowVisualElement(parentElement, !IsVisible());
+            return IsVisible(); 
         }
 
         public void ActiveScreen(bool _isActive)
@@ -122,11 +125,28 @@ namespace UI
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_type"></param>
-        public void Bind<T>(Type _type) where T : VisualElement
+        protected void Bind<T>(Type _type) where T : VisualElement
         {
             string[] names = Enum.GetNames(_type);
-            VisualElement[] elements = new VisualElement[names.Length];
-            this.elements.Add(typeof(T), elements); 
+            List<VisualElement> elements = new VisualElement[names.Length].ToList();
+
+            // 한 번 바인딩 했으면 
+            if (this.elementsDic.ContainsKey(typeof(T)))
+            {
+                int _count = this.elementsDic[typeof(T)].Count;
+
+                for (int i = 0; i < names.Length; i++)
+                {
+                    elements[i] = GetElement(names[i]);
+                    if (elements[i] == null) // names[i] 의 이름의 요소가 없으면 에러 
+                        Debug.LogError($"지정된 이름의 요소가 없습니다");
+                }
+                this.elementsDic[typeof(T)].AddRange(elements);
+
+                return; 
+            }
+
+            this.elementsDic.Add(typeof(T), elements); 
 
             for(int i =0;i < names.Length; i++)
             {
@@ -139,61 +159,76 @@ namespace UI
             }
         }
 
-        public void BindVisualElements(Type type)
+        protected void BindVisualElements(Type type)
         {
             Bind<VisualElement>(type); 
         }
-        public void BindButtons(Type type)
+        protected void BindButtons(Type type)
         {
             Bind<Button>(type);
         }
-        public void BindProgressBars(Type type)
+        protected void BindProgressBars(Type type)
         {
             Bind<ProgressBar>(type);
         }
-        public void BindRadioButtons(Type type)
+        protected void BindRadioButtons(Type type)
         {
             Bind<RadioButton>(type); 
         }
-        public void BindLabels(Type type)
+        protected void BindLabels(Type type)
         {
             Bind<Label>(type); 
         }
-
+        protected void BindListViews(Type _type)
+        {
+            Bind<ListView>(_type); 
+        }
+        protected void BindScrollViews(Type _type)
+        {
+            Bind<ScrollView>(_type);
+        }
         /// <summary>
         /// element 가져오기 (idx는 enum을 통해 ) 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_idx"></param>
         /// <returns></returns>
-        public T Get<T>(int _idx) where T : VisualElement
+        protected T Get<T>(int _idx) where T : VisualElement
         {
-            VisualElement[] elements;
-            if (this.elements.TryGetValue(typeof(T), out elements) == false)
+            List<VisualElement> elements;
+            if (this.elementsDic.TryGetValue(typeof(T), out elements) == false)
                 return null;
             return elements[_idx] as T;
         }
 
 
-        public VisualElement GetVisualElement(int _idx)
+        protected VisualElement GetVisualElement(int _idx)
         {
             return Get<VisualElement>(_idx); 
         }
-        public Button GetButton(int _idx)
+        protected Button GetButton(int _idx)
         {
             return Get<Button>(_idx);
         }
-        public ProgressBar GetProgressBar(int _idx)
+        protected ProgressBar GetProgressBar(int _idx)
         {
             return Get<ProgressBar>(_idx);
         }
-        public RadioButton GetRadioButton(int _idx)
+        protected RadioButton GetRadioButton(int _idx)
         {
             return Get<RadioButton>(_idx); 
         }
-        public Label GetLabel(int _idx)
+        protected Label GetLabel(int _idx)
         {
             return Get<Label>(_idx); 
+        }
+        protected ListView GetListView(int _idx)
+        {
+            return Get<ListView>(_idx); 
+        }
+        protected ScrollView GetScrollView(int _idx)
+        {
+            return Get<ScrollView>(_idx); 
         }
         // == 이벤트 관련 == //
 
@@ -212,19 +247,19 @@ namespace UI
         /// <typeparam name="T"></typeparam>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
-        public void AddButtonEvent<T>(int _idx, Action _event) where T : EventBase<T>, new() 
+        protected void AddButtonEvent<T>(int _idx, Action _event) where T : EventBase<T>, new() 
         {
             // Get<타입> 
             Get<Button>(_idx).RegisterCallback<T>((e) => _event?.Invoke());
         }
-    
+
         /// <summary>
         /// VisualElement에 이벤트 추가 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
-        public void AddVisualElementEvent<T>(int _idx, Action _event) where T : EventBase<T>, new()
+        protected void AddVisualElementEvent<T>(int _idx, Action _event) where T : EventBase<T>, new()
         {
             // Get<타입> 
             Get<VisualElement>(_idx).RegisterCallback<T>((e) => _event?.Invoke());
@@ -237,7 +272,7 @@ namespace UI
         /// </summary>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
-        public void AddRadioBtnChangedEvent(int _idx, Action<bool> _event)
+        protected void AddRadioBtnChangedEvent(int _idx, Action<bool> _event)
         {
             Get<RadioButton>(_idx).RegisterValueChangedCallback((e) => _event?.Invoke(e.newValue)); 
         }
@@ -247,7 +282,7 @@ namespace UI
         /// </summary>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
-        public void AddTextFieldChangedEvent(int _idx, Action<string> _event)
+        protected void AddTextFieldChangedEvent(int _idx, Action<string> _event)
         {
             Get<TextField>(_idx).RegisterValueChangedCallback((e) => _event?.Invoke(e.newValue));
         }

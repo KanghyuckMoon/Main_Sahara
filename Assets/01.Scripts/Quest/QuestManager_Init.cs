@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Streaming;
 using Utill.Pattern;
+using Utill.Addressable;
 
 namespace Quest
 {
@@ -10,7 +11,12 @@ namespace Quest
     {
         partial void InitQuestData()
 		{
-            foreach (var _questSO in questDataAllSO.questDataSOList)
+
+			questDataAllSO = AddressablesManager.Instance.GetResource<QuestDataAllSO>("QuestAllDataSO");
+			questSaveDataSO = AddressablesManager.Instance.GetResource<QuestSaveDataSO>("QuestSaveDataSO");
+
+
+			foreach (var _questSO in questDataAllSO.questDataSOList)
 			{
                 questDataDic.Add(_questSO.questKey, new QuestData(_questSO.questKey, _questSO.nameKey, _questSO.explanationKey, _questSO.earlyQuestState, _questSO.questConditionType, _questSO.questCreateObjectSOList, _questSO.linkQuestKeyList, _questSO.isTalkQuest));
 

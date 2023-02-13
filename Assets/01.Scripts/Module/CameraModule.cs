@@ -54,7 +54,7 @@ namespace Module
         //// where we are in the transition from side to side
         //private float desiredCameraSide = 1f;
 
-        public CameraModule(MainModule _mainModule) : base(_mainModule)
+        public CameraModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
         }
@@ -69,7 +69,7 @@ namespace Module
 
         public override void LateUpdate()
         {
-            mainModule.objRotation = follawVCam.transform.rotation;
+            mainModule.ObjRotation = follawVCam.transform.rotation;
 
             //float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
             //float size = nomalCom.m_Lens.OrthographicSize;

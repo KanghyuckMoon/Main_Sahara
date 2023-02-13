@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Gradient : VisualElement
 {
+    public enum Direction
+    {
+        horizontal, 
+        vertical 
+    }
     public new class UxmlFactory : UxmlFactory<Gradient, GradientUxmlTraits> { }
 
     public class GradientUxmlTraits : UxmlTraits
     {
         UxmlColorAttributeDescription leftColor = new UxmlColorAttributeDescription { name = "left-color", defaultValue = Color.red };
         UxmlColorAttributeDescription rightColor = new UxmlColorAttributeDescription { name = "right-color", defaultValue = Color.black };
-
-
+        UxmlEnumAttributeDescription<Direction> direction = new UxmlEnumAttributeDescription<Direction> { name = "direction", defaultValue = Direction.horizontal };
         public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
         {
             base.Init(ve, bag, cc);
@@ -20,8 +24,9 @@ public class Gradient : VisualElement
                 throw new ArgumentNullException(nameof(ve));
 
             var grad = (Gradient)ve;
-            grad.leftColor = leftColor.GetValueFromBag(bag, cc);
-            grad.rightColor = rightColor.GetValueFromBag(bag, cc);
+            grad.firstColor = leftColor.GetValueFromBag(bag, cc);
+            grad.secondColor = rightColor.GetValueFromBag(bag, cc);
+            grad.direction = direction.GetValueFromBag(bag, cc); 
         }
     }
 
@@ -30,8 +35,9 @@ public class Gradient : VisualElement
         generateVisualContent += GenerateVisualContent;
     }
 
-    public Color leftColor;
-    public Color rightColor;
+    public Color firstColor;
+    public Color secondColor;
+    public Direction direction; 
 
     static readonly Vertex[] vertices = new Vertex[4];
     static readonly ushort[] indices = { 0, 1, 2, 2, 3, 0 };
@@ -41,10 +47,20 @@ public class Gradient : VisualElement
         var rect = contentRect;
         if (rect.width < 0.1f || rect.height < 0.1f)
             return;
-        vertices[0].tint = leftColor;
-        vertices[1].tint = leftColor;
-        vertices[2].tint = rightColor;
-        vertices[3].tint = rightColor;
+
+        if(direction == Direction.horizontal)
+        {
+            vertices[0].tint = firstColor;
+            vertices[1].tint = firstColor;
+            vertices[2].tint = secondColor;
+            vertices[3].tint = secondColor;
+        }else if(direction == Direction.vertical)
+        {
+            vertices[0].tint = secondColor;
+            vertices[1].tint = firstColor;
+            vertices[2].tint = firstColor;
+            vertices[3].tint = secondColor;
+        }
 
         var left = 0f;
         var right = rect.width;
