@@ -3,67 +3,358 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using FischlWorks;
+using UpdateManager;
+using Utill.Pattern;
 
 namespace Module
 {
-    public abstract class AbMainModule : MonoBehaviour
+    public abstract class AbMainModule : MonoBehaviour, IUpdateObj, Obserble
     {
         //메인 모듈에서 지금 오브젝트가 가지고 있는 모든 모듈을 가지고 와야해
         //그건 풀링 할때 각각의 모듈을 밑에 복합데이터에 넣어주는 형식으로 한다. 메인모듈에 넣어준다.
 
-        //Dictionary<ModuleType, BaseModule> modules = new Dictionary<ModuleType, BaseModule>();
+        public int StopOrNot
+		{
+            get
+			{
+                return stopOrNot;
+			}
+            set
+			{
+                stopOrNot = value;
+			}
+		}
+		public CharacterController CharacterController
+        {
+            get
+            {
+                return characterController;
+            }
+            set
+			{
+                characterController = value;
+			}
+        }
+        public Vector2 ObjDir
+        {
+            get
+            {
+                return objDir;
+            }
+            set
+			{
+                objDir = value;
+			}
+        }
+        public Quaternion ObjRotation
+        {
+            get
+            {
+                return objRotation;
+            }
+            set
+			{
+                objRotation = value;
+            }
+        }
 
-        [Header("멈출까말까")] public int StopOrNot;
+        public string DataSOPath
+        {
+            get
+            {
+                return dataSOPath;
+            }
+        }
 
-        [Header("캐릭터 컨트롤러")] public CharacterController characterController;
-        [Header("캐릭터가 갈 방향")] public Vector2 objDir;
-        [Header("카메라의 회전")] public Quaternion objRotation;
+        public string[] HitCollider
+        {
+            get
+            {
+                return hitCollider;
+
+            }
+        }
+        public float MoveSpeed
+        {
+            get
+            {
+                return moveSpeed;
+
+            }
+        }
+        public bool IsSprint
+        {
+            get
+            {
+                return isSprint;
+
+            }
+            set
+			{
+                isSprint = value;
+			}
+        }
+
+        public bool IsJump
+		{
+            get
+			{
+                return isJump;
+			}
+            set
+			{
+                isJump = value;
+			}
+		}
+        public bool IsFreeFall
+		{
+            get
+			{
+                return isFreeFall;
+			}
+		}
+        public bool IsSlope
+		{
+            get
+			{
+                return isSlope;
+			}
+            set
+			{
+                isSlope = value;
+			}
+		}
+        public bool IsJumpBuf
+		{
+            get
+			{
+                return isJumpBuf;
+			}
+            set
+			{
+                isJumpBuf = value;
+			}
+		}
+        public bool CanMove
+		{
+            get
+			{
+                return canMove;
+			}
+            set
+			{
+                canMove = value;
+			}
+		}
+        public bool IsDead
+		{
+            get
+			{
+                return isDead;
+			}
+			set
+			{
+				isDead = value;
+                Send();
+			}
+		}
+		public bool IsAttack
+		{
+            get
+			{
+                return isAttack;
+			}
+		}
+        public bool IsWeaponExist
+		{
+            get
+			{
+                return isWeaponExist;
+            }
+            set
+            {
+                isWeaponExist = value;
+            }
+        }
+        public bool IsHit
+		{
+            get
+			{
+                return isHit;
+			}
+            set
+			{
+                isHit = value;
+			}
+		}
+
+        public bool Attacking
+        {
+            get
+            {
+                return attacking;
+            }
+            set
+			{
+                attacking = value;
+			}
+        }
+        public bool StrongAttacking
+		{
+            get
+			{
+                return strongAttacking;
+			}
+            set
+			{
+                strongAttacking = value;
+			}
+		}
+
+        public float Gravity
+		{
+            get
+			{
+                return gravity;
+            }
+            set
+            {
+                gravity = value;
+            }
+        }
+        public float GravityScale
+		{
+            get
+			{
+                return gravityScale;
+			}
+		}
+
+        public bool LockOn
+		{
+            get
+			{
+                return lockOn;
+			}
+		}
+
+        public float MaxSlope
+		{
+            get
+			{
+                return maxSlope;
+			}
+		}
+
+        public Transform RaycastTarget
+		{
+            get
+			{
+                return raycastTarget;
+			}
+            set
+			{
+                raycastTarget = value;
+			}
+		}
+        public RaycastHit SlopeHit
+		{
+			get
+			{
+				return slopeHit;
+			}
+            set
+			{
+                slopeHit = value;
+			}
+		}
+
+		[SerializeField, Header("멈출까말까")] 
+        private int stopOrNot;
+
+        [SerializeField, Header("캐릭터 컨트롤러")] 
+        private CharacterController characterController;
+        [SerializeField, Header("캐릭터가 갈 방향")] 
+        private Vector2 objDir;
+        [SerializeField, Header("카메라의 회전")] 
+        private Quaternion objRotation;
 
         [Space]
-        [Header("데이터 가져올 데")] public string dataSOPath;
+        [SerializeField, Header("데이터 가져올 데")] 
+        private string dataSOPath;
 
         [Space]
-        [Header("피격 판정이름")] public string[] hitCollider;
-        [Header("현재 캐릭터 속도")] public float moveSpeed;
-        [Header("달리기중?")] public bool isSprint;
+        [SerializeField, Header("피격 판정이름")] 
+        private string[] hitCollider;
+        [SerializeField, Header("현재 캐릭터 속도")] 
+        private float moveSpeed;
+        [SerializeField, Header("달리기중?")] 
+        private bool isSprint;
+
+        //물리 관련은 최적화를 위해 Public을 사용
+        [Space]
+        [SerializeField, Header("공중인가?")] 
+        public bool isGround; 
+        [SerializeField, Header("점프했나?")] 
+        private bool isJump;
+        [SerializeField, Header("떨어졌나?")] 
+        private bool isFreeFall;
+        [SerializeField, Header("경사정도")] 
+        private bool isSlope;
+        [SerializeField, Header("점프버퍼링타임")] 
+        private bool isJumpBuf;
+        [SerializeField, Header("움직일수 있나?")] 
+        private bool canMove;
+        [SerializeField, Header("죽었나?")] 
+        private bool isDead;
+        [SerializeField, Header("공격중인가?")] 
+        private bool isAttack;
+        [SerializeField, Header("무기를 가지고 있나?")] 
+        private bool isWeaponExist;
+        [SerializeField, Header("맞았냐?")] 
+        private bool isHit;
 
         [Space]
-        [Header("공중인가?")] public bool isGround;
-        [Header("점프했나?")] public bool isJump;
-        [Header("떨어졌나?")] public bool isFreeFall;
-        [Header("경사정도")] public bool isSlope;
-        [Header("점프버퍼링타임")] public bool isJumpBuf;
-        [Header("움직일수 있나?")] public bool canMove;
-        [Header("죽었나?")] public bool isDead;
-        [Header("공격중인가?")] public bool isAttack;
-        [Header("무기를 가지고 있나?")] public bool isWeaponExist;
-        [Header("맞았냐?")] public bool isHit;
+        [SerializeField, Header("공격하나?")] 
+        private bool attacking;
+        [SerializeField, Header("강공격하나?")] 
+        private bool strongAttacking;
 
         [Space]
-        [Header("공격하나?")] public bool attacking;
-        [Header("강공격하나?")] public bool strongAttacking;
+        [SerializeField, Header("중력")] 
+        private float gravity;
+        [SerializeField, Header("중력크기")] 
+        private float gravityScale = -9.8f;
+        [SerializeField, Header("땅체크 사거리")] 
+        public float groundOffset;
 
         [Space]
-        [Header("중력")] public float gravity;
-        [Header("중력크기")] public float gravityScale = -9.8f;
-        [Header("땅체크 사거리")] public float groundOffset;
+        [SerializeField, Header("락온")] 
+        private bool lockOn;
 
         [Space]
-        [Header("락온")] public bool LockOn;
-        //[Header("발 각도 조절")] public csHomebrewIK footRotate;
+        [SerializeField, Header("서있을 수 있는 물체")] 
+        public LayerMask groundLayer;
 
-        [Space]
-        [Header("서있을 수 있는 물체")] public LayerMask groundLayer;
-
-        [Header("최대경사면")] public float maxSlope;
+        [SerializeField, Header("최대경사면")] 
+        private float maxSlope;
         
-        [Header("레이캐스트 쏠위치")]
-        public Transform raycastTarget;
-        public RaycastHit slopeHit;
+        [SerializeField, Header("레이캐스트 쏠위치")]
+        private Transform raycastTarget;
+        private RaycastHit slopeHit;
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 
-        private void Start()
+		public List<Observer> Observers
+		{
+            get
+			{
+                return observers;
+			}
+		}
+        private List<Observer> observers = new List<Observer>();
+
+		private void Start()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -71,7 +362,18 @@ namespace Module
             }
         }
 
-        private void Update()
+		private void OnEnable()
+		{
+            UpdateManager.UpdateManager.Add(this);
+		}
+
+		private void OnDisable()
+		{
+
+            UpdateManager.UpdateManager.Remove(this);
+        }
+
+		void IUpdateObj.UpdateManager_Update()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -79,7 +381,7 @@ namespace Module
             }
         }
 
-        private void FixedUpdate()
+        void IUpdateObj.UpdateManager_FixedUpdate()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -87,7 +389,7 @@ namespace Module
             }
         }
 
-        private void LateUpdate()
+        void IUpdateObj.UpdateManager_LateUpdate()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -135,6 +437,25 @@ namespace Module
         protected void AddModule(ModuleType moduleType, AbBaseModule baseModule)
         {
             moduleComponentsDic.Add(moduleType, baseModule);
+        }
+
+		public void AddObserver(Observer _observer)
+		{
+            Observers.Add(_observer);
+            _observer.Receive();
+		}
+
+        public void RemoveObserver(Observer _observer)
+        {
+            Observers.Remove(_observer);
+        }
+
+        public void Send()
+        {
+            foreach (Observer observer in Observers)
+            {
+                observer.Receive();
+            }
         }
     }
 }

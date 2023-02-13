@@ -26,6 +26,7 @@ namespace Module
 
         private float effectSpownDelay => effect.effectDelayTime;
         private float currenteffectSpownDelay;
+        private bool isRight;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -39,9 +40,9 @@ namespace Module
 
         public override void OnTriggerEnter(Collider other)
         {
-            foreach (string _tagName in mainModule.hitCollider)
+            foreach (string _tagName in mainModule.HitCollider)
             {
-                if (other.CompareTag(_tagName) && !mainModule.isDead)
+                if (other.CompareTag(_tagName) && !mainModule.IsDead)
                 {
                     StateModule otherStateModule = other.GetComponentInParent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
                     if (otherStateModule != null)
@@ -70,12 +71,18 @@ namespace Module
                 mainModule.transform.position.z);
 
             Ray ray = new Ray(rayPos, Vector3.down);
-            if (Physics.Raycast(ray, out mainModule.slopeHit, rayDistance, mainModule.groundLayer))
+            RaycastHit _raycastHit;
+            if (Physics.Raycast(ray, out _raycastHit, rayDistance, mainModule.groundLayer))
             {
-                var angle = Vector3.Angle(Vector3.up, mainModule.slopeHit.normal);
-                mainModule.isSlope = (angle != 0f) && angle < mainModule.maxSlope;
+                mainModule.SlopeHit = _raycastHit;
+                   var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
+                mainModule.IsSlope = (angle != 0f) && angle < mainModule.MaxSlope;
             }
-            mainModule.isSlope = false;
+            else
+            {
+                mainModule.SlopeHit = _raycastHit;
+            }
+            mainModule.IsSlope = false;
         }
 
         private void GroundCheack()
@@ -95,20 +102,23 @@ namespace Module
 
         private void SetEffect()
         {
-            if(mainModule.isGround && mainModule.objDir != Vector2.zero)
+            if(mainModule.isGround && mainModule.ObjDir != Vector2.zero)
             {
                 float delay = 1;
                 if(currenteffectSpownDelay > effectSpownDelay)
                 {
                     currenteffectSpownDelay = 0;
 
-                    if (mainModule.isSprint)
+                    if (mainModule.IsSprint)
                     {
                         delay = effect.runEffectDelay;
-                        EffectManager.Instance.SetEffectDefault(effect.runEffectName, mainModule.transform.position, Quaternion.identity);
+                        EffectManager.Instance.SetEffectDefault(isRight ? effect.runREffectName : effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
                     }
                     else
-                        EffectManager.Instance.SetEffectDefault(effect.walkEffectName, mainModule.transform.position, Quaternion.identity);
+					{
+                        EffectManager.Instance.SetEffectDefault(isRight ? effect.walkRffectName : effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
+					}
+                    isRight = !isRight;
                 }
                 currenteffectSpownDelay += Time.deltaTime * delay;
             }

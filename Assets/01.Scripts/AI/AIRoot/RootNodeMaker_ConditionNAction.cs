@@ -148,7 +148,7 @@ namespace AI
 
 		private bool HitCheck()
 		{
-			if (aiModule.MainModule.isHit)
+			if (aiModule.MainModule.IsHit)
 			{
 				return true;
 			}
@@ -240,19 +240,19 @@ namespace AI
 
 		private void Reset()
 		{
-			aiModule.MainModule.attacking = false;
-			aiModule.MainModule.isJump = false;
-			aiModule.MainModule.isJumpBuf = false;
+			aiModule.MainModule.Attacking = false;
+			aiModule.MainModule.IsJump = false;
+			aiModule.MainModule.IsJumpBuf = false;
 		}
 
 		private void Attack()
 		{
 			aiModule.AIModuleState = AIModule.AIState.Attack;
-			aiModule.MainModule.attacking = true;
+			aiModule.MainModule.Attacking = true;
 		}
 		private void CloserMove()
 		{
-			if (aiModule.MainModule.canMove && !aiModule.MainModule.attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -270,14 +270,14 @@ namespace AI
 				aiModule.Input = _inputdir;
 
 				aiModule.AIModuleState = AIModule.AIState.Walk;
-				aiModule.MainModule.isSprint = false;
-				aiModule.MainModule.objDir = aiModule.Input;
+				aiModule.MainModule.IsSprint = false;
+				aiModule.MainModule.ObjDir = aiModule.Input;
 			}
 		}
 
 		private void RunMove()
 		{
-			if (aiModule.MainModule.canMove && !aiModule.MainModule.attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -295,21 +295,21 @@ namespace AI
 				aiModule.Input = Vector2.Lerp(aiModule.Input, _inputdir, Time.deltaTime);
 
 				aiModule.AIModuleState = AIModule.AIState.Run;
-				aiModule.MainModule.isSprint = true;
-				aiModule.MainModule.objDir = aiModule.Input;
+				aiModule.MainModule.IsSprint = true;
+				aiModule.MainModule.ObjDir = aiModule.Input;
 			}
 		}
 		private void JumpAndRunMove()
 		{
-			if (aiModule.MainModule.canMove && !aiModule.MainModule.attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
 				Vector3 vecDistance = Vector3.zero;
 				vecDistance = path.corners[1] - Position;
 				if (vecDistance.sqrMagnitude < jumpDistance * jumpDistance)
 				{
 					aiModule.AIModuleState = AIModule.AIState.Jump;
-					aiModule.MainModule.isJump = true;
-					aiModule.MainModule.isJumpBuf = true;
+					aiModule.MainModule.IsJump = true;
+					aiModule.MainModule.IsJumpBuf = true;
 				}
 
 				PathSetting();
@@ -321,8 +321,8 @@ namespace AI
 				aiModule.Input = _inputdir;
 
 				aiModule.AIModuleState = AIModule.AIState.Run;
-				aiModule.MainModule.isSprint = true;
-				aiModule.MainModule.objDir = aiModule.Input;
+				aiModule.MainModule.IsSprint = true;
+				aiModule.MainModule.ObjDir = aiModule.Input;
 			}
 		}
 
@@ -330,15 +330,15 @@ namespace AI
 		{
 			aiModule.Input = Vector2.Lerp(aiModule.Input, Vector2.zero, Time.deltaTime * 10);
 			aiModule.AIModuleState = AIModule.AIState.Idle;
-			aiModule.MainModule.isSprint = false;
-			aiModule.MainModule.objDir = aiModule.Input;
+			aiModule.MainModule.IsSprint = false;
+			aiModule.MainModule.ObjDir = aiModule.Input;
 		}
 
 		private void Jump()
 		{
 			aiModule.AIModuleState = AIModule.AIState.Jump;
-			aiModule.MainModule.isJump = true;
-			aiModule.MainModule.isJumpBuf = true;
+			aiModule.MainModule.IsJump = true;
+			aiModule.MainModule.IsJumpBuf = true;
 		}
 
 		private void Rotate()

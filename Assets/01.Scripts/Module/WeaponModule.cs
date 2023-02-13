@@ -64,7 +64,7 @@ namespace Module
         public void ChangeWeapon(string weapon, string animationName)
         {
             SetAnimation(animationName);
-            mainModule.isWeaponExist = false;
+            mainModule.IsWeaponExist = false;
 
             if (currentWeapon != null)
             {
@@ -95,7 +95,7 @@ namespace Module
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;
 
-                mainModule.isWeaponExist = true;
+                mainModule.IsWeaponExist = true;
                 SetWeaponSkills();
             }
         }
@@ -115,11 +115,19 @@ namespace Module
         }
         private void SetWeaponSkills()
         {
-            weaponSkills = new WeaponSkills(iWeaponSkills.Skills);
+            if (iWeaponSkills is not null)
+			{
+                weaponSkills = new WeaponSkills(iWeaponSkills.Skills);
+			}
         }
 
         public void UseWeaponSkills()
         {
+            if (baseWeapon is null)
+			{
+                return;
+			}
+
             if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
             {
                 weaponSkills?.Invoke();

@@ -9,7 +9,7 @@ namespace Module
 	{
 		public override void Update()
 		{
-			if (!mainModule.isDead)
+			if (!mainModule.IsDead)
 			{
 				InputMove();
 				InputJump();
@@ -21,15 +21,15 @@ namespace Module
 
 		private void InputAttack()
 		{
-			if (!mainModule.attacking && mainModule.isWeaponExist && !mainModule.strongAttacking)
+			if (!mainModule.Attacking && mainModule.IsWeaponExist && !mainModule.StrongAttacking)
 			{
-				if (mainModule.StopOrNot != 0 || !mainModule.isDead)
+				if (mainModule.StopOrNot != 0 || !mainModule.IsDead)
 				{
 					bool _inputatk = Input.GetMouseButtonDown(0);
 					bool _inputStratk = Input.GetMouseButtonDown(1);
 
-					mainModule.attacking = _inputatk;
-					mainModule.strongAttacking = _inputStratk;
+					mainModule.Attacking = _inputatk;
+					mainModule.StrongAttacking = _inputStratk;
 
 					AttackModule.SpownAttackEffect();
 				}
@@ -38,30 +38,30 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (mainModule.canMove && !mainModule.attacking && !mainModule.strongAttacking)
+			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
 			{
-				if (!mainModule.isDead)
+				if (!mainModule.IsDead)
 				{
 					float _inputX = Input.GetAxis("Horizontal");
 					float _inputY = Input.GetAxis("Vertical");
 
 					Vector2 _inputdir = new Vector2(_inputX, _inputY);
 
-					mainModule.objDir = _inputdir;
+					mainModule.ObjDir = _inputdir;
 				}
 			}
 		}
 
 		private void InputJump()
 		{
-			if (mainModule.canMove && !mainModule.attacking && !mainModule.strongAttacking)
+			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
 			{
-				if (!mainModule.isDead)
+				if (!mainModule.IsDead)
 				{
 					bool _inputup = Input.GetKey(KeyCode.Space);
 
-					mainModule.isJump = _inputup;
-					mainModule.isJumpBuf = _inputup;
+					mainModule.IsJump = _inputup;
+					mainModule.IsJumpBuf = _inputup;
 				}
 			}
 		}
@@ -70,12 +70,12 @@ namespace Module
         {
 			bool _inputrun = Input.GetKey(KeyCode.LeftShift);
 
-			mainModule.isSprint = _inputrun;
+			mainModule.IsSprint = _inputrun;
 		}
 
         private void InputSkill()
         {
-			if (Input.GetKeyDown(KeyCode.E) && !mainModule.isDead)
+			if (Input.GetKeyDown(KeyCode.E) && !mainModule.IsDead)
 			{
 				mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).UseWeaponSkills();//.BaseWeapon.weaponSkills.Invoke();
 			}

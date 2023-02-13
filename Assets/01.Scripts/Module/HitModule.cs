@@ -74,7 +74,7 @@ namespace Module
         private void Hit()
         {
             //animationModule.animator.St 
-            mainModule.isHit = true;
+            mainModule.IsHit = true;
             AnimationModule.animator.Play("Hit", 0, 0);
             AnimationModule.animator.Play("Hit", 2, 0);
         }
@@ -82,8 +82,8 @@ namespace Module
         private void Dead()
         {
             AnimationModule.animator.Play("Dead");
-            mainModule.isDead = true;
-            mainModule.characterController.enabled = false;
+            mainModule.IsDead = true;
+            mainModule.CharacterController.enabled = false;
 
             mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).currentWeapon.GetComponent<Collider>().enabled = false;
         }

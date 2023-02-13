@@ -9,7 +9,7 @@ namespace Module
         private Animator animator;
 
         private float jumpHeight;
-        private float gravityScale => mainModule.gravityScale;
+        private float gravityScale => mainModule.GravityScale;
 
         private float jumpDelay;
         private float calculatedTime;
@@ -44,9 +44,9 @@ namespace Module
                 animator.SetBool("FreeFall", false);
                 animator.SetBool("Jump", false);
 
-                if (mainModule.gravity < 0) mainModule.gravity = -2;
+                if (mainModule.Gravity < 0) mainModule.Gravity = -2;
 
-                if (mainModule.isJump && calculatedTime <= 0.0f)
+                if (mainModule.IsJump && calculatedTime <= 0.0f)
                 {
                     Jumping();
 
@@ -69,7 +69,7 @@ namespace Module
                     animator.SetBool("FreeFall", true);
                 }
 
-                mainModule.isJump = false;
+                mainModule.IsJump = false;
             }
 
             //if()
@@ -77,7 +77,7 @@ namespace Module
 
         void Jumping()
         {
-            mainModule.gravity = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
+            mainModule.Gravity = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
             //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
     }

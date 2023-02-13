@@ -69,7 +69,7 @@ namespace Module
 
         public override void LateUpdate()
         {
-            mainModule.objRotation = follawVCam.transform.rotation;
+            mainModule.ObjRotation = follawVCam.transform.rotation;
 
             //float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
             //float size = nomalCom.m_Lens.OrthographicSize;

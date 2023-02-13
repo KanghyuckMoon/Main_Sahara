@@ -154,7 +154,7 @@ namespace Module
 
         public override void Awake()
         {
-            playerdata = AddressablesManager.Instance.GetResource<PlayerData_TesSO>(mainModule.dataSOPath);
+            playerdata = AddressablesManager.Instance.GetResource<PlayerData_TesSO>(mainModule.DataSOPath);
             saveData = new SaveData();
             maxHp = playerdata.hp;
             jumpPower = playerdata.jumpPower;
