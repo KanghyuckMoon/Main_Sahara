@@ -81,10 +81,11 @@ namespace UI.Dialogue
                         index = 0;
                         ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestActive(_dialogueText);
+                        //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
                         return;
                     case "!TCLEAR\r":
                         // ÆÐ³Î ¶ç¿ì±â
-                        UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
+                        //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
                         index = 0;
                         ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestClear(_dialogueText);
