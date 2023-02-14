@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LoadScene
 {
@@ -13,7 +14,8 @@ namespace LoadScene
 		{
 			foreach (string address in subSceneAddressList)
 			{
-				LoadSceneAddressableStatic.LoadScene(address, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+				SceneManager.LoadScene(address, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+				//LoadSceneAddressableStatic.LoadScene(address, UnityEngine.SceneManagement.LoadSceneMode.Additive);
 			}
 		}
 	}

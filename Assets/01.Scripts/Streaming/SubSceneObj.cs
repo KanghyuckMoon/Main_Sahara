@@ -14,7 +14,7 @@ using UnityEditor.SceneManagement;
 
 namespace Streaming
 {
-	[RequireComponent(typeof(LODMaker))]
+	[RequireComponent(typeof(LODMaker)), RequireComponent(typeof(LODGroup))]
 	public class SubSceneObj : MonoBehaviour
 	{
 		/// <summary>
@@ -134,11 +134,17 @@ namespace Streaming
 
 #endif
 
+		public void SetSceneName(string _name)
+		{
+			sceneName = _name;
+		}
+
 		public void Start()
 		{
 			if (SceneName != null)
 			{
-				SceneDataManager.Instance.GetSceneData(SceneName).SetLoadSceneObjNLodMaker(this, LODMaker);
+				SceneData sceneData = SceneDataManager.Instance.GetSceneData(SceneName);
+				sceneData.SetLoadSceneObjNLodMaker(this, LODMaker);
 			}
 		}
 

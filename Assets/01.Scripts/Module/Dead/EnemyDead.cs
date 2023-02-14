@@ -24,9 +24,16 @@ namespace Module
         {
             if (abMainModule.IsDead)
             {
-                ObjectPoolManager.Instance.RegisterObject(key, gameObject);
-                gameObject.SetActive(false);
+                StartCoroutine(IDead());
             }
         }
+
+        private IEnumerator IDead()
+        {
+            yield return new WaitForSeconds(2f);
+            ObjectPoolManager.Instance.RegisterObject(key, gameObject);
+            gameObject.SetActive(false);
+        }
+
     }
 }

@@ -6,10 +6,11 @@ using Utill.Addressable;
 using Utill.Pattern;
 using Utill.Measurement;
 using System.Linq;
+using GameManager;
 
 namespace Quest
 {
-    public partial class QuestManager : MonoSingleton<QuestManager>
+    public partial class QuestManager : MonoSingleton<QuestManager>, Observer
     {
         private QuestDataAllSO questDataAllSO;
 		private QuestSaveDataSO questSaveDataSO;
@@ -22,6 +23,9 @@ namespace Quest
 			{
 				Destroy(gameObject);
 			}
+
+			GamePlayerManager.Instance.AddObserver(this);
+
 			if (!isInit)
 			{
 				InitQuestData();
@@ -32,6 +36,10 @@ namespace Quest
 
 		public void LateUpdate()
 		{
+			if (!GamePlayerManager.Instance.IsPlaying)
+			{
+				return;
+			}
 			ClearCheckQuest();
 		}
 
@@ -113,6 +121,14 @@ namespace Quest
 			QuestClear(questDataDic[_key]);
 		}
 
+		public void Receive()
+		{
+			if(GamePlayerManager.Instance.IsPlaying)
+			{
+				InitQuestData();
+			}
+		}
+
 		partial void InitQuestData();
 
 		private List<QuestData> GetWhereQuset(QuestState _questState, QuestCategory questCategory)
@@ -188,6 +204,5 @@ namespace Quest
 				}
 			}
 		}
-
 	}
 }

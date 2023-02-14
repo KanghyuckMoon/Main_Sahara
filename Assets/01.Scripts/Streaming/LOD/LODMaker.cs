@@ -7,7 +7,6 @@ using Pool;
 
 namespace Streaming
 {
-	[RequireComponent(typeof(LODGroup))]
 	public class LODMaker : MonoBehaviour
 	{
 		#region Debug
@@ -18,8 +17,7 @@ namespace Streaming
 		[SerializeField]
 		private bool isSetFadeCross = true;
 		#endregion
-
-		[SerializeField, Range(0f, 1f)]
+		
 		private float lod0 = 1f;
 		[SerializeField, Range(0f, 1f)]
 		private float lod1 = 0.9f;
@@ -48,7 +46,6 @@ namespace Streaming
 		private SubSceneObj subSceneObj = null;
 		private Dictionary<long, ObjectData> renderObjectDic = new Dictionary<long, ObjectData>();
 		private Dictionary<long, GameObject> objectList = new Dictionary<long, GameObject>();
-
 
 		public void Init(SubSceneObj _subSceneObj)
 		{
@@ -233,7 +230,6 @@ namespace Streaming
 			_lods[2].fadeTransitionWidth = lod2Width;
 			_lods[3].fadeTransitionWidth = lod3Width;
 
-			lodGroup ??= GetComponent<LODGroup>();
 			lodGroup.SetLODs(_lods);
 		}
 
@@ -264,7 +260,6 @@ namespace Streaming
 			_lods[2].fadeTransitionWidth = lod2Width;
 			_lods[3].fadeTransitionWidth = lod3Width;
 
-			lodGroup ??= GetComponent<LODGroup>();
 			lodGroup.SetLODs(_lods);
 		}
 		private void AddObjectToDic(GameObject _obj)

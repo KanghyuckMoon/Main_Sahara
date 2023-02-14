@@ -59,12 +59,18 @@ namespace Utill.Pattern
 
         private void OnApplicationQuit()
         {
-            _ShuttingDown = true;
+            if (Instance == this)
+            {
+                _ShuttingDown = true;
+            }
         }
 
         private void OnDestroy()
         {
-            _ShuttingDown = true;
+            if (Instance == this)
+			{
+                _ShuttingDown = true;
+			}
         }
 
         public virtual void Awake()
