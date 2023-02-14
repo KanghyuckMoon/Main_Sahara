@@ -41,6 +41,9 @@ namespace Module
         private StateModule stateModule;
         private AnimationModule animationModule;
 
+        private float currentHitDelay = 0;
+        private bool isHit = false;
+
         public HitModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
@@ -51,32 +54,59 @@ namespace Module
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
         }
 
+        public override void Update()
+        {
+            if(!isHit)
+            {
+                currentHitDelay += Time.deltaTime;
+
+                isHit = currentHitDelay >= mainModule.hitDelay;
+            }
+        }
+
         public void GetHit(int dmg)
         {
-            HitFeedBack();
-            HpModule.GetDamage(dmg);
-            if (HpModule.CurrentHp == 0)
+            //if (HitDelay())
+            //{
+                //HitFeedBack();
+                
+                if (HpModule.GetDamage(dmg) == 0)
+                {
+                    Dead();
+                }
+                else
+                {
+                    Hit();
+                }
+            //}
+        }
+
+        private bool HitDelay()
+        {
+            bool _isHit = isHit;
+
+            if (_isHit)
             {
-                Dead();
+                isHit = false;
+                currentHitDelay = 0;
             }
-            else
-            {
-                Hit();
-            }
+
+            return _isHit;
         }
 
         private void HitFeedBack()
         {
             //자기자신 타임느리게 하기
-            mainModule.transform.DOShakePosition(0.15f, 0.2f, 180, 160);
+            //mainModule.transform.DOShakePosition(0.15f, 0.2f, 180, 160);
         }
 
         private void Hit()
         {
             //animationModule.animator.St 
             mainModule.IsHit = true;
-            AnimationModule.animator.Play("Hit", 0, 0);
-            AnimationModule.animator.Play("Hit", 2, 0);
+            //animationModule.animator.
+            AnimationModule.animator.SetBool("Hit", true);
+            //AnimationModule.animator.Play("Hit");
         }
 
         private void Dead()

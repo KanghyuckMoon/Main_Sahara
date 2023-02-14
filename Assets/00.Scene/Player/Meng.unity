@@ -853,7 +853,7 @@ Terrain:
   m_ScaleInLightmap: 0.0256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 8388865
   m_AllowAutoConnect: 1
 --- !u!4 &437686036
 Transform:
@@ -2053,7 +2053,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a3493ddbcc56bd243938ff2923a1a02f, type: 3}
   m_Controller: {fileID: 9100000, guid: b92fabd367fba40409a8a8d00e2e269a, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325afc7641fdb9a4e8671887fc0b58aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StopOrNot: 0
+  stopOrNot: 0
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -2127,9 +2127,10 @@ MonoBehaviour:
   attacking: 0
   strongAttacking: 0
   gravity: 0
-  gravityScale: -19.8
-  groundOffset: -0.2
-  LockOn: 0
+  gravityScale: -9.8
+  groundOffset: -0.3
+  hitDelay: 1
+  lockOn: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2242,7 +2243,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a3493ddbcc56bd243938ff2923a1a02f, type: 3}
   m_Controller: {fileID: 9100000, guid: b92fabd367fba40409a8a8d00e2e269a, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -2282,7 +2283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17b3e6f3f28b0f46a2ec1c5aa01e78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StopOrNot: 0
+  stopOrNot: 0
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -2306,8 +2307,9 @@ MonoBehaviour:
   strongAttacking: 0
   gravity: 0
   gravityScale: -19.8
-  groundOffset: 0
-  LockOn: 0
+  groundOffset: -0.3
+  hitDelay: 1
+  lockOn: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -3188,7 +3190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd934a2219615d4f88eff62911009fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StopOrNot: 0
+  stopOrNot: 0
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -3212,7 +3214,8 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0
-  LockOn: 0
+  hitDelay: 0
+  lockOn: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024

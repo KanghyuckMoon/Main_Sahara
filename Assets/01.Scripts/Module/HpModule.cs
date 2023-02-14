@@ -41,10 +41,10 @@ namespace Module
         }
 
 
-        public void GetDamage(int value)
+        public int GetDamage(int value)
         {
             value = -value;
-            ChangeHpValue(value);
+            return ChangeHpValue(value);
         }
 
         public void GetHeal(int value)
@@ -52,11 +52,13 @@ namespace Module
             ChangeHpValue(value);
         }
 
-        private void ChangeHpValue(int value)
+        private int ChangeHpValue(int value)
         {
             StateModule.CurrentHp += value;
             if (currentHp > maxHp) currentHp = maxHp;
             if (currentHp < 0) currentHp = 0;
+
+            return StateModule.CurrentHp;
         }
     }
 }

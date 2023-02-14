@@ -189,7 +189,6 @@ namespace Streaming
 		{
 			if (_objectData.address is not null)
 			{
-				//PrefebManager.Instance.GetPrefebDicWithParameterAsync<GameObject, ObjectData>(_objectData.address, LoadObject, _objectData);
 				ObjectPoolManager.Instance.GetObjectAsyncParameter<ObjectData>(_objectData.address, LoadObject, _objectData);
 			}
 		}
