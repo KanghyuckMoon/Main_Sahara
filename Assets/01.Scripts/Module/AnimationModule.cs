@@ -31,13 +31,11 @@ namespace Module
 
         public override void Update()
         {
-            animator.SetBool("Hit", mainModule.IsHit);
-
-            if (!mainModule.IsHit)
-            {
+            //if (!mainModule.IsHit)
+            //{
                 animator.SetBool("Attack", mainModule.Attacking);
                 animator.SetBool("StrongAttack", mainModule.StrongAttacking);
-            }
+            //}
         }
 
         public override void FixedUpdate()

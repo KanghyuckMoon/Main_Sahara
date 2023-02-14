@@ -68,9 +68,9 @@ namespace Module
         {
             //if (HitDelay())
             //{
-                HitFeedBack();
-                HpModule.GetDamage(dmg);
-                if (HpModule.CurrentHp == 0)
+                //HitFeedBack();
+                
+                if (HpModule.GetDamage(dmg) == 0)
                 {
                     Dead();
                 }
@@ -97,13 +97,15 @@ namespace Module
         private void HitFeedBack()
         {
             //자기자신 타임느리게 하기
-            mainModule.transform.DOShakePosition(0.15f, 0.2f, 180, 160);
+            //mainModule.transform.DOShakePosition(0.15f, 0.2f, 180, 160);
         }
 
         private void Hit()
         {
             //animationModule.animator.St 
             mainModule.IsHit = true;
+            //animationModule.animator.
+            AnimationModule.animator.SetBool("Hit", true);
             //AnimationModule.animator.Play("Hit");
         }
 

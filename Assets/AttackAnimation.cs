@@ -24,5 +24,8 @@ public class AttackAnimation : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
+
+
+        Debug.Log("aflahfaiufhaliuhlaiuehgaliuehlaueghlawiueghliueghlawueghlahuegl");
     }
 }
