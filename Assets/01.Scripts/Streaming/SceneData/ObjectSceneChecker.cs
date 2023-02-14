@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Streaming.StreamingUtill;
+using UnityEngine.SceneManagement;
 using Pool;
 
 namespace Streaming
@@ -42,6 +43,18 @@ namespace Streaming
 			}
 		}
 
+		public ObjectDataSO ObjectDataSO
+		{
+			get
+			{
+				return objectDataSO;
+			}
+			set
+			{
+				objectDataSO = value;
+			}
+		}
+
 		[SerializeField]
 		private ObjectDataSO objectDataSO = null;
 
@@ -74,7 +87,7 @@ namespace Streaming
 			targetSceneData = _sceneData;
 			targetSceneData.AddObjectData(objectData);
 
-			objectClassCycle.gameObject.name = $"{objectData.address} {targetSceneData.SceneName}";
+			objectClassCycle.TargetObject.name = $"{objectData.address} {targetSceneData.SceneName}";
 
 			if (!targetSceneData.IsLoad)
 			{
@@ -84,6 +97,7 @@ namespace Streaming
 			}
 			else
 			{
+				SceneManager.MoveGameObjectToScene(ObjectClassCycle.TargetObject, SceneManager.GetSceneByName(targetSceneData.SceneName));
 				targetSceneData.AddObjectChecker(this);
 			}
 		}
@@ -134,7 +148,7 @@ namespace Streaming
 			{
 				objectData = new ObjectData();
 				objectData.CopyObjectDataSO(objectDataSO);
-				objectData.key = objectClassCycle.gameObject.GetInstanceID();
+				objectData.key = objectClassCycle.TargetObject.GetInstanceID();
 				objectData.isUse = true;
 			}
 		}
@@ -146,17 +160,6 @@ namespace Streaming
 				return;
 			}
 
-			if (targetSceneData is null)
-			{
-				SceneData sceneData = SceneDataManager.Instance.GetSceneData(PositionToSceneName());
-				if (sceneData is null)
-				{
-					return;
-				}
-				targetSceneData = sceneData;
-				targetSceneData.AddObjectData(objectData);
-				targetSceneData.AddObjectChecker(this);
-			}
 
 			int _currentChunkCoordX = Mathf.RoundToInt(objectClassCycle.transform.position.x / chunkSize);
 			int _currentChunkCoordY = Mathf.RoundToInt(objectClassCycle.transform.position.y / chunkSize);
@@ -167,6 +170,18 @@ namespace Streaming
 				originChunkCoordX = _currentChunkCoordX;
 				originChunkCoordY = _currentChunkCoordY;
 				originChunkCoordZ = _currentChunkCoordZ;
+
+				if (targetSceneData is null)
+				{
+					SceneData sceneData = SceneDataManager.Instance.GetSceneData(PositionToSceneName());
+					if (sceneData is null)
+					{
+						return;
+					}
+					targetSceneData = sceneData;
+					targetSceneData.AddObjectData(objectData);
+					targetSceneData.AddObjectChecker(this);
+				}
 
 				UpdateSceneData();
 			}

@@ -4,6 +4,7 @@ using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
 using Pool;
+using Streaming;
 
 namespace Spawner
 {
@@ -15,6 +16,8 @@ namespace Spawner
 		private string spawnerName;
 		[SerializeField]
 		private string enemyAddress;
+		[SerializeField]
+		private ObjectDataSO objectDataSO;
 		
 
 		public void OnEnable()
@@ -34,8 +37,19 @@ namespace Spawner
 			{
 				isSpawnDic.Add(spawnerName, true);
 				GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
+				ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
+				objectClassCycle.TargetObject = obj;
+				ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
+				if (_objectSceneChecker is null)
+				{
+					_objectSceneChecker = new ObjectSceneChecker();
+				}
+				_objectSceneChecker.ObjectDataSO = objectDataSO;
+				_objectSceneChecker.ObjectClassCycle = objectClassCycle;
+				objectClassCycle.AddObjectClass(_objectSceneChecker);
 				obj.transform.position = transform.position;
 				obj.SetActive(true);
+
 			}
 		}
 

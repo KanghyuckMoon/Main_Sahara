@@ -54,7 +54,7 @@ namespace Streaming
 		private int originChunkCoordZ;
 
 		private const int chunkSize = 100;
-		private const int chunksVisibleInViewDst = 2;
+		private const int chunksVisibleInViewDst = 1;
 		private const int LODDst = 1;
 		private const int interval = 3;
 		private Vector3 defaultPosition = new Vector3(0,4050,0);
