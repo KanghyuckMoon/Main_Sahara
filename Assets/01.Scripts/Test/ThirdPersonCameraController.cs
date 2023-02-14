@@ -54,11 +54,17 @@ namespace ForTheTest
             {
                 // try to grab the vcam from this object
                 vcam = GetComponent<CinemachineVirtualCamera>();
+
+                Transform _player = GameObject.Find("Player").transform.Find("Target");
+                vcam.LookAt = _player;
+                vcam.Follow = _player;
             }
             else
             {
                 Debug.Log("Need to connect your 3rd person vcam to the CameraController!");
             }
+
+
         }
 
         private void Update()
