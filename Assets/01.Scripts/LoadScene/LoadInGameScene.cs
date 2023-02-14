@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Utill.Measurement;
 using Utill.Coroutine;
 using Utill.Addressable;
+using UpdateManager;
 
 namespace LoadScene
 {
@@ -13,6 +14,7 @@ namespace LoadScene
         // Start is called before the first frame update
         void Start()
         {
+            UpdateManager.UpdateManager.Clear();
             AddressablesManager.Instance.LodedSceneClear();
             System.GC.Collect();
             StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());

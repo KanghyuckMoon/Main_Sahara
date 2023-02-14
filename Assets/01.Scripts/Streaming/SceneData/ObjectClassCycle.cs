@@ -12,7 +12,25 @@ namespace Streaming
 	}
 	public class ObjectClassCycle : MonoBehaviour, IUpdateObj
 	{
+		public GameObject TargetObject
+		{
+			get
+			{
+				if (targetObject is null)
+				{
+					targetObject = gameObject;
+				}
+				return targetObject;
+			}
+			set
+			{
+				targetObject = value;
+			}
+		}
+
 		public List<IObjectClass> objectClassList = new List<IObjectClass>();
+		[SerializeField]
+		private GameObject targetObject;
 
 		public void AddObjectClass(IObjectClass objectClass)
 		{
