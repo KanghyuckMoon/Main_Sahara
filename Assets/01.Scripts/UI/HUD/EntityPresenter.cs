@@ -116,7 +116,7 @@ namespace UI
             if (presenterFollower != null)
             {
                 presenterFollower.UpdateUI();
-                Debug.Log("따라가는중");
+                //Debug.Log("따라가는중");
             }
 
         }
