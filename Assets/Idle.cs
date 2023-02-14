@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Attack;
 using Module;
-using UnityEngine.Animations;
 
-public class Attack : StateMachineBehaviour
+public class Idle : StateMachineBehaviour
 {
     private AbMainModule mainModule;
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
+
+        animator.GetComponent<SwordSetting>().SetAttackCollider(0);
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
     }
