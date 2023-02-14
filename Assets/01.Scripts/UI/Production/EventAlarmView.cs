@@ -33,6 +33,12 @@ namespace UI.Production
             base.Init();
         }
 
+        public void ActiveView(bool _isActive)
+        {
+            parentElement.AddToClassList("active");
+            ActiveScreen(_isActive); 
+        }
+
         public void SetNameAndDetail(string _name, string _detail)
         {
             SetEventName(_name);
