@@ -15,21 +15,22 @@ namespace HitBox
 			}
 		}
 
+		[SerializeField]
 		private BoxCollider col;
-		public HItBoxDataSO hitBoxDataSO;
+		public HitBoxDataSO hitBoxDataSO;
 		public HitBoxData hitBoxData;
 
 		public void OnValidate()
 		{
-			col.center = hitBoxData.offset;
-			col.size = hitBoxData.size;
+			//Col.center = hitBoxData.offset;
+			//Col.size = hitBoxData.size;
 		}
 
 		[ContextMenu("Refresh")]
 		public void Refresh()
 		{
-			hitBoxData.offset = col.center;
-			hitBoxData.size = col.size;
+			hitBoxData.offset = Col.center;
+			hitBoxData.size = Col.size;
 		}
 
 		[ContextMenu("Upload")]

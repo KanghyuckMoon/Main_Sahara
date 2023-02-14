@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
+using HitBox;
 
 namespace Weapon
 {
@@ -14,11 +15,15 @@ namespace Weapon
         public string tagName;
         public WeaponPositionSO WeaponPositionSO => weaponPositionSO;
         public WeaponDataSO WeaponDataSO => weaponDataSO;
+        public HitBoxDataSO HitBoxDataSO => hitBoxDataSO;
 
         private WeaponDataSO weaponDataSO;
         private WeaponPositionSO weaponPositionSO;
         private string weaponPosStr = "_Position";
         private string weaponDataStr = "_Data";
+
+        [SerializeField]
+        private HitBoxDataSO hitBoxDataSO;
 
         private void Awake()
         {

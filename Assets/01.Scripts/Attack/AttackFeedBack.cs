@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using Effect;
 using TimeManager;
 using Utill.Addressable;
+using Utill.Coroutine;
 
 namespace Attack
 {
@@ -22,9 +23,15 @@ namespace Attack
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
         }
 
+        public void InvokeEvent(Vector3 closetPoint)
+        {
+            attackFeedBackEvent?.Invoke(closetPoint);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Enemy"))
+            string tagName = gameObject.tag == "Player" ? "Enemy" : "Player";
+            if (other.CompareTag(tagName))
             {
                 //other.GetComponent < MainModule>.get(Hp).GetHit( attackEvent?.ReturnValue(ref dmg));
                 attackFeedBackEvent?.Invoke(other.ClosestPoint(transform.position));
@@ -49,7 +56,7 @@ namespace Attack
 
         private void TimeSlow(Vector3 vec)
         {
-            StartCoroutine(AttackFeedBack_TimeSlow());
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(AttackFeedBack_TimeSlow());
         }
 
         IEnumerator AttackFeedBack_TimeSlow()

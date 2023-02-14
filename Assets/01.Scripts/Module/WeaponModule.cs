@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pool;
 using Weapon;
+using HitBox;
 
 namespace Module
 {
@@ -84,11 +85,13 @@ namespace Module
 
                 iWeaponSkills = _weapon.GetComponent<IWeaponSkills>();
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
+                
                 _weapon.transform.localPosition = baseWeapon.WeaponPositionSO.weaponPosition;
                 _weapon.transform.localRotation = baseWeapon.WeaponPositionSO.weaponRotation;
 
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 baseWeapon.tagName = _tagname;
+                mainModule.gameObject.GetComponent<HitBoxOnAnimation>().ChangeSO(baseWeapon.HitBoxDataSO);
 
                 StateModule.SetAttackDamage(baseWeapon.WeaponDataSO);
 
