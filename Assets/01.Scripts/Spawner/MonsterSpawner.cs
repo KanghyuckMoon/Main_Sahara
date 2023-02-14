@@ -39,15 +39,13 @@ namespace Spawner
 				GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
 				ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
 				objectClassCycle.TargetObject = obj;
-				ObjectData objectData = new ObjectData();
-				objectData.CopyObjectDataSO(objectDataSO);
 				ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
 				if (_objectSceneChecker is null)
 				{
 					_objectSceneChecker = new ObjectSceneChecker();
 				}
+				_objectSceneChecker.ObjectDataSO = objectDataSO;
 				_objectSceneChecker.ObjectClassCycle = objectClassCycle;
-				_objectSceneChecker.ObjectData = objectData;
 				objectClassCycle.AddObjectClass(_objectSceneChecker);
 				obj.transform.position = transform.position;
 				obj.SetActive(true);

@@ -43,6 +43,18 @@ namespace Streaming
 			}
 		}
 
+		public ObjectDataSO ObjectDataSO
+		{
+			get
+			{
+				return objectDataSO;
+			}
+			set
+			{
+				objectDataSO = value;
+			}
+		}
+
 		[SerializeField]
 		private ObjectDataSO objectDataSO = null;
 
