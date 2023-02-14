@@ -30,7 +30,10 @@ namespace UpdateManager
         /// <param name="obj">The object that will be added</param>
         public static void Add(IUpdateObj mover)
         {
-            _updateables.Add(mover);
+            if(!_updateables.Add(mover))
+            {
+                Debug.LogError("중복");
+            }                
         }
 
         /// <summary>
@@ -39,6 +42,10 @@ namespace UpdateManager
         /// <param name="obj">The object that will be removed</param>
         public static void Remove(IUpdateObj mover)
         {
+            if (!_updateables.Contains(mover))
+            {
+                Debug.LogError("없음");
+            }
             _updateables.Remove(mover);
         }
 
@@ -53,7 +60,7 @@ namespace UpdateManager
 					{
 						try
 						{
-							mover.UpdateManager_Update();
+                            mover.UpdateManager_Update();
 						}
 						catch
 						{

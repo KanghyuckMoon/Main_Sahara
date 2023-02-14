@@ -75,7 +75,7 @@ namespace Streaming
 			targetSceneData = _sceneData;
 			targetSceneData.AddObjectData(objectData);
 
-			objectClassCycle.gameObject.name = $"{objectData.address} {targetSceneData.SceneName}";
+			objectClassCycle.TargetObject.name = $"{objectData.address} {targetSceneData.SceneName}";
 
 			if (!targetSceneData.IsLoad)
 			{
@@ -85,7 +85,7 @@ namespace Streaming
 			}
 			else
 			{
-				SceneManager.MoveGameObjectToScene(ObjectClassCycle.gameObject, SceneManager.GetSceneByName(targetSceneData.SceneName));
+				SceneManager.MoveGameObjectToScene(ObjectClassCycle.TargetObject, SceneManager.GetSceneByName(targetSceneData.SceneName));
 				targetSceneData.AddObjectChecker(this);
 			}
 		}
@@ -136,7 +136,7 @@ namespace Streaming
 			{
 				objectData = new ObjectData();
 				objectData.CopyObjectDataSO(objectDataSO);
-				objectData.key = objectClassCycle.gameObject.GetInstanceID();
+				objectData.key = objectClassCycle.TargetObject.GetInstanceID();
 				objectData.isUse = true;
 			}
 		}
