@@ -7,6 +7,15 @@ namespace HitBox
 {
 	public class InGameHitBox : MonoBehaviour
 	{
+		public GameObject Owner
+		{
+			get
+			{
+				return owner;
+			}
+		}
+
+		private BoxCollider col;
 		private HitBoxData hitBoxData;
 		private GameObject owner;
 
@@ -14,7 +23,11 @@ namespace HitBox
 		{
 			gameObject.tag = _tag;
 			owner = _owner;
+			col = GetComponent<BoxCollider>();
 			hitBoxData = _hitBoxData;
+			transform.position = _owner.transform.position;
+			transform.rotation = _owner.transform.rotation;
+			col.center = _hitBoxData.offset;
 			if (hitBoxData.childization)
 			{
 				gameObject.transform.SetParent(owner.transform);

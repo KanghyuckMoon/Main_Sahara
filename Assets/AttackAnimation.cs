@@ -14,13 +14,13 @@ public class AttackAnimation : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         swordSetting ??= animator.GetComponent<SwordSetting>();//.SetAttackCollider(1);
-        swordSetting.SetAttackCollider(1);
+        //swordSetting.SetAttackCollider(1);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         swordSetting ??= animator.GetComponent<SwordSetting>();
-        swordSetting.SetAttackCollider(0);
+        //swordSetting.SetAttackCollider(0);
         mainModule ??= animator.GetComponent<AbMainModule>();
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;

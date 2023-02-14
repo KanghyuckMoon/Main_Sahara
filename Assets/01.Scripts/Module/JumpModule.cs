@@ -80,5 +80,11 @@ namespace Module
             mainModule.Gravity = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
             //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
-    }
+
+		public override void OnDestroy()
+		{
+			base.OnDestroy();
+            animator = null;
+        }
+	}
 }

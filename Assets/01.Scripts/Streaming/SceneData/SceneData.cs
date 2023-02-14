@@ -173,9 +173,9 @@ namespace Streaming
 						_obj.UnUse();
 						if (_obj?.ObjectClassCycle.gameObject is not null)
 						{
-							_obj.ObjectClassCycle.gameObject.SetActive(false);
+							_obj.ObjectClassCycle.TargetObject.SetActive(false);
 							_obj.ObjectClassCycle.RemoveObjectClass(_obj);
-							ObjectPoolManager.Instance.RegisterObject(_obj.ObjectData.address, _obj.ObjectClassCycle.gameObject);
+							ObjectPoolManager.Instance.RegisterObject(_obj.ObjectData.address, _obj.ObjectClassCycle.TargetObject);
 							ClassPoolManager.Instance.RegisterObject("ObjectSceneChecker", _obj );
 						}
 					}
@@ -199,7 +199,7 @@ namespace Streaming
 			gameObject.transform.localScale = _objectData.scale;
 			gameObject.name = $"{_objectData.address} {SceneName}";
 
-			ObjectClassCycle _objectClassCycle = gameObject.GetComponent<ObjectClassCycle>();
+			ObjectClassCycle _objectClassCycle = gameObject.GetComponentInChildren<ObjectClassCycle>();
 			ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
 			if (_objectSceneChecker is null)
 			{

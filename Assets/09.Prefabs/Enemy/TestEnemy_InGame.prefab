@@ -1450,6 +1450,7 @@ GameObject:
   - component: {fileID: 3699875109982235523}
   - component: {fileID: 3699875109982235640}
   - component: {fileID: 2648207059958673375}
+  - component: {fileID: 5591809630521021360}
   m_Layer: 0
   m_Name: TestEnemy_InGame
   m_TagString: Enemy
@@ -1564,6 +1565,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -19.8
   groundOffset: 0
+  hitDelay: 0
   lockOn: 0
   groundLayer:
     serializedVersion: 2
@@ -1584,6 +1586,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: TestEnemy_InGame
+--- !u!114 &5591809630521021360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699875109982235521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
 --- !u!1 &3699875109997962231
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,26 @@ namespace Module
     public class AnimationModule : AbBaseModule, Observer
     {
         public Animator animator;
+        
+        public Animator Animator
+		{
+            get
+            {
+				try
+				{
+                    animator ??= mainModule.GetComponent<Animator>();
+				}
+				catch
+				{
+                    animator = mainModule.GetComponent<Animator>();
+				}
+                return animator;
+            }
+			set
+			{
+                animator = value;
+            }
+		}
         private int swordLayerIndex;
 
         public AnimationModule(AbMainModule _mainModule) : base(_mainModule)
@@ -18,13 +38,12 @@ namespace Module
 
         private void SettingAnimatorSpeed()
         {
-            animator.speed = StaticTime.EntierTime;
+            Animator.speed = StaticTime.EntierTime;
         }
 
         public override void Awake()
         {
-            animator = mainModule.GetComponent<Animator>();
-            swordLayerIndex = animator.GetLayerIndex("Sword");
+            swordLayerIndex = Animator.GetLayerIndex("Sword");
             
             StaticTime.Instance.AddObserver(this);
         }
@@ -33,8 +52,8 @@ namespace Module
         {
             //if (!mainModule.IsHit)
             //{
-                animator.SetBool("Attack", mainModule.Attacking);
-                animator.SetBool("StrongAttack", mainModule.StrongAttacking);
+                Animator.SetBool("Attack", mainModule.Attacking);
+                Animator.SetBool("StrongAttack", mainModule.StrongAttacking);
             //}
         }
 
@@ -42,12 +61,18 @@ namespace Module
         {
             //animator.SetFloat("MoveSpeed", mainModule.moveSpeed);
             //animator.SetFloat("Jump", mainModule.objDir.y);
-            animator.SetBool("IsGround", mainModule.isGround);
-            animator.SetBool("JumpBuf", mainModule.IsJumpBuf);
-            animator.SetBool("WeaponExist", mainModule.IsWeaponExist);
+            Animator.SetBool("IsGround", mainModule.isGround);
+            Animator.SetBool("JumpBuf", mainModule.IsJumpBuf);
+            Animator.SetBool("WeaponExist", mainModule.IsWeaponExist);
         }
 
-        public void Receive()
+		public override void OnDestroy()
+		{
+			base.OnDestroy();
+            animator = null;
+        }
+
+		public void Receive()
         {
             SettingAnimatorSpeed();
         }

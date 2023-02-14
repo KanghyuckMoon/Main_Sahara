@@ -416,6 +416,14 @@ namespace Module
             }
         }
 
+        private void OnDestroy()
+        {
+            foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
+            {
+                baseModule?.OnDestroy();
+            }
+        }
+
         private void OnDrawGizmos()
         {
             if (Application.isPlaying)
@@ -427,7 +435,7 @@ namespace Module
             }
         }
 
-        public T GetModuleComponent<T>(ModuleType moduleType) where T : AbBaseModule
+		public T GetModuleComponent<T>(ModuleType moduleType) where T : AbBaseModule
         {
             if (moduleComponentsDic.TryGetValue(moduleType, out var module))
             {
