@@ -5,10 +5,11 @@ using System.Linq;
 using static Streaming.StreamingUtill;
 using Utill.Pattern;
 using Utill.Addressable;
+using GameManager;
 
 namespace Streaming
 {
-	public class StreamingManager : MonoSingleton<StreamingManager>
+	public class StreamingManager : MonoSingleton<StreamingManager>, Observer
 	{
 		private Transform Viewer
 		{
@@ -25,6 +26,14 @@ namespace Streaming
 			}
 		}
 
+		private SubSceneReference SubSceneReference
+		{
+			get
+			{
+				subSceneReference ??= FindObjectOfType<SubSceneReference>();
+				return subSceneReference;
+			}
+		}
 		//[SerializeField]
 		private Transform viewer = null;
 
@@ -34,7 +43,7 @@ namespace Streaming
 		[SerializeField]
 		private Transform debugViewer = null;
 
-
+		private SubSceneReference subSceneReference;
 		private Dictionary<Vector3, SubSceneObj> chunkDictionary = new Dictionary<Vector3, SubSceneObj>(); //씬 데이터 딕셔너리
 		private List<Vector3> chunksCurrentVisibleList = new List<Vector3>(); //현재 활성화되어야 씬 목록
 		private List<Vector3> chunksPreviousVisibleList = new List<Vector3>(); //이전에 활성화된 씬 목록
@@ -49,16 +58,49 @@ namespace Streaming
 		private const int LODDst = 1;
 		private const int interval = 3;
 		private Vector3 defaultPosition = new Vector3(0,4050,0);
-
-		private void Start()
+		public void Receive()
 		{
-			InitSubScene();
-			InitChunk();
-			UnLoadVisibleChunk();
+			if (GamePlayerManager.Instance.IsPlaying)
+			{
+				originChunkCoordX = 0;
+				originChunkCoordY = 0;
+				originChunkCoordZ = 0;
+				viewerPosition = defaultPosition;
+				if (!useDebugViewer)
+				{
+					viewer = GameObject.FindGameObjectWithTag("Player")?.transform;
+				}
+				InitSubScene();
+				InitChunk();
+				UnLoadVisibleChunk();
+			}
+			else
+			{
+				originChunkCoordX = 0;
+				originChunkCoordY = 0;
+				originChunkCoordZ = 0;
+				viewerPosition = defaultPosition;
+				subSceneReference = null;
+				chunkDictionary.Clear();
+				chunksCurrentVisibleList.Clear();
+				chunksPreviousVisibleList.Clear();
+
+			}
+		}
+
+		public override void Awake()
+		{
+			base.Awake();
+			GamePlayerManager.Instance.AddObserver(this);
 		}
 
 		private void Update()
 		{
+			if (!GamePlayerManager.Instance.IsPlaying)
+			{
+				return;
+			}
+
 			if (Time.frameCount % interval == 0)
 			{
 				if (Viewer is null)
@@ -78,7 +120,10 @@ namespace Streaming
 		/// </summary>
 		private void InitSubScene()
 		{
-			foreach (SubSceneObj obj in SubSceneReferenceManager.Instance.SubSceneArray)
+			chunkDictionary.Clear();
+			chunksPreviousVisibleList.Clear();
+			SubSceneReference.Init();
+			foreach (SubSceneObj obj in SubSceneReference.SubSceneArray)
 			{
 				chunkDictionary.Add(StringToVector3(obj.SceneName), obj);
 			}
@@ -207,6 +252,7 @@ namespace Streaming
 			}
 			chunkDictionary[_viewedChunkCoord].UnLoadScene();
 		}
+
 	}
 
 }

@@ -33,7 +33,7 @@ namespace UI.Production
         public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
         public Texture2D ItemSprite => GetVisualElement((int)Elements.image).style.backgroundImage.value.texture;
         public int ItemCount => int.Parse(GetLabel((int)Labels.text).text);
-
+        public Rect SlotWorldBound => Item.worldBound;   
         public SlotItemView()
         {
 
@@ -61,6 +61,24 @@ namespace UI.Production
             GetVisualElement((int)Elements.item).AddManipulator(_manipulator);
         }
 
+        private Action mouseOverEvt = null;
+        private Action mouseOutEvt = null;
+        public void AddHoverEvent(Action _callback)
+        {
+            this.mouseOverEvt = _callback;
+            AddElementEvent<MouseOverEvent>((int)Elements.image, _callback); 
+        }
+        public void AddOutEvent(Action _callback)
+        {
+            this.mouseOutEvt = _callback;
+            AddElementEvent<MouseOutEvent>((int)Elements.image, _callback);
+        }
+
+        public void RemoveEvent()
+        {
+            RemoveElementEvent<MouseOverEvent>((int)Elements.image, mouseOverEvt);
+            RemoveElementEvent<MouseOutEvent>((int)Elements.image, mouseOutEvt);
+        }
         public void RemoveView()
         {
             parentElement.RemoveFromHierarchy();

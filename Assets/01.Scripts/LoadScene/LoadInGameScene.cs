@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utill.Measurement;
 using Utill.Coroutine;
+using Utill.Addressable;
 
 namespace LoadScene
 {
@@ -12,6 +13,8 @@ namespace LoadScene
         // Start is called before the first frame update
         void Start()
         {
+            AddressablesManager.Instance.LodedSceneClear();
+            System.GC.Collect();
             StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
         }
 
@@ -19,16 +22,8 @@ namespace LoadScene
         private IEnumerator LoadingScene()
         {
             var op2 = SceneManager.LoadSceneAsync("InGame", LoadSceneMode.Additive);
-            //op.priority = 4;
-            //op.allowSceneActivation = true;
             op2.priority = 3;
             op2.allowSceneActivation = true;
-
-            //while (op.progress < 0.9f)
-            //{
-            //    Logging.Log(op2.progress);
-            //    yield return null;
-            //}
 
             while (op2.progress < 0.9f)
             {

@@ -33,7 +33,7 @@ namespace GoogleSpreadSheet
 		{
 			if (!isInit)
 			{
-				textSO.InitTextDatas();
+				Instance.textSO.InitTextDatas();
 				//추후 언어에 따라 다르게 설정
 				StartCoroutine(GetText());
 			}
