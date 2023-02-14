@@ -11,7 +11,7 @@ namespace Module
     {
         public CinemachineVirtualCamera follawVCam;
 
-        private PlayerFollowCamera camInstance;
+        //private PlayerFollowCamera camInstance;
         //public CinemachineVirtualCamera followVCam;
 
         //[Header("Camera Rotates around this")]
@@ -61,8 +61,8 @@ namespace Module
 
         public override void Awake()
         {
-            camInstance = PlayerFollowCamera.Instance;
-            follawVCam = camInstance.GetComponent<CinemachineVirtualCamera>();
+            //camInstance = PlayerFollowCamera.Instance;
+            follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
             //mainCam = Camera.main;
             //mainModule.objRotation = mainCam.transform.rotation;
         }
