@@ -8,7 +8,7 @@ namespace HitBox
 	[System.Serializable]
 	public class StringListHitBoxData : SerializableDictionary<string, HitBoxDataList> { }
 
-	[CreateAssetMenu(fileName = "HItBoxDataSO", menuName = "SO/HItBoxDataSO")]
+	[CreateAssetMenu(fileName = "HitBoxDataSO", menuName = "SO/HitBoxDataSO")]
 	public class HitBoxDataSO : ScriptableObject
 	{
 		public StringListHitBoxData hitBoxDataDic = new StringListHitBoxData();
