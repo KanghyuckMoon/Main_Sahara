@@ -13,6 +13,15 @@ namespace HitBox
 	{
 		public StringListHitBoxData hitBoxDataDic = new StringListHitBoxData();
 
+		public HitBoxDataList GetHitboxList(string str)
+		{
+			if (hitBoxDataDic.TryGetValue(str, out var value))
+			{
+				return value;
+			}
+			return null;
+		}
+
 		public void UploadHitBox(HitBoxData hitBoxData)
 		{
 			if (hitBoxData.hitBoxName is null)
@@ -54,6 +63,8 @@ namespace HitBox
 		public string hitBoxName;
 		public string ClassificationName;
 		public int hitBoxIndex;
+		public float deleteDelay = 0.1f;
+		public bool childization = false;
 		public Vector3 offset;
 		public Vector3 size;
 
