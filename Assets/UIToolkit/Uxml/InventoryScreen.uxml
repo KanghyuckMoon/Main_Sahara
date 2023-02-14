@@ -91,14 +91,14 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <Gradient name="inventory_screen" left-color="#3C3C3CFF" right-color="#000000FF" direction="vertical" class="screen" style="width: 100%; height: 100%; flex-direction: column;">
+    <Gradient name="inventory_screen" left-color="#000000FA" right-color="#000000FA" direction="vertical" class="screen" style="width: 100%; height: 100%; flex-direction: column;">
         <ui:VisualElement name="Header" class="header">
             <ui:VisualElement style="flex-direction: row; width: 25%; height: 100%; padding-left: 115px; background-color: rgba(55, 55, 55, 0.76);">
                 <ui:VisualElement style="height: 100%; width: 30%; background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/d_buttonssosigninemail@2x.png?fileID=21300000&amp;guid=144aa74618b85974a9a50f612c2fa8fd&amp;type=3#d_buttonssosigninemail@2x&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(212, 212, 212);" />
                 <ui:Label text="Inventory" display-tooltip-when-elided="true" style="height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 50px; -unity-text-align: middle-left; -unity-font-style: bold; display: flex; -unity-background-image-tint-color: rgb(255, 255, 255); color: rgb(212, 212, 212);" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Content" class="content_panel" style="justify-content: flex-start;">
+        <ui:VisualElement name="Content" class="content_panel" style="justify-content: flex-start; background-color: rgba(87, 0, 255, 0);">
             <ui:VisualElement name="left_content_panel" class="left_content_panel">
                 <ui:VisualElement name="Title" style="height: 10%; display: none;">
                     <ui:Label display-tooltip-when-elided="true" text="JJB__" style="height: 100%; -unity-text-align: middle-left; font-size: 50px; -unity-font-style: bold; color: rgb(209, 209, 209);" />
@@ -205,12 +205,14 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="right_content_panel" class="right_content_panel" style="display: flex;">
-                <ui:VisualElement name="quick_slot_panel" class="quick_slot_panel" style="background-color: rgb(100, 103, 101);">
-                    <ui:Instance template="EquipSlot" name="EquipSlot" />
-                    <ui:Instance template="EquipSlot" name="EquipSlot" />
-                    <ui:Instance template="EquipSlot" name="EquipSlot" />
-                    <ui:Instance template="EquipSlot" name="EquipSlot" />
-                    <ui:Instance template="EquipSlot" name="EquipSlot" />
+                <ui:VisualElement style="width: 100%; height: 100%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; background-color: rgba(51, 51, 51, 0.5); border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;">
+                    <ui:VisualElement name="quick_slot_panel" class="quick_slot_panel">
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
