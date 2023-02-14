@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Streaming.StreamingUtill;
+using UnityEngine.SceneManagement;
 using Pool;
 
 namespace Streaming
@@ -84,6 +85,7 @@ namespace Streaming
 			}
 			else
 			{
+				SceneManager.MoveGameObjectToScene(ObjectClassCycle.gameObject, SceneManager.GetSceneByName(targetSceneData.SceneName));
 				targetSceneData.AddObjectChecker(this);
 			}
 		}
@@ -146,17 +148,6 @@ namespace Streaming
 				return;
 			}
 
-			if (targetSceneData is null)
-			{
-				SceneData sceneData = SceneDataManager.Instance.GetSceneData(PositionToSceneName());
-				if (sceneData is null)
-				{
-					return;
-				}
-				targetSceneData = sceneData;
-				targetSceneData.AddObjectData(objectData);
-				targetSceneData.AddObjectChecker(this);
-			}
 
 			int _currentChunkCoordX = Mathf.RoundToInt(objectClassCycle.transform.position.x / chunkSize);
 			int _currentChunkCoordY = Mathf.RoundToInt(objectClassCycle.transform.position.y / chunkSize);
@@ -167,6 +158,18 @@ namespace Streaming
 				originChunkCoordX = _currentChunkCoordX;
 				originChunkCoordY = _currentChunkCoordY;
 				originChunkCoordZ = _currentChunkCoordZ;
+
+				if (targetSceneData is null)
+				{
+					SceneData sceneData = SceneDataManager.Instance.GetSceneData(PositionToSceneName());
+					if (sceneData is null)
+					{
+						return;
+					}
+					targetSceneData = sceneData;
+					targetSceneData.AddObjectData(objectData);
+					targetSceneData.AddObjectChecker(this);
+				}
 
 				UpdateSceneData();
 			}
