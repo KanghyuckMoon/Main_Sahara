@@ -42,8 +42,6 @@ namespace Module
 			{
 				if (!mainModule.IsDead)
 				{
-					Debug.Log("움직움직움직움직움직움ㅈ긱움직움ㅈㅣㄱ움직움직움직움ㅈ기");
-
 					float _inputX = Input.GetAxis("Horizontal");
 					float _inputY = Input.GetAxis("Vertical");
 

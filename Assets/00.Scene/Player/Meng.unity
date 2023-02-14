@@ -946,6 +946,7 @@ GameObject:
   - component: {fileID: 587501406}
   - component: {fileID: 587501410}
   - component: {fileID: 587501408}
+  - component: {fileID: 587501411}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -974,7 +975,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 850774596}
   m_Follow: {fileID: 850774596}
   m_Lens:
-    FieldOfView: 25.2
+    FieldOfView: 50.13
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -1006,7 +1007,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 587501405}
   m_LocalRotation: {x: 0.07236785, y: 0, z: 0, w: 0.99737805}
-  m_LocalPosition: {x: 0, y: 4.4535623, z: -9.895258}
+  m_LocalPosition: {x: 0, y: 4.463562, z: -9.895258}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1069,6 +1070,18 @@ MonoBehaviour:
   cameraSide: 1
   allowCameraToggle: 1
   cameraSideToggleSpeed: 1
+--- !u!114 &587501411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587501405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e64b3fb15d3e94197efb64883c5fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &603684355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,7 +2817,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 25.2
+  field of view: 50.13
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2830,7 +2843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572420777}
   m_LocalRotation: {x: 0.07236785, y: 0, z: 0, w: 0.99737805}
-  m_LocalPosition: {x: 0, y: 4.4535623, z: -9.895258}
+  m_LocalPosition: {x: 0, y: 4.463562, z: -9.895258}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2982,7 +2995,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 5
-    m_Time: 0.8
+    m_Time: 0.7
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -4009,7 +4022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0.66, z: 0}
+  m_TrackedObjectOffset: {x: 0, y: 0.67, z: 0}
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0

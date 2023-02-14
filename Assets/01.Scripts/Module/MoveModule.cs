@@ -43,14 +43,14 @@ namespace Module
             if (currentSpeed > _targetSpeed + speedOffset ||
                 currentSpeed < _targetSpeed - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 13.7f * Time.fixedDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 13.7f * Time.deltaTime);
             }
             else
             {
                 _speed = _targetSpeed;
             }
 
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.fixedDeltaTime * 20);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * 20);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 

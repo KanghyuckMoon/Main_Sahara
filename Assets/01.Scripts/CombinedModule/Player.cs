@@ -30,12 +30,5 @@ namespace CondinedModule
 
             RaycastTarget = transform.Find("RayCastPoint");
         }
-
-        private void OnDestroy()
-        {
-            CharacterController = null;
-            moduleComponentsDic.Clear();
-            RaycastTarget = null;
-        }
     }
 }

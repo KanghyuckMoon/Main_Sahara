@@ -28,6 +28,4 @@ public class AttackAnimation : StateMachineBehaviour
 
         Debug.Log("aflahfaiufhaliuhlaiuehgaliuehlaueghlawiueghliueghlawueghlahuegl");
     }
-
-    //IEnumerator Set
 }
