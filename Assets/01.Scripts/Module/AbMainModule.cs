@@ -329,6 +329,9 @@ namespace Module
         public float groundOffset;
 
         [Space]
+        public float hitDelay;
+
+        [Space]
         [SerializeField, Header("¶ô¿Â")] 
         private bool lockOn;
 

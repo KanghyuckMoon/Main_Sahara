@@ -41,6 +41,9 @@ namespace Module
         private StateModule stateModule;
         private AnimationModule animationModule;
 
+        private float currentHitDelay = 0;
+        private bool isHit = false;
+
         public HitModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
@@ -51,18 +54,44 @@ namespace Module
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
         }
 
+        public override void Update()
+        {
+            if(!isHit)
+            {
+                currentHitDelay += Time.deltaTime;
+
+                isHit = currentHitDelay >= mainModule.hitDelay;
+            }
+        }
+
         public void GetHit(int dmg)
         {
-            HitFeedBack();
-            HpModule.GetDamage(dmg);
-            if (HpModule.CurrentHp == 0)
+            //if (HitDelay())
+            //{
+                HitFeedBack();
+                HpModule.GetDamage(dmg);
+                if (HpModule.CurrentHp == 0)
+                {
+                    Dead();
+                }
+                else
+                {
+                    Hit();
+                }
+            //}
+        }
+
+        private bool HitDelay()
+        {
+            bool _isHit = isHit;
+
+            if (_isHit)
             {
-                Dead();
+                isHit = false;
+                currentHitDelay = 0;
             }
-            else
-            {
-                Hit();
-            }
+
+            return _isHit;
         }
 
         private void HitFeedBack()
@@ -75,8 +104,7 @@ namespace Module
         {
             //animationModule.animator.St 
             mainModule.IsHit = true;
-            AnimationModule.animator.Play("Hit", 0, 0);
-            AnimationModule.animator.Play("Hit", 2, 0);
+            //AnimationModule.animator.Play("Hit");
         }
 
         private void Dead()

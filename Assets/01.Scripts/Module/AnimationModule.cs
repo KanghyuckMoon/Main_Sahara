@@ -31,6 +31,8 @@ namespace Module
 
         public override void Update()
         {
+            animator.SetBool("Hit", mainModule.IsHit);
+
             if (!mainModule.IsHit)
             {
                 animator.SetBool("Attack", mainModule.Attacking);
