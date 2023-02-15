@@ -49,6 +49,33 @@ namespace HitBox
 				hitBoxDataDic.Add(hitBoxData.hitBoxName, hitBoxDataList);
 			}
 		}
+		public void UploadHitBoxNoneCopy(HitBoxData hitBoxData)
+		{
+			if (hitBoxData.hitBoxName is null)
+			{
+				Debug.LogError("히트박스 데이터의 이름이 없음");
+				return;
+			}
+
+			if (hitBoxDataDic.TryGetValue(hitBoxData.hitBoxName, out var list))
+			{
+				HitBoxData _hitBoxClassificationData = list.hitBoxDataList.Find(x => x.ClassificationName == hitBoxData.ClassificationName);
+				if (_hitBoxClassificationData is not null)
+				{
+					_hitBoxClassificationData = hitBoxData;
+				}
+				else
+				{
+					list.hitBoxDataList.Add(hitBoxData);
+				}
+			}
+			else
+			{
+				HitBoxDataList hitBoxDataList = new HitBoxDataList();
+				hitBoxDataList.hitBoxDataList.Add(hitBoxData);
+				hitBoxDataDic.Add(hitBoxData.hitBoxName, hitBoxDataList);
+			}
+		}
 	}
 
 	[System.Serializable]
@@ -80,8 +107,16 @@ namespace HitBox
 			_newHitBox.hitBoxName = _hitBoxData.hitBoxName;
 			_newHitBox.ClassificationName = _hitBoxData.ClassificationName;
 			_newHitBox.hitBoxIndex = _hitBoxData.hitBoxIndex;
+			_newHitBox.deleteDelay = _hitBoxData.deleteDelay;
+			_newHitBox.childization = _hitBoxData.childization;
 			_newHitBox.offset = _hitBoxData.offset;
 			_newHitBox.size = _hitBoxData.size;
+
+			_newHitBox.swingEffectOffset = _hitBoxData.swingEffectOffset;
+			_newHitBox.swingEffectRotation = _hitBoxData.swingEffectRotation;
+			_newHitBox.swingEffectSize = _hitBoxData.swingEffectSize;
+			_newHitBox.swingEffect = _hitBoxData.swingEffect;
+			_newHitBox.hitEffect = _hitBoxData.hitEffect;
 
 			return _newHitBox;
 		}

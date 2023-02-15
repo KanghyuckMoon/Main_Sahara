@@ -10,6 +10,8 @@ namespace Inventory
         public int money = 0;
         public List<ItemData> itemDataList = new List<ItemData>();
         public ItemData[] quickSlot = new ItemData[5];
+        public ItemData[] equipments = new ItemData[4];
+        public ItemData[] accessories = new ItemData[4];
 
         public InventorySave inventorySave = new InventorySave();
 
