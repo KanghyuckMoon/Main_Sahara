@@ -121,6 +121,7 @@ namespace UI.Dialogue
 
             if(_isActive == true)
             {
+                parent.style.opacity = new StyleFloat(0f);
                 ShowVisualElement(parent, _isActive);
                 DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f);
             

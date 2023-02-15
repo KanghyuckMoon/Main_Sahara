@@ -50,8 +50,9 @@ namespace UI
         {
             get
             {
-                cam ??= Camera.main;
-                
+                if(cam == null)
+                    cam = Camera.main;
+
                 if (cam != null) return cam.transform;
                 return null; 
             }
@@ -90,7 +91,11 @@ namespace UI
             mapView.MapTrm.position = _mapPos;
 
             // 맵 회전 
-            RotateMap(); 
+            //RotateMap();
+            if (PlayerMarker != null)
+            {
+                PlayerMarker.SetMarkerPosAndRot(-mapView.MinimapMask.style.rotate.value.angle.value);
+            }
         }
 
         private float prevMapAngle = 0f;
@@ -116,7 +121,7 @@ namespace UI
             {
                 PlayerMarker.SetMarkerPosAndRot(-mapView.MinimapMask.style.rotate.value.angle.value);
             }
-
+        //    mapView.Sight.style.
         }
         // 마커UI가 오브젝트 따라가는거 (플레이어, 몬스터)
         // obj -> UI 

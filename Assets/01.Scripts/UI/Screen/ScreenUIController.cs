@@ -4,7 +4,8 @@ using UnityEngine;
 using UI.Dialogue;
 using UI.EventAlarm;
 using UI.Quest;
-using UI.Inventory; 
+using UI.Inventory;
+using UI.Base; 
 
 namespace UI
 {

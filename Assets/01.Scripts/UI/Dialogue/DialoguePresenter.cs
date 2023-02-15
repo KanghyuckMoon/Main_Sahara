@@ -6,7 +6,9 @@ using GoogleSpreadSheet;
 using Utill.Measurement;
 using Quest;
 using Utill.Coroutine;
-using UI.ConstructorManager; 
+using UI.ConstructorManager;
+using UI;
+using UI.Base; 
 
 namespace UI.Dialogue
 {
@@ -20,6 +22,7 @@ namespace UI.Dialogue
         private static bool isSelecting; // 선택화면 
         private static string nameCode, dialogueCode;
         private static int index;
+        private static bool isDialogue; // 대화중
 
         private void OnEnable()
         {
@@ -45,6 +48,7 @@ namespace UI.Dialogue
         /// <param name="_dialogue"></param>    
         public static void SetTexts(string _name, string _dialogue)
         {
+            if (isDialogue == true) return; 
             DialoguePresenter.ActiveViewS(true); // 활성화 하고 
 
             Logging.Log("이름 코드 : " + _name);
@@ -78,10 +82,11 @@ namespace UI.Dialogue
                         index = 0;
                         ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestActive(_dialogueText);
+                        //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
                         return;
                     case "!TCLEAR\r":
                         // 패널 띄우기
-                        UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
+                        //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
                         index = 0;
                         ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestClear(_dialogueText);
@@ -148,7 +153,7 @@ namespace UI.Dialogue
 
             while (true)
             {
-                if(Input.GetKeyDown(KeyCode.Space))
+                if(Input.GetKeyDown(KeyCode.F))
                 {
                     index++;
                     SetCodeToText();
@@ -200,7 +205,9 @@ namespace UI.Dialogue
 
         private static void ActiveViewS(bool _isActive)
         {
+            isDialogue = _isActive;
             DialogueView.ActiveViewS(_isActive);
+            UIManager.Instance.ActiveCursor(_isActive); 
         }
 
         public bool TestBool; 

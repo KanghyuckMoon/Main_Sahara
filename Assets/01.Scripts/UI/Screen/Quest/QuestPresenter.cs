@@ -8,7 +8,8 @@ using Utill.Pattern;
 using UI.Production;
 using GoogleSpreadSheet;
 using Utill.SeralizableDictionary;
-using System; 
+using System;
+using UI.Base; 
 
 namespace UI.Quest
 {

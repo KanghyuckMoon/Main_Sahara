@@ -70,6 +70,18 @@ namespace UI
             Instantiate(playerHudUI, player.transform);
         }
 
+        public void ActiveCursor(bool _isActive)
+        {
+            if (_isActive == true)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                return;
+            }
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+        }
     }
 
 }

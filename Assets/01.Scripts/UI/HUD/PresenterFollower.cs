@@ -72,14 +72,14 @@ namespace UI
             Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(element.panel, worldPosition + new Vector3(0, bounds.extents.y, 0), worldSize, Cam);
 
             float l = Mathf.Clamp(maxL - (Player.transform.position - targetTrm.position).magnitude, 0, maxL) / maxL; // 0~ 1
-            Debug.Log("Length" + l);
+            //Debug.Log("Length" + l);
             
             // UI가 오브젝트 중앙에 오도록 width /2 를 더해준다 
             float width = element.contentRect.width;
             // UI 높이, 거리에 맞게 더해준다 
             float height = element.contentRect.height + (bounds.extents.y *2 * 100) * l;
             //height = element.contentRect.height; 
-            Debug.Log("Renderer Exteneds" + bounds.extents);
+            //Debug.Log("Renderer Exteneds" + bounds.extents);
             // Don't set scale to 0 or a negative number.
             
             //Vector2 layoutSize = element.layout.size;

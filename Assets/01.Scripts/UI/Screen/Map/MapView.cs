@@ -43,7 +43,7 @@ namespace UI
             map,
             center_marker,
             minimap_mask,
-            markers
+            markers,
 
         }
 

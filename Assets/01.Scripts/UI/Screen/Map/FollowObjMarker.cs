@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Utill.Addressable; 
 
 namespace UI
 {
@@ -29,9 +30,12 @@ namespace UI
         private MapPresenter mapPresenter;
         private MapMarkerView markerView;
         private VisualElement markerUI;
+        private VisualElement sightUI; 
 
         [SerializeField, Header("동적 이동 회전 여부")]
         private bool isUpdatePosAndRot = true;
+        [SerializeField,Header("플레이어 앞 방향에 부채꼴모양 이미지 ")]
+        private bool isPlayerMarker;
 
         // 프로퍼티 
         public VisualElement MarkerUI => markerUI;
@@ -55,6 +59,7 @@ namespace UI
         {
             this.mapPresenter = GameObject.FindGameObjectWithTag("UIParent").GetComponentInChildren<ScreenUIController>().MapPresenter;
             CreateMarker();
+            
 
         }
 
@@ -62,6 +67,9 @@ namespace UI
         {
             if (isUpdatePosAndRot == false) return;
             SetMarkerPosAndRot();
+
+            if (isPlayerMarker == true)
+                UpdateSightUI(); 
         }
 
         [ContextMenu("마커 생성")]
@@ -70,6 +78,15 @@ namespace UI
         /// </summary>
         private void CreateMarker()
         {
+            if (isPlayerMarker == true)
+            {
+                // 생성 
+                sightUI = AddressablesManager.Instance.GetResource<VisualTreeAsset>("Sight").Instantiate();
+                MapView.MarkerParent.Add(sightUI);
+                sightUI.style.top = -75f; 
+                //markerUI.Add(sightUI); 
+            }
+
             TemplateContainer _markerContainter = markerUxml.Instantiate();
             //markerUI = _markerContainter.contentContainer.children(); // 생성 
 
@@ -104,10 +121,18 @@ namespace UI
             Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
             markerView.SetPosAndRot(_uiPos, 0);
         }
+        private void UpdateSightUI()
+        {
+            sightUI.transform.position = markerUI.transform.position; 
+        }
+
         public void SetMarkerPosAndRot(float _rot)
         {
             Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
-            markerView.SetPosAndRot(_uiPos, transform.eulerAngles.y - CamTrm.eulerAngles.y + _rot);
+            markerView.SetPosAndRot(_uiPos,/* CamTrm.eulerAngles.y -*/ transform.eulerAngles.y + _rot);
+            sightUI.style.rotate = new Rotate(CamTrm.eulerAngles.y);
+            //markerView.SetPosAndRot(_uiPos, transform.eulerAngles.y - CamTrm.eulerAngles.y + _rot);
+            //sightUI.style.rotate = new Rotate(_rot);
         }
     }
 }

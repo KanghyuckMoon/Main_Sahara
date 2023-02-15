@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System;
 using Inventory;
-using UI.EventManage; 
+using UI.EventManage;
+using UI.Base; 
 
 namespace UI.Inventory
 {

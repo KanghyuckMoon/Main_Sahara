@@ -10,51 +10,62 @@ namespace Module
     public class CameraModule : AbBaseModule
     {
         public CinemachineVirtualCamera follawVCam;
+        public CinemachineVirtualCamera groupVCam;
 
+        public Camera MainCamera
+		{
+            get
+            {
+                camera ??= Camera.main;
+                return camera;
+			}
+		}
+        private Camera camera;
+        
         //private PlayerFollowCamera camInstance;
-        //public CinemachineVirtualCamera followVCam;
+				 //public CinemachineVirtualCamera followVCam;
 
-        //[Header("Camera Rotates around this")]
-        //public Transform invisibleCameraOrigin;
-        //[Header("Our 3rd person Vcam")]
-        //public CinemachineVirtualCamera vcam;                   // the main vcam that we're using
+		//[Header("Camera Rotates around this")]
+		//public Transform invisibleCameraOrigin;
+		//[Header("Our 3rd person Vcam")]
+		//public CinemachineVirtualCamera vcam;                   // the main vcam that we're using
 
-        //[Header("Vertical Camera Extents")]
-        //public float verticalRotateMin = -80f;
-        //public float verticalRotateMax = 80f;
+		//[Header("Vertical Camera Extents")]
+		//public float verticalRotateMin = -80f;
+		//public float verticalRotateMax = 80f;
 
-        //[Header("Camera Movement Multiplier")]
-        //public float cameraVerticalRotationMultiplier = 2f;
-        //public float cameraHorizontalRotationMultiplier = 2f;
+		//[Header("Camera Movement Multiplier")]
+		//public float cameraVerticalRotationMultiplier = 2f;
+		//public float cameraHorizontalRotationMultiplier = 2f;
 
-        //[Header("Camera Input Values")]
-        //public float cameraInputHorizontal;
-        //public float cameraInputVertical;
+		//[Header("Camera Input Values")]
+		//public float cameraInputHorizontal;
+		//public float cameraInputVertical;
 
-        //[Header("Invert Camera Controls")]
-        //public bool invertHorizontal = false;
-        //public bool invertVertical = false;
+		//[Header("Invert Camera Controls")]
+		//public bool invertHorizontal = false;
+		//public bool invertVertical = false;
 
-        //[Header("Toggles which side the camera should start on. 1 = Right, 0 = Left")]
-        //public float cameraSide = 1f;
+		//[Header("Toggles which side the camera should start on. 1 = Right, 0 = Left")]
+		//public float cameraSide = 1f;
 
-        //[Header("Allow toggling left to right shoulder")]
-        //public bool allowCameraToggle = true;
+		//[Header("Allow toggling left to right shoulder")]
+		//public bool allowCameraToggle = true;
 
-        //[Header("How fast we should transition from left to right")]
-        //public float cameraSideToggleSpeed = 1f;      // so we can manipulate the 'camera side' property dynamically
+		//[Header("How fast we should transition from left to right")]
+		//public float cameraSideToggleSpeed = 1f;      // so we can manipulate the 'camera side' property dynamically
 
-        //// current camera rotation values
-        //private float cameraX = 0f;
-        //private float cameraY = 0f;
+		//// current camera rotation values
+		//private float cameraX = 0f;
+		//private float cameraY = 0f;
 
-        //// if we are switching sides
-        //private bool doCameraSideToggle = false;
-        //private float sideToggleTime = 0f;
-        //// where we are in the transition from side to side
-        //private float desiredCameraSide = 1f;
+		//// if we are switching sides
+		//private bool doCameraSideToggle = false;
+		//private float sideToggleTime = 0f;
+		//// where we are in the transition from side to side
+		//private float desiredCameraSide = 1f;
 
-        public CameraModule(AbMainModule _mainModule) : base(_mainModule)
+		public CameraModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
         }
@@ -63,13 +74,21 @@ namespace Module
         {
             //camInstance = PlayerFollowCamera.Instance;
             follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
-            //mainCam = Camera.main;
+            groupVCam = GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
+            groupVCam.gameObject.SetActive(false);
             //mainModule.objRotation = mainCam.transform.rotation;
         }
 
         public override void LateUpdate()
         {
-            mainModule.ObjRotation = follawVCam.transform.rotation;
+            if (follawVCam.gameObject.activeSelf)
+			{
+                mainModule.ObjRotation = follawVCam.transform.rotation;
+			}
+            else
+            {
+                mainModule.ObjRotation = groupVCam.transform.rotation;
+            }
 
             //float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
             //float size = nomalCom.m_Lens.OrthographicSize;

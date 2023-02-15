@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using UnityEngine;
+using DG.Tweening;
 
 namespace ForTheTest
 {
@@ -39,7 +40,9 @@ namespace ForTheTest
         private Cinemachine3rdPersonFollow followCam;           // so we can manipulate the 'camera side' property dynamically
 
         // current camera rotation values
+        [SerializeField]
         private float cameraX = 0f;
+        [SerializeField]
         private float cameraY = 0f;
 
         // if we are switching sides
@@ -65,6 +68,21 @@ namespace ForTheTest
             }
 
 
+        }
+
+        public void ChangeCamera(float x, float y)
+		{
+            DOTween.To(() => cameraX, a => 
+            { 
+                cameraX = a;
+                invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
+            }, x, 1f);
+            DOTween.To(() => cameraY, a => 
+            {
+                cameraY = a;
+                invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
+            }
+            , y, 1f);
         }
 
         private void Update()
