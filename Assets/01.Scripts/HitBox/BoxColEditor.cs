@@ -26,6 +26,20 @@ namespace HitBox
 			//Col.size = hitBoxData.size;
 		}
 
+		[ContextMenu("GetHitBox")]
+		public void GetHitBox()
+		{
+			var _hitboxList = hitBoxDataSO.GetHitboxList(hitBoxData.hitBoxName);
+			HitBoxData _hitBoxData = _hitboxList.hitBoxDataList.Find(x => x.ClassificationName == hitBoxData.ClassificationName);
+			hitBoxData = _hitBoxData;
+		}
+
+		[ContextMenu("ResetHitBox")]
+		public void ResetHitBox()
+		{
+			hitBoxData = new HitBoxData();
+		}
+
 		[ContextMenu("Refresh")]
 		public void Refresh()
 		{

@@ -33,5 +33,40 @@ namespace HitBox
 				}
 			}
 		}
+
+#if UNITY_EDITOR
+		[ContextMenu("AddEvent")]
+		public void AddEvent()
+		{
+			BoxColEditor _boxColEditor = GetComponent<BoxColEditor>();
+			_boxColEditor.Refresh();
+			_boxColEditor.Upload();
+			//Animator _animator = GetComponent<Animator>();
+			AnimationClip _animationClip = AnimationHitBoxEditor.GetAnimationWindowAnimationClip();
+			AnimationEvent e = new AnimationEvent();
+			e.functionName = "OnHitBox";
+			e.stringParameter = _boxColEditor.hitBoxData.hitBoxName;
+			e.time = AnimationHitBoxEditor.GetAnimationWindowTime();
+			AnimationEvent[] animationEvents = new AnimationEvent[_animationClip.events.Length + 1];
+			for(int i = 0; i < _animationClip.events.Length; ++i)
+			{
+				animationEvents[i] = _animationClip.events[i];
+			}
+			animationEvents[_animationClip.events.Length] = e;
+			UnityEditor.AnimationUtility.SetAnimationEvents(_animationClip, animationEvents);
+		}
+
+		[ContextMenu("CheckFrame")]
+		public void CheckFrame()
+		{
+			Debug.Log(AnimationHitBoxEditor.GetAnimationWindowCurrentFrame());
+		}
+
+		[ContextMenu("CheckTime")]
+		public void CheckTime()
+		{
+			Debug.Log(AnimationHitBoxEditor.GetAnimationWindowTime());
+		}
+#endif
 	}
 }
