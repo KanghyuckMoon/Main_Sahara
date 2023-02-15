@@ -43,6 +43,10 @@ namespace Inventory
 		public string prefebkey; //프리펩 키 (인게임에서 사용)
 		public string animationLayer; // 애니메이션 레이어 (인게임에서 사용)
 
+		//아이템 슬롯에 표시용도
+		[Header("아이템 슬롯에 표시용도")]
+		public bool isSlot = true;
+
 		public static ItemData CopyItemData(ItemData _itemData)
 		{
 			ItemData _newItemData = new ItemData();
