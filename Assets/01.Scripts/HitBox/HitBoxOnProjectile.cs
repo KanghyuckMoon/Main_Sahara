@@ -3,20 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pool;
 using Utill.Pattern;
+using Utill.Coroutine;
 
 namespace HitBox
 {
-	public class HitBoxOnAnimation : MonoBehaviour
+	public class HitBoxOnProjectile : MonoBehaviour
 	{
 		[SerializeField]
 		private HitBoxDataSO hitBoxDataSO;
 
-		//private string colliderKey;
+		[SerializeField]
+		private string hitboxString;
 
-		public void ChangeSO(HitBoxDataSO _hitBoxDataSO)//, string _colliderKey)
+
+		private void OnEnable()
 		{
-			hitBoxDataSO = _hitBoxDataSO;
-			//colliderKey = _colliderKey;
+			OnHitBox(hitboxString);
+		}
+		private void OnDisable()
+		{
+			StaticCoroutineManager.Instance.InstanceDoCoroutine(DisableHitBoxs());
+		}
+
+		private IEnumerator DisableHitBoxs()
+		{
+			yield return new WaitForSeconds(0.1f);
+			InGameHitBox[] _inGameHitBoxArray = GetComponentsInChildren<InGameHitBox>(); 
+			foreach(var _col in _inGameHitBoxArray)
+			{
+				_col.transform.SetParent(null);
+				_col.gameObject.SetActive(false);
+				Pool.ObjectPoolManager.Instance.RegisterObject("HitBox", _col.gameObject);
+			}
 		}
 
 		public void OnHitBox(string _str)
@@ -29,7 +47,6 @@ namespace HitBox
 				{
 					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
 					hitbox.GetComponent<InGameHitBox>().SetHitBox(hitBoxData, gameObject, tagname);
-
 				}
 			}
 		}

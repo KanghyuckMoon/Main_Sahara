@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Effect;
 
 namespace HitBox
 {
@@ -28,6 +28,9 @@ namespace HitBox
 			transform.position = _owner.transform.position;
 			transform.rotation = _owner.transform.rotation;
 			col.center = _hitBoxData.offset;
+
+			Vector3 _pos = transform.position + (transform.forward * hitBoxData.swingEffectOffset.z) + (transform.up * hitBoxData.swingEffectOffset.y) + (transform.right * hitBoxData.swingEffectOffset.x);
+
 			if (hitBoxData.childization)
 			{
 				gameObject.transform.SetParent(owner.transform);
@@ -37,7 +40,16 @@ namespace HitBox
 				gameObject.transform.SetParent(null);
 			}
 			gameObject.SetActive(true);
-			StartCoroutine(DestroyHitBox());
+
+			if (hitBoxData.swingEffect != null)
+			{
+				EffectManager.Instance.SetEffectDefault(hitBoxData.swingEffect, _pos, _hitBoxData.swingEffectRotation + transform.eulerAngles, _hitBoxData.size);
+			}
+
+			if(hitBoxData.deleteDelay != -1)
+			{
+				StartCoroutine(DestroyHitBox());
+			}
 		}
 
 		private IEnumerator DestroyHitBox()

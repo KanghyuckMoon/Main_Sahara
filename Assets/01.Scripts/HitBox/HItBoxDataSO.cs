@@ -68,6 +68,12 @@ namespace HitBox
 		public Vector3 offset;
 		public Vector3 size;
 
+		public Vector3 swingEffectOffset = Vector3.zero;
+		public Vector3 swingEffectRotation = Vector3.zero;
+		public Vector3 swingEffectSize = Vector3.one;
+		public string swingEffect;
+		public string hitEffect;
+
 		public static HitBoxData Copy(HitBoxData _hitBoxData)
 		{
 			HitBoxData _newHitBox = new HitBoxData();

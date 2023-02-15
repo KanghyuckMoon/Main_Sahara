@@ -59,7 +59,27 @@ namespace Effect
 			effect.transform.rotation = _quaternion;
 			effect.transform.SetParent(null);
 			effect.gameObject.SetActive(true);
-		}
-	}
+        }
+
+        /// <summary>
+        /// ÀÌÆåÆ® ¼³Ä¡
+        /// </summary>
+        /// <param name="pos"></param>
+        public void SetEffectDefault(string _adress, Vector3 _pos, Vector3 _eulerAngles, Vector3 _size)
+        {
+            
+            if (!_isInit)
+            {
+                Init();
+            }
+
+            GameObject effect = ObjectPoolManager.Instance.GetObject(_adress);
+            effect.transform.position = _pos;
+            effect.transform.eulerAngles = _eulerAngles;
+            effect.transform.localScale = _size;
+            effect.transform.SetParent(null);
+            effect.gameObject.SetActive(true);
+        }
+    }
 
 }
