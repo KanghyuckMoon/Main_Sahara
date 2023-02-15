@@ -332,6 +332,54 @@ namespace Inventory
 			return inventorySO.itemDataList[_index];
 		}
 
+		//장비 장착
+		public void EquipEquipment(int index, ItemData _itemData)
+		{
+			switch(index)
+			{
+				case 0:
+					if(_itemData.equipmentType != EquipmentType.Head)
+					{
+						return;
+					}
+					break;
+				case 1:
+					if (_itemData.equipmentType != EquipmentType.Armor)
+					{
+						return;
+					}
+					break;
+				case 2:
+					if (_itemData.equipmentType != EquipmentType.Pants)
+					{
+						return;
+					}
+					break;
+				case 3:
+					if (_itemData.equipmentType != EquipmentType.Shoes)
+					{
+						return;
+					}
+					break;
+			}
+
+			inventorySO.equipments[index] = _itemData;
+
+			//장비스탯 처리
+
+			return;
+		}
+
+		//장신구 장착
+		public void EquipAccessories(int _index, ItemData _itemData)
+		{
+			inventorySO.equipments[_index] = _itemData;
+
+			//장신구스탯 처리
+
+			return;
+		}
+
 		private void Init()
 		{
 			allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
