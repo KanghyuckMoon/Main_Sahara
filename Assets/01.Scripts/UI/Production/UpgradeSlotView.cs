@@ -19,6 +19,12 @@ namespace UI.Production
         {
             text
         }
+
+        private bool isStackable; 
+
+        // 프로퍼티 
+        public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
+
         public override void Cashing()
         {
             //base.Cashing();
