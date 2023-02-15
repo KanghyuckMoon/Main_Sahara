@@ -10,16 +10,27 @@ namespace Inventory
 {
 	public class ItemUpgradeManager : MonoSingleton<ItemUpgradeManager>
 	{
-		AllItemUpgradeDataSO allItemUpgradeDataSO;
+		private AllItemUpgradeDataSO allItemUpgradeDataSO;
+		private bool isInit = false;
 
 		public void Start()
 		{
-			allItemUpgradeDataSO = AddressablesManager.Instance.GetResource<AllItemUpgradeDataSO>("AllItemUpgradeDataSO");
-			allItemUpgradeDataSO.Awake();
+			if(!isInit)
+			{
+				allItemUpgradeDataSO = AddressablesManager.Instance.GetResource<AllItemUpgradeDataSO>("AllItemUpgradeDataSO");
+				allItemUpgradeDataSO.Awake();
+				isInit = true;
+			}
 		}
 
 		public ItemUpgradeDataSO GetItemUpgradeDataSO(string _key)
 		{
+			if (!isInit)
+			{
+				allItemUpgradeDataSO = AddressablesManager.Instance.GetResource<AllItemUpgradeDataSO>("AllItemUpgradeDataSO");
+				allItemUpgradeDataSO.Awake();
+				isInit = true;
+			}
 			ItemUpgradeDataSO _itemUpgradeDataSO = allItemUpgradeDataSO.GetItemUpgradeDataSO(_key);
 			return _itemUpgradeDataSO;
 		}
