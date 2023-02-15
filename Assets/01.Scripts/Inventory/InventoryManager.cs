@@ -373,7 +373,24 @@ namespace Inventory
 		//Àå½Å±¸ ÀåÂø
 		public void EquipAccessories(int _index, ItemData _itemData)
 		{
-			inventorySO.equipments[_index] = _itemData;
+			if (inventorySO.accessories[0] is not null && inventorySO.accessories[0].key == _itemData.key)
+			{
+				return;
+			}
+			if (inventorySO.accessories[1] is not null && inventorySO.accessories[1].key == _itemData.key)
+			{
+				return;
+			}
+			if (inventorySO.accessories[2] is not null && inventorySO.accessories[2].key == _itemData.key)
+			{
+				return;
+			}
+			if (inventorySO.accessories[3] is not null && inventorySO.accessories[3].key == _itemData.key)
+			{
+				return;
+			}
+
+			inventorySO.accessories[_index] = _itemData;
 
 			//Àå½Å±¸½ºÅÈ Ã³¸®
 
