@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 379870749}
   - component: {fileID: 379870751}
   - component: {fileID: 379870750}
+  - component: {fileID: 379870752}
   m_Layer: 0
   m_Name: UpgradeScreen
   m_TagString: Untagged
@@ -168,6 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57361c095f2f74a469baab02c3e76102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeView:
+    uiDocument: {fileID: 0}
+    parentElementName: upgrade_screen
 --- !u!114 &379870751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +186,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 0cf4e00da8b45b44ba368af53e57d183, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 606ab8b2117b74549972ced05589fca9, type: 3}
   m_SortingOrder: 0
+--- !u!114 &379870752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379870748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca83f6eee7347184aa9c9ca183cb836c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &746465245
 GameObject:
   m_ObjectHideFlags: 0
