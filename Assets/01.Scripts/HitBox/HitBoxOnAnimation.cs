@@ -103,10 +103,10 @@ namespace HitBox
 			{ 
 				for(int i = 0; i < boxColEditorList.Count; ++i)
 				{
-					boxColEditorList.Clear();
-					Destroy(boxColEditorList[i].gameObject);
+					DestroyImmediate(boxColEditorList[i].gameObject);
 				}
 			}
+			boxColEditorList.Clear();
 		}
 
 		[ContextMenu("CheckFrame")]
