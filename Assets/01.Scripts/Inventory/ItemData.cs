@@ -15,6 +15,14 @@ namespace Inventory
 		Valuable,
 		None,
 	}
+	public enum EquipmentType
+	{
+		None,
+		Head,
+		Armor,
+		Pants,
+		Shoes,
+	}
 
 	[System.Serializable]
 	public class ItemData
@@ -42,6 +50,14 @@ namespace Inventory
 		public ItemType itemType; // 아이템 타입
 		public string prefebkey; //프리펩 키 (인게임에서 사용)
 		public string animationLayer; // 애니메이션 레이어 (인게임에서 사용)
+
+		//아이템 장비용
+		[Header("장비 슬롯 용도")]
+		public EquipmentType equipmentType;
+
+		//아이템 슬롯에 표시용도
+		[Header("아이템 슬롯에 표시용도")]
+		public bool isSlot = true;
 
 		public static ItemData CopyItemData(ItemData _itemData)
 		{

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace HitBox
 {
+	[RequireComponent(typeof(BoxCollider))]
 	public class BoxColEditor : MonoBehaviour
 	{
 		public BoxCollider Col
@@ -20,10 +21,24 @@ namespace HitBox
 		public HitBoxDataSO hitBoxDataSO;
 		public HitBoxData hitBoxData;
 
-		public void OnValidate()
+		public void SetHitBox(HitBoxData _hitBoxData)
 		{
-			//Col.center = hitBoxData.offset;
-			//Col.size = hitBoxData.size;
+			hitBoxData = _hitBoxData;
+			ReverseRefresh();
+		}
+
+		[ContextMenu("GetHitBox")]
+		public void GetHitBox()
+		{
+			var _hitboxList = hitBoxDataSO.GetHitboxList(hitBoxData.hitBoxName);
+			HitBoxData _hitBoxData = _hitboxList.hitBoxDataList.Find(x => x.ClassificationName == hitBoxData.ClassificationName);
+			hitBoxData = _hitBoxData;
+		}
+
+		[ContextMenu("ResetHitBox")]
+		public void ResetHitBox()
+		{
+			hitBoxData = new HitBoxData();
 		}
 
 		[ContextMenu("Refresh")]
@@ -31,6 +46,13 @@ namespace HitBox
 		{
 			hitBoxData.offset = Col.center;
 			hitBoxData.size = Col.size;
+		}
+
+		[ContextMenu("ReverseRefresh")]
+		public void ReverseRefresh()
+		{
+			Col.center = hitBoxData.offset;
+			Col.size = hitBoxData.size;
 		}
 
 		[ContextMenu("Upload")]
@@ -42,6 +64,16 @@ namespace HitBox
 				return;
 			}
 			hitBoxDataSO.UploadHitBox(hitBoxData);
+		}
+		[ContextMenu("UploadNoneCopy")]
+		public void UploadNoneCopy()
+		{
+			if (hitBoxDataSO is null)
+			{
+				Debug.LogError("SO ¾øÀ½");
+				return;
+			}
+			hitBoxDataSO.UploadHitBoxNoneCopy(hitBoxData);
 		}
 	}
 }

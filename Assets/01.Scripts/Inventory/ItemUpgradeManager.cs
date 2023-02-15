@@ -4,17 +4,35 @@ using UnityEngine;
 using Utill.Pattern;
 using Utill.Addressable;
 using Utill.Measurement;
+using System.Linq;
 
 namespace Inventory
 {
 	public class ItemUpgradeManager : MonoSingleton<ItemUpgradeManager>
 	{
-		AllItemUpgradeDataSO allItemUpgradeDataSO;
+		private AllItemUpgradeDataSO allItemUpgradeDataSO;
+		private bool isInit = false;
 
 		public void Start()
 		{
-			allItemUpgradeDataSO = AddressablesManager.Instance.GetResource<AllItemUpgradeDataSO>("AllItemUpgradeDataSO");
-			allItemUpgradeDataSO.Awake();
+			if(!isInit)
+			{
+				allItemUpgradeDataSO = AddressablesManager.Instance.GetResource<AllItemUpgradeDataSO>("AllItemUpgradeDataSO");
+				allItemUpgradeDataSO.Awake();
+				isInit = true;
+			}
+		}
+
+		public ItemUpgradeDataSO GetItemUpgradeDataSO(string _key)
+		{
+			if (!isInit)
+			{
+				allItemUpgradeDataSO = AddressablesManager.Instance.GetResource<AllItemUpgradeDataSO>("AllItemUpgradeDataSO");
+				allItemUpgradeDataSO.Awake();
+				isInit = true;
+			}
+			ItemUpgradeDataSO _itemUpgradeDataSO = allItemUpgradeDataSO.GetItemUpgradeDataSO(_key);
+			return _itemUpgradeDataSO;
 		}
 
 		public void Upgrade(string _key)
@@ -38,7 +56,14 @@ namespace Inventory
 			}
 			InventoryManager.Instance.AddItem(_itemUpgradeDataSO.key, _itemUpgradeDataSO.count);
 			Logging.Log("아이템 제작");
+		}
 
+		public List<ItemData> UpgradeItemSlotList(string _key)
+		{
+			ItemUpgradeDataSO _itemUpgradeDataSO = allItemUpgradeDataSO.GetItemUpgradeDataSO(_key);
+			List<ItemData> _itemDataList = new List<ItemData>();
+			_itemDataList = _itemUpgradeDataSO.needItemDataList.FindAll(x => x.isSlot is true);
+			return _itemDataList;
 		}
 
 
