@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using ForTheTest;
 
 namespace LockOn
 {
     public class LockOnCamera : MonoBehaviour
     {
+        [SerializeField]
+        private Transform player;
+        [SerializeField]
+        private ThirdPersonCameraController thirdPersonCameraController;
         [SerializeField]
         private CinemachineVirtualCamera playerCam;
         [SerializeField]
@@ -62,6 +67,7 @@ namespace LockOn
 			{
                 //캐릭터의 전방을 본다
                 Debug.Log("t:전방1");
+                thirdPersonCameraController.ChangeCamera(10, -player.eulerAngles.y);
                 return;
             }
             else
@@ -83,6 +89,7 @@ namespace LockOn
                 if(_target is null || _minDistance > 1000f)
 				{
                     //캐릭터의 전방을 본다
+                    thirdPersonCameraController.ChangeCamera(10, -player.eulerAngles.y);
                     Debug.Log("t:전방2");
                     return;
                 }
