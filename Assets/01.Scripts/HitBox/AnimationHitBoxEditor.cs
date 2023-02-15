@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.Reflection;
 using UnityEditor;
@@ -64,3 +65,4 @@ public static class AnimationHitBoxEditor
         return null;
     }
 }
+#endif

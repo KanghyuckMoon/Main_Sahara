@@ -80,8 +80,16 @@ namespace HitBox
 			_newHitBox.hitBoxName = _hitBoxData.hitBoxName;
 			_newHitBox.ClassificationName = _hitBoxData.ClassificationName;
 			_newHitBox.hitBoxIndex = _hitBoxData.hitBoxIndex;
+			_newHitBox.deleteDelay = _hitBoxData.deleteDelay;
+			_newHitBox.childization = _hitBoxData.childization;
 			_newHitBox.offset = _hitBoxData.offset;
 			_newHitBox.size = _hitBoxData.size;
+
+			_newHitBox.swingEffectOffset = _hitBoxData.swingEffectOffset;
+			_newHitBox.swingEffectRotation = _hitBoxData.swingEffectRotation;
+			_newHitBox.swingEffectSize = _hitBoxData.swingEffectSize;
+			_newHitBox.swingEffect = _hitBoxData.swingEffect;
+			_newHitBox.hitEffect = _hitBoxData.hitEffect;
 
 			return _newHitBox;
 		}
