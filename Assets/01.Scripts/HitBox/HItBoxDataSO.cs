@@ -49,6 +49,33 @@ namespace HitBox
 				hitBoxDataDic.Add(hitBoxData.hitBoxName, hitBoxDataList);
 			}
 		}
+		public void UploadHitBoxNoneCopy(HitBoxData hitBoxData)
+		{
+			if (hitBoxData.hitBoxName is null)
+			{
+				Debug.LogError("히트박스 데이터의 이름이 없음");
+				return;
+			}
+
+			if (hitBoxDataDic.TryGetValue(hitBoxData.hitBoxName, out var list))
+			{
+				HitBoxData _hitBoxClassificationData = list.hitBoxDataList.Find(x => x.ClassificationName == hitBoxData.ClassificationName);
+				if (_hitBoxClassificationData is not null)
+				{
+					_hitBoxClassificationData = hitBoxData;
+				}
+				else
+				{
+					list.hitBoxDataList.Add(hitBoxData);
+				}
+			}
+			else
+			{
+				HitBoxDataList hitBoxDataList = new HitBoxDataList();
+				hitBoxDataList.hitBoxDataList.Add(hitBoxData);
+				hitBoxDataDic.Add(hitBoxData.hitBoxName, hitBoxDataList);
+			}
+		}
 	}
 
 	[System.Serializable]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pool;
 using Utill.Pattern;
+using System.Linq;
 
 namespace HitBox
 {
@@ -35,12 +36,28 @@ namespace HitBox
 		}
 
 #if UNITY_EDITOR
+
+		private List<BoxColEditor> boxColEditorList = new List<BoxColEditor>();
+
+		public string hitBoxName = "";
+
 		[ContextMenu("AddEvent")]
 		public void AddEvent()
 		{
-			BoxColEditor _boxColEditor = GetComponent<BoxColEditor>();
-			_boxColEditor.Refresh();
-			_boxColEditor.Upload();
+			Delete();
+			if(hitBoxName is null)
+			{
+				return;
+			}
+			GameObject obj = new GameObject();
+			BoxColEditor _boxColEditor = obj.AddComponent<BoxColEditor>();
+			HitBoxData _hitBoxData = new HitBoxData();
+			_hitBoxData.hitBoxName = hitBoxName;
+			_boxColEditor.hitBoxDataSO = hitBoxDataSO;
+			_boxColEditor.SetHitBox(_hitBoxData);
+			_boxColEditor.UploadNoneCopy();
+			boxColEditorList.Add(_boxColEditor);
+
 			//Animator _animator = GetComponent<Animator>();
 			AnimationClip _animationClip = AnimationHitBoxEditor.GetAnimationWindowAnimationClip();
 			AnimationEvent e = new AnimationEvent();
@@ -54,6 +71,42 @@ namespace HitBox
 			}
 			animationEvents[_animationClip.events.Length] = e;
 			UnityEditor.AnimationUtility.SetAnimationEvents(_animationClip, animationEvents);
+		}
+
+		[ContextMenu("GetEvent")]
+		public void GetEvent()
+		{
+			Delete();
+			AnimationClip _animationClip = AnimationHitBoxEditor.GetAnimationWindowAnimationClip();
+			float _time = AnimationHitBoxEditor.GetAnimationWindowTime();
+			AnimationEvent _animationEvent = _animationClip.events.FirstOrDefault(x => x.time == _time);
+			if(_animationEvent.functionName is "OnHitBox")
+			{
+				if (_animationEvent.stringParameter is not null)
+				{
+					HitBoxDataList hitBoxDataList = hitBoxDataSO.hitBoxDataDic[_animationEvent.stringParameter];
+					for (int i = 0; i < hitBoxDataList.hitBoxDataList.Count; ++i)
+					{
+						GameObject obj = new GameObject();
+						BoxColEditor boxColEditor = obj.AddComponent<BoxColEditor>();
+						boxColEditor.SetHitBox(hitBoxDataList.hitBoxDataList[i]);
+						boxColEditorList.Add(boxColEditor);
+					}
+				}
+			}
+		}
+
+		[ContextMenu("Delete")]
+		public void Delete()
+		{
+			if(boxColEditorList.Count > 0)
+			{ 
+				for(int i = 0; i < boxColEditorList.Count; ++i)
+				{
+					boxColEditorList.Clear();
+					Destroy(boxColEditorList[i].gameObject);
+				}
+			}
 		}
 
 		[ContextMenu("CheckFrame")]

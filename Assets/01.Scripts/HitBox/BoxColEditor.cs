@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace HitBox
 {
+	[RequireComponent(typeof(BoxCollider))]
 	public class BoxColEditor : MonoBehaviour
 	{
 		public BoxCollider Col
@@ -20,10 +21,10 @@ namespace HitBox
 		public HitBoxDataSO hitBoxDataSO;
 		public HitBoxData hitBoxData;
 
-		public void OnValidate()
+		public void SetHitBox(HitBoxData _hitBoxData)
 		{
-			//Col.center = hitBoxData.offset;
-			//Col.size = hitBoxData.size;
+			hitBoxData = _hitBoxData;
+			ReverseRefresh();
 		}
 
 		[ContextMenu("GetHitBox")]
@@ -47,6 +48,13 @@ namespace HitBox
 			hitBoxData.size = Col.size;
 		}
 
+		[ContextMenu("ReverseRefresh")]
+		public void ReverseRefresh()
+		{
+			Col.center = hitBoxData.offset;
+			Col.size = hitBoxData.size;
+		}
+
 		[ContextMenu("Upload")]
 		public void Upload()
 		{
@@ -56,6 +64,16 @@ namespace HitBox
 				return;
 			}
 			hitBoxDataSO.UploadHitBox(hitBoxData);
+		}
+		[ContextMenu("UploadNoneCopy")]
+		public void UploadNoneCopy()
+		{
+			if (hitBoxDataSO is null)
+			{
+				Debug.LogError("SO ¾øÀ½");
+				return;
+			}
+			hitBoxDataSO.UploadHitBoxNoneCopy(hitBoxData);
 		}
 	}
 }
