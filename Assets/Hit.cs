@@ -8,14 +8,10 @@ using UnityEngine.Animations;
 public class Hit : StateMachineBehaviour
 {
     private AbMainModule mainModule;
-    private SwordSetting swordSetting;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
-        swordSetting ??= animator.GetComponent<SwordSetting>();
-
-        swordSetting.SetAttackCollider(0);
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
         //mainModule.IsHit = false;

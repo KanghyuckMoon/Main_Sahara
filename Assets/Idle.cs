@@ -12,7 +12,6 @@ public class Idle : StateMachineBehaviour
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
 
-        animator.GetComponent<SwordSetting>().SetAttackCollider(0);
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
     }

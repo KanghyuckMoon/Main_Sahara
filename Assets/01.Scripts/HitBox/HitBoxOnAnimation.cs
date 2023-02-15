@@ -11,9 +11,12 @@ namespace HitBox
 		[SerializeField]
 		private HitBoxDataSO hitBoxDataSO;
 
-		public void ChangeSO(HitBoxDataSO _hitBoxDataSO)
+		//private string colliderKey;
+
+		public void ChangeSO(HitBoxDataSO _hitBoxDataSO)//, string _colliderKey)
 		{
 			hitBoxDataSO = _hitBoxDataSO;
+			//colliderKey = _colliderKey;
 		}
 
 		public void OnHitBox(string _str)

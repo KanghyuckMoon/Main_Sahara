@@ -54,16 +54,6 @@ namespace Module
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
         }
 
-        public override void Update()
-        {
-            if(!isHit)
-            {
-                currentHitDelay += Time.deltaTime;
-
-                isHit = currentHitDelay >= mainModule.hitDelay;
-            }
-        }
-
         public void GetHit(int dmg)
         {
             //if (HitDelay())

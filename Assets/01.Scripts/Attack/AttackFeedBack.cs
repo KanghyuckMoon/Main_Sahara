@@ -28,15 +28,15 @@ namespace Attack
             attackFeedBackEvent?.Invoke(closetPoint);
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            string tagName = gameObject.tag == "Player" ? "Enemy" : "Player";
-            if (other.CompareTag(tagName))
-            {
-                //other.GetComponent < MainModule>.get(Hp).GetHit( attackEvent?.ReturnValue(ref dmg));
-                attackFeedBackEvent?.Invoke(other.ClosestPoint(transform.position));
-            }
-        }
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    string tagName = gameObject.tag == "Player" ? "Enemy" : "Player";
+        //    if (other.CompareTag(tagName))
+        //    {
+        //        //other.GetComponent < MainModule>.get(Hp).GetHit( attackEvent?.ReturnValue(ref dmg));
+        //        attackFeedBackEvent?.Invoke(other.ClosestPoint(transform.position));
+        //    }
+        //}
 
         private void OnEnable()
         {

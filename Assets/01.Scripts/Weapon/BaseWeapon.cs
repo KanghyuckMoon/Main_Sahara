@@ -10,6 +10,13 @@ namespace Weapon
 
     public class BaseWeapon : MonoBehaviour
     {
+        public string WeaponColKey
+        {
+            get
+            {
+                return weaponName + weaponColKey;
+            }
+        }
         
         public string weaponName;
         public string tagName;
@@ -21,6 +28,7 @@ namespace Weapon
         private WeaponPositionSO weaponPositionSO;
         private string weaponPosStr = "_Position";
         private string weaponDataStr = "_Data";
+        private string weaponColKey = "_ColKey";
 
         [SerializeField]
         private HitBoxDataSO hitBoxDataSO;

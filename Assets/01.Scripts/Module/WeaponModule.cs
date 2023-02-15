@@ -91,7 +91,7 @@ namespace Module
 
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 baseWeapon.tagName = _tagname;
-                mainModule.gameObject.GetComponent<HitBoxOnAnimation>().ChangeSO(baseWeapon.HitBoxDataSO);
+                mainModule.gameObject.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
 
                 StateModule.SetAttackDamage(baseWeapon.WeaponDataSO);
 

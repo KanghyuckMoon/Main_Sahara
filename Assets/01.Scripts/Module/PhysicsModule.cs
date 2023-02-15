@@ -48,7 +48,7 @@ namespace Module
                 {
                     InGameHitBox inGameHitBox = other.GetComponent<InGameHitBox>();
                     AttackFeedBack attackFeedBack = other.GetComponent<AttackFeedBack>();
-                    StateModule otherStateModule = inGameHitBox.Owner.GetComponentInParent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
+                    StateModule otherStateModule = inGameHitBox.Owner.GetComponent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
                     attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
                     if (otherStateModule != null)
                     {
