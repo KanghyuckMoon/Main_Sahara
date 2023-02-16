@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Module;
 
 namespace Inventory
 {
@@ -50,6 +51,9 @@ namespace Inventory
 		public ItemType itemType; // 아이템 타입
 		public string prefebkey; //프리펩 키 (인게임에서 사용)
 		public string animationLayer; // 애니메이션 레이어 (인게임에서 사용)
+
+		//장신구 분류용
+		public AccessoriesItemType accessoriesItemType;
 
 		//아이템 장비용
 		[Header("장비 슬롯 용도")]

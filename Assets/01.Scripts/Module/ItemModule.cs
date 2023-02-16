@@ -8,6 +8,11 @@ using PassiveItem;
 
 namespace Module
 {
+    public enum AccessoriesItemType
+    {
+        HpUp,
+        NONE
+    }
     public partial class ItemModule : AbBaseModule
     {
         public int MeleeAttackDmg
@@ -32,7 +37,7 @@ namespace Module
             }
         }
 
-        private Dictionary<string, ItemPassive> passiveItem = new Dictionary<string, ItemPassive>();
+        private Dictionary<AccessoriesItemType, ItemPassive> passiveItem = new Dictionary<AccessoriesItemType, ItemPassive>();
 
         private int meleeAttackDmg;
         private int rangeAttackDmg;
@@ -53,7 +58,7 @@ namespace Module
             }
         }
 
-        public void RemovePassiveItem(string _itemKey)
+        public void RemovePassiveItem(AccessoriesItemType _itemKey)
         {
             passiveItem[_itemKey].UndoEffect();
 

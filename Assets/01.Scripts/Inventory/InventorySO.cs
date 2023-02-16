@@ -12,6 +12,7 @@ namespace Inventory
         public ItemData[] quickSlot = new ItemData[5];
         public ItemData[] equipments = new ItemData[4];
         public ItemData[] accessories = new ItemData[4];
+        public ItemData[] skills = new ItemData[2];
 
         public InventorySave inventorySave = new InventorySave();
 

@@ -5,7 +5,8 @@ using UI.Dialogue;
 using UI.EventAlarm;
 using UI.Quest;
 using UI.Inventory;
-using UI.Base; 
+using UI.Base;
+using UI.Upgrade; 
 
 namespace UI
 {
@@ -15,7 +16,8 @@ namespace UI
         Map,
         Dialogue,
         EventAlarm,
-        Quest
+        Quest,
+        Upgrade,
     }
 
     public class ScreenUIController : MonoBehaviour
@@ -24,7 +26,8 @@ namespace UI
         private MapPresenter mapPresenter;
         private DialoguePresenter dialoguePresenter;
         private EventAlarmPresenter eventAlarmPresenter;
-        private QuestPresenter questPresenter; 
+        private QuestPresenter questPresenter;
+        private UpgradePresenter upgradePresenter; 
 
         private Dictionary<ScreenType, IScreen> screenDic = new Dictionary<ScreenType, IScreen>();
 
@@ -47,6 +50,7 @@ namespace UI
             screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
             screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
             screenDic.Add(ScreenType.Quest, questPresenter);
+            screenDic.Add(ScreenType.Upgrade, upgradePresenter); 
         }
 
         private void Start()
@@ -65,7 +69,8 @@ namespace UI
             mapPresenter = GetComponentInChildren<MapPresenter>();
             dialoguePresenter = GetComponentInChildren<DialoguePresenter>();
             eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
-            questPresenter = GetComponentInChildren<QuestPresenter>(); 
+            questPresenter = GetComponentInChildren<QuestPresenter>();
+            upgradePresenter = GetComponentInChildren<UpgradePresenter>(); 
         }
         private void UIInput()
         {
@@ -84,6 +89,12 @@ namespace UI
             {
                 // 퀘스트 활성화
                 ActiveCursor(questPresenter.ActiveView());
+            }
+            // 임시
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                //  활성화
+                ActiveCursor(upgradePresenter.ActiveView());
             }
 
         }
