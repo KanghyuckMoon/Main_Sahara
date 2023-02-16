@@ -229,6 +229,17 @@ namespace Module
                 return gravityScale;
 			}
 		}
+        public Vector3 KnockBackVector
+        {
+            get
+			{
+                return knockBackVector;
+			}
+            set
+			{
+                knockBackVector = value;
+			}
+		}
 
         public bool LockOn
 		{
@@ -327,6 +338,8 @@ namespace Module
         private float gravityScale = -9.8f;
         [SerializeField, Header("¶¥Ã¼Å© »ç°Å¸®")] 
         public float groundOffset;
+        [SerializeField, Header("³Ë¹é")]
+        private Vector3 knockBackVector;
 
         [Space]
         public float hitDelay;

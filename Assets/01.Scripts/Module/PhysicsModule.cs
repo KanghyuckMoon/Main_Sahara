@@ -50,6 +50,7 @@ namespace Module
                     AttackFeedBack attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StateModule otherStateModule = inGameHitBox.Owner.GetComponentInParent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
                     attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
+                    mainModule.KnockBackVector = inGameHitBox.KnockbackDir().eulerAngles * inGameHitBox.KnockbackPower();
                     if (otherStateModule != null)
                     {
                         HitModule.GetHit(otherStateModule.AdAttack);
