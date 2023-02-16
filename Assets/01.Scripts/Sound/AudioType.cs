@@ -10,5 +10,10 @@ namespace Sound
 		Field_Battle,
 		Count,
 	}
+	public enum AudioEnvironmentType
+	{
+		None = 0,
+		Count,
+	}
 }
 
