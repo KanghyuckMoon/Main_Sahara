@@ -412,6 +412,33 @@ namespace Inventory
 			}
 		}
 
+		//스킬 장착
+		public void EquipSkill(int _index, ItemData _itemData)
+		{
+			if (inventorySO.skills[0] is not null && inventorySO.skills[0].key == _itemData.key)
+			{
+				return;
+			}
+			if (inventorySO.skills[1] is not null && inventorySO.skills[1].key == _itemData.key)
+			{
+				return;
+			}
+			RemoveSkill(_index);
+			inventorySO.skills[_index] = _itemData;
+
+			//스킬 추가 처리
+
+			return;
+		}
+
+		public void RemoveSkill(int _index)
+		{
+			if (inventorySO.skills[_index] is not null)
+			{
+				inventorySO.skills[_index] = null;
+			}
+		}
+
 		private void Init()
 		{
 			allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
