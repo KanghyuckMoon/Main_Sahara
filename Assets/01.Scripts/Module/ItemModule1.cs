@@ -7,18 +7,21 @@ namespace Module
 {
     public partial class ItemModule : AbBaseModule
     {
-        public void SetPassiveItem(string _itemKey)
+        public void SetPassiveItem(AccessoriesItemType _itemKey)
         {
-            ItemPassive _itemPassive = null;
-
-            if (_itemKey == "HpUp")
+            if (passiveItem[_itemKey] == null)
             {
-                _itemPassive = new HpAccessories();
+                ItemPassive _itemPassive = null;
+
+                if (_itemKey == AccessoriesItemType.HpUp)
+                {
+                    _itemPassive = new HpAccessories();
+                }
+
+                passiveItem.Add(_itemKey, _itemPassive);
+
+                ApplyPassive();
             }
-
-            passiveItem.Add(_itemKey, _itemPassive);
-
-            ApplyPassive();
         }
     }
 }
