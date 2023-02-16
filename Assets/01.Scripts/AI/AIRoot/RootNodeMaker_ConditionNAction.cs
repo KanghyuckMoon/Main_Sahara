@@ -120,8 +120,8 @@ namespace AI
 			jumpCheckVector.y = 0;
 			jumpCheckVector = jumpCheckVector.normalized;
 
-			float dir = Mathf.Atan2(aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).JumpPower, aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).Speed);
-			float force = aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).Speed;
+			float dir = Mathf.Atan2(aiModule.MainModule.GetModuleComponent<StatModule>(ModuleType.State).JumpPower, aiModule.MainModule.GetModuleComponent<StatModule>(ModuleType.State).Speed);
+			float force = aiModule.MainModule.GetModuleComponent<StatModule>(ModuleType.State).Speed;
 			float width = Caculated_Width(force, dir);
 			RaycastHit raycastHit;
 			jumpCheckVector *= width;

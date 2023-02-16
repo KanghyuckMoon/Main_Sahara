@@ -16,7 +16,7 @@ namespace CondinedModule
             moduleComponentsDic = new();
             CharacterController = GetComponent<CharacterController>();
 
-            AddModule(ModuleType.State, new StateModule(this));
+            AddModule(ModuleType.State, new StatModule(this));
             AddModule(ModuleType.Hp, new HpModule(this));
             AddModule(ModuleType.Physics, new PhysicsModule(this));
             AddModule(ModuleType.Move, new MoveModule(this));

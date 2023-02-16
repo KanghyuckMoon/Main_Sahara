@@ -39,15 +39,15 @@ namespace Module
         }
         private BaseWeapon baseWeapon;
 
-        private StateModule StateModule
+        private StatModule StateModule
         {
             get
             {
-                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.State);
                 return stateModule;
             }
         }
-        private StateModule stateModule;
+        private StatModule stateModule;
         private Animator animator;
         private GameObject weaponRight;
         private IWeaponSkills iWeaponSkills;
@@ -131,11 +131,11 @@ namespace Module
                 return;
 			}
 
-            if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
-            {
-                weaponSkills?.Invoke();
-                StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
-            }
+            //if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
+            //{
+            //    weaponSkills?.Invoke();
+            //    StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
+            //}
         }
     }
 }

@@ -18,11 +18,11 @@ namespace Module
                 return hpModule;
             }
         }
-        private StateModule StateModule
+        private StatModule StateModule
         {
             get
             {
-                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.State);
                 return stateModule;
             }
         }
@@ -38,7 +38,7 @@ namespace Module
         //private 
 
         private HpModule hpModule;
-        private StateModule stateModule;
+        private StatModule stateModule;
         private AnimationModule animationModule;
 
         private float currentHitDelay = 0;
@@ -60,14 +60,14 @@ namespace Module
             //{
                 //HitFeedBack();
                 
-                if (HpModule.GetDamage(dmg) == 0)
-                {
-                    Dead();
-                }
-                else
-                {
-                    Hit();
-                }
+                //if (HpModule.GetDamage(dmg) == 0)
+                //{
+                //    Dead();
+                //}
+                //else
+                //{
+                //    Hit();
+                //}
             //}
         }
 

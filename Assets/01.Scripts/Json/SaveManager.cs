@@ -60,7 +60,7 @@ namespace Json
 			}
 		}
 
-        public StateModule StateModule
+        public StatModule StateModule
 		{
             get
 			{
@@ -71,7 +71,7 @@ namespace Json
                 if (stateModule is null)
 				{
                     AbMainModule _abMainModule = player?.GetComponentInChildren<AbMainModule>();
-                    stateModule = _abMainModule?.GetModuleComponent<StateModule>(ModuleType.State);
+                    stateModule = _abMainModule?.GetModuleComponent<StatModule>(ModuleType.State);
 
                 }
                 return stateModule;
@@ -89,7 +89,7 @@ namespace Json
         [SerializeField]
         private Transform player = null;
 
-        private StateModule stateModule;
+        private StatModule stateModule;
 
         [ContextMenu("Save")]
         public void Save()

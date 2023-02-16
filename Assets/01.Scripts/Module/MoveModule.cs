@@ -8,7 +8,7 @@ namespace Module
     {
         private Animator animator;
 
-        private float moveSpeed => mainModule.GetModuleComponent<StateModule>(ModuleType.State).Speed;
+        private float moveSpeed => mainModule.GetModuleComponent<StatModule>(ModuleType.State).Speed;
         private float rotationVelocity;
         private float targetRotation;
         private float rotation;

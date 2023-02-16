@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Module;
-using Utill.Measurement; 
+using Utill.Measurement;
+using Data;
 
 namespace UI
 {
@@ -33,7 +34,7 @@ namespace UI
         [SerializeField]
         private UIModule uiModule; 
         [SerializeField]
-        private StateModule stateModule;
+        private StatData statData;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
 
@@ -168,7 +169,7 @@ namespace UI
             foreach (var p in _presenterList)
             {
                 //p.Start(stateData);
-                p.Start(stateModule); 
+                p.Start(statData); 
             }
         }
 
@@ -181,14 +182,14 @@ namespace UI
 
         IEnumerator Init()
         {
-            while (transform.parent != null && stateModule == null)
+            while (transform.parent != null && statData == null)
             {
                 this.uiModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI);
-                this.stateModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
-                if (stateModule != null)
+                this.statData = transform.parent.GetComponent<StatData>();
+                if (statData != null)
                 {
                     StartPresenters();
-                    this.stateModule.AddObserver(this);
+                    this.statData.AddObserver(this);
                     this.uiModule.AddObserver(this);
                 }
                 yield return null;

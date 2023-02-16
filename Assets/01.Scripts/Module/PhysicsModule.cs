@@ -5,6 +5,7 @@ using DG.Tweening;
 using Effect;
 using Utill.Addressable;
 using HitBox;
+using Data;
 using Attack;
 
 namespace Module
@@ -46,14 +47,14 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.IsDead)
                 {
-                    InGameHitBox inGameHitBox = other.GetComponent<InGameHitBox>();
-                    AttackFeedBack attackFeedBack = other.GetComponent<AttackFeedBack>();
-                    StateModule otherStateModule = inGameHitBox.Owner.GetComponentInParent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
-                    attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
-                    if (otherStateModule != null)
+                    InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
+                    AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
+                    Data.StatData _statData = _inGameHitBox.Owner.GetComponent<Data.StatData>();
+                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
+                    if (_statData != null)
                     {
-                        HitModule.GetHit(otherStateModule.AdAttack);
-                        otherStateModule.ChargeMana(10);    
+                        HitModule.GetHit(_statData.MeleeAttack);
+                        _statData.ChargeMana(10);    
                     }
                     else
                     {
