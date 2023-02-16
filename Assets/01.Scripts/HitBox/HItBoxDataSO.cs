@@ -87,6 +87,7 @@ namespace HitBox
 	[System.Serializable]
 	public class HitBoxData
 	{
+		//∆«¡§
 		public string hitBoxName;
 		public string ClassificationName;
 		public int hitBoxIndex;
@@ -95,6 +96,11 @@ namespace HitBox
 		public Vector3 offset;
 		public Vector3 size;
 
+		//≥ÀπÈ
+		public Vector3 knockbackDir = Vector3.forward;
+		public float defaultPower = 1f;
+
+		//¿Ã∆Â∆Æ
 		public Vector3 swingEffectOffset = Vector3.zero;
 		public Vector3 swingEffectRotation = Vector3.zero;
 		public Vector3 swingEffectSize = Vector3.one;
@@ -111,6 +117,10 @@ namespace HitBox
 			_newHitBox.childization = _hitBoxData.childization;
 			_newHitBox.offset = _hitBoxData.offset;
 			_newHitBox.size = _hitBoxData.size;
+
+			_newHitBox.knockbackDir = _hitBoxData.knockbackDir;
+			_newHitBox.defaultPower = _hitBoxData.defaultPower;
+
 
 			_newHitBox.swingEffectOffset = _hitBoxData.swingEffectOffset;
 			_newHitBox.swingEffectRotation = _hitBoxData.swingEffectRotation;
