@@ -60,7 +60,7 @@ namespace UI.Upgrade
             CreateRow(); // 临 积己 
             var _slotList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemUpgradeDataSO.key);
             // 楷搬痢 积己 
-            CreateConnection(); 
+            //CreateConnection(_slotList); 
 
             // 浇吩 积己
             foreach (var _item in _slotList)
