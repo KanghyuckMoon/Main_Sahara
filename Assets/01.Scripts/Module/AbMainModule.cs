@@ -5,6 +5,7 @@ using UnityEditor;
 using FischlWorks;
 using UpdateManager;
 using Utill.Pattern;
+using Data;
 
 namespace Module
 {
@@ -57,12 +58,12 @@ namespace Module
                 objRotation = value;
             }
         }
-
-        public string DataSOPath
+        public StatData StatData
         {
             get
             {
-                return dataSOPath;
+                statData ??= GetComponent<StatData>();
+                return statData;
             }
         }
 
@@ -291,8 +292,8 @@ namespace Module
         private Quaternion objRotation;
 
         [Space]
-        [SerializeField, Header("데이터 가져올 데")] 
-        private string dataSOPath;
+        [SerializeField, Header("데이터 가져올 데")]
+        private StatData statData;
 
         [Space]
         [SerializeField, Header("피격 판정이름")] 

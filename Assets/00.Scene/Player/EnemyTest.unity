@@ -863,7 +863,6 @@ GameObject:
   - component: {fileID: 1265982168}
   - component: {fileID: 1265982171}
   - component: {fileID: 1265982173}
-  - component: {fileID: 1265982174}
   - component: {fileID: 1265982175}
   - component: {fileID: 1265982176}
   - component: {fileID: 1265982177}
@@ -994,19 +993,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &1265982174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265982165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b041de2e0572a4f87438170e98faa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isColliderOn: 0
 --- !u!114 &1265982175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,7 +1009,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
-  dataSOPath: PlayerData_SO_Test
+  statData: {fileID: 0}
   hitCollider:
   - EnemyWeapon
   moveSpeed: 0
@@ -1407,7 +1393,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
-  dataSOPath: 
+  statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
   moveSpeed: 0

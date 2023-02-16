@@ -144,7 +144,7 @@ namespace Data
 
         private PlayerData_TesSO playerdata;
 
-        public void Start()
+        public void Awake()
         {
             playerdata = AddressablesManager.Instance.GetResource<PlayerData_TesSO>(dataSOPath);
             MaxHp = playerdata.hp;

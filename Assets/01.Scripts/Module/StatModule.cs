@@ -17,8 +17,6 @@ namespace Module
 
     public class StatModule : AbBaseModule
     {
-        public float Speed => statData.Speed;
-
         public SaveData saveData;
 
         private HpModule HpModule
@@ -31,8 +29,7 @@ namespace Module
         }
         private HpModule hpModule;
 
-        private PlayerData_TesSO playerdata;
-        private Data.StatData statData;
+        private StatData statData;
 
         public StatModule(AbMainModule _mainModule) : base(_mainModule)
         {
