@@ -362,12 +362,19 @@ namespace Inventory
 					}
 					break;
 			}
-
+			RemoveEquipment(index);
 			inventorySO.equipments[index] = _itemData;
 
 			//Àåºñ½ºÅÈ Ã³¸®
 
 			return;
+		}
+		public void RemoveEquipment(int _index)
+		{
+			if (inventorySO.equipments[_index] is not null)
+			{
+				inventorySO.equipments[_index] = null;
+			}
 		}
 
 		//Àå½Å±¸ ÀåÂø
@@ -389,12 +396,20 @@ namespace Inventory
 			{
 				return;
 			}
-
+			RemoveAccessories(_index);
 			inventorySO.accessories[_index] = _itemData;
 
 			//Àå½Å±¸½ºÅÈ Ã³¸®
 
 			return;
+		}
+
+		public void RemoveAccessories(int _index)
+		{
+			if (inventorySO.accessories[_index] is not null)
+			{
+				inventorySO.accessories[_index] = null;
+			}
 		}
 
 		private void Init()
