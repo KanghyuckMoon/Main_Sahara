@@ -90,7 +90,7 @@ namespace Sound
 
 			_currentEnvironmentType = _audioEnvironmentType;
 
-			SwapTrack_Environment(_environmentAudioClips[_audioEnvironmentType]);
+			SwapTrack_Environment(_audioEnvironmentType == AudioEnvironmentType.None ? null : _environmentAudioClips[_audioEnvironmentType]);
 		}
 
 		private void Start()
@@ -243,7 +243,7 @@ namespace Sound
 				StopCoroutine(fadeCoroutine_Environment);
 				fadeCoroutine_Environment = null;
 			}
-			fadeCoroutine_Environment = StartCoroutine(FadeTrack(_clip));
+			fadeCoroutine_Environment = StartCoroutine(FadeTrack_Environment(_clip));
 
 			isPlayingTrack1_Environment = !isPlayingTrack1_Environment;
 		}
@@ -301,7 +301,7 @@ namespace Sound
 
 			if (isPlayingTrack1)
 			{
-				_environmentAudioSourceTrack1.clip = _clip;
+				_environmentAudioSourceTrack2.clip = _clip;
 				_environmentAudioSourceTrack2.Play();
 
 				while (_beforeTrackVolume < 1)
