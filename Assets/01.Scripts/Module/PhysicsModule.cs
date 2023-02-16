@@ -5,6 +5,7 @@ using DG.Tweening;
 using Effect;
 using Utill.Addressable;
 using HitBox;
+using Data;
 using Attack;
 
 namespace Module
@@ -46,15 +47,14 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.IsDead)
                 {
-                    InGameHitBox inGameHitBox = other.GetComponent<InGameHitBox>();
-                    AttackFeedBack attackFeedBack = other.GetComponent<AttackFeedBack>();
-                    StateModule otherStateModule = inGameHitBox.Owner.GetComponentInParent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
-                    attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
-                    mainModule.KnockBackVector = inGameHitBox.KnockbackDir().eulerAngles * inGameHitBox.KnockbackPower();
-                    if (otherStateModule != null)
+                    InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
+                    AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
+                    StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
+                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
+                    if (_statData != null)
                     {
-                        HitModule.GetHit(otherStateModule.AdAttack);
-                        otherStateModule.ChargeMana(10);    
+                        HitModule.GetHit(_statData.MeleeAttack);
+                        _statData.ChargeMana(10);
                     }
                     else
                     {
@@ -81,7 +81,7 @@ namespace Module
             if (Physics.Raycast(ray, out _raycastHit, rayDistance, mainModule.groundLayer))
             {
                 mainModule.SlopeHit = _raycastHit;
-                   var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
+                var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
                 mainModule.IsSlope = (angle != 0f) && angle < mainModule.MaxSlope;
             }
             else
@@ -98,7 +98,7 @@ namespace Module
             bool _isLand = Physics.CheckSphere(_spherePosition, 0.42f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
-            if(!mainModule.isGround && _isLand)
+            if (!mainModule.isGround && _isLand)
             {
                 EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
             }
@@ -108,10 +108,10 @@ namespace Module
 
         private void SetEffect()
         {
-            if(mainModule.isGround && mainModule.ObjDir != Vector2.zero)
+            if (mainModule.isGround && mainModule.ObjDir != Vector2.zero)
             {
                 float delay = 1;
-                if(currenteffectSpownDelay > effectSpownDelay)
+                if (currenteffectSpownDelay > effectSpownDelay)
                 {
                     currenteffectSpownDelay = 0;
 
@@ -121,9 +121,9 @@ namespace Module
                         EffectManager.Instance.SetEffectDefault(isRight ? effect.runREffectName : effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
                     }
                     else
-					{
+                    {
                         EffectManager.Instance.SetEffectDefault(isRight ? effect.walkRffectName : effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
-					}
+                    }
                     isRight = !isRight;
                 }
                 currenteffectSpownDelay += Time.deltaTime * delay;

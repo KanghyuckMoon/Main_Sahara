@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data;
 
 namespace Module
 {
@@ -25,7 +26,7 @@ namespace Module
         public override void Start()
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
-            jumpHeight = mainModule.GetModuleComponent<StateModule>(ModuleType.State).JumpPower;
+            jumpHeight = mainModule.GetComponent<StatData>().Jump;
             jumpDelay = 0.4f;
             antiFallTime = 0.16f;
         }

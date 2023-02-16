@@ -17,7 +17,7 @@ namespace CondinedModule
             //footRotate = GetComponentInParent<csHomebrewIK>();
             AddModule(ModuleType.Input, new InputModule(this));
             AddModule(ModuleType.Move, new MoveModule(this));
-            AddModule(ModuleType.State, new StateModule(this));
+            AddModule(ModuleType.State, new StatModule(this));
             AddModule(ModuleType.Camera, new CameraModule(this));
             AddModule(ModuleType.Jump, new JumpModule(this));
             AddModule(ModuleType.Hp, new HpModule(this));

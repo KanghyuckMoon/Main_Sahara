@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data;
 
 namespace Module
 {
@@ -8,7 +9,7 @@ namespace Module
     {
         private Animator animator;
 
-        private float moveSpeed => mainModule.GetModuleComponent<StateModule>(ModuleType.State).Speed;
+        private float moveSpeed => statData.Speed;
         private float rotationVelocity;
         private float targetRotation;
         private float rotation;
@@ -20,6 +21,7 @@ namespace Module
 
         private float addSpeed;
 
+        private StatData statData;
         private Vector3 currentDirection;
 
         public MoveModule(AbMainModule _mainModule) : base(_mainModule)
@@ -146,6 +148,7 @@ namespace Module
         public override void Start()
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
+            statData = mainModule.GetComponent<StatData>();
             animationBlend = 0;
         }
     }
