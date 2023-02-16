@@ -86,14 +86,14 @@ namespace Module
                 iWeaponSkills = _weapon.GetComponent<IWeaponSkills>();
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
 
-                _weapon.transform.localPosition = baseWeapon.WeaponPositionSO.weaponPosition;
-                _weapon.transform.localRotation = baseWeapon.WeaponPositionSO.weaponRotation;
+                _weapon.transform.localPosition = BaseWeapon.WeaponPositionSO.weaponPosition;
+                _weapon.transform.localRotation = BaseWeapon.WeaponPositionSO.weaponRotation;
 
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
-                baseWeapon.tagName = _tagname;
-                mainModule.gameObject.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
+                BaseWeapon.tagName = _tagname;
+                mainModule.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
 
-                StateModule.SetAttackDamage(baseWeapon.WeaponDataSO);
+                StateModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;

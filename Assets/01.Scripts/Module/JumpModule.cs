@@ -26,7 +26,7 @@ namespace Module
         public override void Start()
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
-            jumpHeight = mainModule.statData.Jump;
+            jumpHeight = mainModule.StatData.Jump;
             jumpDelay = 0.4f;
             antiFallTime = 0.16f;
         }

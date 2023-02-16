@@ -48,6 +48,7 @@ namespace Module
                 if (other.CompareTag(_tagName) && !mainModule.IsDead)
                 {
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
+                    if (_inGameHitBox is null) return;
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
                     mainModule.KnockBackVector = _inGameHitBox.KnockbackDir() * Vector3.forward * _inGameHitBox.KnockbackPower();
@@ -101,6 +102,7 @@ namespace Module
 
             if (!mainModule.isGround && _isLand)
             {
+                mainModule.KnockBackVector = Vector3.zero;
                 EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
             }
 

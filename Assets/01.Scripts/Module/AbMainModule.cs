@@ -293,7 +293,7 @@ namespace Module
 
         [Space]
         [SerializeField, Header("데이터 가져올 데")]
-        public StatData statData;
+        private StatData statData;
 
         [Space]
         [SerializeField, Header("피격 판정이름")] 

@@ -10,7 +10,7 @@ namespace Module
         private int maxHp;
         private int currentHp;
 
-        private StatData _StatData => mainModule.statData;
+        private StatData _StatData => mainModule.StatData;
 
         public HpModule(AbMainModule _mainModule) : base(_mainModule)
         {
