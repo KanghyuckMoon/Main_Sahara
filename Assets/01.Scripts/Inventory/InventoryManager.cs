@@ -42,8 +42,27 @@ namespace Inventory
 				}
 			}
 		}
+		public ItemModule PlayerItemModule
+		{
+			get
+			{
+				if (Player is null)
+				{
+					return null;
+				}
+				else
+				{
+					if (itemModule is null)
+					{
+						itemModule = Player?.GetComponentInChildren<AbMainModule>()?.GetModuleComponent<ItemModule>(ModuleType.Item);
+					}
+					return itemModule;
+				}
+			}
+		}
 		private Transform player;
 		private WeaponModule weaponModule;
+		private ItemModule itemModule;
 
 		private AllItemDataSO allItemDataSO;
 		private InventorySO inventorySO;
@@ -400,6 +419,7 @@ namespace Inventory
 			inventorySO.accessories[_index] = _itemData;
 
 			//장신구스탯 처리
+			PlayerItemModule.SetPassiveItem(_itemData.accessoriesItemType);
 
 			return;
 		}
@@ -408,6 +428,8 @@ namespace Inventory
 		{
 			if (inventorySO.accessories[_index] is not null)
 			{
+				ItemData _itemData = inventorySO.accessories[_index];
+				PlayerItemModule.RemovePassiveItem(_itemData.accessoriesItemType);
 				inventorySO.accessories[_index] = null;
 			}
 		}
