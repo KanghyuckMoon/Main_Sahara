@@ -10,7 +10,7 @@ namespace Module
         private int maxHp;
         private int currentHp;
 
-        private Data.StatData statData;
+        private StatData _StatData => mainModule.statData;
 
         public HpModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -19,8 +19,7 @@ namespace Module
 
         public override void Start()
         {
-            statData = mainModule.GetComponent<Data.StatData>();
-            statData.CurrentHp = statData.MaxHp;
+            _StatData.CurrentHp = _StatData.MaxHp;
         }
 
 
@@ -37,11 +36,11 @@ namespace Module
 
         private int ChangeHpValue(int value)
         {
-            statData.CurrentHp += value;
-            if (statData.CurrentHp > statData.MaxHp) statData.CurrentHp = statData.MaxHp;
-            if (statData.CurrentHp < 0) statData.CurrentHp = 0;
+            _StatData.CurrentHp += value;
+            if (_StatData.CurrentHp > _StatData.MaxHp) _StatData.CurrentHp = _StatData.MaxHp;
+            if (_StatData.CurrentHp < 0) _StatData.CurrentHp = 0;
 
-            return statData.CurrentHp;
+            return _StatData.CurrentHp;
         }
     }
 }
