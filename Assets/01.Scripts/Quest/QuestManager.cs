@@ -118,6 +118,25 @@ namespace Quest
 		}
 		public void ChangeQuestClear(string _key)
 		{
+			QuestData _questData = questDataDic[_key];
+			if(_questData.QuestState is QuestState.Clear || _questData.QuestState is QuestState.Achievable)
+			{
+				return;
+			}
+			
+			if (_questData.IsTalkQuest)
+			{
+				_questData.QuestState = QuestState.Achievable;
+				questSaveDataSO.ChangeQuestSaveData(_questData.QuestKey, _questData.QuestState);
+			}
+			else
+			{
+				QuestClear(questDataDic[_key]);
+			}
+		}
+
+		public void TalkQuestClear(string _key)
+		{
 			QuestClear(questDataDic[_key]);
 		}
 

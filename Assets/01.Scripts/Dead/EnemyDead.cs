@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utill.Pattern;
 using Pool;
+using Quest;
 
 namespace Module
 {
     public class EnemyDead : MonoBehaviour, Observer
     {
-        public string key;
+        [SerializeField]
+        private string enemyKey;
+
+        [SerializeField]
+        private string questClearKey;
 
         private AbMainModule abMainModule;
 
@@ -24,6 +29,10 @@ namespace Module
         {
             if (abMainModule.IsDead)
             {
+                if(questClearKey is not null)
+				{
+                    QuestManager.Instance.ChangeQuestClear(questClearKey);
+                }
                 StartCoroutine(IDead());
             }
         }
@@ -31,7 +40,7 @@ namespace Module
         private IEnumerator IDead()
         {
             yield return new WaitForSeconds(2f);
-            ObjectPoolManager.Instance.RegisterObject(key, gameObject);
+            ObjectPoolManager.Instance.RegisterObject(enemyKey, gameObject);
             gameObject.SetActive(false);
         }
 
