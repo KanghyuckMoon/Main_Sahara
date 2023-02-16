@@ -21,6 +21,7 @@ namespace Module
         Weapon,
         Hit,
         Shop,
+        Item,
         None
     }
 
@@ -44,7 +45,6 @@ namespace Module
         public virtual void OnCollisionEnter(Collision collision) { }
         public virtual void OnTriggerEnter(Collider other) { }
         public virtual void OnDrawGizmos() { }
-
         public virtual void OnDestroy() { }
     }
 }
