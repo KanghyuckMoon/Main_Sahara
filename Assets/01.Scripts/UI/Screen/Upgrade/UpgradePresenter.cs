@@ -90,8 +90,8 @@ namespace UI.Upgrade
             {
                 for (int i = 0; i < _count; i++)
                 {
-                    if (i < _count / 2)
-                        _slotList[i]
+                    //if (i < _count / 2)
+                    //    _slotList[i]
                 }
             }
             else
