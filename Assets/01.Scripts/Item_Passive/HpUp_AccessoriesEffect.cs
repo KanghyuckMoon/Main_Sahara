@@ -19,6 +19,8 @@ namespace PassiveItem
         private void HpUp()
         {
             Debug.Log("Ã¼·Â 30%¾÷!");
+
+
         }
 
         private void HpDown()
