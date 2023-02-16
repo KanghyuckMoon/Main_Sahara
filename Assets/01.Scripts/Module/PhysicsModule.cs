@@ -50,6 +50,7 @@ namespace Module
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
+                    mainModule.KnockBackVector = _inGameHitBox.KnockbackDir() * Vector3.forward * _inGameHitBox.KnockbackPower();
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
                     if (_statData != null)
                     {
