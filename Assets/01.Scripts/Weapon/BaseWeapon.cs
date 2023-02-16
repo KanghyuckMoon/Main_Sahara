@@ -22,7 +22,7 @@ namespace Weapon
         public string tagName;
         public WeaponPositionSO WeaponPositionSO => weaponPositionSO;
         public WeaponDataSO WeaponDataSO => weaponDataSO;
-        public HitBoxDataSO HitBoxDataSO => hitBoxDataSO;
+        public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
 
         private WeaponDataSO weaponDataSO;
         private WeaponPositionSO weaponPositionSO;
@@ -31,7 +31,7 @@ namespace Weapon
         private string weaponColKey = "_ColKey";
 
         [SerializeField]
-        private HitBoxDataSO hitBoxDataSO;
+        private HitBoxDatasSO hitBoxDataSO;
 
         private void Awake()
         {

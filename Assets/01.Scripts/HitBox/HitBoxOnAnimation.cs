@@ -10,11 +10,11 @@ namespace HitBox
 	public class HitBoxOnAnimation : MonoBehaviour
 	{
 		[SerializeField]
-		private HitBoxDataSO hitBoxDataSO;
+		private HitBoxDatasSO hitBoxDataSO;
 
 		//private string colliderKey;
 
-		public void ChangeSO(HitBoxDataSO _hitBoxDataSO)//, string _colliderKey)
+		public void ChangeSO(HitBoxDatasSO _hitBoxDataSO)//, string _colliderKey)
 		{
 			hitBoxDataSO = _hitBoxDataSO;
 			//colliderKey = _colliderKey;
