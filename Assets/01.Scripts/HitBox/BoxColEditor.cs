@@ -18,7 +18,7 @@ namespace HitBox
 
 		[SerializeField]
 		private BoxCollider col;
-		public HitBoxDataSO hitBoxDataSO;
+		public HitBoxDatasSO hitBoxDataSO;
 		public HitBoxData hitBoxData;
 
 		public void SetHitBox(HitBoxData _hitBoxData)

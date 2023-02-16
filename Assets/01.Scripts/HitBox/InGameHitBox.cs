@@ -52,6 +52,15 @@ namespace HitBox
 			}
 		}
 
+		public Quaternion KnockbackDir()
+		{
+			return transform.rotation * Quaternion.Euler(hitBoxData.knockbackDir);
+		}
+
+		public float KnockbackPower()
+		{
+			return hitBoxData.defaultPower;
+		}
 		private IEnumerator DestroyHitBox()
 		{
 			yield return new WaitForSeconds(hitBoxData.deleteDelay);
