@@ -34,7 +34,10 @@ namespace UI.Upgrade
             }
             this.itemData = _itemData;
             upgradeSlotView.IsStackable = _itemData.IsStackble;
-            upgradeSlotView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey), _itemData.count);
+            if(_itemData.spriteKey != "")
+            {
+                upgradeSlotView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey), _itemData.count);
+            }
         }
     }
 
