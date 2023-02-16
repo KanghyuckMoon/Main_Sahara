@@ -83,7 +83,7 @@ namespace UI.Upgrade
             _upgradePr.SetItemData(_itemData);
         }
 
-        private void CreateConnection()
+        private void CreateConnection(List<VisualElement> _slotList)
         {
             int _count = _slotList.Count; // 자식 개수 
             if (_count % 2 == 0) //  짝수라면
