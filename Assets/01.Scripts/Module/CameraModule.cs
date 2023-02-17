@@ -4,6 +4,7 @@ using UnityEngine;
 using SingletonObject;
 using Utill.Pattern;
 using Cinemachine;
+using Utill.Coroutine;
 
 namespace Module
 {
@@ -21,7 +22,11 @@ namespace Module
 			}
 		}
         private Camera camera;
-        
+
+        private CinemachineBasicMultiChannelPerlin followCamNoise;
+        private CinemachineBasicMultiChannelPerlin groupCamNoise;
+
+        private float currentShakeDuration = 0;
         //private PlayerFollowCamera camInstance;
 				 //public CinemachineVirtualCamera followVCam;
 
@@ -75,6 +80,10 @@ namespace Module
             //camInstance = PlayerFollowCamera.Instance;
             follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
             groupVCam = GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
+
+            followCamNoise = follawVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            groupCamNoise = groupVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
             groupVCam.gameObject.SetActive(false);
             //mainModule.objRotation = mainCam.transform.rotation;
         }
@@ -89,7 +98,6 @@ namespace Module
             {
                 mainModule.ObjRotation = groupVCam.transform.rotation;
             }
-
             //float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
             //float size = nomalCom.m_Lens.OrthographicSize;
 
@@ -103,7 +111,27 @@ namespace Module
             //nomalCom.m_Lens.OrthographicSize = size;
         }
 
+        public override void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                ShakeCam(0.2f, 0.3f, 7);
+            }
+        }
 
+        public void ShakeCam(float duration, float strengh, float shakeFrequent)
+        {
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(ShakingCam(duration, strengh, shakeFrequent));
+        }
+
+        private IEnumerator ShakingCam(float duration, float strengh, float shakeFrequent)
+        {
+            followCamNoise.m_AmplitudeGain = groupCamNoise.m_AmplitudeGain = strengh;//.Priority.
+            followCamNoise.m_FrequencyGain = groupCamNoise.m_FrequencyGain = shakeFrequent;
+            yield return new WaitForSeconds(duration);
+            followCamNoise.m_AmplitudeGain = followCamNoise.m_FrequencyGain = 0;//.Priority.
+            groupCamNoise.m_AmplitudeGain = groupCamNoise.m_FrequencyGain = 0;//.Priority.
+        }
 
         //public override void Awake()
         //{

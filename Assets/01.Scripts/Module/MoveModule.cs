@@ -36,23 +36,25 @@ namespace Module
         {
             #region 속도 관련 부분
             float _targetSpeed = mainModule.IsSprint ? moveSpeed + 4 : moveSpeed;
+            float _lockOnspeed = mainModule.LockOn ? -2 : 0;
+
             float _speed;
 
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
             float currentSpeed = new Vector3(mainModule.CharacterController.velocity.x, 0, mainModule.CharacterController.velocity.z).magnitude;
 
-            if (currentSpeed > _targetSpeed + speedOffset ||
-                currentSpeed < _targetSpeed - speedOffset)// && mainModule.objDir != Vector2.up)
+            if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
+                currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed, 13.7f * Time.fixedDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 13.7f * Time.fixedDeltaTime);
             }
             else
             {
-                _speed = _targetSpeed;
+                _speed = _targetSpeed + _lockOnspeed;
             }
 
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.fixedDeltaTime * 20);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, Time.fixedDeltaTime * 20);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
@@ -65,22 +67,32 @@ namespace Module
             float _gravity = mainModule.Gravity;//Vector3.down * Mathf.Abs(mainModule.characterController.velocity.y);
             Vector3 _moveValue;
 
-            //if()
-
             if (mainModule.ObjDir != Vector2.zero)
             {
                 targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
                                   mainModule.ObjRotation.eulerAngles.y;
                 rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.05f);
 
-                mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                if (mainModule.LockOnTarget == null) mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                else
+                {
+                    Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
+                    mainModule.transform.LookAt(_targetPos);
+
+                    //Vector3 _targetDir = mainModule.LockOnTarget.position - mainModule.transform.position;
+                    //float _angle = Mathf.Atan2(_targetDir.x, _targetDir.z) * Mathf.Rad2Deg;
+
+                    //targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg + _angle;
+                }
             }
 
-            Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
+            Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * Time.fixedDeltaTime;
+
+
             mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, Time.fixedDeltaTime);
             mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
 

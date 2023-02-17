@@ -19,6 +19,8 @@ namespace CondinedModule
             StopOrNot = 1;
             CanMove = true;
 
+            animator = GetComponent<Animator>();
+
             moduleComponentsDic = new();
             CharacterController = GetComponent<CharacterController>();
             //footRotate = GetComponentInParent<csHomebrewIK>();

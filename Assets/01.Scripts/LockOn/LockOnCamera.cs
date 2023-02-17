@@ -63,6 +63,7 @@ namespace LockOn
                 groupCam.gameObject.SetActive(false);
 
                 playerModule.LockOn = false;
+                playerModule.LockOnTarget = null;
 
                 Debug.Log("t:록온 해제");
                 return;
@@ -110,6 +111,7 @@ namespace LockOn
                     playerCam.gameObject.SetActive(false);
 
                     playerModule.LockOn = true;
+                    playerModule.LockOnTarget = target;
 
                     return;
                 }

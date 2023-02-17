@@ -25,7 +25,20 @@ namespace Module
                 stopOrNot = value;
 			}
 		}
-		public CharacterController CharacterController
+
+        public Transform LockOnTarget
+        {
+            get
+            {
+                return lockOnTarget;
+            }
+            set
+            {
+                lockOnTarget = value;
+            }
+        }
+
+        public CharacterController CharacterController
         {
             get
             {
@@ -243,17 +256,17 @@ namespace Module
 		}
 
         public bool LockOn
-		{
+        {
             get
-			{
+            {
                 return lockOn;
-			}
+            }
             set
             {
                 lockOn = value;
-                
+                animator.SetBool("LockOn", lockOn);
             }
-		}
+        }
 
         public float MaxSlope
 		{
@@ -296,6 +309,9 @@ namespace Module
 
 		[SerializeField, Header("멈출까말까")] 
         private int stopOrNot;
+
+        [SerializeField, Header("(록온)타겟")]
+        private Transform lockOnTarget = null;
 
         [SerializeField, Header("캐릭터 컨트롤러")] 
         private CharacterController characterController;
@@ -375,6 +391,9 @@ namespace Module
 
         [SerializeField]
         private Transform model;
+
+        [SerializeField, Header("애니메이터")]
+        public Animator animator;
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 
