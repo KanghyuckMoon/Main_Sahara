@@ -1405,6 +1405,7 @@ GameObject:
   - component: {fileID: 3699875109982235523}
   - component: {fileID: 3699875109982235640}
   - component: {fileID: 2648207059958673375}
+  - component: {fileID: 1898142133}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -1498,7 +1499,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
-  dataSOPath: EnemyData_TesSO
+  statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
   moveSpeed: 0
@@ -1518,13 +1519,15 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -19.8
   groundOffset: 0
+  knockBackVector: {x: 0, y: 0, z: 0}
+  hitDelay: 0
   lockOn: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
   maxSlope: 0
   raycastTarget: {fileID: 0}
-  aiSOAddress: TestEnemySO
+  aiSOAddress: TestNoneMoveSO
 --- !u!114 &2648207059958673375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,6 +1541,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: TestEnemy
+--- !u!114 &1898142133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699875109982235521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataSOPath: EnemyData_TesSO
 --- !u!1 &3699875109997962231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3699875110483129542}
   - component: {fileID: 3699875110483129543}
+  - component: {fileID: 3882264280616422281}
   m_Layer: 0
   m_Name: WM_Master_Unity
   m_TagString: Untagged
@@ -2152,6 +2169,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.04145688, y: -0.029585272, z: -0.00000023841858}
     m_Extent: {x: 0.9155141, y: 0.21989363, z: 0.7018228}
   m_DirtyAABB: 0
+--- !u!114 &3882264280616422281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699875110483129541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4435a6c41f11f4e97b9bc2dfed81bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3699875109868470413}
 --- !u!1 &3699875110533082003
 GameObject:
   m_ObjectHideFlags: 0

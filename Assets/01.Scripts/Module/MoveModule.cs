@@ -140,7 +140,8 @@ namespace Module
 
         public override void FixedUpdate()
         {
-            Move();
+            if (!mainModule.IsSlope)
+                Move();
             Gravity();
             ETC();
         }

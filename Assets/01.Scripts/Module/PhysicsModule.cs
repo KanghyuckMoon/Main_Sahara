@@ -84,20 +84,21 @@ namespace Module
             {
                 mainModule.SlopeHit = _raycastHit;
                 var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
-                mainModule.IsSlope = (angle != 0f) && angle < mainModule.MaxSlope;
+                mainModule.IsSlope = ((angle != 0f) && angle < mainModule.MaxSlope);
+                //return;
             }
             else
             {
                 mainModule.SlopeHit = _raycastHit;
             }
-            mainModule.IsSlope = false;
+            //mainModule.IsSlope = false;
         }
 
         private void GroundCheack()
         {
             Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
-            bool _isLand = Physics.CheckSphere(_spherePosition, 0.42f, mainModule.groundLayer,
+            bool _isLand = Physics.CheckSphere(_spherePosition, 0.4f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
             if (!mainModule.isGround && _isLand)
