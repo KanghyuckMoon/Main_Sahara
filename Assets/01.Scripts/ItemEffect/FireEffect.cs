@@ -2,24 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireEffect : MonoBehaviour
+namespace ItemEffect
 {
-	[SerializeField]
-	private ParticleSystem[] particleSystemArray;
 
-	public void OnEnable()
+	public class FireEffect : MonoBehaviour
 	{
-		MeshRenderer _parentRenderer = transform.GetComponentInParent<MeshRenderer>();
+		[SerializeField]
+		private ParticleSystem[] particleSystemArray;
 
-		if (_parentRenderer is null)
+		public void OnEnable()
 		{
-			return;
-		}
+			MeshRenderer _parentRenderer = transform.GetComponentInParent<MeshRenderer>();
 
-		foreach (var _particle in particleSystemArray)
-		{
-			var _shape = _particle.shape;
-			_shape.meshRenderer = _parentRenderer;
+			if (_parentRenderer is null)
+			{
+				return;
+			}
+
+			foreach (var _particle in particleSystemArray)
+			{
+				var _shape = _particle.shape;
+				_shape.meshRenderer = _parentRenderer;
+			}
 		}
 	}
+
 }
