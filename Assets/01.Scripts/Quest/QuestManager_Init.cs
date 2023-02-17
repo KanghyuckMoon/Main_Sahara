@@ -4,6 +4,7 @@ using UnityEngine;
 using Streaming;
 using Utill.Pattern;
 using Utill.Addressable;
+using Inventory;
 
 namespace Quest
 {
@@ -40,23 +41,11 @@ namespace Quest
 						break;
 					case QuestConditionType.TargetMonster:
 						break;
-					case QuestConditionType.MonsterType:
-						break;
-					case QuestConditionType.DebugData:
-						break;
 					case QuestConditionType.TargetObject:
 						break;
-					case QuestConditionType.MiniGame:
-						break;
-					case QuestConditionType.Stat:
-						break;
 					case QuestConditionType.Inventory:
-						break;
-					case QuestConditionType.Mission:
-						break;
-					case QuestConditionType.TargetNPC:
-						break;
-					case QuestConditionType.TargetInteractionItem:
+						questDataDic[_questSO.questKey].SetCondition<InventoryManager>(_ => InventoryManager.Instance.ItemCheck(_questSO.itemKey, _questSO.needCount), null);
+						
 						break;
 					case QuestConditionType.Time:
 						questDataDic[_questSO.questKey].SetCondition<Time>(_ => Time.time > _questSO.afterTime, null);

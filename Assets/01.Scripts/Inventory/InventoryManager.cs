@@ -9,6 +9,7 @@ using Module;
 
 namespace Inventory
 {
+	public delegate void InventoryEventTransmit(string _sender, string _recipient, object _obj);
 	public class InventoryManager : MonoSingleton<InventoryManager>
 	{
 		public Transform Player
@@ -60,6 +61,18 @@ namespace Inventory
 				}
 			}
 		}
+		public InventoryEventTransmit InventoryEventTransmit
+		{
+			get
+			{
+				return InventoryEventTransmit;
+			}
+			set
+			{
+				InventoryEventTransmit = value;
+			}
+		}
+
 		private Transform player;
 		private WeaponModule weaponModule;
 		private ItemModule itemModule;
@@ -69,9 +82,21 @@ namespace Inventory
 		private bool isInit;
 		private int quickSlotIndex = 0;
 
+		private InventoryEventTransmit inventoryEventTransmit;
+
 		private void Start()
 		{
 			Init();
+		}
+
+		public void SendEvent(string _recipient, object _obj)
+		{
+			InventoryEventTransmit?.Invoke("InventoryManager", _recipient, _obj);
+		}
+
+		public void ReceiveEvent(string _sender, object _obj)
+		{
+
 		}
 
 		public void Update()
@@ -205,6 +230,7 @@ namespace Inventory
 					if (_itemDatas[i].IsStackble)
 					{
 						_itemDatas[i].count += _count;
+						SendEvent("QuestManager", null);
 						return;
 					}
 				}
@@ -235,6 +261,7 @@ namespace Inventory
 					inventorySO.itemDataList.Add(_itemData);
 				}
 			}
+			SendEvent("QuestManager", null);
 		}
 
 		public ItemData GetItem(string _itemKey)
