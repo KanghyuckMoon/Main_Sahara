@@ -281,6 +281,14 @@ namespace Module
 			}
 		}
 
+        public Transform Model
+		{
+            get
+			{
+                return model;
+			}
+		}
+
 		[SerializeField, Header("멈출까말까")] 
         private int stopOrNot;
 
@@ -359,6 +367,9 @@ namespace Module
         [SerializeField, Header("레이캐스트 쏠위치")]
         private Transform raycastTarget;
         private RaycastHit slopeHit;
+
+        [SerializeField]
+        private Transform model;
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 
