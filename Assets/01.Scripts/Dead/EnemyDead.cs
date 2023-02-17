@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Utill.Pattern;
 using Pool;
 using Quest;
+using Effect;
 
 namespace Module
 {
@@ -14,7 +15,19 @@ namespace Module
         private string enemyKey;
 
         [SerializeField]
-        private string questClearKey;
+        private string questClearKey = "NULL";
+
+        [SerializeField]
+        private string deadSkinEffectKey;
+
+        [SerializeField]
+        private string deadExplosionEffectKey;
+
+        [SerializeField]
+        private SkinnedMeshRenderer skinnedMeshRenderer;
+
+        [SerializeField]
+        private Transform rootTransform;
 
         private AbMainModule abMainModule;
 
@@ -29,7 +42,7 @@ namespace Module
         {
             if (abMainModule.IsDead)
             {
-                if(questClearKey is not null)
+                if(questClearKey is not "NULL")
 				{
                     QuestManager.Instance.ChangeQuestClear(questClearKey);
                 }
@@ -39,7 +52,9 @@ namespace Module
 
         private IEnumerator IDead()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
+            EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
+            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, rootTransform);
             ObjectPoolManager.Instance.RegisterObject(enemyKey, gameObject);
             gameObject.SetActive(false);
         }
