@@ -10,9 +10,11 @@ namespace UI.Upgrade
     {
         enum Elements
         {
-            slot_parent
+            slot_parent,
+            upgrade
         }
 
+        public VisualElement UpgradePickParent => GetVisualElement((int)Elements.upgrade); 
         public override void Cashing()
         {
             base.Cashing();
@@ -32,5 +34,6 @@ namespace UI.Upgrade
         {
             GetVisualElement((int)Elements.slot_parent).Add(_v); 
         }
+
     }
 }
