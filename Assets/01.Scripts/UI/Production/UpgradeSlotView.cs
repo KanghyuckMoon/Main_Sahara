@@ -13,7 +13,7 @@ namespace UI.Production
         enum Elements
         {
             image,
-            active_mark
+            active_mark,
         }
     
         enum Labels

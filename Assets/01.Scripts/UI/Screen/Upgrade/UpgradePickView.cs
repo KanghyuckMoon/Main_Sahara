@@ -12,7 +12,8 @@ namespace UI.Upgrade
     {
         enum Elements
         {
-            slot_parent
+            slot_parent,
+            absolute_parent
         }
         enum Buttons
         {
@@ -49,6 +50,11 @@ namespace UI.Upgrade
         public void SetParent(VisualElement _v)
         {
             GetVisualElement((int)Elements.slot_parent).Add(_v); 
+        }
+
+        public void SetAbsoluteParent(VisualElement _v)
+        {
+            GetVisualElement((int)Elements.absolute_parent).Add(_v); 
         }
 
 

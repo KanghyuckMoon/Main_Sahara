@@ -11,10 +11,12 @@ namespace UI.Upgrade
         enum Elements
         {
             slot_parent,
-            upgrade
+            upgrade,
+            select_active_panel,
         }
 
-        public VisualElement UpgradePickParent => GetVisualElement((int)Elements.upgrade); 
+        public VisualElement UpgradePickParent => GetVisualElement((int)Elements.upgrade);
+        public VisualElement SelectParent => GetVisualElement((int)Elements.select_active_panel); // 클릭시 사방으로 재료 뜨는 거 
         public override void Cashing()
         {
             base.Cashing();

@@ -44,6 +44,10 @@ namespace UI.Upgrade
             upgradePickView.SetParent(_v.Parent);
         }
 
+        public void SetAbsoluteParent(UpgradeSlotPresenter _v)
+        {
+            upgradePickView.SetParent(_v.Parent);
+        }
         public void SetPos(Vector2 _v)
         {
             parent.style.left = _v.x;

@@ -87,6 +87,10 @@ namespace UI.Upgrade
             }
         }
 
+        public void SetPositionType(bool _isAbsolute)
+        {
+            Parent.style.position = _isAbsolute ? Position.Absolute : Position.Relative;
+        }
         /// <summary>
         ///  충분하면 이미지 불투명도 100%
         /// </summary>

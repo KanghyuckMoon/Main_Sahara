@@ -36,6 +36,8 @@ namespace UI.Upgrade
             upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
             upgradePickPresenter.SetButtonEvent(() => ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key));
 
+            InitVList(); 
+
             CreateItemTree();
         }
 
@@ -53,12 +55,12 @@ namespace UI.Upgrade
         public void CreateItemTree()
         {
             // 최종템 UI 생성
-            CreateRow();
+            //CreateRow();
             ItemData _itemData = ItemData.CopyItemDataSO(AddressablesManager.Instance.GetResource<ItemDataSO>("UItem1"));
-          //  itemDataQueue.Enqueue(_itemData); 
-            CreateSlot(_itemData);
+            itemDataQueue.Enqueue(_itemData); 
+           // CreateSlot(_itemData);
 
-            CreateChildItem(ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_itemData.key));
+            CreateChildItem();
         }
 
         private Queue<ItemData> itemDataQueue = new Queue<ItemData>();
@@ -66,36 +68,20 @@ namespace UI.Upgrade
         /// 재료 슬롯들 생성  
         /// </summary>
         /// <param name="_itemUpgradeDataSO"></param>
-        private void CreateChildItem(ItemUpgradeDataSO _itemUpgradeDataSO)
+        private void CreateChildItem()
         {
-            var _slotList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemUpgradeDataSO.key); // 재료 슬롯 데이터 리스트 
-            // 연결점 생성 
-            CreateConnection(_slotList);
+            var _slotList = new List<ItemData>(); // 재료 슬롯 데이터 리스트 
+            List<ItemData> _list = new List<ItemData>(); // 한 무기에서 필요한 재료무기들 
 
-            CreateRow();
-            // 슬롯 생성
-            foreach (var _item in _slotList)
-            {
-                CreateSlot(_item);
-                ItemUpgradeDataSO _childItemData = ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_item.key);
-                if (_childItemData != null) // 재료템이 존재한다면 
-                {
-                    // 큐 저장 시키고 밑에서 한번에 또 재료 생성 
-                    // 한줄로 쭉 되도록 
-                    // 여기서도 생성  
-                    ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key).ForEach((x) => itemDataQueue.Enqueue(x));
-                    //CreateChildItem(_childItemData);    
-                }
-            }
-
-            CreateConnection(_slotList);
             CreateRow();
             int _count = itemDataQueue.Count();
             int _i = 0;
+
             while (itemDataQueue.Count > 0)
             {
                 if (_i >= _count) // 한 줄 생성 끝 다음 줄 시작 
                 {
+                    CreateConnection(_slotList);
                     _count = itemDataQueue.Count;
                     _i = 0;
                     CreateRow();
@@ -106,7 +92,9 @@ namespace UI.Upgrade
                 ItemUpgradeDataSO _childItemData = ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_itemData.key);
                 if (_childItemData != null) // 재료템이 존재한다면 큐에 추가 
                 {
-                    ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key).ForEach((x) => itemDataQueue.Enqueue(x));
+                    var _dataList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key);
+                    _dataList.ForEach((x) => itemDataQueue.Enqueue(x));
+                    //_list.Add( _dataList);
                 }
                 ++_i;
             }
@@ -157,16 +145,41 @@ namespace UI.Upgrade
             Rect _r3 = _upgradePr.Element1.worldBound;
             upgradePickPresenter.SetPos(new Vector2(_r3.x + _r3.width + 50f, _r3.y));
 
-
+            // 필요 재료들 표시 
+            int _idx = 0; 
             var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key);
-
             foreach (var _data in _list)
             {
                 UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter();
                 _newUpgradePr.SetItemDataHave(_data);
                 upgradePickPresenter.SetSlotParent(_newUpgradePr);
             }
+
+            //foreach (var _data in _list)
+            //{
+            //    UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter();
+            //    _newUpgradePr.SetPositionType(true);
+            //    _newUpgradePr.SetItemDataHave(_data);
+            //    _newUpgradePr.Parent.transform.position = _vList[_idx];
+            //    upgradePickPresenter.SetAbsoluteParent(_newUpgradePr);
+            //    _idx++; 
+            //}
             upgradePickPresenter.ActiveView(true);
+        }
+
+        private List<Vector2> _vList = new List<Vector2>(); 
+        
+        private void InitVList()
+        {
+            float _dist = 200f; 
+            _vList.Add(new Vector2(-_dist, _dist));
+            _vList.Add(new Vector2(-_dist, 0f));
+            _vList.Add(new Vector2(-_dist, -_dist));
+            _vList.Add(new Vector2(0f, -_dist));
+            _vList.Add(new Vector2(_dist, -_dist));
+            _vList.Add(new Vector2(_dist, 0f));
+            _vList.Add(new Vector2(_dist, _dist));
+            _vList.Add(new Vector2(0f, _dist));
         }
 
         /// <summary>
