@@ -98,7 +98,7 @@ namespace Module
         {
             Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
-            bool _isLand = Physics.CheckSphere(_spherePosition, 0.4f, mainModule.groundLayer,
+            bool _isLand = Physics.CheckSphere(_spherePosition, 0.36f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
             if (!mainModule.isGround && _isLand)

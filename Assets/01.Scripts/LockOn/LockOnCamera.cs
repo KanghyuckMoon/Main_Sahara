@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using ForTheTest;
+using Module;
 
 namespace LockOn
 {
@@ -20,6 +21,8 @@ namespace LockOn
         private Transform playerTarget;
         [SerializeField]
         private CinemachineTargetGroup cinemachineTargetGroup;
+        [SerializeField]
+        private AbMainModule playerModule;
 
         private List<Transform> lockOnTargetList = new List<Transform>();
         private Transform target;
@@ -58,6 +61,8 @@ namespace LockOn
 
                 playerCam.gameObject.SetActive(true);
                 groupCam.gameObject.SetActive(false);
+
+                playerModule.LockOn = false;
 
                 Debug.Log("t:록온 해제");
                 return;
@@ -103,6 +108,8 @@ namespace LockOn
 
                     groupCam.gameObject.SetActive(true);
                     playerCam.gameObject.SetActive(false);
+
+                    playerModule.LockOn = true;
 
                     return;
                 }

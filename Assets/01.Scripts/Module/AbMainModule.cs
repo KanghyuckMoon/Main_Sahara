@@ -248,6 +248,11 @@ namespace Module
 			{
                 return lockOn;
 			}
+            set
+            {
+                lockOn = value;
+                
+            }
 		}
 
         public float MaxSlope

@@ -27,7 +27,7 @@ namespace Module
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
             jumpHeight = mainModule.StatData.Jump;
-            jumpDelay = 0.3f;
+            jumpDelay = 0.2f;
             antiFallTime = 0.16f;
         }
 

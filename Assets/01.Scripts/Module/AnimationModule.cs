@@ -64,6 +64,9 @@ namespace Module
             Animator.SetBool("IsGround", mainModule.isGround);
             Animator.SetBool("JumpBuf", mainModule.IsJumpBuf);
             Animator.SetBool("WeaponExist", mainModule.IsWeaponExist);
+
+            Animator.SetFloat("MoveX", mainModule.ObjDir.x);
+            Animator.SetFloat("MoveY", mainModule.ObjDir.y);
         }
 
 		public override void OnDestroy()

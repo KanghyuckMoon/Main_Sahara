@@ -65,6 +65,8 @@ namespace Module
             float _gravity = mainModule.Gravity;//Vector3.down * Mathf.Abs(mainModule.characterController.velocity.y);
             Vector3 _moveValue;
 
+            //if()
+
             if (mainModule.ObjDir != Vector2.zero)
             {
                 targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
@@ -73,6 +75,7 @@ namespace Module
 
                 mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
+
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
