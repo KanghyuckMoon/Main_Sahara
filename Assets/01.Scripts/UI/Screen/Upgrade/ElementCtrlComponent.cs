@@ -8,12 +8,13 @@ namespace UI.Upgrade
     /// <summary>
     ///  이동, 확대 축소 
     /// </summary>
-    public class ElementCtrlComponent : MonoBehaviour
+    public class ElementCtrlComponent 
     {
         private VisualElement target;
         private bool isCtrl;
 
-        private float xMoveValue, yMoveValue, moveSpeed; 
+        private float xMoveValue, yMoveValue, moveSpeed = 10f, zoomValue, zoomSpeed = 1f;
+        private float minZoomValue = 0.5f, maxZoomValue = 2f;
         // 프로퍼티 
         public bool IsCtrl
         {
@@ -25,8 +26,33 @@ namespace UI.Upgrade
             this.target = _v; 
         }
 
+        public void Update()
+        {
+            InputKey();
+            Move();
+            Zoom(); 
+        }
         public void InputKey()
         {
+            if(Input.GetMouseButton(1))
+            {
+                float _x = Input.GetAxis("Mouse X");
+                float _y = Input.GetAxis("Mouse Y");
+
+                if(_x != 0)
+                {
+                    xMoveValue = Input.GetAxis("Mouse X") > 0 ? 1 : -1; // 마우스의 좌우 이동방향
+                }
+                if(_y != 0)
+                {
+                    yMoveValue = Input.GetAxis("Mouse Y") > 0 ? 1 : -1; // 마우스의 상하 이동방향
+                }
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                xMoveValue = yMoveValue = 0; 
+            }
+                zoomValue = Input.GetAxis("Mouse ScrollWheel");
 
         }
         public void Move()
@@ -37,7 +63,7 @@ namespace UI.Upgrade
 
             float mapX, mapY;
             mapX = Mathf.Clamp(mapPos.x + -xMoveValue * (moveSpeed - target.transform.scale.x) * Time.deltaTime,
-                                                // -mapView.MapRect.width - width,width * 0.5f);
+                                                // -mapView.Map Rect.width - width,width * 0.5f);
                                                 -(target.contentRect.width /** mapScale.x*/) * 0.5f, (target.contentRect.width /** mapScale.x*/) * 0.5f);
 
             mapY = Mathf.Clamp(mapPos.y + yMoveValue * (moveSpeed - target.transform.scale.y) * Time.deltaTime,
@@ -49,9 +75,23 @@ namespace UI.Upgrade
 
         public void Zoom()
         {
+            Vector3 mapScale = target.transform.scale;
+
+            /// 확대 축소 
+
+            // 맵 확대 축소 
+            float scaleX, scaleY;
+            scaleX = Mathf.Clamp(mapScale.x + (zoomValue * mapScale.x) * zoomSpeed, minZoomValue, maxZoomValue);
+            scaleY = Mathf.Clamp(mapScale.y + (zoomValue * mapScale.y) * zoomSpeed, minZoomValue, maxZoomValue);
+            target.transform.scale = new Vector3(scaleX, scaleY, mapScale.z);
+
+            // 피벗 설정
+            target.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(
+                new Length((target.contentRect.width * 0.5f - target.transform.position.x), LengthUnit.Pixel),
+                new Length((target.contentRect.height * 0.5f - target.transform.position.y), LengthUnit.Pixel)));
 
         }
-            
+
     }
 
 }

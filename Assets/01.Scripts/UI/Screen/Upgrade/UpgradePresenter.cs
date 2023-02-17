@@ -24,8 +24,15 @@ namespace UI.Upgrade
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
         private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // 모든 슬롯 리스트 
 
+        private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소 
+
         // 프로퍼티 
         private VisualElement CurRow => rowList[rowList.Count - 1];
+
+        private void Start()
+        {
+            elementCtrlComponent = new ElementCtrlComponent(upgradeView.Parent); 
+        }
         private void OnEnable()
         {
             uiDocument = GetComponent<UIDocument>();
@@ -33,12 +40,23 @@ namespace UI.Upgrade
             upgradeView.Cashing();
             upgradeView.Init();
 
-            upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
+            upgradeView.Parent.RegisterCallback<ClickEvent>((x) =>
+            {
+                upgradePickPresenter.ActiveView(false);
+                InActiveAllMark();
+            });
+
+                upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
             upgradePickPresenter.SetButtonEvent(() => ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key));
 
             InitVList(); 
 
             CreateItemTree();
+        }
+
+        private void Update()
+        {
+            elementCtrlComponent.Update(); 
         }
 
         [ContextMenu("Line 생성 테스트")]
