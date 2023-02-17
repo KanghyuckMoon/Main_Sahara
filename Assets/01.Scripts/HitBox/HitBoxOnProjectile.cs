@@ -10,7 +10,7 @@ namespace HitBox
 	public class HitBoxOnProjectile : MonoBehaviour
 	{
 		[SerializeField]
-		private HitBoxDataSO hitBoxDataSO;
+		private HitBoxDatasSO hitBoxDataSO;
 
 		[SerializeField]
 		private string hitboxString;

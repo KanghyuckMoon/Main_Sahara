@@ -28,6 +28,13 @@ namespace TimeManager
 				return Time.unscaledDeltaTime * physicsTime * entierTime;
 			}
 		}
+		public static float PhysicsFixedDeltaTime
+		{
+			get
+			{
+				return Time.fixedUnscaledDeltaTime * physicsTime * entierTime;
+			}
+		}
 
 		public static float PlayerTime
 		{

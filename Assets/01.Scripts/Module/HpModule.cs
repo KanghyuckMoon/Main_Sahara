@@ -1,33 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data;
 
 namespace Module
 {
     public class HpModule : AbBaseModule
     {
-        public int CurrentHp 
-        {
-            get { return currentHp; }
-            set 
-            {
-                currentHp = value;
-            } 
-        }
-
         private int maxHp;
         private int currentHp;
 
-        private StateModule StateModule
-        {
-            get
-            {
-                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-                return stateModule;
-            }
-        }
-
-        private StateModule stateModule;
+        private StatData _StatData => mainModule.StatData;
 
         public HpModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -36,8 +19,7 @@ namespace Module
 
         public override void Start()
         {
-            maxHp = StateModule.MaxHp;
-            currentHp = maxHp;
+            _StatData.CurrentHp = _StatData.MaxHp;
         }
 
 
@@ -54,11 +36,11 @@ namespace Module
 
         private int ChangeHpValue(int value)
         {
-            StateModule.CurrentHp += value;
-            if (currentHp > maxHp) currentHp = maxHp;
-            if (currentHp < 0) currentHp = 0;
+            _StatData.CurrentHp += value;
+            if (_StatData.CurrentHp > _StatData.MaxHp) _StatData.CurrentHp = _StatData.MaxHp;
+            if (_StatData.CurrentHp < 0) _StatData.CurrentHp = 0;
 
-            return StateModule.CurrentHp;
+            return _StatData.CurrentHp;
         }
     }
 }

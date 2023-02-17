@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data;
 
 namespace Module
 {
@@ -9,7 +10,7 @@ namespace Module
         private Animator animator;
 
         private float jumpHeight;
-        private float gravityScale => mainModule.GravityScale;
+        private float _GravityScale => mainModule.GravityScale;
 
         private float jumpDelay;
         private float calculatedTime;
@@ -25,8 +26,8 @@ namespace Module
         public override void Start()
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
-            jumpHeight = mainModule.GetModuleComponent<StateModule>(ModuleType.State).JumpPower;
-            jumpDelay = 0.4f;
+            jumpHeight = mainModule.StatData.Jump;
+            jumpDelay = 0.3f;
             antiFallTime = 0.16f;
         }
 
@@ -77,7 +78,7 @@ namespace Module
 
         void Jumping()
         {
-            mainModule.Gravity = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
+            mainModule.Gravity = Mathf.Sqrt(jumpHeight * -2f * _GravityScale);
             //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
 

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UIElements;
-using Module; 
+using Module;
+using Data;
 
 namespace UI
 {
@@ -19,17 +20,17 @@ namespace UI
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set; }
 
-        private StateModule stateModule; 
+        private StatData statData; 
         public void Awake()
         {
             _mpView.InitUIDocument(RootUIDocument); 
             _mpView.Cashing();
         }
 
-        public void Start(StateModule _stateData)
+        public void Start(StatData _statData)
         {
             _mpView.Init();
-            this.stateModule = _stateData;
+            this.statData = _statData;
         }
 
         // 선택한 오브젝트의 스크립트 가져오고 
@@ -38,7 +39,7 @@ namespace UI
         public void UpdateUI()
         {
             //    _hpView.SetBarUI(_entityData.hp);
-            _mpView.SetBarUI((float)stateModule.Mana/ stateModule.MaxMana);
+            _mpView.SetBarUI((float)statData.CurrentMana/ statData.MaxMana);
         }
     }
 }

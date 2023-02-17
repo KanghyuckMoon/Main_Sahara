@@ -7,7 +7,7 @@ namespace HitBox
 {
 	public class HitboxTester : MonoBehaviour
 	{
-		public HitBoxDataSO hitBoxDataSO;
+		public HitBoxDatasSO hitBoxDataSO;
 		public string hitboxStr;
 		 
 		[ContextMenu("SetHitBox")]

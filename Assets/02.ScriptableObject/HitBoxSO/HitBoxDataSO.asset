@@ -9,42 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 349519da9ba02484cb8b5d3ca0df7c90, type: 3}
+  m_Script: {fileID: 11500000, guid: 37506751a7e6cca43930267e6e5ad245, type: 3}
   m_Name: HitBoxDataSO
   m_EditorClassIdentifier: 
   hitBoxDataDic:
     m_keys:
-    - TestAttack
-    - EndSwordAttackCol
     - EndSword_ColKey
     - EndSword_ColKey2
     m_values:
-    - hitBoxDataList:
-      - hitBoxName: TestAttack
-        ClassificationName: A1
-        hitBoxIndex: 0
-        deleteDelay: 0.1
-        childization: 0
-        offset: {x: 0.037656426, y: 0.90979004, z: 0.19889736}
-        size: {x: 1.040977, y: 1.864502, z: 0.5396265}
-        swingEffectOffset: {x: 0, y: 0, z: 0}
-        swingEffectRotation: {x: 0, y: 0, z: 0}
-        swingEffectSize: {x: 1, y: 1, z: 1}
-        swingEffect: 
-        hitEffect: 
-    - hitBoxDataList:
-      - hitBoxName: EndSwordAttackCol
-        ClassificationName: Col100
-        hitBoxIndex: 0
-        deleteDelay: 0.1
-        childization: 0
-        offset: {x: 0, y: 0, z: 0}
-        size: {x: 1, y: 1, z: 1}
-        swingEffectOffset: {x: 0, y: 0, z: 0}
-        swingEffectRotation: {x: 0, y: 0, z: 0}
-        swingEffectSize: {x: 1, y: 1, z: 1}
-        swingEffect: 
-        hitEffect: 
     - hitBoxDataList:
       - hitBoxName: EndSword_ColKey
         ClassificationName: Col1
@@ -53,6 +25,8 @@ MonoBehaviour:
         childization: 0
         offset: {x: 0, y: 0.9674707, z: 0.5271874}
         size: {x: 1.3251443, y: 1.1949414, z: 1.0743748}
+        knockbackDir: {x: 0, y: 0, z: 1}
+        defaultPower: 0
         swingEffectOffset: {x: -0.347, y: 1.212, z: 0.247}
         swingEffectRotation: {x: 51.20326, y: 101.24101, z: 94.3709}
         swingEffectSize: {x: 1, y: 1, z: 1}
@@ -66,6 +40,8 @@ MonoBehaviour:
         childization: 0
         offset: {x: 0, y: 0.9674707, z: 0.5271874}
         size: {x: 1.3251443, y: 1.1949414, z: 1.0743748}
+        knockbackDir: {x: -90, y: 0, z: 0}
+        defaultPower: 0.5
         swingEffectOffset: {x: 0.75, y: 1.212, z: 0.292}
         swingEffectRotation: {x: 87.64499, y: 45.825466, z: 41.159153}
         swingEffectSize: {x: -1, y: 1, z: 1}

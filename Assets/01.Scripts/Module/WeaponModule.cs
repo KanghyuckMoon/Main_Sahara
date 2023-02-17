@@ -39,15 +39,15 @@ namespace Module
         }
         private BaseWeapon baseWeapon;
 
-        private StateModule StateModule
+        private StatModule StateModule
         {
             get
             {
-                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.State);
                 return stateModule;
             }
         }
-        private StateModule stateModule;
+        private StatModule stateModule;
         private Animator animator;
         private GameObject weaponRight;
         private IWeaponSkills iWeaponSkills;
@@ -85,15 +85,15 @@ namespace Module
 
                 iWeaponSkills = _weapon.GetComponent<IWeaponSkills>();
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
-                
-                _weapon.transform.localPosition = baseWeapon.WeaponPositionSO.weaponPosition;
-                _weapon.transform.localRotation = baseWeapon.WeaponPositionSO.weaponRotation;
+
+                _weapon.transform.localPosition = BaseWeapon.WeaponPositionSO.weaponPosition;
+                _weapon.transform.localRotation = BaseWeapon.WeaponPositionSO.weaponRotation;
 
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
-                baseWeapon.tagName = _tagname;
-                mainModule.gameObject.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
+                BaseWeapon.tagName = _tagname;
+                mainModule.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
 
-                StateModule.SetAttackDamage(baseWeapon.WeaponDataSO);
+                StateModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;
@@ -119,23 +119,23 @@ namespace Module
         private void SetWeaponSkills()
         {
             if (iWeaponSkills is not null)
-			{
+            {
                 weaponSkills = new WeaponSkills(iWeaponSkills.Skills);
-			}
+            }
         }
 
         public void UseWeaponSkills()
         {
             if (baseWeapon is null)
-			{
-                return;
-			}
-
-            if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
             {
-                weaponSkills?.Invoke();
-                StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
+                return;
             }
+
+            //if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
+            //{
+            //    weaponSkills?.Invoke();
+            //    StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
+            //}
         }
     }
 }

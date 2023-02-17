@@ -10,12 +10,27 @@ using GameManager;
 
 namespace Quest
 {
-    public partial class QuestManager : MonoSingleton<QuestManager>, Observer
+	public delegate void QuestEventTransmit(string _sender, string _recipient, object _obj);
+	public partial class QuestManager : MonoSingleton<QuestManager>, Observer
     {
         private QuestDataAllSO questDataAllSO;
 		private QuestSaveDataSO questSaveDataSO;
         public Dictionary<string, QuestData> questDataDic = new Dictionary<string, QuestData>();
 		private bool isInit = false;
+
+		public QuestEventTransmit QuestEventTransmit
+		{
+			get
+			{
+				return questEventTransmit;
+			}
+			set
+			{
+				questEventTransmit = value;
+			}
+		}
+
+		private QuestEventTransmit questEventTransmit;
 
 		private void Awake()
 		{
@@ -32,6 +47,41 @@ namespace Quest
 			}
 			isInit = true;
 		}
+
+		public void SendEvent(string _recipient, object _obj)
+		{
+			questEventTransmit?.Invoke("QuestManager", _recipient, _obj);
+		}
+
+		public void ReceiveEvent(string _sender, object _obj)
+		{
+			if(_sender is "InventoryManager")
+			{
+				var _list = questDataDic.Where(item => item.Value.QuestConditionType == QuestConditionType.Inventory).Select(item => item.Value).ToList();
+				foreach (var _quest in _list)
+				{
+					if (_quest.QuestState == QuestState.Disable || _quest.QuestState == QuestState.Clear || _quest.QuestState == QuestState.Achievable)
+					{
+						continue;
+					}
+
+					if (_quest.IsClear())
+					{
+						if (_quest.IsTalkQuest)
+						{
+							_quest.QuestState = QuestState.Achievable;
+							questSaveDataSO.ChangeQuestSaveData(_quest.QuestKey, _quest.QuestState);
+							//NPC 대화 데이터 설정
+						}
+						else
+						{
+							QuestClear(_quest);
+						}
+					}
+				}
+			}
+		}
+
 
 
 		public void LateUpdate()
@@ -117,6 +167,25 @@ namespace Quest
 			questDataDic[_key].QuestState = QuestState.Active;
 		}
 		public void ChangeQuestClear(string _key)
+		{
+			QuestData _questData = questDataDic[_key];
+			if(_questData.QuestState is QuestState.Clear || _questData.QuestState is QuestState.Achievable)
+			{
+				return;
+			}
+			
+			if (_questData.IsTalkQuest)
+			{
+				_questData.QuestState = QuestState.Achievable;
+				questSaveDataSO.ChangeQuestSaveData(_questData.QuestKey, _questData.QuestState);
+			}
+			else
+			{
+				QuestClear(questDataDic[_key]);
+			}
+		}
+
+		public void TalkQuestClear(string _key)
 		{
 			QuestClear(questDataDic[_key]);
 		}

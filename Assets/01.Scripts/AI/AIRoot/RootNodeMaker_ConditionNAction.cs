@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using Utill.Addressable;
 using Utill.Pattern;
 using Module;
+using Data;
 using static NodeUtill;
 
 namespace AI
@@ -120,8 +121,8 @@ namespace AI
 			jumpCheckVector.y = 0;
 			jumpCheckVector = jumpCheckVector.normalized;
 
-			float dir = Mathf.Atan2(aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).JumpPower, aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).Speed);
-			float force = aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).Speed;
+			float dir = Mathf.Atan2(aiModule.MainModule.StatData.Jump, aiModule.MainModule.StatData.Speed);
+			float force = aiModule.MainModule.StatData.Speed;
 			float width = Caculated_Width(force, dir);
 			RaycastHit raycastHit;
 			jumpCheckVector *= width;

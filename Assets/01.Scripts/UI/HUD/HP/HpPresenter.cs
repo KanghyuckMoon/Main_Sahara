@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UIElements;
-using Module; 
+using Module;
+using Data;
 
 namespace UI
 {
@@ -19,7 +20,7 @@ namespace UI
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set ; }
 
-        private StateModule stateModule;
+        private StatData statData;
 
         public void Awake()
         {
@@ -27,10 +28,10 @@ namespace UI
             _hpView.Cashing();
         }
 
-        public void Start(StateModule _stateData)
+        public void Start(StatData _statData)
         {
             _hpView.Init();
-            this.stateModule = _stateData; 
+            this.statData = _statData; 
         }
 
         // 선택한 오브젝트의 스크립트 가져오고 
@@ -39,7 +40,7 @@ namespace UI
 
         public void UpdateUI()
         {
-            float _hp = (float)stateModule.CurrentHp / (float)stateModule.MaxHp;
+            float _hp = (float)statData.CurrentHp / (float)statData.MaxHp;
 
             //    _hpView.SetBarUI(_entityData.hp)  ;
             _hpView.SetBarUI(_hp);

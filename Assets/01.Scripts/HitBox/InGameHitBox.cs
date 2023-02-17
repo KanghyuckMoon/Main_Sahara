@@ -15,6 +15,18 @@ namespace HitBox
 			}
 		}
 
+		public Vector3 HitBoxPos
+		{
+			get
+			{
+				if(hitBoxData is null)
+				{
+					return transform.position;
+				}
+				return transform.position + (transform.forward * hitBoxData.offset.z) + (transform.up * hitBoxData.offset.y) + (transform.right * hitBoxData.offset.x);
+			}
+		}
+
 		private BoxCollider col;
 		private HitBoxData hitBoxData;
 		private GameObject owner;
@@ -52,6 +64,16 @@ namespace HitBox
 			}
 		}
 
+		public Quaternion KnockbackDir()
+		{
+			Quaternion _quaternion = transform.rotation* Quaternion.Euler(hitBoxData.knockbackDir);
+			return _quaternion.normalized;
+		}
+
+		public float KnockbackPower()
+		{
+			return hitBoxData.defaultPower;
+		}
 		private IEnumerator DestroyHitBox()
 		{
 			yield return new WaitForSeconds(hitBoxData.deleteDelay);

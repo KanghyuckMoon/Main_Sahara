@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data;
 
 namespace Module
 {
@@ -8,7 +9,7 @@ namespace Module
     {
         private Animator animator;
 
-        private float moveSpeed => mainModule.GetModuleComponent<StateModule>(ModuleType.State).Speed;
+        private float moveSpeed => statData.Speed;
         private float rotationVelocity;
         private float targetRotation;
         private float rotation;
@@ -20,6 +21,7 @@ namespace Module
 
         private float addSpeed;
 
+        private StatData statData;
         private Vector3 currentDirection;
 
         public MoveModule(AbMainModule _mainModule) : base(_mainModule)
@@ -76,7 +78,8 @@ namespace Module
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * Time.fixedDeltaTime;
-            mainModule.CharacterController.Move(_moveValue + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
+            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, Time.fixedDeltaTime);
+            mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
 
             animator.SetFloat("MoveSpeed", animationBlend);
         }
@@ -137,7 +140,8 @@ namespace Module
 
         public override void FixedUpdate()
         {
-            Move();
+            if (!mainModule.IsSlope)
+                Move();
             Gravity();
             ETC();
         }
@@ -145,6 +149,7 @@ namespace Module
         public override void Start()
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
+            statData = mainModule.GetComponent<StatData>();
             animationBlend = 0;
         }
     }

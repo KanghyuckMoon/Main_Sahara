@@ -5,6 +5,7 @@ using UnityEditor;
 using FischlWorks;
 using UpdateManager;
 using Utill.Pattern;
+using Data;
 
 namespace Module
 {
@@ -57,12 +58,12 @@ namespace Module
                 objRotation = value;
             }
         }
-
-        public string DataSOPath
+        public StatData StatData
         {
             get
             {
-                return dataSOPath;
+                statData ??= GetComponent<StatData>();
+                return statData;
             }
         }
 
@@ -229,6 +230,17 @@ namespace Module
                 return gravityScale;
 			}
 		}
+        public Vector3 KnockBackVector
+        {
+            get
+			{
+                return knockBackVector;
+			}
+            set
+			{
+                knockBackVector = value;
+			}
+		}
 
         public bool LockOn
 		{
@@ -269,6 +281,14 @@ namespace Module
 			}
 		}
 
+        public Transform Model
+		{
+            get
+			{
+                return model;
+			}
+		}
+
 		[SerializeField, Header("멈출까말까")] 
         private int stopOrNot;
 
@@ -280,8 +300,8 @@ namespace Module
         private Quaternion objRotation;
 
         [Space]
-        [SerializeField, Header("데이터 가져올 데")] 
-        private string dataSOPath;
+        [SerializeField, Header("데이터 가져올 데")]
+        private StatData statData;
 
         [Space]
         [SerializeField, Header("피격 판정이름")] 
@@ -327,6 +347,8 @@ namespace Module
         private float gravityScale = -9.8f;
         [SerializeField, Header("땅체크 사거리")] 
         public float groundOffset;
+        [SerializeField, Header("넉백")]
+        private Vector3 knockBackVector;
 
         [Space]
         public float hitDelay;
@@ -345,6 +367,9 @@ namespace Module
         [SerializeField, Header("레이캐스트 쏠위치")]
         private Transform raycastTarget;
         private RaycastHit slopeHit;
+
+        [SerializeField]
+        private Transform model;
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 

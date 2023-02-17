@@ -4,8 +4,11 @@ using UnityEngine;
 using DG.Tweening;
 using Effect;
 using Utill.Addressable;
+using Utill;
 using HitBox;
+using Data;
 using Attack;
+using DG.Tweening;
 
 namespace Module
 {
@@ -46,14 +49,16 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.IsDead)
                 {
-                    InGameHitBox inGameHitBox = other.GetComponent<InGameHitBox>();
-                    AttackFeedBack attackFeedBack = other.GetComponent<AttackFeedBack>();
-                    StateModule otherStateModule = inGameHitBox.Owner.GetComponentInParent<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
-                    attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
-                    if (otherStateModule != null)
+                    InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
+                    if (_inGameHitBox is null) return;
+                    AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
+                    StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
+                    mainModule.StartCoroutine(HitKnockBack(_inGameHitBox));
+                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
+                    if (_statData != null)
                     {
-                        HitModule.GetHit(otherStateModule.AdAttack);
-                        otherStateModule.ChargeMana(10);    
+                        HitModule.GetHit(_statData.MeleeAttack);
+                        _statData.ChargeMana(10);
                     }
                     else
                     {
@@ -61,6 +66,21 @@ namespace Module
                     }
                 }
             }
+        }
+
+        private IEnumerator HitKnockBack(InGameHitBox _inGameHitBox)
+        {
+            Vector3 _dir = (_inGameHitBox.KnockbackDir() * Vector3.forward);
+            Vector3 _shakeDir = Quaternion.Euler(0, -45, 0) * _dir;
+
+            mainModule.Model.DOKill();
+            mainModule.Model.localPosition = Vector3.zero;
+            mainModule.Model.DOShakePosition(0.22f, _shakeDir * 0.5f, 20);
+            yield return new WaitForSeconds(0.22f);
+            mainModule.Model.DOKill();
+            mainModule.Model.localPosition = Vector3.zero;
+
+            mainModule.KnockBackVector = _dir * _inGameHitBox.KnockbackPower();
         }
 
         public override void FixedUpdate()
@@ -80,25 +100,27 @@ namespace Module
             if (Physics.Raycast(ray, out _raycastHit, rayDistance, mainModule.groundLayer))
             {
                 mainModule.SlopeHit = _raycastHit;
-                   var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
-                mainModule.IsSlope = (angle != 0f) && angle < mainModule.MaxSlope;
+                var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
+                mainModule.IsSlope = ((angle != 0f) && angle < mainModule.MaxSlope);
+                //return;
             }
             else
             {
                 mainModule.SlopeHit = _raycastHit;
             }
-            mainModule.IsSlope = false;
+            //mainModule.IsSlope = false;
         }
 
         private void GroundCheack()
         {
             Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
-            bool _isLand = Physics.CheckSphere(_spherePosition, 0.42f, mainModule.groundLayer,
+            bool _isLand = Physics.CheckSphere(_spherePosition, 0.4f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
-            if(!mainModule.isGround && _isLand)
+            if (!mainModule.isGround && _isLand)
             {
+                mainModule.KnockBackVector = Vector3.zero;
                 EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
             }
 
@@ -107,10 +129,10 @@ namespace Module
 
         private void SetEffect()
         {
-            if(mainModule.isGround && mainModule.ObjDir != Vector2.zero)
+            if (mainModule.isGround && mainModule.ObjDir != Vector2.zero)
             {
                 float delay = 1;
-                if(currenteffectSpownDelay > effectSpownDelay)
+                if (currenteffectSpownDelay > effectSpownDelay)
                 {
                     currenteffectSpownDelay = 0;
 
@@ -120,9 +142,9 @@ namespace Module
                         EffectManager.Instance.SetEffectDefault(isRight ? effect.runREffectName : effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
                     }
                     else
-					{
+                    {
                         EffectManager.Instance.SetEffectDefault(isRight ? effect.walkRffectName : effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
-					}
+                    }
                     isRight = !isRight;
                 }
                 currenteffectSpownDelay += Time.deltaTime * delay;

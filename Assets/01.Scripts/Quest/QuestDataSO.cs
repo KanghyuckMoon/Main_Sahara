@@ -17,44 +17,26 @@ namespace Quest
 		public List<string> linkQuestKeyList;
 		public List<QuestCreateObjectSO> questCreateObjectSOList;
 		public bool isTalkQuest = false;
+		public bool isUpdate = true; //추후 최적화를 위해 업데이트를 안 돌려도 되는 퀘스트는 업데이트를 안 돌리도록 처리
 
 		//퀘스트 상태에 따른 변수
 
-		[Header("Position")]
+		[Header("Position"), Space(10)]
 		public Vector3 goalPosition = new Vector3(0,4000,0);
 		public float distance = 3f;
 
-		[Header("TargetMonster")]
-		//
 
-		[Header("MonsterType")]
-		//
+		[Header("TargetMonster"), Space(10)]
+		//None
 
-		[Header("DebugData")]
-		//
+		[Header("TargetObject"), Space(10)]
+		//None
 
-		[Header("TargetObject")]
-		//
+		[Header("Inventory"), Space(10)]
+		public string itemKey;
+		public int needCount = 1;
 
-		[Header("MiniGame")]
-		//
-
-		[Header("Stat")]
-		//
-
-		[Header("Inventory")]
-		public string itemName = null;
-
-		[Header("Mission")]
-		//
-
-		[Header("TargetNPC")]
-		//
-
-		[Header("TargetInteractionItem")]
-		//
-		
-		[Header("Time")]
+		[Header("Time"), Space(10)]
 		public float afterTime = 5f;
 	}
 
