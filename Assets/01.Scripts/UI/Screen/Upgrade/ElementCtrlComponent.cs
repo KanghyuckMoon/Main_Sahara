@@ -39,17 +39,17 @@ namespace UI.Upgrade
                 float _x = Input.GetAxis("Mouse X");
                 float _y = Input.GetAxis("Mouse Y");
 
-                if(Mathf.Abs(_x) > 0.4f)
+                if(Mathf.Abs(_x) > 0.2f)
                 {
-                    xMoveValue = Input.GetAxis("Mouse X") > 0 ? 1 : -1; // 마우스의 좌우 이동방향
+                    xMoveValue = Input.GetAxis("Mouse X") > 0 ? -1 : 1; // 마우스의 좌우 이동방향
                 }
                 else
                 {
                     xMoveValue = 0f; 
                 }
-                if(Mathf.Abs(_y) > 0.4f)
+                if(Mathf.Abs(_y) > 0.2f)
                 {
-                    yMoveValue = Input.GetAxis("Mouse Y") > 0 ? 1 : -1; // 마우스의 상하 이동방향
+                    yMoveValue = Input.GetAxis("Mouse Y") > 0 ? -1 : 1; // 마우스의 상하 이동방향
                 }
                 else
                 {
