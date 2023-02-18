@@ -29,6 +29,9 @@ namespace Module
         [SerializeField]
         private Transform rootTransform;
 
+        [SerializeField]
+        private Animator animator;
+
         private AbMainModule abMainModule;
 
 
@@ -52,9 +55,15 @@ namespace Module
 
         private IEnumerator IDead()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
+            animator.speed = 0;
             EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
             EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, rootTransform);
+            yield return new WaitForSeconds(0.2f);
+            abMainModule.Model.gameObject.SetActive(false);
+            yield return new WaitForSeconds(3f);
+            animator.speed = 1;
+            abMainModule.Model.gameObject.SetActive(true);
             ObjectPoolManager.Instance.RegisterObject(enemyKey, gameObject);
             gameObject.SetActive(false);
         }
