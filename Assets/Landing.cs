@@ -10,7 +10,7 @@ public class Landing : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _mainModule = animator.GetComponent<AbMainModule>();
+        _mainModule ??= animator.GetComponent<AbMainModule>();
         _mainModule.StopOrNot = 0;
         //_mainModule.canMove = false;
     }

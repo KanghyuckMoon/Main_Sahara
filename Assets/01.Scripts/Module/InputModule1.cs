@@ -60,7 +60,7 @@ namespace Module
 			{
 				if (!mainModule.IsDead)
 				{
-					bool _inputup = Input.GetKey(KeyCode.Space);
+					bool _inputup = Input.GetKeyDown(KeyCode.Space);
 
 					mainModule.IsJump = _inputup;
 					mainModule.IsJumpBuf = _inputup;

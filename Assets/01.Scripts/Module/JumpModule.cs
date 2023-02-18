@@ -10,7 +10,7 @@ namespace Module
         private Animator animator;
 
         private float jumpHeight;
-        private float gravityScale => mainModule.GravityScale;
+        private float _GravityScale => mainModule.GravityScale;
 
         private float jumpDelay;
         private float calculatedTime;
@@ -27,7 +27,7 @@ namespace Module
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
             jumpHeight = mainModule.StatData.Jump;
-            jumpDelay = 0.4f;
+            jumpDelay = 0.3f;
             antiFallTime = 0.16f;
         }
 
@@ -78,7 +78,7 @@ namespace Module
 
         void Jumping()
         {
-            mainModule.Gravity = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
+            mainModule.Gravity = Mathf.Sqrt(jumpHeight * -2f * _GravityScale);
             //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
 

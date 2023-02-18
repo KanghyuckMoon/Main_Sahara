@@ -4,9 +4,11 @@ using UnityEngine;
 using DG.Tweening;
 using Effect;
 using Utill.Addressable;
+using Utill;
 using HitBox;
 using Data;
 using Attack;
+using DG.Tweening;
 
 namespace Module
 {
@@ -51,7 +53,7 @@ namespace Module
                     if (_inGameHitBox is null) return;
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
-                    mainModule.KnockBackVector = _inGameHitBox.KnockbackDir() * Vector3.forward * _inGameHitBox.KnockbackPower();
+                    mainModule.StartCoroutine(HitKnockBack(_inGameHitBox));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
                     if (_statData != null)
                     {
@@ -64,6 +66,21 @@ namespace Module
                     }
                 }
             }
+        }
+
+        private IEnumerator HitKnockBack(InGameHitBox _inGameHitBox)
+        {
+            Vector3 _dir = (_inGameHitBox.KnockbackDir() * Vector3.forward);
+            Vector3 _shakeDir = Quaternion.Euler(0, -45, 0) * _dir;
+
+            mainModule.Model.DOKill();
+            mainModule.Model.localPosition = Vector3.zero;
+            mainModule.Model.DOShakePosition(0.22f, _shakeDir * 0.5f, 20);
+            yield return new WaitForSeconds(0.22f);
+            mainModule.Model.DOKill();
+            mainModule.Model.localPosition = Vector3.zero;
+
+            mainModule.KnockBackVector = _dir * _inGameHitBox.KnockbackPower();
         }
 
         public override void FixedUpdate()
@@ -84,20 +101,21 @@ namespace Module
             {
                 mainModule.SlopeHit = _raycastHit;
                 var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
-                mainModule.IsSlope = (angle != 0f) && angle < mainModule.MaxSlope;
+                mainModule.IsSlope = ((angle != 0f) && angle < mainModule.MaxSlope);
+                //return;
             }
             else
             {
                 mainModule.SlopeHit = _raycastHit;
             }
-            mainModule.IsSlope = false;
+            //mainModule.IsSlope = false;
         }
 
         private void GroundCheack()
         {
             Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
-            bool _isLand = Physics.CheckSphere(_spherePosition, 0.42f, mainModule.groundLayer,
+            bool _isLand = Physics.CheckSphere(_spherePosition, 0.4f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
             if (!mainModule.isGround && _isLand)

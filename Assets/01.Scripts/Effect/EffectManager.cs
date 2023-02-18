@@ -9,6 +9,9 @@ using Utill.Pattern;
 
 namespace Effect
 {
+    public interface ISkinEffect {public void Setting(SkinnedMeshRenderer _skinnedMeshRenderer, Transform _modelRoot); }
+
+
     /// <summary>
     /// 이펙트 생성 매니저
     /// </summary>
@@ -77,6 +80,20 @@ namespace Effect
             effect.transform.position = _pos;
             effect.transform.eulerAngles = _eulerAngles;
             effect.transform.localScale = _size;
+            effect.transform.SetParent(null);
+            effect.gameObject.SetActive(true);
+        }
+
+        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root)
+        {
+            if (!_isInit)
+            {
+                Init();
+            }
+
+            GameObject effect = ObjectPoolManager.Instance.GetObject(_adress);
+            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root);
+            effect.transform.position = _obj.position;
             effect.transform.SetParent(null);
             effect.gameObject.SetActive(true);
         }

@@ -1069,6 +1069,8 @@ MonoBehaviour:
   cameraSide: 1
   allowCameraToggle: 1
   cameraSideToggleSpeed: 1
+  cameraX: 0
+  cameraY: 0
 --- !u!1 &603684355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,9 +1940,10 @@ GameObject:
   - component: {fileID: 1265982168}
   - component: {fileID: 1265982171}
   - component: {fileID: 1265982173}
-  - component: {fileID: 1265982174}
   - component: {fileID: 1265982175}
   - component: {fileID: 1265982176}
+  - component: {fileID: 1265982178}
+  - component: {fileID: 1265982177}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2067,19 +2070,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &1265982174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265982165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b041de2e0572a4f87438170e98faa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isColliderOn: 0
 --- !u!114 &1265982175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2096,7 +2086,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
-  dataSOPath: PlayerData_SO_Test
+  statData: {fileID: 0}
   hitCollider:
   - EnemyWeapon
   moveSpeed: 0
@@ -2116,6 +2106,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -9.8
   groundOffset: -0.3
+  knockBackVector: {x: 0, y: 0, z: 0}
   hitDelay: 1
   lockOn: 0
   groundLayer:
@@ -2137,6 +2128,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneMoveTime: 5
   sceneMoveName: TestScene
+--- !u!114 &1265982177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265982165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  hitBoxName: 
+--- !u!114 &1265982178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265982165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataSOPath: PlayerData_SO_Test
 --- !u!1 &1270887375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,8 +2197,8 @@ GameObject:
   - component: {fileID: 1286618047}
   - component: {fileID: 1286618045}
   - component: {fileID: 1286618044}
-  - component: {fileID: 1286618043}
   - component: {fileID: 1286618048}
+  - component: {fileID: 1286618049}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -2188,19 +2206,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1286618043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286618041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b041de2e0572a4f87438170e98faa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isColliderOn: 0
 --- !u!143 &1286618044
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2274,7 +2279,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
-  dataSOPath: EnemyData_TesSO
+  statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
   - PlayerSkill
@@ -2295,6 +2300,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -19.8
   groundOffset: -0.3
+  knockBackVector: {x: 0, y: 0, z: 0}
   hitDelay: 1
   lockOn: 0
   groundLayer:
@@ -2303,6 +2309,19 @@ MonoBehaviour:
   maxSlope: 0
   raycastTarget: {fileID: 0}
   aiSOAddress: TestEnemySO
+--- !u!114 &1286618049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286618041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataSOPath: EnemyData_SO_Test
 --- !u!1 &1293801852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,7 +3200,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
-  dataSOPath: 
+  statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
   moveSpeed: 0
@@ -3201,6 +3220,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0
+  knockBackVector: {x: 0, y: 0, z: 0}
   hitDelay: 0
   lockOn: 0
   groundLayer:

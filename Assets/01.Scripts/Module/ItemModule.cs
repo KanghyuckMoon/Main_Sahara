@@ -11,6 +11,7 @@ namespace Module
     public enum AccessoriesItemType
     {
         HpUp,
+        Fire,
         NONE
     }
     public partial class ItemModule : AbBaseModule
