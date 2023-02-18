@@ -20,6 +20,7 @@ namespace UI.Upgrade
         [SerializeField]
         private UpgradeView upgradeView;
 
+        private UpgradeSlotPresenter _curSlotPr; // 현재 선택한 슬롯
         private UpgradePickPresenter upgradePickPresenter;
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
         private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // 모든 슬롯 리스트 
@@ -88,7 +89,7 @@ namespace UI.Upgrade
         /// <param name="_itemUpgradeDataSO"></param>
         private void CreateChildItem()
         {
-            var _slotList = new List<ItemData>(); // 재료 슬롯 데이터 리스트 
+            var _slotDataList = new List<ItemData>(); // 재료 슬롯 데이터 리스트 
             List<ItemData> _list = new List<ItemData>(); // 한 무기에서 필요한 재료무기들 
 
             CreateRow();
@@ -99,7 +100,7 @@ namespace UI.Upgrade
             {
                 if (_i >= _count) // 한 줄 생성 끝 다음 줄 시작 
                 {
-                    CreateConnection(_slotList);
+                    CreateConnection(_slotDataList);
                     _count = itemDataQueue.Count;
                     _i = 0;
                     CreateRow();
@@ -111,8 +112,11 @@ namespace UI.Upgrade
                 if (_childItemData != null) // 재료템이 존재한다면 큐에 추가 
                 {
                     var _dataList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key);
-                    _dataList.ForEach((x) => itemDataQueue.Enqueue(x));
-                    //_list.Add( _dataList);
+                    // 무기만 생성 
+                    _dataList.Where((x) => x.itemType == ItemType.Weapon).ToList()
+                        .ForEach((x) => itemDataQueue.Enqueue(x));
+                    
+                    _slotDataList.AddRange( _dataList);
                 }
                 ++_i;
             }
@@ -123,7 +127,6 @@ namespace UI.Upgrade
 
         }
 
-        private UpgradeSlotPresenter _curSlotPr; // 현재 선택한 슬롯
         private void CreateSlot(ItemData _itemData)
         {
             UpgradeSlotPresenter _upgradePr = new UpgradeSlotPresenter();
@@ -168,7 +171,7 @@ namespace UI.Upgrade
 
             // 필요 재료들 표시 
             int _idx = 0;
-            var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key);
+            var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key).Where((x) => x.itemType != ItemType.Weapon).ToList();
             foreach (var _data in _list)
             {
                 UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter();
