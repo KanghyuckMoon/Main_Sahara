@@ -13,7 +13,7 @@ namespace UI.Upgrade
         private VisualElement target;
         private bool isCtrl;
 
-        private float xMoveValue, yMoveValue, moveSpeed = 10f, zoomValue, zoomSpeed = 1f;
+        private float xMoveValue, yMoveValue, moveSpeed = 2000f, zoomValue, zoomSpeed = 1f;
         private float minZoomValue = 0.5f, maxZoomValue = 2f;
         // 프로퍼티 
         public bool IsCtrl
@@ -39,13 +39,21 @@ namespace UI.Upgrade
                 float _x = Input.GetAxis("Mouse X");
                 float _y = Input.GetAxis("Mouse Y");
 
-                if(_x != 0)
+                if(Mathf.Abs(_x) > 0.4f)
                 {
                     xMoveValue = Input.GetAxis("Mouse X") > 0 ? 1 : -1; // 마우스의 좌우 이동방향
                 }
-                if(_y != 0)
+                else
+                {
+                    xMoveValue = 0f; 
+                }
+                if(Mathf.Abs(_y) > 0.4f)
                 {
                     yMoveValue = Input.GetAxis("Mouse Y") > 0 ? 1 : -1; // 마우스의 상하 이동방향
+                }
+                else
+                {
+                    yMoveValue = 0f; 
                 }
             }
             if (Input.GetMouseButtonUp(1))

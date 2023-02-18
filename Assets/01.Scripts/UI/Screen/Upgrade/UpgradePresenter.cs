@@ -31,7 +31,7 @@ namespace UI.Upgrade
 
         private void Start()
         {
-            elementCtrlComponent = new ElementCtrlComponent(upgradeView.Parent); 
+            elementCtrlComponent = new ElementCtrlComponent(upgradeView.MoveScreen);
         }
         private void OnEnable()
         {
@@ -40,23 +40,23 @@ namespace UI.Upgrade
             upgradeView.Cashing();
             upgradeView.Init();
 
-            upgradeView.Parent.RegisterCallback<ClickEvent>((x) =>
-            {
-                upgradePickPresenter.ActiveView(false);
-                InActiveAllMark();
-            });
+            //upgradeView.Parent.RegisterCallback<ClickEvent>((x) =>
+            //{
+            //    upgradePickPresenter.ActiveView(false);
+            //    InActiveAllMark();
+            //},TrickleDown.TrickleDown);
 
-                upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
+            upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
             upgradePickPresenter.SetButtonEvent(() => ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key));
 
-            InitVList(); 
+            InitVList();
 
             CreateItemTree();
         }
 
         private void Update()
         {
-            elementCtrlComponent.Update(); 
+            elementCtrlComponent.Update();
         }
 
         [ContextMenu("Line 생성 테스트")]
@@ -75,8 +75,8 @@ namespace UI.Upgrade
             // 최종템 UI 생성
             //CreateRow();
             ItemData _itemData = ItemData.CopyItemDataSO(AddressablesManager.Instance.GetResource<ItemDataSO>("UItem1"));
-            itemDataQueue.Enqueue(_itemData); 
-           // CreateSlot(_itemData);
+            itemDataQueue.Enqueue(_itemData);
+            // CreateSlot(_itemData);
 
             CreateChildItem();
         }
@@ -161,10 +161,13 @@ namespace UI.Upgrade
 
             // 위치 설정(해야 해) 
             Rect _r3 = _upgradePr.Element1.worldBound;
-            upgradePickPresenter.SetPos(new Vector2(_r3.x + _r3.width + 50f, _r3.y));
+            _upgradePr.Element1.Add(upgradePickPresenter.Parent);
+            //upgradePickPresenter.SetPos(new Vector2(_r3.width / 2, _r3.y));
+            upgradePickPresenter.SetPos(upgradeView.MoveScreen.resolvedStyle.scale.value.x);
+            
 
             // 필요 재료들 표시 
-            int _idx = 0; 
+            int _idx = 0;
             var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key);
             foreach (var _data in _list)
             {
@@ -185,11 +188,11 @@ namespace UI.Upgrade
             upgradePickPresenter.ActiveView(true);
         }
 
-        private List<Vector2> _vList = new List<Vector2>(); 
-        
+        private List<Vector2> _vList = new List<Vector2>();
+
         private void InitVList()
         {
-            float _dist = 200f; 
+            float _dist = 200f;
             _vList.Add(new Vector2(-_dist, _dist));
             _vList.Add(new Vector2(-_dist, 0f));
             _vList.Add(new Vector2(-_dist, -_dist));

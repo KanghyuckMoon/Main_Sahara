@@ -50,8 +50,17 @@ namespace UI.Upgrade
         }
         public void SetPos(Vector2 _v)
         {
-            parent.style.left = _v.x;
-            parent.style.top = _v.y;
+            //parent.style.translate = new StyleTranslate(new Translate(_v.x,_v.y));
+            //parent.style.left = _v.x; 
+            //parent.style.top = _v.y;
+            parent.style.left = Parent.worldBound.width / 2 +_v.x; 
+        }
+        public void SetPos(float _f)
+        {
+            //parent.style.translate = new StyleTranslate(new Translate(_v.x,_v.y));
+            //parent.style.left = _v.x; 
+            //parent.style.top = _v.y;
+            parent.style.left = (Parent.worldBound.width / 2) / _f;
         }
         /// <summary>
         /// 슬롯 리스트 초기화 

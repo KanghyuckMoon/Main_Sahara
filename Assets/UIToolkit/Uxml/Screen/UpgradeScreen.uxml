@@ -3,33 +3,35 @@
     <ui:Template name="UpgradeInRow" src="project://database/Assets/UIToolkit/Uxml/UpgradeInRow.uxml?fileID=9197481963319205126&amp;guid=fdbbe80c33115a540a2326d4183ebc11&amp;type=3#UpgradeInRow" />
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/UpgradeScreen.uss?fileID=7433441132597879392&amp;guid=1ee34cea76d74de4eb37c92abf751a82&amp;type=3#UpgradeScreen" />
-    <ui:VisualElement name="upgrade_screen" class="screen" style="background-color: rgba(41, 41, 41, 0.99);">
-        <ui:VisualElement name="slot_parent" style="width: 100%; height: 100%; padding-left: 2%; padding-right: 2%; padding-top: 2%; padding-bottom: 2%;">
-            <ui:VisualElement name="row" style="flex-direction: row; justify-content: space-around; display: flex;" />
-            <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; width: 100%; height: 100px; display: none;">
-                <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;); -unity-background-scale-mode: scale-to-fit;" />
-                <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;); -unity-background-scale-mode: stretch-to-fill; scale: 1 1;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; display: none;">
-                <ui:Instance template="UpgradeSlot" name="UpgradeSlot" style="margin-right: 30px;" />
-                <ui:Instance template="UpgradeSlot" name="UpgradeSlot" style="margin-left: 30px;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; width: 100%; height: 100px; display: none;">
-                <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;);" />
-                <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;);" />
-                <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;);" />
-                <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;); -unity-background-scale-mode: scale-to-fit;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; display: none;">
-                <ui:Instance template="UpgradeInRow" name="UpgradeInRow" />
-                <ui:VisualElement style="flex-direction: row; width: 1300px;">
-                    <ui:Instance template="UpgradeSlot" name="UpgradeSlot" />
-                    <ui:Instance template="UpgradeSlot" name="UpgradeSlot" />
+    <ui:VisualElement name="upgrade_screen" class="screen" style="background-color: rgba(0, 0, 0, 0.91);">
+        <ui:VisualElement name="move_screen" style="position: absolute; width: 100%; height: 100%;">
+            <ui:VisualElement name="item" class="item" style="display: none;" />
+            <ui:VisualElement name="slot_parent" style="width: 100%; height: 100%; padding-left: 2%; padding-right: 2%; padding-top: 2%; padding-bottom: 2%;">
+                <ui:VisualElement name="row" style="flex-direction: row; justify-content: space-around; display: flex;" />
+                <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; width: 100%; height: 100px; display: none;">
+                    <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;); -unity-background-scale-mode: stretch-to-fill; scale: 1 1;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; display: none;">
+                    <ui:Instance template="UpgradeSlot" name="UpgradeSlot" style="margin-right: 30px;" />
+                    <ui:Instance template="UpgradeSlot" name="UpgradeSlot" style="margin-left: 30px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; width: 100%; height: 100px; display: none;">
+                    <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;);" />
+                    <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;);" />
+                    <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;);" />
+                    <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; display: none;">
+                    <ui:Instance template="UpgradeInRow" name="UpgradeInRow" />
+                    <ui:VisualElement style="flex-direction: row; width: 1300px;">
+                        <ui:Instance template="UpgradeSlot" name="UpgradeSlot" />
+                        <ui:Instance template="UpgradeSlot" name="UpgradeSlot" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="item" class="item" style="display: none;" />
-        <ui:VisualElement name="upgrade" style="width: auto; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-direction: column; position: absolute; background-color: rgba(0, 0, 0, 0.94); flex-grow: 1;">
+        <ui:VisualElement name="upgrade" style="width: auto; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-direction: column; position: absolute; background-color: rgba(0, 0, 0, 0.94); flex-grow: 1; transform-origin: left; top: 0; left: 0;">
             <ui:VisualElement>
                 <ui:VisualElement name="slot_parent" style="flex-direction: row; align-items: center; padding-left: 15px;">
                     <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: flex;">
