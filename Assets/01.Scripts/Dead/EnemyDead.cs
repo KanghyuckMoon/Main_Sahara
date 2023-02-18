@@ -58,7 +58,7 @@ namespace Module
             yield return new WaitForSeconds(0.1f);
             animator.speed = 0;
             EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
-            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, rootTransform);
+            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, transform, rootTransform);
             yield return new WaitForSeconds(0.2f);
             abMainModule.Model.gameObject.SetActive(false);
             yield return new WaitForSeconds(3f);

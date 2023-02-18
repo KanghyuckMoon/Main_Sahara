@@ -28,6 +28,8 @@ namespace ItemEffect
 
 		public void OnEnable()
 		{
+			visualEffect.Stop();
+			visualEffect.Play();
 			StartCoroutine(Disable());
 		}
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7483329370907443004}
   - component: {fileID: 7483329370907443005}
   - component: {fileID: 7483329370907442946}
+  - component: {fileID: 3768319329684596484}
   m_Layer: 0
   m_Name: SandSkinEffect
   m_TagString: Untagged
@@ -53,7 +54,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.2
+      - m_Value: 1
         m_Name: SandSize
         m_Overridden: 1
       - m_Value: 0.01
@@ -90,6 +91,15 @@ VisualEffect:
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: Angle
         m_Overridden: 0
+      - m_Value: {x: -0, y: 0, z: 0}
+        m_Name: ParticleTransform_angles
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 0, z: 0}
+        m_Name: ParticleTransform_position
+        m_Overridden: 1
+      - m_Value: {x: 1, y: 1, z: 1}
+        m_Name: ParticleTransform_scale
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -182,6 +192,7 @@ MonoBehaviour:
   m_ExecuteInEditor: 1
   m_Bindings:
   - {fileID: 7483329370907442946}
+  - {fileID: 3768319329684596484}
   m_VisualEffect: {fileID: 7483329370907442944}
 --- !u!114 &7483329370907442946
 MonoBehaviour:
@@ -198,3 +209,18 @@ MonoBehaviour:
   m_Property:
     m_Name: Transform
   Target: {fileID: 0}
+--- !u!114 &3768319329684596484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483329370907442948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Property:
+    m_Name: ParticleTransform
+  Target: {fileID: 7483329370907442947}
