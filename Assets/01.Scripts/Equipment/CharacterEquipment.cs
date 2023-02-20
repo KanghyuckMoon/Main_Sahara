@@ -6,7 +6,7 @@ namespace EquipmentSystem
 {
     public class CharacterEquipment : MonoBehaviour
     {
-        public List<Transform> characterBons = new List<Transform>();
+        public readonly Dictionary<int, Transform> baseBoneInfos = new Dictionary<int, Transform>();
 
 
     }
