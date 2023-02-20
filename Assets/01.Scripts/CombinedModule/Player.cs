@@ -30,6 +30,9 @@ namespace CondinedModule
             AddModule(ModuleType.Item, new ItemModule(this));
 
             RaycastTarget = transform.Find("RayCastPoint");
+
+            animator = GetComponent<Animator>();
+            LockOnTarget = null;
         }
 
         private void OnDestroy()
