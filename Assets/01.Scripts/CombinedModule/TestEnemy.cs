@@ -32,6 +32,8 @@ namespace CondinedModule
             AddModule(ModuleType.Weapon, new WeaponModule(this));
             AddModule(ModuleType.Hit, new HitModule(this));
 
+            animator = GetComponent<Animator>();
+
             RaycastTarget = transform.Find("RayCastPoint");
         }
     }

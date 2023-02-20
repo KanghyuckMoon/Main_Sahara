@@ -42,8 +42,6 @@ namespace Module
 			{
 				if (!mainModule.IsDead)
 				{
-					Debug.Log("움직움직움직움직움직움ㅈ긱움직움ㅈㅣㄱ움직움직움직움ㅈ기");
-
 					float _inputX = Input.GetAxis("Horizontal");
 					float _inputY = Input.GetAxis("Vertical");
 
@@ -60,7 +58,7 @@ namespace Module
 			{
 				if (!mainModule.IsDead)
 				{
-					bool _inputup = Input.GetKeyDown(KeyCode.Space);
+					bool _inputup = Input.GetKey(KeyCode.Space);
 
 					mainModule.IsJump = _inputup;
 					mainModule.IsJumpBuf = _inputup;
