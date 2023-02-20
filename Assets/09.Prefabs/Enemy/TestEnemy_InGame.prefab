@@ -1543,10 +1543,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopOrNot: 0
+  lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
-  dataSOPath: EnemyData_TesSO
+  statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
   moveSpeed: 0
@@ -1574,6 +1575,9 @@ MonoBehaviour:
     m_Bits: 1024
   maxSlope: 0
   raycastTarget: {fileID: 0}
+  visualObject: {fileID: 0}
+  model: {fileID: 3699875110483129542}
+  animator: {fileID: 0}
   aiSOAddress: TestEnemySO
 --- !u!114 &2648207059958673375
 MonoBehaviour:
@@ -1587,7 +1591,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa39787cc5cee324783f874d6df3ba44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: TestEnemy_InGame
+  enemyKey: TestEnemy
+  questClearKey: NULL
+  deadSkinEffectKey: SandSkinEffect
+  deadExplosionEffectKey: SandExplosionImpacts
+  skinnedMeshRenderer: {fileID: 3699875110483129543}
+  rootTransform: {fileID: 3699875109738140290}
+  animator: {fileID: 3699875109982235525}
 --- !u!114 &5591809630521021360
 MonoBehaviour:
   m_ObjectHideFlags: 0

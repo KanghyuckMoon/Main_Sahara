@@ -1496,6 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopOrNot: 0
+  lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -1527,7 +1528,9 @@ MonoBehaviour:
     m_Bits: 1024
   maxSlope: 0
   raycastTarget: {fileID: 0}
+  visualObject: {fileID: 0}
   model: {fileID: 0}
+  animator: {fileID: 0}
   aiSOAddress: TestNoneMoveSO
 --- !u!114 &2648207059958673375
 MonoBehaviour:
@@ -1542,11 +1545,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyKey: TestEnemy
-  questClearKey: 
+  questClearKey: NULL
   deadSkinEffectKey: SandSkinEffect
-  deadExplosionEffectKey: HitEffect1
+  deadExplosionEffectKey: SandExplosionImpacts
   skinnedMeshRenderer: {fileID: 3699875110483129543}
   rootTransform: {fileID: 3699875109738140290}
+  animator: {fileID: 3699875109982235525}
 --- !u!114 &1898142133
 MonoBehaviour:
   m_ObjectHideFlags: 0
