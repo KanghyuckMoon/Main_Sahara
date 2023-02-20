@@ -8,7 +8,8 @@ using Quest;
 using Utill.Coroutine;
 using UI.ConstructorManager;
 using UI;
-using UI.Base; 
+using UI.Base;
+using UI.Manager;
 
 namespace UI.Dialogue
 {

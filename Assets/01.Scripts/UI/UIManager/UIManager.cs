@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
+using UI.Base; 
 
-namespace UI
+namespace UI.Manager
 {
     public class UIManager : MonoSingleton<UIManager>
     {
@@ -15,7 +16,8 @@ namespace UI
         private TextKeySO textKeySO;
         private EntityPresenter playerHud;
 
-       // private ScreenUI
+        private IUIController screenUIController = null; 
+        // private ScreenUI
 
         // 프로퍼티 
         public TextKeySO TextKeySO
@@ -44,6 +46,22 @@ namespace UI
             }
         }
 
+        public IUIController ScreenUIController
+        {
+            get
+            {
+                if (screenUIController is null)
+                {
+                    GameObject _parent = GameObject.FindWithTag("UIParent");
+                    if(_parent is not null)
+                    {
+                        screenUIController = _parent.GetComponentInChildren<IUIController>();
+                        return screenUIController;
+                    }
+                }
+                return screenUIController; 
+            }
+        }
         public override void Awake()
         {
             base.Awake();
