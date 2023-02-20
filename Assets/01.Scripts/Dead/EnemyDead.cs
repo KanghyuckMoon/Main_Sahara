@@ -12,16 +12,16 @@ namespace Module
     public class EnemyDead : MonoBehaviour, Observer
     {
         [SerializeField]
-        private string enemyKey;
+        private string enemyKey = "NULL";
 
         [SerializeField]
         private string questClearKey = "NULL";
 
         [SerializeField]
-        private string deadSkinEffectKey;
+        private string deadSkinEffectKey = "NULL";
 
         [SerializeField]
-        private string deadExplosionEffectKey;
+        private string deadExplosionEffectKey = "NULL";
 
         [SerializeField]
         private SkinnedMeshRenderer skinnedMeshRenderer;
@@ -58,7 +58,7 @@ namespace Module
             yield return new WaitForSeconds(0.1f);
             animator.speed = 0;
             EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
-            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, transform, rootTransform);
+            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, transform, rootTransform, gameObject.scene);
             yield return new WaitForSeconds(0.2f);
             abMainModule.Model.gameObject.SetActive(false);
             yield return new WaitForSeconds(3f);
