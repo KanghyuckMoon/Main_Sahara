@@ -21,6 +21,7 @@ namespace UI.Inventory
         {
             var _descView = UIConstructorManager.Instance.GetProductionUI(typeof(ItemDescriptionView));
             this.itemDescriptionView = _descView.Item2 as ItemDescriptionView;
+            this.itemDescriptionView.ParentElement.style.position = Position.Absolute; 
         }
 
 
@@ -32,6 +33,10 @@ namespace UI.Inventory
             this.itemDescriptionView.Init(); 
         }
 
+        public void SetParent(VisualElement _parent)
+        {
+            _parent.Add(this.itemDescriptionView.ParentElement); 
+        }
         public void ActiveView(bool _isActive)
         {
             this.itemDescriptionView.ActiveScreen(_isActive);

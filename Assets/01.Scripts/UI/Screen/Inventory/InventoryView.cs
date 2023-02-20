@@ -92,6 +92,7 @@ namespace UI.Inventory
             // 설명창 초기화 
             //descriptionPresenter = new ItemDescriptionPresenter(Description);
             descriptionPresenter = new ItemDescriptionPresenter();
+            descriptionPresenter.SetParent(ParentElement); 
             descriptionPresenter.ActiveView(false); 
             // SO 불러오기 
             invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
