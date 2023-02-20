@@ -42,8 +42,7 @@ namespace Module
         {
             effect = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
         }
-
-        public override void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
         {
             foreach (string _tagName in mainModule.HitCollider)
             {
@@ -59,7 +58,7 @@ namespace Module
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
                     if (_statData != null)
                     {
-                        HitModule.GetHit(_statData.MeleeAttack);
+                        HitModule.GetHit(Mathf.RoundToInt(_statData.MeleeAttack * _locationHitBox.AttackMulti));
                         _statData.ChargeMana(10);
                     }
                     else
