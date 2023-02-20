@@ -753,6 +753,24 @@ Transform:
   m_Father: {fileID: 987350597}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2101597580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2625226025340783281, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
+  m_PrefabInstance: {fileID: 2103031904}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2101597582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101597580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acea6c375648ca74e87f80ccacb29738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUIInput: 1
 --- !u!1001 &2103031904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -760,9 +778,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1308222124, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714395397, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910792255, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2076569312988406388, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491091319512261154, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2625226024958231256, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
       propertyPath: m_Name
@@ -812,6 +846,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2625226024997260275, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2625226024997260286, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
       propertyPath: inventoryCam
       value: 
@@ -820,7 +858,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2625226025340783283, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d214a21f9382dbe449b46645ea8357dc, type: 3}
 --- !u!1 &2103031905 stripped
 GameObject:
@@ -839,6 +878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d190afd693d6854c8246e1ab35c7a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopView:
+    uiDocument: {fileID: 0}
+    parentElementName: shop_screen
 --- !u!1001 &3403748006961893337
 PrefabInstance:
   m_ObjectHideFlags: 0

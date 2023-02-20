@@ -90,7 +90,8 @@ namespace UI.Inventory
             dragItemPresenter.AddDropper(() => DropItem()); ;
             ActiveDragItem(false); 
             // 설명창 초기화 
-            descriptionPresenter = new ItemDescriptionPresenter(Description);
+            //descriptionPresenter = new ItemDescriptionPresenter(Description);
+            descriptionPresenter = new ItemDescriptionPresenter();
             descriptionPresenter.ActiveView(false); 
             // SO 불러오기 
             invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace UI.Inventory
+namespace UI.Production
 {
     public class ItemDescriptionView : AbUI_Base
     {

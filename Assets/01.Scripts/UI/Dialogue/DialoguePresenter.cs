@@ -51,10 +51,10 @@ namespace UI.Dialogue
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_dialogue"></param>    
-        public static void SetTexts(string _name, string _dialogue)
+        public void SetTexts(string _name, string _dialogue)
         {
             if (isDialogue == true) return; 
-            DialoguePresenter.ActiveViewS(true); // 활성화 하고 
+            ActiveViewS(true); // 활성화 하고 
 
             Logging.Log("이름 코드 : " + _name);
             Logging.Log("내용 코드 : " + _dialogue);
@@ -67,7 +67,7 @@ namespace UI.Dialogue
         /// <summary>
         /// 코드를 텍스트로 변환해서 UI에 적용시키기 
         /// </summary>
-        private static void SetCodeToText()
+        private void SetCodeToText()
         {
             string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}");
             string _dialogueText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
@@ -104,9 +104,9 @@ namespace UI.Dialogue
                         return; 
                 }
             }
-            
+
             // 텍스트 처리 
-            DialogueView.SetNameTextA(_nameText); // 말하는 사람 이름 설정 
+            this.dialogueView.SetNameTextA(_nameText); // 말하는 사람 이름 설정 
             StaticCoroutineManager.Instance.InstanceDoCoroutine(SetText(_dialogueText)); //
         }
 
@@ -121,7 +121,7 @@ namespace UI.Dialogue
             _nameList.Add(_buyName);
             _nameList.Add(_sellName);
 
-            DialogueView.ActiveSelectButton(_buyName, () =>
+            this.dialogueView.ActiveSelectButton(_buyName, () =>
             {
                 // 구매 
                 UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop);
@@ -129,7 +129,7 @@ namespace UI.Dialogue
 
             });
 
-            DialogueView.ActiveSelectButton(_sellName, () =>
+            this.dialogueView.ActiveSelectButton(_sellName, () =>
             {
                 // 판매 
                 UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop);
@@ -142,7 +142,7 @@ namespace UI.Dialogue
         /// </summary>
         /// <param name="_nameText"></param>
         /// <param name="_dialogueText"></param>
-        private static void ActiveSelect(string _nameText, string _dialogueText)
+        private void ActiveSelect(string _nameText, string _dialogueText)
         {
             int _count = int.Parse(_dialogueText);
             isSelecting = true;
@@ -152,7 +152,7 @@ namespace UI.Dialogue
                 ++index;
                 string nameText = TextManager.Instance.GetText($"{nameCode}_{index}"); // 대화 넘어가는 코드 
                 string dialogueText = TextManager.Instance.GetText($"{dialogueCode}_{index}"); // 선택 버튼 이름 
-                DialogueView.ActiveSelectButton(dialogueText, () =>
+                this.dialogueView.ActiveSelectButton(dialogueText, () =>
                 {
                     ShowSelectedDialogue(nameText); 
                 });
@@ -170,19 +170,19 @@ namespace UI.Dialogue
         /// 선택한 대화로 넘어가기 
         /// </summary>
         /// <param name="_nameText"></param>
-        private static void ShowSelectedDialogue(string _nameText)
+        private void ShowSelectedDialogue(string _nameText)
         {
             index = 0; 
             string _name = _nameText.Replace("\r","");
             Logging.Log(_name + "클릭");
             SetTexts("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
-            DialogueView.ResetSelectButtons(); // 버튼 삭제 
+            this.dialogueView.ResetSelectButtons(); // 버튼 삭제 
         }
         /// <summary>
         /// 대화 끝 다음 대화 넘어가는 거 체크 
         /// </summary>
         /// <returns></returns>
-        private static IEnumerator CheckNextDialogue()
+        private IEnumerator CheckNextDialogue()
         {
             yield return new WaitForSeconds(0.1f);
 
@@ -206,7 +206,7 @@ namespace UI.Dialogue
         /// </summary>
         /// <param name="_str"></param>
         /// <returns></returns>
-        private static IEnumerator SetText(string _str)
+        private IEnumerator SetText(string _str)
         {
             Logging.Log("처음 텍스트");
             WaitForSeconds w  = new WaitForSeconds(0.03f);
@@ -215,7 +215,7 @@ namespace UI.Dialogue
             for (int i = 0; i < _fullText.Length; i++)
             {
                 _nowText += _fullText[i];
-                DialogueView.SetDialogueTextA(_nowText);
+                this.dialogueView.SetDialogueTextA(_nowText);
                 Logging.Log("For 텍스트");
                 yield return w;
             }
@@ -238,10 +238,10 @@ namespace UI.Dialogue
             dialogueView.ActiveView(_isActive); 
         }
 
-        private static void ActiveViewS(bool _isActive)
+        private void ActiveViewS(bool _isActive)
         {
             isDialogue = _isActive;
-            DialogueView.ActiveViewS(_isActive);
+            dialogueView.ActiveViewS(_isActive);
             UIManager.Instance.ActiveCursor(_isActive); 
         }
 
@@ -251,7 +251,7 @@ namespace UI.Dialogue
         [ContextMenu("활성화 테스트")]
         public void TestActive()
         {
-            DialogueView.ActiveViewS(true);
+            this.dialogueView.ActiveViewS(true);
         }
     }
 }
