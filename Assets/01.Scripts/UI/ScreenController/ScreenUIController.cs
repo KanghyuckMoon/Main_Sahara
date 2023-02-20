@@ -6,7 +6,8 @@ using UI.EventAlarm;
 using UI.Quest;
 using UI.Inventory;
 using UI.Base;
-using UI.Upgrade; 
+using UI.Upgrade;
+using UI.Shop; 
 
 namespace UI
 {
@@ -18,7 +19,8 @@ namespace UI
         private DialoguePresenter dialoguePresenter;
         private EventAlarmPresenter eventAlarmPresenter;
         private QuestPresenter questPresenter;
-        private UpgradePresenter upgradePresenter; 
+        private UpgradePresenter upgradePresenter;
+        private ShopPresenter shopPresenter; 
 
         private Dictionary<ScreenType, IScreen> screenDic = new Dictionary<ScreenType, IScreen>();
 
@@ -41,7 +43,8 @@ namespace UI
             screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
             screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
             screenDic.Add(ScreenType.Quest, questPresenter);
-            screenDic.Add(ScreenType.Upgrade, upgradePresenter); 
+            screenDic.Add(ScreenType.Upgrade, upgradePresenter);
+            screenDic.Add(ScreenType.Shop, shopPresenter); 
         }
 
         private void Start()
@@ -54,6 +57,12 @@ namespace UI
             UIInput();
         }
 
+        /// <summary>
+        /// 특정 스크린 가져오기 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_screenType"></param>
+        /// <returns></returns>
         public T GetScreen<T>(ScreenType _screenType) where T : IScreen
         {
             IScreen _screen;
@@ -63,7 +72,20 @@ namespace UI
             }
             Debug.LogError("screenDic을 확인해");
             return (T)_screen;
+        }
 
+        /// <summary>
+        /// 특정 스크린 활성화 비활성화 
+        /// </summary>
+        /// <param name="_screenType"></param>
+        /// <param name="_isActive"></param>
+        public void ActiveScreen(ScreenType _screenType, bool _isActive)
+        {
+            IScreen _screen;
+            if (screenDic.TryGetValue(_screenType, out _screen))
+            {
+                _screen.ActiveView(_isActive); 
+            }
         }
         private void InitScreenPresenters()
         {
@@ -73,6 +95,7 @@ namespace UI
             eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
             questPresenter = GetComponentInChildren<QuestPresenter>();
             upgradePresenter = GetComponentInChildren<UpgradePresenter>();
+            shopPresenter = GetComponentInChildren<ShopPresenter>();
 
             // UIController 넣어주기 
             foreach(var _pr in screenDic)

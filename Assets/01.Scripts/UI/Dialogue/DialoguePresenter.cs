@@ -10,6 +10,7 @@ using UI.ConstructorManager;
 using UI;
 using UI.Base;
 using UI.Manager;
+using UI.Shop; 
 
 namespace UI.Dialogue
 {
@@ -112,9 +113,29 @@ namespace UI.Dialogue
         /// <summary>
         /// 상점 선택창 띄우기 
         /// </summary>
-        private static void ActiveShopSelect()
+        private void ActiveShopSelect()
         {
+            List<string> _nameList = new List<string>();
+            string _buyName = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopBuy)); 
+            string _sellName = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopSell)); 
+            _nameList.Add(_buyName);
+            _nameList.Add(_sellName);
 
+            DialogueView.ActiveSelectButton(_buyName, () =>
+            {
+                // 구매 
+                UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop);
+                ActiveViewS(false);
+
+            });
+
+            DialogueView.ActiveSelectButton(_sellName, () =>
+            {
+                // 판매 
+                UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop);
+                ActiveViewS(false);
+
+            });
         }
         /// <summary>
         /// 대화 중 선택창 띄우기 
