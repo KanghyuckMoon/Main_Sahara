@@ -56,7 +56,7 @@ namespace Module
 		{
 			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
 			{
-				if (!mainModule.IsDead)
+				if (!mainModule.IsDead && mainModule.StopOrNot == 1)
 				{
 					bool _inputup = Input.GetKey(KeyCode.Space);
 

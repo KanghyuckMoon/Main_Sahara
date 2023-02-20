@@ -23,5 +23,10 @@ namespace Module
                 ApplyPassive();
             }
         }
+
+        public void SetEquipmentItem()
+        {
+
+        }
     }
 }

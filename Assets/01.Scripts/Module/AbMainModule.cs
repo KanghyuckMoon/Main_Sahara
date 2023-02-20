@@ -211,7 +211,8 @@ namespace Module
             set
 			{
                 attacking = value;
-			}
+                animator.SetBool("Attack", attacking);
+            }
         }
         public bool StrongAttacking
 		{
@@ -222,7 +223,8 @@ namespace Module
             set
 			{
                 strongAttacking = value;
-			}
+                animator.SetBool("StrongAttack", strongAttacking);
+            }
 		}
 
         public float Gravity
