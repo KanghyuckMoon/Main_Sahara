@@ -15,7 +15,7 @@ namespace UI
         private TextKeySO textKeySO;
         private EntityPresenter playerHud;
 
- //       private ScreenUi
+       // private ScreenUI
 
         // 프로퍼티 
         public TextKeySO TextKeySO

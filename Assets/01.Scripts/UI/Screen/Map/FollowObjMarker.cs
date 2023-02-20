@@ -57,9 +57,10 @@ namespace UI
 
         private void Start()
         {
-            this.mapPresenter = GameObject.FindGameObjectWithTag("UIParent").GetComponentInChildren<ScreenUIController>().MapPresenter;
+           // this.mapPresenter = GameObject.FindGameObjectWithTag("UIParent").GetComponentInChildren<ScreenUIController>().MapPresenter;
+            //this.mapPresenter = UIManager.Instance.;
             CreateMarker();
-            
+
 
         }
 
