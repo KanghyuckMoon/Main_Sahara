@@ -9,24 +9,26 @@ namespace Module
     {
         public void SetPassiveItem(AccessoriesItemType _itemKey)
         {
-            if (passiveItem[_itemKey] == null)
+            if (!passiveItem.ContainsKey(_itemKey))
             {
                 ItemPassive _itemPassive = null;
 
-                if (_itemKey == AccessoriesItemType.HpUp)
-                {
-                    _itemPassive = new HpAccessories();
-                }
+				switch (_itemKey)
+				{
+					case AccessoriesItemType.HpUp:
+						_itemPassive = new HpAccessories();
+						break;
+					case AccessoriesItemType.Fire:
+						_itemPassive = new FireAccessories(mainModule);
+						break;
+					case AccessoriesItemType.NONE:
+						break;
+				}
 
                 passiveItem.Add(_itemKey, _itemPassive);
 
                 ApplyPassive();
-            }
-        }
-
-        public void SetEquipmentItem()
-        {
-
-        }
-    }
+			}
+		}
+	}
 }

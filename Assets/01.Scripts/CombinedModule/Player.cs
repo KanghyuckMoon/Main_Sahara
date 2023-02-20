@@ -27,6 +27,7 @@ namespace CondinedModule
             AddModule(ModuleType.Attack, new AttackModule(this));
             AddModule(ModuleType.Weapon, new WeaponModule(this));
             AddModule(ModuleType.Hit, new HitModule(this));
+            AddModule(ModuleType.Item, new ItemModule(this));
 
             RaycastTarget = transform.Find("RayCastPoint");
 
