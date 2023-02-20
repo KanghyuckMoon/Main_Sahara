@@ -48,15 +48,6 @@ namespace Module
             StaticTime.Instance.AddObserver(this);
         }
 
-        public override void Update()
-        {
-            //if (!mainModule.IsHit)
-            //{
-                Animator.SetBool("Attack", mainModule.Attacking);
-                Animator.SetBool("StrongAttack", mainModule.StrongAttacking);
-            //}
-        }
-
         public override void FixedUpdate()
         {
             //animator.SetFloat("MoveSpeed", mainModule.moveSpeed);
