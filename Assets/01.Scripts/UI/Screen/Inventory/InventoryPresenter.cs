@@ -20,6 +20,9 @@ namespace UI.Inventory
         [SerializeField]
         private InventoryView inventoryView;
 
+        // 프로퍼티 
+        public IUIController UIController { get; set; }
+        
         private void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>(); 

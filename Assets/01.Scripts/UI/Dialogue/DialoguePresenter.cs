@@ -24,6 +24,9 @@ namespace UI.Dialogue
         private static int index;
         private static bool isDialogue; // 대화중
 
+        // 프로퍼티 
+        public IUIController UIController { get; set; }
+
         private void OnEnable()
         {
             dialogueView.Cashing();
@@ -220,7 +223,9 @@ namespace UI.Dialogue
             UIManager.Instance.ActiveCursor(_isActive); 
         }
 
-        public bool TestBool; 
+        public bool TestBool;
+
+
         [ContextMenu("활성화 테스트")]
         public void TestActive()
         {

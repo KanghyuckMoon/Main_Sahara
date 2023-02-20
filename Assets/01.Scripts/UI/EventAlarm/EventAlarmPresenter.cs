@@ -14,7 +14,11 @@ namespace UI.EventAlarm
         private EventAlarmScreenView alarmScreenView;
 
 
-        private UIConstructor<EventAlarmView> eventAlarmConstructor; 
+        private UIConstructor<EventAlarmView> eventAlarmConstructor;
+
+        // 프로퍼티 
+        public IUIController UIController { get; set; }
+
         private void OnEnable()
         {
             eventAlarmConstructor = new UIConstructor<EventAlarmView>("EventAlarm");

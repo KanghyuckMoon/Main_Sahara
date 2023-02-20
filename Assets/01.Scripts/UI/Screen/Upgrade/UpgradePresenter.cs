@@ -36,6 +36,7 @@ namespace UI.Upgrade
         private bool isFirstSlot = true;
 
         // 프로퍼티 
+        public IUIController UIController { get; set; }
         private VisualElement CurRow => rowList[rowList.Count - 1];
 
         private void Start()

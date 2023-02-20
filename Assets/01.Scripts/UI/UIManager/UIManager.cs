@@ -13,7 +13,10 @@ namespace UI
 
         private GameObject player;
         private TextKeySO textKeySO;
-        private EntityPresenter playerHud; 
+        private EntityPresenter playerHud;
+
+ //       private ScreenUi
+
         // 프로퍼티 
         public TextKeySO TextKeySO
         {
@@ -41,7 +44,6 @@ namespace UI
             }
         }
 
-        ///private ScreenUI
         public override void Awake()
         {
             base.Awake();

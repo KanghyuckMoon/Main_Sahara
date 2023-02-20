@@ -10,17 +10,8 @@ using UI.Upgrade;
 
 namespace UI
 {
-    public enum ScreenType
-    {
-        Inventory,
-        Map,
-        Dialogue,
-        EventAlarm,
-        Quest,
-        Upgrade,
-    }
 
-    public class ScreenUIController : MonoBehaviour
+    public class ScreenUIController : MonoBehaviour, IUIController
     {
         private InventoryPresenter inventoryPresenter;
         private MapPresenter mapPresenter;
@@ -81,7 +72,13 @@ namespace UI
             dialoguePresenter = GetComponentInChildren<DialoguePresenter>();
             eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
             questPresenter = GetComponentInChildren<QuestPresenter>();
-            upgradePresenter = GetComponentInChildren<UpgradePresenter>(); 
+            upgradePresenter = GetComponentInChildren<UpgradePresenter>();
+
+            // UIController 넣어주기 
+            foreach(var _pr in screenDic)
+            {
+                _pr.Value.Init(this); 
+            }
         }
         private void UIInput()
         {
