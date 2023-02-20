@@ -105,8 +105,8 @@ namespace Module
                 mainModule.transform.position.z);
             var _ray = new Ray(_rayPos, Vector3.down);
 
-            if (dir == Vector3.zero) { mainModule.StopOrNot = 0; }
-            else mainModule.StopOrNot = 1;
+            //if (dir == Vector3.zero) { mainModule.StopOrNot = 0; }
+            //else mainModule.StopOrNot = 1;
 
             if (Physics.Raycast(_ray, out RaycastHit _hitInfo, 0.2f))
             {

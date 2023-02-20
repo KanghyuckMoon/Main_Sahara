@@ -23,7 +23,7 @@ namespace Module
 		{
 			if (!mainModule.Attacking && mainModule.IsWeaponExist && !mainModule.StrongAttacking)
 			{
-				if (mainModule.StopOrNot != 0 || !mainModule.IsDead)
+				if (mainModule.StopOrNot != 0 && !mainModule.IsDead)
 				{
 					bool _inputatk = Input.GetMouseButtonDown(0);
 					bool _inputStratk = Input.GetMouseButtonDown(1);
@@ -56,7 +56,7 @@ namespace Module
 		{
 			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
 			{
-				if (!mainModule.IsDead)
+				if (!mainModule.IsDead && mainModule.StopOrNot == 1)
 				{
 					bool _inputup = Input.GetKey(KeyCode.Space);
 
