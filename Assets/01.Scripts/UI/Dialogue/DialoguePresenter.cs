@@ -93,6 +93,9 @@ namespace UI.Dialogue
                         return;
                     case "!CHOICE\r":
                         ActiveSelect(_nameText, _dialogueText); 
+                        return;
+                    case "!Shop\r":
+                        ActiveShopSelect(); 
                         return; 
                 }
             }
@@ -102,6 +105,13 @@ namespace UI.Dialogue
             StaticCoroutineManager.Instance.InstanceDoCoroutine(SetText(_dialogueText)); //
         }
 
+        /// <summary>
+        /// 상점 선택창 띄우기 
+        /// </summary>
+        private static void ActiveShopSelect()
+        {
+
+        }
         /// <summary>
         /// 대화 중 선택창 띄우기 
         /// </summary>

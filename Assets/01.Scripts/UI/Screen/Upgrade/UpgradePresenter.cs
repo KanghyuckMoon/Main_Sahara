@@ -45,12 +45,12 @@ namespace UI.Upgrade
         }
         IEnumerator Co()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.01f);
             SetAllSlotPos();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
             SetAllSlotPos();
-
         }
+
         private void OnEnable()
         {
             uiDocument = GetComponent<UIDocument>();
@@ -66,6 +66,7 @@ namespace UI.Upgrade
 
             upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
             upgradePickPresenter.SetButtonEvent(() => ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key));
+
 
             InitVList();
             InitDic();
@@ -150,23 +151,24 @@ namespace UI.Upgrade
                 UpgradeSlotData _slotData = itemDataQueue.Dequeue();
                 ItemData _itemData = _slotData.itemData;
                 VisualElement _parent = CreateSlot(_itemData); // 슬롯 생성
-                allItemList.Add(_parent); 
+                _parent.style.opacity = 0f; 
+                allItemList.Add(_parent);
 
-               // _parent.RegisterCallback<GeometryChangedEvent>((x) =>
-               // {
-                    isEnd = true;
-                    // 위치 설정 
-                    if (isFirstSlot == true)
-                    {
-                        _parent.style.left = midX;
-                        isFirstSlot = false;
-                    }
-                    else
-                    {
-                        _parent.style.left = _slotData.parentSlot.worldBound.x + slotPosDIc[_slotData.maxIndex].ElementAt(_slotData.index).x;
-                    }
+                // _parent.RegisterCallback<GeometryChangedEvent>((x) =>
+                // {
+                //isEnd = true;
+                //// 위치 설정 
+                if (isFirstSlot == true)
+                {
+                    _parent.style.left = midX;
+                    isFirstSlot = false;
+                }
+                else
+                {
+                    _parent.style.left = _slotData.parentSlot.worldBound.x + slotPosDIc[_slotData.maxIndex].ElementAt(_slotData.index).x;
+                }
 
-                    ItemUpgradeDataSO _childItemData = ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_itemData.key);
+                ItemUpgradeDataSO _childItemData = ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_itemData.key);
                     if (_childItemData != null) // 재료템이 존재한다면 큐에 추가 
                     {
                         var _dataList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key);
@@ -204,19 +206,54 @@ namespace UI.Upgrade
 
         }
 
+        private bool isActive = false; 
         [ContextMenu("고고")]
         private void SetAllSlotPos()
         {
             int _idx = 1;
             allItemList[0].style.left = midX;
+            allItemList[0].style.opacity = isActive ? 1 : 0;
 
             foreach (var _v in allItemDataList)
             {
-                allItemList[_idx].style.left = _v.parentSlot.worldBound.x + slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
-                ++_idx;
+                float _moveX =  slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
+                _moveX = _moveX < 0 ? _moveX - allItemList[_idx].resolvedStyle.width : _moveX;
+                allItemList[_idx].style.left = _moveX + _v.parentSlot.worldBound.x;
 
+                // opacity 설정
+                allItemList[_idx].style.opacity = isActive ? 1 : 0; 
+                ++_idx;
+            }
+            isActive = true; 
+        }
+
+        [ContextMenu("비활성화")]
+        public void InActiveAll()
+        {
+            foreach (var _v in allItemList)
+            {
+                // opacity 설정
+                _v.style.opacity = 0;
             }
         }
+
+        [ContextMenu("활성화")]
+        public void ActiveAll()
+        {
+            foreach (var _v in allItemList)
+            {
+                // opacity 설정
+                _v.style.opacity = 1;
+            }
+        }
+
+        [ContextMenu("삭제")]
+        private void ClearAllSlots()
+        {
+            this.upgradeView.ClearAllSlots();
+            isActive = false; 
+        }
+
         private VisualElement CreateSlot(ItemData _itemData)
         {
             UpgradeSlotPresenter _upgradePr = new UpgradeSlotPresenter();
@@ -378,6 +415,9 @@ namespace UI.Upgrade
 
         public bool ActiveView()
         {
+                ClearAllSlots();
+                CreateItemTree();
+                StartCoroutine(Co());
             return upgradeView.ActiveScreen();
         }
 

@@ -72,7 +72,7 @@ namespace UI.Dialogue
         }
 
         /// <summary>
-        /// 선택 버튼 활성화 
+        /// 선택 버튼 활성화(나타내기) 
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_callback"></param>

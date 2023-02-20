@@ -40,5 +40,18 @@ namespace UI.Upgrade
             GetVisualElement((int)Elements.slot_parent).Add(_v); 
         }
 
+        /// <summary>
+        /// 화면 클리어 
+        /// </summary>
+        public void ClearAllSlots()
+        {
+            var _list = GetVisualElement((int)Elements.slot_parent).Children();
+            foreach (var _v in _list)
+            {
+                _v.RemoveFromHierarchy(); 
+            }
+
+        }
+
     }
 }

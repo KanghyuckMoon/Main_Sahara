@@ -10,7 +10,7 @@ using UI.Upgrade;
 
 namespace UI
 {
-    enum ScreenType
+    public enum ScreenType
     {
         Inventory,
         Map,
@@ -63,6 +63,17 @@ namespace UI
             UIInput();
         }
 
+        public T GetScreen<T>(ScreenType _screenType) where T : IScreen
+        {
+            IScreen _screen;
+           if(screenDic.TryGetValue(_screenType, out _screen))
+            {
+                return (T)_screen;
+            }
+            Debug.LogError("screenDic을 확인해");
+            return (T)_screen;
+
+        }
         private void InitScreenPresenters()
         {
             inventoryPresenter = GetComponentInChildren<InventoryPresenter>();
