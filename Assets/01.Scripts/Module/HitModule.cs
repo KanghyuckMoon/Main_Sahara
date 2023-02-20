@@ -105,7 +105,7 @@ namespace Module
             mainModule.IsDead = true;
             mainModule.CharacterController.enabled = false;
 
-            mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).currentWeapon.GetComponent<Collider>().enabled = false;
+            //mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).currentWeapon.GetComponent<Collider>().enabled = false;
         }
     }
 }

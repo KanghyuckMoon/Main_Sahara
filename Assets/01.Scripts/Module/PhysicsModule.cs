@@ -15,7 +15,7 @@ namespace Module
     public class PhysicsModule : AbBaseModule
     {
         private float rayDistance = 0.5f;
-
+        private ulong praviousHitBoxIndex = 0;
         private HitModule HitModule
         {
             get
@@ -51,6 +51,8 @@ namespace Module
                 {
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (_inGameHitBox is null) return;
+                    if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
+                    praviousHitBoxIndex = _inGameHitBox.GetIndex();
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
                     mainModule.StartCoroutine(HitKnockBack(_inGameHitBox));

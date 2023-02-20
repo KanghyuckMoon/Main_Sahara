@@ -15,9 +15,18 @@ namespace HitBox
 		[SerializeField]
 		private string hitboxString;
 
+		private ulong index = 0;
+		private bool isInit = false;
+
 
 		private void OnEnable()
 		{
+			if (!isInit)
+			{
+				index = StaticHitBoxIndex.GetHitBoxIndex();
+				isInit = true;
+			}
+			index++;
 			OnHitBox(hitboxString);
 		}
 		private void OnDisable()
@@ -46,7 +55,7 @@ namespace HitBox
 				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
 				{
 					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
-					hitbox.GetComponent<InGameHitBox>().SetHitBox(hitBoxData, gameObject, tagname);
+					hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname);
 				}
 			}
 		}
