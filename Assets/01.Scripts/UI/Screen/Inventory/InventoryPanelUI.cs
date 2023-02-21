@@ -6,7 +6,6 @@ using UI.Production;
 using Inventory;
 using Utill.Addressable;
 
-
 namespace UI.Inventory
 {
     /// <summary>
@@ -17,11 +16,21 @@ namespace UI.Inventory
         public int index = 0; // 남은 칸의 위치 인덱스 
         public int addRow;
         public List<SlotItemPresenter> slotItemViewList = new List<SlotItemPresenter>();
-        public List<SlotItemPresenter> equipItemViewList = new List<SlotItemPresenter>(); 
+        public List<SlotItemPresenter> equipItemViewList = new List<SlotItemPresenter>();
 
+        private VisualElement parent;
+
+        // 프로퍼티 
+        public VisualElement Parent => parent;
+        
         public InventoryPanelUI()
         {
 
+        }
+
+        public InventoryPanelUI(VisualElement _parent)
+        {
+            this.parent = _parent; 
         }
 
         public void AddSlotView(SlotItemPresenter _slotItemView)
@@ -56,6 +65,15 @@ namespace UI.Inventory
             SlotItemPresenter _slotView = slotItemViewList[index];
             _slotView.SetItemData(_itemData); 
             ++index;
+        }
+
+        /// <summary>
+        /// 슬롯UI 에 ItemData 추가해서 UI 변경 
+        /// </summary>
+        public void SetItemDataUI(ItemData _itemData, int _index)
+        {
+            SlotItemPresenter _slotView = slotItemViewList[_index];
+            _slotView.SetItemData(_itemData);
         }
 
 

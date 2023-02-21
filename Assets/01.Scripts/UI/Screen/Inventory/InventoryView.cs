@@ -137,6 +137,7 @@ namespace UI.Inventory
             {
                 //_ui.RemoveSlotView(); 
             }
+            //  현재 남은 칸에 데이터 넣기 
             _ui.SetItemDataUI(_itemData);
 
         }

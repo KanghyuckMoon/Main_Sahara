@@ -57,12 +57,14 @@ namespace UI.Inventory
 
         public void UpdateUI()
         {
+            // 인벤토리 데이터 설정 
             List<ItemData> _itemList = InventoryManager.Instance.GetWeaponAndConsumptionList(); 
             foreach(var _itemData in _itemList)
             {
                 this.inventoryView.UpdateInventoryUI(_itemData); 
             }
 
+            // 퀵슬롯 데이터 설정 
             for (int i = 0; i <5; i++ )
             {
                 ItemData _quickSlotData = InventoryManager.Instance.GetQuickSlotItem(i);
