@@ -23,7 +23,7 @@ namespace HitBox
 
 		private ulong index = 0;
 		private bool isInit = false;
-		private List<InGameHitBox> inGameHitBoxeList = new List<InGameHitBox>();
+		private List<InGameHitBox> inGameHitBoxeList = null;
 
 		private void OnEnable()
 		{
@@ -37,6 +37,7 @@ namespace HitBox
 
 			if (isTimeIndexCange)
 			{
+				inGameHitBoxeList = new List<InGameHitBox>();
 				StartCoroutine(IndexChage());
 			}
 		}
@@ -44,7 +45,7 @@ namespace HitBox
 		private IEnumerator IndexChage()
 		{
 			yield return new WaitForSeconds(1f);
-			foreach(InGameHitBox inGameHitBox in inGameHitBoxeList)
+			foreach (InGameHitBox inGameHitBox in inGameHitBoxeList)
 			{
 				inGameHitBox.SetIndex(inGameHitBox.GetIndex() + 1);
 			}
@@ -58,8 +59,8 @@ namespace HitBox
 		private IEnumerator DisableHitBoxs()
 		{
 			yield return new WaitForSeconds(0.1f);
-			InGameHitBox[] _inGameHitBoxArray = GetComponentsInChildren<InGameHitBox>(); 
-			foreach(var _col in _inGameHitBoxArray)
+			InGameHitBox[] _inGameHitBoxArray = GetComponentsInChildren<InGameHitBox>();
+			foreach (var _col in _inGameHitBoxArray)
 			{
 				_col.transform.SetParent(null);
 				_col.gameObject.SetActive(false);
@@ -76,7 +77,13 @@ namespace HitBox
 				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
 				{
 					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
-					hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject);
+					InGameHitBox _ingameHitBox = hitbox.GetComponent<InGameHitBox>();
+					_ingameHitBox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject);
+
+					if (isTimeIndexCange)
+					{
+						inGameHitBoxeList.Add(_ingameHitBox);
+					}
 				}
 			}
 		}

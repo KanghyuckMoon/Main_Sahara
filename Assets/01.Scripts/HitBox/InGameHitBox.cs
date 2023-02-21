@@ -27,10 +27,19 @@ namespace HitBox
 			}
 		}
 
+		public bool IsContactDir
+		{
+			get
+			{
+				return isContactDir;
+			}
+		}
+
 		private BoxCollider col;
 		private HitBoxData hitBoxData;
 		private GameObject owner;
 		private ulong index;
+		private bool isContactDir;
 
 		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null)
 		{
@@ -39,6 +48,7 @@ namespace HitBox
 			owner = _owner;
 			col = GetComponent<BoxCollider>();
 			hitBoxData = _hitBoxData;
+			isContactDir = hitBoxData.isContactDirection;
 			transform.position = _owner.transform.position;
 			transform.rotation = _owner.transform.rotation;
 			col.center = _hitBoxData.offset;

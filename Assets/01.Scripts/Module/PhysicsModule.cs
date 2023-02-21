@@ -48,13 +48,14 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.IsDead)
                 {
+                    
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (_inGameHitBox is null) return;
                     if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
                     praviousHitBoxIndex = _inGameHitBox.GetIndex();
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
-                    mainModule.StartCoroutine(HitKnockBack(_inGameHitBox));
+                    mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
                     if (_statData != null)
                     {
@@ -69,9 +70,17 @@ namespace Module
             }
         }
 
-        private IEnumerator HitKnockBack(InGameHitBox _inGameHitBox)
+        private IEnumerator HitKnockBack(InGameHitBox _inGameHitBox, Vector3 _closetPos)
         {
-            Vector3 _dir = (_inGameHitBox.KnockbackDir() * Vector3.forward);
+            Vector3 _dir;
+            if (_inGameHitBox.IsContactDir)
+			{
+                _dir = (_inGameHitBox.transform.position - _closetPos).normalized;
+            }
+            else
+            {
+                _dir = (_inGameHitBox.KnockbackDir() * Vector3.forward);
+            }
             Vector3 _shakeDir = Quaternion.Euler(0, -45, 0) * _dir;
 
             mainModule.Model.DOKill();

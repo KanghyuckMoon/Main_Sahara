@@ -97,6 +97,7 @@ namespace HitBox
 		public Vector3 size;
 
 		//³Ë¹é
+		public bool isContactDirection = false; 
 		public Vector3 knockbackDir = Vector3.forward;
 		public float defaultPower = 1f;
 
