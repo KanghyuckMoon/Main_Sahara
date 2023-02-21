@@ -28,9 +28,11 @@ namespace CondinedModule
             AddModule(ModuleType.Weapon, new WeaponModule(this));
             AddModule(ModuleType.Hit, new HitModule(this));
             AddModule(ModuleType.Item, new ItemModule(this));
+            AddModule(ModuleType.Equipment, new EquipmentModule(this));
 
             RaycastTarget = transform.Find("RayCastPoint");
 
+            visualObject = transform.Find("Visual").gameObject;
             animator = GetComponent<Animator>();
             LockOnTarget = null;
         }

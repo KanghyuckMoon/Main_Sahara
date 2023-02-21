@@ -294,7 +294,7 @@ namespace Module
         {
             get
             {
-                visualObject ??= transform.Find("Visual").Find("root").gameObject;
+                visualObject ??= transform.Find("Visual").gameObject;
                 return visualObject;
             }
         }
