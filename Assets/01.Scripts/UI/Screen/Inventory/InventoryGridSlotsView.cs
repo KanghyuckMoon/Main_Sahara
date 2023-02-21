@@ -46,6 +46,8 @@ namespace UI.Inventory
 
         private InvenPanelElements curPanelType; // 현재 활성화중인 패널 
 
+        // 프로퍼티 
+        public InvenPanelElements CurPanelType => curPanelType; 
         public override void Cashing()
         {
             //base.Cashing();
@@ -60,6 +62,10 @@ namespace UI.Inventory
             AddButtonEvents(); 
         }
 
+        public VisualElement GetPanel(InvenPanelElements _type)
+        {
+            return GetVisualElement((int)_type);
+        }
         /// <summary>
         /// 특정 인벤토리 창에 슬롯 생성 
         /// </summary>
