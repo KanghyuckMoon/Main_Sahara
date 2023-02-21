@@ -15,7 +15,7 @@ namespace Module
     public class PhysicsModule : AbBaseModule
     {
         private float rayDistance = 0.5f;
-
+        private ulong praviousHitBoxIndex = 0;
         private HitModule HitModule
         {
             get
@@ -42,8 +42,7 @@ namespace Module
         {
             effect = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
         }
-
-        public override void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
         {
             foreach (string _tagName in mainModule.HitCollider)
             {
@@ -51,13 +50,15 @@ namespace Module
                 {
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (_inGameHitBox is null) return;
+                    if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
+                    praviousHitBoxIndex = _inGameHitBox.GetIndex();
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
                     mainModule.StartCoroutine(HitKnockBack(_inGameHitBox));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
                     if (_statData != null)
                     {
-                        HitModule.GetHit(_statData.MeleeAttack);
+                        HitModule.GetHit(Mathf.RoundToInt(_statData.MeleeAttack * _locationHitBox.AttackMulti));
                         _statData.ChargeMana(10);
                     }
                     else

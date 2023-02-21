@@ -11,9 +11,8 @@ public class Hit : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mainModule ??= animator.GetComponent<AbMainModule>();
-        mainModule.Attacking = false;
-        mainModule.StrongAttacking = false;
+        //mainModule ??= animator.GetComponent<AbMainModule>();
+        
         //mainModule.IsHit = false;
     }
 
@@ -24,5 +23,8 @@ public class Hit : StateMachineBehaviour
     //    mainModule.StrongAttacking = false;
         mainModule.IsHit = false;
         animator.SetBool("Hit", false);
+
+        mainModule.Attacking = false;
+        mainModule.StrongAttacking = false;
     }
 }

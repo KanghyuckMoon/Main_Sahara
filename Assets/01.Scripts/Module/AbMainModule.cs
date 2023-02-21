@@ -211,7 +211,8 @@ namespace Module
             set
 			{
                 attacking = value;
-			}
+                animator.SetBool("Attack", attacking);
+            }
         }
         public bool StrongAttacking
 		{
@@ -222,7 +223,8 @@ namespace Module
             set
 			{
                 strongAttacking = value;
-			}
+                animator.SetBool("StrongAttack", strongAttacking);
+            }
 		}
 
         public float Gravity
@@ -287,6 +289,16 @@ namespace Module
                 raycastTarget = value;
 			}
 		}
+
+        public GameObject VisualObject
+        {
+            get
+            {
+                visualObject ??= transform.Find("Visual").Find("root").gameObject;
+                return visualObject;
+            }
+        }
+
         public RaycastHit SlopeHit
 		{
 			get
@@ -388,6 +400,9 @@ namespace Module
         [SerializeField, Header("레이캐스트 쏠위치")]
         private Transform raycastTarget;
         private RaycastHit slopeHit;
+
+        [SerializeField, Header("비주얼")]
+        public GameObject visualObject;
 
         [SerializeField]
         private Transform model;

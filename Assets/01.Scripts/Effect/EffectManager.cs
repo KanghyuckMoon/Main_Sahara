@@ -84,6 +84,23 @@ namespace Effect
             effect.gameObject.SetActive(true);
         }
 
+        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root, Scene _scene)
+        {
+            if (!_isInit)
+            {
+                Init();
+            }
+
+            GameObject effect = ObjectPoolManager.Instance.GetObject(_adress);
+            if (_scene != null)
+			{
+                SceneManager.MoveGameObjectToScene(effect, _scene);
+			}
+            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root);
+            effect.transform.position = _obj.position;
+            effect.transform.SetParent(null);
+            effect.gameObject.SetActive(true);
+        }
         public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root)
         {
             if (!_isInit)

@@ -12,9 +12,9 @@ public class AttackAnimation : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
+
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
-
 
         //Debug.Log("aflahfaiufhaliuhlaiuehgaliuehlaueghlawiueghliueghlawueghlahuegl");
     }

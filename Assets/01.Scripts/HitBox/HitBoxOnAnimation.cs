@@ -9,10 +9,15 @@ namespace HitBox
 {
 	public class HitBoxOnAnimation : MonoBehaviour
 	{
+		private ulong index;
+
 		[SerializeField]
 		private HitBoxDatasSO hitBoxDataSO;
 
-		//private string colliderKey;
+		private void Start()
+		{
+			index = StaticHitBoxIndex.GetHitBoxIndex();
+		}
 
 		public void ChangeSO(HitBoxDatasSO _hitBoxDataSO)//, string _colliderKey)
 		{
@@ -29,10 +34,15 @@ namespace HitBox
 				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
 				{
 					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
-					hitbox.GetComponent<InGameHitBox>().SetHitBox(hitBoxData, gameObject, tagname);
+					hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname);
 
 				}
 			}
+		}
+
+		public void UpIndex()
+		{
+			index += 50;
 		}
 
 #if UNITY_EDITOR
