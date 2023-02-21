@@ -27,6 +27,7 @@ namespace UI.Production
         }
 
         private bool isStackable; // 셀수 있냐 
+        private Manipulator curManipulator;
 
         // 프로퍼티 
         public VisualElement Item => GetVisualElement((int)Elements.item);
@@ -58,7 +59,15 @@ namespace UI.Production
         
         public void AddManipulator(MouseManipulator _manipulator)
         {
+            this.curManipulator = _manipulator; 
             GetVisualElement((int)Elements.item).AddManipulator(_manipulator);
+        }
+
+        public void RemoveCurManipulator()
+        {
+            if (curManipulator == null) return; 
+            GetVisualElement((int)Elements.item).AddManipulator(curManipulator);
+            this.curManipulator = null;
         }
 
         private Action mouseOverEvt = null;

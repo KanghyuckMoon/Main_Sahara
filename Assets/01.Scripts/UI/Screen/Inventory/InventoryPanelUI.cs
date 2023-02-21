@@ -22,7 +22,7 @@ namespace UI.Inventory
 
         // 프로퍼티 
         public VisualElement Parent => parent;
-        
+        public List<SlotItemPresenter> SlotItemViewList => slotItemViewList;
         public InventoryPanelUI()
         {
 

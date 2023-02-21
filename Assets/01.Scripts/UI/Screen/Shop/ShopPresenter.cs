@@ -52,6 +52,11 @@ namespace UI.Shop
             foreach(var _data in _allDataList)
             {
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
+                // 더블클릭시 구매 이벤트 추가 
+                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                {
+                    x.AddDoubleClicker(() => ShopManager.Instance.BuyItem(_data));
+                });
             }
             //   ShopManager.Instance.BuyItem();
          //   ShopManager.Instance.SellItem();
@@ -66,9 +71,14 @@ namespace UI.Shop
             
             // 인벤토리 데이터 설정 
             List<ItemData> _itemList = InventoryManager.Instance.GetWeaponAndConsumptionList();
-            foreach (var _itemData in _itemList)
+            foreach (var _data in _itemList)
             {
-                inventoryGridSlotsPr.ItemSlotDic[_itemData.itemType].SetItemDataUI(_itemData);
+                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
+                // 더블클릭시 판매 이벤트 추가 
+                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                {
+                    x.AddDoubleClicker(() => ShopManager.Instance.SellItem(_data));
+                });
             }
         }
 
@@ -84,12 +94,14 @@ namespace UI.Shop
             {
                 case ShopType.BuyShop:
                     {
+                        SetShopItem(); 
                         _name = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopBuy));
                         _isLeft = false;
                          break;
                     }
                 case ShopType.SellShop:
                     {
+                        SetInvenItem(); 
                         _name = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopSell));
                         _isLeft = true;
                         break; 
