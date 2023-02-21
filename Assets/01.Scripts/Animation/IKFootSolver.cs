@@ -12,14 +12,16 @@ public class IKFootSolver : MonoBehaviour
     [SerializeField] float stepLength = 4;
     [SerializeField] float stepHeight = 1;
     [SerializeField] Vector3 footOffset = default;
-    float footSpacing;
+    float footSpacingX;
+    float footSpacingZ;
     Vector3 oldPosition, currentPosition, newPosition;
     Vector3 oldNormal, currentNormal, newNormal;
     float lerp;
 
     private void Start()
     {
-        footSpacing = transform.localPosition.x;
+        footSpacingX = transform.localPosition.x;
+        footSpacingZ = transform.localPosition.z;
         currentPosition = newPosition = oldPosition = transform.position;
         currentNormal = newNormal = oldNormal = transform.up;
         lerp = 1;
@@ -32,7 +34,7 @@ public class IKFootSolver : MonoBehaviour
         transform.position = currentPosition;
         transform.up = currentNormal;
 
-        Ray ray = new Ray(body.position + (body.right * footSpacing), Vector3.down);
+        Ray ray = new Ray(body.position + (-body.right * footSpacingX) + (-body.forward * footSpacingZ), Vector3.down);
 
         if (Physics.Raycast(ray, out RaycastHit info, 10, terrainLayer.value))
         {
@@ -40,7 +42,7 @@ public class IKFootSolver : MonoBehaviour
             {
                 lerp = 0;
                 int direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
-                newPosition = info.point + (body.forward * stepLength * direction) + footOffset;
+                newPosition = info.point; //+ (body.forward * stepLength * direction) + footOffset;
                 newNormal = info.normal;
             }
         }

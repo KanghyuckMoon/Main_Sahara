@@ -26,14 +26,21 @@ namespace EnemyAnimation
         private Vector3 lastBodyPos;
 
         private float velocityMultiplier = 15f;
+        private bool isStop = false;
 
         public void SetStepSize(float _stepSize)
         {
             stepSize = _stepSize;
         }
 
+        public void SetStop(bool _isStop)
+		{
+            isStop = _isStop;
+		}
+
         private void Start()
         {
+
             lastBodyUp = transform.up;
 
             nbLegs = legTargets.Length;
@@ -51,6 +58,16 @@ namespace EnemyAnimation
 
         private void FixedUpdate()
         {
+            if (isStop)
+            {
+                velocity = Vector3.zero;
+                lastVelocity = Vector3.zero;
+                return;
+            }
+            //else
+            //{
+            //}
+
             velocity = transform.position - lastBodyPos;
             velocity = (velocity + smoothness * lastVelocity) / (smoothness + 1f);
 

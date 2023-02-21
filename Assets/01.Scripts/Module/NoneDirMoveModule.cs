@@ -12,7 +12,7 @@ namespace Module
 		{
             get
 			{
-                spiderAnimation ??= mainModule.gameObject.GetComponent<SpiderProceduralAnimation>();
+                spiderAnimation ??= mainModule.gameObject.GetComponentInChildren<SpiderProceduralAnimation>();
                 return spiderAnimation;
 			}
 		}
@@ -94,8 +94,8 @@ namespace Module
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * Time.fixedDeltaTime;
 
-
-            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, Time.fixedDeltaTime);
+            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, Time.fixedDeltaTime * 2);
+            //SpiderAnimation.SetStop(mainModule.KnockBackVector.magnitude > 0.5f);
             mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
 
             animator.SetFloat("MoveSpeed", animationBlend);
