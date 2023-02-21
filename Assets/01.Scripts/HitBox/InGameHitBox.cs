@@ -32,7 +32,7 @@ namespace HitBox
 		private GameObject owner;
 		private ulong index;
 
-		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag)
+		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null)
 		{
 			index = _index;
 			gameObject.tag = _tag;
@@ -48,13 +48,23 @@ namespace HitBox
 
 			if (hitBoxData.childization)
 			{
-				gameObject.transform.SetParent(owner.transform);
+				if(_parent is null)
+				{
+					gameObject.transform.SetParent(owner.transform);
+				}
+				else
+				{
+					transform.position = _parent.transform.position;
+					transform.rotation = _parent.transform.rotation;
+					gameObject.transform.SetParent(_parent.transform);
+				}
 			}
 			else
 			{
 				gameObject.transform.SetParent(null);
 			}
 			gameObject.SetActive(true);
+			transform.localScale = Vector3.one;
 
 			if (hitBoxData.swingEffect != "NULL")
 			{
@@ -65,6 +75,11 @@ namespace HitBox
 			{
 				StartCoroutine(DestroyHitBox());
 			}
+		}
+
+		public void SetIndex(ulong _index)
+		{
+			index = _index;
 		}
 
 		public ulong GetIndex()

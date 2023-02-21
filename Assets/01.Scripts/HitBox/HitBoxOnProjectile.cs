@@ -15,9 +15,15 @@ namespace HitBox
 		[SerializeField]
 		private string hitboxString;
 
+		[SerializeField]
+		private GameObject owner;
+
+		[SerializeField]
+		private bool isTimeIndexCange = false;
+
 		private ulong index = 0;
 		private bool isInit = false;
-
+		private List<InGameHitBox> inGameHitBoxeList = new List<InGameHitBox>();
 
 		private void OnEnable()
 		{
@@ -28,7 +34,22 @@ namespace HitBox
 			}
 			index++;
 			OnHitBox(hitboxString);
+
+			if (isTimeIndexCange)
+			{
+				StartCoroutine(IndexChage());
+			}
 		}
+
+		private IEnumerator IndexChage()
+		{
+			yield return new WaitForSeconds(1f);
+			foreach(InGameHitBox inGameHitBox in inGameHitBoxeList)
+			{
+				inGameHitBox.SetIndex(inGameHitBox.GetIndex() + 1);
+			}
+		}
+
 		private void OnDisable()
 		{
 			StaticCoroutineManager.Instance.InstanceDoCoroutine(DisableHitBoxs());
@@ -55,7 +76,7 @@ namespace HitBox
 				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
 				{
 					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
-					hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname);
+					hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject);
 				}
 			}
 		}
