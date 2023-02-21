@@ -54,6 +54,24 @@ namespace UI.Inventory
             CreateAllSlots();
         }
 
+        public void SetData()
+        {
+
+        }
+        /// <summary>
+        /// 각 패널의 슬롯 아이템 데이터 초기화 
+        /// </summary>
+        public void ClearSlotDatas()
+        {
+            foreach(var _panel in itemSlotDic)
+            {
+                _panel.Value.ClearDatas(); 
+            }
+        }
+
+        /// <summary>
+        /// 처음에 패널 활성화 초기화 
+        /// </summary>
         private void InitActivePanel()
         {
             foreach(var _slot in ItemSlotDic)

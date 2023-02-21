@@ -63,6 +63,12 @@ namespace UI.Production
 
         private Action mouseOverEvt = null;
         private Action mouseOutEvt = null;
+        private Action clickEvt = null; 
+        public void AddClickEvent(Action _callback)
+        {
+            this.clickEvt = _callback;
+            AddElementEvent<ClickEvent>((int)Elements.image, _callback);
+        }
         public void AddHoverEvent(Action _callback)
         {
             this.mouseOverEvt = _callback;
@@ -76,6 +82,7 @@ namespace UI.Production
 
         public void RemoveEvent()
         {
+            RemoveElementEvent<ClickEvent>((int)Elements.image, clickEvt);
             RemoveElementEvent<MouseOverEvent>((int)Elements.image, mouseOverEvt);
             RemoveElementEvent<MouseOutEvent>((int)Elements.image, mouseOutEvt);
         }
@@ -85,6 +92,12 @@ namespace UI.Production
         }
         
         // === UI 설정 관련 === //
+        public void ClearUI()
+        {
+            GetVisualElement((int)Elements.image).style.backgroundImage = null;
+            GetLabel((int)Labels.text).text = ""; 
+        }
+
         public void SetSpriteAndText(Texture2D _sprite, int _count)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);

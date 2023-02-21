@@ -48,6 +48,7 @@ namespace UI.Inventory
         }
 
         #endregion
+
         private InvenItemUISO invenItemUISO;
 
         private SlotItemPresenter dragItemPresenter; // 드래그시 활성화될 뷰( 아이템 이미지 그대로 복사해서 커서 따라가는 )  
@@ -85,6 +86,11 @@ namespace UI.Inventory
 
             // 장착 슬롯 초기화 
             InitEquipSlots();
+        }
+
+        public void ClearUI()
+        {
+
         }
 
         /// <summary>

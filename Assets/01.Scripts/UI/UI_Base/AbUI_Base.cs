@@ -10,7 +10,6 @@ namespace UI
     [Serializable]
     public abstract class AbUI_Base
     {
-        [SerializeField]
         protected UIDocument uiDocument; // UIDocument 
         protected VisualElement rootElement;
 

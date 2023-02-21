@@ -57,6 +57,12 @@ namespace UI.Inventory
         {
             slotItemView = new SlotItemView(_v);
         }
+
+        public void ClearData()
+        {
+            this.itemData = null;
+            this.slotItemView.ClearUI(); 
+        }
         public void SetItemData(ItemData _itemData)
         {
             this.itemData = _itemData;
@@ -73,6 +79,13 @@ namespace UI.Inventory
             slotItemView.RemoveView(); 
         }
 
+        /// <summary>
+        /// 클릭 이벤트 추가 
+        /// </summary>
+        public void AddClickEvent(Action _callback)
+        {
+            this.slotItemView.AddClickEvent(_callback);
+        }
         /// <summary>
         /// 드래거기능 추가
         /// </summary>

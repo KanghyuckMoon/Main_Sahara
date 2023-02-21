@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="ItemDescription" src="project://database/Assets/ItemDescription.uxml?fileID=9197481963319205126&amp;guid=208a55c32d354ad4b9366b2b9508dbaa&amp;type=3#ItemDescription" />
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Shop.uss?fileID=7433441132597879392&amp;guid=260eb23e2ca883742aa058d080e36060&amp;type=3#Shop" />
     <Gradient name="shop_screen" right-color="#000000FD" direction="vertical" left-color="#000000FD" class="screen" style="width: 100%; height: 100%; flex-direction: column; display: flex;">
         <ui:VisualElement name="Header" class="header" style="height: 15%; -unity-background-image-tint-color: rgb(60, 60, 60);">
             <ui:VisualElement name="VisualElement" style="flex-direction: row; width: 25%; height: 100%; padding-left: 115px; background-color: rgba(55, 55, 55, 0); display: flex; visibility: visible;">
@@ -26,14 +26,14 @@
                     </ui:RadioButtonGroup>
                 </ui:VisualElement>
                 <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" class="item__grid-panel inventory_scroll_panel" style="height: 100%; background-color: rgb(29, 29, 29);">
-                    <ui:VisualElement name="weapon_panel" class="inventory_panel" />
+                    <ui:VisualElement name="weapon_panel" class="inventory_panel shop_panel" />
                     <ui:VisualElement />
-                    <ui:VisualElement name="armor_panel" class="inventory_panel" style="display: none;" />
-                    <ui:VisualElement name="consumation_panel" class="inventory_panel" style="display: none;" />
-                    <ui:VisualElement name="skill_panel" class="inventory_panel" style="display: none;" />
-                    <ui:VisualElement name="accessories_panel" class="inventory_panel" style="display: none;" />
-                    <ui:VisualElement name="material_panel" class="inventory_panel" style="display: none;" />
-                    <ui:VisualElement name="valuable_panel" class="inventory_panel" style="display: none;" />
+                    <ui:VisualElement name="armor_panel" class="inventory_panel shop_panel" style="display: none;" />
+                    <ui:VisualElement name="consumation_panel" class="inventory_panel shop_panel" style="display: none;" />
+                    <ui:VisualElement name="skill_panel" class="inventory_panel shop_panel" style="display: none;" />
+                    <ui:VisualElement name="accessories_panel" class="inventory_panel shop_panel" style="display: none;" />
+                    <ui:VisualElement name="material_panel" class="inventory_panel shop_panel" style="display: none;" />
+                    <ui:VisualElement name="valuable_panel" class="inventory_panel shop_panel" style="display: none;" />
                     <ui:VisualElement name="row" class="row" style="display: none;">
                         <ui:VisualElement name="slot" class="slot" />
                         <ui:VisualElement name="slot" class="slot" />
@@ -58,6 +58,5 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Instance template="ItemDescription" name="description_panel" style="position: absolute; display: none;" />
     </Gradient>
 </ui:UXML>

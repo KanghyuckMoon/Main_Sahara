@@ -33,6 +33,13 @@ namespace UI.Inventory
             this.parent = _parent; 
         }
 
+        public void ClearDatas()
+        {
+            foreach(var _data in slotItemViewList)
+            {
+                _data.ClearData(); 
+            }
+        }
         public void AddSlotView(SlotItemPresenter _slotItemView)
         {
             this.slotItemViewList.Add(_slotItemView);

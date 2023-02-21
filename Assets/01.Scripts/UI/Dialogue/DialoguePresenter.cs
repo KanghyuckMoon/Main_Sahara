@@ -99,9 +99,14 @@ namespace UI.Dialogue
                     case "!CHOICE\r":
                         ActiveSelect(_nameText, _dialogueText); 
                         return;
-                    case "!Shop\r":
-                        ActiveShopSelect(); 
-                        return; 
+                    case "!SHOP\r":
+                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // 구매창 활성화 
+                        ActiveViewS(false);
+                        return;
+                    case "!SELL\r":
+                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop); // 판매 창 활성화 
+                        ActiveViewS(false);
+                        return;
                 }
             }
 
@@ -110,33 +115,6 @@ namespace UI.Dialogue
             StaticCoroutineManager.Instance.InstanceDoCoroutine(SetText(_dialogueText)); //
         }
 
-        /// <summary>
-        /// 상점 선택창 띄우기 
-        /// </summary>
-        private void ActiveShopSelect()
-        {
-            List<string> _nameList = new List<string>();
-            string _buyName = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopBuy)); 
-            string _sellName = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopSell)); 
-            _nameList.Add(_buyName);
-            _nameList.Add(_sellName);
-
-            this.dialogueView.ActiveSelectButton(_buyName, () =>
-            {
-                // 구매 
-                UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop);
-                ActiveViewS(false);
-
-            });
-
-            this.dialogueView.ActiveSelectButton(_sellName, () =>
-            {
-                // 판매 
-                UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop);
-                ActiveViewS(false);
-
-            });
-        }
         /// <summary>
         /// 대화 중 선택창 띄우기 
         /// </summary>
@@ -253,5 +231,37 @@ namespace UI.Dialogue
         {
             this.dialogueView.ActiveViewS(true);
         }
+        #region regacy 상점 
+        /*
+        /// <summary>
+        /// 상점 선택창 띄우기 
+        /// </summary>
+        private void ActiveShopSelect()
+        {
+            List<string> _nameList = new List<string>();
+            string _buyName = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopBuy));
+            string _sellName = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopSell));
+            _nameList.Add(_buyName);
+            _nameList.Add(_sellName);
+
+            this.dialogueView.ActiveSelectButton(_buyName, () =>
+            {
+                // 구매 
+                UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop);
+                ActiveViewS(false);
+
+            });
+
+            this.dialogueView.ActiveSelectButton(_sellName, () =>
+            {
+                // 판매 
+                UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop);
+                ActiveViewS(false);
+
+            });
+        }
+          */
+        #endregion
+
     }
 }

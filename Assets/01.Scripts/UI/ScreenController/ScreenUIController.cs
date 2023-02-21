@@ -127,6 +127,11 @@ namespace UI
                 //  활성화
                 ActiveCursor(upgradePresenter.ActiveView());
             }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                //  활성화
+                ActiveCursor(shopPresenter.ActiveView());
+            }
 
         }
 

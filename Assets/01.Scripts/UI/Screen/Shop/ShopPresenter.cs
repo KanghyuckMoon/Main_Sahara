@@ -4,7 +4,10 @@ using UnityEngine;
 using UI.Base;
 using UnityEngine.UIElements;
 using GoogleSpreadSheet;
-using UI.Manager; 
+using UI.Manager;
+using UI.Inventory;
+using Shop;
+using Inventory; 
 
 namespace UI.Shop
 {
@@ -19,7 +22,8 @@ namespace UI.Shop
         private UIDocument uiDocument;
 
         [SerializeField]
-        private ShopView shopView; 
+        private ShopView shopView;
+        private InventoryGridSlotsPr inventoryGridSlotsPr;
 
         // 프로퍼티
         public IUIController UIController { get ; set; }
@@ -29,7 +33,43 @@ namespace UI.Shop
             this.uiDocument = GetComponent<UIDocument>();
             shopView.InitUIDocument(uiDocument);
             shopView.Cashing();
-            shopView.Init(); 
+            shopView.Init();
+
+            // 인벤토리 슬롯들 뷰 생성 
+            inventoryGridSlotsPr = new InventoryGridSlotsPr(shopView.ParentElement);
+            // 슬롯 생성 
+            inventoryGridSlotsPr.Init();
+        }
+
+        /// <summary>
+        /// 상점 아이템 세팅  
+        /// </summary>
+        private void SetShopItem()
+        {
+            inventoryGridSlotsPr.ClearSlotDatas(); 
+
+            var _allDataList = ShopManager.Instance.GetAllItemData();
+            foreach(var _data in _allDataList)
+            {
+                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
+            }
+            //   ShopManager.Instance.BuyItem();
+         //   ShopManager.Instance.SellItem();
+        }
+
+        /// <summary>
+        /// 현재 인벤토리 아이템 세팅 
+        /// </summary>
+        private void SetInvenItem()
+        {
+            inventoryGridSlotsPr.ClearSlotDatas();
+            
+            // 인벤토리 데이터 설정 
+            List<ItemData> _itemList = InventoryManager.Instance.GetWeaponAndConsumptionList();
+            foreach (var _itemData in _itemList)
+            {
+                inventoryGridSlotsPr.ItemSlotDic[_itemData.itemType].SetItemDataUI(_itemData);
+            }
         }
 
         /// <summary>
