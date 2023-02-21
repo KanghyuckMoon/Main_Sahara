@@ -75,7 +75,7 @@ namespace Module
             Vector3 _dir;
             if (_inGameHitBox.IsContactDir)
 			{
-                _dir = (_inGameHitBox.transform.position - _closetPos).normalized;
+                _dir = (_closetPos - _inGameHitBox.transform.position).normalized;
             }
             else
             {

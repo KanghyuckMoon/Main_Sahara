@@ -33,21 +33,29 @@ namespace HitBox
 				isInit = true;
 			}
 			index++;
-			OnHitBox(hitboxString);
 
 			if (isTimeIndexCange)
 			{
 				inGameHitBoxeList = new List<InGameHitBox>();
+			}
+
+			OnHitBox(hitboxString);
+
+			if (isTimeIndexCange)
+			{
 				StartCoroutine(IndexChage());
 			}
 		}
 
 		private IEnumerator IndexChage()
 		{
-			yield return new WaitForSeconds(1f);
-			foreach (InGameHitBox inGameHitBox in inGameHitBoxeList)
+			while(true)
 			{
-				inGameHitBox.SetIndex(inGameHitBox.GetIndex() + 1);
+				yield return new WaitForSeconds(1f);
+				foreach (InGameHitBox inGameHitBox in inGameHitBoxeList)
+				{
+					inGameHitBox.SetIndex(inGameHitBox.GetIndex() + 1);
+				}
 			}
 		}
 
