@@ -103,7 +103,7 @@ namespace Module.Talk
 				if (ConditionCheck(_talkData))
 				{
 					UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
-						.SetText(_talkData.authorText, _talkData.talkText);
+						.SetTexts(_talkData.authorText, _talkData.talkText);
 					//DialoguePresenter.SetTexts(_talkData.authorText, _talkData.talkText);
 					return true;
 				}
@@ -143,7 +143,7 @@ namespace Module.Talk
 				_index = Random.Range(0, talkDataSO.defaultTalkCodeList.Count);
 			}
 			UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
-				.SetText(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
+				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 			//DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 		}
 
