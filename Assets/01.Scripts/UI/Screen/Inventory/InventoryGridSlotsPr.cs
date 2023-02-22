@@ -54,6 +54,10 @@ namespace UI.Inventory
             CreateAllSlots();
         }
 
+        public void AddButtonEvent(InventoryGridSlotsView.RadioButtons _type, Action<bool> _callback)
+        {
+            inventoryGridSlotsView.AddButtonEvent(_type, _callback);
+        }
         public void SetData()
         {
 

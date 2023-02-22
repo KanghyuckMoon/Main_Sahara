@@ -39,7 +39,11 @@ namespace UI.Dialogue
             uiDocument = GetComponent<UIDocument>();
             dialogueView.InitUIDocument(uiDocument); 
         }
-
+        [ContextMenu("테스트")]
+        public void Test()
+        {
+            ActiveViewS(false);
+        }
         [ContextMenu("Select테스트")]
         public void TestSelect()
         {
@@ -61,7 +65,8 @@ namespace UI.Dialogue
             nameCode = _name;
             dialogueCode = _dialogue;
 
-            SetCodeToText(); 
+            SetCodeToText();
+            StartCoroutine(CheckNextDialogue()); 
         }
 
         /// <summary>
@@ -70,49 +75,54 @@ namespace UI.Dialogue
         private void SetCodeToText()
         {
             string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}");
-            string _dialogueText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
+            targetText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
             Logging.Log($"{nameCode}_{index}");
             Logging.Log($"{dialogueCode}_{index}"); 
-            Logging.Log($"{_dialogueText}{_nameText}");
+            Logging.Log($"{targetText}{_nameText}");
 
             if (_nameText[0] is '!')
             {
                 switch (_nameText)
                 {
-                    case "!END\r":
+                    case "!END":
                         index = 0;
                         ActiveViewS(false); 
                         return;
-                    case "!TACTIVE\r":
+                    case "!TACTIVE":
                         index = 0;
                         ActiveViewS(false);
-                        QuestManager.Instance.ChangeQuestActive(_dialogueText);
+                        QuestManager.Instance.ChangeQuestActive(targetText);
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
                         return;
-                    case "!TCLEAR\r":
+                    case "!TCLEAR":
                         // 패널 띄우기
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
                         index = 0;
                         ActiveViewS(false);
-                        QuestManager.Instance.ChangeQuestClear(_dialogueText);
+                        QuestManager.Instance.ChangeQuestClear(targetText);
                         return;
-                    case "!CHOICE\r":
-                        ActiveSelect(_nameText, _dialogueText); 
+                    case "!CHOICE":
+                        ActiveSelect(_nameText, targetText); 
                         return;
-                    case "!SHOP\r":
+                    case "!SHOP":
                         UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // 구매창 활성화 
                         ActiveViewS(false);
                         return;
-                    case "!SELL\r":
+                    case "!SELL":
                         UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop); // 판매 창 활성화 
                         ActiveViewS(false);
                         return;
+                    case "!GIVE":
+                        return;
+                    case "!GIVES":
+                        return; 
                 }
             }
 
             // 텍스트 처리 
             this.dialogueView.SetNameTextA(_nameText); // 말하는 사람 이름 설정 
-            StaticCoroutineManager.Instance.InstanceDoCoroutine(SetText(_dialogueText)); //
+            StartCoroutine(SetText());
+        //    StaticCoroutineManager.Instance.InstanceDoCoroutine(SetText(_dialogueText)); //
         }
 
         /// <summary>
@@ -162,43 +172,69 @@ namespace UI.Dialogue
         /// <returns></returns>
         private IEnumerator CheckNextDialogue()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.03f);
 
-            while (true)
+            while (isDialogue == true)
             {
                 if(Input.GetKeyDown(KeyCode.F))
                 {
-                    index++;
-                    SetCodeToText();
-                    Logging.Log("대화 다음!!");
+                    if (isTexting == true) // 텍스트가 진행중이었다면 
+                    {
+                        isTexting = false;
+//                        SetTextInstant(targetText);
+                        yield return null;
+                    }
+                    else
+                    {
+                        index++;
+                        SetCodeToText();
+                        Debug.Log("대화 다음!!");
 
-                    break; 
+                    }
+
+                    //break; 
                 }
-                Logging.Log("대화 루프...");
+                Debug.Log("대화 루프...");
                 yield return null;
             }
         }
 
+        private bool isTexting = false; // 텍스트가 출력되고 있는 중인가 
+        private string targetText; 
         /// <summary>
         /// 대화텍스트 애니메이션 
         /// </summary>
         /// <param name="_str"></param>
         /// <returns></returns>
-        private IEnumerator SetText(string _str)
+        private IEnumerator SetText()
         {
-            Logging.Log("처음 텍스트");
+            Debug.Log("처음 텍스트");
             WaitForSeconds w  = new WaitForSeconds(0.03f);
-            string _fullText = _str;
+            //targetText = _str;
             string _nowText = "";
-            for (int i = 0; i < _fullText.Length; i++)
+            isTexting = true; 
+            for (int i = 0; i < targetText.Length; i++)
             {
-                _nowText += _fullText[i];
+                if (isTexting == false)
+                {
+                    this.dialogueView.SetDialogueTextA(targetText);
+                    yield break;
+                }
+                _nowText += targetText[i];
                 this.dialogueView.SetDialogueTextA(_nowText);
-                Logging.Log("For 텍스트");
+                Debug.Log("For 텍스트");
                 yield return w;
             }
-            StaticCoroutineManager.Instance.InstanceDoCoroutine(CheckNextDialogue());
+            isTexting = false;
+          //  StartCoroutine(CheckNextDialogue()); 
+        //    StaticCoroutineManager.Instance.InstanceDoCoroutine(CheckNextDialogue());
+        }
 
+        private void SetTextInstant(string _str)
+        {
+            isTexting = false; 
+            StopCoroutine(SetText());
+            this.dialogueView.SetDialogueTextA(_str);
         }
 
         public void SetText(string _name, string _dialogue)
@@ -215,7 +251,7 @@ namespace UI.Dialogue
         {
             dialogueView.ActiveView(_isActive); 
         }
-
+       
         private void ActiveViewS(bool _isActive)
         {
             isDialogue = _isActive;

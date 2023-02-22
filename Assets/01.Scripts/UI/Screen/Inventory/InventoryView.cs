@@ -62,6 +62,7 @@ namespace UI.Inventory
             BindVisualElements(typeof(Elements));
             BindRadioButtons(typeof(RadioButtons));
             BindScrollViews(typeof(ScrollViews));
+
         }
 
         public override void Init()
@@ -76,7 +77,13 @@ namespace UI.Inventory
             inventoryGridSlotsPr = new InventoryGridSlotsPr(ParentElement);
             // 슬롯 생성 
             inventoryGridSlotsPr.Init();
-            inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item,ClickItem); 
+            inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item,ClickItem);
+
+            // 버튼 이벤트 추가 
+            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.armor_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.right_content_panel), x));
+            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.skill_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.skill_equip_panel), x));
+            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.armor_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.armor_equip_panel), x));
+            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.accessories_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.accessoire_equip_panel), x));
 
 
             ActiveDragItem(false); 

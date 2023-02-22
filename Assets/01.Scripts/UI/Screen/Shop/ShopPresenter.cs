@@ -28,6 +28,12 @@ namespace UI.Shop
         // 프로퍼티
         public IUIController UIController { get ; set; }
 
+        public string name;
+        [ContextMenu("캡쳐")]
+        public void CaptureTest()
+        {
+            ScreenCapture.CaptureScreenshot(name);
+        }
         private void OnEnable()
         {
             this.uiDocument = GetComponent<UIDocument>();
@@ -41,6 +47,13 @@ namespace UI.Shop
             inventoryGridSlotsPr.Init();
         }
 
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                CaptureTest(); 
+            }
+        }
         /// <summary>
         /// 상점 아이템 세팅  
         /// </summary>

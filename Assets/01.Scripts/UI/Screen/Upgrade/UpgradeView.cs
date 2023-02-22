@@ -45,11 +45,11 @@ namespace UI.Upgrade
         /// </summary>
         public void ClearAllSlots()
         {
-            var _list = GetVisualElement((int)Elements.slot_parent).Children();
-            foreach (var _v in _list)
-            {
-                _v.RemoveFromHierarchy(); 
-            }
+            //var _list = GetVisualElement((int)Elements.slot_parent).Children();
+            //foreach (var _v in _list)
+            //{
+            //    _v.RemoveFromHierarchy(); 
+            //}
 
         }
 
