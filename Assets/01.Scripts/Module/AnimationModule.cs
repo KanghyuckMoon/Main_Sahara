@@ -16,11 +16,11 @@ namespace Module
             {
 				try
 				{
-                    animator ??= mainModule.GetComponent<Animator>();
+                    animator ??= mainModule.GetComponentInChildren<Animator>();
 				}
 				catch
 				{
-                    animator = mainModule.GetComponent<Animator>();
+                    animator = mainModule.GetComponentInChildren<Animator>();
 				}
                 return animator;
             }
