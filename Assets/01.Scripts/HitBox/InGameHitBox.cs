@@ -30,9 +30,11 @@ namespace HitBox
 		private BoxCollider col;
 		private HitBoxData hitBoxData;
 		private GameObject owner;
+		private ulong index;
 
-		public void SetHitBox(HitBoxData _hitBoxData, GameObject _owner, string _tag)
+		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag)
 		{
+			index = _index;
 			gameObject.tag = _tag;
 			owner = _owner;
 			col = GetComponent<BoxCollider>();
@@ -40,6 +42,7 @@ namespace HitBox
 			transform.position = _owner.transform.position;
 			transform.rotation = _owner.transform.rotation;
 			col.center = _hitBoxData.offset;
+			col.size = _hitBoxData.size;
 
 			Vector3 _pos = transform.position + (transform.forward * hitBoxData.swingEffectOffset.z) + (transform.up * hitBoxData.swingEffectOffset.y) + (transform.right * hitBoxData.swingEffectOffset.x);
 
@@ -53,7 +56,7 @@ namespace HitBox
 			}
 			gameObject.SetActive(true);
 
-			if (hitBoxData.swingEffect != null)
+			if (hitBoxData.swingEffect != "NULL")
 			{
 				EffectManager.Instance.SetEffectDefault(hitBoxData.swingEffect, _pos, _hitBoxData.swingEffectRotation + transform.eulerAngles, _hitBoxData.size);
 			}
@@ -62,6 +65,11 @@ namespace HitBox
 			{
 				StartCoroutine(DestroyHitBox());
 			}
+		}
+
+		public ulong GetIndex()
+		{
+			return index;
 		}
 
 		public Quaternion KnockbackDir()
@@ -80,6 +88,12 @@ namespace HitBox
 			transform.SetParent(null);
 			gameObject.SetActive(false);
 			Pool.ObjectPoolManager.Instance.RegisterObject("HitBox", gameObject);
+		}
+
+		private void OnDrawGizmos()
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawCube(HitBoxPos, col.size);
 		}
 	}
 

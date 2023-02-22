@@ -88,9 +88,9 @@ namespace HitBox
 	public class HitBoxData
 	{
 		//ÆÇÁ¤
-		public string hitBoxName;
-		public string ClassificationName;
-		public int hitBoxIndex;
+		public string hitBoxName = "NULL";
+		public string ClassificationName = "NULL";
+		public ulong hitBoxIndex;
 		public float deleteDelay = 0.1f;
 		public bool childization = false;
 		public Vector3 offset;
@@ -104,8 +104,8 @@ namespace HitBox
 		public Vector3 swingEffectOffset = Vector3.zero;
 		public Vector3 swingEffectRotation = Vector3.zero;
 		public Vector3 swingEffectSize = Vector3.one;
-		public string swingEffect;
-		public string hitEffect;
+		public string swingEffect = "NULL";
+		public string hitEffect = "NULL";
 
 		public static HitBoxData Copy(HitBoxData _hitBoxData)
 		{
