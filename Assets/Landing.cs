@@ -22,9 +22,9 @@ public class Landing : StateMachineBehaviour
         }
     }
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        _mainModule.StopOrNot = 1;
-        //_mainModule.canMove = true;
-    }
+    //public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    //_mainModule.StopOrNot = 1;
+    //    //_mainModule.canMove = true;
+    //}
 }

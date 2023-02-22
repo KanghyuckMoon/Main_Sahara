@@ -40,6 +40,7 @@ namespace Module
 
             float _speed;
 
+            if (!mainModule.isGround) _targetSpeed = 3.6f;
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
             float currentSpeed = new Vector3(mainModule.CharacterController.velocity.x, 0, mainModule.CharacterController.velocity.z).magnitude;
@@ -159,8 +160,8 @@ namespace Module
 
         public override void FixedUpdate()
         {
-            if (!mainModule.IsSlope)
-                Move();
+            //if (!mainModule.IsSlope)
+            Move();
             Gravity();
             ETC();
         }
