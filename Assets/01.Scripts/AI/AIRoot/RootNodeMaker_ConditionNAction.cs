@@ -161,6 +161,30 @@ namespace AI
 			return aiModule.IsHostilities;
 		}
 
+		private float time1f = 1f;
+		private bool Time1fCondition()
+		{
+			if(time1f > 0f)
+			{
+				time1f -= Time.deltaTime;
+				return false;
+			}
+			time1f = 1f;
+			return true;
+		}
+		private bool JumpAndTime1fCondition()
+		{
+			return JumpCondition() & Time1fCondition();
+		}
+		private bool JumpCondition()
+		{
+			return aiModule.MainModule.isGround;
+		}
+		private bool NotJumpCondition()
+		{
+			return !aiModule.MainModule.isGround;
+		}
+
 		//Action
 		private void SuspicionGaugeSet()
 		{
@@ -245,6 +269,12 @@ namespace AI
 			aiModule.MainModule.IsJump = false;
 			aiModule.MainModule.IsJumpBuf = false;
 		}
+		private void MoveReset()
+		{
+			aiModule.AIModuleState = AIModule.AIState.Idle;
+			aiModule.MainModule.IsSprint = false;
+			aiModule.MainModule.ObjDir = Vector2.zero;
+		}
 
 		private void Attack()
 		{
@@ -252,6 +282,30 @@ namespace AI
 			aiModule.MainModule.Attacking = true;
 		}
 		private void CloserMove()
+		{
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			{
+				PathSetting();
+				Vector3 vec = Vector3.zero;
+				if (path.corners.Length > 1)
+				{
+					vec = path.corners[1] - Position;
+				}
+				else
+				{
+					vec = aiModule.Player.position - Position;
+				}
+				vec.y = 0;
+				vec = vec.normalized;
+				Vector2 _inputdir = new Vector2(vec.x, vec.z);
+				aiModule.Input = _inputdir;
+
+				aiModule.AIModuleState = AIModule.AIState.Walk;
+				aiModule.MainModule.IsSprint = false;
+				aiModule.MainModule.ObjDir = aiModule.Input;
+			}
+		}
+		private void SetMoveDir()
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
@@ -349,6 +403,18 @@ namespace AI
 			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime);
 		}
 
+		private void RotateXYZ()
+		{
+			Vector3 _vec = (aiModule.Player.position - Position).normalized;
+			//_vec.y = aiModule.MainModule.transform.forward.y;
+			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime);
+		}
+
+		private void ModelRotateXYZ()
+		{
+			Vector3 _vec = (aiModule.Player.position - Position).normalized;
+			aiModule.MainModule.Model.forward = Vector3.Lerp(aiModule.MainModule.Model.forward, _vec, Time.deltaTime);
+		}
 		private void HostileStart()
 		{
 			aiModule.IsHostilities = true;

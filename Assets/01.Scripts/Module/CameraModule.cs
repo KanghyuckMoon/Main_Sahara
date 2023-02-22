@@ -111,27 +111,6 @@ namespace Module
             //nomalCom.m_Lens.OrthographicSize = size;
         }
 
-        public override void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                ShakeCam(0.2f, 0.3f, 7);
-            }
-        }
-
-        public void ShakeCam(float duration, float strengh, float shakeFrequent)
-        {
-            StaticCoroutineManager.Instance.InstanceDoCoroutine(ShakingCam(duration, strengh, shakeFrequent));
-        }
-
-        private IEnumerator ShakingCam(float duration, float strengh, float shakeFrequent)
-        {
-            followCamNoise.m_AmplitudeGain = groupCamNoise.m_AmplitudeGain = strengh;//.Priority.
-            followCamNoise.m_FrequencyGain = groupCamNoise.m_FrequencyGain = shakeFrequent;
-            yield return new WaitForSeconds(duration);
-            followCamNoise.m_AmplitudeGain = followCamNoise.m_FrequencyGain = 0;//.Priority.
-            groupCamNoise.m_AmplitudeGain = groupCamNoise.m_FrequencyGain = 0;//.Priority.
-        }
 
         //public override void Awake()
         //{
