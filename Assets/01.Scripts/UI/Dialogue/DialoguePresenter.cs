@@ -218,10 +218,11 @@ namespace UI.Dialogue
             for (int i = 0; i <= fullText.Length; i++)
             {
                 _targetText = fullText.Substring(0,i)+ TransStr + fullText.Substring(i);
-                if (isTexting == false)
+                if (isTexting == false)  
                 {
+                    // 모든 텍스트 바로 보여주기
                     //this.dialogueView.SetDialogueTextA(fullText);
-                    this.dialogueView.SetDialogueTextA(_targetText);
+                    this.dialogueView.SetDialogueTextA(fullText);
                     yield break;
                 }
                 //_nowText += fullText[i];
