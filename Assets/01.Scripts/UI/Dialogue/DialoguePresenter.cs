@@ -75,10 +75,10 @@ namespace UI.Dialogue
         private void SetCodeToText()
         {
             string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}");
-            targetText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
+            fullText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
             Logging.Log($"{nameCode}_{index}");
             Logging.Log($"{dialogueCode}_{index}"); 
-            Logging.Log($"{targetText}{_nameText}");
+            Logging.Log($"{fullText}{_nameText}");
 
             if (_nameText[0] is '!')
             {
@@ -91,7 +91,7 @@ namespace UI.Dialogue
                     case "!TACTIVE":
                         index = 0;
                         ActiveViewS(false);
-                        QuestManager.Instance.ChangeQuestActive(targetText);
+                        QuestManager.Instance.ChangeQuestActive(fullText);
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
                         return;
                     case "!TCLEAR":
@@ -99,10 +99,10 @@ namespace UI.Dialogue
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
                         index = 0;
                         ActiveViewS(false);
-                        QuestManager.Instance.ChangeQuestClear(targetText);
+                        QuestManager.Instance.ChangeQuestClear(fullText);
                         return;
                     case "!CHOICE":
-                        ActiveSelect(_nameText, targetText); 
+                        ActiveSelect(_nameText, fullText); 
                         return;
                     case "!SHOP":
                         UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // 구매창 활성화 
@@ -200,7 +200,8 @@ namespace UI.Dialogue
         }
 
         private bool isTexting = false; // 텍스트가 출력되고 있는 중인가 
-        private string targetText; 
+        private string fullText;
+        private const string TransStr = "<alpha=#00>"; // 투명 문자 
         /// <summary>
         /// 대화텍스트 애니메이션 
         /// </summary>
@@ -212,16 +213,20 @@ namespace UI.Dialogue
             WaitForSeconds w  = new WaitForSeconds(0.03f);
             //targetText = _str;
             string _nowText = "";
+            string _targetText = ""; 
             isTexting = true; 
-            for (int i = 0; i < targetText.Length; i++)
+            for (int i = 0; i <= fullText.Length; i++)
             {
+                _targetText = fullText.Substring(0,i)+ TransStr + fullText.Substring(i);
                 if (isTexting == false)
                 {
-                    this.dialogueView.SetDialogueTextA(targetText);
+                    //this.dialogueView.SetDialogueTextA(fullText);
+                    this.dialogueView.SetDialogueTextA(_targetText);
                     yield break;
                 }
-                _nowText += targetText[i];
-                this.dialogueView.SetDialogueTextA(_nowText);
+                //_nowText += fullText[i];
+                //this.dialogueView.SetDialogueTextA(_nowText);
+                this.dialogueView.SetDialogueTextA(_targetText);
                 Debug.Log("For 텍스트");
                 yield return w;
             }
