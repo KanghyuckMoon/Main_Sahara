@@ -14,7 +14,7 @@ namespace Module
         //메인 모듈에서 지금 오브젝트가 가지고 있는 모든 모듈을 가지고 와야해
         //그건 풀링 할때 각각의 모듈을 밑에 복합데이터에 넣어주는 형식으로 한다. 메인모듈에 넣어준다.
 
-        public int StopOrNot
+        public float StopOrNot
 		{
             get
 			{
@@ -320,7 +320,7 @@ namespace Module
 		}
 
 		[SerializeField, Header("멈출까말까")] 
-        private int stopOrNot;
+        private float stopOrNot;
 
         [SerializeField, Header("(록온)타겟")]
         private Transform lockOnTarget = null;
