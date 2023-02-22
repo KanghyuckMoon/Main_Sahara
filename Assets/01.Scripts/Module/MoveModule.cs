@@ -47,14 +47,15 @@ namespace Module
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 13.7f * Time.fixedDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f * Time.fixedDeltaTime);
             }
             else
             {
                 _speed = _targetSpeed + _lockOnspeed;
             }
 
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, Time.fixedDeltaTime * 20);
+            animationBlend = mainModule.isGround ? animationBlend : 0;
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, Time.fixedDeltaTime * 5);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
@@ -73,16 +74,19 @@ namespace Module
                                   mainModule.ObjRotation.eulerAngles.y;
                 rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.05f);
 
-                if (mainModule.LockOnTarget == null) mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                else
+                if (!mainModule.Attacking || !mainModule.StrongAttacking)
                 {
-                    Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
-                    mainModule.transform.LookAt(_targetPos);
+                    if (mainModule.LockOnTarget == null) mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                    else
+                    {
+                        Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
+                        mainModule.transform.LookAt(_targetPos);
 
-                    //Vector3 _targetDir = mainModule.LockOnTarget.position - mainModule.transform.position;
-                    //float _angle = Mathf.Atan2(_targetDir.x, _targetDir.z) * Mathf.Rad2Deg;
+                        //Vector3 _targetDir = mainModule.LockOnTarget.position - mainModule.transform.position;
+                        //float _angle = Mathf.Atan2(_targetDir.x, _targetDir.z) * Mathf.Rad2Deg;
 
-                    //targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg + _angle;
+                        //targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg + _angle;
+                    }
                 }
             }
 
