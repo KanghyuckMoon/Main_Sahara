@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Effect;
 
 public class IKFootSolver : MonoBehaviour
 {
+    [SerializeField]
+    private string effectName = "NULL";
     [SerializeField] LayerMask terrainLayer = default;
     [SerializeField] Transform body = default;
     [SerializeField] IKFootSolver otherFoot = default;
@@ -40,6 +43,10 @@ public class IKFootSolver : MonoBehaviour
         {
             if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
             {
+                if (effectName is not "NULL")
+				{
+                    EffectManager.Instance.SetEffectDefault(effectName, transform.position, Quaternion.identity);
+				}
                 lerp = 0;
                 int direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
                 newPosition = info.point; //+ (body.forward * stepLength * direction) + footOffset;
