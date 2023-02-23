@@ -14,22 +14,22 @@ namespace Spawner
 		private static int nameKey;
 
 		[SerializeField]
-		private string spawnerName;
-		[SerializeField]
 		private string lodAddress;
 		[SerializeField]
 		private ObjectDataSO objectDataSO;
 
+#if UNITY_EDITOR
 		[ContextMenu("RandomName")]
 		public void RandomName()
 		{
-			spawnerName = gameObject.name + nameKey++;
+			var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+			gameObject.name = _prefeb.name + nameKey++;
 		}
-
+#endif
 
 		public void OnEnable()
 		{
-			if (isSpawnDic.TryGetValue(spawnerName, out bool _bool))
+			if (isSpawnDic.TryGetValue(gameObject.name, out bool _bool))
 			{
 				if (_bool)
 				{
@@ -42,7 +42,7 @@ namespace Spawner
 			}
 			else
 			{
-				isSpawnDic.Add(spawnerName, true);
+				isSpawnDic.Add(gameObject.name, true);
 				//GameObject obj = gameObject;
 				ObjectData _objectData = new ObjectData();
 				_objectData.key = ObjectData.totalKey++;
@@ -51,9 +51,8 @@ namespace Spawner
 				_objectData.scale = transform.localScale;
 				_objectData.lodAddress = lodAddress;
 				_objectData.lodType = LODType.On;
-				SceneDataManager.Instance.GetSceneData(transform.position).AddOnlyLODObjectData(_objectData);
-
-
+				SceneData _sceneData = SceneDataManager.Instance.GetSceneData(gameObject.scene.name);
+				_sceneData.AddOnlyLODObjectData(_objectData);
 			}
 		}
 	}
