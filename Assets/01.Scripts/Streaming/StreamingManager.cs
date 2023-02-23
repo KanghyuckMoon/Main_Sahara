@@ -11,6 +11,17 @@ namespace Streaming
 {
 	public class StreamingManager : MonoSingleton<StreamingManager>, Observer
 	{
+		public bool IsSetting
+		{
+			get
+			{
+				return isSceneSetting;
+			}
+			set
+			{
+				isSceneSetting = value;
+			}
+		}
 		private Transform Viewer
 		{
 			get
@@ -58,10 +69,12 @@ namespace Streaming
 		private const int LODDst = 1;
 		private const int interval = 3;
 		private Vector3 defaultPosition = new Vector3(0,4050,0);
+		private bool isSceneSetting = false;
 		public void Receive()
 		{
 			if (GamePlayerManager.Instance.IsPlaying)
 			{
+				isSceneSetting = false;
 				originChunkCoordX = 0;
 				originChunkCoordY = 0;
 				originChunkCoordZ = 0;
@@ -73,9 +86,11 @@ namespace Streaming
 				InitSubScene();
 				InitChunk();
 				UnLoadVisibleChunk();
+				isSceneSetting = true;
 			}
 			else
 			{
+				isSceneSetting = false;
 				originChunkCoordX = 0;
 				originChunkCoordY = 0;
 				originChunkCoordZ = 0;
@@ -88,9 +103,29 @@ namespace Streaming
 			}
 		}
 
-		public override void Awake()
+		public IEnumerator LoadReadyScene()
 		{
-			base.Awake();
+			while(true)
+			{
+				if (SubSceneReference is not null)
+				{
+					break;
+				}
+				yield return null;
+			}
+			originChunkCoordX = 0;
+			originChunkCoordY = 0;
+			originChunkCoordZ = 0;
+			viewerPosition = defaultPosition;
+			InitSubScene();
+			InitChunk();
+			UnLoadVisibleChunk();
+			isSceneSetting = true;
+		}
+
+		public void Start()
+		{
+			//base.Awake();
 			GamePlayerManager.Instance.AddObserver(this);
 		}
 
@@ -151,21 +186,27 @@ namespace Streaming
 		private void InitChunk()
 		{
 			chunksCurrentVisibleList.Clear();
-			for (int _zOffset = -chunksVisibleInViewDst; _zOffset <= chunksVisibleInViewDst; _zOffset++)
-			{
-				for (int _yOffset = -chunksVisibleInViewDst; _yOffset <= chunksVisibleInViewDst; _yOffset++)
-				{
-					for (int _xOffset = -chunksVisibleInViewDst; _xOffset <= chunksVisibleInViewDst; _xOffset++)
-					{
-						Vector3 viewedChunkCoord = new Vector3(originChunkCoordX + _xOffset, originChunkCoordY + _yOffset, originChunkCoordZ + _zOffset);
+			//for (int _zOffset = -chunksVisibleInViewDst; _zOffset <= chunksVisibleInViewDst; _zOffset++)
+			//{
+			//	for (int _yOffset = -chunksVisibleInViewDst; _yOffset <= chunksVisibleInViewDst; _yOffset++)
+			//	{
+			//		for (int _xOffset = -chunksVisibleInViewDst; _xOffset <= chunksVisibleInViewDst; _xOffset++)
+			//		{
+			//			Vector3 viewedChunkCoord = new Vector3(originChunkCoordX + _xOffset, originChunkCoordY + _yOffset, originChunkCoordZ + _zOffset);
+			//
+			//			if (chunkDictionary.ContainsKey(viewedChunkCoord))
+			//			{
+			//				LoadSubScene(viewedChunkCoord);
+			//			}
+			//		}
+			//	}
+			//}
 
-						if (chunkDictionary.ContainsKey(viewedChunkCoord))
-						{
-							LoadSubScene(viewedChunkCoord);
-						}
-					}
-				}
+			foreach(var _obj in chunkDictionary)
+			{
+				LoadSubScene(_obj.Key);
 			}
+
 			chunksPreviousVisibleList = chunksCurrentVisibleList.ToList();
 		}
 

@@ -15,7 +15,7 @@ namespace Spawner
 		[SerializeField]
 		private string spawnerName;
 		[SerializeField]
-		private string enemyAddress;
+		private string lodAddress;
 		[SerializeField]
 		private ObjectDataSO objectDataSO;
 		
@@ -36,19 +36,15 @@ namespace Spawner
 			else
 			{
 				isSpawnDic.Add(spawnerName, true);
-				GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
-				ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
-				objectClassCycle.TargetObject = obj;
-				ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
-				if (_objectSceneChecker is null)
-				{
-					_objectSceneChecker = new ObjectSceneChecker();
-				}
-				_objectSceneChecker.ObjectDataSO = objectDataSO;
-				_objectSceneChecker.ObjectClassCycle = objectClassCycle;
-				objectClassCycle.AddObjectClass(_objectSceneChecker);
-				obj.transform.position = transform.position;
-				obj.SetActive(true);
+				//GameObject obj = gameObject;
+				ObjectData _objectData = new ObjectData();
+				_objectData.position = transform.position;
+				_objectData.rotation = transform.rotation;
+				_objectData.scale = transform.localScale;
+				_objectData.lodAddress = lodAddress;
+				_objectData.lodType = LODType.On;
+				SceneDataManager.Instance.GetSceneData(transform.position).AddOnlyLODObjectData(_objectData);
+
 
 			}
 		}

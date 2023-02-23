@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utill.Pattern;
 using Utill.Addressable;
+using static Streaming.StreamingUtill;
 
 
 namespace Streaming
@@ -32,6 +33,24 @@ namespace Streaming
 			}
 		}
 
+		/// <summary>
+		/// 위치로 해당하는 씬 데이터를 가져옴
+		/// </summary>
+		/// <param name="_sceneName"></param>
+		/// <returns></returns>
+		public SceneData GetSceneData(Vector3 _pos)
+		{
+			int _posX = Mathf.RoundToInt(_pos.x / 100);
+			int _posY = Mathf.RoundToInt(_pos.y / 100);
+			int _posZ = Mathf.RoundToInt(_pos.z / 100);
+
+			if (sceneDataDic.TryGetValue(NameFromPosition(_posX, _posY, _posZ), out var _sceneData))
+			{
+				return _sceneData;
+			}
+
+			return null;
+		}
 		/// <summary>
 		/// 씬 이름으로 씬 데이터를 가져옴
 		/// </summary>
