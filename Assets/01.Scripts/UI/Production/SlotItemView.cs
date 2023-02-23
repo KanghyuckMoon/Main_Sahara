@@ -27,6 +27,7 @@ namespace UI.Production
         }
 
         private bool isStackable; // 셀수 있냐 
+        private Manipulator curManipulator;
 
         // 프로퍼티 
         public VisualElement Item => GetVisualElement((int)Elements.item);
@@ -58,11 +59,25 @@ namespace UI.Production
         
         public void AddManipulator(MouseManipulator _manipulator)
         {
+            this.curManipulator = _manipulator; 
             GetVisualElement((int)Elements.item).AddManipulator(_manipulator);
+        }
+
+        public void RemoveCurManipulator()
+        {
+            if (curManipulator == null) return; 
+            GetVisualElement((int)Elements.item).AddManipulator(curManipulator);
+            this.curManipulator = null;
         }
 
         private Action mouseOverEvt = null;
         private Action mouseOutEvt = null;
+        private Action clickEvt = null; 
+        public void AddClickEvent(Action _callback)
+        {
+            this.clickEvt = _callback;
+            AddElementEvent<ClickEvent>((int)Elements.image, _callback);
+        }
         public void AddHoverEvent(Action _callback)
         {
             this.mouseOverEvt = _callback;
@@ -76,6 +91,7 @@ namespace UI.Production
 
         public void RemoveEvent()
         {
+            RemoveElementEvent<ClickEvent>((int)Elements.image, clickEvt);
             RemoveElementEvent<MouseOverEvent>((int)Elements.image, mouseOverEvt);
             RemoveElementEvent<MouseOutEvent>((int)Elements.image, mouseOutEvt);
         }
@@ -85,9 +101,21 @@ namespace UI.Production
         }
         
         // === UI 설정 관련 === //
+        public void ClearUI()
+        {
+            GetVisualElement((int)Elements.image).style.backgroundImage = null;
+            GetLabel((int)Labels.text).text = ""; 
+        }
+
         public void SetSpriteAndText(Texture2D _sprite, int _count)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);
+            if(_count ==1) // 하나만 있으면 표시 X
+            {
+                ShowVisualElement(GetLabel((int)Labels.text), false);
+                return; 
+            }
+            ShowVisualElement(GetLabel((int)Labels.text), true);
             GetLabel((int)Labels.text).text = _count.ToString();
         }
         public void SetSprite(Texture2D _sprite)

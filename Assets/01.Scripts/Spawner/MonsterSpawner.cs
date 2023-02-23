@@ -18,13 +18,12 @@ namespace Spawner
 		private string enemyAddress;
 		[SerializeField]
 		private ObjectDataSO objectDataSO;
-		
 
 		public void OnEnable()
 		{
-			if(isSpawnDic.TryGetValue(spawnerName, out bool _bool))
+			if (isSpawnDic.TryGetValue(spawnerName, out bool _bool))
 			{
-				if(_bool)
+				if (_bool)
 				{
 					return;
 				}
@@ -49,9 +48,9 @@ namespace Spawner
 				objectClassCycle.AddObjectClass(_objectSceneChecker);
 				obj.transform.position = transform.position;
 				obj.SetActive(true);
-
 			}
 		}
+
 
 	}
 }

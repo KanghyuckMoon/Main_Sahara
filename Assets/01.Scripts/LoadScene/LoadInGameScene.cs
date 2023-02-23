@@ -32,9 +32,12 @@ namespace LoadScene
                 Logging.Log(op2.progress);
                 yield return null;
             }
-
-            yield return new WaitForSeconds(3);
-
+            StartCoroutine(Streaming.StreamingManager.Instance.LoadReadyScene());
+            while (!Streaming.StreamingManager.Instance.IsSetting)
+			{
+                yield return null;
+			}
+            yield return new WaitForSeconds(1);
 
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);

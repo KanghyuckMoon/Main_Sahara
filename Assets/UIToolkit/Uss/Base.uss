@@ -46,7 +46,7 @@
 }
 
 .title_label {
-    padding-top: 20px;
+    padding-top: 5px;
     color: rgb(255, 255, 255);
 }
 
@@ -121,7 +121,14 @@
 .quest_panel {
     width: 85%;
     height: 100%;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(29, 29, 29);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-image: url('project://database/Assets/12.Texture/UI/Make/Quest/SmallBackground.png?fileID=2800000&guid=44955657bd136e7408d0ca37ee18a19f&type=3#SmallBackground');
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    padding-bottom: 50px;
 }
 
 .midsize_font {
@@ -139,6 +146,7 @@
 
 .unity-radio-button > .unity-label {
     display: none;
+    position: absolute;
 }
 
 .unity-radio-button > .unity-base-field__input {
@@ -152,6 +160,9 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .unity-radio-button > .unity-base-field__input > .unity-radio-button__checkmark-background {
@@ -172,7 +183,7 @@
     border-right-width: 0;
     border-top-width: 0;
     border-bottom-width: 0;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .content_panel {
@@ -182,18 +193,29 @@
     border-right-color: rgba(255, 255, 255, 0.48);
     border-top-color: rgba(255, 255, 255, 0.48);
     border-bottom-color: rgba(255, 255, 255, 0.48);
-    border-top-width: 5px;
-    border-bottom-width: 5px;
+    border-top-width: 0;
+    border-bottom-width: 0;
     margin-left: 5%;
     margin-right: 5%;
-    margin-top: 3%;
+    margin-top: 1%;
     margin-bottom: 4%;
+    border-left-width: 0;
+    border-right-width: 0;
 }
 
 .header_text {
     color: rgba(255, 255, 255, 0.82);
-    font-size: 55px;
+    font-size: 65px;
     -unity-font-style: bold;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    padding-left: 20px;
 }
 
 .unity-list-view .unity-scroller {
@@ -217,16 +239,33 @@
 }
 
 .frame_base {
-    border-left-color: rgba(96, 96, 96, 0.55);
-    border-right-color: rgba(96, 96, 96, 0.55);
-    border-top-color: rgba(96, 96, 96, 0.55);
-    border-bottom-color: rgba(96, 96, 96, 0.55);
-    border-left-width: 0.5px;
-    border-right-width: 0.5px;
-    border-top-width: 0.5px;
-    border-bottom-width: 0.5px;
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-left-width: 1.5px;
+    border-right-width: 1.5px;
+    border-top-width: 1.5px;
+    border-bottom-width: 1.5px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.pattern {
+    background-image: url('project://database/Assets/12.Texture/UI/Make/Map/Frame.png?fileID=2800000&guid=3f1cff9bb57d3984f9bc0f1c6e258d21&type=3#Frame');
+}
+
+.title_label {
+    font-size: 60px;
+    color: rgba(255, 255, 255, 255);
+    -unity-font-style: bold;
+    width: 370px;
+    border-bottom-width: 3px;
+    border-left-color: rgba(255, 255, 255, 255);
+    border-right-color: rgba(255, 255, 255, 255);
+    border-top-color: rgba(255, 255, 255, 255);
+    border-bottom-color: rgba(255, 255, 255, 255);
+    padding-left: 10px;
 }

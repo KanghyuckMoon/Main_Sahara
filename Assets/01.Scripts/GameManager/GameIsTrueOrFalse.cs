@@ -10,7 +10,7 @@ namespace GameManager
 		[SerializeField]
 		private bool isTrue;
 
-		private void Start()
+		private void Awake()
 		{
 			GamePlayerManager.Instance.IsPlaying = isTrue;
 		}

@@ -108,6 +108,14 @@ namespace Streaming
 			}
 		}
 
+		public void AddOnlyLODObjectData(ObjectData _objectData)
+		{
+			if (_objectData.lodType == LODType.On)
+			{
+				lodMaker?.AddLOD(_objectData);
+			}
+		}
+
 		/// <summary>
 		/// ObjectData를 제거한다
 		/// </summary>

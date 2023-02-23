@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UI.Base;
-using DG.Tweening; 
+using DG.Tweening;
+using System; 
 
 namespace UI.Production
 {
@@ -12,7 +13,7 @@ namespace UI.Production
         enum Elements
         {
             image,
-            active_mark
+            active_mark,
         }
     
         enum Labels
@@ -24,7 +25,8 @@ namespace UI.Production
 
         // 프로퍼티 
         public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
-
+        public VisualElement ActiveMark => GetVisualElement((int)Elements.active_mark);
+        public VisualElement Image => GetVisualElement((int)Elements.image);
         public override void Cashing()
         {
             //base.Cashing();
@@ -37,11 +39,20 @@ namespace UI.Production
             base.Init();
         }
 
+        /// <summary>
+        /// 클릭시 이벤트 추가  
+        /// </summary>
+        /// <param name="_callback"></param>
+        public void AddClickEvent(Action _callback)
+        {
+            AddElementEvent<ClickEvent>((int)Elements.image, _callback);
+            //parentElement.RegisterCallback<MouseOverEvent>((e) => Debug.Log("ㄲ"));
+        }
         // === UI 설정 관련 === //
-        public void SetSpriteAndText(Texture2D _sprite, int _count)
+        public void SetSpriteAndText(Texture2D _sprite, string _count)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);
-            GetLabel((int)Labels.text).text = _count.ToString();
+            GetLabel((int)Labels.text).text = _count;
         }
 
         /// <summary>

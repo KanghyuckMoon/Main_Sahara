@@ -1,11 +1,27 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="HpUxml" src="project://database/Assets/UIToolkit/Uxml/HpUxml.uxml?fileID=9197481963319205126&amp;guid=6ea040c5b5130ee42976630991fb45cf&amp;type=3#HpUxml" />
-    <ui:Template name="MpUxml" src="project://database/Assets/UIToolkit/Uxml/MpUxml.uxml?fileID=9197481963319205126&amp;guid=c4f8359ec8e60de4fa57a3ac11b7efea&amp;type=3#MpUxml" />
     <Style src="project://database/Assets/UIToolkit/Uss/Hud.uss?fileID=7433441132597879392&amp;guid=1841124dd9e19824ab71e01edca4d30f&amp;type=3#Hud" />
     <Style src="project://database/Assets/UIToolkit/Uss/Container.uss?fileID=7433441132597879392&amp;guid=fb415ed2a98934248b9610f643b8b73f&amp;type=3#Container" />
     <ui:VisualElement name="VisualElement" class="hud_container" style="transform-origin: top; scale: 0.3 0.3;">
-        <ui:Instance template="HpUxml" name="HpUxml" />
-        <ui:Instance template="MpUxml" name="MpUxml" style="justify-content: center;" />
+        <ui:VisualElement name="HpUxml" style="margin-bottom: 30px;">
+            <Style src="project://database/Assets/UIToolkit/Uss/Slider.uss?fileID=7433441132597879392&amp;guid=4d4caa61570a49f49a00d4dbc1809e15&amp;type=3#Slider" />
+            <ui:VisualElement name="hp_view">
+                <ui:VisualElement name="hp_frame" style="width: 400px; height: 40px; border-left-color: rgb(202, 202, 202); border-right-color: rgb(202, 202, 202); border-top-color: rgb(202, 202, 202); border-bottom-color: rgb(202, 202, 202); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; overflow: visible; align-items: center; flex-grow: 1; justify-content: center;">
+                    <ui:VisualElement name="frame" class="slider_frame" style="background-image: url(&apos;project://database/Assets/12.Texture/UI/Make/HUD/EnemyHPDeco.png?fileID=2800000&amp;guid=fc0612090bc056445ade7634f217ec26&amp;type=3#EnemyHPDeco&apos;);" />
+                    <ui:ProgressBar value="1" name="back_bar" high-value="1" class="hp_bar" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-bottom: 0; position: absolute; width: 95%; height: 95%; display: flex; align-items: stretch;" />
+                    <ui:ProgressBar name="front_bar" value="1" high-value="1" class="front_bar hp_bar" style="display: flex; width: 95%; height: 95%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="MpUxml" style="justify-content: center;">
+            <Style src="project://database/Assets/UIToolkit/Uss/Slider.uss?fileID=7433441132597879392&amp;guid=4d4caa61570a49f49a00d4dbc1809e15&amp;type=3#Slider" />
+            <ui:VisualElement name="mp_view">
+                <ui:VisualElement name="mp_frame" style="width: 400px; height: 40px; justify-content: center; align-items: center; overflow: visible;">
+                    <ui:VisualElement name="frame" class="slider_frame" style="background-image: url(&apos;project://database/Assets/12.Texture/UI/Make/HUD/EnemyHPDeco.png?fileID=2800000&amp;guid=fc0612090bc056445ade7634f217ec26&amp;type=3#EnemyHPDeco&apos;); width: 103%;" />
+                    <ui:ProgressBar value="1" name="back_bar" high-value="1" class="mp_bar" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-bottom: 0; position: absolute; width: 95%; height: 95%; display: flex; align-items: stretch;" />
+                    <ui:ProgressBar name="front_bar" value="1" high-value="1" class="front_bar mp_bar" style="display: flex; width: 95%; height: 95%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="buff_view" class="Container" />
     </ui:VisualElement>
 </ui:UXML>

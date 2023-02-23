@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -69,3 +70,4 @@ public class TestUIElements : EditorWindow
         mwd.SetNextIndex(2);
     }
 }
+#endif

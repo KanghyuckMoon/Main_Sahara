@@ -32,15 +32,16 @@ namespace UI.Base
         {
             // 뭐 데이터 넘겨서 생성 
             TemplateContainer buff = uiUxml.Instantiate();
+            VisualElement _v = buff.contentContainer;
             T buffView = new T();
 
-            buffView.InitUIParent(buff);
+            buffView.InitUIParent(_v);
             buffView.Cashing();
             buffView.Init();
 
             uiList.Add(buffView);
 
-            return (buff, buffView);
+            return (_v, buffView);
         }
     }
 

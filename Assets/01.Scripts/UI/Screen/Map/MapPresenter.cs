@@ -21,9 +21,10 @@ namespace UI
         [SerializeField]
         private FullMapComponent fullMapComponent;
         [SerializeField]
-        private MIniMapComponent miniMapComponent; 
+        private MIniMapComponent miniMapComponent;
 
-        // 프로퍼티
+        // 프로퍼티 
+        public IUIController UIController { get; set; }
         public MapView MapView => mapView;
         public MapInfo MapInfo => miniMapComponent.MapInfo; 
 

@@ -40,6 +40,7 @@ namespace Quest
 			}
 
 			GamePlayerManager.Instance.AddObserver(this);
+			Receive();
 
 			if (!isInit)
 			{

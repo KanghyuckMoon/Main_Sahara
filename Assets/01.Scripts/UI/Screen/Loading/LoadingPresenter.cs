@@ -6,6 +6,7 @@ using Utill.Addressable;
 using Utill.Pattern;
 using GoogleSpreadSheet;
 using Utill.Measurement;
+using UI.Manager;
 
 namespace UI.Loading
 {

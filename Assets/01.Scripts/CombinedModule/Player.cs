@@ -30,9 +30,9 @@ namespace CondinedModule
             AddModule(ModuleType.Item, new ItemModule(this));
             AddModule(ModuleType.Equipment, new EquipmentModule(this));
 
-            RaycastTarget = transform.Find("RayCastPoint");
+            RaycastTarget ??= transform.Find("RayCastPoint");
 
-            visualObject = transform.Find("Visual").gameObject;
+            visualObject ??= transform.Find("Visual")?.gameObject;
             animator = GetComponent<Animator>();
             animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             LockOnTarget = null;
