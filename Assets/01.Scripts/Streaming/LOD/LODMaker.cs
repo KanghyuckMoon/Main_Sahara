@@ -20,11 +20,11 @@ namespace Streaming
 		
 		private float lod0 = 1f;
 		[SerializeField, Range(0f, 1f)]
-		private float lod1 = 0.9f;
+		private float lod1 = 0.99f;
 		[SerializeField, Range(0f, 1f)]
-		private float lod2 = 0.6f;
+		private float lod2 = 0.98f;
 		[SerializeField, Range(0f, 1f)]
-		private float lod3 = 0.1f;
+		private float lod3 = 0.01f;
 
 		[SerializeField, Range(0f, 1f)]
 		private float lod0Width = 0f;
@@ -56,6 +56,7 @@ namespace Streaming
 			}
 			subSceneObj = _subSceneObj;
 			lodGroup = GetComponent<LODGroup>();
+			lodGroup.enabled = false;
 			if (isSetFadeCross)
 			{
 				lodGroup.fadeMode = LODFadeMode.CrossFade;
@@ -71,7 +72,7 @@ namespace Streaming
 
 		public void Load()
 		{
-			lodGroup.enabled = false;
+			//lodGroup.enabled = false;
 			//오브젝트 제거
 			foreach (var obj in objectList)
 			{
@@ -87,7 +88,7 @@ namespace Streaming
 
 		public void UnLoad()
 		{
-			lodGroup.enabled = true;
+			//lodGroup.enabled = true;
 			//오브젝트 생성
 			foreach (var obj in renderObjectDic)
 			{
