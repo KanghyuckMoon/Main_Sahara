@@ -34,6 +34,7 @@ namespace CondinedModule
 
             visualObject = transform.Find("Visual").gameObject;
             animator = GetComponent<Animator>();
+            animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             LockOnTarget = null;
         }
 

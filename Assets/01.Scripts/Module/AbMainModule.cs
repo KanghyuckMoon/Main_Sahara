@@ -202,6 +202,18 @@ namespace Module
 			}
 		}
 
+        public bool IsCharging
+        {
+            get
+            {
+                return isCharging;
+            }
+            set
+            {
+                isCharging = value;
+            }
+        }
+
         public bool Attacking
         {
             get
@@ -324,6 +336,7 @@ namespace Module
             get
             {
                 animatorOverrideController ??= new AnimatorOverrideController(animator.runtimeAnimatorController);
+                animator.runtimeAnimatorController = animatorOverrideController;
                 return animatorOverrideController;
             }
         }
@@ -375,6 +388,8 @@ namespace Module
         private bool isWeaponExist;
         [SerializeField, Header("맞았냐?")] 
         private bool isHit;
+        [SerializeField, Header("차징중인가?")]
+        private bool isCharging;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
@@ -419,7 +434,7 @@ namespace Module
         [SerializeField, Header("애니메이터")]
         public Animator animator;
 
-        private AnimatorOverrideController animatorOverrideController;
+        public AnimatorOverrideController animatorOverrideController;
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 

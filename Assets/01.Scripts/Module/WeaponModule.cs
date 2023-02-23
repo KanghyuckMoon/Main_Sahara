@@ -78,7 +78,6 @@ namespace Module
                 GameObject _weapon = ObjectPoolManager.Instance.GetObject(weapon);
                 _weapon.SetActive(true);
 
-
                 string tagname = mainModule.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
                 _weapon.tag = tagname;
 
@@ -98,9 +97,11 @@ namespace Module
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;
 
+                Animator.SetBool("CanCharge", BaseWeapon.WeaponDataSO.canCharge);
+
                 mainModule.IsWeaponExist = true;
-                SetWeaponSkills();
                 SetBehaveAnimation();
+                SetWeaponSkills();
             }
         }
 
@@ -132,8 +133,10 @@ namespace Module
         private void SetBehaveAnimation()
         {
             Debug.Log(MainModule.AnimatorOverrideController);
-            MainModule.AnimatorOverrideController["Attack"] = BaseWeapon.WeaponDataSO.attackAnimation;
+            AnimationClip _a = BaseWeapon.WeaponDataSO.attackAnimation;
+            MainModule.AnimatorOverrideController["Attack"] = _a;
             MainModule.AnimatorOverrideController["StrongAttack"] = BaseWeapon.WeaponDataSO.strongAttackAnimation;
+            MainModule.AnimatorOverrideController["Ready"] = BaseWeapon.WeaponDataSO.readyAttackAnimation;
             MainModule.AnimatorOverrideController["ChargeAttack"] = BaseWeapon.WeaponDataSO.chargeAttackAnimation;
         }
         private void SetWeaponSkills()

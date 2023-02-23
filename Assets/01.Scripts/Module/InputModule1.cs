@@ -34,6 +34,8 @@ namespace Module
 					AttackModule.SpownAttackEffect();
 				}
 			}
+
+			mainModule.IsCharging = Input.GetMouseButton(0);
 		}
 
 		private void InputMove()
