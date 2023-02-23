@@ -10,9 +10,16 @@ namespace UI.Upgrade
     {
         enum Elements
         {
-            slot_parent
+            slot_parent,
+            upgrade,
+            select_active_panel,
+            move_screen
         }
 
+        public VisualElement Parent => parentElement; 
+        public VisualElement UpgradePickParent => GetVisualElement((int)Elements.upgrade);
+        public VisualElement SelectParent => GetVisualElement((int)Elements.select_active_panel); // 클릭시 사방으로 재료 뜨는 거 
+        public VisualElement MoveScreen => GetVisualElement((int)Elements.move_screen); 
         public override void Cashing()
         {
             base.Cashing();
@@ -32,5 +39,19 @@ namespace UI.Upgrade
         {
             GetVisualElement((int)Elements.slot_parent).Add(_v); 
         }
+
+        /// <summary>
+        /// 화면 클리어 
+        /// </summary>
+        public void ClearAllSlots()
+        {
+            //var _list = GetVisualElement((int)Elements.slot_parent).Children();
+            //foreach (var _v in _list)
+            //{
+            //    _v.RemoveFromHierarchy(); 
+            //}
+
+        }
+
     }
 }

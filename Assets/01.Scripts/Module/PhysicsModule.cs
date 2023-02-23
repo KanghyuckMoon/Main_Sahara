@@ -14,7 +14,7 @@ namespace Module
 {
     public class PhysicsModule : AbBaseModule
     {
-        private float rayDistance = 0.5f;
+        private float rayDistance = 0.6f;
         private ulong praviousHitBoxIndex = 0;
         private HitModule HitModule
         {
@@ -102,7 +102,7 @@ namespace Module
 
         private void Slope()
         {
-            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
+            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y- mainModule.groundOffset,
                 mainModule.transform.position.z);
 
             Ray ray = new Ray(rayPos, Vector3.down);
@@ -111,15 +111,13 @@ namespace Module
             {
                 mainModule.SlopeHit = _raycastHit;
                 var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
-                mainModule.IsSlope = ((angle != 0f) && angle < mainModule.MaxSlope);
+                mainModule.IsSlope = (angle > -90 + mainModule.MaxSlope) && (angle < 90 - mainModule.MaxSlope); // 90 - mainModule.MaxSlope = 올라갈 수 있는 각도
                 //return;
             }
-            else
-            {
-                mainModule.SlopeHit = _raycastHit;
-            }
-            //mainModule.IsSlope = false;
+
+            Debug.DrawLine(rayPos, rayPos + new Vector3(0, -rayDistance, 0), Color.red);
         }
+
 
         private void GroundCheack()
         {
@@ -132,9 +130,17 @@ namespace Module
             {
                 mainModule.KnockBackVector = Vector3.zero;
                 EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
+
+                mainModule.StartCoroutine(LandingDelay());
             }
 
-            mainModule.isGround = _isLand;
+            mainModule.isGround = _isLand && mainModule.IsSlope;
+        }
+
+        IEnumerator LandingDelay()
+        {
+            yield return new WaitForSeconds(0.3f);
+            mainModule.StopOrNot = 1;
         }
 
         private void SetEffect()

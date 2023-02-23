@@ -10,10 +10,10 @@ namespace UI.Inventory
     [System.Serializable]
     public class InvenType
     {
-        public InventoryView.InvenPanelElements uiType;
+        public InventoryGridSlotsView.InvenPanelElements uiType;
         public ItemType dataType; 
 
-       public InvenType(InventoryView.InvenPanelElements _uiType, ItemType _dataType)
+       public InvenType(InventoryGridSlotsView.InvenPanelElements _uiType, ItemType _dataType)
         {
             this.uiType = _uiType;
             this.dataType = _dataType; 
@@ -39,24 +39,24 @@ namespace UI.Inventory
             foreach (var _dType in Enum.GetValues(typeof(ItemType)))
             {
                 if ((ItemType)_dType == ItemType.None) return; 
-                foreach(var _uiType in Enum.GetValues(typeof(InventoryView.InvenPanelElements)))
+                foreach(var _uiType in Enum.GetValues(typeof(InventoryGridSlotsView.InvenPanelElements)))
                 {
                     // 같은 거 찾아서 맞으면 리스트 추가 
                     if(Enum.GetName(_dType.GetType(), _dType).ToLower() ==
                     Enum.GetName(_uiType.GetType(), _uiType).Replace("_panel", ""))
                     {
-                        invenItemTypeList.Add(new InvenType((InventoryView.InvenPanelElements)_uiType, (ItemType)_dType));
+                        invenItemTypeList.Add(new InvenType((InventoryGridSlotsView.InvenPanelElements)_uiType, (ItemType)_dType));
                         break; 
                     }
                 }
             }
         }
-        public ItemType GetItemType(InventoryView.InvenPanelElements _uiType)
+        public ItemType GetItemType(InventoryGridSlotsView.InvenPanelElements _uiType)
         {
             return invenItemTypeList.Where((x) => x.uiType == _uiType).Select(x => x.dataType).First(); 
         }
 
-        public InventoryView.InvenPanelElements GetItemUIType(ItemType _itemType)
+        public InventoryGridSlotsView.InvenPanelElements GetItemUIType(ItemType _itemType)
         {
             return invenItemTypeList.Where((x) => x.dataType == _itemType).Select(x => x.uiType).First();
         }

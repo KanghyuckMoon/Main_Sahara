@@ -9,6 +9,7 @@ using Utill.Addressable;
 using UI.Dialogue;
 using Module.Shop;
 using Shop;
+using UI.Manager; 
 
 namespace Module.Talk
 {
@@ -101,7 +102,9 @@ namespace Module.Talk
 				TalkData _talkData = talkDataSO.talkDataList[i];
 				if (ConditionCheck(_talkData))
 				{
-					DialoguePresenter.SetTexts(_talkData.authorText, _talkData.talkText);
+					UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
+						.SetTexts(_talkData.authorText, _talkData.talkText);
+					//DialoguePresenter.SetTexts(_talkData.authorText, _talkData.talkText);
 					return true;
 				}
 			}
@@ -139,7 +142,9 @@ namespace Module.Talk
 			{
 				_index = Random.Range(0, talkDataSO.defaultTalkCodeList.Count);
 			}
-			DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
+			UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
+				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
+			//DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 		}
 
 		public void LogText()

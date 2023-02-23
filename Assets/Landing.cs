@@ -15,9 +15,16 @@ public class Landing : StateMachineBehaviour
         //_mainModule.canMove = false;
     }
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _mainModule.StopOrNot = 1;
-        //_mainModule.canMove = true;
+        if(_mainModule.StopOrNot < 1){
+            _mainModule.StopOrNot += 0.1f;
+        }
     }
+
+    //public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    //_mainModule.StopOrNot = 1;
+    //    //_mainModule.canMove = true;
+    //}
 }
