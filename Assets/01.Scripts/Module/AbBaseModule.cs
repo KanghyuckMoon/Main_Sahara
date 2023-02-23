@@ -22,6 +22,7 @@ namespace Module
         Hit,
         Shop,
         Item,
+        Equipment,
         None
     }
 

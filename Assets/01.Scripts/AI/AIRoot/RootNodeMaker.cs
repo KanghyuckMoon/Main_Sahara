@@ -50,10 +50,13 @@ namespace AI
 					return TestTalkNPC();
 				case "TestEnemy":
 					return TestEnemy();
+				case "TestWorm":
+					return TestWorm();
 			}
 		}
 
 		private partial INode TestEnemy();
+		private partial INode TestWorm();
 		private partial INode TestTalkNPC();
 
 		public void Dead()
