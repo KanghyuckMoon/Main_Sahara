@@ -21,11 +21,11 @@ namespace Module
 
         private string currentWeaponName;
 
-        private GameObject WeaponRight
+        private WeaponSpownObject[] WeaponRight
         {
             get
             {
-                weaponRight ??= mainModule.GetComponentInChildren<WeaponSpownObject>().gameObject;
+                weaponRight ??= mainModule.GetComponentsInChildren<WeaponSpownObject>();
                 return weaponRight;
             }
         }
@@ -49,7 +49,7 @@ namespace Module
         }
         private StatModule stateModule;
         private Animator animator;
-        private GameObject weaponRight;
+        private WeaponSpownObject[] weaponRight;
         private IWeaponSkills iWeaponSkills;
 
         public WeaponModule(AbMainModule _mainModule) : base(_mainModule)
@@ -78,7 +78,6 @@ namespace Module
                 GameObject _weapon = ObjectPoolManager.Instance.GetObject(weapon);
                 _weapon.SetActive(true);
 
-                _weapon.transform.SetParent(WeaponRight.transform);
 
                 string tagname = mainModule.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
                 _weapon.tag = tagname;
@@ -86,6 +85,7 @@ namespace Module
                 iWeaponSkills = _weapon.GetComponent<IWeaponSkills>();
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
 
+                _weapon.transform.SetParent(WhichHandToHold(BaseWeapon));
                 _weapon.transform.localPosition = BaseWeapon.WeaponPositionSO.weaponPosition;
                 _weapon.transform.localRotation = BaseWeapon.WeaponPositionSO.weaponRotation;
 
@@ -100,7 +100,20 @@ namespace Module
 
                 mainModule.IsWeaponExist = true;
                 SetWeaponSkills();
+                SetBehaveAnimation();
             }
+        }
+
+        private Transform WhichHandToHold(BaseWeapon _baseWeapon)
+        {
+            //_baseWeapon.weaponHand
+            foreach(WeaponSpownObject _hand in WeaponRight)
+            {
+                if (_hand.weaponHand == _baseWeapon.weaponHand)
+                    return _hand.transform;
+            }
+
+            return null;
         }
         private void SetAnimation(string animationName)
         {
@@ -116,6 +129,13 @@ namespace Module
                 Animator.SetLayerWeight(animationIndex, 1);
             }
         }
+        private void SetBehaveAnimation()
+        {
+            Debug.Log(MainModule.AnimatorOverrideController);
+            MainModule.AnimatorOverrideController["Attack"] = BaseWeapon.WeaponDataSO.attackAnimation;
+            MainModule.AnimatorOverrideController["StrongAttack"] = BaseWeapon.WeaponDataSO.strongAttackAnimation;
+            MainModule.AnimatorOverrideController["ChargeAttack"] = BaseWeapon.WeaponDataSO.chargeAttackAnimation;
+        }
         private void SetWeaponSkills()
         {
             if (iWeaponSkills is not null)
@@ -123,7 +143,6 @@ namespace Module
                 weaponSkills = new WeaponSkills(iWeaponSkills.Skills);
             }
         }
-
         public void UseWeaponSkills()
         {
             if (baseWeapon is null)

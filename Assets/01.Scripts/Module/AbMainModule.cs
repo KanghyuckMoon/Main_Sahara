@@ -319,6 +319,15 @@ namespace Module
 			}
 		}
 
+        public AnimatorOverrideController AnimatorOverrideController
+        {
+            get
+            {
+                animatorOverrideController ??= new AnimatorOverrideController(animator.runtimeAnimatorController);
+                return animatorOverrideController;
+            }
+        }
+
 		[SerializeField, Header("멈출까말까")] 
         private float stopOrNot;
 
@@ -409,6 +418,8 @@ namespace Module
 
         [SerializeField, Header("애니메이터")]
         public Animator animator;
+
+        private AnimatorOverrideController animatorOverrideController;
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 

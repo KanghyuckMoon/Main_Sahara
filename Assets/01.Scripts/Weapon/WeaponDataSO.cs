@@ -24,6 +24,11 @@ namespace Weapon
         [Header("스킬 마나 사용량")] public int manaConsumed;
         [Header("스킬 데미지")] public int skillDamage;
 
+        [Space]
+        [Header("일반 공격 애니메이션")] public AnimationClip attackAnimation;
+        [Header("강한 공격 애니메이션")] public AnimationClip strongAttackAnimation;
+        [Header("차징 공격 애니메이션")] public AnimationClip chargeAttackAnimation;
+
         [TextArea]
         [Header("무긴 설명")]
         public string weaponExplanation;
