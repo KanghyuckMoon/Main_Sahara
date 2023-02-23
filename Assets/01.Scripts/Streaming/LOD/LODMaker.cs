@@ -46,9 +46,14 @@ namespace Streaming
 		private SubSceneObj subSceneObj = null;
 		private Dictionary<long, ObjectData> renderObjectDic = new Dictionary<long, ObjectData>();
 		private Dictionary<long, GameObject> objectList = new Dictionary<long, GameObject>();
+		private bool isInit = false;
 
 		public void Init(SubSceneObj _subSceneObj)
 		{
+			if (isInit)
+			{
+				return;
+			}
 			subSceneObj = _subSceneObj;
 			lodGroup = GetComponent<LODGroup>();
 			if (isSetFadeCross)
@@ -61,6 +66,7 @@ namespace Streaming
 			{
 				AddObjectToDic(transform.GetChild(i).gameObject);
 			}
+			isInit = true;
 		}
 
 		public void Load()

@@ -15,16 +15,15 @@ namespace Spawner
 		[SerializeField]
 		private string spawnerName;
 		[SerializeField]
-		private string lodAddress;
+		private string enemyAddress;
 		[SerializeField]
 		private ObjectDataSO objectDataSO;
-		
 
 		public void OnEnable()
 		{
-			if(isSpawnDic.TryGetValue(spawnerName, out bool _bool))
+			if (isSpawnDic.TryGetValue(spawnerName, out bool _bool))
 			{
-				if(_bool)
+				if (_bool)
 				{
 					return;
 				}
@@ -36,18 +35,22 @@ namespace Spawner
 			else
 			{
 				isSpawnDic.Add(spawnerName, true);
-				//GameObject obj = gameObject;
-				ObjectData _objectData = new ObjectData();
-				_objectData.position = transform.position;
-				_objectData.rotation = transform.rotation;
-				_objectData.scale = transform.localScale;
-				_objectData.lodAddress = lodAddress;
-				_objectData.lodType = LODType.On;
-				SceneDataManager.Instance.GetSceneData(transform.position).AddOnlyLODObjectData(_objectData);
-
-
+				GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
+				ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
+				objectClassCycle.TargetObject = obj;
+				ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
+				if (_objectSceneChecker is null)
+				{
+					_objectSceneChecker = new ObjectSceneChecker();
+				}
+				_objectSceneChecker.ObjectDataSO = objectDataSO;
+				_objectSceneChecker.ObjectClassCycle = objectClassCycle;
+				objectClassCycle.AddObjectClass(_objectSceneChecker);
+				obj.transform.position = transform.position;
+				obj.SetActive(true);
 			}
 		}
+
 
 	}
 }

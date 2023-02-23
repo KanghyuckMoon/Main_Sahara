@@ -74,19 +74,19 @@ namespace Streaming
 		{
 			if (GamePlayerManager.Instance.IsPlaying)
 			{
-				isSceneSetting = false;
-				originChunkCoordX = 0;
-				originChunkCoordY = 0;
-				originChunkCoordZ = 0;
-				viewerPosition = defaultPosition;
+				//isSceneSetting = false;
+				//originChunkCoordX = 0;
+				//originChunkCoordY = 0;
+				//originChunkCoordZ = 0;
+				//viewerPosition = defaultPosition;
 				if (!useDebugViewer)
 				{
 					viewer = GameObject.FindGameObjectWithTag("Player")?.transform;
 				}
-				InitSubScene();
-				InitChunk();
-				UnLoadVisibleChunk();
-				isSceneSetting = true;
+				//InitSubScene();
+				//InitChunk();
+				//UnLoadVisibleChunk();
+				//isSceneSetting = true;
 			}
 			else
 			{
