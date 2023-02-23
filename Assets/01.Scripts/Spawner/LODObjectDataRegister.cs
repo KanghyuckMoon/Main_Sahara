@@ -25,6 +25,12 @@ namespace Spawner
 			var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
 			gameObject.name = _prefeb.name + nameKey++;
 		}
+		[ContextMenu("SetLODName")]
+		public void SetLODName()
+		{
+			//var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+			lodAddress = gameObject.name + "LOD";
+		}
 #endif
 
 		public void OnEnable()
