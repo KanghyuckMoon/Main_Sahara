@@ -92,13 +92,13 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <Gradient name="inventory_screen" right-color="#000000FD" direction="vertical" left-color="#000000FD" class="screen" style="width: 100%; height: 100%; flex-direction: column;">
+        <ui:Label text="INVENTORY" display-tooltip-when-elided="true" name="title_label" class="title_label" />
         <ui:VisualElement name="Header" class="header">
-            <ui:VisualElement style="flex-direction: row; width: 25%; height: 100%; padding-left: 115px; background-color: rgba(55, 55, 55, 0.76);">
-                <ui:VisualElement style="height: 100%; width: 30%; background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/d_buttonssosigninemail@2x.png?fileID=21300000&amp;guid=144aa74618b85974a9a50f612c2fa8fd&amp;type=3#d_buttonssosigninemail@2x&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(212, 212, 212);" />
+            <ui:VisualElement style="flex-direction: row; width: 25%; height: 100%; padding-left: 115px; background-color: rgba(55, 55, 55, 0.76); display: none;">
                 <ui:Label text="Inventory" display-tooltip-when-elided="true" style="height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 50px; -unity-text-align: middle-left; -unity-font-style: bold; display: flex; -unity-background-image-tint-color: rgb(255, 255, 255); color: rgb(212, 212, 212);" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Content" class="content_panel" style="justify-content: flex-start; background-color: rgba(87, 0, 255, 0);">
+        <ui:VisualElement name="Content" class="content_panel" style="justify-content: flex-start; background-color: rgba(87, 0, 255, 0); margin-bottom: 0; margin-right: 0;">
             <ui:VisualElement name="left_content_panel" class="left_content_panel">
                 <ui:VisualElement name="Title" style="height: 10%; display: none;">
                     <ui:Label display-tooltip-when-elided="true" text="JJB__" style="height: 100%; -unity-text-align: middle-left; font-size: 50px; -unity-font-style: bold; color: rgb(209, 209, 209);" />
@@ -204,8 +204,8 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="right_content_panel" class="right_content_panel" style="display: flex;">
-                <ui:VisualElement style="width: 100%; height: 100%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; background-color: rgba(51, 51, 51, 0.5); border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;">
+            <ui:VisualElement name="right_content_panel" class="right_content_panel" style="display: flex; flex-basis: 15%;">
+                <ui:VisualElement style="width: auto; height: 100%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%;">
                     <ui:VisualElement name="quick_slot_panel" class="quick_slot_panel">
                         <ui:Instance template="EquipSlot" name="EquipSlot" />
                         <ui:Instance template="EquipSlot" name="EquipSlot" />
@@ -214,12 +214,14 @@
                         <ui:Instance template="EquipSlot" name="EquipSlot" />
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:VisualElement name="VisualElement" style="flex-basis: 50%; height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/UI/Make/Inventory/InventoryBackgroundDeco.png?fileID=2800000&amp;guid=0a5116f621323444e933b9f7e697eb7d&amp;type=3#InventoryBackgroundDeco&apos;); -unity-background-image-tint-color: rgb(50, 50, 50);" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="drag_item" style="opacity: 0.5; position: absolute;">
+        <ui:VisualElement name="bottom_panel" style="flex-basis: 11%; background-image: url(&apos;project://database/Assets/12.Texture/UI/Make/Map/Frame.png?fileID=2800000&amp;guid=3f1cff9bb57d3984f9bc0f1c6e258d21&amp;type=3#Frame&apos;);" />
+        <ui:VisualElement name="drag_item" style="opacity: 0.5; position: absolute; display: none;">
             <ui:VisualElement name="slot" class="slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
                 <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
-                    <ui:VisualElement name="image" style="background-image: url(&apos;project://database/Assets/12.Texture/UI/images/icons_small.png?fileID=21300000&amp;guid=5ca9013004c0ec84cbfaaaee55090805&amp;type=3#icons_small_donate&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
+                    <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
                     <ui:Label text="1" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold; display: none;" />
                 </ui:VisualElement>
             </ui:VisualElement>
