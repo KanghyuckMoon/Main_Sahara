@@ -3,12 +3,12 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Quest.uss?fileID=7433441132597879392&amp;guid=8c1e71513faf6494bb1ff9e03e7cb48a&amp;type=3#Quest" />
     <ui:VisualElement name="quest_screen" class="screen quest_screen" style="background-color: rgb(29, 27, 27); cursor: url(&apos;project://database/Assets/11.Prefebs/SandTextScene/2.png?fileID=2800000&amp;guid=00c1fbb961ec5ac48b94d922eb2d4bb5&amp;type=3#2&apos;);">
         <ui:VisualElement name="Header" class="header" style="margin-left: 0; margin-right: 0; height: 10%; padding-bottom: 0; padding-top: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0;">
-            <ui:Label text="퀘스트&#10;" display-tooltip-when-elided="true" class="font_base header_text" style="width: 300px;" />
+            <ui:Label text="QUEST" display-tooltip-when-elided="true" class="font_base header_text" style="width: 300px; color: rgba(255, 255, 255, 255);" />
         </ui:VisualElement>
         <ui:VisualElement name="Content" class="content_panel" style="margin-top: 0.1%;">
             <ui:VisualElement name="mid_panel" class="panel center_align" style="flex-basis: 75%; display: flex;">
                 <ui:VisualElement name="quest_panel" class="quest_panel" style="flex-direction: row; justify-content: space-between; width: 100%;">
-                    <ui:VisualElement name="left_panel" class="left_quest_panel" style="flex-basis: 50%; padding-left: 100px; padding-right: 60px; padding-bottom: 50px; padding-top: 30px;">
+                    <ui:VisualElement name="left_panel" class="left_quest_panel" style="flex-basis: 50%; padding-left: 100px; padding-right: 60px; padding-bottom: 50px; padding-top: 15px;">
                         <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%; display: none;">
                             <ui:VisualElement name="select" style="height: 100px; margin-bottom: 20px;" />
                             <ui:VisualElement name="quest_list_panel" style="display: flex; flex-basis: 600px; flex-grow: 1; padding-left: 10px; padding-right: 10px; padding-top: 20px; padding-bottom: 20px; overflow: hidden;">
@@ -24,18 +24,25 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement name="select" style="flex-basis: 20%; border-bottom-width: 5px; border-bottom-color: rgb(255, 255, 255); margin-bottom: 30px; display: flex;">
-                            <ui:RadioButtonGroup label="Radio Button Group" value="-1" name="select_group" style="flex-grow: 1; justify-content: space-around;">
-                                <ui:RadioButton label="Radio Button" name="main_button" />
-                                <ui:RadioButton label="Radio Button" name="sub_button" />
+                        <ui:VisualElement name="select" style="flex-basis: 20%; border-bottom-width: 2px; border-bottom-color: rgb(255, 255, 255); margin-bottom: 30px; display: flex; width: 85%;">
+                            <ui:RadioButtonGroup label="Radio Button Group" value="-1" name="select_group" style="flex-grow: 1; justify-content: space-around; width: 100%; margin-bottom: 0; align-items: flex-end;">
+                                <ui:RadioButton label="Radio Button" name="main_button" class="quest_button" style="padding-bottom: 10px;">
+                                    <ui:Label text="MAIN" display-tooltip-when-elided="true" class="font_base" style="position: absolute; display: flex; top: 60px; font-size: 30px; color: rgb(0, 0, 0); -unity-font-style: bold;" />
+                                </ui:RadioButton>
+                                <ui:RadioButton label="Radio Button" name="sub_button" class="quest_button" style="align-items: flex-end; justify-content: center; padding-bottom: 10px;">
+                                    <ui:Label text="SUB" display-tooltip-when-elided="true" class="font_base" style="font-size: 30px; -unity-font-style: bold; display: flex; position: absolute; top: 70%; color: rgb(255, 255, 255);" />
+                                </ui:RadioButton>
                             </ui:RadioButtonGroup>
                         </ui:VisualElement>
                         <ui:ListView focusable="true" name="quest_listview" fixed-item-height="110" horizontal-scrolling="false" style="width: 100%; height: 100%; padding-bottom: 50px; display: flex;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="right_panel" class="left_quest_panel" style="flex-basis: 50%; padding-left: 60px; padding-right: 100px; padding-bottom: 50px; padding-top: 50px;">
-                        <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%; background-color: rgb(36, 36, 36); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;">
-                            <ui:Label text="Label" display-tooltip-when-elided="true" name="quest_name_label" class="font_base" style="color: rgb(255, 255, 255); font-size: 40px; margin-bottom: 30px; border-bottom-color: rgb(255, 255, 255); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px;" />
-                            <ui:Label text="Label" display-tooltip-when-elided="true" name="quest_detail_label" class="font_base" style="font-size: 30px; color: rgb(255, 255, 255);" />
+                        <ui:VisualElement style="width: 100%; height: 100%; position: absolute; left: 10%; top: 7.5%; background-color: rgb(124, 121, 124); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
+                        <ui:VisualElement name="description_panel" class="quest_description_panel">
+                            <ui:Label text="퀘스트 이름" display-tooltip-when-elided="true" name="quest_name_label" class="font_base" style="color: rgb(255, 255, 255); font-size: 70px; margin-bottom: 30px; border-bottom-color: rgb(255, 255, 255); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; flex-basis: 15%; -unity-font-style: bold;" />
+                            <ui:Label text="Label" display-tooltip-when-elided="true" name="quest_detail_label" class="font_base" style="font-size: 30px; color: rgb(255, 255, 255); flex-basis: 70%; flex-grow: 1; -unity-background-image-tint-color: rgb(124, 121, 124);" />
+                            <ui:Label text="CLEAR" display-tooltip-when-elided="true" name="quest_state_label" class="font_base" style="flex-basis: 10%; font-size: 60px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                            <ui:VisualElement name="decorate_panel" class="decorate_panel" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
