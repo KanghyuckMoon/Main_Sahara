@@ -19,18 +19,28 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="full_map_panel" class="fullmapUI_panel" style="display: none;">
-                <ui:VisualElement name="top_panel" class="top_panel" style="overflow: hidden;">
-                    <ui:VisualElement name="left" class="rigth_icon">
+                <ui:VisualElement name="top_panel" class="top_panel pattern" style="overflow: visible;">
+                    <ui:VisualElement name="left" class="rigth_icon" style="display: none;">
                         <ui:Label text="L" display-tooltip-when-elided="true" class="icon_label" />
                         <ui:VisualElement name="image" class="icon_image" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="title" style="height: 100%; flex-direction: row;">
+                    <ui:VisualElement name="title" style="height: 100%; flex-direction: row; display: none;">
                         <ui:Label text="Map" display-tooltip-when-elided="true" class="icon_label" />
                         <ui:VisualElement name="image" style="background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/d_buttonssosigninemail@2x.png?fileID=21300000&amp;guid=144aa74618b85974a9a50f612c2fa8fd&amp;type=3#d_buttonssosigninemail@2x&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); flex-basis: 90px; display: none;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="right" class="rigth_icon" style="flex-direction: row-reverse;">
+                    <ui:VisualElement name="right" class="rigth_icon" style="flex-direction: row-reverse; display: none;">
                         <ui:Label text="L" display-tooltip-when-elided="true" class="icon_label" />
                         <ui:VisualElement name="image" class="icon_image" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="direction_" style="position: absolute; right: 50px; width: 150px; height: 150px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Make/Map/AllDirections.png?fileID=2800000&amp;guid=ce9bc4f7e0753d74db7fceceed620bc0&amp;type=3#AllDirections&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); top: 20px;">
+                        <ui:VisualElement style="position: absolute; align-items: center; width: 100%; height: 100%; justify-content: space-between;">
+                            <ui:Label text="N" display-tooltip-when-elided="true" name="N" class="font_base" style="font-size: 30px; color: rgb(255, 255, 255); -unity-font-style: bold; bottom: 35px;" />
+                            <ui:Label text="S" display-tooltip-when-elided="true" name="S" class="font_base" style="font-size: 30px; color: rgb(255, 255, 255); -unity-font-style: bold; top: 35px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="position: absolute; align-items: center; width: 100%; height: 100%; justify-content: space-between; flex-direction: row;">
+                            <ui:Label text="W" display-tooltip-when-elided="true" name="W" class="font_base" style="font-size: 30px; color: rgb(255, 255, 255); -unity-font-style: bold; right: 35px;" />
+                            <ui:Label text="E" display-tooltip-when-elided="true" name="E" class="font_base" style="font-size: 30px; color: rgb(255, 255, 255); -unity-font-style: bold; left: 25px;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="mid_panel" class="mid_panel" style="align-items: center; justify-content: center; -unity-background-scale-mode: stretch-to-fill;">
@@ -38,16 +48,16 @@
                         <ui:VisualElement name="center_marker" class="center_marker" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="bottom_panel" class="bottom_panel">
+                <ui:VisualElement name="bottom_panel" class="bottom_panel pattern" style="-unity-background-scale-mode: scale-and-crop;">
                     <ui:VisualElement name="left" class="rigth_icon">
-                        <ui:Label text="Back" display-tooltip-when-elided="true" class="icon_label" />
                         <ui:VisualElement name="image" class="icon_image" />
+                        <ui:Label text="조작" display-tooltip-when-elided="true" class="icon_label font_base" />
                     </ui:VisualElement>
                     <ui:VisualElement name="left" class="rigth_icon">
-                        <ui:Label text="Select" display-tooltip-when-elided="true" class="icon_label" />
                         <ui:VisualElement name="image" class="icon_image" />
+                        <ui:Label text="조작" display-tooltip-when-elided="true" class="icon_label font_base" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="left" class="rigth_icon">
+                    <ui:VisualElement name="left" class="rigth_icon" style="display: none;">
                         <ui:Label text="Marker" display-tooltip-when-elided="true" class="icon_label" />
                         <ui:VisualElement name="image" class="icon_image" />
                     </ui:VisualElement>
