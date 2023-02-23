@@ -12,9 +12,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="Content" class="content_panel" style="justify-content: flex-start;">
             <ui:VisualElement name="left_content_panel" class="left_content_panel">
-                <ui:VisualElement name="Title" style="height: 10%; display: none;">
-                    <ui:Label display-tooltip-when-elided="true" text="JJB__" style="height: 100%; -unity-text-align: middle-left; font-size: 50px; -unity-font-style: bold; color: rgb(209, 209, 209);" />
-                </ui:VisualElement>
+                <ui:VisualElement name="Title" style="height: 10%; display: none;" />
                 <ui:VisualElement name="inventory_select" class="inventory_select">
                     <ui:RadioButtonGroup label="Radio Button Group" value="-1" name="inventory_select_group" class="item__list-buttonGroup inventory_select_group">
                         <ui:RadioButton label="Radio Button" name="weapon_button" value="true" style="display: flex;" />
@@ -106,7 +104,7 @@
                     <ui:Label display-tooltip-when-elided="true" text="JJB__" style="height: 100%; -unity-text-align: middle-left; font-size: 50px; -unity-font-style: bold; color: rgb(209, 209, 209);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="inventory_select" class="inventory_select">
-                    <ui:RadioButtonGroup label="Radio Button Group" value="-1" name="inventory_select_group" class="item__list-buttonGroup inventory_select_group">
+                    <ui:RadioButtonGroup label="Radio Button Group" name="inventory_select_group" value="-1" class="item__list-buttonGroup inventory_select_group">
                         <ui:RadioButton label="Radio Button" name="weapon_button" value="true" style="display: flex;" />
                         <ui:RadioButton label="Radio Button" name="armor_button" />
                         <ui:RadioButton label="Radio Button" name="consumation_button" />
@@ -144,7 +142,7 @@
                         <ui:VisualElement name="equip_slot" class="equip_slot" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="armor_equip_panel" class="equip_panel" style="display: none;">
+                <ui:VisualElement name="armor_equip_panel_" class="equip_panel" style="display: none;">
                     <ui:VisualElement name="equip_slot" class="quick_slot" style="width: 130px; height: 130px; margin-bottom: 0; padding-left: 1%; padding-right: 1%; padding-top: 1%; padding-bottom: 1%; margin-right: 0;">
                         <ui:VisualElement name="frame" class="quick_slot_frame" />
                         <ui:VisualElement name="image" class="quick_slot_image" style="width: 100%; height: 100%;" />
@@ -166,7 +164,7 @@
                         <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="accessoire_equip_panel" class="equip_panel" style="display: none;">
+                <ui:VisualElement name="accessoire_equip_panel_" class="equip_panel" style="display: none;">
                     <ui:VisualElement name="equip_slot" class="quick_slot" style="width: 130px; height: 130px; margin-bottom: 0; padding-left: 1%; padding-right: 1%; padding-top: 1%; padding-bottom: 1%; margin-right: 0;">
                         <ui:VisualElement name="frame" class="quick_slot_frame" />
                         <ui:VisualElement name="image" class="quick_slot_image" style="width: 100%; height: 100%;" />
@@ -188,7 +186,7 @@
                         <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="skill_equip_panel" class="equip_panel" style="display: none;">
+                <ui:VisualElement name="skill_equip_panel_" class="equip_panel" style="display: none;">
                     <ui:VisualElement name="skill_slot" class="quick_slot" style="width: 200px; height: 100%; margin-bottom: 0; padding-left: 1%; padding-right: 1%; padding-top: 1%; padding-bottom: 1%; margin-right: 0;">
                         <ui:VisualElement name="frame" class="quick_slot_frame" />
                         <ui:VisualElement name="image" class="quick_slot_image" style="width: 100%; height: 100%;" />
@@ -206,10 +204,33 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="right_content_panel" class="right_content_panel" style="display: flex; flex-basis: 15%; padding-top: 50px;">
-                <ui:VisualElement style="width: auto; height: 100%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%; rotate: 8deg; left: 52px;">
-                    <ui:VisualElement name="quick_slot_panel" class="quick_slot_panel" style="align-items: flex-end;">
+            <ui:VisualElement name="right_content_panel" class="right_content_panel" style="display: flex; flex-basis: 15%; padding-top: 50px; align-items: flex-end;">
+                <ui:VisualElement name="quick_slot_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%; rotate: 8deg; left: 40px; display: flex;">
+                    <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
                         <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="skill_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%; rotate: 8deg; left: 40px; display: none;">
+                    <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="armor_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%; rotate: 8deg; left: 40px; display: none;">
+                    <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                        <ui:Instance template="EquipSlot" name="EquipSlot" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="accessoire_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%; rotate: 8deg; left: 40px; display: none;">
+                    <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
                         <ui:Instance template="EquipSlot" name="EquipSlot" />
                         <ui:Instance template="EquipSlot" name="EquipSlot" />
                         <ui:Instance template="EquipSlot" name="EquipSlot" />
@@ -220,7 +241,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="bottom_panel" style="flex-basis: 6%; background-image: url(&apos;project://database/Assets/12.Texture/UI/Make/Map/Frame.png?fileID=2800000&amp;guid=3f1cff9bb57d3984f9bc0f1c6e258d21&amp;type=3#Frame&apos;); -unity-background-scale-mode: scale-and-crop; -unity-background-image-tint-color: rgba(255, 255, 255, 0.59);" />
-        <ui:VisualElement name="drag_item" style="opacity: 0.5; position: absolute; display: none;">
+        <ui:VisualElement name="drag_item" style="opacity: 0.5; position: absolute; display: flex;">
             <ui:VisualElement name="slot" class="slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
                 <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
                     <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
@@ -230,4 +251,5 @@
         </ui:VisualElement>
         <ui:Instance template="ItemDescription" name="description_panel" style="display: none; position: absolute;" />
     </Gradient>
+    <ui:Label text="안녕" display-tooltip-when-elided="true" style="color: rgb(221, 208, 208); font-size: 100px; -unity-font-style: normal; -unity-font-definition: url(&apos;project://database/Assets/08.Fonts/HeirofLightRegular%20SDF%202.asset?fileID=11400000&amp;guid=da741578fbfdf77409a703b2e241fd89&amp;type=2#HeirofLightRegular SDF 2&apos;); -unity-text-outline-width: 0; text-shadow: 0 0 15px rgb(255, 255, 255); -unity-text-outline-color: rgba(84, 150, 245, 0); top: 324px; letter-spacing: 14px; word-spacing: 24px; -unity-paragraph-spacing: 20px; display: none;" />
 </ui:UXML>

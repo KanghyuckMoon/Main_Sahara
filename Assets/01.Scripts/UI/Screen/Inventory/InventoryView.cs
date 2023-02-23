@@ -20,7 +20,7 @@ namespace UI.Inventory
         enum Elements
         {
             // 패널 다음 인덱스부터 시작 
-            right_content_panel = 0, // 퀵슬롯
+            quick_slot_panel = 0, // 퀵슬롯
             armor_equip_panel, // 장비 장착
             accessoire_equip_panel, // 장신구 장착
             skill_equip_panel, // 스킬 장착 
@@ -28,20 +28,10 @@ namespace UI.Inventory
             drag_item,
         }
 
-        enum RadioButtons
+        enum RadioButtonGroups
         {
-            weapon_button,
-            armor_button,
-            consumation_button,
-            skill_button,
-            accessories_button,
-            material_button,
-            valuable_button
-            //장비
-            //소비
-            //기타
+            inventory_select_group
         }
-
         enum ScrollViews
         {
             inventory_scroll_panel
@@ -60,9 +50,8 @@ namespace UI.Inventory
         {
             base.Cashing();
             BindVisualElements(typeof(Elements));
-            BindRadioButtons(typeof(RadioButtons));
             BindScrollViews(typeof(ScrollViews));
-
+            Bind<RadioButtonGroup>(typeof(RadioButtonGroups));
         }
 
         public override void Init()
@@ -75,16 +64,17 @@ namespace UI.Inventory
 
             // 인벤토리 슬롯들 뷰 생성 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(ParentElement);
+            inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item,ClickItem);
             // 슬롯 생성 
             inventoryGridSlotsPr.Init();
-            inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item,ClickItem);
 
             // 버튼 이벤트 추가 
-            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.armor_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.right_content_panel), x));
+            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.weapon_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.quick_slot_panel), x));
+            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.consumation_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.quick_slot_panel), x));
             inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.skill_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.skill_equip_panel), x));
             inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.armor_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.armor_equip_panel), x));
             inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.accessories_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.accessoire_equip_panel), x));
-
+             
 
             ActiveDragItem(false); 
             // SO 불러오기 
@@ -141,14 +131,20 @@ namespace UI.Inventory
         private void InitEquipSlots()
         {
    //         equipInvenPanel = new EquipInventoryPanelUI();
-            List<VisualElement> _list = GetVisualElement((int)Elements.right_content_panel).Query<VisualElement>(className: "quick_slot").ToList();
+            List<VisualElement> _list = GetVisualElement((int)Elements.quick_slot_panel).Query<VisualElement>(className: "quick_slot").ToList();
             for (int i = 0; i < _list.Count(); i++)
             {
-     //           equipInvenPanel.AddEquipSlotView(new SlotItemView(_list[i]));
+                //           equipInvenPanel.AddEquipSlotView(new SlotItemView(_list[i]));
                 // 버튼 2개에서 
                 // 하나는 자기가 꺼지면 팬러끄고 
                 // 하는ㄴ 자기가 키면 패널 키고 
-                inventoryGridSlotsPr.ItemSlotDic[ItemType.Weapon].AddEquipSlotView(new SlotItemPresenter(_list[i],i));
+                SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
+
+                _slotIPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotIPr.ItemData, // 마우스 위에 둘시 설명창 
+                   _slotIPr.WorldPos, _slotIPr.ItemSize));
+                _slotIPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
+
+                inventoryGridSlotsPr.ItemSlotDic[ItemType.Weapon].AddEquipSlotView(_slotIPr);
             }
         }
 
@@ -221,6 +217,7 @@ namespace UI.Inventory
         {
             ShowVisualElement(GetVisualElement((int)Elements.drag_item), _isActive);
         }
+
 
     }
 }

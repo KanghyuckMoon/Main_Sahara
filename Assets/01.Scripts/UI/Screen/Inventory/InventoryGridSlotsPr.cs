@@ -30,8 +30,8 @@ namespace UI.Inventory
         public Dictionary<ItemType, InventoryPanelUI> ItemSlotDic => itemSlotDic;
         public InventoryPanelUI CurInvenPanel => ItemSlotDic[invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType)];
         public int Col => col;
-        public int Row => row; 
-
+        public int Row => row;
+        public ItemDescriptionPresenter DescriptionPr => descriptionPresenter;
         public InventoryGridSlotsPr(VisualElement _parent)
         {
             this.inventoryGridSlotsView = new InventoryGridSlotsView();

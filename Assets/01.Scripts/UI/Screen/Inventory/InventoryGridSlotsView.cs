@@ -6,6 +6,7 @@ using System;
 using Inventory;
 using UI.Production;
 using UI.ConstructorManager;
+using System; 
 
 namespace UI.Inventory
 {
@@ -59,7 +60,14 @@ namespace UI.Inventory
         public override void Init()
         {
             base.Init();
-            AddButtonEvents(); 
+            AddButtonEvents();
+
+            foreach(var _btnType in Enum.GetValues(typeof(RadioButtons)))
+            {
+                AddRadioBtnChangedEvent((int)_btnType, (x) =>
+                 GetVisualElement((int)_btnType).style.unityBackgroundImageTintColor = x ? new Color(217, 58, 58) : Color.white);
+            }
+            
         }
 
         public VisualElement GetPanel(InvenPanelElements _type)

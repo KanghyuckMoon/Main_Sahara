@@ -110,6 +110,12 @@ namespace UI.Production
         public void SetSpriteAndText(Texture2D _sprite, int _count)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);
+            if(_count ==1) // 하나만 있으면 표시 X
+            {
+                ShowVisualElement(GetLabel((int)Labels.text), false);
+                return; 
+            }
+            ShowVisualElement(GetLabel((int)Labels.text), true);
             GetLabel((int)Labels.text).text = _count.ToString();
         }
         public void SetSprite(Texture2D _sprite)
