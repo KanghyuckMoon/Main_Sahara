@@ -21,7 +21,7 @@ namespace Module
 
         private string currentWeaponName;
 
-        private WeaponSpownObject[] WeaponRight
+        public WeaponSpownObject[] WeaponRight
         {
             get
             {
