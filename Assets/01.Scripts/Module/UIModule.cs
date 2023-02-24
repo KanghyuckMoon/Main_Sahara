@@ -4,6 +4,7 @@ using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
 using Utill.Coroutine;
+using UnityEngine.SceneManagement;
 using Pool;
 
 namespace Module
@@ -74,6 +75,12 @@ namespace Module
             //hudObject.SetActive(true);
         }
 
+		public override void OnDestroy()
+		{
+			base.OnDestroy();
+            RegisterUI();
+        }
+
 		public override void OnEnable()
 		{
 			base.OnEnable();
@@ -83,15 +90,26 @@ namespace Module
 		public override void OnDisable()
 		{
 			base.OnDisable();
-            StaticCoroutineManager.Instance.InstanceDoCoroutine(RegisterUI());
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(IRegisterUI());
         }
 
-        private IEnumerator RegisterUI()
+        private IEnumerator IRegisterUI()
         {
             yield return new WaitForSeconds(0.1f);
+            if (hudObject is null)
+			{
+                yield break;
+			}
+            RegisterUI();
+        }
+
+        private void RegisterUI()
+        {
             ObjectPoolManager.Instance.RegisterObject(address, hudObject);
             hudObject.SetActive(false);
+            hudObject = null;
         }
+
         private IEnumerator GetUI()
         {
 
@@ -102,6 +120,8 @@ namespace Module
                 yield break;
             }
             hudObject = ObjectPoolManager.Instance.GetObject(address);
+            hudObject.transform.SetParent(null);
+            SceneManager.MoveGameObjectToScene(hudObject, mainModule.gameObject.scene);
             hudObject.transform.SetParent(mainModule.transform);
             hudObject.SetActive(true);
         }
