@@ -461,8 +461,11 @@ namespace Module
 		}
 
 		private void OnDisable()
-		{
-
+        {
+            foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
+            {
+                baseModule?.OnDisable();
+            }
             UpdateManager.UpdateManager.Remove(this);
         }
 

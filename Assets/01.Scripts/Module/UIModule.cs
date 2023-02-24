@@ -33,6 +33,7 @@ namespace Module
         private string address = null;
         private List<Observer> observers = new List<Observer>();
         private bool isRender;
+        private GameObject hudObject;
 
         public UIModule(AbMainModule _mainModule, string _address = null) : base(_mainModule)
         {
@@ -67,9 +68,18 @@ namespace Module
             }
 
             //UI 동적 생성
-            GameObject _hudUI = ObjectPoolManager.Instance.GetObject(address);
-            _hudUI.transform.SetParent(mainModule.transform);
-            _hudUI.SetActive(true);
+            hudObject = ObjectPoolManager.Instance.GetObject(address);
+            hudObject.transform.SetParent(mainModule.transform);
+            hudObject.SetActive(true);
         }
-    }
+
+		public override void OnDisable()
+		{
+			base.OnDisable();
+
+            ObjectPoolManager.Instance.RegisterObject(address, hudObject);
+            hudObject.SetActive(false);
+
+        }
+	}
 }
