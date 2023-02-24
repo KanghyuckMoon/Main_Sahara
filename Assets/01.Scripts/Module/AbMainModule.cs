@@ -456,7 +456,11 @@ namespace Module
         }
 
 		private void OnEnable()
-		{
+        {
+            foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
+            {
+                baseModule?.OnEnable();
+            }
             UpdateManager.UpdateManager.Add(this);
 		}
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
+using Utill.Coroutine;
 using Pool;
 
 namespace Module
@@ -68,18 +69,41 @@ namespace Module
             }
 
             //UI 동적 생성
-            hudObject = ObjectPoolManager.Instance.GetObject(address);
-            hudObject.transform.SetParent(mainModule.transform);
-            hudObject.SetActive(true);
+            //hudObject = ObjectPoolManager.Instance.GetObject(address);
+            //hudObject.transform.SetParent(mainModule.transform);
+            //hudObject.SetActive(true);
+        }
+
+		public override void OnEnable()
+		{
+			base.OnEnable();
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(GetUI());
         }
 
 		public override void OnDisable()
 		{
 			base.OnDisable();
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(RegisterUI());
+        }
 
+        private IEnumerator RegisterUI()
+        {
+            yield return new WaitForSeconds(0.1f);
             ObjectPoolManager.Instance.RegisterObject(address, hudObject);
             hudObject.SetActive(false);
-
         }
-	}
+        private IEnumerator GetUI()
+        {
+
+            yield return new WaitForSeconds(0.1f);
+            if (address is null)
+            {
+                IsRender = true;
+                yield break;
+            }
+            hudObject = ObjectPoolManager.Instance.GetObject(address);
+            hudObject.transform.SetParent(mainModule.transform);
+            hudObject.SetActive(true);
+        }
+    }
 }
