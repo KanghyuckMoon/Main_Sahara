@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3690666114823516570, guid: 21a6bb9eb23fc6a4fbd44c9957376ca2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a6bb9eb23fc6a4fbd44c9957376ca2, type: 3}
@@ -1568,6 +1568,7 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -1584,6 +1585,7 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 543450651801043015}
   animator: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
 --- !u!114 &1265982176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,6 +1703,10 @@ PrefabInstance:
     - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_Name
       value: TestEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_RootOrder
@@ -1889,6 +1895,10 @@ PrefabInstance:
     - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_Name
       value: TestEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_RootOrder
@@ -2082,6 +2092,7 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -2098,6 +2109,7 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 0}
   animator: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
 --- !u!1 &1658074115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +2645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -2905,6 +2921,10 @@ PrefabInstance:
     - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_Name
       value: TestEnemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_RootOrder
@@ -4007,6 +4027,7 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -4023,6 +4044,7 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 937940089753596058}
   animator: {fileID: 937940089595484532}
+  animatorOverrideController: {fileID: 0}
   aiSOAddress: SpiderSO
 --- !u!4 &937940089595484540
 Transform:
@@ -5641,6 +5663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5dac14e876e334cad42edef5add5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponHand: 0
 --- !u!1 &4494567048454207345
 GameObject:
   m_ObjectHideFlags: 0
