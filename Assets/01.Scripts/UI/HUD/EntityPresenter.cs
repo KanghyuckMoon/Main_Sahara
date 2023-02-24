@@ -77,6 +77,7 @@ namespace UI
         {
             uiDocument ??= GetComponent<UIDocument>();
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
+            hudElement.style.display = DisplayStyle.None;
             ContructPresenters();
             AwakePresenters();
             StartCoroutine(Init());
@@ -109,16 +110,25 @@ namespace UI
                 presenterFollower = new PresenterFollower(this, hudElement, target, targetRenderer);
             }
         }
+        
         private void LateUpdate()
         {
             if (presenterFollower != null)
             {
                 presenterFollower.UpdateUI();
+                if (hudElement.style.display == DisplayStyle.None)
+                {
+                    StartCoroutine(ActivePn());
+                }
                 //Debug.Log("따라가는중");
             }
 
         }
-
+        private IEnumerator ActivePn()
+        {
+            yield return null; 
+            hudElement.style.display = DisplayStyle.Flex;
+        }
         /// <summary>
         /// 변수 초기화 
         /// </summary>
@@ -127,7 +137,7 @@ namespace UI
             target = null;
             targetRenderer = null;
             presenterFollower = null;
-            isPlayerHud = false; 
+            isPlayerHud = false;
         }
         [ContextMenu("테스트")]
         public void UpdateUI()
