@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.ExtraStruct;
 using Effect;
+using Weapon;
 
 namespace Module
 {
@@ -23,7 +24,24 @@ namespace Module
         {
         }
 
-        public void SpownAttackEffect()
+        public void CreateProjectile(WeaponHand _weaponHand, string _projectileObject)
+        {
+            //weaponHand.
+            WhichHandToHold(_weaponHand);
+
+        }
+
+        private Transform WhichHandToHold(WeaponHand _weaponHand)
+        {
+            foreach (WeaponSpownObject _hand in WeaponModule.WeaponRight)
+            {
+                if (_hand.weaponHand == _weaponHand)
+                    return _hand.transform;
+            }
+            return null;
+        }
+
+            public void SpownAttackEffect()
         {
             if (mainModule.Attacking)
             {

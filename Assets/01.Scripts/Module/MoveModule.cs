@@ -40,7 +40,7 @@ namespace Module
 
             float _speed;
 
-            if (!mainModule.isGround) _targetSpeed = 3.6f;
+            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? moveSpeed-2 + 4 : moveSpeed-2;
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
             float currentSpeed = new Vector3(mainModule.CharacterController.velocity.x, 0, mainModule.CharacterController.velocity.z).magnitude;
