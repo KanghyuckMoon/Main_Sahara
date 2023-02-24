@@ -77,18 +77,15 @@ namespace UI
         {
             uiDocument ??= GetComponent<UIDocument>();
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
-
             ContructPresenters();
             AwakePresenters();
             StartCoroutine(Init());
 
         }
-        public void Awake()
-        {
 
-        }
-        public void Start()
+        private void OnDisable()
         {
+            Clear(); 
         }
         private void Update()
         {
@@ -120,6 +117,17 @@ namespace UI
                 //Debug.Log("따라가는중");
             }
 
+        }
+
+        /// <summary>
+        /// 변수 초기화 
+        /// </summary>
+        private void Clear()
+        {
+            target = null;
+            targetRenderer = null;
+            presenterFollower = null;
+            isPlayerHud = false; 
         }
         [ContextMenu("테스트")]
         public void UpdateUI()
