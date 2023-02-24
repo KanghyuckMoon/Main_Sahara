@@ -33,7 +33,8 @@ namespace CondinedModule
             AddModule(ModuleType.Hit, new HitModule(this));
 
             animator = GetComponent<Animator>();
-
+            visualObject ??= transform.Find("Visual")?.gameObject;
+            animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             RaycastTarget = transform.Find("RayCastPoint");
         }
     }
