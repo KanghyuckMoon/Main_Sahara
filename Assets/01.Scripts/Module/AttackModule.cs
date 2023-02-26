@@ -4,6 +4,9 @@ using UnityEngine;
 using Utill.ExtraStruct;
 using Effect;
 using Weapon;
+using Utill.Addressable;
+using Utill.Pattern;
+using Pool;
 
 namespace Module
 {
@@ -24,11 +27,18 @@ namespace Module
         {
         }
 
-        public void CreateProjectile(WeaponHand _weaponHand, string _projectileObject)
+        public void CreateProjectile(WeaponHand _weaponHand, string _projectileObjectName)
         {
-            //weaponHand.
-            WhichHandToHold(_weaponHand);
+            GameObject _projectile = ObjectPoolManager.Instance.GetObject(_projectileObjectName);
 
+            //weaponHand.
+            _projectile.transform.SetParent(WhichHandToHold(_weaponHand));
+            ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();
+
+            _projectile.SetActive(true);
+            _projectile.transform.position = _projectileObject.weaponPosition.weaponPosition;
+            _projectile.transform.rotation = _projectileObject.weaponPosition.weaponRotation;
+            //_projectile.transform
         }
 
         private Transform WhichHandToHold(WeaponHand _weaponHand)
