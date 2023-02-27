@@ -9,18 +9,6 @@ namespace Module
 {
     public class WeaponModule : AbBaseModule
     {
-        public GameObject currentWeapon;
-        public BaseWeapon BaseWeapon => baseWeapon;
-
-        public WeaponSkills weaponSkills;
-
-
-
-
-        private int animationIndex;
-
-        private string currentWeaponName;
-
         public WeaponSpownObject[] WeaponRight
         {
             get
@@ -29,6 +17,19 @@ namespace Module
                 return weaponRight;
             }
         }
+        public BaseWeapon BaseWeapon => baseWeapon;
+        public CurrentArrowInfo CurrentArrowInfo => currentArrowInfo;
+ 
+        public GameObject currentWeapon;
+        public WeaponSkills weaponSkills;
+
+        public bool isProjectileWeapon;
+
+        private int animationIndex;
+        private string currentWeaponName;
+
+        private CurrentArrowInfo currentArrowInfo = null;
+
         private Animator Animator
         {
             get
@@ -43,7 +44,7 @@ namespace Module
         {
             get
             {
-                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.State);
+                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.Stat);
                 return stateModule;
             }
         }
@@ -51,6 +52,7 @@ namespace Module
         private Animator animator;
         private WeaponSpownObject[] weaponRight;
         private IWeaponSkills iWeaponSkills;
+        //private ArrowInfo arrowInfo;
 
         public WeaponModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -99,12 +101,12 @@ namespace Module
 
                 Animator.SetBool("CanCharge", BaseWeapon.WeaponDataSO.canCharge);
 
+                isProjectileWeapon = BaseWeapon.isProjectile;
                 mainModule.IsWeaponExist = true;
                 SetBehaveAnimation();
                 SetWeaponSkills();
             }
         }
-
         private Transform WhichHandToHold(BaseWeapon _baseWeapon)
         {
             //_baseWeapon.weaponHand

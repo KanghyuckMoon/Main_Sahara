@@ -10,6 +10,7 @@ namespace Module
         Input,
         Move,
         Camera,
+        Stat,
         State,
         Jump,
         Hp,

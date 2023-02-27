@@ -17,9 +17,17 @@ namespace Module
                 return attackModule;
             }
         }
-
+        private StateModule StateModule
+        {
+            get
+            {
+                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+                return stateModule;
+            }
+        }
 
         private AttackModule attackModule;
+        private StateModule stateModule;
 
         public InputModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -29,11 +37,6 @@ namespace Module
         public override void Start()
         {
             playerInput = mainModule.gameObject.GetComponentInParent<PlayerInput>();
-            //playerInput.
-            //playerInput.actions["Move"].performed += OnMove;
-            //playerInput.actions["Camera"].performed += OnLook;
-            //playerInput.actions["LockOn"].performed += OnLock;
-            //playerInput.actions["Jump"].performed += OnJump;
         }
 
         public override void FixedUpdate()
