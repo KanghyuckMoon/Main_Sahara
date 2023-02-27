@@ -889,6 +889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5dac14e876e334cad42edef5add5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponHand: 0
 --- !u!1 &3699875109500818389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1453,7 @@ GameObject:
   - component: {fileID: 2648207059958673375}
   - component: {fileID: 5591809630521021360}
   - component: {fileID: -7492230939507027689}
+  - component: {fileID: -6891164452034629031}
   m_Layer: 0
   m_Name: TestEnemy_InGame
   m_TagString: Enemy
@@ -1562,6 +1564,7 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -1578,6 +1581,7 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 3699875110483129542}
   animator: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
   aiSOAddress: TestEnemySO
 --- !u!114 &2648207059958673375
 MonoBehaviour:
@@ -1625,6 +1629,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: EnemyData_TesSO
+--- !u!114 &-6891164452034629031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699875109982235521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 3699875109982235640}
+  attackMulti: 1
 --- !u!1 &3699875109997962231
 GameObject:
   m_ObjectHideFlags: 0
