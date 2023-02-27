@@ -69,6 +69,11 @@ namespace UI.Upgrade
             upgradePickPresenter.SetButtonEvent(() => ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key));
 
 
+            rowList.Clear();
+            _vList.Clear(); 
+            slotPosDIc.Clear();
+            allSlotList.Clear(); 
+
             InitVList();
             InitDic();
 
@@ -117,6 +122,7 @@ namespace UI.Upgrade
         {
             // 최종템 UI 생성
             //CreateRow();
+            allItemDataList.Clear(); 
             ItemData _itemData = ItemData.CopyItemDataSO(AddressablesManager.Instance.GetResource<ItemDataSO>("UItem1"));
             itemDataQueue.Enqueue(new UpgradeSlotData(new VisualElement(), _itemData, 0, 1));
             // CreateSlot(_itemData);
@@ -251,6 +257,11 @@ namespace UI.Upgrade
         [ContextMenu("삭제")]
         private void ClearAllSlots()
         {
+            isFirstSlot = true; 
+            rowList.Clear();
+            allSlotList.Clear();
+            allItemList.Clear(); 
+
             this.upgradeView.ClearAllSlots();
             isActive = false; 
         }
