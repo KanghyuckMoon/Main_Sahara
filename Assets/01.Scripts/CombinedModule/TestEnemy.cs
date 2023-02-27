@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Module;
+using Pool;
+using Utill.Pattern;
 
 namespace CondinedModule
 {
@@ -11,15 +13,18 @@ namespace CondinedModule
         public string aiSOAddress = "TestEnemySO";
 		public string AIAddress => aiSOAddress;
 
-		private void Awake()
+		protected void OnEnable()
         {
+            moduleComponentsDic ??= new();
+            CharacterController = GetComponent<CharacterController>();
             StopOrNot = 1;
             CanMove = true;
 
-            moduleComponentsDic = new();
-            CharacterController = GetComponent<CharacterController>();
             //footRotate = GetComponentInParent<csHomebrewIK>();
-            AddModule(ModuleType.Input, new AIModule(this));
+
+            AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
+            //AddModule(ModuleType.Input, new AIModule(this));
+
             AddModule(ModuleType.Move, new MoveModule(this));
             AddModule(ModuleType.Stat, new StatModule(this));
             //AddModule(ModuleType.Camera, new CameraModule(this));
@@ -36,6 +41,8 @@ namespace CondinedModule
             visualObject ??= transform.Find("Visual")?.gameObject;
             animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             RaycastTarget = transform.Find("RayCastPoint");
+
+            base.OnEnable();
         }
     }
 }
