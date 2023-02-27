@@ -23,19 +23,17 @@ namespace CondinedModule
             //footRotate = GetComponentInParent<csHomebrewIK>();
 
             AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
-            //AddModule(ModuleType.Input, new AIModule(this));
+            AddModuleWithPool<MoveModule>(ModuleType.Move, "MoveModule");
+            AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
+            AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
+            AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
+            AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule", "HudUI");
+            AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
 
-            AddModule(ModuleType.Move, new MoveModule(this));
-            AddModule(ModuleType.Stat, new StatModule(this));
-            //AddModule(ModuleType.Camera, new CameraModule(this));
             AddModule(ModuleType.Jump, new JumpModule(this));
-            AddModule(ModuleType.Hp, new HpModule(this));
-            AddModule(ModuleType.Animation, new AnimationModule(this));
             AddModule(ModuleType.Physics, new PhysicsModule(this));
-            AddModule(ModuleType.UI, new UIModule(this, "HudUI"));
             AddModule(ModuleType.Attack, new AttackModule(this));
             AddModule(ModuleType.Weapon, new WeaponModule(this));
-            AddModule(ModuleType.Hit, new HitModule(this));
 
             animator = GetComponent<Animator>();
             visualObject ??= transform.Find("Visual")?.gameObject;

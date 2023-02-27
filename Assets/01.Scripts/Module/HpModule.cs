@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Data;
+using Pool;
 
 namespace Module
 {
@@ -14,7 +15,17 @@ namespace Module
 
         public HpModule(AbMainModule _mainModule) : base(_mainModule)
         {
+            Init(_mainModule);
+        }
+        public HpModule()
+        {
 
+        }
+
+        public override void Init(AbMainModule _mainModule, params string[] _parameters)
+        {
+            mainModule = _mainModule;
+            Awake();
         }
 
         public override void Start()
@@ -41,6 +52,12 @@ namespace Module
             if (_StatData.CurrentHp < 0) _StatData.CurrentHp = 0;
 
             return _StatData.CurrentHp;
+        }
+
+		public override void OnDisable()
+		{
+			base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<HpModule>("HpModule", this);
         }
     }
 }

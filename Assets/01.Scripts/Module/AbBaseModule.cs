@@ -35,7 +35,7 @@ namespace Module
 
         public AbBaseModule(AbMainModule _mainModule)
         {
-            Init(_mainModule);
+            Init(_mainModule, null);
         }
 
         public AbBaseModule()

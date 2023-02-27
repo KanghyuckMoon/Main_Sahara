@@ -5,6 +5,7 @@ using Pool;
 using EquipmentSystem;
 using Utill.Addressable;
 using Data;
+using Pool;
 
 namespace Module {
     public class EquipmentModule : AbBaseModule
@@ -33,6 +34,10 @@ namespace Module {
         public EquipmentModule(AbMainModule _mainModule) : base(_mainModule)
         {
             //characterEquipment = new CharacterEquipment(mainModule.VisualObject);
+        }
+        public EquipmentModule() : base()
+        {
+
         }
 
         public override void Start()
@@ -131,6 +136,11 @@ namespace Module {
             //mainModule.StatData.MaxHp = _equipingItem.itemDataSO.hp;
         }
 
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<EquipmentModule>("EquipmentModule", this);
+        }
         #region Trash
         //private BoneItem equipItemSkinned(EquipmentItem itemObj)
         //{

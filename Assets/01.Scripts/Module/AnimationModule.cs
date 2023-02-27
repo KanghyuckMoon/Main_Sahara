@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
 using TimeManager;
+using Pool;
 
 namespace Module
 {
@@ -32,6 +33,10 @@ namespace Module
         private int swordLayerIndex;
 
         public AnimationModule(AbMainModule _mainModule) : base(_mainModule)
+        {
+
+        }
+        public AnimationModule() : base()
         {
 
         }
@@ -70,6 +75,11 @@ namespace Module
 		public void Receive()
         {
             SettingAnimatorSpeed();
+        }
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<AnimationModule>("AnimationModule", this);
         }
     }
 }
