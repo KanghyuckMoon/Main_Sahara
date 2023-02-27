@@ -169,6 +169,8 @@ namespace UI
         /// </summary>
         private void ContructPresenters()
         {
+            _presenterList.Clear(); 
+
             _presenterList.Add(hpPresenter);
             _presenterList.Add(mpPresenter);
             _presenterList.Add(buffPresenter);
@@ -200,6 +202,10 @@ namespace UI
 
         IEnumerator Init()
         {
+            if(statData != null)
+            {
+                StartPresenters();
+            }
             while (transform.parent != null && statData == null)
             {
                 this.uiModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI);

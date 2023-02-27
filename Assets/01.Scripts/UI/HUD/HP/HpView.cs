@@ -49,15 +49,14 @@ namespace UI
         /// <param name="v"></param>
         public void SetBarUI(float endV)
         {
-            float _fV = _frontBarView.Bar.value; // 앞쪽 바 시작 value
-            float _bV = _backBarView.Bar.value; // 뒤쪽 바 시작 value
+            float _fV = _frontBarView.BarV; // 앞쪽 바 시작 value
+            float _bV = _backBarView.BarV; // 뒤쪽 바 시작 value
 
             Sequence seq = DOTween.Sequence();
-            seq.Append(DOTween.To(() => _fV, (x) => _frontBarView.Bar.value = x, endV,0.5f));
+            seq.Append(DOTween.To(()    => _fV, (x) => _frontBarView.Bar.value = x, endV,0.5f));
             seq.Append(DOTween.To(() => _bV, (x) => _backBarView.Bar.value = x, endV,0.3f));
-
             //_frontBarView.SetSlider(endV);
-           // _backBarView.SetSlider(endV); 
+            // _backBarView.SetSlider(endV); 
         }
 
         public void Test(float endV)
