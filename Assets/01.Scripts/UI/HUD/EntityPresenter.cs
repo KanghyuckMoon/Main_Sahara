@@ -138,6 +138,7 @@ namespace UI
             targetRenderer = null;
             presenterFollower = null;
             isPlayerHud = false;
+            statData = null; 
         }
         [ContextMenu("Å×½ºÆ®")]
         public void UpdateUI()
