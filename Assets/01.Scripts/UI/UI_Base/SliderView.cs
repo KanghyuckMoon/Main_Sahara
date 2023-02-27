@@ -8,6 +8,18 @@ public class SliderView
     private ProgressBar bar;
 
     public ProgressBar Bar => bar; 
+    public float BarV
+    {
+        get => Bar.value; 
+        set
+        {
+            if(1f >value)
+            {
+                float _a = value - (int)value; 
+                Bar.value = _a; 
+            }
+        }
+    }
     public SliderView(VisualElement parent,string name)
     {
         bar = parent.Q<ProgressBar>(name);
