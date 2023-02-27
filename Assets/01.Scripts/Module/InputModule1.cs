@@ -9,7 +9,7 @@ namespace Module
 	{
 		public override void Update()
 		{
-			if (StateModule.CheckState(State.DEAD))
+			if (!StateModule.CheckState(State.DEAD))
 			{
 				InputMove();
 				InputJump();
@@ -41,15 +41,12 @@ namespace Module
 		{
 			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
 			{
-				if (!mainModule.IsDead)
-				{
 					float _inputX = Input.GetAxis("Horizontal");
 					float _inputY = Input.GetAxis("Vertical");
 
 					Vector2 _inputdir = new Vector2(_inputX, _inputY);
 
 					mainModule.ObjDir = _inputdir;
-				}
 			}
 		}
 
@@ -57,7 +54,7 @@ namespace Module
 		{
 			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
 			{
-				if (!mainModule.IsDead && mainModule.StopOrNot >= 1)
+				if (mainModule.StopOrNot >= 1)
 				{
 					bool _inputup = Input.GetKey(KeyCode.Space);
 

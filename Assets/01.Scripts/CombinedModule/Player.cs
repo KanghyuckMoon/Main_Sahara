@@ -29,7 +29,7 @@ namespace CondinedModule
             AddModule(ModuleType.Hit, new HitModule(this));
             AddModule(ModuleType.Item, new ItemModule(this));
             AddModule(ModuleType.Equipment, new EquipmentModule(this));
-            AddModule(ModuleType.State, new StateModule(this)); 
+            AddModule(ModuleType.State, new StateModule(this));
 
             RaycastTarget ??= transform.Find("RayCastPoint");
 

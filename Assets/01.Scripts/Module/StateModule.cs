@@ -30,7 +30,7 @@ namespace Module
 
 
 
-        private List<State> currentStates;
+        private List<State> currentStates = new List<State>();
 
 
         public StateModule(AbMainModule _mainModule) : base(_mainModule) { }
