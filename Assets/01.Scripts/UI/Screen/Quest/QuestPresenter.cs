@@ -20,7 +20,11 @@ namespace UI.Quest
         [SerializeField]
         private QuestView questView;
 
-        private Dictionary<QuestState, List<QuestEntryView>> questEntryDic = new Dictionary<QuestState, List<QuestEntryView>>(); 
+        private Dictionary<QuestState, List<QuestEntryView>> questEntryDic = new Dictionary<QuestState, List<QuestEntryView>>();
+
+        // 프로퍼티 
+        public IUIController UIController { get; set; }
+
         private void Awake()
         {
             this.uiDocument = GetComponent<UIDocument>(); 

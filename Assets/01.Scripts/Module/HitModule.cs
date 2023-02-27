@@ -22,7 +22,7 @@ namespace Module
         {
             get
             {
-                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.State);
+                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.Stat);
                 return stateModule;
             }
         }

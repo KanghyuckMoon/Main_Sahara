@@ -14,6 +14,10 @@ namespace UI
 
         // 로딩 팁 
         loadingTip = 10, 
+
+        // 상점 선택창 
+        shopBuy = 30, // 상점 구매  
+        shopSell, // 상점 판매 
     }
 
     [System.Serializable]

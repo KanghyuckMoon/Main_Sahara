@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
+using UnityEngine.SceneManagement;
 
 namespace Streaming
 {
@@ -49,6 +50,7 @@ namespace Streaming
 			foreach (string _name in sceneNameList)
 			{
 				GameObject obj = new GameObject();
+				SceneManager.MoveGameObjectToScene(obj, SceneManager.GetSceneByName("InGame"));
 				SubSceneObj subSceneObj = obj.AddComponent<SubSceneObj>();
 				//LODMaker lodMaker = obj.AddComponent<LODMaker>();
 				subSceneObj.SetSceneName(_name);

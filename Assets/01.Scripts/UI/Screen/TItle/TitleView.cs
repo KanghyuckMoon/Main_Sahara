@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
-using GoogleSpreadSheet; 
+using GoogleSpreadSheet;
+using UI.Manager; 
 
 namespace UI
 {

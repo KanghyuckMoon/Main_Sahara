@@ -71,7 +71,7 @@ namespace Json
                 if (stateModule is null)
 				{
                     AbMainModule _abMainModule = player?.GetComponentInChildren<AbMainModule>();
-                    stateModule = _abMainModule?.GetModuleComponent<StatModule>(ModuleType.State);
+                    stateModule = _abMainModule?.GetModuleComponent<StatModule>(ModuleType.Stat);
 
                 }
                 return stateModule;

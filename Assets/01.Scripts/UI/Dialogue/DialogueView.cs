@@ -59,11 +59,11 @@ namespace UI.Dialogue
             GetLabel((int)Labels.dialogue_label).text = _str; 
         }
 
-        public static void SetNameTextA(string _str)
+        public void SetNameTextA(string _str)
         {
             name.text = _str;
         }
-        public static void SetDialogueTextA(string _str)
+        public  void SetDialogueTextA(string _str)
         {
             // 이전에 있던거 천천히 사라지고 
             // 텍스트 바뀌고 
@@ -72,11 +72,11 @@ namespace UI.Dialogue
         }
 
         /// <summary>
-        /// 선택 버튼 활성화 
+        /// 선택 버튼 활성화(나타내기) 
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_callback"></param>
-        public static void ActiveSelectButton(string _name,Action _callback)
+        public void ActiveSelectButton(string _name,Action _callback)
         {
             for(int i=0;i < selectButtonList.Count;i++)
             {
@@ -96,7 +96,7 @@ namespace UI.Dialogue
         /// <summary>
         /// 모든 선택 버튼 초기화(비활성화, 콜백 등록 취소 ) 
         /// </summary>
-        public static void ResetSelectButtons()
+        public void ResetSelectButtons()
         {
             foreach(var _b in activeButtonList)
             {
@@ -113,7 +113,7 @@ namespace UI.Dialogue
         {
             ShowVisualElement(parentElement, _isActive);
         }
-        public static void ActiveViewS(bool _isActive)
+        public void ActiveViewS(bool _isActive)
         {
             float targetV, nowV;
             targetV = _isActive ? 1 : 0;

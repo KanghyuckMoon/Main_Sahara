@@ -28,7 +28,6 @@ namespace GameManager
 		public void AddObserver(Observer _observer)
 		{
 			Observers.Add(_observer);
-			_observer.Receive();
 		}
 
 		public void Send()

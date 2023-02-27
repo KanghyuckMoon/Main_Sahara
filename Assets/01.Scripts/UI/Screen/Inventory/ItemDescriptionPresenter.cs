@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Inventory;
 using GoogleSpreadSheet;
-using Utill.Addressable; 
+using Utill.Addressable;
+using UI.Production;
+using Utill.Pattern;
+using UI.ConstructorManager; 
 
 namespace UI.Inventory
 {
@@ -14,6 +17,14 @@ namespace UI.Inventory
 
         private ItemDescriptionView itemDescriptionView;
 
+        public ItemDescriptionPresenter()
+        {
+            var _descView = UIConstructorManager.Instance.GetProductionUI(typeof(ItemDescriptionView));
+            this.itemDescriptionView = _descView.Item2 as ItemDescriptionView;
+            this.itemDescriptionView.ParentElement.style.position = Position.Absolute; 
+        }
+
+
         public ItemDescriptionPresenter(VisualElement _parent)
         {
             this.itemDescriptionView = new ItemDescriptionView();
@@ -22,6 +33,10 @@ namespace UI.Inventory
             this.itemDescriptionView.Init(); 
         }
 
+        public void SetParent(VisualElement _parent)
+        {
+            _parent.Add(this.itemDescriptionView.ParentElement); 
+        }
         public void ActiveView(bool _isActive)
         {
             this.itemDescriptionView.ActiveScreen(_isActive);

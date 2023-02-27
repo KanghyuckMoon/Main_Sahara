@@ -9,26 +9,27 @@ namespace Module
 {
     public class WeaponModule : AbBaseModule
     {
-        public GameObject currentWeapon;
-        public BaseWeapon BaseWeapon => baseWeapon;
-
-        public WeaponSkills weaponSkills;
-
-
-
-
-        private int animationIndex;
-
-        private string currentWeaponName;
-
-        private GameObject WeaponRight
+        public WeaponSpownObject[] WeaponRight
         {
             get
             {
-                weaponRight ??= mainModule.GetComponentInChildren<WeaponSpownObject>().gameObject;
+                weaponRight ??= mainModule.GetComponentsInChildren<WeaponSpownObject>();
                 return weaponRight;
             }
         }
+        public BaseWeapon BaseWeapon => baseWeapon;
+        public CurrentArrowInfo CurrentArrowInfo => currentArrowInfo;
+ 
+        public GameObject currentWeapon;
+        public WeaponSkills weaponSkills;
+
+        public bool isProjectileWeapon;
+
+        private int animationIndex;
+        private string currentWeaponName;
+
+        private CurrentArrowInfo currentArrowInfo = null;
+
         private Animator Animator
         {
             get
@@ -43,14 +44,15 @@ namespace Module
         {
             get
             {
-                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.State);
+                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.Stat);
                 return stateModule;
             }
         }
         private StatModule stateModule;
         private Animator animator;
-        private GameObject weaponRight;
+        private WeaponSpownObject[] weaponRight;
         private IWeaponSkills iWeaponSkills;
+        //private ArrowInfo arrowInfo;
 
         public WeaponModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -78,14 +80,13 @@ namespace Module
                 GameObject _weapon = ObjectPoolManager.Instance.GetObject(weapon);
                 _weapon.SetActive(true);
 
-                _weapon.transform.SetParent(WeaponRight.transform);
-
                 string tagname = mainModule.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
                 _weapon.tag = tagname;
 
                 iWeaponSkills = _weapon.GetComponent<IWeaponSkills>();
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
 
+                _weapon.transform.SetParent(WhichHandToHold(BaseWeapon));
                 _weapon.transform.localPosition = BaseWeapon.WeaponPositionSO.weaponPosition;
                 _weapon.transform.localRotation = BaseWeapon.WeaponPositionSO.weaponRotation;
 
@@ -98,9 +99,24 @@ namespace Module
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;
 
+                Animator.SetBool("CanCharge", BaseWeapon.WeaponDataSO.canCharge);
+
+                isProjectileWeapon = BaseWeapon.isProjectile;
                 mainModule.IsWeaponExist = true;
+                SetBehaveAnimation();
                 SetWeaponSkills();
             }
+        }
+        private Transform WhichHandToHold(BaseWeapon _baseWeapon)
+        {
+            //_baseWeapon.weaponHand
+            foreach(WeaponSpownObject _hand in WeaponRight)
+            {
+                if (_hand.weaponHand == _baseWeapon.weaponHand)
+                    return _hand.transform;
+            }
+
+            return null;
         }
         private void SetAnimation(string animationName)
         {
@@ -116,6 +132,15 @@ namespace Module
                 Animator.SetLayerWeight(animationIndex, 1);
             }
         }
+        private void SetBehaveAnimation()
+        {
+            Debug.Log(MainModule.AnimatorOverrideController);
+            AnimationClip _a = BaseWeapon.WeaponDataSO.attackAnimation;
+            MainModule.AnimatorOverrideController["Attack"] = _a;
+            MainModule.AnimatorOverrideController["StrongAttack"] = BaseWeapon.WeaponDataSO.strongAttackAnimation;
+            MainModule.AnimatorOverrideController["Ready"] = BaseWeapon.WeaponDataSO.readyAttackAnimation;
+            MainModule.AnimatorOverrideController["ChargeAttack"] = BaseWeapon.WeaponDataSO.chargeAttackAnimation;
+        }
         private void SetWeaponSkills()
         {
             if (iWeaponSkills is not null)
@@ -123,7 +148,6 @@ namespace Module
                 weaponSkills = new WeaponSkills(iWeaponSkills.Skills);
             }
         }
-
         public void UseWeaponSkills()
         {
             if (baseWeapon is null)

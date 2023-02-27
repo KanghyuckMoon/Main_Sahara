@@ -24,17 +24,30 @@ namespace LoadScene
         private IEnumerator LoadingScene()
         {
             var op2 = SceneManager.LoadSceneAsync("InGame", LoadSceneMode.Additive);
+            var op6 = SceneManager.LoadSceneAsync("TipScene", LoadSceneMode.Additive);
             op2.priority = 3;
-            op2.allowSceneActivation = true;
+            op2.allowSceneActivation = false;
+            op6.allowSceneActivation = false;
 
             while (op2.progress < 0.9f)
             {
                 Logging.Log(op2.progress);
                 yield return null;
             }
-
-            yield return new WaitForSeconds(3);
-
+            while (op6.progress < 0.9f)
+            {
+                Logging.Log(op2.progress);
+                yield return null;
+            }
+            op6.allowSceneActivation = true;
+            var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            op2.allowSceneActivation = true;
+            StartCoroutine(Streaming.StreamingManager.Instance.LoadReadyScene());
+            while (!Streaming.StreamingManager.Instance.IsSetting)
+			{
+                yield return null;
+			}
+            yield return new WaitForSeconds(1);
 
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);
@@ -58,13 +71,11 @@ namespace LoadScene
                 Logging.Log(op4.progress);
                 yield return null;
             }
-
-            var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-
             op3.allowSceneActivation = true;
             op4.allowSceneActivation = true;
             op5.allowSceneActivation = true;
 
+            var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         }
     }
 

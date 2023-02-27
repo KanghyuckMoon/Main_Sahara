@@ -9,7 +9,7 @@ namespace Module
 	{
 		public override void Update()
 		{
-			if (!mainModule.IsDead)
+			if (!StateModule.CheckState(State.DEAD))
 			{
 				InputMove();
 				InputJump();
@@ -21,18 +21,19 @@ namespace Module
 
 		private void InputAttack()
 		{
-			if (!mainModule.Attacking && mainModule.IsWeaponExist && !mainModule.StrongAttacking)
+			if (!StateModule.CheckState(State.ATTACK, State.JUMP))
 			{
-				if (mainModule.StopOrNot != 0 && !mainModule.IsDead)
-				{
-					bool _inputatk = Input.GetMouseButtonDown(0);
-					bool _inputStratk = Input.GetMouseButtonDown(1);
+				mainModule.Attacking = Input.GetMouseButtonDown(0);
+				StateModule.AddState(State.ATTACK);
 
-					mainModule.Attacking = _inputatk;
-					mainModule.StrongAttacking = _inputStratk;
+				AttackModule.SpownAttackEffect();
+			}
 
-					AttackModule.SpownAttackEffect();
-				}
+			mainModule.IsCharging = Input.GetMouseButton(0);
+
+			if(StateModule.CheckState(State.ATTACK))
+            {
+				bool _inputatk = Input.GetMouseButtonUp(0);
 			}
 		}
 
@@ -40,15 +41,12 @@ namespace Module
 		{
 			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
 			{
-				if (!mainModule.IsDead)
-				{
 					float _inputX = Input.GetAxis("Horizontal");
 					float _inputY = Input.GetAxis("Vertical");
 
 					Vector2 _inputdir = new Vector2(_inputX, _inputY);
 
 					mainModule.ObjDir = _inputdir;
-				}
 			}
 		}
 
@@ -56,7 +54,7 @@ namespace Module
 		{
 			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
 			{
-				if (!mainModule.IsDead && mainModule.StopOrNot == 1)
+				if (mainModule.StopOrNot >= 1)
 				{
 					bool _inputup = Input.GetKey(KeyCode.Space);
 
@@ -80,43 +78,5 @@ namespace Module
 				mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).UseWeaponSkills();//.BaseWeapon.weaponSkills.Invoke();
 			}
         }
-        //public Vector2 move;
-        //public Vector2 look;
-
-        //public void OnMove(InputValue value)
-        //{
-        //	MoveInput(value.Get<Vector2>());
-        //}
-
-        //public void OnLook(InputValue value)
-        //{
-        //	Debug.Log("카메라 움직움직");
-        //	LookInput(value.Get<Vector2>());
-        //}
-
-        //public void OnLock(InputValue value)
-        //{
-
-        //}
-
-        //public void OnJump(InputValue value)
-        //{
-        //	mainModule.isJump = value.isPressed;
-        //}
-
-        //public void MoveInput(Vector2 newMoveDirection)
-        //{
-        //	move = newMoveDirection;
-        //	//MainModule -> Object -> InputSystem
-
-        //	mainModule.objDir = move;
-        //	//이제 여기서 받은 값을 이동으로 옮겨준다
-        //}
-
-        //public void LookInput(Vector2 newLookDirection)
-        //{
-        //	//mainModule.objRotation = Quaternion.Euler(newLookDirection);
-        //}
-
     }
 }

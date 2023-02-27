@@ -17,7 +17,7 @@ namespace CondinedModule
             //footRotate = GetComponentInParent<csHomebrewIK>();
             AddModule(ModuleType.Input, new InputModule(this));
             AddModule(ModuleType.Move, new MoveModule(this));
-            AddModule(ModuleType.State, new StatModule(this));
+            AddModule(ModuleType.Stat, new StatModule(this));
             AddModule(ModuleType.Camera, new CameraModule(this));
             AddModule(ModuleType.Jump, new JumpModule(this));
             AddModule(ModuleType.Hp, new HpModule(this));
@@ -29,11 +29,13 @@ namespace CondinedModule
             AddModule(ModuleType.Hit, new HitModule(this));
             AddModule(ModuleType.Item, new ItemModule(this));
             AddModule(ModuleType.Equipment, new EquipmentModule(this));
+            AddModule(ModuleType.State, new StateModule(this));
 
-            RaycastTarget = transform.Find("RayCastPoint");
+            RaycastTarget ??= transform.Find("RayCastPoint");
 
-            visualObject = transform.Find("Visual").gameObject;
+            visualObject ??= transform.Find("Visual")?.gameObject;
             animator = GetComponent<Animator>();
+            animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             LockOnTarget = null;
         }
 

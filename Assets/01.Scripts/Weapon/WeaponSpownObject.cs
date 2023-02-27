@@ -4,8 +4,13 @@ using UnityEngine;
 
 namespace Weapon
 {
+    public enum WeaponHand
+    {
+        Right,
+        Left
+    }
     public class WeaponSpownObject : MonoBehaviour
     {
-
+        public WeaponHand weaponHand;
     }
 }

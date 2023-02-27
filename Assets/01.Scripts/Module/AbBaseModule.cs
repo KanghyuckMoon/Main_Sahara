@@ -10,6 +10,7 @@ namespace Module
         Input,
         Move,
         Camera,
+        Stat,
         State,
         Jump,
         Hp,
@@ -46,6 +47,8 @@ namespace Module
         public virtual void OnCollisionEnter(Collision collision) { }
         public virtual void OnTriggerEnter(Collider other) { }
         public virtual void OnDrawGizmos() { }
+        public virtual void OnEnable() { }
+        public virtual void OnDisable() { }
         public virtual void OnDestroy() { }
     }
 }

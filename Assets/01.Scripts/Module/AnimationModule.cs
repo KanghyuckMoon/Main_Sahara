@@ -58,6 +58,7 @@ namespace Module
 
             Animator.SetFloat("MoveX", mainModule.ObjDir.x);
             Animator.SetFloat("MoveY", mainModule.ObjDir.y);
+            Animator.SetBool("Charge", mainModule.IsCharging);
         }
 
 		public override void OnDestroy()

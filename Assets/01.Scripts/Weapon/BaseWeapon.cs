@@ -10,6 +10,7 @@ namespace Weapon
 
     public class BaseWeapon : MonoBehaviour
     {
+        public WeaponHand weaponHand;
         public string WeaponColKey
         {
             get
@@ -24,6 +25,8 @@ namespace Weapon
         public WeaponDataSO WeaponDataSO => weaponDataSO;
         public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
 
+        public bool isProjectile;
+
         private WeaponDataSO weaponDataSO;
         private WeaponPositionSO weaponPositionSO;
         private string weaponPosStr = "_Position";
@@ -32,6 +35,7 @@ namespace Weapon
 
         [SerializeField]
         private HitBoxDatasSO hitBoxDataSO;
+
 
         private void Awake()
         {

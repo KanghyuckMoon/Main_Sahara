@@ -855,11 +855,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &518379110 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4632501980750910760, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
-  m_PrefabInstance: {fileID: 2011865195}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &582808021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,6 +1568,7 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -1589,6 +1585,7 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 543450651801043015}
   animator: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
 --- !u!114 &1265982176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,6 +1703,10 @@ PrefabInstance:
     - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_Name
       value: TestEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_RootOrder
@@ -1894,6 +1895,10 @@ PrefabInstance:
     - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_Name
       value: TestEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_RootOrder
@@ -2087,6 +2092,7 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -2103,6 +2109,7 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 0}
   animator: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
 --- !u!1 &1658074115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,7 +2604,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4632501980750910743, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
   m_PrefabInstance: {fileID: 2011865195}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518379110}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54c7a50f26a78844a97ac4df90acd1b9, type: 3}
@@ -2608,7 +2615,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4632501980750910763, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
   m_PrefabInstance: {fileID: 2011865195}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518379110}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
@@ -2619,29 +2626,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
   m_PrefabInstance: {fileID: 2011865195}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2011865200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518379110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ApplyAfter: 2
-  m_ChannelMask: 1
-  m_Gain: 1
-  m_Use2DDistance: 0
-  m_UseCameraSpace: 1
-  m_ReactionSettings:
-    m_SecondaryNoise: {fileID: 11400000, guid: 62a4fa4d74ce9ce4689e238c35036aef, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_Duration: 1
-    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &2038720051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2660,6 +2644,10 @@ PrefabInstance:
     - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_Name
       value: TestEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_RootOrder
@@ -2933,6 +2921,10 @@ PrefabInstance:
     - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_Name
       value: TestEnemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699875109982235521, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 13ba2fa8f32fd9e4f9fb78b3bf5a2c32, type: 3}
       propertyPath: m_RootOrder
@@ -3984,7 +3976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!143 &937940089595484537
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4035,6 +4027,7 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -4051,6 +4044,7 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 937940089753596058}
   animator: {fileID: 937940089595484532}
+  animatorOverrideController: {fileID: 0}
   aiSOAddress: SpiderSO
 --- !u!4 &937940089595484540
 Transform:
@@ -5669,6 +5663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5dac14e876e334cad42edef5add5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponHand: 0
 --- !u!1 &4494567048454207345
 GameObject:
   m_ObjectHideFlags: 0
