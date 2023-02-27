@@ -28,7 +28,7 @@ namespace Module
         private int animationIndex;
         private string currentWeaponName;
 
-        private CurrentArrowInfo currentArrowInfo = null;
+        private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow", WeaponHand.Right);
 
         private Animator Animator
         {
@@ -62,6 +62,8 @@ namespace Module
         public override void Start()
         {
             animationIndex = int.MaxValue;
+            currentArrowInfo.arrowAddress = "Arrow";
+            currentArrowInfo.weaponHand = WeaponHand.Right;
         }
 
         public void ChangeWeapon(string weapon, string animationName)
@@ -102,6 +104,9 @@ namespace Module
                 Animator.SetBool("CanCharge", BaseWeapon.WeaponDataSO.canCharge);
 
                 isProjectileWeapon = BaseWeapon.isProjectile;
+
+                //if(isProjectileWeapon) 
+
                 mainModule.IsWeaponExist = true;
                 SetBehaveAnimation();
                 SetWeaponSkills();

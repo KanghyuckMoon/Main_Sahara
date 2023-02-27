@@ -8,6 +8,7 @@ namespace Module
     {
         MOVING,
         JUMP,
+        CHARGE,
         ATTACK,
         HIT,
         DEAD,
@@ -44,12 +45,22 @@ namespace Module
         {
             return CurrentState.Contains(_state1) || CurrentState.Contains(_state2);
         }
+        public bool CheckState(State _state1, State _state2, State _state3)
+        {
+            return CurrentState.Contains(_state1) || CurrentState.Contains(_state2) || CurrentState.Contains(_state3);
+        }
         public void AddState(State _state)
         {
             if (CurrentState.Contains(_state))
                 return;
 
             CurrentState.Add(_state);
+        }
+        public void RemoveState(State _state)
+        {
+            if (!CurrentState.Contains(_state))
+                return;
+            CurrentState.Remove(_state);
         }
     }
 }
