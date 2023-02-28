@@ -105,8 +105,8 @@ namespace Module
 
         private void RegisterUI()
         {
-            ObjectPoolManager.Instance.RegisterObject(address, hudObject);
             hudObject.SetActive(false);
+            ObjectPoolManager.Instance.RegisterObject(address, hudObject);
             hudObject = null;
         }
 

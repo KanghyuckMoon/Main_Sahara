@@ -158,10 +158,25 @@ namespace Data
             CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
         }
 
+        public void LoadSaveData(StatSaveData _statSaveData)
+        {
+            maxHp = _statSaveData.maxHp;
+            currentHp = _statSaveData.currentHp;
+            maxMana = _statSaveData.maxMana;
+            currentMana = _statSaveData.currentMana;
+            meleeAttack = _statSaveData.meleeAttack;
+            rangeAttack = _statSaveData.rangeAttack;
+            magicAttack = _statSaveData.magicAttack;
+            speed = _statSaveData.speed;
+            jump = _statSaveData.jump;
+            Send();
+        }
+
         #region 옵저버 부분
         public void AddObserver(Observer _observer)
         {
             Observers.Add(_observer);
+            _observer.Receive();
         }
 
         public void RemoveObserver(Observer _observer)
@@ -175,6 +190,16 @@ namespace Data
             {
                 observer.Receive();
             }
+        }
+		public void OnDisable()
+		{
+            Send();
+            observers.Clear();
+        }
+        public void OnDestroy()
+        {
+            Send();
+            observers.Clear();
         }
         #endregion
     }

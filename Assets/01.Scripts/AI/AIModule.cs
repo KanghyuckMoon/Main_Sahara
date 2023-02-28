@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using AI;
 using DynamicBGM;
+using Utill.Pattern;
+using Pool;
 using static NodeUtill;
 
 namespace Module
@@ -151,9 +153,21 @@ namespace Module
 		private bool isFirstAttack = true;
 		private bool isHostilities = true;
 
+		public AIModule() : base()
+		{
+
+		}
+
 		public AIModule(AbMainModule _mainModule) : base(_mainModule)
 		{
-			rootNodeMaker = new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
+			Init(_mainModule);
+		}
+
+		public override void Init(AbMainModule _mainModule, params string[] _parameters)
+		{
+			base.Init(_mainModule, _parameters);
+			rootNodeMaker ??= new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
+			rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
 		}
 
 		public void SetNode(INode _node)
@@ -189,6 +203,11 @@ namespace Module
 			rootNodeMaker.OnDrawGizmo();
 		}
 
+		public override void OnDisable()
+		{
+			base.OnDisable();
+			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
+		}
 
 	}
 }

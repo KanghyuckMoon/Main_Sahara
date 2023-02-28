@@ -35,6 +35,16 @@ namespace Module
 
         public AbBaseModule(AbMainModule _mainModule)
         {
+            Init(_mainModule);
+        }
+
+        public AbBaseModule()
+		{
+
+		}
+
+        public virtual void Init(AbMainModule _mainModule, params string[] _parameters)
+        {
             mainModule = _mainModule;
             Awake();
         }
