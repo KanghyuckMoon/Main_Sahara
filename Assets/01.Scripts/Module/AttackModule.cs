@@ -12,6 +12,18 @@ namespace Module
 {
     public class AttackModule : AbBaseModule
     {
+        public GameObject ProjectileObject
+        {
+            get
+            {
+                return projectileObject;
+            }
+            set
+            {
+                projectileObject = value;
+            }
+        }
+
         private WeaponModule WeaponModule
         {
             get
@@ -22,6 +34,7 @@ namespace Module
         }
 
         private WeaponModule weaponModule;
+        private GameObject projectileObject;
 
         public AttackModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -43,8 +56,10 @@ namespace Module
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();
 
                 _projectile.SetActive(true);
-                _projectile.transform.position = _projectileObject.weaponPosition.weaponPosition;
-                _projectile.transform.rotation = _projectileObject.weaponPosition.weaponRotation;
+                _projectile.transform.localPosition = _projectileObject.weaponPosition.weaponPosition;
+                _projectile.transform.localRotation = _projectileObject.weaponPosition.weaponRotation;
+
+                ProjectileObject = _projectile;
                 //_projectile.transform
             }
         }

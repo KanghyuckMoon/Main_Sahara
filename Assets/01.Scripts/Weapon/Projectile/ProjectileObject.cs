@@ -14,7 +14,7 @@ namespace Weapon
         private string objectName;
         private string positionString = "_Position";
 
-        private void Start()
+        private void Awake()
         {
             weaponPosition = AddressablesManager.Instance.GetResource<WeaponPositionSO>(objectName + positionString);
         }
