@@ -10,6 +10,7 @@ using Utill.Pattern;
 using UI.ConstructorManager;
 using UI.Production;
 using System.Linq;
+using DG.Tweening; 
 
 namespace UI.Upgrade
 {
@@ -20,17 +21,19 @@ namespace UI.Upgrade
         [SerializeField]
         private UpgradeView upgradeView;
 
-        private UpgradePickPresenter upgradePickPresenter;
+        private UpgradePickPresenter upgradePickPresenter; // 슬롯 선택시 나타날 업드레이드 패널 
+        private UpgradeCtrlPresenter ctrlPresenter; // 좌우 버튼 , 상단 라벨 조작 Pr 
         private UpgradeSlotPresenter _curSlotPr; // 현재 선택한 슬롯
 
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
         private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // 모든 슬롯 리스트 
 
+        [SerializeField]
         private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소 
-        private Dictionary<int, List<Vector2>> slotPosDIc = new Dictionary<int, List<Vector2>>();
-        private Queue<UpgradeSlotData> itemDataQueue = new Queue<UpgradeSlotData>();
-        private List<UpgradeSlotData> allItemDataList = new List<UpgradeSlotData>();
-        private List<VisualElement> allItemList = new List<VisualElement>();
+        private Dictionary<int, List<Vector2>> slotPosDIc = new Dictionary<int, List<Vector2>>(); // 재료 수에 따른 위치 딕셔너리 
+        private Queue<UpgradeSlotData> itemDataQueue = new Queue<UpgradeSlotData>(); // 생성할 아이템 저장 큐 
+        private List<UpgradeSlotData> allItemDataList = new List<UpgradeSlotData>(); // 현재 트리의 모든 데이터 리스트
+        private List<VisualElement> allItemList = new List<VisualElement>(); // 현재 트리의 모든 아이템 리스트 
 
         private float midX; // 중심 좌표 
         private bool isFirstSlot = true;
@@ -38,14 +41,39 @@ namespace UI.Upgrade
         // 프로퍼티 
         public IUIController UIController { get; set; }
         private VisualElement CurRow => rowList[rowList.Count - 1];
-
+        private ElementCtrlComponent ElementCtrlComponent
+        {
+            get
+            {
+                if (elementCtrlComponent == null)
+                {
+                    elementCtrlComponent = new ElementCtrlComponent(upgradeView.MoveScreen);
+                }
+                return elementCtrlComponent;
+            }
+        }
+        private UpgradeCtrlPresenter UpgradeCtrlPr
+        {
+            get
+            {
+                if (ctrlPresenter == null)
+                {
+                    ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
+                }
+                return ctrlPresenter;
+            }
+        }
         private void Start()
         {
             elementCtrlComponent = new ElementCtrlComponent(upgradeView.MoveScreen);
-            StartCoroutine(Co());
+            //   StartCoroutine(SetAllSlotPosCo());
         }
-        IEnumerator Co()
+        IEnumerator SetAllSlotPosCo()
         {
+            // UIToolkit은 레이아웃 구축 시간이 소요되기 때문에
+            // 다른 element의 worldbound를 제대로 가져오기 위해서는 구축될 시간이 지난후 가져와야함 
+            yield return new WaitForSeconds(0.01f);
+            SetAllSlotPos();
             yield return new WaitForSeconds(0.01f);
             SetAllSlotPos();
             yield return new WaitForSeconds(0.01f);
@@ -59,6 +87,7 @@ namespace UI.Upgrade
             upgradeView.Cashing();
             upgradeView.Init();
 
+            // 빈공간 클릭하면 업그레이드 UI 없어지도록 
             //upgradeView.Parent.RegisterCallback<ClickEvent>((x) =>
             //{
             //    upgradePickPresenter.ActiveView(false);
@@ -68,23 +97,21 @@ namespace UI.Upgrade
             upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
             upgradePickPresenter.SetButtonEvent(() => ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key));
 
-
             rowList.Clear();
-            _vList.Clear(); 
             slotPosDIc.Clear();
-            allSlotList.Clear(); 
+            allSlotList.Clear();
 
-            InitVList();
             InitDic();
 
-            CreateItemTree();
+            ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
         }
 
         private void LateUpdate()
         {
-            elementCtrlComponent.Update();
+            ElementCtrlComponent.Update();
         }
 
+        #region Init
         private float slotDist = 300f; // 슬롯 간의 거리 
         private void InitDic()
         {
@@ -114,60 +141,58 @@ namespace UI.Upgrade
             this.slotPosDIc.Add(3, _threeList);
             this.slotPosDIc.Add(4, _fourList);
         }
+
+        #endregion
+
         [ContextMenu("아이템 트리 생성")]
         /// <summary>
         ///  아이템 트리 UI 생성 및 데이터 넣기 
         /// </summary>
-        public void CreateItemTree()
+        public void CreateItemTree(ItemDataSO _itemDataSO)
         {
             // 최종템 UI 생성
-            //CreateRow();
-            allItemDataList.Clear(); 
-            ItemData _itemData = ItemData.CopyItemDataSO(AddressablesManager.Instance.GetResource<ItemDataSO>("UItem1"));
+            allItemDataList.Clear();
+            ItemData _itemData = ItemData.CopyItemDataSO(_itemDataSO);
             itemDataQueue.Enqueue(new UpgradeSlotData(new VisualElement(), _itemData, 0, 1));
-            // CreateSlot(_itemData);
 
-            //StartCoroutine(CreateChildItem());
-            CreateChildItem();  
+            CreateTree(); // 재료 템 트리 생성 
+            this.ElementCtrlComponent.ResetPosAndZoom();
         }
 
-        private bool isEnd = false;
         /// <summary>
         /// 재료 슬롯들 생성  
         /// </summary>
         /// <param name="_itemUpgradeDataSO"></param>
-        void CreateChildItem()
+        private void CreateTree()
         {
-            var _slotDataList = new List<ItemData>(); // 재료 슬롯 데이터 리스트 
+            List<ItemData> _slotDataList = new List<ItemData>(); // 재료 슬롯 데이터 리스트 (연결점 생성시 필요)
             List<ItemData> _list = new List<ItemData>(); // 한 무기에서 필요한 재료무기들 
 
-            CreateRow();
+            CreateRow(); // 처음줄 생성 
             int _count = itemDataQueue.Count();
-            int _i = 0;
+            int _index = 0;
 
             while (itemDataQueue.Count > 0)
             {
-                if (_i >= _count) // 한 줄 생성 끝 다음 줄 시작 
+                if (_index >= _count) // 한 줄 생성 끝 다음 줄 시작 
                 {
                     CreateConnection(_slotDataList);
                     _count = itemDataQueue.Count;
-                    _i = 0;
+                    _index = 0;
+                    _slotDataList.Clear();
                     CreateRow();
                 }
 
-                UpgradeSlotData _slotData = itemDataQueue.Dequeue();
+                UpgradeSlotData _slotData = itemDataQueue.Dequeue(); // 큐에서 데이터 꺼내서 
                 ItemData _itemData = _slotData.itemData;
                 VisualElement _parent = CreateSlot(_itemData); // 슬롯 생성
-                _parent.style.opacity = 0f; 
+                _parent.style.opacity = 0f;
                 allItemList.Add(_parent);
 
-                // _parent.RegisterCallback<GeometryChangedEvent>((x) =>
-                // {
-                //isEnd = true;
                 //// 위치 설정 
-                if (isFirstSlot == true)
+                if (isFirstSlot == true) // 최종 아이템이면 가운데 고정 생성 
                 {
-                    _parent.style.left = midX;
+                    _parent.style.left = midX - _parent.resolvedStyle.width ;
                     isFirstSlot = false;
                 }
                 else
@@ -176,44 +201,29 @@ namespace UI.Upgrade
                 }
 
                 ItemUpgradeDataSO _childItemData = ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_itemData.key);
-                    if (_childItemData != null) // 재료템이 존재한다면 큐에 추가 
+                if (_childItemData != null) // 재료템이 존재한다면 큐에 추가 
+                {
+                    var _dataList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key);
+
+                    // 무기만 생성 
+                    int _idx = 0; // 몇 번째 아이템인지 ( 트리 중에 )  같은 줄 내에서 
+                    var _weaponDList = _dataList.Where((x) => x.itemType == ItemType.Weapon).ToList();
+                    _weaponDList.ForEach((x) =>
                     {
-                        var _dataList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key);
+                        UpgradeSlotData _slotData = new UpgradeSlotData(_parent, x, _idx, _weaponDList.Count);
+                        itemDataQueue.Enqueue(_slotData);
+                        allItemDataList.Add(_slotData);
+                        ++_idx;
+                    });
 
-                        // 무기만 생성 
-                        int _idx = 0;
-                        var _weaponDList = _dataList.Where((x) => x.itemType == ItemType.Weapon).ToList();
-                        _weaponDList.ForEach((x) =>
-                        {
-                            UpgradeSlotData _slotData = new UpgradeSlotData(_parent, x, _idx, _weaponDList.Count);
-                            itemDataQueue.Enqueue(_slotData);
-                            allItemDataList.Add(_slotData); 
-                            ++_idx;
-                        });
-
-                        _slotDataList.AddRange(_dataList);
-                    }
-                    ++_i;
-
-                //});
-
-
-                //while (true)
-                //{
-                //    if (isEnd == false)
-                //        yield return null;
-                //    else
-                //    {
-                //        isEnd = false;
-                //        break;
-                //    }
-                //}
-
+                    _slotDataList.AddRange(_dataList); // 연결점 생성시 필요 
+                }
+                ++_index;
             }
 
         }
+        private bool isActive = false; // 포지션 설정시 활성화 여부 
 
-        private bool isActive = false; 
         [ContextMenu("고고")]
         private void SetAllSlotPos()
         {
@@ -223,66 +233,48 @@ namespace UI.Upgrade
 
             foreach (var _v in allItemDataList)
             {
-                float _moveX =  slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
+                float _moveX = slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
                 _moveX = _moveX < 0 ? _moveX - allItemList[_idx].resolvedStyle.width : _moveX;
                 allItemList[_idx].style.left = _moveX + _v.parentSlot.worldBound.x;
 
                 // opacity 설정
-                allItemList[_idx].style.opacity = isActive ? 1 : 0; 
+                float _op = isActive ? 1 : 0;
+                //DOTween.To(() =>0f, x => allItemList[_idx].style.opacity = x, _op, 0.5f).SetDelay(0.5f); 
+                allItemList[_idx].style.opacity = isActive ? 1 : 0;
                 ++_idx;
             }
-            isActive = true; 
+            isActive = true;
         }
-
-        [ContextMenu("비활성화")]
-        public void InActiveAll()
-        {
-            foreach (var _v in allItemList)
-            {
-                // opacity 설정
-                _v.style.opacity = 0;
-            }
-        }
-
-        [ContextMenu("활성화")]
-        public void ActiveAll()
-        {
-            foreach (var _v in allItemList)
-            {
-                // opacity 설정
-                _v.style.opacity = 1;
-            }
-        }
-
+        
         [ContextMenu("삭제")]
         private void ClearAllSlots()
         {
-            isFirstSlot = true; 
+            isFirstSlot = true;
             rowList.Clear();
             allSlotList.Clear();
-            allItemList.Clear(); 
+            allItemList.Clear();
 
             this.upgradeView.ClearAllSlots();
-            isActive = false; 
+            isActive = false;
         }
 
         private VisualElement CreateSlot(ItemData _itemData)
         {
-            UpgradeSlotPresenter _upgradePr = new UpgradeSlotPresenter();
-            _upgradePr.AddClickEvent(
+            UpgradeSlotPresenter _slotPr = new UpgradeSlotPresenter();
+            _slotPr.AddClickEvent(
                 () =>
                 {
-                    ActiveUpgradePn(_upgradePr);
-                    _curSlotPr = _upgradePr;
+                    ActiveUpgradePn(_slotPr);
+                    _curSlotPr = _slotPr;
                 }
             );
 
             //this.upgradeView.SetParentSlot(_upgradePr.Parent);
-            allSlotList.Add(_upgradePr);
-            this.CurRow.Add(_upgradePr.Parent.ElementAt(0));
-            _upgradePr.SetItemData(_itemData);
+            allSlotList.Add(_slotPr);
+            this.CurRow.Add(_slotPr.Parent.ElementAt(0));
+            _slotPr.SetItemData(_itemData);
 
-            return _upgradePr.Element1;
+            return _slotPr.Element1;
         }
 
         /// <summary>
@@ -319,43 +311,7 @@ namespace UI.Upgrade
                 _newUpgradePr.SetItemDataHave(_data);
                 upgradePickPresenter.SetSlotParent(_newUpgradePr);
             }
-
-            //foreach (var _data in _list)
-            //{
-            //    UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter();
-            //    _newUpgradePr.SetPositionType(true);
-            //    _newUpgradePr.SetItemDataHave(_data);
-            //    _newUpgradePr.Parent.transform.position = _vList[_idx];
-            //    upgradePickPresenter.SetAbsoluteParent(_newUpgradePr);
-            //    _idx++; 
-            //}
             upgradePickPresenter.ActiveView(true);
-        }
-
-        private List<Vector2> _vList = new List<Vector2>();
-
-        private void InitVList()
-        {
-            float _dist = 200f;
-            _vList.Add(new Vector2(-_dist, _dist));
-            _vList.Add(new Vector2(-_dist, 0f));
-            _vList.Add(new Vector2(-_dist, -_dist));
-            _vList.Add(new Vector2(0f, -_dist));
-            _vList.Add(new Vector2(_dist, -_dist));
-            _vList.Add(new Vector2(_dist, 0f));
-            _vList.Add(new Vector2(_dist, _dist));
-            _vList.Add(new Vector2(0f, _dist));
-        }
-
-        /// <summary>
-        /// 합성 버튼에 함수 추가 
-        /// </summary>
-        public void AddUpgradeBtnEvent()
-        {
-            // 인벤토리에서 필요 개수 만큼 줄이고 
-            // 현재 있는거 만큼 획득 
-
-            //upgradePickPresenter.I
         }
 
         /// <summary>
@@ -427,10 +383,14 @@ namespace UI.Upgrade
 
         public bool ActiveView()
         {
+            bool _isActive = upgradeView.ActiveScreen();
+            if (_isActive == true)
+            {
                 ClearAllSlots();
-                CreateItemTree();
-                StartCoroutine(Co());
-            return upgradeView.ActiveScreen();
+                this.UpgradeCtrlPr.UpdateUI();
+                StartCoroutine(SetAllSlotPosCo());
+            }
+            return _isActive;
         }
 
         public void ActiveView(bool _isActive)
@@ -438,8 +398,6 @@ namespace UI.Upgrade
             upgradeView.ActiveScreen(_isActive);
         }
     }
-
-
 
 }
 

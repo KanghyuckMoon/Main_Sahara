@@ -7,6 +7,12 @@ using System.Linq;
 
 namespace UI    
 {
+    public enum PosType
+    {
+        left, 
+        mid,
+        right
+    }
     [Serializable]
     public abstract class AbUI_Base
     {

@@ -45,7 +45,7 @@ namespace UI.Inventory
             inventoryCam.gameObject.SetActive(_isActive);
 
             EventManager.Instance.TriggerEvent(EventsType.UpdateQuickSlot);
-
+            
             return _isActive; 
         }
 
