@@ -43,7 +43,10 @@ namespace Module
 				if (Input.GetMouseButtonUp(0))
 				{
 					//bool _inputatk = Input.GetMouseButtonUp(0);
-					AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc();
+					AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward);// + new Vector3(0, 1.6f, 0));
+
+					StateModule.RemoveState(State.CHARGE);
+					//StateModule.RemoveState(State.ATTACK);
 				}
 			}
 		}

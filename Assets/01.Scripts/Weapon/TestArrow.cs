@@ -14,12 +14,13 @@ namespace Weapon
         //    rigidbody = GetComponent<Rigidbody>();
         //}
 
-        public void MovingFunc()
+        public void MovingFunc(Vector3 _pos)
         {
             rigidbody.useGravity = true;
 
             transform.SetParent(null);
-            rigidbody.AddForce(transform.position + new Vector3(0, 0, 10), ForceMode.Impulse);
+            rigidbody.AddForce((_pos * 35) + new Vector3(0, 1, 0), ForceMode.Impulse);
+            //rigidbody.MovePosition(Vector3.up * 10);
         }
     }
 }
