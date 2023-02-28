@@ -435,6 +435,12 @@ namespace Module
         [SerializeField, Header("애니메이터")]
         public Animator animator;
 
+        [Space]
+        [SerializeField, Header("양쪽 발")]
+        public Transform leftFeet;
+        public Transform rightFeet;
+
+        [Space]
         public AnimatorOverrideController animatorOverrideController;
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;

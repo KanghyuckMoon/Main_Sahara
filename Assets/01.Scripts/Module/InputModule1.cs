@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapon;
 
 namespace Module
 {
@@ -21,38 +22,53 @@ namespace Module
 
 		private void InputAttack()
 		{
-			if (!StateModule.CheckState(State.ATTACK, State.JUMP))
+			if (mainModule.IsWeaponExist)
 			{
-				mainModule.Attacking = Input.GetMouseButtonDown(0);
-				StateModule.AddState(State.ATTACK);
+				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE))
+				{
+					//Debug.LogError("공격이다 공격이야!!!!!");
 
-				AttackModule.SpownAttackEffect();
-			}
+					if (Input.GetMouseButtonDown(0))
+					{
+						mainModule.Attacking = true;
+						StateModule.AddState(State.ATTACK);
+						StateModule.AddState(State.CHARGE);
 
-			mainModule.IsCharging = Input.GetMouseButton(0);
+						AttackModule.SpownCurrentArrow();
+						AttackModule.SpownAttackEffect();
+					}
+				}
+				mainModule.IsCharging = Input.GetMouseButton(0);
 
-			if(StateModule.CheckState(State.ATTACK))
-            {
-				bool _inputatk = Input.GetMouseButtonUp(0);
+				if (Input.GetMouseButtonUp(0))
+				{
+					//bool _inputatk = Input.GetMouseButtonUp(0);
+					AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward);// + new Vector3(0, 1.6f, 0));
+
+					StateModule.RemoveState(State.CHARGE);
+					//StateModule.RemoveState(State.ATTACK);
+				}
 			}
 		}
 
 		private void InputMove()
 		{
-			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
+			if (!StateModule.CheckState(State.ATTACK))
 			{
-					float _inputX = Input.GetAxis("Horizontal");
-					float _inputY = Input.GetAxis("Vertical");
+				float _inputX = Input.GetAxis("Horizontal");
+				float _inputY = Input.GetAxis("Vertical");
 
-					Vector2 _inputdir = new Vector2(_inputX, _inputY);
+				Vector2 _inputdir = new Vector2(_inputX, _inputY);
 
-					mainModule.ObjDir = _inputdir;
+				mainModule.ObjDir = _inputdir;
+
+				StateModule.AddState(State.MOVING);
 			}
 		}
 
 		private void InputJump()
 		{
-			if (mainModule.CanMove && !mainModule.Attacking && !mainModule.StrongAttacking)
+			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE))
 			{
 				if (mainModule.StopOrNot >= 1)
 				{
@@ -60,6 +76,9 @@ namespace Module
 
 					mainModule.IsJump = _inputup;
 					mainModule.IsJumpBuf = _inputup;
+
+					if (_inputup)
+						StateModule.AddState(State.JUMP);
 				}
 			}
 		}
