@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -36,6 +36,7 @@ namespace CondinedModule
             AddModule(ModuleType.Attack, new AttackModule(this));
             AddModule(ModuleType.Weapon, new WeaponModule(this));
             AddModule(ModuleType.Hit, new HitModule(this));
+            AddModule(ModuleType.State, new StateModule(this));
 
             animator = GetComponent<Animator>();
             visualObject ??= transform.Find("Visual")?.gameObject;
