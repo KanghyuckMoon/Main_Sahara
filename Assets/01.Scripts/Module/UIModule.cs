@@ -49,7 +49,14 @@ namespace Module
 		public override void Init(AbMainModule _mainModule, params string[] _parameters)
 		{
 			base.Init(_mainModule, _parameters);
-            address = _parameters[0];
+            if (_parameters is not null)
+			{
+                if(_parameters.Length > 0)
+				{
+                    address = _parameters[0];
+				}
+			}
+
         }
 
 		public void AddObserver(Observer _observer)
