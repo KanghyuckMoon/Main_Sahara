@@ -13,7 +13,7 @@ namespace Module
         {
             get
             {
-                weaponRight ??= mainModule.GetComponentsInChildren<WeaponSpownObject>();
+                weaponRight = mainModule.GetComponentsInChildren<WeaponSpownObject>();
                 return weaponRight;
             }
         }
@@ -98,8 +98,8 @@ namespace Module
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
 
                 _weapon.transform.SetParent(WhichHandToHold(BaseWeapon));
-                _weapon.transform.localPosition = BaseWeapon.WeaponPositionSO.GetWeaponPoritionData(mainModule.gameObject.name.Trim()).weaponPosition;
-                _weapon.transform.localRotation = BaseWeapon.WeaponPositionSO.GetWeaponPoritionData(mainModule.gameObject.name.Trim()).weaponRotation;
+                _weapon.transform.localPosition = BaseWeapon.WeaponPositionSO.GetWeaponPoritionData(mainModule.name.Trim()).weaponPosition;
+                _weapon.transform.localRotation = BaseWeapon.WeaponPositionSO.GetWeaponPoritionData(mainModule.name.Trim()).weaponRotation;
 
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 BaseWeapon.tagName = _tagname;

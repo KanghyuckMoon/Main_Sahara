@@ -10,7 +10,7 @@ namespace Weapon
         public void MovingFunc(Vector3 _pos)
         {
             transform.SetParent(null);
-            rigidbody.AddForce((_pos * 1) + new Vector3(0, 1, 0), ForceMode.Impulse);
+            rigidbody.AddForce(_pos * 3, ForceMode.Impulse);
         }
     }
 }

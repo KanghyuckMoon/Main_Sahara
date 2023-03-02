@@ -16,8 +16,8 @@ namespace Module
 
         public void SpownGeomtry()
         {
-            attackModule.CreateProjectile(WeaponHand.Weapon, attackModule.ProjectileName);
-            attackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(transform.forward);
+            GameObject _gameObject = attackModule.CreateProjectile(WeaponHand.Weapon, attackModule.ProjectileName);
+            _gameObject?.GetComponent<IProjectile>().MovingFunc(transform.forward);
         }
     }
 }
