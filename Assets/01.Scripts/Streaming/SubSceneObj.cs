@@ -163,7 +163,7 @@ namespace Streaming
 
 			if (Application.isPlaying && SceneDataManager.Instance is not null)
 			{
-				Handles.Label(new Vector3(transform.position.x, transform.position.y + 40, transform.position.z), $"{SceneDataManager.Instance.GetSceneData(SceneName).ObjectDataList.Count}", guiSkin.GetStyle("CountStyle"));
+				Handles.Label(new Vector3(transform.position.x, transform.position.y + 40, transform.position.z), $"{SceneDataManager.Instance.GetSceneData(SceneName).ObjectDataList.objectDataList.Count}", guiSkin.GetStyle("CountStyle"));
 			}
 #endif
 		}

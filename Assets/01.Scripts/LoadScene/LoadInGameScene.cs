@@ -6,6 +6,7 @@ using Utill.Measurement;
 using Utill.Coroutine;
 using Utill.Addressable;
 using UpdateManager;
+using Json;
 
 namespace LoadScene
 {
@@ -75,7 +76,22 @@ namespace LoadScene
             op4.allowSceneActivation = true;
             op5.allowSceneActivation = true;
 
-            var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            if (SaveManager.Instance.IsContinue)
+            {
+                while (!SaveManager.Instance.isLoadSuccess)
+                {
+                    try
+                    {
+                        SaveManager.Instance.Load(SaveManager.Instance.TestDate);
+                    }
+                    catch
+                    {
+                    }
+                    yield return new WaitForSeconds(1f);
+                }
+			}
+
+			var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         }
     }
 

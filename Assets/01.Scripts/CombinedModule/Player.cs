@@ -7,7 +7,7 @@ namespace CondinedModule
 {
     public class Player : AbMainModule
     {
-        private void Awake()
+        private void OnEnable()
         {
             StopOrNot = 1;
             CanMove = true;
@@ -37,6 +37,8 @@ namespace CondinedModule
             animator = GetComponent<Animator>();
             animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             LockOnTarget = null;
+
+            base.OnEnable();
         }
 
         private void OnDestroy()

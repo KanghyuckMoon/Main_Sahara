@@ -24,6 +24,7 @@ namespace Quest
         }
         public QuestSaveDataSave SaveData()
         {
+            questSaveDataSave.questSaveDataList.Clear();
             questSaveDataSave.questSaveDataList = this.questSaveDataList;
             return questSaveDataSave;
         }

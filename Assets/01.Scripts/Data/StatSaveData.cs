@@ -7,6 +7,7 @@ using ForTheTest;
 
 namespace Data
 {
+    [System.Serializable]
     public class StatSaveData
     {
         public int maxHp;

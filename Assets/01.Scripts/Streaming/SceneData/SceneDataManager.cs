@@ -78,7 +78,7 @@ namespace Streaming
 			{
 				return 0;
 			}
-			return _sceneData.ObjectDataList.Count;
+			return _sceneData.ObjectDataList.objectDataList.Count;
 		}
 		
 		/// <summary>

@@ -23,7 +23,7 @@ namespace Streaming
 			}
 		}
 		
-		public List<ObjectData> ObjectDataList
+		public ObjectDataList ObjectDataList
 		{
 			get
 			{
@@ -56,7 +56,7 @@ namespace Streaming
 		private string sceneName = "";
 		private bool isLoad = false;
 
-		private List<ObjectData> objectDataList;
+		public ObjectDataList objectDataList;
 		private List<ObjectSceneChecker> objectCheckerList;
 
 		private SubSceneObj loadSceneObj = null;
@@ -66,11 +66,16 @@ namespace Streaming
 		public SceneData(string _sceneName)
 		{
 			this.sceneName = _sceneName;
-			objectDataList = new List<ObjectData>();
+			objectDataList = new ObjectDataList();
 			objectCheckerList = new List<ObjectSceneChecker>();
 
 			InitScene(_sceneName);
 		}
+
+		//public void SetLoad()
+		//{
+		//
+		//}
 
 		/// <summary>
 		/// 씬에 따라 초기 데이터를 다르게 처리
@@ -96,7 +101,7 @@ namespace Streaming
 		/// <param name="_objectData"></param>
 		public void AddObjectData(ObjectData _objectData)
 		{
-			objectDataList.Add(_objectData);
+			objectDataList.objectDataList.Add(_objectData);
 
 			if (_objectData.lodType == LODType.On)
 			{
@@ -123,7 +128,7 @@ namespace Streaming
 		/// <param name="_objectData"></param>
 		public void RemoveObjectData(ObjectData _objectData)
 		{
-			objectDataList.Remove(_objectData);
+			objectDataList.objectDataList.Remove(_objectData);
 
 			if (_objectData.lodType == LODType.On)
 			{
@@ -155,7 +160,7 @@ namespace Streaming
 		public void Load()
 		{
 			isLoad = true;
-			foreach (ObjectData _objectData in objectDataList)
+			foreach (ObjectData _objectData in objectDataList.objectDataList)
 			{
 				if (_objectData.isUse)
 				{
@@ -236,7 +241,7 @@ namespace Streaming
 
 		private void InitLodObjects()
 		{
-			foreach (ObjectData _objectData in objectDataList)
+			foreach (ObjectData _objectData in objectDataList.objectDataList)
 			{
 				if (_objectData.lodType == LODType.On)
 				{
@@ -246,5 +251,11 @@ namespace Streaming
 			}
 		}
 
+	}
+
+	[System.Serializable]
+	public class ObjectDataList
+	{
+		public List<ObjectData> objectDataList = new List<ObjectData>();
 	}
 }

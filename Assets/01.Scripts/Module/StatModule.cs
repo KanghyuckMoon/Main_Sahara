@@ -43,7 +43,7 @@ namespace Module
 
         public override void Awake()
         {
-            saveData = new SaveData();
+            saveData ??= new SaveData();
             statData = mainModule.GetComponent<Data.StatData>();
         }
 
@@ -58,6 +58,7 @@ namespace Module
 
         public void SaveData()
         {
+            saveData ??= new SaveData();
             saveData.hp = statData.CurrentHp;
             saveData.mana = statData.CurrentMana;
             saveData.position = mainModule.transform.position;
@@ -65,6 +66,7 @@ namespace Module
 
         public void LoadData()
         {
+            saveData ??= new SaveData();
             statData.CurrentHp = saveData.hp;
             statData.CurrentMana = saveData.mana;
             mainModule.transform.position = saveData.position;
