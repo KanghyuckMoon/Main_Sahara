@@ -25,8 +25,8 @@ namespace Weapon
             WeaponPositionData _weaponPositionData = new WeaponPositionData();
 
             _weaponPositionData.objectName = GetComponentInParent<CharacterController>().name.Trim();
-            _weaponPositionData.weaponPosition = transform.position;
-            _weaponPositionData.weaponRotation = transform.rotation;
+            _weaponPositionData.weaponPosition = transform.localPosition;
+            _weaponPositionData.weaponRotation = transform.localRotation;
 
             weaponPositionSO = AddressablesManager.Instance.GetResource<WeaponPositionSO>(objectName + positionString);
             weaponPositionSO.UploadWeaponPositionData(_weaponPositionData);
