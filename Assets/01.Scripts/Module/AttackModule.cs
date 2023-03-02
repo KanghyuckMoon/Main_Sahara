@@ -23,6 +23,17 @@ namespace Module
                 projectileObject = value;
             }
         }
+        public string ProjectileName
+        {
+            get
+            {
+                return projectileName;
+            }
+            set
+            {
+                projectileName = value;
+            }
+        }
 
         private WeaponModule WeaponModule
         {
@@ -35,6 +46,8 @@ namespace Module
 
         private WeaponModule weaponModule;
         private GameObject projectileObject;
+
+        private string projectileName;
 
         public AttackModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -56,11 +69,16 @@ namespace Module
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();
 
                 _projectile.SetActive(true);
-                _projectile.transform.localPosition = _projectileObject.weaponPosition.weaponPosition;
-                _projectile.transform.localRotation = _projectileObject.weaponPosition.weaponRotation;
+                _projectile.transform.localPosition = _projectileObject.weaponPositionSO.GetWeaponPoritionData(mainModule.name).weaponPosition;
+                _projectile.transform.localRotation = _projectileObject.weaponPositionSO.GetWeaponPoritionData(mainModule.name).weaponRotation;
 
                 ProjectileObject = _projectile;
+                return;
                 //_projectile.transform
+            }
+            else
+            {
+                ProjectileObject = null;
             }
         }
 

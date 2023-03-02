@@ -17,19 +17,28 @@ namespace Module
                 return weaponRight;
             }
         }
+        public AttackModule AttackModule
+        {
+            get
+            {
+                attackModule ??= MainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
+                return attackModule;
+            }
+        }
         public BaseWeapon BaseWeapon => baseWeapon;
         public CurrentArrowInfo CurrentArrowInfo => currentArrowInfo;
  
         public GameObject currentWeapon;
         public WeaponSkills weaponSkills;
+        
 
         public bool isProjectileWeapon;
 
         private int animationIndex;
         private string currentWeaponName;
 
-        private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow", WeaponHand.Right);
-
+        private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow", WeaponHand.RightHand);
+        private AttackModule attackModule;
         private Animator Animator
         {
             get
@@ -63,7 +72,7 @@ namespace Module
         {
             animationIndex = int.MaxValue;
             currentArrowInfo.arrowAddress = "Arrow";
-            currentArrowInfo.weaponHand = WeaponHand.Right;
+            currentArrowInfo.weaponHand = WeaponHand.RightHand;
         }
 
         public void ChangeWeapon(string weapon, string animationName)
@@ -89,8 +98,8 @@ namespace Module
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
 
                 _weapon.transform.SetParent(WhichHandToHold(BaseWeapon));
-                _weapon.transform.localPosition = BaseWeapon.WeaponPositionSO.weaponPosition;
-                _weapon.transform.localRotation = BaseWeapon.WeaponPositionSO.weaponRotation;
+                _weapon.transform.localPosition = BaseWeapon.WeaponPositionSO.GetWeaponPoritionData(mainModule.gameObject.name.Trim()).weaponPosition;
+                _weapon.transform.localRotation = BaseWeapon.WeaponPositionSO.GetWeaponPoritionData(mainModule.gameObject.name.Trim()).weaponRotation;
 
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 BaseWeapon.tagName = _tagname;
@@ -106,6 +115,7 @@ namespace Module
                 isProjectileWeapon = BaseWeapon.isProjectile;
 
                 //if(isProjectileWeapon) 
+                AttackModule.ProjectileName = BaseWeapon.WeaponDataSO.projectileObjectName;
 
                 mainModule.IsWeaponExist = true;
                 SetBehaveAnimation();

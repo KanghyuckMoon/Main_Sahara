@@ -43,5 +43,18 @@ namespace Weapon
             weaponPositionSO = AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
             weaponDataSO = AddressablesManager.Instance.GetResource<WeaponDataSO>(weaponName + weaponDataStr);
         }
+
+        [ContextMenu("위치 저장")]
+        public void Upload()
+        {
+            WeaponPositionData _weaponPositionData = new WeaponPositionData();
+
+            _weaponPositionData.objectName = GetComponentInParent<CharacterController>().name.Trim();
+            _weaponPositionData.weaponPosition = transform.position;
+            _weaponPositionData.weaponRotation = transform.rotation;
+
+            weaponPositionSO = AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
+            weaponPositionSO.UploadWeaponPositionData(_weaponPositionData);
+        }
     }
 }

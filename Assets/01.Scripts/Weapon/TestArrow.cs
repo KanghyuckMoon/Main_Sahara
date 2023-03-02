@@ -14,6 +14,11 @@ namespace Weapon
         //    rigidbody = GetComponent<Rigidbody>();
         //}
 
+        //private void FixedUpdate()
+        //{
+            
+        //}
+
         public void MovingFunc(Vector3 _pos)
         {
             rigidbody.useGravity = true;
