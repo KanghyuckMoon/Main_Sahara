@@ -14,20 +14,18 @@ namespace CondinedModule
 
 		public string textSOAddress;
 
-        private void Awake()
+        protected void OnEnable()
         {
+            moduleComponentsDic ??= new();
+            CharacterController = GetComponent<CharacterController>();
             StopOrNot = 1;
             CanMove = true;
 
-            animator = GetComponent<Animator>();
-
             moduleComponentsDic = new();
             CharacterController = GetComponent<CharacterController>();
-            //footRotate = GetComponentInParent<csHomebrewIK>();
-            AddModule(ModuleType.Input, new AIModule(this));
+            AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
             AddModule(ModuleType.Move, new MoveModule(this));
             AddModule(ModuleType.Stat, new StatModule(this));
-            //AddModule(ModuleType.Camera, new CameraModule(this));
             AddModule(ModuleType.Jump, new JumpModule(this));
             AddModule(ModuleType.Hp, new HpModule(this));
             AddModule(ModuleType.Animation, new AnimationModule(this));
@@ -36,9 +34,15 @@ namespace CondinedModule
             AddModule(ModuleType.Attack, new AttackModule(this));
             AddModule(ModuleType.Weapon, new WeaponModule(this));
             AddModule(ModuleType.Hit, new HitModule(this));
-
-            RaycastTarget = transform.Find("RayCastPoint");
+            AddModule(ModuleType.State, new StateModule(this));
             AddModule(ModuleType.Talk, new TalkModule(this, textSOAddress));
+
+            animator = GetComponent<Animator>();
+            visualObject ??= transform.Find("Visual")?.gameObject;
+            animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            RaycastTarget = transform.Find("RayCastPoint");
+
+            base.OnEnable();
         }
     }
 

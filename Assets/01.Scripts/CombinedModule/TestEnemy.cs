@@ -20,14 +20,9 @@ namespace CondinedModule
             StopOrNot = 1;
             CanMove = true;
 
-            //footRotate = GetComponentInParent<csHomebrewIK>();
-
             AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
-            //AddModule(ModuleType.Input, new AIModule(this));
-
             AddModule(ModuleType.Move, new MoveModule(this));
             AddModule(ModuleType.Stat, new StatModule(this));
-            //AddModule(ModuleType.Camera, new CameraModule(this));
             AddModule(ModuleType.Jump, new JumpModule(this));
             AddModule(ModuleType.Hp, new HpModule(this));
             AddModule(ModuleType.Animation, new AnimationModule(this));
