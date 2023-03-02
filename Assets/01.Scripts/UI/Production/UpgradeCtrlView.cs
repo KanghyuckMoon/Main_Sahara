@@ -67,7 +67,7 @@ namespace UI.Upgrade
                     Debug.LogWarning("PosType이 잘못되었습니다" + _type);
                     break;
             }
-            ShowVisualElement(_selectLabel, false); 
+            _selectLabel.style.visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -93,7 +93,8 @@ namespace UI.Upgrade
                     Debug.LogWarning("PosType이 잘못되었습니다" + _posType);
                     break;
             }
-            ShowVisualElement(_selectLabel, true); 
+            _selectLabel.style.visibility = Visibility.Visible; 
+            //ShowVisualElement(_selectLabel, true); 
             _selectLabel.text = _text;
         }
 
@@ -104,7 +105,8 @@ namespace UI.Upgrade
         public void ActiveButton(bool _isLeft,bool _isActive)
         {
             Buttons _type = _isLeft ? Buttons.left_button : Buttons.right_button;
-            ShowVisualElement(GetButton((int)_type), _isActive); 
+            GetButton((int)_type).style.visibility = _isActive ? Visibility.Visible : Visibility.Hidden; 
+        //    ShowVisualElement(GetButton((int)_type), _isActive); 
         }
         /// <summary>
         /// 좌우 이동 버튼 이벤트 등록  

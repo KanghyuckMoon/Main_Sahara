@@ -124,42 +124,62 @@ namespace UI
             {
                 // 인벤토리 활성화 
                 bool _isActive = inventoryPresenter.ActiveView();
-                ActiveCursor(_isActive);
-                SetTime(_isActive);
-                SetKeyAble(KeyCode.I); 
+                SetUIAndCursor(_isActive, KeyCode.I); 
             });
             inputDic.Add(new UIInputData(KeyCode.M, true), () =>
             {
                 // 맵 활성화
                 bool _isActive = mapPresenter.ActiveView();
-                SetTime(_isActive);
-                SetKeyAble(KeyCode.M);
+                SetUI(_isActive, KeyCode.M);
             });
             inputDic.Add(new UIInputData(KeyCode.Q,true), () =>
             {
                 // 퀘스트 활성화
-                bool _isActive = questPresenter.ActiveView(); 
-                ActiveCursor(questPresenter.ActiveView());
-                SetTime(_isActive); 
-                SetKeyAble(KeyCode.M);
+                bool _isActive = questPresenter.ActiveView();
+                SetUIAndCursor(_isActive, KeyCode.Q); 
             });
             inputDic.Add(new UIInputData(KeyCode.U, true), () =>
             {
                 //  활성화
                 bool _isActive = upgradePresenter.ActiveView();
-                ActiveCursor(_isActive);
-                SetTime(_isActive);
-                SetKeyAble(KeyCode.U);
+                SetUIAndCursor(_isActive, KeyCode.U);
             });
             inputDic.Add(new UIInputData(KeyCode.O,true), () =>
             {
                 //  활성화
-                bool _isActive = shopPresenter.ActiveView(); 
-                ActiveCursor(_isActive);
-                SetTime(_isActive);
-                SetKeyAble(KeyCode.O);
+                bool _isActive = shopPresenter.ActiveView();
+                SetUIAndCursor(_isActive, KeyCode.O);
             });
         }
+
+        /// <summary>
+        /// 스크린 활성화시 세팅 + 커서 활성화 
+        /// </summary>
+        private void SetUIAndCursor(bool _isActive, KeyCode _keyCode)
+        {
+            ActiveCursor(_isActive);
+            SetTime(_isActive);
+            SetKeyAble(_keyCode, _isActive);
+        }
+        /// <summary>
+        /// 스크린 활성화시 세팅 
+        /// </summary>
+        private void SetUI(bool _isActive, KeyCode _keyCode)
+        {
+            SetTime(_isActive);
+            SetKeyAble(_keyCode, _isActive);
+        }
+
+        /// <summary>
+        /// 스크린 활성화시 세팅 
+        /// </summary>
+        //private void SetActiveUI(bool _isActive, KeyCode _keyCode)
+        //{
+        //    ActiveCursor(_isActive);
+        //    SetTime(_isActive);
+        //    SetKeyAble(_keyCode);
+        //}
+
         private void UIInput()
         {
             if (isUIInput == false) return;
@@ -219,7 +239,7 @@ namespace UI
             }
         }
 
-        private void SetKeyAble(KeyCode _keyCode)
+        private void SetKeyAble(KeyCode _keyCode, bool _isActive)
         {
             foreach (var _v in inputDic)
             {
@@ -228,7 +248,7 @@ namespace UI
                     _v.Key.isCan = true;
                     continue; 
                 }
-                _v.Key.isCan = false; 
+                _v.Key.isCan = _isActive? false : true; // 스크린 비활성화면 모두 키입력 가능하도록  
             }
 
         }

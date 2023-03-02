@@ -10,7 +10,7 @@ using Utill.Pattern;
 using UI.ConstructorManager;
 using UI.Production;
 using System.Linq;
-using DG.Tweening; 
+using DG.Tweening;
 
 namespace UI.Upgrade
 {
@@ -72,12 +72,11 @@ namespace UI.Upgrade
         {
             // UIToolkit은 레이아웃 구축 시간이 소요되기 때문에
             // 다른 element의 worldbound를 제대로 가져오기 위해서는 구축될 시간이 지난후 가져와야함 
-            yield return new WaitForSeconds(0.01f);
-            SetAllSlotPos();
-            yield return new WaitForSeconds(0.01f);
-            SetAllSlotPos();
-            yield return new WaitForSeconds(0.01f);
-            SetAllSlotPos();
+
+            yield return new WaitForSecondsRealtime(0.01f);
+            StartCoroutine(SetAllSlotPos());
+            yield return new WaitForSecondsRealtime(0.01f);
+            StartCoroutine(SetAllSlotPos());
         }
 
         private void OnEnable()
@@ -95,7 +94,11 @@ namespace UI.Upgrade
             //},TrickleDown.TrickleDown);
 
             upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
-            upgradePickPresenter.SetButtonEvent(() => ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key));
+            upgradePickPresenter.SetButtonEvent(() =>
+            {
+                ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key);
+                Logging.Log("업그레이드 클릭");
+            });
 
             rowList.Clear();
             slotPosDIc.Clear();
@@ -151,12 +154,15 @@ namespace UI.Upgrade
         public void CreateItemTree(ItemDataSO _itemDataSO)
         {
             // 최종템 UI 생성
-            allItemDataList.Clear();
+            ClearAllSlots();
+            //allItemDataList.Clear();
             ItemData _itemData = ItemData.CopyItemDataSO(_itemDataSO);
             itemDataQueue.Enqueue(new UpgradeSlotData(new VisualElement(), _itemData, 0, 1));
 
             CreateTree(); // 재료 템 트리 생성 
             this.ElementCtrlComponent.ResetPosAndZoom();
+            StartCoroutine(SetAllSlotPosCo());
+
         }
 
         /// <summary>
@@ -192,7 +198,7 @@ namespace UI.Upgrade
                 //// 위치 설정 
                 if (isFirstSlot == true) // 최종 아이템이면 가운데 고정 생성 
                 {
-                    _parent.style.left = midX - _parent.resolvedStyle.width ;
+                    _parent.style.left = midX - _parent.resolvedStyle.width;
                     isFirstSlot = false;
                 }
                 else
@@ -225,10 +231,10 @@ namespace UI.Upgrade
         private bool isActive = false; // 포지션 설정시 활성화 여부 
 
         [ContextMenu("고고")]
-        private void SetAllSlotPos()
+        private IEnumerator SetAllSlotPos()
         {
             int _idx = 1;
-            allItemList[0].style.left = midX;
+            allItemList[0].style.left = midX - allItemList[0].resolvedStyle.width / 2;
             allItemList[0].style.opacity = isActive ? 1 : 0;
 
             foreach (var _v in allItemDataList)
@@ -241,11 +247,15 @@ namespace UI.Upgrade
                 float _op = isActive ? 1 : 0;
                 //DOTween.To(() =>0f, x => allItemList[_idx].style.opacity = x, _op, 0.5f).SetDelay(0.5f); 
                 allItemList[_idx].style.opacity = isActive ? 1 : 0;
+                if (isActive == true)
+                {
+                    yield return new WaitForSecondsRealtime(0.05f);
+                }
                 ++_idx;
             }
             isActive = true;
         }
-        
+
         [ContextMenu("삭제")]
         private void ClearAllSlots()
         {
@@ -253,6 +263,7 @@ namespace UI.Upgrade
             rowList.Clear();
             allSlotList.Clear();
             allItemList.Clear();
+            allItemDataList.Clear();
 
             this.upgradeView.ClearAllSlots();
             isActive = false;
@@ -386,9 +397,9 @@ namespace UI.Upgrade
             bool _isActive = upgradeView.ActiveScreen();
             if (_isActive == true)
             {
-                ClearAllSlots();
+                //ClearAllSlots();
                 this.UpgradeCtrlPr.UpdateUI();
-                StartCoroutine(SetAllSlotPosCo());
+                //StartCoroutine(SetAllSlotPosCo());
             }
             return _isActive;
         }

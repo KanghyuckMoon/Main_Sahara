@@ -116,11 +116,12 @@ namespace UI.Upgrade
             distX = _value.x / target.transform.scale.x;
             distY = _value.y / target.transform.scale.y;
 
-            float _targetX, _targetY; // 현재 포지션 + 움직이 거리
-            _targetX = Mathf.Clamp(distX + mapPos.x,
-                                                -(target.contentRect.width /** mapScale.x*/) * 0.5f, (target.contentRect.width /** mapScale.x*/) * 0.5f);
-            _targetY = Mathf.Clamp(distY + mapPos.y,
-                                                -(target.contentRect.height /** mapScale.x*/) * 0.5f, (target.contentRect.height /** mapScale.x*/) * 0.5f);
+            float _targetX, _targetY; // 현재 포지션 + 움직이 거리]
+            float _limitX = Mathf.Clamp(target.contentRect.width * target.transform.scale.x   - Screen.width,0,float.MaxValue); // 화면 크기 보다 대장장이 창이 크면 조작 가능  
+            float _limitY = Mathf.Clamp(target.contentRect.height * target.transform.scale.y - Screen.height,0,float.MaxValue); 
+
+            _targetX = Mathf.Clamp(distX + mapPos.x, -_limitX * 0.5f, _limitX * 0.5f);
+            _targetY = Mathf.Clamp(distY + mapPos.y, -_limitY * 0.5f, _limitY * 0.5f);
 
             this.target.transform.position = new Vector3(_targetX, _targetY, 0);
         }

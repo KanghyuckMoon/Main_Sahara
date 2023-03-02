@@ -83,11 +83,13 @@ namespace UI.Upgrade
              {
                  --curIdx;
                  callback?.Invoke(CurDataSO);
+                 UpdateUI(); 
              });
             this.upgradeCtrlView.AddButtonEvent(_isLeft: false, () =>
             {
                 ++curIdx;
                 callback?.Invoke(CurDataSO);
+                UpdateUI(); 
             });
         }
 
