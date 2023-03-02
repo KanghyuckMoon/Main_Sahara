@@ -24,9 +24,17 @@ namespace Module
                 return hitModule;
             }
         }
+        private StateModule StateModule
+        {
+            get
+            {
+                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+                return stateModule;
+            }
+        }
 
         private HitModule hitModule;
-
+        private StateModule stateModule;
         private PlayerLandEffectSO effect;
 
         private float effectSpownDelay => effect.effectDelayTime;
@@ -128,6 +136,8 @@ namespace Module
 
             if (!mainModule.isGround && _isLand)
             {
+                StateModule.RemoveState(State.JUMP);
+
                 mainModule.KnockBackVector = Vector3.zero;
                 EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
 

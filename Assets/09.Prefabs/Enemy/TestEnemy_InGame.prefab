@@ -1448,7 +1448,6 @@ GameObject:
   - component: {fileID: 3699875109982235527}
   - component: {fileID: 3699875109982235525}
   - component: {fileID: 3699875109982235524}
-  - component: {fileID: 3699875109982235523}
   - component: {fileID: 3699875109982235640}
   - component: {fileID: 2648207059958673375}
   - component: {fileID: 5591809630521021360}
@@ -1519,19 +1518,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &3699875109982235523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3699875109982235521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b041de2e0572a4f87438170e98faa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isColliderOn: 0
 --- !u!114 &3699875109982235640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,18 +1555,20 @@ MonoBehaviour:
   strongAttacking: 0
   gravity: 0
   gravityScale: -19.8
-  groundOffset: 0
+  groundOffset: -0.12
   knockBackVector: {x: 0, y: 0, z: 0}
   hitDelay: 0
   lockOn: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  maxSlope: 0
+  maxSlope: 20
   raycastTarget: {fileID: 0}
-  visualObject: {fileID: 0}
+  visualObject: {fileID: 3699875108783050919}
   model: {fileID: 3699875110483129542}
-  animator: {fileID: 0}
+  animator: {fileID: 3699875109982235525}
+  leftFeet: {fileID: 0}
+  rightFeet: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   aiSOAddress: TestEnemySO
 --- !u!114 &2648207059958673375

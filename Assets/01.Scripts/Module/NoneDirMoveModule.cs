@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Data;
-using EnemyAnimation; 
+using EnemyAnimation;
+using Pool;
 
 namespace Module
 {
@@ -40,6 +41,11 @@ namespace Module
         {
 
         }
+        public NoneDirMoveModule() : base()
+        {
+
+        }
+
 
         /// <summary>
         /// 유기체의 움직임 + 회전. 모든 움직임을 제어한다. 점프제외
@@ -168,6 +174,11 @@ namespace Module
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
             statData = mainModule.GetComponent<StatData>();
             animationBlend = 0;
+        }
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<NoneDirMoveModule>("NoneDirMoveModule", this);
         }
     }
 }

@@ -7,7 +7,15 @@ namespace Pool
 {
     public class ClassPoolManager : Singleton<ClassPoolManager>
     {
-        private Dictionary<string, Queue<object>> classQueueDic = new Dictionary<string, Queue<object>>();
+        public Dictionary<string, Queue<object>> ClassQueueDic
+        {
+            get
+			{
+                return classQueueDic;
+
+            }
+        }
+		private Dictionary<string, Queue<object>> classQueueDic = new Dictionary<string, Queue<object>>();
 
         public int GetAllCount()
 		{

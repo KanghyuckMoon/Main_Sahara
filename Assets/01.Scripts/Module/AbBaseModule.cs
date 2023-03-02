@@ -10,6 +10,7 @@ namespace Module
         Input,
         Move,
         Camera,
+        Stat,
         State,
         Jump,
         Hp,
@@ -33,6 +34,16 @@ namespace Module
         protected AbMainModule mainModule;
 
         public AbBaseModule(AbMainModule _mainModule)
+        {
+            Init(_mainModule, null);
+        }
+
+        public AbBaseModule()
+		{
+
+		}
+
+        public virtual void Init(AbMainModule _mainModule, params string[] _parameters)
         {
             mainModule = _mainModule;
             Awake();

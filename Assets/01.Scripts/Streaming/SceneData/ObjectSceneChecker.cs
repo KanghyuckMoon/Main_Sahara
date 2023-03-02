@@ -4,6 +4,7 @@ using UnityEngine;
 using static Streaming.StreamingUtill;
 using UnityEngine.SceneManagement;
 using Pool;
+using Data;
 
 namespace Streaming
 {
@@ -149,6 +150,11 @@ namespace Streaming
 				objectData = new ObjectData();
 				objectData.CopyObjectDataSO(objectDataSO);
 				objectData.key = objectClassCycle.TargetObject.GetInstanceID();
+				if (objectData.isMonster)
+				{
+					var _statData = objectClassCycle.TargetObject.GetComponentInParent<StatData>();
+					objectData.SetObserble(_statData);
+				}
 				objectData.isUse = true;
 			}
 		}

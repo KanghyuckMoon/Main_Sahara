@@ -5,6 +5,7 @@ using DG.Tweening;
 using Effect;
 using Utill.Addressable;
 using Utill.Pattern;
+using Pool;
 
 namespace Module
 {
@@ -22,7 +23,7 @@ namespace Module
         {
             get
             {
-                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.State);
+                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.Stat);
                 return stateModule;
             }
         }
@@ -48,6 +49,11 @@ namespace Module
         {
 
         }
+        public HitModule() : base()
+        {
+
+        }
+
 
         public override void Start()
         {
@@ -106,6 +112,11 @@ namespace Module
             mainModule.CharacterController.enabled = false;
 
             //mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).currentWeapon.GetComponent<Collider>().enabled = false;
+        }
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<HitModule>("HitModule", this);
         }
     }
 }

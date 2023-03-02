@@ -39,10 +39,27 @@ namespace Module
 
         public UIModule(AbMainModule _mainModule, string _address = null) : base(_mainModule)
         {
-            address = _address;
+            Init(_mainModule, _address);
+        }
+        public UIModule()
+        {
+
         }
 
-        public void AddObserver(Observer _observer)
+		public override void Init(AbMainModule _mainModule, params string[] _parameters)
+		{
+			base.Init(_mainModule, _parameters);
+            if (_parameters is not null)
+			{
+                if(_parameters.Length > 0)
+				{
+                    address = _parameters[0];
+				}
+			}
+
+        }
+
+		public void AddObserver(Observer _observer)
         {
             Observers.Add(_observer);
             _observer.Receive();
@@ -91,6 +108,7 @@ namespace Module
 		{
 			base.OnDisable();
             StaticCoroutineManager.Instance.InstanceDoCoroutine(IRegisterUI());
+            ClassPoolManager.Instance.RegisterObject<UIModule>("UIModule", this);
         }
 
         private IEnumerator IRegisterUI()
@@ -105,8 +123,8 @@ namespace Module
 
         private void RegisterUI()
         {
-            ObjectPoolManager.Instance.RegisterObject(address, hudObject);
             hudObject.SetActive(false);
+            ObjectPoolManager.Instance.RegisterObject(address, hudObject);
             hudObject = null;
         }
 

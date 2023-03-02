@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data;
+using Utill.Pattern;
 
 namespace Streaming
 {
@@ -9,7 +11,7 @@ namespace Streaming
 		None,
 		On,
 	}
-	public class ObjectData
+	public class ObjectData : Observer
 	{
 		public static long totalKey = 0;
 
@@ -23,6 +25,13 @@ namespace Streaming
 		//LOD
 		public string lodAddress = "";
 		public LODType lodType;
+
+		//Monster
+		public bool isMonster = false;
+		public string dataSOPath = null;
+		public StatSaveData statSaveData = null;
+
+		private StatData statData;
 
 		/// <summary>
 		/// 오브젝트 데이터 SO를 복사함
@@ -38,6 +47,23 @@ namespace Streaming
 			this.scale = _objectDataSO.scale;
 			this.lodAddress = _objectDataSO.lodAddress;
 			this.lodType = _objectDataSO.lodType;
+			this.isMonster = _objectDataSO.isMonster;
+			this.dataSOPath = _objectDataSO.dataSOPath;
+		}
+
+		public void Receive()
+		{
+			if (statSaveData is null)
+			{
+				statSaveData = new StatSaveData();
+			}
+			statSaveData.Copy(statData);
+		}
+
+		public void SetObserble(StatData _statData)
+		{
+			statData = _statData;
+			statData.AddObserver(this);
 		}
 	}
 }

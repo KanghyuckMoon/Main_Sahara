@@ -5,6 +5,7 @@ using Utill.Addressable;
 using ForTheTest;
 using Weapon;
 using Data;
+using Pool;
 
 namespace Module
 {
@@ -32,6 +33,10 @@ namespace Module
         private StatData statData;
 
         public StatModule(AbMainModule _mainModule) : base(_mainModule)
+        {
+
+        }
+        public StatModule() : base()
         {
 
         }
@@ -63,6 +68,12 @@ namespace Module
             statData.CurrentHp = saveData.hp;
             statData.CurrentMana = saveData.mana;
             mainModule.transform.position = saveData.position;
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<StatModule>("StatModule", this);
         }
     }
 }

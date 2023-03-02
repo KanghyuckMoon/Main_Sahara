@@ -6,6 +6,7 @@ using FischlWorks;
 using UpdateManager;
 using Utill.Pattern;
 using Data;
+using Pool;
 
 namespace Module
 {
@@ -434,6 +435,12 @@ namespace Module
         [SerializeField, Header("애니메이터")]
         public Animator animator;
 
+        [Space]
+        [SerializeField, Header("양쪽 발")]
+        public Transform leftFeet;
+        public Transform rightFeet;
+
+        [Space]
         public AnimatorOverrideController animatorOverrideController;
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
@@ -455,7 +462,7 @@ namespace Module
             }
         }
 
-		private void OnEnable()
+		protected void OnEnable()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -464,13 +471,14 @@ namespace Module
             UpdateManager.UpdateManager.Add(this);
 		}
 
-		private void OnDisable()
+        protected void OnDisable()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.OnDisable();
             }
             UpdateManager.UpdateManager.Remove(this);
+            moduleComponentsDic.Clear();
         }
 
 		void IUpdateObj.UpdateManager_Update()
@@ -546,8 +554,18 @@ namespace Module
         {
             moduleComponentsDic.Add(moduleType, baseModule);
         }
+        protected void AddModuleWithPool<T>(ModuleType _moduleType, string _moduleAddress, params string[] _parameters) where T : AbBaseModule, new()
+        {
+            T _module = ClassPoolManager.Instance.GetClass<T>(_moduleAddress);
+            if (_module is null)
+            {
+                _module = new T();
+            }
+            _module.Init(this, _parameters);
+            moduleComponentsDic.Add(_moduleType, _module);
+        }
 
-		public void AddObserver(Observer _observer)
+        public void AddObserver(Observer _observer)
 		{
             Observers.Add(_observer);
             _observer.Receive();

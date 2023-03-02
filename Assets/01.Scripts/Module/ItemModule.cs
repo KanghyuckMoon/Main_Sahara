@@ -51,6 +51,10 @@ namespace Module
 
         }
 
+        public ItemModule() : base()
+        {
+
+        }
         private void ApplyPassive()
         {
             foreach(ItemPassive _itemPassive in passiveItem.Values)
@@ -66,5 +70,10 @@ namespace Module
             passiveItem.Remove(_itemKey);
         }
 
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<ItemModule>("ItemModule", this);
+        }
     }
 }

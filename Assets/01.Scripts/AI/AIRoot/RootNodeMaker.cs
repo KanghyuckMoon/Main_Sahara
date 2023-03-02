@@ -33,6 +33,11 @@ namespace AI
 		public RootNodeMaker(AIModule _aiModule, string _address)
 		{
 			aiModule = _aiModule;
+			Init(_address);
+		}
+
+		public void Init(string _address)
+		{
 			aiSO = AddressablesManager.Instance.GetResource<AISO>(_address);
 			aiModule.IsFirstAttack = aiSO.isFirstAttack;
 			aiModule.IsHostilities = aiSO.isFirstAttack;

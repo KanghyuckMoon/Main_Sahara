@@ -5,6 +5,7 @@ using UnityEngine;
 using Utill.Addressable;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Pool;
+using Data;
 
 namespace Streaming
 {
@@ -218,6 +219,13 @@ namespace Streaming
 			_objectSceneChecker.ObjectClassCycle = _objectClassCycle;
 			_objectClassCycle.AddObjectClass(_objectSceneChecker);
 			_objectSceneChecker.Use();
+
+			if (_objectData.isMonster)
+			{
+				StatData _statData = gameObject.GetComponentInParent<StatData>();
+				_statData.LoadSaveData(_objectData.statSaveData);
+				_objectData.SetObserble(_statData);
+			}
 
 			gameObject.SetActive(true);
 

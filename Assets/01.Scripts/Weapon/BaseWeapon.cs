@@ -25,6 +25,8 @@ namespace Weapon
         public WeaponDataSO WeaponDataSO => weaponDataSO;
         public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
 
+        public bool isProjectile;
+
         private WeaponDataSO weaponDataSO;
         private WeaponPositionSO weaponPositionSO;
         private string weaponPosStr = "_Position";

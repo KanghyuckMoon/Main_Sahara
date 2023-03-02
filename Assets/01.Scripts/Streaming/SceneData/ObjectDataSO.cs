@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data;
 
 namespace Streaming
 {
@@ -17,5 +18,9 @@ namespace Streaming
 		//LOD
 		public string lodAddress = "";
 		public LODType lodType;
+
+		//Monster
+		public bool isMonster = false;
+		public string dataSOPath = null;
 	}
 }
