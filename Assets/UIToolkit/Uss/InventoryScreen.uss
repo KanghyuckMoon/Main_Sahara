@@ -332,7 +332,7 @@
 
 #consumation_button .unity-radio-button__checkmark-background {
     background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/ExpendablesLogo.png?fileID=2800000&guid=eee1e93b85d5790448f56cae3fe6f484&type=3#ExpendablesLogo');
-    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 #skill_button .unity-radio-button__checkmark-background {
@@ -363,4 +363,14 @@
 #armor_button .unity-radio-button__checkmark-background {
     background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/EquipmentLogo.png?fileID=2800000&guid=35719cfa7bcbf3c42a0afb95a3be040a&type=3#EquipmentLogo');
     -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.inven_button {
+    transition-property: scale;
+    transition-duration: 0s;
+}
+
+.inven_button .unity-radio-button__checkmark-background {
+    transition-property: -unity-background-image-tint-color, background-image;
+    transition-duration: 1s, 0s;
 }
