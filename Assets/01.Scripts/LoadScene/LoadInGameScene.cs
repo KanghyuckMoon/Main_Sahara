@@ -20,35 +20,40 @@ namespace LoadScene
             AddressablesManager.Instance.LodedSceneClear();
             ClassPoolManager.Instance.Clear();
             ObjectPoolManager.Instance.Clear();
-            System.GC.Collect();
+            System.GC.Collect(); 
             StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
+            SceneManager.LoadScene("InGame");
         }
 
 
         private IEnumerator LoadingScene()
         {
-            var op2 = SceneManager.LoadSceneAsync("InGame", LoadSceneMode.Additive);
+            while (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("InGame"))
+			{
+                yield return new WaitForSeconds(1f);
+			}
+            //var op2 = SceneManager.LoadSceneAsync("InGame", LoadSceneMode.Additive);
             var op6 = SceneManager.LoadSceneAsync("TipScene", LoadSceneMode.Additive);
-            op2.priority = 3;
-            op2.allowSceneActivation = false;
+            //op2.priority = 3;
+            //op2.allowSceneActivation = false;
             op6.allowSceneActivation = false;
             //Time.timeScale = 0;
-            while (op2.progress < 0.9f)
-            {
-                Logging.Log(op2.progress);
-                yield return null;
-            }
+            //while (op2.progress < 0.9f)
+            //{
+            //    Logging.Log(op2.progress);
+            //    yield return null;
+            //}
             while (op6.progress < 0.9f)
             {
-                Logging.Log(op2.progress);
+                Logging.Log(op6.progress);
                 yield return null;
             }
             op6.allowSceneActivation = true;
             //SceneManager.UnloadScene("LoadingScene");
             //var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 
-            op2.allowSceneActivation = true;
-            StartCoroutine(Streaming.StreamingManager.Instance.LoadReadyScene());
+            //op2.allowSceneActivation = true;
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(Streaming.StreamingManager.Instance.LoadReadyScene());
             while (!Streaming.StreamingManager.Instance.IsSetting)
 			{
                 yield return null;
