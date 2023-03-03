@@ -166,14 +166,15 @@ namespace Json
                 return;
             }
             //StaticTime.EntierTime = 0;
-            StaticSave.Load<SaveData>(ref stateModule.saveData, _date);
             StaticSave.Load<InventorySave>(ref inventorySO.inventorySave, _date);
             StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
 
             //별도의 적용 필요함
             Player.GetComponentInChildren<CharacterController>().enabled = false;
-            (Player.GetComponent<AbMainModule>() as Player).Awake();
-            (Player.GetComponent<AbMainModule>() as Player).GetModuleComponent<StatModule>(ModuleType.Stat).LoadData();
+            (Player.GetComponent<AbMainModule>() as Player).OnEnable();
+            stateModule = (Player.GetComponent<AbMainModule>() as Player).GetModuleComponent<StatModule>(ModuleType.Stat);
+            StaticSave.Load<SaveData>(ref stateModule.saveData, _date);
+            stateModule.LoadData();
             inventorySO.LoadData();
             questSaveDataSO.LoadData();
             QuestManager.Instance.LoadQuestSaveData(questSaveDataSO);

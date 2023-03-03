@@ -466,6 +466,7 @@ namespace Module
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
+                baseModule.Init(this);
                 baseModule?.OnEnable();
             }
             UpdateManager.UpdateManager.Add(this);

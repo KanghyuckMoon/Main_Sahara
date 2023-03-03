@@ -185,7 +185,13 @@ namespace Streaming
 					if (_obj.ObjectData.isUse)
 					{
 						_obj.UnUse();
-						if (_obj?.ObjectClassCycle.gameObject is not null)
+						ObjectClassCycle _objectClassCycle = _obj?.ObjectClassCycle;
+						if(_objectClassCycle is null)
+						{
+							objectCheckerList.RemoveAt(0);
+							continue;
+						}
+						else if (_objectClassCycle is not null && _objectClassCycle?.gameObject is not null)
 						{
 							_obj.ObjectClassCycle.TargetObject.SetActive(false);
 							_obj.ObjectClassCycle.RemoveObjectClass(_obj);

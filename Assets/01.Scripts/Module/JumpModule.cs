@@ -22,6 +22,10 @@ namespace Module
 		{
             get
 			{
+                if (mainModule is null)
+				{
+                    return 0f;
+				}
                 return mainModule.StatData.Jump;
             }
 		}
@@ -101,17 +105,18 @@ namespace Module
         }
 
 		public override void OnDisable()
-		{
+        {
             animator = null;
+            mainModule = null;
             base.OnDisable();
-		}
+            Pool.ClassPoolManager.Instance.RegisterObject<JumpModule>("JumpModule", this);
+        }
 
 		public override void OnDestroy()
 		{
             animator = null;
             mainModule = null;
 			base.OnDestroy();
-            Pool.ClassPoolManager.Instance.RegisterObject<JumpModule>("JumpModule", this);
         }
 	}
 }

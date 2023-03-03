@@ -182,5 +182,17 @@ namespace Module
 			base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<WeaponModule>("WeaponModule", this);
 		}
+
+		public override void OnDestroy()
+        {
+            currentWeapon = null;
+            weaponSkills = null;
+            baseWeapon = null;
+            stateModule = null;
+            animator = null;
+            weaponRight = null;
+            mainModule = null;
+            base.OnDestroy();
+		}
 	}
 }
