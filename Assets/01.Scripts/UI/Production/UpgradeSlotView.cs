@@ -14,6 +14,7 @@ namespace UI.Production
         {
             image,
             active_mark,
+            frame,
         }
     
         enum Labels
@@ -63,6 +64,8 @@ namespace UI.Production
 
             //GetVisualElement((int)Elements.active_mark)
         }
+
+        //public void 
     }
 
 }

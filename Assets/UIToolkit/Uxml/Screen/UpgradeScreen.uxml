@@ -3,10 +3,10 @@
     <ui:Template name="UpgradeInRow" src="project://database/Assets/UIToolkit/Uxml/UpgradeInRow.uxml?fileID=9197481963319205126&amp;guid=fdbbe80c33115a540a2326d4183ebc11&amp;type=3#UpgradeInRow" />
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/UpgradeScreen.uss?fileID=7433441132597879392&amp;guid=1ee34cea76d74de4eb37c92abf751a82&amp;type=3#UpgradeScreen" />
-    <ui:VisualElement name="upgrade_screen" class="screen" style="background-color: rgba(0, 0, 0, 0.91); background-image: url(&apos;project://database/Assets/12.Texture/UI/Make/CraftUI/ItemCraftBackground.png?fileID=2800000&amp;guid=746cf0a6bd476544aa056940c6f60eff&amp;type=3#ItemCraftBackground&apos;);">
-        <ui:VisualElement name="move_screen" style="position: absolute; width: 100%; height: 100%; background-image: none; background-color: rgba(0, 0, 0, 0);">
+    <ui:VisualElement name="upgrade_screen" class="screen" style="background-color: rgba(0, 0, 0, 0.91); background-image: url(&apos;project://database/Assets/12.Texture/UI/Make/CraftUI/ItemCraftBackground.png?fileID=2800000&amp;guid=746cf0a6bd476544aa056940c6f60eff&amp;type=3#ItemCraftBackground&apos;); top: 2px; right: 0; left: 0; bottom: -2px;">
+        <ui:VisualElement name="move_screen" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; background-image: none; background-color: rgba(0, 0, 0, 0);">
             <ui:VisualElement name="item" class="item" style="display: none;" />
-            <ui:VisualElement name="slot_parent" style="width: 100%; height: 100%; padding-left: 0; padding-right: 0; padding-top: 180px; padding-bottom: 0;">
+            <ui:VisualElement name="slot_parent" picking-mode="Ignore" style="width: 100%; height: 100%; padding-left: 0; padding-right: 0; padding-top: 180px; padding-bottom: 0;">
                 <ui:VisualElement name="row" style="flex-direction: row; justify-content: space-around; display: none;">
                     <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/12.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;); -unity-background-scale-mode: scale-to-fit; display: flex; visibility: hidden;" />
                 </ui:VisualElement>
@@ -56,7 +56,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button text="합성하기" display-tooltip-when-elided="true" name="compose_button" class="upgrade_button font_base" style="margin-left: 10px; margin-right: 10px; margin-top: 10px; font-size: 20px; color: rgb(248, 248, 248); -unity-font-style: bold; max-width: 100px; width: auto;" />
+            <ui:Button text="합성하기" display-tooltip-when-elided="true" name="compose_button" class="upgrade_button font_base" style="margin-left: 10px; margin-right: 10px; margin-top: 10px; font-size: 20px; color: rgb(248, 248, 248); -unity-font-style: bold; width: auto; min-width: 100px;" />
             <ui:VisualElement name="absolute_parent" style="position: absolute;">
                 <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; position: absolute;">
                     <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
@@ -83,18 +83,18 @@
         </ui:VisualElement>
         <ui:Label text="ITEM CRAFT" display-tooltip-when-elided="true" name="title_label" class="title_label" />
         <ui:VisualElement name="button_parent" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; flex-direction: column; align-items: stretch; justify-content: space-between; padding-left: 30px; padding-right: 30px; padding-top: 20px;">
-            <ui:VisualElement name="top_panel" picking-mode="Ignore" class="panel" style="align-items: center;">
-                <ui:VisualElement name="label_parent" picking-mode="Ignore" style="flex-direction: row; width: 500px; justify-content: center; height: 100px;">
+            <ui:VisualElement name="top_panel" picking-mode="Ignore" class="panel" style="align-items: center;" />
+            <ui:VisualElement name="mid_panel" picking-mode="Ignore" class="panel" style="flex-direction: row; align-items: center; justify-content: space-between;">
+                <ui:Button display-tooltip-when-elided="true" name="left_button" class="move_button" style="display: flex; visibility: hidden;" />
+                <ui:Button display-tooltip-when-elided="true" name="right_button" class="move_button" style="background-image: url(&apos;project://database/Assets/UIToolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=0c59483ae80942c49a8ed8c34f22783d&amp;type=3#arrow-right@2x&apos;); visibility: hidden;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="panel" style="justify-content: flex-end; padding-bottom: 20px;">
+                <ui:VisualElement name="label_parent" picking-mode="Ignore" style="flex-direction: row; width: 100%; justify-content: center; height: 100px;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="left_label" class="font_base common_label" />
                     <ui:Label text="TEsT" display-tooltip-when-elided="true" name="mid_label" class="font_base selected_label" />
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="right_label" class="common_label font_base" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="mid_panel" picking-mode="Ignore" class="panel" style="flex-direction: row; align-items: center; justify-content: space-between;">
-                <ui:Button display-tooltip-when-elided="true" name="left_button" class="move_button" style="display: flex; visibility: hidden;" />
-                <ui:Button display-tooltip-when-elided="true" name="right_button" class="move_button" style="background-image: url(&apos;project://database/Assets/UIToolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=0c59483ae80942c49a8ed8c34f22783d&amp;type=3#arrow-right@2x&apos;); visibility: hidden;" />
-            </ui:VisualElement>
-            <ui:VisualElement class="panel" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

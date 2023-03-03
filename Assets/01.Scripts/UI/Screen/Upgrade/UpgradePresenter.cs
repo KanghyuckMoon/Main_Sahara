@@ -28,7 +28,6 @@ namespace UI.Upgrade
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
         private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // 모든 슬롯 리스트 
 
-        [SerializeField]
         private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소 
         private Dictionary<int, List<Vector2>> slotPosDIc = new Dictionary<int, List<Vector2>>(); // 재료 수에 따른 위치 딕셔너리 
         private Queue<UpgradeSlotData> itemDataQueue = new Queue<UpgradeSlotData>(); // 생성할 아이템 저장 큐 
@@ -283,7 +282,8 @@ namespace UI.Upgrade
             //this.upgradeView.SetParentSlot(_upgradePr.Parent);
             allSlotList.Add(_slotPr);
             this.CurRow.Add(_slotPr.Parent.ElementAt(0));
-            _slotPr.SetItemData(_itemData);
+            _slotPr.SetItemDataHave(_itemData); 
+            // _slotPr.SetItemData(_itemData);
 
             return _slotPr.Element1;
         }

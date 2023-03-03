@@ -46,6 +46,11 @@ namespace UI.Upgrade
             element1 = parent.ElementAt(0);
         }
 
+        public void UpdateUI()
+        {
+
+        }
+
         public void SetItemData(ItemData _itemData)
         {
             if(this.upgradeSlotView == null)

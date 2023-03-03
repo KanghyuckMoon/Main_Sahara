@@ -8,13 +8,10 @@ namespace UI.Upgrade
     /// <summary>
     ///  이동, 확대 축소 
     /// </summary>
-    /// 
-    [System.Serializable]
     public class ElementCtrlComponent 
     {
         private VisualElement target;
         private bool isCtrl;
-        [SerializeField]
         private float xMoveValue, yMoveValue, moveSpeed = 600f, zoomValue, zoomSpeed = 1f;
         private float minZoomValue = 1f, maxZoomValue = 2f;
         // 프로퍼티 
