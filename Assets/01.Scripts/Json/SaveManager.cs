@@ -185,7 +185,9 @@ namespace Json
 
             foreach (var _sceneData in _sceneDataList)
             {
+                _sceneData.Value.SaveUnLoad();
                 StaticSave.Load<ObjectDataList>(ref _sceneData.Value.objectDataList, _sceneData.Key + _date);
+                _sceneData.Value.SaveLoad();
             }
 
             for (int i = 0; i < ShopAllSO.shopSOList.Count; ++i)

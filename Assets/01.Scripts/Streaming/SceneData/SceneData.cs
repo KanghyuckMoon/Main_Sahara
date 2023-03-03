@@ -205,6 +205,52 @@ namespace Streaming
 			}
 		}
 
+		public void SaveUnLoad()
+		{
+			while (objectCheckerList.Count > 0)
+			{
+				ObjectSceneChecker _obj = objectCheckerList[0];
+				if (_obj is not null)
+				{
+					if (_obj.ObjectData.isUse)
+					{
+						_obj.UnUse();
+						ObjectClassCycle _objectClassCycle = _obj?.ObjectClassCycle;
+						if (_objectClassCycle is null)
+						{
+							objectCheckerList.RemoveAt(0);
+							continue;
+						}
+						else if (_objectClassCycle is not null && _objectClassCycle?.gameObject is not null)
+						{
+							_obj.ObjectClassCycle.TargetObject.SetActive(false);
+							_obj.ObjectClassCycle.RemoveObjectClass(_obj);
+							ObjectPoolManager.Instance.RegisterObject(_obj.ObjectData.address, _obj.ObjectClassCycle.TargetObject);
+							ClassPoolManager.Instance.RegisterObject("ObjectSceneChecker", _obj);
+						}
+					}
+				}
+
+				objectCheckerList.RemoveAt(0);
+			}
+		}
+		public void SaveLoad()
+		{
+			if(IsLoad)
+			{
+				foreach (ObjectData _objectData in objectDataList.objectDataList)
+				{
+					//if (_objectData.isUse)
+					//{
+					//	continue;
+					//}
+					LoadObjectData(_objectData);
+					//추후 풀링으로 교체
+				}
+			}
+		}
+
+
 		private void LoadObjectData(ObjectData _objectData)
 		{
 			if (_objectData.address is not null)

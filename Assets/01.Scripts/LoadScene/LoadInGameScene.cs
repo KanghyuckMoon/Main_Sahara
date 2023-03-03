@@ -32,7 +32,7 @@ namespace LoadScene
             op2.priority = 3;
             op2.allowSceneActivation = false;
             op6.allowSceneActivation = false;
-
+            //Time.timeScale = 0;
             while (op2.progress < 0.9f)
             {
                 Logging.Log(op2.progress);
@@ -44,7 +44,9 @@ namespace LoadScene
                 yield return null;
             }
             op6.allowSceneActivation = true;
-            var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            //SceneManager.UnloadScene("LoadingScene");
+            //var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+
             op2.allowSceneActivation = true;
             StartCoroutine(Streaming.StreamingManager.Instance.LoadReadyScene());
             while (!Streaming.StreamingManager.Instance.IsSetting)
@@ -94,7 +96,8 @@ namespace LoadScene
                 }
 			}
 
-			var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            //Time.timeScale = 1;
         }
     }
 
