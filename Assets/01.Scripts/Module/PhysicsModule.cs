@@ -32,9 +32,27 @@ namespace Module
                 return stateModule;
             }
         }
+        private HpModule HpModule
+        {
+            get
+            {
+                hpModule ??= mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
+                return hpModule;
+            }
+        }
+        private JumpModule JumpModule
+        {
+            get
+            {
+                jumpModule ??= mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
+                return jumpModule;
+            }
+        }
 
+        private JumpModule jumpModule;
         private HitModule hitModule;
         private StateModule stateModule;
+        private HpModule hpModule;
         private PlayerLandEffectSO effect;
 
         private float effectSpownDelay => effect.effectDelayTime;
@@ -136,10 +154,14 @@ namespace Module
 
             if (!mainModule.isGround && _isLand)
             {
+                FallDamage();
+
                 StateModule.RemoveState(State.JUMP);
 
                 mainModule.KnockBackVector = Vector3.zero;
                 EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
+                //StatModule.
+
 
                 mainModule.StartCoroutine(LandingDelay());
             }
@@ -175,6 +197,17 @@ namespace Module
                 }
                 currenteffectSpownDelay += Time.deltaTime * delay;
             }
+        }
+
+        private void FallDamage()
+        {
+            if (JumpModule.gravityWeight <= -100)
+            {
+                //Debug.LogError("³«»ç ³«»ç");
+                HpModule.GetDamage(20);
+            }
+
+            JumpModule.gravityWeight = 0;
         }
     }
 }

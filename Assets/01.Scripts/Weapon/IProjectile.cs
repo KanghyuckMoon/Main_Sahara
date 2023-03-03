@@ -6,6 +6,6 @@ namespace Weapon
 {
     public interface IProjectile
     {
-        public void MovingFunc(Vector3 _pos);
+        public void MovingFunc();
     }
 }

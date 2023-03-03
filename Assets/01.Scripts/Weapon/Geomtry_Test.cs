@@ -7,10 +7,11 @@ namespace Weapon
     public class Geomtry_Test : ProjectileObject, IProjectile
     {
         public Rigidbody rigidbody;
-        public void MovingFunc(Vector3 _pos)
+
+        public void MovingFunc()
         {
             transform.SetParent(null);
-            rigidbody.AddForce(_pos * 3, ForceMode.Impulse);
+            rigidbody.AddForce(objectData.position * objectData.speed, ForceMode.Impulse);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Module
 {
     public class WeaponModule : AbBaseModule
     {
+        #region public 프로퍼티
         public WeaponSpownObject[] WeaponRight
         {
             get
@@ -27,27 +28,11 @@ namespace Module
         }
         public BaseWeapon BaseWeapon => baseWeapon;
         public CurrentArrowInfo CurrentArrowInfo => currentArrowInfo;
- 
+        #endregion
+
         public GameObject currentWeapon;
         public WeaponSkills weaponSkills;
-        
-
         public bool isProjectileWeapon;
-
-        private int animationIndex;
-        private string currentWeaponName;
-
-        private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow", WeaponHand.RightHand);
-        private AttackModule attackModule;
-        private Animator Animator
-        {
-            get
-            {
-                animator ??= mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
-                return animator;
-            }
-        }
-        private BaseWeapon baseWeapon;
 
         private StatModule StateModule
         {
@@ -57,10 +42,29 @@ namespace Module
                 return stateModule;
             }
         }
+        private Animator Animator
+        {
+            get
+            {
+                animator ??= mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
+                return animator;
+            }
+        }
+
+        #region private 변수
+        private int animationIndex;
+        private string currentWeaponName;
+
+        private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow", WeaponHand.RightHand);
+        private AttackModule attackModule;
+        private BaseWeapon baseWeapon;
+        private ProjectileGenerator projectileGenerator;
+
         private StatModule stateModule;
         private Animator animator;
         private WeaponSpownObject[] weaponRight;
         private IWeaponSkills iWeaponSkills;
+        #endregion
         //private ArrowInfo arrowInfo;
 
         public WeaponModule(AbMainModule _mainModule) : base(_mainModule)
@@ -73,6 +77,8 @@ namespace Module
             animationIndex = int.MaxValue;
             currentArrowInfo.arrowAddress = "Arrow";
             currentArrowInfo.weaponHand = WeaponHand.RightHand;
+
+            projectileGenerator = mainModule.GetComponent<ProjectileGenerator>();
         }
 
         public void ChangeWeapon(string weapon, string animationName)
@@ -104,6 +110,7 @@ namespace Module
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 BaseWeapon.tagName = _tagname;
                 mainModule.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
+                projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
 
                 StateModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 

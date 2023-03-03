@@ -7,6 +7,8 @@ namespace Module
 {
     public class JumpModule : AbBaseModule
     {
+        public float gravityWeight = 0;
+
         private Animator animator;
 
         private float jumpHeight;
@@ -34,6 +36,13 @@ namespace Module
         public override void FixedUpdate()
         {
             Jump();
+            Weight();
+        }
+
+        void Weight()
+        {
+            if (gravityWeight >= mainModule.Gravity)
+                gravityWeight = mainModule.Gravity;
         }
 
         void Jump()

@@ -55,22 +55,24 @@ namespace Module
 
         public void SpownCurrentArrow()
         {
-            CreateProjectile(WeaponModule.CurrentArrowInfo.weaponHand, ProjectileName);
+            //CreateProjectile(WeaponModule.CurrentArrowInfo.weaponHand, ProjectileName);
         }
 
-        public GameObject CreateProjectile(WeaponHand _weaponHand, string _projectileObjectName)
+        public GameObject CreateProjectile(ProjectileObjectData _projectileObjectData)
         {
             if (WeaponModule.isProjectileWeapon)
             {
-                GameObject _projectile = ObjectPoolManager.Instance.GetObject(_projectileObjectName);
+                GameObject _projectile = ObjectPoolManager.Instance.GetObject(WeaponModule.CurrentArrowInfo.arrowAddress);
 
-                _projectile.transform.SetParent(WhichHandToHold(_weaponHand));
+                _projectile.transform.SetParent(WhichHandToHold(_projectileObjectData.weaponHand));
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();
 
                 _projectile.SetActive(true);
                 //Debug.LogError(mainModule.name + "     :     " + mainModule.gameObject.name);
-                _projectile.transform.localPosition = _projectileObject.weaponPositionSO.GetWeaponPoritionData(mainModule.name).weaponPosition;
-                _projectile.transform.localRotation = _projectileObject.weaponPositionSO.GetWeaponPoritionData(mainModule.name).weaponRotation;
+                _projectile.transform.localPosition = _projectileObjectData.position;
+                _projectile.transform.localRotation = _projectileObjectData.rotation;
+
+                _projectileObject.objectData = _projectileObjectData;
 
                 ProjectileObject = _projectile;
             }

@@ -24,6 +24,8 @@ namespace Weapon
         public WeaponPositionSO WeaponPositionSO => weaponPositionSO;
         public WeaponDataSO WeaponDataSO => weaponDataSO;
         public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
+        public ProjectilePositionSO ProjectilePositionSO => projectilePositionSO;
+
 
         public bool isProjectile;
 
@@ -35,7 +37,8 @@ namespace Weapon
 
         [SerializeField]
         private HitBoxDatasSO hitBoxDataSO;
-
+        [SerializeField]
+        private ProjectilePositionSO projectilePositionSO;
 
         private void Awake()
         {
