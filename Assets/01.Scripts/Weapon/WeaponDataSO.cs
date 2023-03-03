@@ -23,6 +23,9 @@ namespace Weapon
         [Header("차징이 가능한가?")] public bool canCharge;
 
         [Space]
+        [Header("소환 될 투사체")] public string projectileObjectName;
+
+        [Space]
         [Header("스킬 마나 사용량")] public int manaConsumed;
         [Header("스킬 데미지")] public int skillDamage;
 
@@ -35,5 +38,12 @@ namespace Weapon
         [TextArea]
         [Header("무긴 설명")]
         public string weaponExplanation;
+    }
+
+    public enum ProjectileObjectType
+    {
+        BASICARROW,
+        GEOMETRY,
+        NONE
     }
 }

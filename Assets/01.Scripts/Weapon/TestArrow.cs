@@ -9,17 +9,19 @@ namespace Weapon
     {
         public Rigidbody rigidbody;
 
-        //private void Start()
+        //public void SetPosition()
         //{
-        //    rigidbody = GetComponent<Rigidbody>();
+
         //}
 
-        public void MovingFunc(Vector3 _pos)
+        public void MovingFunc()
         {
             rigidbody.useGravity = true;
 
+            transform.rotation = Quaternion.Euler(objectData.position);
+
             transform.SetParent(null);
-            rigidbody.AddForce((_pos * 35) + new Vector3(0, 1, 0), ForceMode.Impulse);
+            rigidbody.AddForce((objectData.position * objectData.speed) + new Vector3(0, 1, 0), ForceMode.Impulse);
             //rigidbody.MovePosition(Vector3.up * 10);
         }
     }

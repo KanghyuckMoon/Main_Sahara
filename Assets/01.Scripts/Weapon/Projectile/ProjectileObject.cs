@@ -7,8 +7,10 @@ namespace Weapon
 {
     public class ProjectileObject : MonoBehaviour
     {
-        public WeaponPositionSO weaponPosition;
+        public ProjectilePositionSO projectilePosSO;
         public WeaponHand weaponHand;
+
+        public ProjectileObjectData objectData;
 
         [SerializeField, Header("무기 이름")]
         private string objectName;
@@ -16,7 +18,20 @@ namespace Weapon
 
         private void Awake()
         {
-            weaponPosition = AddressablesManager.Instance.GetResource<WeaponPositionSO>(objectName + positionString);
+            projectilePosSO = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
+        }
+
+        [ContextMenu("위치 저장")]
+        public void Upload()
+        {
+            //WeaponPositionData _weaponPositionData = new WeaponPositionData();
+
+            //_weaponPositionData.objectName = GetComponentInParent<CharacterController>().name.Trim();
+            //_weaponPositionData.weaponPosition = transform.localPosition;
+            //_weaponPositionData.weaponRotation = transform.localRotation;
+
+            projectilePosSO = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
+            projectilePosSO.Upload(objectData);
         }
     }
 }
