@@ -120,7 +120,7 @@ namespace UI
             return IsVisible(); 
         }
 
-        public void ActiveScreen(bool _isActive)
+        public virtual void ActiveScreen(bool _isActive)
         {
             ShowVisualElement(parentElement, _isActive);
         }

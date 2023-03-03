@@ -68,6 +68,12 @@ namespace UI.Quest
             InitListView(); 
         }
 
+        public override void ActiveScreen(bool _isActive)
+        {
+            base.ActiveScreen(_isActive);
+            _questEntryList.Clear(); 
+        }
+
         /// <summary>
         /// 퀘스트 이름, 설명 나타내기 
         /// </summary>
@@ -151,6 +157,8 @@ namespace UI.Quest
                 {
                     ShowVisualElement(_v, x); 
                 }
+                float _fV = x ? 1.05f : 1f;
+                GetRadioButton((int)RadioButtons.main_button).style.scale = new StyleScale(new Scale(new Vector3(_fV, _fV, 0)));
             });
             
             AddRadioBtnChangedEvent((int)RadioButtons.sub_button, (x) =>
@@ -162,6 +170,8 @@ namespace UI.Quest
                 {
                     ShowVisualElement(_v, x);
                 }
+                float _fV = x ? 1.05f : 1f; 
+                GetRadioButton((int)RadioButtons.sub_button).style.scale =new StyleScale(new Scale(new Vector3(_fV, _fV, 0))); 
             });
         }
 
