@@ -226,7 +226,7 @@ namespace UI
         /// </summary>
         private void SetTime(bool _isActive)
         {
-            Time.timeScale = _isActive ? 0f : 1f; 
+            //Time.timeScale = _isActive ? 0f : 1f; 
         }
         /// <summary>
         /// 모든 스크린 비활성화 

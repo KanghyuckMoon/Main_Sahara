@@ -31,7 +31,7 @@ namespace UI
 
         // 프로퍼티 
         private Vector2 MoveDir => new Vector2(xMoveValue, yMoveValue).normalized;
-        public MarkersComponent MarkersComponent => markersComponent; 
+        public MarkersComponent MarkersComponent => markersComponent;
 
         public void Init(MapView _mapView)
         {
@@ -45,12 +45,12 @@ namespace UI
             // 이동 
             MoveMap();
             // 확대 축소 
-            ZoomMap(); 
+            ZoomMap();
             //mapView.MapRect.width 
             // 마커 생성
-            if(Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.G))
             {
-                markersComponent.CreateMarker(new Vector2(-mapView.Map.transform.position.x - 35, -mapView.Map.transform.position.y -35),mapView.MarkerParent); 
+                markersComponent.CreateMarker(new Vector2(-mapView.Map.transform.position.x, -mapView.Map.transform.position.y), mapView.MarkerParent);
             }
         }
 
@@ -98,12 +98,12 @@ namespace UI
             //Vector2 mapPos = new Vector2(mapView.Map.style.left.value.value, mapView.Map.style.top.value.value);
 
             float mapX, mapY;
-            mapX = Mathf.Clamp(mapPos.x + -xMoveValue * (moveSpeed - mapView.MapTrm.scale.x) * Time.deltaTime,
-                                               // -mapView.MapRect.width - width,width * 0.5f);
+            mapX = Mathf.Clamp(mapPos.x + -MoveDir.x * (moveSpeed / mapView.MapTrm.scale.x) * Time.deltaTime,
+                                                // -mapView.MapRect.width - width,width * 0.5f);
                                                 -(mapView.MapRect.width /** mapScale.x*/) * 0.5f, (mapView.MapRect.width /** mapScale.x*/) * 0.5f);
 
-            mapY = Mathf.Clamp(mapPos.y + yMoveValue * (moveSpeed - mapView.MapTrm.scale.y) * Time.deltaTime,
-                                              //  -mapView.MapRect.height - height,height * 0.5f);
+            mapY = Mathf.Clamp(mapPos.y + MoveDir.y * (moveSpeed / mapView.MapTrm.scale.y) * Time.deltaTime,
+                                                //  -mapView.MapRect.height - height,height * 0.5f);
                                                 -(mapView.MapRect.height /** mapScale.y*/) * 0.5f, (mapView.MapRect.height /** mapScale.y*/) * 0.5f);
             // 왜 스케일 안 곱해야 하는거지? 
 
@@ -121,7 +121,7 @@ namespace UI
             Vector3 mapScale = mapView.MapTrm.scale;
 
             /// 확대 축소 
-            
+
             // 맵 확대 축소 
             float scaleX, scaleY;
             scaleX = Mathf.Clamp(mapScale.x + (zoomValue * mapScale.x) * zoomSpeed, minZoomValue, maxZoomValue);
@@ -131,7 +131,7 @@ namespace UI
             // 마커들 확대 축소 
             // mapView.MarkerParent.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
             var _markers = mapView.MarkerParent.Children();
-            foreach(var _marker in _markers)
+            foreach (var _marker in _markers)
             {
                 _marker.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
             }
