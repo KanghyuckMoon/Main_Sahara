@@ -224,7 +224,7 @@ namespace Module
             set
 			{
                 attacking = value;
-                animator.SetBool("Attack", attacking);
+                Animator.SetBool("Attack", attacking);
             }
         }
         public bool StrongAttacking
@@ -236,7 +236,7 @@ namespace Module
             set
 			{
                 strongAttacking = value;
-                animator.SetBool("StrongAttack", strongAttacking);
+                Animator.SetBool("StrongAttack", strongAttacking);
             }
 		}
 
@@ -279,7 +279,7 @@ namespace Module
             set
             {
                 lockOn = value;
-                animator.SetBool("LockOn", lockOn);
+                Animator.SetBool("LockOn", lockOn);
             }
         }
 
@@ -336,14 +336,25 @@ namespace Module
         {
             get
             {
-                animatorOverrideController ??= new AnimatorOverrideController(animator.runtimeAnimatorController);
-                animator.runtimeAnimatorController = animatorOverrideController;
+                animatorOverrideController ??= new AnimatorOverrideController(Animator.runtimeAnimatorController);
+                Animator.runtimeAnimatorController = animatorOverrideController;
                 return animatorOverrideController;
             }
         }
 
-		[SerializeField, Header("¸ØÃâ±î¸»±î")] 
-        private float stopOrNot;
+        public Animator Animator
+		{
+            get
+			{
+                animator ??= GetComponent<Animator>();
+                return animator;
+			}
+            set
+			{
+                animator = value;
+			}
+		}
+		private float stopOrNot;
 
         [SerializeField, Header("(·Ï¿Â)Å¸°Ù")]
         private Transform lockOnTarget = null;
@@ -466,7 +477,8 @@ namespace Module
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
-                baseModule.Init(this);
+                //baseModule.Init(this);
+                baseModule?.Awake();
                 baseModule?.OnEnable();
             }
             UpdateManager.UpdateManager.Add(this);
@@ -524,11 +536,11 @@ namespace Module
 
         private void OnDestroy()
         {
-            OnDisable();
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.OnDestroy();
             }
+            moduleComponentsDic.Clear();
         }
 
         private void OnDrawGizmos()

@@ -30,12 +30,25 @@ namespace Module
 
         private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow", WeaponHand.Right);
 
-        private Animator Animator
+        public Animator animator;
+
+        public Animator Animator
         {
             get
             {
-                animator ??= mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
+                try
+                {
+                    animator ??= mainModule.GetComponentInChildren<Animator>();
+                }
+                catch
+                {
+                    animator = mainModule.GetComponentInChildren<Animator>();
+                }
                 return animator;
+            }
+            set
+            {
+                animator = value;
             }
         }
         private BaseWeapon baseWeapon;
@@ -49,7 +62,6 @@ namespace Module
             }
         }
         private StatModule stateModule;
-        private Animator animator;
         private WeaponSpownObject[] weaponRight;
         private IWeaponSkills iWeaponSkills;
         //private ArrowInfo arrowInfo;
@@ -62,7 +74,14 @@ namespace Module
         {
 
         }
-        public override void Start()
+
+
+		public override void Init(AbMainModule _mainModule, params string[] _parameters)
+		{
+			base.Init(_mainModule, _parameters);
+		}
+
+		public override void Awake()
         {
             animationIndex = int.MaxValue;
             currentArrowInfo.arrowAddress = "Arrow";
@@ -193,6 +212,7 @@ namespace Module
             weaponRight = null;
             mainModule = null;
             base.OnDestroy();
-		}
+            ClassPoolManager.Instance.RegisterObject<WeaponModule>("WeaponModule", this);
+        }
 	}
 }

@@ -20,22 +20,22 @@ namespace CondinedModule
             AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
             AddModuleWithPool<CameraModule>(ModuleType.Camera, "CameraModule");
             AddModuleWithPool<JumpModule>(ModuleType.Jump, "JumpModule");
-            AddModule(ModuleType.Hp, new HpModule(this));
+            AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
             AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
             AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
-            AddModule(ModuleType.UI, new UIModule(this));
+            AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule");
             AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
             AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
-            AddModule(ModuleType.Hit, new HitModule(this));
-            AddModule(ModuleType.Item, new ItemModule(this));
-            AddModule(ModuleType.Equipment, new EquipmentModule(this));
-            AddModule(ModuleType.State, new StateModule(this));
+            AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
+            AddModuleWithPool<ItemModule>(ModuleType.Item, "ItemModule");
+            AddModuleWithPool<EquipmentModule>(ModuleType.Equipment, "EquipmentModule");
+            AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
 
             RaycastTarget ??= transform.Find("RayCastPoint");
 
             visualObject ??= transform.Find("Visual")?.gameObject;
-            animator = GetComponent<Animator>();
-            animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            Animator = GetComponent<Animator>();
+            animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
             LockOnTarget = null;
 
             base.OnEnable();
@@ -44,8 +44,9 @@ namespace CondinedModule
         private void OnDestroy()
         {
             CharacterController = null;
-            moduleComponentsDic.Clear();
             RaycastTarget = null;
+            Animator = null;
+            moduleComponentsDic.Clear();
         }
     }
 }

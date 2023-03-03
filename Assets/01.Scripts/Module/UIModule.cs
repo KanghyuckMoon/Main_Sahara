@@ -95,7 +95,8 @@ namespace Module
 		public override void OnDestroy()
 		{
 			base.OnDestroy();
-            RegisterUI();
+            //RegisterUI();
+            hudObject = null;
         }
 
 		public override void OnEnable()
@@ -122,9 +123,21 @@ namespace Module
         }
 
         private void RegisterUI()
-        {
-            hudObject.SetActive(false);
-            ObjectPoolManager.Instance.RegisterObject(address, hudObject);
+		{
+
+			if (hudObject is null)
+			{
+                return;
+			}
+			try
+            {
+                hudObject.SetActive(false);
+                ObjectPoolManager.Instance.RegisterObject(address, hudObject);
+            }
+			catch
+			{
+
+			}
             hudObject = null;
         }
 

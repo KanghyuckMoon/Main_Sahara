@@ -33,9 +33,9 @@ namespace CondinedModule
             AddModule(ModuleType.Hit, new HitModule(this));
             AddModule(ModuleType.State, new StateModule(this));
 
-            animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
             visualObject ??= transform.Find("Visual")?.gameObject;
-            animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
             RaycastTarget = transform.Find("RayCastPoint");
 
             base.OnEnable();

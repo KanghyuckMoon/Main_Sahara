@@ -36,6 +36,9 @@ namespace Module
 
         public StateModule(AbMainModule _mainModule) : base(_mainModule) { }
 
+        public StateModule() : base() { }
+
+
 
         public bool CheckState(State _state)
         {

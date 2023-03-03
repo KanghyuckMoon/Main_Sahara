@@ -171,7 +171,7 @@ namespace Json
 
             //별도의 적용 필요함
             Player.GetComponentInChildren<CharacterController>().enabled = false;
-            (Player.GetComponent<AbMainModule>() as Player).OnEnable();
+            //(Player.GetComponent<AbMainModule>() as Player).OnEnable();
             stateModule = (Player.GetComponent<AbMainModule>() as Player).GetModuleComponent<StatModule>(ModuleType.Stat);
             StaticSave.Load<SaveData>(ref stateModule.saveData, _date);
             stateModule.LoadData();
