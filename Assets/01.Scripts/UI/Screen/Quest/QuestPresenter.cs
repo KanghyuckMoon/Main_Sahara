@@ -35,7 +35,7 @@ namespace UI.Quest
             questView.InitUIDocument(uiDocument);
             
             questView.Cashing();
-           // questView.Init();
+            questView.Init();
         }
 
         private void Start()

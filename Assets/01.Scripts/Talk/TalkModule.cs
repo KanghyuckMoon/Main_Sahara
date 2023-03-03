@@ -59,24 +59,21 @@ namespace Module.Talk
 			talkDataSO = AddressablesManager.Instance.GetResource<TalkDataSO>(_talkSOAddress);
 		}
 
-		public override void Update()
+		public void Talk()
 		{
 			if(CanTalk())
 			{
 				Logging.Log("대화 가능");
-				if (Input.GetKeyDown(KeyCode.F))
+				if (ShopModule is not null)
 				{
-					if (ShopModule is not null)
-					{
-						ShopManager.Instance.SetShopModule(ShopModule);
-					}
+					ShopManager.Instance.SetShopModule(ShopModule);
+				}
 
-					//이벤트로 사용된 대화가 있는가?
-					if (!GetText())
-					{
-						//없을시 기본 대화
-						RandomDefaultText();
-					}
+				//이벤트로 사용된 대화가 있는가?
+				if (!GetText())
+				{
+					//없을시 기본 대화
+					RandomDefaultText();
 				}
 			}
 		}
