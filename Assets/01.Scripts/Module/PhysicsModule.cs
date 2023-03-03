@@ -45,6 +45,10 @@ namespace Module
         {
 
         }
+        public PhysicsModule() : base()
+        {
+
+        }
 
         public override void Start()
         {
@@ -176,5 +180,14 @@ namespace Module
                 currenteffectSpownDelay += Time.deltaTime * delay;
             }
         }
-    }
+
+		public override void OnDisable()
+		{
+            hitModule = null;
+            stateModule = null;
+            mainModule = null;
+            base.OnDisable();
+            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
+		}
+	}
 }

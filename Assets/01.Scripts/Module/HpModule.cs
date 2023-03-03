@@ -56,7 +56,7 @@ namespace Module
 
 		public override void OnDisable()
 		{
-			base.OnDisable();
+            base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<HpModule>("HpModule", this);
         }
     }

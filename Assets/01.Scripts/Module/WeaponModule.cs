@@ -58,7 +58,10 @@ namespace Module
         {
 
         }
+        public WeaponModule() : base()
+        {
 
+        }
         public override void Start()
         {
             animationIndex = int.MaxValue;
@@ -166,5 +169,18 @@ namespace Module
             //    StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
             //}
         }
-    }
+
+		public override void OnDisable()
+        {
+            currentWeapon = null;
+            weaponSkills = null;
+            baseWeapon = null;
+            stateModule = null;
+            animator = null;
+            weaponRight = null;
+            mainModule = null;
+			base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<WeaponModule>("WeaponModule", this);
+		}
+	}
 }

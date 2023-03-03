@@ -160,23 +160,25 @@ namespace Json
         public void Load(string _date)
         {
             isLoadSuccess = false;
-            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null)
+            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null)
             {
                 isLoadSuccess = false;
                 return;
             }
-            Player?.gameObject.SetActive(false);
             //StaticTime.EntierTime = 0;
             StaticSave.Load<SaveData>(ref stateModule.saveData, _date);
             StaticSave.Load<InventorySave>(ref inventorySO.inventorySave, _date);
             StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
 
             //별도의 적용 필요함
-            stateModule.LoadData();
-            Player?.gameObject.SetActive(true);
+            Player.GetComponentInChildren<CharacterController>().enabled = false;
+            (Player.GetComponent<AbMainModule>() as Player).Awake();
+            (Player.GetComponent<AbMainModule>() as Player).GetModuleComponent<StatModule>(ModuleType.Stat).LoadData();
             inventorySO.LoadData();
             questSaveDataSO.LoadData();
             QuestManager.Instance.LoadQuestSaveData(questSaveDataSO);
+            Player.GetComponentInChildren<CharacterController>().enabled = true;
+            //Player?.gameObject.SetActive(true);
 
             var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
 

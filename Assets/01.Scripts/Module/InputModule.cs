@@ -34,6 +34,11 @@ namespace Module
 
         }
 
+        public InputModule() : base()
+		{
+
+		}
+
         public override void Start()
         {
             playerInput = mainModule.gameObject.GetComponentInParent<PlayerInput>();
@@ -46,5 +51,16 @@ namespace Module
         public override void Awake()
         {
         }
-    }
+
+		public override void OnDisable()
+		{
+            attackModule = null;
+            stateModule = null;
+            playerInput = null;
+            mainModule = null;
+
+            base.OnDisable();
+            Pool.ClassPoolManager.Instance.RegisterObject<InputModule>("InputModule", this);
+        }
+	}
 }

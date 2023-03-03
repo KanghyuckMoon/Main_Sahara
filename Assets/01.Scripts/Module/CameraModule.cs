@@ -27,8 +27,8 @@ namespace Module
         private CinemachineBasicMultiChannelPerlin groupCamNoise;
 
         private float currentShakeDuration = 0;
-        //private PlayerFollowCamera camInstance;
-				 //public CinemachineVirtualCamera followVCam;
+		//private PlayerFollowCamera camInstance;
+		//public CinemachineVirtualCamera followVCam;
 
 		//[Header("Camera Rotates around this")]
 		//public Transform invisibleCameraOrigin;
@@ -70,33 +70,54 @@ namespace Module
 		//// where we are in the transition from side to side
 		//private float desiredCameraSide = 1f;
 
+		CinemachineVirtualCamera FollawVCam
+		{
+			get
+			{
+				follawVCam ??= GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();
+				return follawVCam;
+			}
+		}
+		CinemachineVirtualCamera GroupVCam
+		{
+			get
+			{
+				groupVCam ??= GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();
+				return groupVCam;
+			}
+		}
+
 		public CameraModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
-        }
+		}
+		public CameraModule() : base()
+		{
 
-        public override void Awake()
+		}
+
+		public override void Start()
         {
-            //camInstance = PlayerFollowCamera.Instance;
-            follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
-            groupVCam = GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
+			//camInstance = PlayerFollowCamera.Instance;
+			//follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
+			//groupVCam = GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
 
-            followCamNoise = follawVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            groupCamNoise = groupVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+			//followCamNoise = follawVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+			//groupCamNoise = groupVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-            groupVCam.gameObject.SetActive(false);
+			GroupVCam.gameObject.SetActive(false);
             //mainModule.objRotation = mainCam.transform.rotation;
         }
 
         public override void LateUpdate()
         {
-            if (follawVCam.gameObject.activeSelf)
+            if (FollawVCam.gameObject.activeSelf)
 			{
-                mainModule.ObjRotation = follawVCam.transform.rotation;
+                mainModule.ObjRotation = FollawVCam.transform.rotation;
 			}
             else
             {
-                mainModule.ObjRotation = groupVCam.transform.rotation;
+                mainModule.ObjRotation = GroupVCam.transform.rotation;
             }
             //float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
             //float size = nomalCom.m_Lens.OrthographicSize;
@@ -112,88 +133,99 @@ namespace Module
         }
 
 
-        //public override void Awake()
-        //{
-        //    camInstance = PlayerFollowCamera.Instance;
-        //    followVCam = camInstance.GetComponent<CinemachineVirtualCamera>();
-        //    //mainCam = Camera.main;
-        //    //mainModule.objRotation = mainCam.transform.rotation;
-        //}
+		//public override void Awake()
+		//{
+		//    camInstance = PlayerFollowCamera.Instance;
+		//    followVCam = camInstance.GetComponent<CinemachineVirtualCamera>();
+		//    //mainCam = Camera.main;
+		//    //mainModule.objRotation = mainCam.transform.rotation;
+		//}
 
-        //public override void FixedUpdate()
-        //{
-        //}
+		//public override void FixedUpdate()
+		//{
+		//}
 
-        //public override void Start()
-        //{
-        //}
+		//public override void Start()
+		//{
+		//}
 
-        //public override void LateUpdate()
-        //{
-        //    //if (followVCam == null)
-        //    //{
-        //    //    followVCam = vcam.GetCinemachineComponent<CinemachineVirtualCamera>();
-        //    //}
+		//public override void LateUpdate()
+		//{
+		//    //if (followVCam == null)
+		//    //{
+		//    //    followVCam = vcam.GetCinemachineComponent<CinemachineVirtualCamera>();
+		//    //}
 
-        //    //cameraInputHorizontal = -Input.GetAxis("Mouse X");
-        //    //cameraInputVertical = Input.GetAxis("Mouse Y");
+		//    //cameraInputHorizontal = -Input.GetAxis("Mouse X");
+		//    //cameraInputVertical = Input.GetAxis("Mouse Y");
 
-        //    cameraInputHorizontal = mainModule.objRotation.x;
-        //    cameraInputVertical = mainModule.objRotation.y;
+		//    cameraInputHorizontal = mainModule.objRotation.x;
+		//    cameraInputVertical = mainModule.objRotation.y;
 
-        //    if (allowCameraToggle)
-        //    {
-        //        var side = Input.GetButtonDown("CameraSide");
-        //        if (side)
-        //        {
-        //            doCameraSideToggle = true;
-        //        }
+		//    if (allowCameraToggle)
+		//    {
+		//        var side = Input.GetButtonDown("CameraSide");
+		//        if (side)
+		//        {
+		//            doCameraSideToggle = true;
+		//        }
 
-        //        if (doCameraSideToggle)
-        //        {
-        //            sideToggleTime = 0f;
-        //            //cameraSide = followCam.CameraSide;
-        //            if (cameraSide > 0.1)
-        //            {
-        //                desiredCameraSide = 0f;
-        //            }
-        //            else
-        //            {
-        //                desiredCameraSide = 1f;
-        //            }
-        //            doCameraSideToggle = false;
-        //        }
+		//        if (doCameraSideToggle)
+		//        {
+		//            sideToggleTime = 0f;
+		//            //cameraSide = followCam.CameraSide;
+		//            if (cameraSide > 0.1)
+		//            {
+		//                desiredCameraSide = 0f;
+		//            }
+		//            else
+		//            {
+		//                desiredCameraSide = 1f;
+		//            }
+		//            doCameraSideToggle = false;
+		//        }
 
-        //        //followCam.CameraSide = Mathf.Lerp(cameraSide, desiredCameraSide, sideToggleTime);
-        //        sideToggleTime += cameraSideToggleSpeed * Time.deltaTime;
+		//        //followCam.CameraSide = Mathf.Lerp(cameraSide, desiredCameraSide, sideToggleTime);
+		//        sideToggleTime += cameraSideToggleSpeed * Time.deltaTime;
 
-        //    }
+		//    }
 
-        //    Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.blue, 1.0f);
-        //    Debug.DrawRay(invisibleCameraOrigin.position, invisibleCameraOrigin.forward, Color.red, 1.0f);
+		//    Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.blue, 1.0f);
+		//    Debug.DrawRay(invisibleCameraOrigin.position, invisibleCameraOrigin.forward, Color.red, 1.0f);
 
-        //    if (invisibleCameraOrigin != null)
-        //    {
-        //        if (invertHorizontal)
-        //        {
-        //            cameraX -= cameraVerticalRotationMultiplier * cameraInputVertical;
-        //        }
-        //        else
-        //        {
-        //            cameraX += cameraVerticalRotationMultiplier * cameraInputVertical;
-        //        }
+		//    if (invisibleCameraOrigin != null)
+		//    {
+		//        if (invertHorizontal)
+		//        {
+		//            cameraX -= cameraVerticalRotationMultiplier * cameraInputVertical;
+		//        }
+		//        else
+		//        {
+		//            cameraX += cameraVerticalRotationMultiplier * cameraInputVertical;
+		//        }
 
-        //        if (invertVertical)
-        //        {
-        //            cameraY -= cameraHorizontalRotationMultiplier * cameraInputHorizontal;
-        //        }
-        //        else
-        //        {
-        //            cameraY += cameraHorizontalRotationMultiplier * cameraInputHorizontal;
-        //        }
-        //        cameraX = Mathf.Clamp(cameraX, verticalRotateMin, verticalRotateMax);
-        //        invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
-        //    }
-        //}
-    }
+		//        if (invertVertical)
+		//        {
+		//            cameraY -= cameraHorizontalRotationMultiplier * cameraInputHorizontal;
+		//        }
+		//        else
+		//        {
+		//            cameraY += cameraHorizontalRotationMultiplier * cameraInputHorizontal;
+		//        }
+		//        cameraX = Mathf.Clamp(cameraX, verticalRotateMin, verticalRotateMax);
+		//        invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
+		//    }
+		//}
+
+		public override void OnDisable()
+		{
+			follawVCam = null;
+			groupVCam = null;
+			//followCamNoise = null;
+			//groupCamNoise = null;
+			mainModule = null;
+			base.OnDisable();
+			Pool.ClassPoolManager.Instance.RegisterObject<CameraModule>("CameraModule", this);
+		}
+	}
 }

@@ -59,6 +59,7 @@ namespace Module
         public void SaveData()
         {
             saveData ??= new SaveData();
+            statData ??= mainModule.GetComponent<Data.StatData>();
             saveData.hp = statData.CurrentHp;
             saveData.mana = statData.CurrentMana;
             saveData.position = mainModule.transform.position;
@@ -67,6 +68,7 @@ namespace Module
         public void LoadData()
         {
             saveData ??= new SaveData();
+            statData ??= mainModule.GetComponent<Data.StatData>();
             statData.CurrentHp = saveData.hp;
             statData.CurrentMana = saveData.mana;
             mainModule.transform.position = saveData.position;
@@ -74,6 +76,10 @@ namespace Module
 
         public override void OnDisable()
         {
+            hpModule = null;
+            statData = null;
+            saveData = null;
+            mainModule = null;
             base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<StatModule>("StatModule", this);
         }

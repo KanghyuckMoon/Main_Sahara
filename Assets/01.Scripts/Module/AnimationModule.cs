@@ -78,6 +78,8 @@ namespace Module
         }
         public override void OnDisable()
         {
+            animator = null;
+            mainModule = null;
             base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<AnimationModule>("AnimationModule", this);
         }

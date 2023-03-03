@@ -17,6 +17,11 @@ namespace Pool
         }
 		private Dictionary<string, Queue<object>> classQueueDic = new Dictionary<string, Queue<object>>();
 
+        public void Clear()
+		{
+            classQueueDic.Clear();
+        }
+
         public int GetAllCount()
 		{
             int count = 0;

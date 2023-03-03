@@ -39,6 +39,9 @@ namespace Module
         public AttackModule(AbMainModule _mainModule) : base(_mainModule)
         {
         }
+        public AttackModule() : base()
+        {
+        }
 
         public void SpownCurrentArrow()
         {
@@ -86,5 +89,14 @@ namespace Module
 
             }
         }
-    }
+
+		public override void OnDisable()
+        {
+            weaponModule = null;
+            projectileObject = null;
+            mainModule = null;
+			base.OnDisable();
+            Pool.ClassPoolManager.Instance.RegisterObject<AttackModule>("AttackModule", this);
+		}
+	}
 }

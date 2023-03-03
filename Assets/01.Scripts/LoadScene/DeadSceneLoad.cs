@@ -12,6 +12,7 @@ namespace LoadScene
 		public void ReStart()
 		{
 			SaveManager.Instance.IsContinue = true;
+			SaveManager.Instance.isLoadSuccess = false;
 			SceneManager.LoadScene("LoadingScene");
 		}
 

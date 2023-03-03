@@ -7,6 +7,7 @@ using Utill.Coroutine;
 using Utill.Addressable;
 using UpdateManager;
 using Json;
+using Pool;
 
 namespace LoadScene
 {
@@ -17,6 +18,8 @@ namespace LoadScene
         {
             UpdateManager.UpdateManager.Clear();
             AddressablesManager.Instance.LodedSceneClear();
+            ClassPoolManager.Instance.Clear();
+            ObjectPoolManager.Instance.Clear();
             System.GC.Collect();
             StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
         }

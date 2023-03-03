@@ -11,6 +11,11 @@ namespace Pool
 		private Dictionary<string, Transform> poolParentDic = new Dictionary<string, Transform>();
 		private Dictionary<string, Transform> useParentDic = new Dictionary<string, Transform>();
 
+		public void Clear()
+		{
+			poolParentDic.Clear();
+			useParentDic.Clear();
+		}
 		public void SetPoolParent(string key, GameObject obj)
 		{
 			obj.transform.SetParent(GetPoolParent(key));

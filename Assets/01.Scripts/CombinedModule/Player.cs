@@ -7,7 +7,7 @@ namespace CondinedModule
 {
     public class Player : AbMainModule
     {
-        private void OnEnable()
+        public void Awake()
         {
             StopOrNot = 1;
             CanMove = true;
@@ -15,17 +15,17 @@ namespace CondinedModule
             moduleComponentsDic = new();
             CharacterController = GetComponent<CharacterController>();
             //footRotate = GetComponentInParent<csHomebrewIK>();
-            AddModule(ModuleType.Input, new InputModule(this));
-            AddModule(ModuleType.Move, new MoveModule(this));
-            AddModule(ModuleType.Stat, new StatModule(this));
-            AddModule(ModuleType.Camera, new CameraModule(this));
-            AddModule(ModuleType.Jump, new JumpModule(this));
+            AddModuleWithPool<InputModule>(ModuleType.Input, "InputModule");
+            AddModuleWithPool<MoveModule>(ModuleType.Move, "MoveModule");
+            AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
+            AddModuleWithPool<CameraModule>(ModuleType.Camera, "CameraModule");
+            AddModuleWithPool<JumpModule>(ModuleType.Jump, "JumpModule");
             AddModule(ModuleType.Hp, new HpModule(this));
-            AddModule(ModuleType.Animation, new AnimationModule(this));
-            AddModule(ModuleType.Physics, new PhysicsModule(this));
+            AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
+            AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
             AddModule(ModuleType.UI, new UIModule(this));
-            AddModule(ModuleType.Attack, new AttackModule(this));
-            AddModule(ModuleType.Weapon, new WeaponModule(this));
+            AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
+            AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
             AddModule(ModuleType.Hit, new HitModule(this));
             AddModule(ModuleType.Item, new ItemModule(this));
             AddModule(ModuleType.Equipment, new EquipmentModule(this));
@@ -37,8 +37,6 @@ namespace CondinedModule
             animator = GetComponent<Animator>();
             animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             LockOnTarget = null;
-
-            base.OnEnable();
         }
 
         private void OnDestroy()

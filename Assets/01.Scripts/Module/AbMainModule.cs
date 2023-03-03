@@ -462,7 +462,7 @@ namespace Module
             }
         }
 
-		protected void OnEnable()
+        public void OnEnable()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -471,7 +471,7 @@ namespace Module
             UpdateManager.UpdateManager.Add(this);
 		}
 
-        protected void OnDisable()
+        public void OnDisable()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -523,6 +523,7 @@ namespace Module
 
         private void OnDestroy()
         {
+            OnDisable();
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.OnDestroy();
