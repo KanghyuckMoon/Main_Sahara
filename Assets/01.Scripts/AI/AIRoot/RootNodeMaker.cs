@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement;
 using Utill.Addressable;
 using Utill.Pattern;
 using Module;
@@ -38,7 +39,12 @@ namespace AI
 
 		public void Init(string _address)
 		{
-			aiSO = AddressablesManager.Instance.GetResource<AISO>(_address);
+			AddressablesManager.Instance.GetResourceAsync<AISO>(_address, SetAISO);
+		}
+
+		private void SetAISO(AISO _aiSO)
+		{
+			aiSO = _aiSO;
 			aiModule.IsFirstAttack = aiSO.isFirstAttack;
 			aiModule.IsHostilities = aiSO.isFirstAttack;
 			aiModule.SetNode(ReturnRootNode());
@@ -73,6 +79,10 @@ namespace AI
 
 		public void OnDrawGizmo()
 		{
+			if(aiSO is null)
+			{
+				return;
+			}
 			Gizmos.color = aiSO.gizmoColor_fer;
 			Gizmos.DrawWireSphere(aiModule.MainModule.transform.position, aiSO.ferDistance);
 

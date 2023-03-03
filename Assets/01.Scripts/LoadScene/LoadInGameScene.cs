@@ -28,9 +28,10 @@ namespace LoadScene
 
         private IEnumerator LoadingScene()
         {
+            Time.timeScale = 0;
             while (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("InGame"))
 			{
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSecondsRealtime(1f);
 			}
             //var op2 = SceneManager.LoadSceneAsync("InGame", LoadSceneMode.Additive);
             var op6 = SceneManager.LoadSceneAsync("TipScene", LoadSceneMode.Additive);
@@ -58,7 +59,7 @@ namespace LoadScene
 			{
                 yield return null;
 			}
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
 
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);
@@ -97,12 +98,12 @@ namespace LoadScene
                     catch
                     {
                     }
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSecondsRealtime(1f);
                 }
 			}
 
             var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-            //Time.timeScale = 1;
+            Time.timeScale = 1;
         }
     }
 
