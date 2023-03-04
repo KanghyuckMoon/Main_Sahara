@@ -58,7 +58,7 @@ namespace Streaming
 			}
 		}
 
-		private StreamingEventTransmit streamingEventTransmit;
+		private StreamingEventTransmit streamingEventTransmit = default;
 
 		//[SerializeField]
 		private Transform viewer = null;
@@ -169,7 +169,6 @@ namespace Streaming
 					viewerPosition = new Vector3(viewer.position.x, viewer.position.y, viewer.position.z);
 				}
 				CheckOutChunk();
-				streamingEventTransmit?.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 
@@ -203,6 +202,7 @@ namespace Streaming
 				originChunkCoordZ = _currentChunkCoordZ;
 
 				UpdateChunk();
+				streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 
