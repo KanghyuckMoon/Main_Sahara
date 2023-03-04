@@ -12,6 +12,11 @@ namespace Json
 	{
 		private static string _dataPath = Application.persistentDataPath + "/Save/";
 
+        public static string GetPath()
+		{
+            return _dataPath;
+        }
+
 		/// <summary>
 		/// 유저 데이터 저장
 		/// </summary>
@@ -44,11 +49,25 @@ namespace Json
 			}
 		}
 
-		/// <summary>
-		/// 세이브한 적이 있는지 체크
-		/// </summary>
-		/// <returns></returns>
-		public static bool GetCheckBool()
+        public static T Load<T>(string _path) where T : class
+        {
+            string path = _dataPath + _path;
+            if (File.Exists(path))
+            {
+                string jsonData = File.ReadAllText(path);
+                jsonData = Decrypt(jsonData, "종점");
+                T saveData = JsonUtility.FromJson<T>(jsonData);
+                return saveData;
+            }
+            return null;
+        }
+
+
+        /// <summary>
+        /// 세이브한 적이 있는지 체크
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetCheckBool()
 		{
 			return File.Exists(_dataPath);
 		}

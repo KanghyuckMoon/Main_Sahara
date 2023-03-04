@@ -4,6 +4,7 @@ using UnityEngine;
 using Utill.Pattern;
 using Inventory;
 using Quest;
+using Json;
 
 namespace EventTransmit
 {
@@ -15,6 +16,7 @@ namespace EventTransmit
 		{
 			InventoryManager.Instance.InventoryEventTransmit += SendEvent;
 			QuestManager.Instance.QuestEventTransmit += SendEvent;
+			SaveManager.Instance.SaveEventTransmit += SendEvent;
 		}
 
 		public void SendEvent(string _sender, string _recipient, object _obj)
@@ -26,6 +28,9 @@ namespace EventTransmit
 					break;
 				case "QuestManager":
 					QuestManager.Instance.ReceiveEvent(_sender, _obj);
+					break;
+				case "SaveManager":
+					SaveManager.Instance.ReceiveEvent(_sender, _obj);
 					break;
 			}
 		}

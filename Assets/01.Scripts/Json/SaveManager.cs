@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using Utill.Pattern;
 using Quest;
@@ -14,6 +15,8 @@ using Streaming;
 
 namespace Json
 {
+    public delegate void SaveEventTransmit(string _sender, string _recipient, object _obj);
+
     public class SaveManager : MonoSingleton<SaveManager>
     {
         public InventorySO InventorySO
@@ -116,10 +119,41 @@ namespace Json
 			{
                 isContinue = value;
 			}
-		}
-		private bool isContinue = false;
+        }
+
+        public SaveEventTransmit SaveEventTransmit
+        {
+            get
+            {
+                return saveEventTransmit;
+            }
+            set
+            {
+                saveEventTransmit = value;
+            }
+        }
+
+        private SaveEventTransmit saveEventTransmit;
+        private bool isContinue = false;
 
         public bool isLoadSuccess = false;
+
+        public void ReceiveEvent(string _sender, object _obj)
+        {
+            //testDate = DateTime.Now.ToString("yyyyMMddhhmmss");
+            //Save(testDate);
+        }
+
+        public SaveRecordDataList GetSaveRecordDataList()
+        {
+            SaveRecordDataList _saveRecordDataList = StaticSave.Load<SaveRecordDataList>("SaveRecordDataList");
+
+            if (_saveRecordDataList is null)
+            {
+                _saveRecordDataList = new SaveRecordDataList();
+            }
+            return _saveRecordDataList;
+        }
 
         [ContextMenu("Save")]
         public void Save(string _date)
@@ -152,7 +186,46 @@ namespace Json
                 _shopSO.SaveData();
                 StaticSave.Save<ShopSave>(ref _shopSO.shopSave, _shopSO.shopName + _date);
             }
-            
+
+            string _imagePath = StaticSave.GetPath() + _date + ".png";
+            ScreenCapture.CaptureScreenshot(_imagePath);
+
+            SaveRecordDataList _saveRecordDataList = StaticSave.Load<SaveRecordDataList>("SaveRecordDataList");
+
+            if (_saveRecordDataList is null)
+            {
+                _saveRecordDataList = new SaveRecordDataList();
+            }
+            SaveRecordData _saveRecordData = new SaveRecordData();
+            _saveRecordData.date = _date;
+            _saveRecordData.imagePath = _imagePath;
+            _saveRecordDataList.dateList.Add(_saveRecordData);
+
+            if(_saveRecordDataList.dateList.Count > 10)
+			{
+                var _data =  _saveRecordDataList.dateList[0];
+
+                File.Delete(StaticSave.GetPath() + _data.date + ".png");
+                File.Delete(StaticSave.GetPath() + "InventorySave" + _data.date);
+                File.Delete(StaticSave.GetPath() + "QuestSaveDataSave" + _data.date);
+
+                foreach (var _sceneData in _sceneDataList)
+                {
+                    File.Delete(StaticSave.GetPath() + _sceneData.Key + _data.date);
+                }
+
+                for (int i = 0; i < ShopAllSO.shopSOList.Count; ++i)
+                {
+                    ShopSO _shopSO = ShopAllSO.shopSOList[i];
+                    File.Delete(StaticSave.GetPath() + _shopSO.shopName + _data.date);
+                }
+                
+                _saveRecordDataList.dateList.RemoveAt(0);
+            }
+
+            StaticSave.Save<SaveRecordDataList>(ref _saveRecordDataList);
+
+
             StaticTime.EntierTime = 1;
         }
 
