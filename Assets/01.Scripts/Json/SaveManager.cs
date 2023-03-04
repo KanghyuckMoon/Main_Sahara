@@ -133,7 +133,7 @@ namespace Json
             }
         }
 
-        private SaveEventTransmit saveEventTransmit;
+        private SaveEventTransmit saveEventTransmit = default;
         private bool isContinue = false;
 
         public bool isLoadSuccess = false;
@@ -141,17 +141,16 @@ namespace Json
         public void ReceiveEvent(string _sender, object _obj)
         {
             //testDate = DateTime.Now.ToString("yyyyMMddhhmmss");
-            //Save(testDate);
+            //Debug.Log(DateTime.Now.ToString("yyyyMMddhhmmss"));
+            //string _date = DateTime.Now.ToString("yyyyMMddhhmmss");
+            //Save(_date);
         }
 
         public SaveRecordDataList GetSaveRecordDataList()
         {
-            SaveRecordDataList _saveRecordDataList = StaticSave.Load<SaveRecordDataList>("SaveRecordDataList");
+            SaveRecordDataList _saveRecordDataList = new SaveRecordDataList();
+            StaticSave.Load<SaveRecordDataList>(ref _saveRecordDataList);
 
-            if (_saveRecordDataList is null)
-            {
-                _saveRecordDataList = new SaveRecordDataList();
-            }
             return _saveRecordDataList;
         }
 
@@ -190,12 +189,9 @@ namespace Json
             string _imagePath = StaticSave.GetPath() + _date + ".png";
             ScreenCapture.CaptureScreenshot(_imagePath);
 
-            SaveRecordDataList _saveRecordDataList = StaticSave.Load<SaveRecordDataList>("SaveRecordDataList");
+            SaveRecordDataList _saveRecordDataList = new SaveRecordDataList();
+            StaticSave.Load<SaveRecordDataList>(ref _saveRecordDataList);
 
-            if (_saveRecordDataList is null)
-            {
-                _saveRecordDataList = new SaveRecordDataList();
-            }
             SaveRecordData _saveRecordData = new SaveRecordData();
             _saveRecordData.date = _date;
             _saveRecordData.imagePath = _imagePath;

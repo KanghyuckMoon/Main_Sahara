@@ -65,11 +65,11 @@ namespace Inventory
 		{
 			get
 			{
-				return InventoryEventTransmit;
+				return inventoryEventTransmit;
 			}
 			set
 			{
-				InventoryEventTransmit = value;
+				inventoryEventTransmit = value;
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace Inventory
 		private bool isInit;
 		private int quickSlotIndex = 0;
 
-		private InventoryEventTransmit inventoryEventTransmit;
+		private InventoryEventTransmit inventoryEventTransmit = default;
 
 		private void Start()
 		{

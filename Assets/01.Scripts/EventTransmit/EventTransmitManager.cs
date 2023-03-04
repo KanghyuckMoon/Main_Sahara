@@ -5,6 +5,7 @@ using Utill.Pattern;
 using Inventory;
 using Quest;
 using Json;
+using Streaming;
 
 namespace EventTransmit
 {
@@ -17,6 +18,7 @@ namespace EventTransmit
 			InventoryManager.Instance.InventoryEventTransmit += SendEvent;
 			QuestManager.Instance.QuestEventTransmit += SendEvent;
 			SaveManager.Instance.SaveEventTransmit += SendEvent;
+			StreamingManager.Instance.StreamingEventTransmit += SendEvent;
 		}
 
 		public void SendEvent(string _sender, string _recipient, object _obj)
@@ -31,6 +33,9 @@ namespace EventTransmit
 					break;
 				case "SaveManager":
 					SaveManager.Instance.ReceiveEvent(_sender, _obj);
+					break;
+				case "StreamingManager":
+					StreamingManager.Instance.ReceiveEvent(_sender, _obj);
 					break;
 			}
 		}

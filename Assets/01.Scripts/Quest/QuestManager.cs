@@ -30,7 +30,7 @@ namespace Quest
 			}
 		}
 
-		private QuestEventTransmit questEventTransmit;
+		private QuestEventTransmit questEventTransmit = default;
 
 		private void Awake()
 		{
