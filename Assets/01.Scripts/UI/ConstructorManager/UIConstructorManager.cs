@@ -19,7 +19,8 @@ namespace UI.ConstructorManager
         private UIConstructor<QuestEntryView> questEntryConstructor;
         private UIConstructor<SlotItemView> slotItemConstructor;
         private UIConstructor<UpgradeSlotView> upgradeSlotConstructor;
-        private UIConstructor<ItemDescriptionView> itemDescriptionConstructor; 
+        private UIConstructor<ItemDescriptionView> itemDescriptionConstructor;
+        private UIConstructor<PopupView> popupConstructor; 
 
         private EventAlarmPresenter eventAlarmPresenter; 
 
@@ -56,13 +57,15 @@ namespace UI.ConstructorManager
             questEntryConstructor = new UIConstructor<QuestEntryView>("QuestEntry");
             slotItemConstructor = new UIConstructor<SlotItemView>("SlotItem");
             upgradeSlotConstructor = new UIConstructor<UpgradeSlotView>("UpgradeSlot");
-            itemDescriptionConstructor = new UIConstructor<ItemDescriptionView>("ItemDescription"); 
+            itemDescriptionConstructor = new UIConstructor<ItemDescriptionView>("ItemDescription");
+            popupConstructor = new UIConstructor<PopupView>("Popup"); 
 
             uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor);
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
             uiConstructorDic.Add(typeof(SlotItemView), slotItemConstructor);
             uiConstructorDic.Add(typeof(UpgradeSlotView), upgradeSlotConstructor);
             uiConstructorDic.Add(typeof(ItemDescriptionView), itemDescriptionConstructor);
+            uiConstructorDic.Add(typeof(PopupView), popupConstructor);
         }
 
         private void Awake()

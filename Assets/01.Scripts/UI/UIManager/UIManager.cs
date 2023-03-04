@@ -16,7 +16,12 @@ namespace UI.Manager
         private TextKeySO textKeySO;
         private EntityPresenter playerHud;
 
-        private IUIController screenUIController = null; 
+        private IUIController screenUIController = null;
+
+        private int width, height;
+
+        public int Width => width;
+        public int Height => height; 
         // private ScreenUI
 
         // 프로퍼티 
@@ -69,6 +74,9 @@ namespace UI.Manager
             markerUI = AddressablesManager.Instance.GetResource<GameObject>("MarkerUI");
             playerHudUI = AddressablesManager.Instance.GetResource<GameObject>("PlayerHudUI");
             textKeySO ??= AddressablesManager.Instance.GetResource<TextKeySO>("TextKeySO");
+            // 설정
+            width = Screen.width;
+            height = Screen.height; 
         }
 
         public void ActiveHud(bool _isActive)

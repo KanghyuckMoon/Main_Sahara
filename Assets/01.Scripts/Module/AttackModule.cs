@@ -23,6 +23,17 @@ namespace Module
                 projectileObject = value;
             }
         }
+        public string ProjectileName
+        {
+            get
+            {
+                return projectileName;
+            }
+            set
+            {
+                projectileName = value;
+            }
+        }
 
         private WeaponModule WeaponModule
         {
@@ -36,6 +47,8 @@ namespace Module
         private WeaponModule weaponModule;
         private GameObject projectileObject;
 
+        private string projectileName;
+
         public AttackModule(AbMainModule _mainModule) : base(_mainModule)
         {
         }
@@ -45,26 +58,32 @@ namespace Module
 
         public void SpownCurrentArrow()
         {
-            CreateProjectile(WeaponModule.CurrentArrowInfo.weaponHand, WeaponModule.CurrentArrowInfo.arrowAddress);
+            //CreateProjectile(WeaponModule.CurrentArrowInfo.weaponHand, ProjectileName);
         }
 
-        public void CreateProjectile(WeaponHand _weaponHand, string _projectileObjectName)
+        public GameObject CreateProjectile(ProjectileObjectData _projectileObjectData)
         {
             if (WeaponModule.isProjectileWeapon)
             {
-                GameObject _projectile = ObjectPoolManager.Instance.GetObject(_projectileObjectName);
+                GameObject _projectile = ObjectPoolManager.Instance.GetObject(WeaponModule.CurrentArrowInfo.arrowAddress);
 
-                //weaponHand.
-                _projectile.transform.SetParent(WhichHandToHold(_weaponHand));
+                _projectile.transform.SetParent(WhichHandToHold(_projectileObjectData.weaponHand));
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();
 
                 _projectile.SetActive(true);
-                _projectile.transform.localPosition = _projectileObject.weaponPosition.weaponPosition;
-                _projectile.transform.localRotation = _projectileObject.weaponPosition.weaponRotation;
+                //Debug.LogError(mainModule.name + "     :     " + mainModule.gameObject.name);
+                _projectile.transform.localPosition = _projectileObjectData.position;
+                _projectile.transform.localRotation = _projectileObjectData.rotation;
+
+                _projectileObject.objectData = _projectileObjectData;
 
                 ProjectileObject = _projectile;
-                //_projectile.transform
             }
+            else
+            {
+                ProjectileObject = null;
+            }
+            return ProjectileObject;
         }
 
         private Transform WhichHandToHold(WeaponHand _weaponHand)

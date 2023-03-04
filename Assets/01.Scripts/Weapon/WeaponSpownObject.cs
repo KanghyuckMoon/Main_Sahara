@@ -6,8 +6,9 @@ namespace Weapon
 {
     public enum WeaponHand
     {
-        Right,
-        Left
+        RightHand,
+        LeftHand,
+        Weapon
     }
     public class WeaponSpownObject : MonoBehaviour
     {

@@ -14,7 +14,8 @@ namespace UI
     {
         [SerializeField]
         private VisualTreeAsset markerUxml;
-
+        [SerializeField]
+        private int width, height; 
         private List<VisualElement> markerList = new List<VisualElement>();
 
         /// <summary>
@@ -23,15 +24,19 @@ namespace UI
         public void CreateMarker(Vector2 _pos, VisualElement _parent) // 위치, 부모 요소 
         {
             TemplateContainer marker = markerUxml.Instantiate();
+            marker.style.position = Position.Absolute;
             _parent.Add(marker);
             //marker.contentContainer.transform.position = new Vector3(-mapView.Map.transform.position.x /*+ mapView.Map.style.width.value.value * 0.5f*/ - 35,// (-marker.contentContainer.style.width.value.value *0.5f),
             //                                                                  -mapView.Map.transform.position.y/* + mapView.Map.style.width.value.value * 0.5f*/ - 35,//(-marker.contentContainer.transform.position.y * 0.5f),
             //                                                                  0);
             float _w = marker.ElementAt(0).style.width.value.value;
             float _h = marker.ElementAt(0).style.height.value.value;
-            
+
+            marker.ElementAt(0).style.width = new StyleLength(width);
+            marker.ElementAt(0).style.height = new StyleLength(height);
+
             //Debug.Log("RECT" + _w + " ," + _h);
-            _pos += new Vector2(_w / 2, _h / 2);
+            _pos += new Vector2(-width / 2, -height / 2);
             marker.contentContainer.transform.position = _pos;
             markerList.Add(marker);
         }

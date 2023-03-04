@@ -60,7 +60,8 @@ namespace UI.Upgrade
             //parent.style.translate = new StyleTranslate(new Translate(_v.x,_v.y));
             //parent.style.left = _v.x; 
             //parent.style.top = _v.y;
-            parent.style.left = (100) / _f;
+        //    parent.style.left = (100) / _f;
+            parent.style.left = 100;
         }
         /// <summary>
         /// 슬롯 리스트 초기화 

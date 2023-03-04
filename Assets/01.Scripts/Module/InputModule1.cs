@@ -34,7 +34,7 @@ namespace Module
 						StateModule.AddState(State.ATTACK);
 						StateModule.AddState(State.CHARGE);
 
-						AttackModule.SpownCurrentArrow();
+						//AttackModule.SpownCurrentArrow();
 						AttackModule.SpownAttackEffect();
 					}
 				}
@@ -43,7 +43,7 @@ namespace Module
 				if (Input.GetMouseButtonUp(0))
 				{
 					//bool _inputatk = Input.GetMouseButtonUp(0);
-					AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward);// + new Vector3(0, 1.6f, 0));
+					//AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward, Quaternion.identity);// + new Vector3(0, 1.6f, 0));
 
 					StateModule.RemoveState(State.CHARGE);
 					//StateModule.RemoveState(State.ATTACK);

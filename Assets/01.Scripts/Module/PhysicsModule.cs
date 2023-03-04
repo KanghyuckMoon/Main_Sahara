@@ -32,17 +32,27 @@ namespace Module
                 return stateModule;
             }
         }
-        private PlayerLandEffectSO Effect
-		{
+        private HpModule HpModule
+        {
             get
-			{
-                effect ??= AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
-                return effect;
-			}
-		}
+            {
+                hpModule ??= mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
+                return hpModule;
+            }
+        }
+        private JumpModule JumpModule
+        {
+            get
+            {
+                jumpModule ??= mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
+                return jumpModule;
+            }
+        }
 
+        private JumpModule jumpModule;
         private HitModule hitModule;
         private StateModule stateModule;
+        private HpModule hpModule;
         private PlayerLandEffectSO effect;
 
         private float effectSpownDelay => effect.effectDelayTime;
@@ -50,10 +60,6 @@ namespace Module
         private bool isRight;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
-        {
-
-        }
-        public PhysicsModule() : base()
         {
 
         }
@@ -148,10 +154,14 @@ namespace Module
 
             if (!mainModule.isGround && _isLand)
             {
+                FallDamage();
+
                 StateModule.RemoveState(State.JUMP);
 
                 mainModule.KnockBackVector = Vector3.zero;
-                EffectManager.Instance.SetEffectDefault(Effect.landEffectName, mainModule.transform.position, Quaternion.identity);
+                EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
+                //StatModule.
+
 
                 mainModule.StartCoroutine(LandingDelay());
             }
@@ -176,12 +186,12 @@ namespace Module
 
                     if (mainModule.IsSprint)
                     {
-                        delay = Effect.runEffectDelay;
-                        EffectManager.Instance.SetEffectDefault(isRight ? Effect.runREffectName : Effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
+                        delay = effect.runEffectDelay;
+                        EffectManager.Instance.SetEffectDefault(isRight ? effect.runREffectName : effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
                     }
                     else
                     {
-                        EffectManager.Instance.SetEffectDefault(isRight ? Effect.walkRffectName : Effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
+                        EffectManager.Instance.SetEffectDefault(isRight ? effect.walkRffectName : effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
                     }
                     isRight = !isRight;
                 }
@@ -189,21 +199,15 @@ namespace Module
             }
         }
 
-		public override void OnDisable()
-		{
-            hitModule = null;
-            stateModule = null;
-            mainModule = null;
-            base.OnDisable();
-            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
-        }
-        public override void OnDestroy()
+        private void FallDamage()
         {
-            hitModule = null;
-            stateModule = null;
-            mainModule = null;
-            base.OnDestroy();
-            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
+            if (JumpModule.gravityWeight <= -100)
+            {
+                //Debug.LogError("³«»ç ³«»ç");
+                HpModule.GetDamage(20);
+            }
+
+            JumpModule.gravityWeight = 0;
         }
     }
 }

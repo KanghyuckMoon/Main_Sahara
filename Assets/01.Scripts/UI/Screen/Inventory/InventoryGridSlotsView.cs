@@ -121,7 +121,21 @@ namespace UI.Inventory
         /// <param name="_callback"></param>
         public void AddButtonEvent(RadioButtons _type,Action<bool> _callback)
         {
-            AddRadioBtnChangedEvent((int)_type, (x) => _callback?.Invoke(x));
+            AddRadioBtnChangedEvent((int)_type, (x) =>
+            {
+                _callback?.Invoke(x);
+                ActiveRadioBtn(_type, x); 
+            });
+        }
+
+        private void ActiveRadioBtn(RadioButtons _type, bool _isActive)
+        {
+            float _v = _isActive ? 1.15f : 1f;
+            Color _c = new Color(243, 153, 104,1);
+
+            Color _tC = _isActive ? _c : Color.white; 
+            GetRadioButton((int)_type).style.scale = new StyleScale(new Scale(new Vector2(_v,_v)));
+            GetRadioButton((int)_type).Q(className: "unity-radio-button__checkmark-background").style.unityBackgroundImageTintColor = new StyleColor(_tC); 
         }
     }
 }

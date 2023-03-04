@@ -24,6 +24,8 @@ namespace Weapon
         public WeaponPositionSO WeaponPositionSO => weaponPositionSO;
         public WeaponDataSO WeaponDataSO => weaponDataSO;
         public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
+        public ProjectilePositionSO ProjectilePositionSO => projectilePositionSO;
+
 
         public bool isProjectile;
 
@@ -35,13 +37,27 @@ namespace Weapon
 
         [SerializeField]
         private HitBoxDatasSO hitBoxDataSO;
-
+        [SerializeField]
+        private ProjectilePositionSO projectilePositionSO;
 
         private void Awake()
         {
             //weaponSkills = new WeaponSkills();
             weaponPositionSO = AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
             weaponDataSO = AddressablesManager.Instance.GetResource<WeaponDataSO>(weaponName + weaponDataStr);
+        }
+
+        [ContextMenu("위치 저장")]
+        public void Upload()
+        {
+            WeaponPositionData _weaponPositionData = new WeaponPositionData();
+
+            _weaponPositionData.objectName = GetComponentInParent<CharacterController>().name.Trim();
+            _weaponPositionData.weaponPosition = transform.localPosition;
+            _weaponPositionData.weaponRotation = transform.localRotation;
+
+            weaponPositionSO ??= AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
+            weaponPositionSO.UploadWeaponPositionData(_weaponPositionData);
         }
     }
 }

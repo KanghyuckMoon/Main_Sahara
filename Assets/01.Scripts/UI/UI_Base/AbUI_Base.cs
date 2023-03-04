@@ -7,6 +7,12 @@ using System.Linq;
 
 namespace UI    
 {
+    public enum PosType
+    {
+        left, 
+        mid,
+        right
+    }
     [Serializable]
     public abstract class AbUI_Base
     {
@@ -114,7 +120,7 @@ namespace UI
             return IsVisible(); 
         }
 
-        public void ActiveScreen(bool _isActive)
+        public virtual void ActiveScreen(bool _isActive)
         {
             ShowVisualElement(parentElement, _isActive);
         }

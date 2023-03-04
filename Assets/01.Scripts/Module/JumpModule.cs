@@ -7,28 +7,11 @@ namespace Module
 {
     public class JumpModule : AbBaseModule
     {
-        private Animator Animator
-		{
-            get
-            {
-                animator ??= mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
-                return animator;
+        public float gravityWeight = 0;
 
-            }
-		}
-		private Animator animator;
+        private Animator animator;
 
-        private float JumpHeight
-		{
-            get
-			{
-                if (mainModule is null)
-				{
-                    return 0f;
-				}
-                return mainModule.StatData.Jump;
-            }
-		}
+        private float jumpHeight;
         private float _GravityScale => mainModule.GravityScale;
 
         private float jumpDelay;
@@ -41,14 +24,11 @@ namespace Module
         {
 
         }
-        public JumpModule() : base()
-        {
-
-        }
 
         public override void Start()
         {
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
+            jumpHeight = mainModule.StatData.Jump;
             jumpDelay = 0.36f;
             antiFallTime = 0.16f;
         }
@@ -56,6 +36,13 @@ namespace Module
         public override void FixedUpdate()
         {
             Jump();
+            Weight();
+        }
+
+        void Weight()
+        {
+            if (gravityWeight >= mainModule.Gravity)
+                gravityWeight = mainModule.Gravity;
         }
 
         void Jump()
@@ -64,8 +51,8 @@ namespace Module
             {
                 calculatedFallTime = antiFallTime;
 
-                Animator.SetBool("FreeFall", false);
-                Animator.SetBool("Jump", false);
+                animator.SetBool("FreeFall", false);
+                animator.SetBool("Jump", false);
 
                 if (mainModule.Gravity < 0) mainModule.Gravity = -2;
 
@@ -73,7 +60,7 @@ namespace Module
                 {
                     Jumping();
 
-                    Animator.SetBool("Jump", true);
+                    animator.SetBool("Jump", true);
                 }
 
                 if (calculatedTime > 0.0f)
@@ -89,7 +76,7 @@ namespace Module
                 }
                 else
                 {
-                    Animator.SetBool("FreeFall", true);
+                    animator.SetBool("FreeFall", true);
                 }
 
                 mainModule.IsJump = false;
@@ -100,23 +87,14 @@ namespace Module
 
         void Jumping()
         {
-            mainModule.Gravity = Mathf.Sqrt(JumpHeight * -2f * _GravityScale);
+            mainModule.Gravity = Mathf.Sqrt(jumpHeight * -2f * _GravityScale);
             //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        }
-
-		public override void OnDisable()
-        {
-            animator = null;
-            mainModule = null;
-            base.OnDisable();
-            Pool.ClassPoolManager.Instance.RegisterObject<JumpModule>("JumpModule", this);
         }
 
 		public override void OnDestroy()
 		{
-            animator = null;
-            mainModule = null;
 			base.OnDestroy();
+            animator = null;
         }
 	}
 }
