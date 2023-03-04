@@ -115,6 +115,9 @@ namespace Module
         }
         public override void OnDisable()
         {
+            hpModule = null;
+            stateModule = null;
+            animationModule = null;
             base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<HitModule>("HitModule", this);
         }

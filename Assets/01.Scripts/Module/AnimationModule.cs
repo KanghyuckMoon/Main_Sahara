@@ -32,7 +32,7 @@ namespace Module
 		}
         private int swordLayerIndex;
 
-        public AnimationModule(AbMainModule _mainModule) : base(_mainModule)
+        public AnimationModule(AbMainModule _mainModule)
         {
 
         }
@@ -41,7 +41,12 @@ namespace Module
 
         }
 
-        private void SettingAnimatorSpeed()
+		public override void Init(AbMainModule _mainModule, params string[] _parameters)
+		{
+			base.Init(_mainModule, _parameters);
+		}
+
+		private void SettingAnimatorSpeed()
         {
             Animator.speed = StaticTime.EntierTime;
         }
@@ -66,11 +71,6 @@ namespace Module
             Animator.SetBool("Charge", mainModule.IsCharging);
         }
 
-		public override void OnDestroy()
-		{
-			base.OnDestroy();
-            animator = null;
-        }
 
 		public void Receive()
         {
@@ -78,7 +78,18 @@ namespace Module
         }
         public override void OnDisable()
         {
+            animator = null;
+            mainModule = null;
+            StaticTime.Instance.RemoveObserver(this);
             base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<AnimationModule>("AnimationModule", this);
+        }
+        public override void OnDestroy()
+        {
+            animator = null;
+            mainModule = null;
+            StaticTime.Instance.RemoveObserver(this);
+            base.OnDestroy();
             ClassPoolManager.Instance.RegisterObject<AnimationModule>("AnimationModule", this);
         }
     }

@@ -34,7 +34,7 @@ namespace CondinedModule
 
             RaycastTarget = transform.Find("RayCastPoint");
 
-            animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
             LockOnTarget = null;
         }
 

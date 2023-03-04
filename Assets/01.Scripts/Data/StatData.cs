@@ -145,15 +145,32 @@ namespace Data
         private PlayerData_TesSO playerdata;
 
         public void Awake()
+		{
+			try
+			{
+				playerdata = AddressablesManager.Instance.GetResource<PlayerData_TesSO>(dataSOPath);
+				MaxHp = playerdata.hp;
+				CurrentHp = playerdata.hp;
+				MaxMana = playerdata.mana;
+				Jump = playerdata.jumpPower;
+				Speed = playerdata.speed;
+			}
+			catch
+			{
+                AddressablesManager.Instance.GetResourceAsync<PlayerData_TesSO>(dataSOPath, AsyncSetPlayerData);
+            }
+		}
+
+        private void AsyncSetPlayerData(PlayerData_TesSO _playerData_TesSO)
         {
-            playerdata = AddressablesManager.Instance.GetResource<PlayerData_TesSO>(dataSOPath);
+            playerdata = _playerData_TesSO;
             MaxHp = playerdata.hp;
             MaxMana = playerdata.mana;
             Jump = playerdata.jumpPower;
             Speed = playerdata.speed;
         }
 
-        public void ChargeMana(int addMana)
+		public void ChargeMana(int addMana)
         {
             CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
         }

@@ -11,6 +11,12 @@ namespace Pool
     {
         private Dictionary<string, Queue<GameObject>> gameObjectQueueDic = new Dictionary<string, Queue<GameObject>>();
 
+        public void Clear()
+		{
+            gameObjectQueueDic.Clear();
+            PoolParentManager.Instance.Clear();
+        }
+
         public int GetAllCount()
 		{
             int count = 0;

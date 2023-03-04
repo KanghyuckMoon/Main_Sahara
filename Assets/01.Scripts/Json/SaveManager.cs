@@ -9,6 +9,8 @@ using Shop;
 using Module;
 using CondinedModule;
 using TimeManager;
+using System;
+using Streaming;
 
 namespace Json
 {
@@ -67,13 +69,11 @@ namespace Json
                 if (Player is null)
 				{
                     return null;
-				}
-                if (stateModule is null)
-				{
-                    AbMainModule _abMainModule = player?.GetComponentInChildren<AbMainModule>();
-                    stateModule = _abMainModule?.GetModuleComponent<StatModule>(ModuleType.Stat);
-
                 }
+                
+                AbMainModule _abMainModule = player?.GetComponentInChildren<AbMainModule>();
+                stateModule = _abMainModule?.GetModuleComponent<StatModule>(ModuleType.Stat);
+
                 return stateModule;
 
             }
@@ -91,8 +91,38 @@ namespace Json
 
         private StatModule stateModule;
 
+        public string TestDate
+		{
+            get
+			{
+                return testDate;
+			}
+            set
+			{
+                testDate = value;
+
+            }
+		}            
+
+        private string testDate;
+
+        public bool IsContinue
+		{
+            get
+			{
+                return isContinue;
+			}
+            set
+			{
+                isContinue = value;
+			}
+		}
+		private bool isContinue = false;
+
+        public bool isLoadSuccess = false;
+
         [ContextMenu("Save")]
-        public void Save()
+        public void Save(string _date)
 		{
             if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null)
 			{
@@ -104,47 +134,70 @@ namespace Json
             stateModule.SaveData();
             inventorySO.SaveData();
             questSaveDataSO.SaveData();
-            
-            StaticSave.Save<SaveData>(ref stateModule.saveData);
-            StaticSave.Save<InventorySave>(ref inventorySO.inventorySave);
-            StaticSave.Save<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave);
+
+            StaticSave.Save<SaveData>(ref stateModule.saveData, _date);
+            StaticSave.Save<InventorySave>(ref inventorySO.inventorySave, _date);
+            StaticSave.Save<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
+
+            var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
+
+            foreach(var _sceneData in _sceneDataList)
+			{
+                StaticSave.Save<ObjectDataList>(ref _sceneData.Value.objectDataList, _sceneData.Key + _date);
+            }
 
             for (int i = 0; i < ShopAllSO.shopSOList.Count; ++i)
             {
                 ShopSO _shopSO = ShopAllSO.shopSOList[i];
                 _shopSO.SaveData();
-                StaticSave.Save<ShopSave>(ref _shopSO.shopSave, _shopSO.shopName);
+                StaticSave.Save<ShopSave>(ref _shopSO.shopSave, _shopSO.shopName + _date);
             }
+            
             StaticTime.EntierTime = 1;
         }
 
         [ContextMenu("Load")]
-        public void Load()
+        public void Load(string _date)
         {
-            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null)
+            isLoadSuccess = false;
+            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null)
             {
+                isLoadSuccess = false;
                 return;
             }
-            Player?.gameObject.SetActive(false);
-            StaticTime.EntierTime = 0;
-            StaticSave.Load<SaveData>(ref stateModule.saveData);
-            StaticSave.Load<InventorySave>(ref inventorySO.inventorySave);
-            StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave);
+            //StaticTime.EntierTime = 0;
+            StaticSave.Load<InventorySave>(ref inventorySO.inventorySave, _date);
+            StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
 
             //별도의 적용 필요함
+            Player.GetComponentInChildren<CharacterController>().enabled = false;
+            //(Player.GetComponent<AbMainModule>() as Player).OnEnable();
+            stateModule = (Player.GetComponent<AbMainModule>() as Player).GetModuleComponent<StatModule>(ModuleType.Stat);
+            StaticSave.Load<SaveData>(ref stateModule.saveData, _date);
             stateModule.LoadData();
-            Player?.gameObject.SetActive(true);
             inventorySO.LoadData();
             questSaveDataSO.LoadData();
             QuestManager.Instance.LoadQuestSaveData(questSaveDataSO);
+            Player.GetComponentInChildren<CharacterController>().enabled = true;
+            //Player?.gameObject.SetActive(true);
+
+            var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
+
+            foreach (var _sceneData in _sceneDataList)
+            {
+                _sceneData.Value.SaveUnLoad();
+                StaticSave.Load<ObjectDataList>(ref _sceneData.Value.objectDataList, _sceneData.Key + _date);
+                _sceneData.Value.SaveLoad();
+            }
 
             for (int i = 0; i < ShopAllSO.shopSOList.Count; ++i)
             {
                 ShopSO _shopSO = ShopAllSO.shopSOList[i];
-                StaticSave.Load<ShopSave>(ref _shopSO.shopSave, _shopSO.shopName);
+                StaticSave.Load<ShopSave>(ref _shopSO.shopSave, _shopSO.shopName + _date);
                 _shopSO.LoadData();
             }
-            StaticTime.EntierTime = 1;
+            //StaticTime.EntierTime = 1;
+            isLoadSuccess = true;
         }
 
 #if UNITY_EDITOR
@@ -152,11 +205,12 @@ namespace Json
 		{
             if (Input.GetKeyDown(KeyCode.P))
 			{
-                Save();
+                testDate = DateTime.Now.ToString("yyyyMMddhhmmss");
+                Save(testDate);
             }
             else if (Input.GetKeyDown(KeyCode.O))
             {
-                Load();
+                Load(testDate);
             }
         }
 

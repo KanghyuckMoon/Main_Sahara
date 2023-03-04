@@ -80,6 +80,14 @@ namespace Streaming
 
 			if (_sceneData == targetSceneData || _sceneData is null)
 			{
+				if(ObjectClassCycle.gameObject.scene != SceneManager.GetSceneByName(targetSceneData.SceneName))
+				{
+					if (targetSceneData.IsLoad)
+					{
+						SceneManager.MoveGameObjectToScene(ObjectClassCycle.TargetObject, SceneManager.GetSceneByName(targetSceneData.SceneName));
+						targetSceneData.AddObjectChecker(this);
+					}
+				}
 				return;
 			}
 
@@ -145,6 +153,9 @@ namespace Streaming
 
 		public void Start()
 		{
+			originChunkCoordX = 0;
+			originChunkCoordY = 0;
+			originChunkCoordZ = 0;
 			if (objectDataSO != null)
 			{
 				objectData = new ObjectData();

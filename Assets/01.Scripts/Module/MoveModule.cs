@@ -16,8 +16,30 @@ namespace Module
             }
         }
 
+        private StatData StatData
+		{
+            get
+            {
+                statData ??= mainModule.GetComponent<StatData>();
+                return statData;
+            }
+		}
+
+        private Animator Animator
+		{
+            get
+            {
+                animator ??= mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
+                return animator;
+            }
+            set
+			{
+                animator = value;
+
+            }
+		}
         private Animator animator;
-        private float moveSpeed => statData.Speed;
+        private float moveSpeed => StatData.Speed;
         private float rotationVelocity;
         private float targetRotation;
         private float rotation;
@@ -117,7 +139,7 @@ namespace Module
                 mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, Time.fixedDeltaTime);
                 mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
 
-                animator.SetFloat("MoveSpeed", animationBlend);
+                Animator.SetFloat("MoveSpeed", animationBlend);
             }
         }
 
@@ -179,5 +201,17 @@ namespace Module
             statData = mainModule.GetComponent<StatData>();
             animationBlend = 0;
         }
-    }
+
+		public override void OnDisable()
+		{
+            stateModule = null;
+            animator = null;
+            statData = null;
+            mainModule = null;
+
+            base.OnDisable();
+
+            Pool.ClassPoolManager.Instance.RegisterObject<MoveModule>("MoveModule", this);
+		}
+	}
 }

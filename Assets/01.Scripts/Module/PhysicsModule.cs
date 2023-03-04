@@ -48,7 +48,14 @@ namespace Module
                 return jumpModule;
             }
         }
-
+        private PlayerLandEffectSO Effect
+        {
+            get
+            {
+                effect ??= AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
+                return effect;
+            }
+        }
         private JumpModule jumpModule;
         private HitModule hitModule;
         private StateModule stateModule;
@@ -60,6 +67,10 @@ namespace Module
         private bool isRight;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
+        {
+
+        }
+        public PhysicsModule() : base()
         {
 
         }
@@ -159,7 +170,7 @@ namespace Module
                 StateModule.RemoveState(State.JUMP);
 
                 mainModule.KnockBackVector = Vector3.zero;
-                EffectManager.Instance.SetEffectDefault(effect.landEffectName, mainModule.transform.position, Quaternion.identity);
+                EffectManager.Instance.SetEffectDefault(Effect.landEffectName, mainModule.transform.position, Quaternion.identity);
                 //StatModule.
 
 
@@ -186,12 +197,12 @@ namespace Module
 
                     if (mainModule.IsSprint)
                     {
-                        delay = effect.runEffectDelay;
-                        EffectManager.Instance.SetEffectDefault(isRight ? effect.runREffectName : effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
+                        delay = Effect.runEffectDelay;
+                        EffectManager.Instance.SetEffectDefault(isRight ? Effect.runREffectName : Effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
                     }
                     else
                     {
-                        EffectManager.Instance.SetEffectDefault(isRight ? effect.walkRffectName : effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
+                        EffectManager.Instance.SetEffectDefault(isRight ? Effect.walkRffectName : Effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
                     }
                     isRight = !isRight;
                 }
@@ -208,6 +219,22 @@ namespace Module
             }
 
             JumpModule.gravityWeight = 0;
+        }
+        public override void OnDisable()
+        {
+            hitModule = null;
+            stateModule = null;
+            mainModule = null;
+            base.OnDisable();
+            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
+        }
+        public override void OnDestroy()
+        {
+            hitModule = null;
+            stateModule = null;
+            mainModule = null;
+            base.OnDestroy();
+            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
         }
     }
 }

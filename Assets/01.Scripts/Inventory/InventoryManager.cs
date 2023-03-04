@@ -5,7 +5,7 @@ using Utill.Pattern;
 using Utill.Addressable;
 using System.Linq;
 using Module;
-
+using GameManager;
 
 namespace Inventory
 {
@@ -101,6 +101,14 @@ namespace Inventory
 
 		public void Update()
 		{
+			if (!GameManager.GamePlayerManager.Instance.IsPlaying)
+			{
+				player = null;
+				weaponModule = null;
+				itemModule = null;
+				return;
+			}
+
 			float wheel = Input.GetAxisRaw("Mouse ScrollWheel");
 			if (wheel >= 0.1f)
 			{
