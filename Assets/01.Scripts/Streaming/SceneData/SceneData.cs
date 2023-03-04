@@ -261,6 +261,8 @@ namespace Streaming
 
 		private void LoadObject(GameObject gameObject, ObjectData _objectData)
 		{
+			gameObject.transform.SetParent(null);
+			gameObject.SetActive(false);
 			gameObject.transform.SetPositionAndRotation(_objectData.position, _objectData.rotation);
 			gameObject.transform.localScale = _objectData.scale;
 			gameObject.name = $"{_objectData.address} {SceneName}";
