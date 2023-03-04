@@ -9,6 +9,7 @@ using GameManager;
 
 namespace Streaming
 {
+	public delegate void StreamingEventTransmit(string _sender, string _recipient, object _obj);
 	public class StreamingManager : MonoSingleton<StreamingManager>, Observer
 	{
 		public bool IsSetting
@@ -45,6 +46,20 @@ namespace Streaming
 				return subSceneReference;
 			}
 		}
+		public StreamingEventTransmit StreamingEventTransmit
+		{
+			get
+			{
+				return streamingEventTransmit;
+			}
+			set
+			{
+				streamingEventTransmit = value;
+			}
+		}
+
+		private StreamingEventTransmit streamingEventTransmit;
+
 		//[SerializeField]
 		private Transform viewer = null;
 
@@ -70,6 +85,13 @@ namespace Streaming
 		private const int interval = 3;
 		private Vector3 defaultPosition = new Vector3(0,4050,0);
 		private bool isSceneSetting = false;
+
+
+		public void ReceiveEvent(string _sender, object _obj)
+		{
+
+		}
+
 		public void Receive()
 		{
 			if (GamePlayerManager.Instance.IsPlaying)
@@ -147,6 +169,7 @@ namespace Streaming
 					viewerPosition = new Vector3(viewer.position.x, viewer.position.y, viewer.position.z);
 				}
 				CheckOutChunk();
+				streamingEventTransmit?.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 
