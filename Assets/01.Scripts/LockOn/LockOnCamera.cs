@@ -10,6 +10,9 @@ namespace LockOn
     public class LockOnCamera : MonoBehaviour
     {
         [SerializeField]
+        public GameObject currentCamera;
+
+        [SerializeField]
         private Transform player;
         [SerializeField]
         private ThirdPersonCameraController thirdPersonCameraController;
@@ -27,8 +30,10 @@ namespace LockOn
         private AbMainModule playerModule;
 
         private List<Transform> lockOnTargetList = new List<Transform>();
-        private Transform target;
+        public Transform target;    // ¾ê publicÀ¸·Î ¹Ù²Þ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private bool isTarget;
+
+        //private Camera 
 
         public void AddLockOnObject(Transform _lockOnObj)
 		{
@@ -41,6 +46,11 @@ namespace LockOn
         public void RemoveLockOnObject(Transform _lockOnObj)
         {
             lockOnTargetList.Remove(_lockOnObj);
+        }
+
+        public void Start()
+        {
+            currentCamera = playerCam.gameObject;
         }
 
         public void Update()
@@ -63,6 +73,7 @@ namespace LockOn
 
                 playerCam.gameObject.SetActive(true);
                 groupCam.gameObject.SetActive(false);
+                currentCamera = playerCam.gameObject;
 
                 playerModule.LockOn = false;
                 playerModule.LockOnTarget = null;
@@ -111,6 +122,8 @@ namespace LockOn
 
                     groupCam.gameObject.SetActive(true);
                     playerCam.gameObject.SetActive(false);
+
+                    currentCamera = groupCam.gameObject;
 
                     playerModule.LockOn = true;
                     playerModule.LockOnTarget = target;
