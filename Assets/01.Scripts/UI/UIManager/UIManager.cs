@@ -78,7 +78,15 @@ namespace UI.Manager
             width = Screen.width;
             height = Screen.height; 
         }
-
+    
+        /// <summary>
+        /// 재시작시 초기화 
+        /// </summary>
+        public void Init()
+        {
+            screenUIController = null; 
+            player = null; 
+        }
         public void ActiveHud(bool _isActive)
         {
             if (playerHud == null)
