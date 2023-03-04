@@ -42,12 +42,23 @@ namespace Module
                 return stateModule;
             }
         }
-        private Animator Animator
+        public Animator Animator
         {
             get
             {
-                animator ??= mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
+                try
+                {
+                    animator ??= mainModule.GetComponentInChildren<Animator>();
+                }
+                catch
+                {
+                    animator = mainModule.GetComponentInChildren<Animator>();
+                }
                 return animator;
+            }
+            set
+            {
+                animator = value;
             }
         }
 
@@ -70,6 +81,14 @@ namespace Module
         public WeaponModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
+        }
+        public WeaponModule() : base()
+        {
+
+        }
+        public override void Init(AbMainModule _mainModule, params string[] _parameters)
+        {
+            base.Init(_mainModule, _parameters);
         }
 
         public override void Start()
@@ -182,6 +201,32 @@ namespace Module
             //    weaponSkills?.Invoke();
             //    StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
             //}
+        }
+
+        public override void OnDisable()
+        {
+            currentWeapon = null;
+            weaponSkills = null;
+            baseWeapon = null;
+            stateModule = null;
+            animator = null;
+            weaponRight = null;
+            mainModule = null;
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<WeaponModule>("WeaponModule", this);
+        }
+
+        public override void OnDestroy()
+        {
+            currentWeapon = null;
+            weaponSkills = null;
+            baseWeapon = null;
+            stateModule = null;
+            animator = null;
+            weaponRight = null;
+            mainModule = null;
+            base.OnDestroy();
+            ClassPoolManager.Instance.RegisterObject<WeaponModule>("WeaponModule", this);
         }
     }
 }
