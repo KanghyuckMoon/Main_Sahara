@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UI.Base;
+using System; 
 
 namespace UI.Production
 {
     enum Labels
     {
-        title_label, 
-        data_label,
+        //title_label,
+        date_label,
     }
     enum Elements
     {
@@ -23,7 +24,7 @@ namespace UI.Production
         {
             //base.Cashing();
             BindLabels(typeof(Labels));
-            BindLabels(typeof(Elements));
+            BindVisualElements(typeof(Elements));
         }
 
         public override void Init()
@@ -36,15 +37,19 @@ namespace UI.Production
         /// </summary>
         /// <param name="_data"></param>
         /// <param name="_title"></param>
-        public void SetNameAndDetail(string _data, string _title)
+        public void SetDate(string _date)
         {
-            GetLabel((int)Labels.data_label).text = _data;
-            GetLabel((int)Labels.title_label).text = _title;
+            GetLabel((int)Labels.date_label).text = _date;
         }
 
         public void SetImage(Texture2D _image)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_image);
+        }
+
+        public void AddClickEvent(Action _callback)
+        {
+            parentElement.RegisterCallback<ClickEvent>((x) => _callback?.Invoke());
         }
     }
 }
