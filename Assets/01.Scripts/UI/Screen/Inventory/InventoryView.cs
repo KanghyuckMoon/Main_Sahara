@@ -83,6 +83,8 @@ namespace UI.Inventory
 
             // 장착 슬롯 초기화 
             InitEquipSlots();
+
+
         }
 
         public void ClearUI()

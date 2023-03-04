@@ -38,11 +38,18 @@ namespace UI
         {
             mapView.Cashing();
             mapView.Init();
+
+            fullMapComponent.Init(mapView);
+            miniMapComponent.Init(mapView);
+
+        }
+
+        private void OnDisable()
+        {
+            
         }
         private void Start()
         {
-            fullMapComponent.Init(mapView);
-            miniMapComponent.Init(mapView); 
         }
 
         private void LateUpdate()
