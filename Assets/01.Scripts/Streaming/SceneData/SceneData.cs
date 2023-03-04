@@ -281,7 +281,7 @@ namespace Streaming
 
 			if (_objectData.isMonster)
 			{
-				StatData _statData = gameObject.GetComponentInParent<StatData>();
+				StatData _statData = gameObject.GetComponentInChildren<StatData>();
 				_statData.LoadSaveData(_objectData.statSaveData);
 				_objectData.SetObserble(_statData);
 			}

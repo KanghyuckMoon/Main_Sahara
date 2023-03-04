@@ -150,6 +150,7 @@ namespace Data
 			{
 				playerdata = AddressablesManager.Instance.GetResource<PlayerData_TesSO>(dataSOPath);
 				MaxHp = playerdata.hp;
+				CurrentHp = playerdata.hp;
 				MaxMana = playerdata.mana;
 				Jump = playerdata.jumpPower;
 				Speed = playerdata.speed;

@@ -30,7 +30,7 @@ namespace Module
 
         public override void Start()
         {
-            _StatData.CurrentHp = _StatData.MaxHp;
+            //_StatData.CurrentHp = _StatData.MaxHp;
         }
 
 
