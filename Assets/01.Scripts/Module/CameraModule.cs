@@ -12,6 +12,7 @@ namespace Module
     {
         public CinemachineVirtualCamera follawVCam;
         public CinemachineVirtualCamera groupVCam;
+        public CinemachineVirtualCamera zoomVCam;
 
         public Camera MainCamera
 		{
@@ -25,6 +26,7 @@ namespace Module
 
         private CinemachineBasicMultiChannelPerlin followCamNoise;
         private CinemachineBasicMultiChannelPerlin groupCamNoise;
+        private CinemachineBasicMultiChannelPerlin zoomCamNoise;
 
         private float currentShakeDuration = 0;
         //private PlayerFollowCamera camInstance;
@@ -80,21 +82,28 @@ namespace Module
             //camInstance = PlayerFollowCamera.Instance;
             follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
             groupVCam = GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
+            zoomVCam = GameObject.Find("ZoomCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
 
             followCamNoise = follawVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             groupCamNoise = groupVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            zoomCamNoise = zoomVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
             groupVCam.gameObject.SetActive(false);
+            zoomVCam.gameObject.SetActive(false);
             //mainModule.objRotation = mainCam.transform.rotation;
         }
 
         public override void LateUpdate()
         {
             if (follawVCam.gameObject.activeSelf)
-			{
+            {
                 mainModule.ObjRotation = follawVCam.transform.rotation;
-			}
-            else
+            }
+            else if (zoomVCam.gameObject.activeSelf)
+            {
+                mainModule.ObjRotation = zoomVCam.transform.rotation;
+            }
+            else if (groupVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = groupVCam.transform.rotation;
             }

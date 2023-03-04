@@ -18,6 +18,8 @@ namespace LockOn
         [SerializeField]
         private CinemachineVirtualCamera groupCam;
         [SerializeField]
+        private CinemachineVirtualCamera zoomCam;
+        [SerializeField]
         private Transform playerTarget;
         [SerializeField]
         private CinemachineTargetGroup cinemachineTargetGroup;

@@ -62,7 +62,7 @@ namespace Module
         {
             if (WeaponModule.isProjectileWeapon)
             {
-                GameObject _projectile = ObjectPoolManager.Instance.GetObject(WeaponModule.CurrentArrowInfo.arrowAddress);
+                GameObject _projectile = ObjectPoolManager.Instance.GetObject(_projectileObjectData.projectileAddress);
 
                 _projectile.transform.SetParent(WhichHandToHold(_projectileObjectData.weaponHand));
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();

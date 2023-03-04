@@ -32,14 +32,6 @@ namespace Module
                 return stateModule;
             }
         }
-        private HpModule HpModule
-        {
-            get
-            {
-                hpModule ??= mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
-                return hpModule;
-            }
-        }
         private JumpModule JumpModule
         {
             get
@@ -52,7 +44,6 @@ namespace Module
         private JumpModule jumpModule;
         private HitModule hitModule;
         private StateModule stateModule;
-        private HpModule hpModule;
         private PlayerLandEffectSO effect;
 
         private float effectSpownDelay => effect.effectDelayTime;
@@ -204,7 +195,7 @@ namespace Module
             if (JumpModule.gravityWeight <= -100)
             {
                 //Debug.LogError("³«»ç ³«»ç");
-                HpModule.GetDamage(20);
+                HitModule.GetHit(20);
             }
 
             JumpModule.gravityWeight = 0;

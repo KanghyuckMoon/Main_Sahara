@@ -11,7 +11,7 @@ namespace Weapon
         public void MovingFunc()
         {
             transform.SetParent(null);
-            rigidbody.AddForce(objectData.position * objectData.speed, ForceMode.Impulse);
+            rigidbody.AddForce(CalculateRotation().normalized * objectData.speed, ForceMode.Impulse);
         }
     }
 }
