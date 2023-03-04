@@ -14,14 +14,14 @@ namespace Weapon
 
         //}
 
-        public void MovingFunc()
+        public void MovingFunc(Quaternion _quaternion)
         {
             rigidbody.useGravity = true;
 
             transform.rotation = Quaternion.Euler(objectData.InitialDirection);
 
             transform.SetParent(null);
-            rigidbody.AddForce((CalculateRotation().normalized * objectData.speed) + new Vector3(0, 1, 0), ForceMode.Impulse);
+            rigidbody.AddForce((CalculateRotation(_quaternion).normalized * objectData.speed) + new Vector3(0, 1, 0), ForceMode.Impulse);
             //rigidbody.MovePosition(Vector3.up * 10);
         }
 

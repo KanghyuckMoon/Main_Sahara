@@ -66,7 +66,9 @@ namespace Module
             if (PositionSO is null)
                 return;
 
-            projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc());
+            //Quaternion _quaternion = Quaternion.Euler(transform.forward);
+
+            projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc(transform.rotation));
 
             projectileObjects.Clear();
         }
