@@ -17,7 +17,7 @@ namespace Inventory
 		public ItemType itemType;
 		public string prefebkey;
 		public string animationLayer;
-
+		public string dropItemPrefebKey;
 
 	}
 }

@@ -6,6 +6,7 @@ using Utill.Addressable;
 using System.Linq;
 using Module;
 using GameManager;
+using Pool;
 
 namespace Inventory
 {
@@ -107,6 +108,11 @@ namespace Inventory
 				weaponModule = null;
 				itemModule = null;
 				return;
+			}
+
+			if (Input.GetKeyDown(KeyCode.G))
+			{
+				CurrentItemDrop();
 			}
 
 			float wheel = Input.GetAxisRaw("Mouse ScrollWheel");
@@ -486,6 +492,23 @@ namespace Inventory
 			//스킬 추가 처리
 
 			return;
+		}
+
+		public void CurrentItemDrop()
+		{
+			if (inventorySO.quickSlot[quickSlotIndex] is null)
+			{
+				return;
+			}
+			DropItem(inventorySO.quickSlot[quickSlotIndex]);
+			inventorySO.quickSlot[quickSlotIndex] = null;
+			ChangeWeapon();
+		}
+
+		public void DropItem(ItemData _itemData)
+		{
+			GameObject _dropObj = ObjectPoolManager.Instance.GetObject(_itemData.dropItemPrefebKey);
+			_dropObj.transform.position = Player.position;
 		}
 
 		public void RemoveSkill(int _index)

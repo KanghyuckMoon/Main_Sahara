@@ -51,6 +51,7 @@ namespace Inventory
 		public ItemType itemType; // 아이템 타입
 		public string prefebkey; //프리펩 키 (인게임에서 사용)
 		public string animationLayer; // 애니메이션 레이어 (인게임에서 사용)
+		public string dropItemPrefebKey;
 
 		//장신구 분류용
 		public AccessoriesItemType accessoriesItemType;
@@ -76,6 +77,7 @@ namespace Inventory
 			_newItemData.itemType = _itemData.itemType;
 			_newItemData.prefebkey = _itemData.prefebkey;
 			_newItemData.animationLayer = _itemData.animationLayer;
+			_newItemData.dropItemPrefebKey = _itemData.dropItemPrefebKey;
 
 			return _newItemData;
 		}
@@ -93,6 +95,7 @@ namespace Inventory
 			_newItemData.itemType = _itemDataSO.itemType;
 			_newItemData.prefebkey = _itemDataSO.prefebkey;
 			_newItemData.animationLayer = _itemDataSO.animationLayer;
+			_newItemData.dropItemPrefebKey = _itemDataSO.dropItemPrefebKey;
 
 			return _newItemData;
 		}
