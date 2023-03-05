@@ -9,15 +9,6 @@ namespace Interaction
 {
 	public class InteractionDropItem : MonoBehaviour, IInteractionItem
 	{
-		[SerializeField]
-		private ItemDataSO itemDataSO = null;
-
-		[SerializeField]
-		private string itemAddress = null;
-
-		[SerializeField]
-		private GameObject targetObj = null;
-
 		public bool Enabled
 		{
 			get
@@ -30,11 +21,42 @@ namespace Interaction
 			}
 		}
 
+		[SerializeField]
+		private ItemDataSO itemDataSO = null;
+
+		[SerializeField]
+		private Rigidbody rigid = null;
+
+		[SerializeField]
+		private string itemAddress = null;
+
+		[SerializeField]
+		private GameObject targetObj = null;
+
+		[SerializeField]
+		private bool isJumping = false;
+
 		private bool isEnabled = false;
 		private DropItem dropItem = new DropItem();
 
+		public void Start()
+		{
+			if(isEnabled is false)
+			{
+				if (isJumping)
+                {
+					rigid?.AddForce(Vector3.up * 0.5f, ForceMode.Impulse);
+                }
+				isEnabled = true;
+			}
+		}
+
 		public void OnEnable()
 		{
+			if (isJumping)
+			{
+				rigid?.AddForce(Vector3.up * 0.5f, ForceMode.Impulse);
+			}
 			isEnabled = true;
 		}
 

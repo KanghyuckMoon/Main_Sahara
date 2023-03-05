@@ -507,8 +507,13 @@ namespace Inventory
 
 		public void DropItem(ItemData _itemData)
 		{
+			if(_itemData.dropItemPrefebKey is null || _itemData.dropItemPrefebKey == "")
+            {
+				return;
+            }
 			GameObject _dropObj = ObjectPoolManager.Instance.GetObject(_itemData.dropItemPrefebKey);
-			_dropObj.transform.position = Player.position;
+			_dropObj.transform.position = new Vector3(Player.position.x, Player.position.y + 2f, Player.position.z);
+			_dropObj.SetActive(true);
 		}
 
 		public void RemoveSkill(int _index)
