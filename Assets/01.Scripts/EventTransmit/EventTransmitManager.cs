@@ -13,8 +13,9 @@ namespace EventTransmit
 	{
 		//인벤토리 -> 퀘스트
 
-		public void Awake()
+		public override void Awake()
 		{
+			base.Awake();
 			InventoryManager.Instance.InventoryEventTransmit += SendEvent;
 			QuestManager.Instance.QuestEventTransmit += SendEvent;
 			SaveManager.Instance.SaveEventTransmit += SendEvent;
