@@ -31,14 +31,18 @@ namespace Weapon
             {
                 ProjectileObjectData _data = _list.list.Find(x => x.distinguishingName == _projectileObjectData.distinguishingName);
                 if (_data is not null)
-                    _data = _projectileObjectData;
+                {
+                    //ProjectileObjectData에 카피함수 만들기
+                    //_date.Copy(_projectileObjectData) 이런 식으로 되도록
+                    _data.Copy(_projectileObjectData);
+                }
                 else
                     _list.list.Add(_projectileObjectData);
             }
             else
             {
                 ProjectileObjectDataList _projectileObjectDataList = new ProjectileObjectDataList();
-                _projectileObjectDataList.list.Add(ProjectileObjectData.Copy(_projectileObjectData));
+                _projectileObjectDataList.list.Add(ProjectileObjectData.StaticCopy(_projectileObjectData));
                 projectilePosDic.Add(_projectileObjectData.projectileName, _projectileObjectDataList);
             }
         }
@@ -68,7 +72,23 @@ namespace Weapon
 
         public string projectileAddress;
 
-        public static ProjectileObjectData Copy(ProjectileObjectData _projectileObjectData)
+        public static ProjectileObjectData StaticCopy(ProjectileObjectData _projectileObjectData)
+        {
+            ProjectileObjectData _data = new ProjectileObjectData();
+
+            _data.projectileName = _projectileObjectData.projectileName;
+            _data.distinguishingName = _projectileObjectData.distinguishingName;
+
+            _data.position = _projectileObjectData.position;
+            _data.rotation = _projectileObjectData.rotation;
+            _data.weaponHand = _projectileObjectData.weaponHand;
+
+            _data.speed = _projectileObjectData.speed;
+
+            return _data;
+        }
+
+        public ProjectileObjectData Copy(ProjectileObjectData _projectileObjectData)
         {
             ProjectileObjectData _data = new ProjectileObjectData();
 

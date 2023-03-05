@@ -354,6 +354,15 @@ namespace Module
                 animator = value;
 			}
 		}
+
+        public GameObject Back
+        {
+            get
+            {
+                return back;
+            }
+        }
+
 		private float stopOrNot;
 
         [SerializeField, Header("(록온)타겟")]
@@ -450,6 +459,10 @@ namespace Module
         [SerializeField, Header("양쪽 발")]
         public Transform leftFeet;
         public Transform rightFeet;
+
+        [Space]
+        [SerializeField, Header("허리")]
+        private GameObject back;
 
         [Space]
         public AnimatorOverrideController animatorOverrideController;
