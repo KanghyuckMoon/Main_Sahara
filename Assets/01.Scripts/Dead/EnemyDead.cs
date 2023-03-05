@@ -6,6 +6,8 @@ using Utill.Pattern;
 using Pool;
 using Quest;
 using Effect;
+using Inventory;
+using Utill.Random;
 
 namespace Module
 {
@@ -33,7 +35,7 @@ namespace Module
         private Animator animator;
 
         [SerializeField]
-        private string dropItemKey;
+        private DropItemListSO dropItemListSO;
 
         private AbMainModule abMainModule;
 
@@ -62,7 +64,19 @@ namespace Module
             animator.speed = 0;
             EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
             EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, transform, rootTransform, gameObject.scene);
-            ItemDrop(dropItemKey);
+            
+            //Item Drop
+            for (int i = 0; i < dropItemListSO.dropCount; ++i)
+            {
+                int _index = StaticRandom.Choose(dropItemListSO.randomPercentArr);
+                if (dropItemListSO.dropItemKeyArr[_index] is null || dropItemListSO.dropItemKeyArr[_index] is "")
+                {
+                    continue;
+                }
+                ItemDrop(dropItemListSO.dropItemKeyArr[_index]); 
+            }
+
+
             yield return new WaitForSeconds(0.2f);
             abMainModule.Model.gameObject.SetActive(false);
             yield return new WaitForSeconds(3f);

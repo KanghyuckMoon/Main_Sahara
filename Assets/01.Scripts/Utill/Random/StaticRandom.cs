@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UI.Random
+namespace Utill.Random
 {
     public static class StaticRandom
     {
@@ -16,7 +16,7 @@ namespace UI.Random
                 total += elem;
             }
 
-            float randomPoint = UnityEngine.Random.Range(0, 100) * total;
+            float randomPoint = UnityEngine.Random.Range(0f, 1f) * total;
 
             for (int i = 0; i < probs.Length; i++)
             {
