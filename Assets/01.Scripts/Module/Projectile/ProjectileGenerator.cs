@@ -15,6 +15,7 @@ namespace Module
             }
         }
 
+        [SerializeField]
         private ProjectilePositionSO positionSO;
         private AttackModule attackModule;
 
@@ -32,6 +33,9 @@ namespace Module
 
         public void SpownAndMove(string _projectileName)
         {
+            if (PositionSO is null)
+                return;
+
             SpownProjectile(_projectileName);
             MoveProjectile();
         }
@@ -40,6 +44,9 @@ namespace Module
         {
             //for (int i = 0; i < _count; i++)
             //{
+            if (PositionSO is null)
+                return;
+
             ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(_projectileName);
 
             if (_list is not null)
@@ -56,7 +63,14 @@ namespace Module
 
         public void MoveProjectile()
         {
-            projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc());
+            if (PositionSO is null)
+                return;
+
+            //Quaternion _quaternion = Quaternion.Euler(transform.forward);
+
+            projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc(transform.rotation));
+
+            projectileObjects.Clear();
         }
     }
 }

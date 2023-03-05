@@ -6,6 +6,6 @@ namespace Weapon
 {
     public interface IProjectile
     {
-        public void MovingFunc();
+        public void MovingFunc(Quaternion _quaternion);
     }
 }

@@ -61,6 +61,9 @@ namespace Weapon
         public Quaternion rotation;
         public WeaponHand weaponHand;
 
+        [Header("날아가는 방향")]
+        public Vector3 InitialDirection;
+
         public float speed;
 
         public string projectileAddress;

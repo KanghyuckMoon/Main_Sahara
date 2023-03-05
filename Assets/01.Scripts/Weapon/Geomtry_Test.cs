@@ -8,10 +8,10 @@ namespace Weapon
     {
         public Rigidbody rigidbody;
 
-        public void MovingFunc()
+        public void MovingFunc(Quaternion _quaternion)
         {
             transform.SetParent(null);
-            rigidbody.AddForce(objectData.position * objectData.speed, ForceMode.Impulse);
+            rigidbody.AddForce(CalculateRotation(_quaternion).normalized * objectData.speed, ForceMode.Impulse);
         }
     }
 }
