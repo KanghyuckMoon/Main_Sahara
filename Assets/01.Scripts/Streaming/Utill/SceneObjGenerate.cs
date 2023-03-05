@@ -26,6 +26,7 @@ namespace Streaming
 			foreach (var _sceneAsset in sceneAssetList)
 			{
 				GameObject _obj = new GameObject();
+				_obj.transform.position = StreamingUtill.StringToVector3(_sceneAsset.name);
 				SubSceneObj _loadSceneObj = _obj.AddComponent<SubSceneObj>();
 				_loadSceneObj.SetSceneAsset(_sceneAsset);
 				_loadSceneObj.GUISkin = guiSkin;

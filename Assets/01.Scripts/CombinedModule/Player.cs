@@ -7,7 +7,7 @@ namespace CondinedModule
 {
     public class Player : AbMainModule
     {
-        private void Awake()
+        public void OnEnable()
         {
             StopOrNot = 1;
             CanMove = true;
@@ -15,35 +15,38 @@ namespace CondinedModule
             moduleComponentsDic = new();
             CharacterController = GetComponent<CharacterController>();
             //footRotate = GetComponentInParent<csHomebrewIK>();
-            AddModule(ModuleType.Input, new InputModule(this));
-            AddModule(ModuleType.Move, new MoveModule(this));
-            AddModule(ModuleType.Stat, new StatModule(this));
-            AddModule(ModuleType.Camera, new CameraModule(this));
-            AddModule(ModuleType.Jump, new JumpModule(this));
-            AddModule(ModuleType.Hp, new HpModule(this));
-            AddModule(ModuleType.Animation, new AnimationModule(this));
-            AddModule(ModuleType.Physics, new PhysicsModule(this));
-            AddModule(ModuleType.UI, new UIModule(this));
-            AddModule(ModuleType.Attack, new AttackModule(this));
-            AddModule(ModuleType.Weapon, new WeaponModule(this));
-            AddModule(ModuleType.Hit, new HitModule(this));
-            AddModule(ModuleType.Item, new ItemModule(this));
-            AddModule(ModuleType.Equipment, new EquipmentModule(this));
-            AddModule(ModuleType.State, new StateModule(this));
+            AddModuleWithPool<InputModule>(ModuleType.Input, "InputModule");
+            AddModuleWithPool<MoveModule>(ModuleType.Move, "MoveModule");
+            AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
+            AddModuleWithPool<CameraModule>(ModuleType.Camera, "CameraModule");
+            AddModuleWithPool<JumpModule>(ModuleType.Jump, "JumpModule");
+            AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
+            AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
+            AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
+            AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule");
+            AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
+            AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
+            AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
+            AddModuleWithPool<ItemModule>(ModuleType.Item, "ItemModule");
+            AddModuleWithPool<EquipmentModule>(ModuleType.Equipment, "EquipmentModule");
+            AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
 
             RaycastTarget ??= transform.Find("RayCastPoint");
 
             visualObject ??= transform.Find("Visual")?.gameObject;
-            animator = GetComponent<Animator>();
-            animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            Animator = GetComponent<Animator>();
+            animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
             LockOnTarget = null;
+
+            base.OnEnable();
         }
 
         private void OnDestroy()
         {
             CharacterController = null;
-            moduleComponentsDic.Clear();
             RaycastTarget = null;
+            Animator = null;
+            moduleComponentsDic.Clear();
         }
     }
 }

@@ -95,6 +95,17 @@ namespace UI.Shop
             }
         }
 
+        [ContextMenu("구매")]
+        public void TestBuyShop()
+        {
+            ActivetShop(ShopType.BuyShop);
+        }
+        [ContextMenu("판매")]
+        public void TestSellShop()
+        {
+            ActivetShop(ShopType.SellShop);
+        }
+
         /// <summary>
         /// 상점 활성화 
         /// </summary>

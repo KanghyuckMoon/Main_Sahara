@@ -10,6 +10,31 @@ namespace Module
 {
     public class CameraModule : AbBaseModule
     {
+        CinemachineVirtualCamera FollawVCam
+        {
+            get
+            {
+                follawVCam ??= GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();
+                return follawVCam;
+            }
+        }
+        CinemachineVirtualCamera GroupVCam
+        {
+            get
+            {
+                groupVCam ??= GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();
+                return groupVCam;
+            }
+        }
+        CinemachineVirtualCamera ZoomVCam
+        {
+            get
+            {
+                zoomVCam ??= GameObject.Find("ZoomCam").GetComponent<CinemachineVirtualCamera>();
+                return zoomVCam;
+            }
+        }
+
         public CinemachineVirtualCamera follawVCam;
         public CinemachineVirtualCamera groupVCam;
         public CinemachineVirtualCamera zoomVCam;
@@ -76,8 +101,13 @@ namespace Module
         {
 
         }
+        public CameraModule() : base()
+        {
 
-        public override void Awake()
+        }
+
+
+        public override void Start()
         {
             //camInstance = PlayerFollowCamera.Instance;
             follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
@@ -95,17 +125,17 @@ namespace Module
 
         public override void LateUpdate()
         {
-            if (follawVCam.gameObject.activeSelf)
+            if (FollawVCam.gameObject.activeSelf)
             {
-                mainModule.ObjRotation = follawVCam.transform.rotation;
+                mainModule.ObjRotation = FollawVCam.transform.rotation;
             }
             else if (zoomVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = zoomVCam.transform.rotation;
             }
-            else if (groupVCam.gameObject.activeSelf)
+            else if (GroupVCam.gameObject.activeSelf)
             {
-                mainModule.ObjRotation = groupVCam.transform.rotation;
+                mainModule.ObjRotation = GroupVCam.transform.rotation;
             }
             //float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
             //float size = nomalCom.m_Lens.OrthographicSize;
@@ -204,5 +234,24 @@ namespace Module
         //        invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
         //    }
         //}
+
+        public override void OnDisable()
+        {
+            follawVCam = null;
+            groupVCam = null;
+            mainModule = null;
+            zoomVCam = null;
+            base.OnDisable();
+            Pool.ClassPoolManager.Instance.RegisterObject<CameraModule>("CameraModule", this);
+        }
+        public override void OnDestroy()
+        {
+            follawVCam = null;
+            groupVCam = null;
+            zoomVCam = null;
+            mainModule = null;
+            base.OnDestroy();
+            Pool.ClassPoolManager.Instance.RegisterObject<CameraModule>("CameraModule", this);
+        }
     }
 }

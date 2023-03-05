@@ -6,7 +6,7 @@ using System;
 using Inventory;
 using UI.Production;
 using UI.ConstructorManager;
-using System; 
+using System;
 
 namespace UI.Inventory
 {
@@ -48,7 +48,7 @@ namespace UI.Inventory
         private InvenPanelElements curPanelType; // 현재 활성화중인 패널 
 
         // 프로퍼티 
-        public InvenPanelElements CurPanelType => curPanelType; 
+        public InvenPanelElements CurPanelType => curPanelType;
         public override void Cashing()
         {
             //base.Cashing();
@@ -61,15 +61,19 @@ namespace UI.Inventory
         {
             base.Init();
             AddButtonEvents();
-
-            foreach(var _btnType in Enum.GetValues(typeof(RadioButtons)))
-            {
-                AddRadioBtnChangedEvent((int)_btnType, (x) =>
-                 GetVisualElement((int)_btnType).style.unityBackgroundImageTintColor = x ? new Color(217, 58, 58) : Color.white);
-            }
-            
+            SendEvent();
         }
 
+        public void SendEvent()
+        {
+            RadioButton _btn = GetRadioButton((int)RadioButtons.armor_button);
+            using (var e = new NavigationSubmitEvent() { target = _btn })
+                _btn.SendEvent(e);
+            _btn = GetRadioButton((int)RadioButtons.weapon_button);
+            using (var e = new NavigationSubmitEvent() { target = _btn })
+                _btn.SendEvent(e);
+
+        }
         public VisualElement GetPanel(InvenPanelElements _type)
         {
             return GetVisualElement((int)_type);
@@ -92,7 +96,12 @@ namespace UI.Inventory
             // 패널 활성화 
             foreach (var _p in Enum.GetValues(typeof(InvenPanelElements)))
             {
-                AddRadioBtnChangedEvent((int)_p, (x) => ActiveInventoryPanel((InvenPanelElements)_p, x));
+                AddRadioBtnChangedEvent((int)_p, (x) =>
+                {
+                    ActiveInventoryPanel((InvenPanelElements)_p, x);
+                    ActiveRadioBtn((RadioButtons)_p, x);
+                });
+
             }
         }
 
@@ -119,23 +128,23 @@ namespace UI.Inventory
         /// </summary>
         /// <param name="_type"></param>
         /// <param name="_callback"></param>
-        public void AddButtonEvent(RadioButtons _type,Action<bool> _callback)
+        public void AddButtonEvent(RadioButtons _type, Action<bool> _callback)
         {
             AddRadioBtnChangedEvent((int)_type, (x) =>
             {
                 _callback?.Invoke(x);
-                ActiveRadioBtn(_type, x); 
             });
         }
 
         private void ActiveRadioBtn(RadioButtons _type, bool _isActive)
         {
             float _v = _isActive ? 1.15f : 1f;
-            Color _c = new Color(243, 153, 104,1);
+            Color _c = new Color(243f / 255f, 153f / 255f, 104f / 255f, 1f);
 
-            Color _tC = _isActive ? _c : Color.white; 
-            GetRadioButton((int)_type).style.scale = new StyleScale(new Scale(new Vector2(_v,_v)));
-            GetRadioButton((int)_type).Q(className: "unity-radio-button__checkmark-background").style.unityBackgroundImageTintColor = new StyleColor(_tC); 
+            Color _tC = _isActive ? _c : Color.white;
+            GetRadioButton((int)_type).style.scale = new StyleScale(new Scale(new Vector2(_v, _v)));
+            VisualElement _b = GetRadioButton((int)_type).Q(className: "unity-radio-button__checkmark-background");
+            _b.style.unityBackgroundImageTintColor = new StyleColor(_tC);
         }
     }
 }

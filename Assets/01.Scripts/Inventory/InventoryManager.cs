@@ -5,7 +5,7 @@ using Utill.Pattern;
 using Utill.Addressable;
 using System.Linq;
 using Module;
-
+using GameManager;
 
 namespace Inventory
 {
@@ -65,11 +65,11 @@ namespace Inventory
 		{
 			get
 			{
-				return InventoryEventTransmit;
+				return inventoryEventTransmit;
 			}
 			set
 			{
-				InventoryEventTransmit = value;
+				inventoryEventTransmit = value;
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace Inventory
 		private bool isInit;
 		private int quickSlotIndex = 0;
 
-		private InventoryEventTransmit inventoryEventTransmit;
+		private InventoryEventTransmit inventoryEventTransmit = default;
 
 		private void Start()
 		{
@@ -101,6 +101,14 @@ namespace Inventory
 
 		public void Update()
 		{
+			if (!GameManager.GamePlayerManager.Instance.IsPlaying)
+			{
+				player = null;
+				weaponModule = null;
+				itemModule = null;
+				return;
+			}
+
 			float wheel = Input.GetAxisRaw("Mouse ScrollWheel");
 			if (wheel >= 0.1f)
 			{

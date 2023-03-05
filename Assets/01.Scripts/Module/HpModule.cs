@@ -30,7 +30,7 @@ namespace Module
 
         public override void Start()
         {
-            _StatData.CurrentHp = _StatData.MaxHp;
+            //_StatData.CurrentHp = _StatData.MaxHp;
         }
 
 
@@ -56,7 +56,7 @@ namespace Module
 
 		public override void OnDisable()
 		{
-			base.OnDisable();
+            base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<HpModule>("HpModule", this);
         }
     }

@@ -6,6 +6,8 @@ using Utill.Measurement;
 using Utill.Coroutine;
 using Utill.Addressable;
 using UpdateManager;
+using Json;
+using Pool;
 
 namespace LoadScene
 {
@@ -16,38 +18,48 @@ namespace LoadScene
         {
             UpdateManager.UpdateManager.Clear();
             AddressablesManager.Instance.LodedSceneClear();
-            System.GC.Collect();
+            ClassPoolManager.Instance.Clear();
+            ObjectPoolManager.Instance.Clear();
+            System.GC.Collect(); 
             StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
+            SceneManager.LoadScene("InGame");
         }
 
 
         private IEnumerator LoadingScene()
         {
-            var op2 = SceneManager.LoadSceneAsync("InGame", LoadSceneMode.Additive);
+            Time.timeScale = 0;
+            while (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("InGame"))
+			{
+                yield return new WaitForSecondsRealtime(1f);
+			}
+            //var op2 = SceneManager.LoadSceneAsync("InGame", LoadSceneMode.Additive);
             var op6 = SceneManager.LoadSceneAsync("TipScene", LoadSceneMode.Additive);
-            op2.priority = 3;
-            op2.allowSceneActivation = false;
+            //op2.priority = 3;
+            //op2.allowSceneActivation = false;
             op6.allowSceneActivation = false;
-
-            while (op2.progress < 0.9f)
-            {
-                Logging.Log(op2.progress);
-                yield return null;
-            }
+            //Time.timeScale = 0;
+            //while (op2.progress < 0.9f)
+            //{
+            //    Logging.Log(op2.progress);
+            //    yield return null;
+            //}
             while (op6.progress < 0.9f)
             {
-                Logging.Log(op2.progress);
+                Logging.Log(op6.progress);
                 yield return null;
             }
             op6.allowSceneActivation = true;
-            var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-            op2.allowSceneActivation = true;
-            StartCoroutine(Streaming.StreamingManager.Instance.LoadReadyScene());
+            //SceneManager.UnloadScene("LoadingScene");
+            //var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+
+            //op2.allowSceneActivation = true;
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(Streaming.StreamingManager.Instance.LoadReadyScene());
             while (!Streaming.StreamingManager.Instance.IsSetting)
 			{
                 yield return null;
 			}
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
 
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);
@@ -75,7 +87,23 @@ namespace LoadScene
             op4.allowSceneActivation = true;
             op5.allowSceneActivation = true;
 
+            if (SaveManager.Instance.IsContinue)
+            {
+                while (!SaveManager.Instance.isLoadSuccess)
+                {
+                    try
+                    {
+                        SaveManager.Instance.Load(SaveManager.Instance.TestDate);
+                    }
+                    catch
+                    {
+                    }
+                    yield return new WaitForSecondsRealtime(1f);
+                }
+			}
+
             var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            Time.timeScale = 1;
         }
     }
 

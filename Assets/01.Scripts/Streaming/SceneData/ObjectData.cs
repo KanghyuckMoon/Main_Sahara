@@ -11,6 +11,8 @@ namespace Streaming
 		None,
 		On,
 	}
+
+	[System.Serializable]
 	public class ObjectData : Observer
 	{
 		public static long totalKey = 0;

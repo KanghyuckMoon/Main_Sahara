@@ -12,7 +12,8 @@ namespace UI.Base
         EventAlarm,
         Quest,
         Upgrade,
-        Shop
+        Shop,
+        Save
     }
 }
 

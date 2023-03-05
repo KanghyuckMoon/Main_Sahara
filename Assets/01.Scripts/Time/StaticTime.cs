@@ -102,12 +102,18 @@ namespace TimeManager
 
 		public void AddObserver(Observer _observer)
 		{
-			Observers.Add(_observer);
+			if (!Observers.Contains(_observer))
+			{
+				Observers.Add(_observer);
+			}
 		}
 
 		public void RemoveObserver(Observer _observer)
 		{
-			Observers.Remove(_observer);
+			if (Observers.Contains(_observer))
+			{
+				Observers.Remove(_observer);
+			}
 		}
 
 		public void Send()

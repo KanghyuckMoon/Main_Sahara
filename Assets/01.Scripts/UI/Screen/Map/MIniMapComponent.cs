@@ -68,6 +68,8 @@ namespace UI
             mapInfo.UIMapCenterPos = new Vector2(mapView.Map.style.width.value.value / 2, mapView.Map.style.height.value.value / 2);
             mapInfo.sceneSize.x = mapInfo.MaxScenePos.x - mapInfo.MinScenePos.x;
             mapInfo.sceneSize.y = mapInfo.MaxScenePos.y - mapInfo.MinScenePos.y;
+
+            playerMarker = null; 
         }
 
         public void UpdateUI()
