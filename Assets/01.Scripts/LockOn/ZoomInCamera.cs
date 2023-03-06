@@ -17,7 +17,9 @@ namespace LockOn
         private float currentDelay;
         private AbMainModule mainModule;
         private Transform zoomInTarget;
-        
+
+        private bool my_coroutine_is_running = false;
+
         private void Start()
         {
             mainModule = GetComponent<AbMainModule>();
@@ -27,9 +29,12 @@ namespace LockOn
         public void Zoom(int _isOn)
         {
             bool _on = _isOn > 0 ? true : false;
-            
+
+
+            currentDelay = moveDelay;
             currentDelay -= (currentDelay * _isOn);
 
+            //StopCoroutine(CameraZoomDelay(true));
 
             StartCoroutine(CameraZoomDelay(_on));
 
@@ -38,7 +43,10 @@ namespace LockOn
 
         IEnumerator CameraZoomDelay(bool _isOn)
         {
+            my_coroutine_is_running = true;
             yield return new WaitForSeconds(currentDelay);
+            my_coroutine_is_running = false;
+
 
             lockOnCamera?.currentCamera.SetActive(!_isOn);
             zoomInCam.SetActive(_isOn);
