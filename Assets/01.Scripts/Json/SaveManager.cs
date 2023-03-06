@@ -31,9 +31,34 @@ namespace Json
                 string _sceneKey = testArray[index].ToString();
                 var _sceneData = SceneDataManager.Instance.SceneDataDic[_sceneKey].objectDataList;
                 string _json = StaticSave.ReturnJson<ObjectDataList>(_sceneData);
-                StaticSave.SaveJson<ObjectDataList>(_json, _sceneKey + date.ToString());
+				try
+				{
+					StaticSave.SaveJson<ObjectDataList>(_json, _sceneKey + date.ToString());
+				}
+				catch(Exception e)
+				{
+                    Debug.LogError("Can't Save");
+				}
+			}
+        }
+        public struct ShopSaveJob : IJobParallelFor
+        {
+            public FixedString128Bytes date;
+            public void Execute(int index)
+            {
+                ShopSO _shopSO = SaveManager.Instance.ShopAllSO.shopSOList[index];
+                _shopSO.SaveData();
+                string _json = StaticSave.ReturnJson<ShopSave>(_shopSO.shopSave);
+                try
+                {
+                    StaticSave.SaveJson<ObjectDataList>(_json, _shopSO.shopName + date.ToString());
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Can't Save");
+                }
             }
-		}
+        }
 
         public InventorySO InventorySO
 		{
@@ -199,35 +224,28 @@ namespace Json
             StaticSave.Save<PathSave>(ref PathModeManager.Instance.pathSave, _date);
 
             var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
-            NativeArray<FixedString4096Bytes> _nativeTextArray = new NativeArray<FixedString4096Bytes>(_sceneDataList.Count, Allocator.TempJob);
+            NativeArray<FixedString4096Bytes> _sceneKeyArray = new NativeArray<FixedString4096Bytes>(_sceneDataList.Count, Allocator.TempJob);
+            FixedString128Bytes _fixedDate = new FixedString128Bytes(_date);
+
+
             SceneSaveJob _sceneSaveJob = new SceneSaveJob();
-            _sceneSaveJob.testArray = _nativeTextArray;
-            _sceneSaveJob.date = new FixedString128Bytes(_date);
+            _sceneSaveJob.testArray = _sceneKeyArray;
+            _sceneSaveJob.date = _fixedDate;
+
+            ShopSaveJob _shopSaveJob = new ShopSaveJob();
+            _shopSaveJob.date = _fixedDate;
+
 
             int _sceneIndex = 0;
             foreach (var _sceneData in _sceneDataList)
             {
-                _nativeTextArray[_sceneIndex++] = new FixedString128Bytes(_sceneData.Key);
-            }
-            JobHandle _jobHandle = _sceneSaveJob.Schedule(_sceneDataList.Count, 10);
-
-
-            for (int i = 0; i < ShopAllSO.shopSOList.Count; ++i)
-            {
-                ShopSO _shopSO = ShopAllSO.shopSOList[i];
-                _shopSO.SaveData();
-                StaticSave.Save<ShopSave>(ref _shopSO.shopSave, _shopSO.shopName + _date);
+                _sceneKeyArray[_sceneIndex++] = new FixedString128Bytes(_sceneData.Key);
             }
 
+            JobHandle _sceneJobHandle = _sceneSaveJob.Schedule(_sceneDataList.Count, 10);
+            JobHandle _shopJobHandle = _shopSaveJob.Schedule(ShopAllSO.shopSOList.Count, 5);
 
-            _jobHandle.Complete();
-
-            //_sceneIndex = 0;
-            //foreach (var _sceneData in _sceneDataList)
-            //{
-            //    StaticSave.SaveJson<ObjectDataList>(_sceneSaveJob.testArray[_sceneIndex].ToString(), _sceneData.Key + _date);
-            //}
-
+            _sceneJobHandle.Complete();
 
             string _imagePath = StaticSave.GetPath() + _date + ".png";
             ScreenCapture.CaptureScreenshot(_imagePath);
@@ -264,6 +282,7 @@ namespace Json
 
             StaticSave.Save<SaveRecordDataList>(ref _saveRecordDataList);
 
+            //DisPose
             _sceneSaveJob.testArray.Dispose();
 
             StaticTime.EntierTime = 1;
