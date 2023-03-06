@@ -15,7 +15,6 @@ using Streaming;
 using PathMode;
 using Unity.Jobs;
 using Unity.Collections;
-using Unity.Entities;
 
 namespace Json
 {
@@ -26,11 +25,13 @@ namespace Json
         public struct SceneSaveJob : IJobParallelFor
 		{
             public NativeArray<FixedString4096Bytes> testArray;
+            public FixedString128Bytes date;
             public void Execute(int index)
 			{
-                var _sceneData = SceneDataManager.Instance.SceneDataDic[testArray[index].ToString()].objectDataList;
+                string _sceneKey = testArray[index].ToString();
+                var _sceneData = SceneDataManager.Instance.SceneDataDic[_sceneKey].objectDataList;
                 string _json = StaticSave.ReturnJson<ObjectDataList>(_sceneData);
-                testArray[index] = new FixedString4096Bytes(_json);
+                StaticSave.SaveJson<ObjectDataList>(_json, _sceneKey + date.ToString());
             }
 		}
 
@@ -175,7 +176,14 @@ namespace Json
             {
                 return;
             }
-            
+
+            string _staticSavepath = StaticSave.GetPath();
+
+            if (!File.Exists(_staticSavepath))
+            {
+                Directory.CreateDirectory($"{_staticSavepath}");
+            }
+
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
             sw.Start();
 
@@ -194,6 +202,7 @@ namespace Json
             NativeArray<FixedString4096Bytes> _nativeTextArray = new NativeArray<FixedString4096Bytes>(_sceneDataList.Count, Allocator.TempJob);
             SceneSaveJob _sceneSaveJob = new SceneSaveJob();
             _sceneSaveJob.testArray = _nativeTextArray;
+            _sceneSaveJob.date = new FixedString128Bytes(_date);
 
             int _sceneIndex = 0;
             foreach (var _sceneData in _sceneDataList)
@@ -213,11 +222,11 @@ namespace Json
 
             _jobHandle.Complete();
 
-            _sceneIndex = 0;
-            foreach (var _sceneData in _sceneDataList)
-            {
-                StaticSave.SaveJson<ObjectDataList>(_sceneSaveJob.testArray[_sceneIndex].ToString(), _sceneData.Key + _date);
-            }
+            //_sceneIndex = 0;
+            //foreach (var _sceneData in _sceneDataList)
+            //{
+            //    StaticSave.SaveJson<ObjectDataList>(_sceneSaveJob.testArray[_sceneIndex].ToString(), _sceneData.Key + _date);
+            //}
 
 
             string _imagePath = StaticSave.GetPath() + _date + ".png";
