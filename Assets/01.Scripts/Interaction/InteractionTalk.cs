@@ -8,8 +8,6 @@ namespace Interaction
 {
 	public class InteractionTalk : MonoBehaviour, IInteractionItem
 	{
-
-
 		public bool Enabled
 		{
 			get

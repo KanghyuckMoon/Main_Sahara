@@ -12,6 +12,9 @@ using CondinedModule;
 using TimeManager;
 using System;
 using Streaming;
+using PathMode;
+using Unity.Jobs;
+using Unity.Collections;
 
 namespace Json
 {
@@ -19,6 +22,19 @@ namespace Json
 
     public class SaveManager : MonoSingleton<SaveManager>
     {
+        public struct SceneSaveJob : IJobParallelFor
+		{
+            public NativeArray<FixedString4096Bytes> testArray;
+            public FixedString128Bytes date;
+            public void Execute(int index)
+			{
+                string _sceneKey = testArray[index].ToString();
+                var _sceneData = SceneDataManager.Instance.SceneDataDic[_sceneKey].objectDataList;
+                string _json = StaticSave.ReturnJson<ObjectDataList>(_sceneData);
+                StaticSave.SaveJson<ObjectDataList>(_json, _sceneKey + date.ToString());
+            }
+		}
+
         public InventorySO InventorySO
 		{
             get
@@ -142,8 +158,8 @@ namespace Json
         {
             //testDate = DateTime.Now.ToString("yyyyMMddhhmmss");
             //Debug.Log(DateTime.Now.ToString("yyyyMMddhhmmss"));
-            //string _date = DateTime.Now.ToString("yyyyMMddhhmmss");
-            //Save(_date);
+            string _date = DateTime.Now.ToString("yyyyMMddhhmmss");
+            SaveBackgroundThread(_date);
         }
 
         public SaveRecordDataList GetSaveRecordDataList()
@@ -154,13 +170,22 @@ namespace Json
             return _saveRecordDataList;
         }
 
-        [ContextMenu("Save")]
-        public void Save(string _date)
-		{
+        public void SaveBackgroundThread(string _date)
+        {
             if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null)
-			{
+            {
                 return;
-			}
+            }
+
+            string _staticSavepath = StaticSave.GetPath();
+
+            if (!File.Exists(_staticSavepath))
+            {
+                Directory.CreateDirectory($"{_staticSavepath}");
+            }
+
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
 
             StaticTime.EntierTime = 0;
 
@@ -171,6 +196,104 @@ namespace Json
             StaticSave.Save<SaveData>(ref stateModule.saveData, _date);
             StaticSave.Save<InventorySave>(ref inventorySO.inventorySave, _date);
             StaticSave.Save<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
+            StaticSave.Save<PathSave>(ref PathModeManager.Instance.pathSave, _date);
+
+            var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
+            NativeArray<FixedString4096Bytes> _nativeTextArray = new NativeArray<FixedString4096Bytes>(_sceneDataList.Count, Allocator.TempJob);
+            SceneSaveJob _sceneSaveJob = new SceneSaveJob();
+            _sceneSaveJob.testArray = _nativeTextArray;
+            _sceneSaveJob.date = new FixedString128Bytes(_date);
+
+            int _sceneIndex = 0;
+            foreach (var _sceneData in _sceneDataList)
+            {
+                _nativeTextArray[_sceneIndex++] = new FixedString128Bytes(_sceneData.Key);
+            }
+            JobHandle _jobHandle = _sceneSaveJob.Schedule(_sceneDataList.Count, 10);
+
+
+            for (int i = 0; i < ShopAllSO.shopSOList.Count; ++i)
+            {
+                ShopSO _shopSO = ShopAllSO.shopSOList[i];
+                _shopSO.SaveData();
+                StaticSave.Save<ShopSave>(ref _shopSO.shopSave, _shopSO.shopName + _date);
+            }
+
+
+            _jobHandle.Complete();
+
+            //_sceneIndex = 0;
+            //foreach (var _sceneData in _sceneDataList)
+            //{
+            //    StaticSave.SaveJson<ObjectDataList>(_sceneSaveJob.testArray[_sceneIndex].ToString(), _sceneData.Key + _date);
+            //}
+
+
+            string _imagePath = StaticSave.GetPath() + _date + ".png";
+            ScreenCapture.CaptureScreenshot(_imagePath);
+
+            SaveRecordDataList _saveRecordDataList = new SaveRecordDataList();
+            StaticSave.Load<SaveRecordDataList>(ref _saveRecordDataList);
+
+            SaveRecordData _saveRecordData = new SaveRecordData();
+            _saveRecordData.date = _date;
+            _saveRecordData.imagePath = _imagePath;
+            _saveRecordDataList.dateList.Add(_saveRecordData);
+
+            if (_saveRecordDataList.dateList.Count > 10)
+            {
+                var _data = _saveRecordDataList.dateList[0];
+
+                File.Delete(StaticSave.GetPath() + _data.date + ".png");
+                File.Delete(StaticSave.GetPath() + "InventorySave" + _data.date);
+                File.Delete(StaticSave.GetPath() + "QuestSaveDataSave" + _data.date);
+
+                foreach (var _sceneData in _sceneDataList)
+                {
+                    File.Delete(StaticSave.GetPath() + _sceneData.Key + _data.date);
+                }
+
+                for (int i = 0; i < ShopAllSO.shopSOList.Count; ++i)
+                {
+                    ShopSO _shopSO = ShopAllSO.shopSOList[i];
+                    File.Delete(StaticSave.GetPath() + _shopSO.shopName + _data.date);
+                }
+
+                _saveRecordDataList.dateList.RemoveAt(0);
+            }
+
+            StaticSave.Save<SaveRecordDataList>(ref _saveRecordDataList);
+
+            _sceneSaveJob.testArray.Dispose();
+
+            StaticTime.EntierTime = 1;
+
+
+            sw.Stop();
+            Debug.Log(sw.ElapsedMilliseconds.ToString() + "ms");
+        }
+
+        [ContextMenu("Save")]
+        public void Save(string _date)
+		{
+            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null)
+			{
+                return;
+			}
+
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+
+            StaticTime.EntierTime = 0;
+
+            stateModule.SaveData();
+            inventorySO.SaveData();
+            questSaveDataSO.SaveData();
+
+            StaticSave.Save<SaveData>(ref stateModule.saveData, _date);
+            StaticSave.Save<InventorySave>(ref inventorySO.inventorySave, _date);
+            StaticSave.Save<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
+            StaticSave.Save<PathSave>(ref PathModeManager.Instance.pathSave, _date);
 
             var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
 
@@ -223,6 +346,9 @@ namespace Json
 
 
             StaticTime.EntierTime = 1;
+
+            sw.Stop();
+            Debug.Log(sw.ElapsedMilliseconds.ToString() + "ms");
         }
 
         [ContextMenu("Load")]
@@ -237,6 +363,7 @@ namespace Json
             //StaticTime.EntierTime = 0;
             StaticSave.Load<InventorySave>(ref inventorySO.inventorySave, _date);
             StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
+            StaticSave.Load<PathSave>(ref PathModeManager.Instance.pathSave, _date);
 
             //별도의 적용 필요함
             Player.GetComponentInChildren<CharacterController>().enabled = false;
@@ -246,6 +373,7 @@ namespace Json
             stateModule.LoadData();
             inventorySO.LoadData();
             questSaveDataSO.LoadData();
+            PathModeManager.Instance.SetPathList();
             QuestManager.Instance.LoadQuestSaveData(questSaveDataSO);
             Player.GetComponentInChildren<CharacterController>().enabled = true;
             //Player?.gameObject.SetActive(true);

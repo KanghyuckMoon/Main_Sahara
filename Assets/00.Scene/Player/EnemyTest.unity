@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3690666114823516570, guid: 21a6bb9eb23fc6a4fbd44c9957376ca2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a6bb9eb23fc6a4fbd44c9957376ca2, type: 3}
@@ -389,6 +389,7 @@ MonoBehaviour:
   questSaveDataSO: {fileID: 0}
   shopAllSO: {fileID: 0}
   player: {fileID: 0}
+  isLoadSuccess: 0
 --- !u!4 &302492122
 Transform:
   m_ObjectHideFlags: 0
@@ -437,13 +438,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e27aaeecec3714a88e77b596f3da8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentCamera: {fileID: 0}
   player: {fileID: 1265982166}
   thirdPersonCameraController: {fileID: 2011865196}
   playerCam: {fileID: 2011865197}
   groupCam: {fileID: 2104971709}
+  zoomCam: {fileID: 0}
   playerTarget: {fileID: 850774596}
   cinemachineTargetGroup: {fileID: 194349091}
   playerModule: {fileID: 1265982175}
+  target: {fileID: 0}
 --- !u!114 &360111646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,7 +640,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 18.835318
+  field of view: 25.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -662,7 +666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360111644}
   m_LocalRotation: {x: 0.34202015, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 9.742058, z: -8.809512}
+  m_LocalPosition: {x: 0, y: 9.437877, z: -7.660444}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1593,7 +1597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325afc7641fdb9a4e8671887fc0b58aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopOrNot: 0
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
@@ -2163,7 +2166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd934a2219615d4f88eff62911009fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopOrNot: 0
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
@@ -4100,7 +4102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7027e51e23ba3d64ba3aa2d4d3b06ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopOrNot: 0
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
@@ -6172,6 +6173,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 937940089753596057}
   rootTransform: {fileID: 937940089494236693}
   animator: {fileID: 937940089595484532}
+  dropItemListSO: {fileID: 0}
 --- !u!1 &5958725871877079349
 GameObject:
   m_ObjectHideFlags: 0
