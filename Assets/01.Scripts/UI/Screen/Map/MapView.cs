@@ -69,16 +69,16 @@ namespace UI
             AddButtonEvents();
             width = Screen.width;
             height = Screen.height;
-            SeMapUISize(); 
+        //    SeMapUISize(); 
         }
 
-        public void SeMapUISize()
+        public void SetMapUISize(Vector2 _mapSize)
         {
 //            map.style.width = width * 2;
 //            map.style.height = height * 4;
 
-            map.style.width = mapSize.x;
-            map.style.height = mapSize.y;
+            map.style.width = _mapSize.x;
+            map.style.height = _mapSize.y;
 
             //  map.contentRect = new Rect(map.contentRect.x, map.contentRect.y, Screen.width * 2, Screen.width * 4);
         }

@@ -85,7 +85,7 @@ namespace UI
                 // »ý¼º 
                 sightUI = AddressablesManager.Instance.GetResource<VisualTreeAsset>("Sight").Instantiate();
                 MapView.MarkerParent.Add(sightUI);
-                sightUI.style.top = -75f; 
+                //sightUI.style.top = -75f; 
                 //markerUI.Add(sightUI); 
             }
 
