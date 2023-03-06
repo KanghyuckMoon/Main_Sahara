@@ -33,10 +33,35 @@ namespace Json
             File.WriteAllText(path, jsonData);
 		}
 
-		/// <summary>
-		/// 유저 데이터 불러오기
-		/// </summary>
-		public static void Load<T>(ref T userSaveData, string _dataName = "")
+
+        /// <summary>
+        /// 유저 데이터 저장
+        /// </summary>
+        public static string ReturnJson<T>(T userSaveData)
+        {
+            string jsonData = JsonUtility.ToJson(userSaveData, true);
+            jsonData = Encrypt(jsonData, "종점");
+            return jsonData;
+            //File.WriteAllText(path, jsonData);
+        }
+        /// <summary>
+        /// 유저 데이터 저장
+        /// </summary>
+        public static void SaveJson<T>(string json, string _path)
+        {
+            string path = _dataPath + typeof(T).FullName + _path + ".txt";
+
+            if (!File.Exists(path))
+            {
+                Directory.CreateDirectory($"{Application.persistentDataPath}/Save");
+            }
+            File.WriteAllText(path, json);
+        }
+
+        /// <summary>
+        /// 유저 데이터 불러오기
+        /// </summary>
+        public static void Load<T>(ref T userSaveData, string _dataName = "")
 		{
 			string path = _dataPath + typeof(T).FullName + _dataName + ".txt";
 
