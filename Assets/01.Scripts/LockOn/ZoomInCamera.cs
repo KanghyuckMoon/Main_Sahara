@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Module;
+using Cinemachine;
 
 namespace LockOn
 {
@@ -28,35 +29,35 @@ namespace LockOn
 
         public void Zoom(int _isOn)
         {
-            bool _on = _isOn > 0 ? true : false;
+            //bool _on = _isOn > 0 ? true : false;
 
 
-            currentDelay = moveDelay;
-            currentDelay -= (currentDelay * _isOn);
+            CameraZoomDelay(_isOn);
 
-            //StopCoroutine(CameraZoomDelay(true));
+            //currentDelay = moveDelay * _isOn;
 
-            StartCoroutine(CameraZoomDelay(_on));
+            //if (_on)
+            //    CameraZoomDelay(true);
+            //else
 
-            //Transform _transform = new Transform();
+            //                      if(_)
         }
 
-        IEnumerator CameraZoomDelay(bool _isOn)
+        private void CameraZoomDelay(int _isOn)
         {
-            my_coroutine_is_running = true;
-            yield return new WaitForSeconds(currentDelay);
-            my_coroutine_is_running = false;
+            int _weight = _isOn > 0 ? -10 : 10;
+            bool _on = _isOn > 0 ? true : false;
 
+            lockOnCamera.currentCamera.Priority = _weight;//.SetActive(!_isOn);
 
-            lockOnCamera?.currentCamera.SetActive(!_isOn);
-            zoomInCam.SetActive(_isOn);
+            //zoomInCam.SetActive(_on);
 
-            mainModule.LockOn = _isOn;
+            mainModule.LockOn = _on;
 
-            if (_isOn)
+            if (_on)
                 mainModule.LockOnTarget = zoomInTarget;
             else
-                mainModule.LockOnTarget = null;//lockOnCamera.target;
+                mainModule.LockOnTarget = null;
         }
     }
 }

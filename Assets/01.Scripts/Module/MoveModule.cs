@@ -137,18 +137,21 @@ namespace Module
                 Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
 
                 Vector3 _playerForward = mainModule.transform.position - mainModule.LockOnTarget.position;
-                _playerForward.y = mainModule.transform.position.y;
+                _playerForward.y = mainModule.transform.position.y; 
+
+                Vector3 _targetPosNoneY = mainModule.LockOnTarget.position;
+                _targetPosNoneY.y = mainModule.transform.position.y;
                 //Vector3 _targetPos = new Vector3(mainModule.ObjRotation.x, mainModule.transform.position.y, mainModule.ObjRotation.z);
                 //Vector3 _targetPos = mainModule.ObjRotation.eulerAngles;
                 //_targetPos.y = mainModule.transform.position.y;
 
                 //mainModule.Back.transform.LookAt(mainModule.LockOnTarget.transform);
-                Vector3 _bodyRot = mainModule.ObjRotation.eulerAngles;
+                //Vector3 _bodyRot = mainModule.ObjRotation.eulerAngles;
                 //_bodyRot.z = _bodyRot.x = 0;
 
-                mainModule.Back.transform.LookAt(_bodyRot);
+                //mainModule.Back.transform.LookAt(_bodyRot);
 
-                mainModule.transform.LookAt(_playerForward);
+                mainModule.transform.LookAt(_targetPosNoneY);
             }
 
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //

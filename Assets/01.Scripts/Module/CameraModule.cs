@@ -119,7 +119,7 @@ namespace Module
             zoomCamNoise = zoomVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
             groupVCam.gameObject.SetActive(false);
-            zoomVCam.gameObject.SetActive(false);
+            //zoomVCam.gameObject.SetActive(false);
             //mainModule.objRotation = mainCam.transform.rotation;
         }
 
@@ -128,6 +128,7 @@ namespace Module
             if (FollawVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = FollawVCam.transform.rotation;
+                return;
             }
             else if (zoomVCam.gameObject.activeSelf)
             {
