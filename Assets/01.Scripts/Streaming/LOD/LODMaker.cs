@@ -90,6 +90,11 @@ namespace Streaming
 		{
 			//lodGroup.enabled = true;
 			//오브젝트 생성
+			StartCoroutine(IEUnLoad());
+		}
+
+		private IEnumerator IEUnLoad()
+		{
 			foreach (var obj in renderObjectDic)
 			{
 				if (!objectList.ContainsKey(obj.Key))
@@ -100,7 +105,9 @@ namespace Streaming
 					lodObj.SetActive(true);
 				}
 			}
+
 			ResetLODObject();
+			yield return null;
 		}
 
 		private void ResetLODObject()
@@ -242,29 +249,42 @@ namespace Streaming
 
 		private void ResetLOD()
 		{
-			Renderer[] _renderers0 = new Renderer[1];
-			Renderer[] _renderers1 = new Renderer[1];
-			Renderer[] _renderers2 = new Renderer[1];
-			List<Renderer> _renderers = new List<Renderer>();
+			LOD[] _lods = lodGroup.GetLODs();
+
+			List<Renderer> _renderers = new List<Renderer>();// _lods[3].renderers.ToList();// new List<Renderer>();
 			foreach (var _keyValue in objectList)
 			{
 				GameObject _obj = _keyValue.Value;
 				Renderer[] _renderer = _obj.GetComponentsInChildren<Renderer>();
 				for (int i = 0; i < _renderer.Length; ++i)
 				{
+					if (_renderers.Contains(_renderer[i]))
+                    {
+						continue;
+                    }
 					_renderers.Add(_renderer[i]);
 				}
 			}
 			var _renderers3 = _renderers.ToArray();
 
-			LOD[] _lods = new LOD[4];
-			_lods[0] = new LOD(lod0, _renderers0);
-			_lods[1] = new LOD(lod1, _renderers1);
-			_lods[2] = new LOD(lod2, _renderers2);
-			_lods[3] = new LOD(lod3, _renderers3);
+			
+			//_lods[0].renderers = _renderers0;
+			_lods[0].screenRelativeTransitionHeight = lod0;
 			_lods[0].fadeTransitionWidth = lod0Width;
+
+
+			//_lods[1].renderers = _renderers1;
+			_lods[1].screenRelativeTransitionHeight = lod1;
 			_lods[1].fadeTransitionWidth = lod1Width;
+
+
+			//_lods[2].renderers = _renderers2;
+			_lods[2].screenRelativeTransitionHeight = lod2;
 			_lods[2].fadeTransitionWidth = lod2Width;
+
+
+			_lods[3].renderers = _renderers3;
+			_lods[3].screenRelativeTransitionHeight = lod3;
 			_lods[3].fadeTransitionWidth = lod3Width;
 
 			lodGroup.SetLODs(_lods);

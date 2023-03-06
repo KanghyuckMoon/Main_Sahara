@@ -182,10 +182,10 @@ namespace Streaming
 		/// </summary>
 		public void LoadScene()
 		{
-			if (!IsActiveScene())
-			{
-				AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
-			}
+			//if (!IsActiveScene())
+			//{
+			//}
+			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
 		}
 		/// <summary>
 		/// ¸ÃÀº ¾ÀÀ» ºÒ·¯¿Â´Ù
@@ -203,8 +203,16 @@ namespace Streaming
 			if (IsActiveScene())
 			{
 				SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
+
+				System.Diagnostics.Stopwatch sw5 = new System.Diagnostics.Stopwatch();
+				sw5.Start();
+
 				LODMaker.UnLoad();
-				AddressablesManager.Instance.UnLoadSceneAsync(SceneName, UnLoadSceneObject);
+				sw5.Stop();
+				Debug.Log("Streaming UnLoad5: " + sw5.ElapsedMilliseconds.ToString() + "ms");
+
+
+				AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
 			}
 		}
 

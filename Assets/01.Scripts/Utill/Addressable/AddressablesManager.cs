@@ -7,6 +7,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using System.Threading.Tasks;
 using Utill.Pattern;
+using Utill.Coroutine;
 
 namespace Utill.Addressable
 {
@@ -24,7 +25,8 @@ namespace Utill.Addressable
 	{
 		private List<string> loadedScene = new List<string>();
 		private Dictionary<string, AsyncOperationHandle<SceneInstance>> sceneInstanceDic = new Dictionary<string, AsyncOperationHandle<SceneInstance>>();
-		private Queue<LoadSceneData> loadMessageQueue = new Queue<LoadSceneData>();
+		public Queue<LoadSceneData> loadMessageQueue = new Queue<LoadSceneData>();
+		public Queue<string> unLoadMessageQueue = new Queue<string>();
 
 		public void LodedSceneClear()
 		{
@@ -127,7 +129,6 @@ namespace Utill.Addressable
 			loadSceneData.action = _action;
 
 			loadMessageQueue.Enqueue(loadSceneData);
-			LoadSceneQueue();
 			//if (!loadedScene.Contains(_name))
 			//{
 			//	loadedScene.Add(_name);
@@ -141,22 +142,29 @@ namespace Utill.Addressable
 
 		}
 
-		private void LoadSceneQueue()
+		public IEnumerator LoadSceneQueue()
 		{
-			if (loadMessageQueue.Count > 0)
+			while(true)
 			{
-				LoadSceneData _loadSceneData = loadMessageQueue.Dequeue();
-				if (!loadedScene.Contains(_loadSceneData.name))
+				if (loadMessageQueue.Count > 0)
 				{
-					loadedScene.Add(_loadSceneData.name);
-					var _handle = Addressables.LoadSceneAsync(_loadSceneData.name, _loadSceneData.loadSceneMode);
-					_handle.Completed += (x) =>
+					LoadSceneData _loadSceneData = loadMessageQueue.Dequeue();
+					if (!loadedScene.Contains(_loadSceneData.name))
 					{
-						sceneInstanceDic.Add(_loadSceneData.name, _handle);
-					};
-					_handle.Completed += _loadSceneData.action;
+						loadedScene.Add(_loadSceneData.name);
+						var _handle = Addressables.LoadSceneAsync(_loadSceneData.name, _loadSceneData.loadSceneMode);
+						_handle.Completed += (x) =>
+						{
+							sceneInstanceDic.Add(_loadSceneData.name, _handle);
+						};
+						_handle.Completed += _loadSceneData.action;
+					}
+					yield return null;
 				}
-				LoadSceneQueue();
+				else
+                {
+					yield return null;
+				}
 			}
 		}
 		
@@ -180,26 +188,37 @@ namespace Utill.Addressable
 			}
 		}
 
+		public void UnLoadSceneAsync(string _name)
+		{
+			unLoadMessageQueue.Enqueue(_name);
+		}
+
 		/// <summary>
 		/// 씬을 비동기로 제거한다
 		/// </summary>
 		/// <param name="_name"></param>
 		/// <param name="_action"></param>
-		public void UnLoadSceneAsync(string _name, System.Action<AsyncOperationHandle<SceneInstance>> _action)
+		public IEnumerator UnLoadSceneAsyncQueue()
 		{
-			if (loadedScene.Contains(_name))
+			while (true)
 			{
-				if (sceneInstanceDic.ContainsKey(_name))
+				if (unLoadMessageQueue.Count > 0)
 				{
-					var _handle = Addressables.UnloadSceneAsync(sceneInstanceDic[_name]);
-					if (_action is not null)
+					string _name = unLoadMessageQueue.Dequeue();
+					if (loadedScene.Contains(_name))
 					{
-						_handle.Completed += _action;
+						if (sceneInstanceDic.ContainsKey(_name))
+						{
+
+							var _handle = Addressables.UnloadSceneAsync(sceneInstanceDic[_name]);
+							Addressables.Release(sceneInstanceDic[_name]);
+							sceneInstanceDic.Remove(_name);
+							loadedScene.Remove(_name);
+
+						}
 					}
-					Addressables.Release(sceneInstanceDic[_name]);
-					sceneInstanceDic.Remove(_name);
-					loadedScene.Remove(_name);
 				}
+				yield return null;
 			}
 		}
 	}
