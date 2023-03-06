@@ -12,6 +12,7 @@ using CondinedModule;
 using TimeManager;
 using System;
 using Streaming;
+using PathMode;
 
 namespace Json
 {
@@ -171,6 +172,7 @@ namespace Json
             StaticSave.Save<SaveData>(ref stateModule.saveData, _date);
             StaticSave.Save<InventorySave>(ref inventorySO.inventorySave, _date);
             StaticSave.Save<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
+            StaticSave.Save<PathSave>(ref PathModeManager.Instance.pathSave, _date);
 
             var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
 
@@ -237,6 +239,7 @@ namespace Json
             //StaticTime.EntierTime = 0;
             StaticSave.Load<InventorySave>(ref inventorySO.inventorySave, _date);
             StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
+            StaticSave.Load<PathSave>(ref PathModeManager.Instance.pathSave, _date);
 
             //별도의 적용 필요함
             Player.GetComponentInChildren<CharacterController>().enabled = false;
@@ -246,6 +249,7 @@ namespace Json
             stateModule.LoadData();
             inventorySO.LoadData();
             questSaveDataSO.LoadData();
+            PathModeManager.Instance.SetPathList();
             QuestManager.Instance.LoadQuestSaveData(questSaveDataSO);
             Player.GetComponentInChildren<CharacterController>().enabled = true;
             //Player?.gameObject.SetActive(true);
