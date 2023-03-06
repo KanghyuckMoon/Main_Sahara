@@ -187,6 +187,13 @@ namespace Streaming
 				AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
 			}
 		}
+		/// <summary>
+		/// 맡은 씬을 불러온다
+		/// </summary>
+		public void LoadSceneNoneCheck()
+		{
+			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
+		}
 
 		/// <summary>
 		/// 맡은 씬이 활성화되어 있어 있다면 비활성화한다
@@ -203,11 +210,16 @@ namespace Streaming
 
 		private void LoadSceneObject(AsyncOperationHandle<SceneInstance> obj)
 		{
+
+			System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+			sw.Start();
 			if (obj.Status == AsyncOperationStatus.Succeeded)
 			{
 				SceneDataManager.Instance.GetSceneData(SceneName).Load();
 				LODMaker.Load();
 			}
+			sw.Stop();
+			Debug.Log("Streaming LoadScene: " + sw.ElapsedMilliseconds.ToString() + "ms");
 		}
 
 		private void UnLoadSceneObject(AsyncOperationHandle<SceneInstance> obj)

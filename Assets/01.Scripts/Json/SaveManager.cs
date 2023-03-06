@@ -289,7 +289,7 @@ namespace Json
 
 
             sw.Stop();
-            Debug.Log(sw.ElapsedMilliseconds.ToString() + "ms");
+            Debug.Log("Save: " + sw.ElapsedMilliseconds.ToString() + "ms");
         }
 
         [ContextMenu("Save")]
