@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Security.Cryptography;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Json
 {
@@ -44,17 +45,31 @@ namespace Json
             return jsonData;
             //File.WriteAllText(path, jsonData);
         }
+
+        /// <summary>
+        /// 유저 데이터 저장
+        /// </summary>
+        public static void SaveBinary<T>(T userSaveData, string _dateName = "")
+        {
+            string path = _dataPath + typeof(T).FullName + _dateName + ".dat";
+            FileStream _fileStream = new FileStream(path, FileMode.Create);
+            BinaryFormatter _formatter = new BinaryFormatter();
+            _formatter.Serialize(_fileStream, userSaveData);
+            _fileStream.Close();
+
+
+            //string jsonData = JsonUtility.ToJson(userSaveData, true);
+            //jsonData = Encrypt(jsonData, "종점");
+            //return jsonData;
+            //File.WriteAllText(path, jsonData);
+        }
+
         /// <summary>
         /// 유저 데이터 저장
         /// </summary>
         public static void SaveJson<T>(string json, string _path)
         {
             string path = _dataPath + typeof(T).FullName + _path + ".txt";
-
-            if (!File.Exists(path))
-            {
-                Directory.CreateDirectory($"{Application.persistentDataPath}/Save");
-            }
             File.WriteAllText(path, json);
         }
 
@@ -73,6 +88,23 @@ namespace Json
 				userSaveData = saveData;
 			}
 		}
+
+
+        /// <summary>
+        /// 유저 데이터 불러오기
+        /// </summary>
+        public static void LoadBinary<T>(ref T userSaveData, string _dataName = "") where T : class
+        {
+            string path = _dataPath + typeof(T).FullName + _dataName + ".dat";
+
+            if (File.Exists(path))
+            {
+                FileStream _fileStream = new FileStream(path, FileMode.Open);
+                BinaryFormatter _formatter = new BinaryFormatter();
+                userSaveData = _formatter.Deserialize(_fileStream) as T;
+            }
+        }
+
 
         public static T Load<T>(string _path) where T : class
         {
