@@ -10,6 +10,7 @@ namespace Module
         JUMP,
         CHARGE,
         ATTACK,
+        SKILL,
         HIT,
         DEAD,
         NONE

@@ -96,7 +96,7 @@ namespace Module
             return null;
         }
 
-            public void SpownAttackEffect()
+        public void SpownAttackEffect()
         {
             if (mainModule.Attacking)
             {
