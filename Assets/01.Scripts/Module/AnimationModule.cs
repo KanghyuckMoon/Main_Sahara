@@ -69,6 +69,23 @@ namespace Module
             Animator.SetFloat("MoveX", mainModule.ObjDir.x);
             Animator.SetFloat("MoveY", mainModule.ObjDir.y);
             Animator.SetBool("Charge", mainModule.IsCharging);
+
+            //Debug.LogError(mainModule.ObjRotation.eulerAngles.x);
+
+            Animator.SetFloat("BodyRotation", RotateWeight(mainModule.ObjRotation.eulerAngles.x));
+        }
+
+        private float RotateWeight(float _rotate)
+        {
+            float _angle = _rotate - 360;
+
+
+
+            if (_angle < -100)
+                return _rotate;
+
+            else
+                return _angle;
         }
 
 

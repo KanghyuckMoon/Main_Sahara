@@ -7,6 +7,8 @@ namespace Weapon
 {
     public class TestArrow : ProjectileObject, IProjectile
     {
+        [SerializeField]
+        private Transform model;
         public Rigidbody rigidbody;
 
         //public void SetPosition()
@@ -18,10 +20,13 @@ namespace Weapon
         {
             rigidbody.useGravity = true;
 
-            transform.rotation = Quaternion.Euler(objectData.InitialDirection);
+            //transform.rotation = Quaternion.Euler(objectData.InitialDirection);
 
             transform.SetParent(null);
-            rigidbody.AddForce((CalculateRotation(_quaternion).normalized * objectData.speed) + new Vector3(0, 1, 0), ForceMode.Impulse);
+            Vector3 _rot = (CalculateRotation(_quaternion).normalized * objectData.speed) + new Vector3(0, 1, 0);
+            rigidbody.AddForce(_rot, ForceMode.Impulse);
+            model.LookAt(_rot + Vector3.forward);
+
             //rigidbody.MovePosition(Vector3.up * 10);
         }
 

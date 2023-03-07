@@ -123,15 +123,24 @@ namespace Module
             //mainModule.objRotation = mainCam.transform.rotation;
         }
 
+        private Vector3 CamPos(Quaternion _quaternion)
+        {
+            Vector3 _pos = _quaternion * Vector3.forward;
+
+            return _pos;
+        }
+
         public override void LateUpdate()
         {
             if (FollawVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = FollawVCam.transform.rotation;
+                //return;
             }
             else if (zoomVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = zoomVCam.transform.rotation;
+                mainModule.ObjForword = CamPos(zoomVCam.transform.rotation);
             }
             else if (GroupVCam.gameObject.activeSelf)
             {

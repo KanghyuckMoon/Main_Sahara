@@ -72,6 +72,17 @@ namespace Module
                 objRotation = value;
             }
         }
+        public Vector3 ObjForword
+        {
+            get
+            {
+                return objForword;
+            }
+            set
+            {
+                objForword = value;
+            }
+        }
         public StatData StatData
         {
             get
@@ -354,6 +365,15 @@ namespace Module
                 animator = value;
 			}
 		}
+
+        public GameObject Back
+        {
+            get
+            {
+                return back;
+            }
+        }
+
 		private float stopOrNot;
 
         [SerializeField, Header("(록온)타겟")]
@@ -365,6 +385,8 @@ namespace Module
         private Vector2 objDir;
         [SerializeField, Header("카메라의 회전")] 
         private Quaternion objRotation;
+        [SerializeField, Header("카메라 앞방향")]
+        private Vector3 objForword;
 
         [Space]
         [SerializeField, Header("데이터 가져올 데")]
@@ -450,6 +472,10 @@ namespace Module
         [SerializeField, Header("양쪽 발")]
         public Transform leftFeet;
         public Transform rightFeet;
+
+        [Space]
+        [SerializeField, Header("허리")]
+        private GameObject back;
 
         [Space]
         public AnimatorOverrideController animatorOverrideController;

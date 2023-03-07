@@ -10,7 +10,7 @@ namespace LockOn
     public class LockOnCamera : MonoBehaviour
     {
         [SerializeField]
-        public GameObject currentCamera;
+        public CinemachineVirtualCamera currentCamera;
 
         [SerializeField]
         private Transform player;
@@ -50,7 +50,7 @@ namespace LockOn
 
         public void Start()
         {
-            currentCamera = playerCam.gameObject;
+            currentCamera = playerCam;
         }
 
         public void Update()
@@ -73,7 +73,7 @@ namespace LockOn
 
                 playerCam.gameObject.SetActive(true);
                 groupCam.gameObject.SetActive(false);
-                currentCamera = playerCam.gameObject;
+                currentCamera = playerCam;
 
                 playerModule.LockOn = false;
                 playerModule.LockOnTarget = null;
@@ -123,7 +123,7 @@ namespace LockOn
                     groupCam.gameObject.SetActive(true);
                     playerCam.gameObject.SetActive(false);
 
-                    currentCamera = groupCam.gameObject;
+                    currentCamera = groupCam;
 
                     playerModule.LockOn = true;
                     playerModule.LockOnTarget = target;
