@@ -9,6 +9,7 @@ using Utill.Measurement;
 using UI.Manager;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UI.UtilManager;
 
 namespace UI.Loading
 {
@@ -54,8 +55,8 @@ namespace UI.Loading
 
         private void Update()
         {
-            if (_isUnload == true && _isCoroutine == false)
-                StartCoroutine(UnLoadLoading());
+    //        if (_isUnload == true && _isCoroutine == false)
+     //           StartCoroutine(UnLoadLoading());
         }
 
         public IEnumerator UnLoadLoading()
@@ -78,7 +79,7 @@ namespace UI.Loading
                 _isUp = true;
             }
             yield return new WaitForSeconds(1f);
-              SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+//            SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 
         }
         private IEnumerator AnimatePanel()

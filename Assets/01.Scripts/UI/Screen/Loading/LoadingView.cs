@@ -11,7 +11,7 @@ namespace UI.Loading
     public class LoadingView : AbUI_Base
     {
         [SerializeField, Header("로딩팁 유지 시간")]
-        private float time = 2f; 
+        private float time = 1f; 
         enum Labels
         {
             tip_label
@@ -64,6 +64,9 @@ namespace UI.Loading
             VisualElement _icon = GetVisualElement((int)Elements.loading_icon);
             DOTween.To(() => 1f, x => _icon.style.opacity = new StyleFloat(x), 0.5f, time)
                 .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.OutQuad);
+
+//            DOTween.To(() => 1f, x => _icon.style.rotate = new StyleRotate(new Rotate(x)), 0.5f, time)
+ //               .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.OutQuad);
         }
 
         public void StopTween()

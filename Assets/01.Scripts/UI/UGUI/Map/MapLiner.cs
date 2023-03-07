@@ -11,7 +11,8 @@ namespace UI
         private VisualElement element; 
         private RectTransform panel;
         private MapInfo mapInfo;
-        //      private 
+        
+//        private 
 
         [SerializeField]
         private int x;
@@ -53,9 +54,10 @@ namespace UI
         }
         public void UpdateScale( Vector2 _scale)
         {
-            panel.sizeDelta = mapInfo.UIMapSize;
-            panel.sizeDelta = new Vector2(originSize.x + originSize.x * _scale.x, originSize.y + originSize.y * _scale.y);
-        //    panel.transform.localScale = _scale;
+            //panel.sizeDelta = mapInfo.UIMapSize;
+            //panel.sizeDelta = new Vector2(originSize.x + originSize.x * _scale.x, originSize.y + originSize.y * _scale.y);
+            panel.localScale = _scale; 
+            //    panel.transform.localScale = _scale;
         }
         private void Init()
         {
