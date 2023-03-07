@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
+using PathMode;
+using UI.EventManage; 
 
 namespace UI
 {
@@ -47,6 +49,8 @@ namespace UI
             // 확대 축소 
             ZoomMap();
             //mapView.MapRect.width 
+            EventManager.Instance.TriggerEvent(EventsType.UpdateMapPos, (Vector2)mapView.Map.transform.position);
+            EventManager.Instance.TriggerEvent(EventsType.UpdateMapScale, (Vector2)mapView.Map.transform.scale);
             // 마커 생성
             if (Input.GetKeyDown(KeyCode.G))
             {
@@ -149,6 +153,15 @@ namespace UI
             //float diffX = mapView.CenterMark.worldBound.x - mapView.Map.worldBound.x;
             //float diffY = mapView.CenterMark.worldBound.y - mapView.Map.worldBound.y;
             //mapView
+        }
+
+        /// <summary>
+        /// 발자국 활성화 
+        /// </summary>
+        private void ActivePath()
+        {
+            var _list = PathModeManager.Instance.GetPathList(); 
+                       
         }
 
 

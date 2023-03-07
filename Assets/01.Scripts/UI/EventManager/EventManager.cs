@@ -9,6 +9,8 @@ namespace UI.EventManage
     public enum EventsType
     {
         UpdateQuickSlot = 50, 
+        UpdateMapPos, 
+        UpdateMapScale, 
         ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>
