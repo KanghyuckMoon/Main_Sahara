@@ -48,14 +48,18 @@ namespace LockOn
             int _weight = _isOn > 0 ? -10 : 10;
             bool _on = _isOn > 0 ? true : false;
 
-            lockOnCamera.currentCamera.Priority = _weight;//.SetActive(!_isOn);
+            lockOnCamera.currentCamera.gameObject.SetActive(!_on);
 
-            //zoomInCam.SetActive(_on);
+            zoomInCam.SetActive(_on);
 
             mainModule.LockOn = _on;
 
             if (_on)
+            {
                 mainModule.LockOnTarget = zoomInTarget;
+                //zoomInCam.transform.localPosition = new Vector3(0.6461196f, 2.805113f, -0.981263f);
+                //zoomInCam.transform.localRotation = Quaternion.Euler(new Vector3(40, 0, 0));
+            }
             else
                 mainModule.LockOnTarget = null;
         }

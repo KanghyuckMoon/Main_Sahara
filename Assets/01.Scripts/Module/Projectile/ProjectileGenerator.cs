@@ -18,12 +18,14 @@ namespace Module
         [SerializeField]
         private ProjectilePositionSO positionSO;
         private AttackModule attackModule;
+        private AbMainModule mainModule;
 
         private List<GameObject> projectileObjects = new List<GameObject>();
 
         private void Start()
         {
-            attackModule = GetComponent<AbMainModule>().GetModuleComponent<AttackModule>(ModuleType.Attack);
+            mainModule = GetComponent<AbMainModule>();
+            attackModule = mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
         }
 
         public void ChangeSO(ProjectilePositionSO _positionSO)
@@ -68,7 +70,7 @@ namespace Module
 
             //Quaternion _quaternion = Quaternion.Euler(transform.forward);
 
-            projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc(transform.rotation));
+            projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation));
 
             projectileObjects.Clear();
         }

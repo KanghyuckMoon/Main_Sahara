@@ -72,6 +72,17 @@ namespace Module
                 objRotation = value;
             }
         }
+        public Vector3 ObjForword
+        {
+            get
+            {
+                return objForword;
+            }
+            set
+            {
+                objForword = value;
+            }
+        }
         public StatData StatData
         {
             get
@@ -374,6 +385,8 @@ namespace Module
         private Vector2 objDir;
         [SerializeField, Header("카메라의 회전")] 
         private Quaternion objRotation;
+        [SerializeField, Header("카메라 앞방향")]
+        private Vector3 objForword;
 
         [Space]
         [SerializeField, Header("데이터 가져올 데")]

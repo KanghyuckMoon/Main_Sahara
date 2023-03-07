@@ -119,8 +119,15 @@ namespace Module
             zoomCamNoise = zoomVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
             groupVCam.gameObject.SetActive(false);
-            //zoomVCam.gameObject.SetActive(false);
+            zoomVCam.gameObject.SetActive(false);
             //mainModule.objRotation = mainCam.transform.rotation;
+        }
+
+        private Vector3 CamPos(Quaternion _quaternion)
+        {
+            Vector3 _pos = _quaternion * Vector3.forward;
+
+            return _pos;
         }
 
         public override void LateUpdate()
@@ -128,11 +135,12 @@ namespace Module
             if (FollawVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = FollawVCam.transform.rotation;
-                return;
+                //return;
             }
             else if (zoomVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = zoomVCam.transform.rotation;
+                mainModule.ObjForword = CamPos(zoomVCam.transform.rotation);
             }
             else if (GroupVCam.gameObject.activeSelf)
             {
