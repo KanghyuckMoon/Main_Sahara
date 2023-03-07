@@ -41,6 +41,7 @@ namespace Json
 				}
 			}
         }
+
         public struct ShopSaveJob : IJobParallelFor
         {
             public FixedString128Bytes date;
@@ -51,12 +52,122 @@ namespace Json
                 string _json = StaticSave.ReturnJson<ShopSave>(_shopSO.shopSave);
                 try
                 {
-                    StaticSave.SaveJson<ObjectDataList>(_json, _shopSO.shopName + date.ToString());
+                    StaticSave.SaveJson<ShopSave>(_json, _shopSO.shopName + date.ToString());
                 }
                 catch (Exception e)
                 {
                     Debug.LogError("Can't Save");
                 }
+            }
+        }
+
+        public struct StateSaveJob : IJob
+        {
+            public FixedString128Bytes date;
+            public void Execute()
+            {
+                var _saveData = SaveManager.Instance.StateModuleReadOnly.saveData;
+                string _json = StaticSave.ReturnJson<SaveData>(_saveData);
+                try
+                {
+                    StaticSave.SaveJson<SaveData>(_json, date.ToString());
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Can't Save");
+                }
+            }
+        }
+        public struct InventorySaveJob : IJob
+        {
+            public FixedString128Bytes date;
+            public void Execute()
+            {
+                var _saveData = SaveManager.Instance.InventorySO;
+                string _json = StaticSave.ReturnJson<InventorySave>(_saveData.inventorySave);
+                try
+                {
+                    StaticSave.SaveJson<InventorySave>(_json, date.ToString());
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Can't Save");
+                }
+            }
+        }
+        public struct QuestSaveJob : IJob
+        {
+            public FixedString128Bytes date;
+            public void Execute()
+            {
+                var _saveData = SaveManager.Instance.QuestSaveDataSO;
+                string _json = StaticSave.ReturnJson<QuestSaveDataSave>(_saveData.questSaveDataSave);
+                try
+                {
+                    StaticSave.SaveJson<QuestSaveDataSave>(_json, date.ToString());
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Can't Save");
+                }
+            }
+        }
+
+        public struct PathSaveJob : IJob
+        {
+            public FixedString128Bytes date;
+            public void Execute()
+            {
+                string _json = StaticSave.ReturnJson<PathSave>(PathModeManager.Instance.pathSave);
+                try
+                {
+                    StaticSave.SaveJson<ObjectDataList>(_json, date.ToString());
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Can't Save");
+                }
+            }
+        }
+
+        public struct RecordSaveJob : IJob
+        {
+            public FixedString128Bytes date;
+            public FixedString128Bytes imagePath;
+            public void Execute()
+            {
+                SaveRecordDataList _saveRecordDataList = new SaveRecordDataList();
+                StaticSave.Load<SaveRecordDataList>(ref _saveRecordDataList);
+
+                SaveRecordData _saveRecordData = new SaveRecordData();
+                _saveRecordData.date = date.ToString();
+                _saveRecordData.imagePath = imagePath.ToString();
+                _saveRecordDataList.dateList.Add(_saveRecordData);
+
+                if (_saveRecordDataList.dateList.Count > 10)
+                {
+                    var _data = _saveRecordDataList.dateList[0];
+
+                    File.Delete(StaticSave.GetPath() + _data.date + ".png");
+                    File.Delete(StaticSave.GetPath() + "InventorySave" + _data.date);
+                    File.Delete(StaticSave.GetPath() + "QuestSaveDataSave" + _data.date);
+                    var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
+                    foreach (var _sceneData in _sceneDataList)
+                    {
+                        File.Delete(StaticSave.GetPath() + _sceneData.Key + _data.date);
+                    }
+
+                    for (int i = 0; i < SaveManager.Instance.ShopAllSO.shopSOList.Count; ++i)
+                    {
+                        ShopSO _shopSO = SaveManager.Instance.ShopAllSO.shopSOList[i];
+                        File.Delete(StaticSave.GetPath() + _shopSO.shopName + _data.date);
+                    }
+
+                    _saveRecordDataList.dateList.RemoveAt(0);
+                }
+
+                string _json = StaticSave.ReturnJson<SaveRecordDataList>(_saveRecordDataList);
+                StaticSave.SaveJson<SaveRecordDataList>(_json, "");
             }
         }
 
@@ -133,6 +244,8 @@ namespace Json
         [SerializeField]
         private Transform player = null;
 
+        public StatModule StateModuleReadOnly => stateModule;
+
         private StatModule stateModule;
 
         public string TestDate
@@ -182,7 +295,7 @@ namespace Json
         public void ReceiveEvent(string _sender, object _obj)
         {
             string _date = DateTime.Now.ToString("yyyyMMddhhmmss");
-            SaveBackgroundThread(_date);
+            StartCoroutine(SaveBackgroundThread(_date));
         }
 
         public SaveRecordDataList GetSaveRecordDataList()
@@ -193,11 +306,11 @@ namespace Json
             return _saveRecordDataList;
         }
 
-        public void SaveBackgroundThread(string _date)
+        public IEnumerator SaveBackgroundThread(string _date)
         {
-            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null)
+            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null || PathModeManager.Instance is null)
             {
-                return;
+                yield break;
             }
 
             string _staticSavepath = StaticSave.GetPath();
@@ -216,15 +329,33 @@ namespace Json
             inventorySO.SaveData();
             questSaveDataSO.SaveData();
 
-            StaticSave.Save<SaveData>(ref stateModule.saveData, _date);
-            StaticSave.Save<InventorySave>(ref inventorySO.inventorySave, _date);
-            StaticSave.Save<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
-            StaticSave.Save<PathSave>(ref PathModeManager.Instance.pathSave, _date);
+            string _imagePath = StaticSave.GetPath() + _date.ToString() + ".png";
+
+            FixedString128Bytes _fixedDate = new FixedString128Bytes(_date);
+            FixedString128Bytes _fixedimagePath = new FixedString128Bytes(_imagePath);
+
+
+            StateSaveJob _stateSaveJob = new StateSaveJob();
+            InventorySaveJob _inventorySaveJob = new InventorySaveJob();
+            QuestSaveJob _questSaveJob = new QuestSaveJob();
+            PathSaveJob _pathSaveJob = new PathSaveJob();
+            RecordSaveJob _recordSaveJob = new RecordSaveJob();
+
+            _stateSaveJob.date = _fixedDate;
+            _inventorySaveJob.date = _fixedDate;
+            _questSaveJob.date = _fixedDate;
+            _pathSaveJob.date = _fixedDate;
+            _recordSaveJob.date = _fixedDate;
+            _recordSaveJob.imagePath = _fixedimagePath;
+
+            JobHandle _stateSaveJobHandle = _stateSaveJob.Schedule();
+            JobHandle _inventorySaveJobHandle = _inventorySaveJob.Schedule();
+            JobHandle _questSaveJobHandle = _questSaveJob.Schedule();
+            JobHandle _pathSaveJobHandle = _pathSaveJob.Schedule();
+            JobHandle __recordSaveJobHandle = _recordSaveJob.Schedule();
 
             var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
             NativeArray<FixedString4096Bytes> _sceneKeyArray = new NativeArray<FixedString4096Bytes>(_sceneDataList.Count, Allocator.TempJob);
-            FixedString128Bytes _fixedDate = new FixedString128Bytes(_date);
-
 
             SceneSaveJob _sceneSaveJob = new SceneSaveJob();
             _sceneSaveJob.testArray = _sceneKeyArray;
@@ -243,48 +374,19 @@ namespace Json
             JobHandle _sceneJobHandle = _sceneSaveJob.Schedule(_sceneDataList.Count, 10);
             JobHandle _shopJobHandle = _shopSaveJob.Schedule(ShopAllSO.shopSOList.Count, 5);
 
-            _sceneJobHandle.Complete();
 
-            string _imagePath = StaticSave.GetPath() + _date + ".png";
             ScreenCapture.CaptureScreenshot(_imagePath);
 
-            SaveRecordDataList _saveRecordDataList = new SaveRecordDataList();
-            StaticSave.Load<SaveRecordDataList>(ref _saveRecordDataList);
-
-            SaveRecordData _saveRecordData = new SaveRecordData();
-            _saveRecordData.date = _date;
-            _saveRecordData.imagePath = _imagePath;
-            _saveRecordDataList.dateList.Add(_saveRecordData);
-
-            if (_saveRecordDataList.dateList.Count > 10)
-            {
-                var _data = _saveRecordDataList.dateList[0];
-
-                File.Delete(StaticSave.GetPath() + _data.date + ".png");
-                File.Delete(StaticSave.GetPath() + "InventorySave" + _data.date);
-                File.Delete(StaticSave.GetPath() + "QuestSaveDataSave" + _data.date);
-
-                foreach (var _sceneData in _sceneDataList)
-                {
-                    File.Delete(StaticSave.GetPath() + _sceneData.Key + _data.date);
-                }
-
-                for (int i = 0; i < ShopAllSO.shopSOList.Count; ++i)
-                {
-                    ShopSO _shopSO = ShopAllSO.shopSOList[i];
-                    File.Delete(StaticSave.GetPath() + _shopSO.shopName + _data.date);
-                }
-
-                _saveRecordDataList.dateList.RemoveAt(0);
-            }
-
-            StaticSave.Save<SaveRecordDataList>(ref _saveRecordDataList);
-
-            //DisPose
-            _sceneSaveJob.testArray.Dispose();
 
             StaticTime.EntierTime = 1;
 
+            while (!_sceneJobHandle.IsCompleted)
+            {
+                yield return null;
+            }
+            _sceneJobHandle.Complete();
+            //DisPose
+            _sceneSaveJob.testArray.Dispose();
 
             sw.Stop();
             Debug.Log("Save: " + sw.ElapsedMilliseconds.ToString() + "ms");
