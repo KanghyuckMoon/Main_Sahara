@@ -34,7 +34,7 @@ namespace Module
         public WeaponSkills weaponSkills;
         public bool isProjectileWeapon;
 
-        private StatModule StateModule
+        private StatModule StatModule
         {
             get
             {
@@ -131,7 +131,7 @@ namespace Module
                 mainModule.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
                 projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
 
-                StateModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
+                StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;
@@ -196,11 +196,11 @@ namespace Module
                 return;
             }
 
-            //if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
-            //{
-            //    weaponSkills?.Invoke();
-            //    StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
-            //}
+            if (StatModule.saveData.mana >= baseWeapon.WeaponDataSO.manaConsumed)
+            {
+                weaponSkills?.Invoke();
+                StatModule.saveData.mana -= baseWeapon.WeaponDataSO.manaConsumed;
+            }
         }
 
         public override void OnDisable()

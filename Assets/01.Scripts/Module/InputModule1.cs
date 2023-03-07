@@ -92,10 +92,18 @@ namespace Module
 
         private void InputSkill()
         {
-			if (Input.GetKeyDown(KeyCode.E) && !mainModule.IsDead)
+			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) && !mainModule.IsDead)
 			{
-				mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).UseWeaponSkills();//.BaseWeapon.weaponSkills.Invoke();
+				if (Input.GetKeyDown(KeyCode.E))
+				{
+					//Input.key
+					SkillModule.UseSkill("E");//.BaseWeapon.weaponSkills.Invoke();
+				}
+				if (Input.GetKeyDown(KeyCode.R))
+				{
+					SkillModule.UseSkill("R");
+				}
 			}
-        }
+		}
     }
 }

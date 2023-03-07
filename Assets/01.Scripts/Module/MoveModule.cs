@@ -114,7 +114,7 @@ namespace Module
 
                 if (!mainModule.Attacking || !mainModule.StrongAttacking)
                 {
-                    if (mainModule.LockOnTarget is null) mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                    if (mainModule.LockOnTarget is null && mainModule.ObjDir != Vector2.zero) mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                     /*else
                     {
                         Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);

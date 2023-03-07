@@ -30,6 +30,7 @@ namespace CondinedModule
             AddModuleWithPool<ItemModule>(ModuleType.Item, "ItemModule");
             AddModuleWithPool<EquipmentModule>(ModuleType.Equipment, "EquipmentModule");
             AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
+            AddModule(ModuleType.Skill, new SkillModule(this));
 
             RaycastTarget ??= transform.Find("RayCastPoint");
 
