@@ -37,10 +37,20 @@ namespace Module
 						//AttackModule.SpownCurrentArrow();
 						AttackModule.SpownAttackEffect();
 					}
+
+					if (Input.GetMouseButtonDown(1))
+					{
+						mainModule.StrongAttacking = true;
+						StateModule.AddState(State.ATTACK);
+						//StateModule.AddState(State.CHARGE);
+
+						//AttackModule.SpownCurrentArrow();
+						AttackModule.SpownAttackEffect();
+					}
 				}
 				mainModule.IsCharging = Input.GetMouseButton(0);
 
-				if (Input.GetMouseButtonUp(0))
+				if (Input.GetMouseButtonUp(0))// || Input.GetMouseButtonUp(1))
 				{
 					//bool _inputatk = Input.GetMouseButtonUp(0);
 					//AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward, Quaternion.identity);// + new Vector3(0, 1.6f, 0));
