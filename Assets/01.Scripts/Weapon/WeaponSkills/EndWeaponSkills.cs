@@ -18,7 +18,7 @@ namespace Weapon
             animator = GetComponentInParent<Animator>();
 
             animator.Play("Skills");
-            StartCoroutine(EffectSpown());
+            //StartCoroutine(EffectSpown());
             //effect.transform.SetParent(animator.gameObject.transform);
 
             //animator.gameObject.transform.position

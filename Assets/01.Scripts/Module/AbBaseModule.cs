@@ -24,6 +24,7 @@ namespace Module
         Shop,
         Item,
         Equipment,
+        Skill,
         None
     }
 
