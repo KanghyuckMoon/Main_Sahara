@@ -111,7 +111,7 @@ namespace Module
                 ObjectPoolManager.Instance.RegisterObject(currentWeaponName, currentWeapon);
             }
 
-            if (weapon != "")
+            if (weapon != null && weapon != "")
             {
                 GameObject _weapon = ObjectPoolManager.Instance.GetObject(weapon);
                 _weapon.SetActive(true);
