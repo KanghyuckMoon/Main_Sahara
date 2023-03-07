@@ -24,7 +24,7 @@ namespace Module
 		{
 			if (mainModule.IsWeaponExist)
 			{
-				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE))
+				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) && !StateModule.CheckState(State.SKILL))
 				{
 					//Debug.LogError("공격이다 공격이야!!!!!");
 
@@ -63,7 +63,7 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (!StateModule.CheckState(State.ATTACK))
+			if (!StateModule.CheckState(State.ATTACK, State.SKILL))
 			{
 				float _inputX = Input.GetAxis("Horizontal");
 				float _inputY = Input.GetAxis("Vertical");
@@ -80,7 +80,7 @@ namespace Module
 		{
 			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE))
 			{
-				if (mainModule.StopOrNot >= 1)
+				if (mainModule.StopOrNot >= 1 && !StateModule.CheckState(State.SKILL))
 				{
 					bool _inputup = Input.GetKey(KeyCode.Space);
 
@@ -104,14 +104,21 @@ namespace Module
         {
 			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) && !mainModule.IsDead)
 			{
-				if (Input.GetKeyDown(KeyCode.E))
+				if (!StateModule.CheckState(State.SKILL))
 				{
-					//Input.key
-					SkillModule.UseSkill("E");//.BaseWeapon.weaponSkills.Invoke();
-				}
-				if (Input.GetKeyDown(KeyCode.R))
-				{
-					SkillModule.UseSkill("R");
+					if (Input.GetKeyDown(KeyCode.E))
+					{
+						//Input.key
+						SkillModule.UseSkill("E");//.BaseWeapon.weaponSkills.Invoke();
+					}
+					if (Input.GetKeyDown(KeyCode.R))
+					{
+						SkillModule.UseSkill("R");
+					}
+					if (Input.GetKeyDown(KeyCode.Q))
+					{
+						SkillModule.UseWeaponSkill();
+					}
 				}
 			}
 		}
