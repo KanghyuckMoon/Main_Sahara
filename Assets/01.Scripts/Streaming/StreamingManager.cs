@@ -261,7 +261,7 @@ namespace Streaming
 
 				StartCoroutine(UpdateChunk());
 				//StartCoroutine(UpdateChunk());
-				//streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
+				streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 
@@ -279,9 +279,6 @@ namespace Streaming
 
 		private IEnumerator UpdateChunk()
 		{
-			System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-			sw.Start();
-
 			SetSceneDic();
 
 			chunksCurrentVisibleList.Clear();
@@ -299,9 +296,6 @@ namespace Streaming
 			}
 			_jobHandle.Complete();
 
-			sw.Stop();
-			Debug.Log("Streaming Set: " + sw.ElapsedMilliseconds.ToString() + "ms");
-
 			UnLoadVisibleChunk();
 			chunksPreviousVisibleList = chunksCurrentVisibleList.ToList();
 
@@ -309,25 +303,13 @@ namespace Streaming
 		}
 		private void UnLoadVisibleChunk()
 		{
-			System.Diagnostics.Stopwatch sw2 = new System.Diagnostics.Stopwatch();
-			sw2.Start();
-
 			List<Vector3> _unloadSceneList = chunksPreviousVisibleList.Except(chunksCurrentVisibleList).ToList();
-
-			sw2.Stop();
-			Debug.Log("Streaming UnLoad1: " + sw2.ElapsedMilliseconds.ToString() + "ms");
-
-			System.Diagnostics.Stopwatch sw3 = new System.Diagnostics.Stopwatch();
-			sw3.Start();
 
 			while (_unloadSceneList.Count > 0)
 			{
 				UnLoadSubScene(_unloadSceneList[0]);
 				_unloadSceneList.RemoveAt(0);
 			}
-
-			sw3.Stop();
-			Debug.Log("Streaming UnLoad2: " + sw3.ElapsedMilliseconds.ToString() + "ms");
 
 			//혹시 모를 언로드
 			foreach (var _chunk in chunkDictionary)

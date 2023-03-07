@@ -204,12 +204,7 @@ namespace Streaming
 			{
 				SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
 
-				System.Diagnostics.Stopwatch sw5 = new System.Diagnostics.Stopwatch();
-				sw5.Start();
-
 				LODMaker.UnLoad();
-				sw5.Stop();
-				Debug.Log("Streaming UnLoad5: " + sw5.ElapsedMilliseconds.ToString() + "ms");
 
 
 				AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
@@ -218,16 +213,11 @@ namespace Streaming
 
 		private void LoadSceneObject(AsyncOperationHandle<SceneInstance> obj)
 		{
-
-			System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-			sw.Start();
 			if (obj.Status == AsyncOperationStatus.Succeeded)
 			{
 				SceneDataManager.Instance.GetSceneData(SceneName).Load();
 				LODMaker.Load();
 			}
-			sw.Stop();
-			Debug.Log("Streaming LoadScene: " + sw.ElapsedMilliseconds.ToString() + "ms");
 		}
 
 		private void UnLoadSceneObject(AsyncOperationHandle<SceneInstance> obj)

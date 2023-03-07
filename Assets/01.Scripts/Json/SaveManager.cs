@@ -181,8 +181,6 @@ namespace Json
 
         public void ReceiveEvent(string _sender, object _obj)
         {
-            //testDate = DateTime.Now.ToString("yyyyMMddhhmmss");
-            //Debug.Log(DateTime.Now.ToString("yyyyMMddhhmmss"));
             string _date = DateTime.Now.ToString("yyyyMMddhhmmss");
             SaveBackgroundThread(_date);
         }

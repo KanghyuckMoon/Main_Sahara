@@ -47,6 +47,7 @@ namespace Streaming
 		private Dictionary<long, ObjectData> renderObjectDic = new Dictionary<long, ObjectData>();
 		private Dictionary<long, GameObject> objectList = new Dictionary<long, GameObject>();
 		private bool isInit = false;
+		private int unloadCount = 0;
 
 		public void Init(SubSceneObj _subSceneObj)
 		{
@@ -99,15 +100,27 @@ namespace Streaming
 			{
 				if (!objectList.ContainsKey(obj.Key))
 				{
-					GameObject lodObj = ObjectPoolManager.Instance.GetObject(obj.Value.lodAddress);
-					objectList.Add(obj.Key, lodObj);
-					ObjectSettingData(lodObj, obj.Value);
-					lodObj.SetActive(true);
+					unloadCount++;
+					objectList.Add(obj.Key, null);
+					ObjectPoolManager.Instance.GetObjectAsyncParameter<KeyValuePair<long, ObjectData>>(obj.Value.lodAddress, UnloadObjectAsync, obj);
 				}
 			}
 
-			ResetLODObject();
 			yield return null;
+		}
+
+		private void UnloadObjectAsync(GameObject _lodObj, KeyValuePair<long, ObjectData> _keyValuePair)
+		{
+			unloadCount--;
+			objectList[_keyValuePair.Key] = _lodObj;
+			//objectList.Add(_keyValuePair.Key, _lodObj);
+			ObjectSettingData(_lodObj, _keyValuePair.Value);
+			_lodObj.SetActive(true);
+
+			if (unloadCount == 0)
+			{
+				ResetLODObject();
+			}
 		}
 
 		private void ResetLODObject()
@@ -251,7 +264,7 @@ namespace Streaming
 		{
 			LOD[] _lods = lodGroup.GetLODs();
 
-			List<Renderer> _renderers = new List<Renderer>();// _lods[3].renderers.ToList();// new List<Renderer>();
+			List<Renderer> _renderers = new List<Renderer>();
 			foreach (var _keyValue in objectList)
 			{
 				GameObject _obj = _keyValue.Value;
@@ -268,20 +281,14 @@ namespace Streaming
 			var _renderers3 = _renderers.ToArray();
 
 			
-			//_lods[0].renderers = _renderers0;
 			_lods[0].screenRelativeTransitionHeight = lod0;
 			_lods[0].fadeTransitionWidth = lod0Width;
 
-
-			//_lods[1].renderers = _renderers1;
 			_lods[1].screenRelativeTransitionHeight = lod1;
 			_lods[1].fadeTransitionWidth = lod1Width;
 
-
-			//_lods[2].renderers = _renderers2;
 			_lods[2].screenRelativeTransitionHeight = lod2;
 			_lods[2].fadeTransitionWidth = lod2Width;
-
 
 			_lods[3].renderers = _renderers3;
 			_lods[3].screenRelativeTransitionHeight = lod3;
