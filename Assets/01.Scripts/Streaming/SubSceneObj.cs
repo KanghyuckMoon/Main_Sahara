@@ -182,10 +182,17 @@ namespace Streaming
 		/// </summary>
 		public void LoadScene()
 		{
-			if (!IsActiveScene())
-			{
-				AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
-			}
+			//if (!IsActiveScene())
+			//{
+			//}
+			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
+		}
+		/// <summary>
+		/// ¸ÃÀº ¾ÀÀ» ºÒ·¯¿Â´Ù
+		/// </summary>
+		public void LoadSceneNoneCheck()
+		{
+			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
 		}
 
 		/// <summary>
@@ -196,8 +203,11 @@ namespace Streaming
 			if (IsActiveScene())
 			{
 				SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
+
 				LODMaker.UnLoad();
-				AddressablesManager.Instance.UnLoadSceneAsync(SceneName, UnLoadSceneObject);
+
+
+				AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
 			}
 		}
 

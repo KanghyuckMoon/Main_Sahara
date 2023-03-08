@@ -55,7 +55,10 @@ namespace Pool
             {
                 GameObject obj = queue.Dequeue();
                 PoolParentManager.Instance.SetUseParent(key, obj);
-                _action(obj);
+                if (_action is not null)
+                {
+                    _action(obj);
+                }
             }
             else
             {

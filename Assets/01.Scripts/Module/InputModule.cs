@@ -25,9 +25,18 @@ namespace Module
                 return stateModule;
             }
         }
+        private SkillModule SkillModule
+        {
+            get
+            {
+                skillModule ??= mainModule.GetModuleComponent<SkillModule>(ModuleType.Skill);
+                return skillModule;
+            }
+        }
 
         private AttackModule attackModule;
         private StateModule stateModule;
+        private SkillModule skillModule;
 
         public InputModule(AbMainModule _mainModule) : base(_mainModule)
         {

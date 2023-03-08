@@ -24,6 +24,8 @@ namespace Module
         Shop,
         Item,
         Equipment,
+        Skill,
+        Buff,
         None
     }
 

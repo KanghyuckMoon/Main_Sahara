@@ -57,7 +57,7 @@ namespace Streaming
         /// <returns></returns>
         public static bool CheckCurrentlyActhive(string _sceneName)
 		{
-            for(int i = 0; i < SceneManager.sceneCount; ++i)
+			for (int i = 0; i < SceneManager.sceneCount; ++i)
 			{
                 if(SceneManager.GetSceneAt(i).name == _sceneName)
 				{

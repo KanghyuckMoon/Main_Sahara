@@ -72,6 +72,17 @@ namespace Module
                 objRotation = value;
             }
         }
+        public Vector3 ObjForword
+        {
+            get
+            {
+                return objForword;
+            }
+            set
+            {
+                objForword = value;
+            }
+        }
         public StatData StatData
         {
             get
@@ -251,6 +262,17 @@ namespace Module
                 gravity = value;
             }
         }
+        public bool IsCanHit
+        {
+            get
+            {
+                return isCanHit;
+            }
+            set
+            {
+                isCanHit = value;
+            }
+        }
         public float GravityScale
 		{
             get
@@ -354,6 +376,15 @@ namespace Module
                 animator = value;
 			}
 		}
+
+        public GameObject Back
+        {
+            get
+            {
+                return back;
+            }
+        }
+
 		private float stopOrNot;
 
         [SerializeField, Header("(록온)타겟")]
@@ -365,6 +396,8 @@ namespace Module
         private Vector2 objDir;
         [SerializeField, Header("카메라의 회전")] 
         private Quaternion objRotation;
+        [SerializeField, Header("카메라 앞방향")]
+        private Vector3 objForword;
 
         [Space]
         [SerializeField, Header("데이터 가져올 데")]
@@ -386,7 +419,7 @@ namespace Module
         private bool isJump;
         [SerializeField, Header("떨어졌나?")] 
         private bool isFreeFall;
-        [SerializeField, Header("경사정도")] 
+        [SerializeField, Header("경사정도")]
         private bool isSlope;
         [SerializeField, Header("점프버퍼링타임")] 
         private bool isJumpBuf;
@@ -402,6 +435,8 @@ namespace Module
         private bool isHit;
         [SerializeField, Header("차징중인가?")]
         private bool isCharging;
+        [SerializeField, Header("맞을 수 있나?")]
+        private bool isCanHit;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
@@ -450,6 +485,10 @@ namespace Module
         [SerializeField, Header("양쪽 발")]
         public Transform leftFeet;
         public Transform rightFeet;
+
+        [Space]
+        [SerializeField, Header("허리")]
+        private GameObject back;
 
         [Space]
         public AnimatorOverrideController animatorOverrideController;

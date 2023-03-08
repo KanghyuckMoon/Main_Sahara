@@ -31,10 +31,9 @@ namespace Module
         #endregion
 
         public GameObject currentWeapon;
-        public WeaponSkills weaponSkills;
         public bool isProjectileWeapon;
 
-        private StatModule StateModule
+        private StatModule StatModule
         {
             get
             {
@@ -62,6 +61,15 @@ namespace Module
             }
         }
 
+        private SkillModule SkillModule
+        {
+            get
+            {
+                skillModule ??= mainModule.GetModuleComponent<SkillModule>(ModuleType.Skill);
+                return skillModule;
+            }
+        }
+
         #region private º¯¼ö
         private int animationIndex;
         private string currentWeaponName;
@@ -71,10 +79,11 @@ namespace Module
         private BaseWeapon baseWeapon;
         private ProjectileGenerator projectileGenerator;
 
+        private SkillModule skillModule;
         private StatModule stateModule;
         private Animator animator;
         private WeaponSpownObject[] weaponRight;
-        private IWeaponSkills iWeaponSkills;
+        private IWeaponSkill iWeaponSkills;
         #endregion
         //private ArrowInfo arrowInfo;
 
@@ -119,7 +128,7 @@ namespace Module
                 string tagname = mainModule.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
                 _weapon.tag = tagname;
 
-                iWeaponSkills = _weapon.GetComponent<IWeaponSkills>();
+                SkillModule.SetWeaponSkill(_weapon.GetComponent<IWeaponSkill>());
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
 
                 _weapon.transform.SetParent(WhichHandToHold(BaseWeapon));
@@ -131,7 +140,7 @@ namespace Module
                 mainModule.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
                 projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
 
-                StateModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
+                StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;
@@ -145,7 +154,6 @@ namespace Module
 
                 mainModule.IsWeaponExist = true;
                 SetBehaveAnimation();
-                SetWeaponSkills();
             }
         }
         private Transform WhichHandToHold(BaseWeapon _baseWeapon)
@@ -182,31 +190,11 @@ namespace Module
             MainModule.AnimatorOverrideController["Ready"] = BaseWeapon.WeaponDataSO.readyAttackAnimation;
             MainModule.AnimatorOverrideController["ChargeAttack"] = BaseWeapon.WeaponDataSO.chargeAttackAnimation;
         }
-        private void SetWeaponSkills()
-        {
-            if (iWeaponSkills is not null)
-            {
-                weaponSkills = new WeaponSkills(iWeaponSkills.Skills);
-            }
-        }
-        public void UseWeaponSkills()
-        {
-            if (baseWeapon is null)
-            {
-                return;
-            }
-
-            //if (StateModule.Mana >= baseWeapon.WeaponDataSO.manaConsumed)
-            //{
-            //    weaponSkills?.Invoke();
-            //    StateModule.Mana -= baseWeapon.WeaponDataSO.manaConsumed;
-            //}
-        }
 
         public override void OnDisable()
         {
             currentWeapon = null;
-            weaponSkills = null;
+            //weaponSkills = null;
             baseWeapon = null;
             stateModule = null;
             animator = null;
@@ -219,7 +207,7 @@ namespace Module
         public override void OnDestroy()
         {
             currentWeapon = null;
-            weaponSkills = null;
+            //weaponSkills = null;
             baseWeapon = null;
             stateModule = null;
             animator = null;

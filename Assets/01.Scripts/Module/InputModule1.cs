@@ -24,7 +24,7 @@ namespace Module
 		{
 			if (mainModule.IsWeaponExist)
 			{
-				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE))
+				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) && !StateModule.CheckState(State.SKILL))
 				{
 					//Debug.LogError("공격이다 공격이야!!!!!");
 
@@ -37,10 +37,20 @@ namespace Module
 						//AttackModule.SpownCurrentArrow();
 						AttackModule.SpownAttackEffect();
 					}
+
+					if (Input.GetMouseButtonDown(1))
+					{
+						mainModule.StrongAttacking = true;
+						StateModule.AddState(State.ATTACK);
+						//StateModule.AddState(State.CHARGE);
+
+						//AttackModule.SpownCurrentArrow();
+						AttackModule.SpownAttackEffect();
+					}
 				}
 				mainModule.IsCharging = Input.GetMouseButton(0);
 
-				if (Input.GetMouseButtonUp(0))
+				if (Input.GetMouseButtonUp(0))// || Input.GetMouseButtonUp(1))
 				{
 					//bool _inputatk = Input.GetMouseButtonUp(0);
 					//AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward, Quaternion.identity);// + new Vector3(0, 1.6f, 0));
@@ -53,7 +63,7 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (!StateModule.CheckState(State.ATTACK))
+			if (!StateModule.CheckState(State.ATTACK, State.SKILL))
 			{
 				float _inputX = Input.GetAxis("Horizontal");
 				float _inputY = Input.GetAxis("Vertical");
@@ -70,7 +80,7 @@ namespace Module
 		{
 			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE))
 			{
-				if (mainModule.StopOrNot >= 1)
+				if (mainModule.StopOrNot >= 1 && !StateModule.CheckState(State.SKILL))
 				{
 					bool _inputup = Input.GetKey(KeyCode.Space);
 
@@ -92,10 +102,25 @@ namespace Module
 
         private void InputSkill()
         {
-			if (Input.GetKeyDown(KeyCode.E) && !mainModule.IsDead)
+			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) && !mainModule.IsDead)
 			{
-				mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).UseWeaponSkills();//.BaseWeapon.weaponSkills.Invoke();
+				if (!StateModule.CheckState(State.SKILL))
+				{
+					if (Input.GetKeyDown(KeyCode.E))
+					{
+						//Input.key
+						SkillModule.UseSkill("E");//.BaseWeapon.weaponSkills.Invoke();
+					}
+					if (Input.GetKeyDown(KeyCode.R))
+					{
+						SkillModule.UseSkill("R");
+					}
+					if (Input.GetKeyDown(KeyCode.Q))
+					{
+						SkillModule.UseWeaponSkill();
+					}
+				}
 			}
-        }
+		}
     }
 }
