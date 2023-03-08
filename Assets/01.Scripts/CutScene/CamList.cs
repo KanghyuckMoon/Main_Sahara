@@ -18,11 +18,25 @@ namespace CutScene
 	public class CamList : MonoBehaviour
 	{
 		[SerializeField]
+		private Transform cameraForwardTarget;
+		[SerializeField]
+		private CinemachineDollyCart fowardDollyCart;
+
+		[SerializeField]
 		private List<CinemachineVirtualCamera> camList = new List<CinemachineVirtualCamera>();
 
 		public CinemachineVirtualCamera GetCam(CamType _camType)
 		{
 			return camList[(int)_camType];
+		}
+
+		public Transform GetCameraForwardTarget()
+		{
+			return cameraForwardTarget;
+		}
+		public CinemachineDollyCart GetCameraDollyCart()
+		{
+			return fowardDollyCart;
 		}
 	}
 }

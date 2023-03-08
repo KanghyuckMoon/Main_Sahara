@@ -8,6 +8,7 @@ using Utill.Addressable;
 using Module.Talk;
 using Module;
 using Cinemachine;
+using DG.Tweening;
 
 namespace CutScene
 {
@@ -59,7 +60,10 @@ namespace CutScene
         //Track
         private Transform trackTarget;
         private CinemachineSmoothPath smoothPath;
-
+        private float pathLength = 0f;
+        private bool isTrack = false;
+        private bool isForward = false;
+        
         //Talk
         private TalkModule talkModule;
 
@@ -74,6 +78,18 @@ namespace CutScene
         public void PlayCutScene()
         {
             PlayableDirector.Play(timelineAsset);
+
+            if (isTrack)
+            {
+                var _cinemachineTrackedDolly = CamList.GetCam(CamType.TrackCam).GetCinemachineComponent<CinemachineTrackedDolly>();
+                _cinemachineTrackedDolly.m_PathPosition = 0f;
+                DOTween.To(() => _cinemachineTrackedDolly.m_PathPosition, x => _cinemachineTrackedDolly.m_PathPosition = x, 1, 3f);
+                if (isForward)
+                {
+                    var _cart = CamList.GetCameraDollyCart();
+                    DOTween.To(() => _cart.m_Position, x => _cart.m_Position = x, 1, 2.9f);
+                }
+            }
         }
         public void ResumeCutScene()
         {
@@ -91,6 +107,8 @@ namespace CutScene
 
         public void AllPropertyReset()
         {
+            pathLength = 0f;
+            isTrack = false;
             playableDirector = null;
             camList = null;
             target1 = null;
@@ -117,12 +135,26 @@ namespace CutScene
         //Track
         public void SetTrackTarget(Transform _target)
         {
-            trackTarget = _target;
-            CamList.GetCam(CamType.TrackCam).Follow = _target;
+            if(_target is not null)
+            {
+                trackTarget = _target;
+                CamList.GetCam(CamType.TrackCam).LookAt = trackTarget;
+                isForward = false;
+            }
+            else
+            {
+                trackTarget = CamList.GetCameraForwardTarget();
+                CamList.GetCam(CamType.TrackCam).LookAt = trackTarget;
+                isForward = true;
+            }
         }
         public void SetCinemachineSmoothPath(CinemachineSmoothPath _smoothPath)
         {
             smoothPath = _smoothPath;
+            CamList.GetCam(CamType.TrackCam).GetCinemachineComponent<CinemachineTrackedDolly>().m_Path = _smoothPath;
+            CamList.GetCameraDollyCart().m_Path = _smoothPath;
+            pathLength = _smoothPath.PathLength;
+            isTrack = true;
         }
 
         //Talk

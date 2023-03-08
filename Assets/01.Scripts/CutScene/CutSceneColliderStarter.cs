@@ -44,6 +44,8 @@ namespace CutScene
         private QuestState questState;
         [SerializeField]
         private bool isPlayCutScene;
+        [SerializeField]
+        private bool isNotUseTrackLookAt;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -56,7 +58,14 @@ namespace CutScene
                         CutSceneManager.Instance.SetTarget1(target1);
                         break;
                     case CutSceneType.PlayerToTrack:
-                        CutSceneManager.Instance.SetTrackTarget(trackTarget);
+                        if(isNotUseTrackLookAt)
+                        {
+                            CutSceneManager.Instance.SetTrackTarget(null);
+                        }
+                        else
+						{
+							CutSceneManager.Instance.SetTrackTarget(trackTarget);
+						}
                         CutSceneManager.Instance.SetCinemachineSmoothPath(smoothPath);
                         break;
                     case CutSceneType.PlayerToCutTarget:
