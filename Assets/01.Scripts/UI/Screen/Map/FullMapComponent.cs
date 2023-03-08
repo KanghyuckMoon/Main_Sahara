@@ -158,12 +158,16 @@ namespace UI
         /// <summary>
         /// 발자국 활성화 
         /// </summary>
-        private void ActivePath()
+        public void ActivePath()
         {
-            var _list = PathModeManager.Instance.GetPathList(); 
-                           
+            var _list = PathModeManager.Instance.GetPathList();
+            EventManager.Instance.TriggerEvent(EventsType.UpdateMapLine,_list);
         }
 
+        public void ClearLines()
+        {
+            EventManager.Instance.TriggerEvent(EventsType.ClearMapLine); 
+        }
 
 
     }

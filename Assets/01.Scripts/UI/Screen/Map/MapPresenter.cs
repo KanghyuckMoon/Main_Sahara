@@ -86,6 +86,15 @@ namespace UI
             // {
             //     StartCoroutine(Test());
             // } 
+            if (MapView.CurMapType == MapType.FullMap)
+            {
+                this.fullMapComponent.ActivePath();
+            }
+            else
+            {
+                this.fullMapComponent.ClearLines();
+
+            }
             return MapView.CurMapType == MapType.FullMap ? true : false;  
         }
         public void ActiveView(bool _isActive)

@@ -42,6 +42,7 @@ namespace UI
         {
             EventManager.Instance.StartListening(EventsType.UpdateMapPos, (x) => UpdatePos((Vector2)x));
             EventManager.Instance.StartListening(EventsType.UpdateMapScale, (x) => UpdateScale((Vector2)x));
+            EventManager.Instance.StartListening(EventsType.ClearMapLine, () => ClearMapLine());
             EventManager.Instance.StartListening(EventsType.UpdateMapLine, (x) => UpdateMapLine((List<Vector2>)x));
         }
 
@@ -49,7 +50,8 @@ namespace UI
         {
             EventManager.Instance.StopListening(EventsType.UpdateMapPos, (x) => UpdatePos((Vector2)x));
             EventManager.Instance.StopListening(EventsType.UpdateMapScale, (x) => UpdateScale((Vector2)x));
-            EventManager.Instance.StartListening(EventsType.UpdateMapLine, (x) => UpdateMapLine((List<Vector2>)x));
+            EventManager.Instance.StopListening(EventsType.UpdateMapLine, (x) => UpdateMapLine((List<Vector2>)x));
+            EventManager.Instance.StartListening(EventsType.ClearMapLine, () => ClearMapLine());
         }
 
         public void UpdateUI()
@@ -71,6 +73,21 @@ namespace UI
         }
         private void UpdateMapLine(List<Vector2> _vec)
         {
+            uiLineRenderer.Points = null; 
+
+            int _maxCount = _vec.Count;
+            uiLineRenderer.Points = new Vector2[_maxCount];
+            for (int i =0; i< _maxCount; i++)
+            {
+                uiLineRenderer.Points[i] = new Vector2(_vec[i].x,- _vec[i].y);
+            }
+            uiLineRenderer.SetAllDirty(); 
+        }
+
+        private void ClearMapLine()
+        {
+            uiLineRenderer.Points = null;
+            uiLineRenderer.SetAllDirty();
 
         }
 

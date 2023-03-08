@@ -34,7 +34,7 @@ namespace PathMode
 
         private void Update()
         {
-            if((lastPos - Player.position).sqrMagnitude < 4f)
+            if((lastPos - Player.position).sqrMagnitude > 4f)
             {
                 AddPath(Player.position);
                 lastPos = Player.position;
