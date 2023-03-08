@@ -9,33 +9,45 @@ using Module.Talk;
 using Module;
 using Cinemachine;
 using Quest;
+using CondinedModule;
 
 namespace CutScene
 {
     public class CutSceneColliderStarter : MonoBehaviour
     {
         //CutScene
+        [SerializeField]
         private CutSceneType cutSceneType;
 
         //Target
+        [SerializeField]
         private Transform target1;
+        [SerializeField]
         private Transform target2;
 
         //Track
+        [SerializeField]
         private Transform trackTarget;
+        [SerializeField]
         private CinemachineSmoothPath smoothPath;
 
         //Talk
+        private TestTalkNPC testTalk;
         private TalkModule talkModule;
 
         //Condition
+        [SerializeField]
+        private bool isTalk;
+        [SerializeField]
         private string questKey;
+        [SerializeField]
         private QuestState questState;
+        [SerializeField]
         private bool isPlayCutScene;
 
         private void OnTriggerEnter(Collider other)
         {
-            if(!isPlayCutScene && other.CompareTag("Player") && Condition())
+            if (!isPlayCutScene && other.CompareTag("Player") && Condition())
             {
                 CutSceneManager.Instance.SetCutScene(cutSceneType);
                 switch (cutSceneType)
@@ -65,6 +77,12 @@ namespace CutScene
                         CutSceneManager.Instance.SetTarget2(target2);
                         break;
                 }
+                if (isTalk)
+                {
+                    talkModule = testTalk.GetModuleComponent<TalkModule>(ModuleType.Talk);
+                    CutSceneManager.Instance.SetTalkModule(talkModule);
+                    talkModule = null;
+                }
                 CutSceneManager.Instance.PlayCutScene();
                 isPlayCutScene = true;
             }
@@ -72,6 +90,10 @@ namespace CutScene
 
         private bool Condition()
         {
+            if (questKey is null || questKey is "")
+			{
+                return true;
+			}
             QuestData questData = QuestManager.Instance.GetQuestData(questKey);
             if (questState == questData.QuestState)
             {

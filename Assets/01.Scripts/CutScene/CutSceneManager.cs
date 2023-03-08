@@ -27,8 +27,30 @@ namespace CutScene
 
     public class CutSceneManager : MonoSingleton<CutSceneManager>
     {
-        [SerializeField]
-        private PlayableDirector playableDirector;
+        public CamList CamList
+		{
+            get
+			{
+                camList ??= FindObjectOfType<CamList>();
+                return camList;
+            }
+		}
+        public PlayableDirector PlayableDirector
+		{
+            get
+			{
+                playableDirector ??= FindObjectOfType<PlayableDirector>();
+                return playableDirector;
+			}
+            set
+			{
+                playableDirector = value;
+
+            }
+		}
+		private CamList camList;
+        private TimelineAsset timelineAsset;
+		private PlayableDirector playableDirector;
 
         //Target
         private Transform target1;
@@ -45,29 +67,32 @@ namespace CutScene
         public void SetCutScene(CutSceneType _cutSceneType)
         {
             AllPropertyReset();
-            playableDirector.playableAsset = AddressablesManager.Instance.GetResource<PlayableAsset>(_cutSceneType.ToString());
+            string _address = _cutSceneType.ToString();
+            timelineAsset = AddressablesManager.Instance.GetResource<TimelineAsset>(_address);
         }
 
         public void PlayCutScene()
         {
-            playableDirector.Play();
+            PlayableDirector.Play(timelineAsset);
         }
         public void ResumeCutScene()
         {
-            playableDirector.Resume();
+            PlayableDirector.Resume();
         }
 
         public void PauseCutScene()
         {
-            playableDirector.Pause();
+            PlayableDirector.Pause();
         }
         public void StopCutScene()
         {
-            playableDirector.Stop();
+            PlayableDirector.Stop();
         }
 
         public void AllPropertyReset()
         {
+            playableDirector = null;
+            camList = null;
             target1 = null;
             target2 = null;
             trackTarget = null;
@@ -80,16 +105,20 @@ namespace CutScene
         public void SetTarget1(Transform _target)
         {
             target1 = _target;
+            CamList.GetCam(CamType.TargetCam1).Follow = _target;
+            CamList.GetCam(CamType.CutScneeZoomCam).Follow = _target;
         }
         public void SetTarget2(Transform _target)
         {
             target2 = _target;
+            CamList.GetCam(CamType.TargetCam2).Follow = _target;
         }
 
         //Track
         public void SetTrackTarget(Transform _target)
         {
             trackTarget = _target;
+            CamList.GetCam(CamType.TrackCam).Follow = _target;
         }
         public void SetCinemachineSmoothPath(CinemachineSmoothPath _smoothPath)
         {
