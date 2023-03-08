@@ -108,8 +108,9 @@ namespace Module
             //if()
         }
 
-        void Jumping()
+        public void Jumping()
         {
+            //Debug.LogError("점ㅊ프프프프프");
             mainModule.Gravity = Mathf.Sqrt(JumpHeight * -2f * _GravityScale);
             //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }

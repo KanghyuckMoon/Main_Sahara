@@ -9,12 +9,12 @@ namespace Buff
     {
         private HpModule hpModule;
 
-        private float currentDuration;
+        //private float currentDuration;
         private float currentPeriod;
 
         public Healing_Buf(BuffModule _buffModule) : base(_buffModule)
         {
-            currentDuration = duration;
+            //currentDuration = duration;
         }
 
         public override void Buff(AbMainModule _mainModule)
@@ -25,16 +25,17 @@ namespace Buff
 
         private void Heal(HpModule _hpModule)
         {
-            if (currentDuration >= 0)
+            if (duration >= 0)
             {
                 if (currentPeriod <= 0)
                 {
                     hpModule.GetHeal((int)value);
+                    //Debug.LogError("회복호복");
                     currentPeriod = period;
                 }
 
                 currentPeriod -= Time.deltaTime;
-                currentDuration -= Time.deltaTime;
+                duration -= Time.deltaTime;
             }
 
             else

@@ -29,6 +29,7 @@ namespace Module
         public void AddBuff(IBuff _buff, Bufftype _bufftype)
         {
             buffDic.Add(_buff, _bufftype);
+
             if (_bufftype == Bufftype.Once)
             {
                 _buff.Buff(mainModule);

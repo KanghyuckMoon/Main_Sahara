@@ -7,6 +7,9 @@ namespace PassiveItem
     public interface IPassive
     {
         public void ApplyPassiveEffect();
+
+        public void UpdateEffect();
+
         public void ClearPassiveEffect();
     }
 }
