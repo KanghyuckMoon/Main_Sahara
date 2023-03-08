@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UI.EventManage;
 using UnityEngine.UI.Extensions; 
 
@@ -10,7 +9,6 @@ namespace UI
 {
     public class MapLiner : MonoBehaviour
     {
-        private VisualElement element; 
         private RectTransform panel;
         private RectTransform center; 
         private MapInfo mapInfo;
@@ -31,11 +29,11 @@ namespace UI
             center = GetComponent<RectTransform>(); 
             panel = transform.Find("Panel").GetComponent<RectTransform>();
             uiLineRenderer = GetComponentInChildren<UILineRenderer>(); 
-            mapInfo = new MapInfo(); 
+           // mapInfo = new MapInfo(); 
         }
         private void Start()
         {
-            Init();
+            //Init();
         }
 
         private void OnEnable()
@@ -54,11 +52,6 @@ namespace UI
             EventManager.Instance.StartListening(EventsType.ClearMapLine, () => ClearMapLine());
         }
 
-        public void UpdateUI()
-        {
-            panel.anchoredPosition = element.transform.position;
-            panel.transform.localScale = element.transform.scale;
-        }
         public void UpdatePos(Vector2 _pos)
         {
            // panel.transform.position = new Vector2(_pos.x * x, _pos.y * y); 
@@ -71,7 +64,7 @@ namespace UI
             center.localScale = _scale;
             //    panel.transform.localScale = _scale;
         }
-        private void UpdateMapLine(List<Vector2> _vec)
+        public void UpdateMapLine(List<Vector2> _vec)
         {
             uiLineRenderer.Points = null; 
 
@@ -84,7 +77,7 @@ namespace UI
             uiLineRenderer.SetAllDirty(); 
         }
 
-        private void ClearMapLine()
+        public void ClearMapLine()
         {
             uiLineRenderer.Points = null;
             uiLineRenderer.SetAllDirty();
@@ -93,8 +86,8 @@ namespace UI
 
         private void Init()
         {
-            panel.sizeDelta = mapInfo.UIMapSize;
-            originSize = mapInfo.UIMapSize;
+            //panel.sizeDelta = mapInfo.UIMapSize;
+            //originSize = mapInfo.UIMapSize;
 
         }
 
