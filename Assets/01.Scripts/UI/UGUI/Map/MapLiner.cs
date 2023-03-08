@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UI.EventManage;
+using UnityEngine.UI.Extensions; 
+
 namespace UI
 {
     public class MapLiner : MonoBehaviour
     {
         private VisualElement element; 
         private RectTransform panel;
+        private RectTransform center; 
         private MapInfo mapInfo;
-        
+
+        private UILineRenderer uiLineRenderer; 
+
 //        private 
 
         [SerializeField]
@@ -23,7 +28,9 @@ namespace UI
         public RectTransform Panel => panel; 
         private void Awake()
         {
-            panel = GetComponent<RectTransform>();
+            center = GetComponent<RectTransform>(); 
+            panel = transform.Find("Panel").GetComponent<RectTransform>();
+            uiLineRenderer = GetComponentInChildren<UILineRenderer>(); 
             mapInfo = new MapInfo(); 
         }
         private void Start()
@@ -35,12 +42,14 @@ namespace UI
         {
             EventManager.Instance.StartListening(EventsType.UpdateMapPos, (x) => UpdatePos((Vector2)x));
             EventManager.Instance.StartListening(EventsType.UpdateMapScale, (x) => UpdateScale((Vector2)x));
+            EventManager.Instance.StartListening(EventsType.UpdateMapLine, (x) => UpdateMapLine((List<Vector2>)x));
         }
 
         private void OnDisable()
         {
             EventManager.Instance.StopListening(EventsType.UpdateMapPos, (x) => UpdatePos((Vector2)x));
             EventManager.Instance.StopListening(EventsType.UpdateMapScale, (x) => UpdateScale((Vector2)x));
+            EventManager.Instance.StartListening(EventsType.UpdateMapLine, (x) => UpdateMapLine((List<Vector2>)x));
         }
 
         public void UpdateUI()
@@ -50,15 +59,21 @@ namespace UI
         }
         public void UpdatePos(Vector2 _pos)
         {
+           // panel.transform.position = new Vector2(_pos.x * x, _pos.y * y); 
             panel.anchoredPosition =  new Vector2(_pos.x  *x ,_pos.y* y);
         }
-        public void UpdateScale( Vector2 _scale)
+        public void UpdateScale(Vector2 _scale)
         {
             //panel.sizeDelta = mapInfo.UIMapSize;
             //panel.sizeDelta = new Vector2(originSize.x + originSize.x * _scale.x, originSize.y + originSize.y * _scale.y);
-            panel.localScale = _scale; 
+            center.localScale = _scale;
             //    panel.transform.localScale = _scale;
         }
+        private void UpdateMapLine(List<Vector2> _vec)
+        {
+
+        }
+
         private void Init()
         {
             panel.sizeDelta = mapInfo.UIMapSize;

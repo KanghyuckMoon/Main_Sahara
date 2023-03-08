@@ -10,6 +10,46 @@ namespace UI.Base
 
     public class UILineRenderer : Graphic
     {
+        public float lineWidth = 2.0f;
+        public Vector2[] points;
+
+        protected override void OnPopulateMesh(VertexHelper vh)
+        {
+            Debug.Log("dd");
+            vh.Clear();
+
+            if (points == null || points.Length < 2)
+                return;
+
+            for (int i = 0; i < points.Length - 1; i++)
+            {
+                Vector2 startPos = points[i];
+                Vector2 endPos = points[i + 1];
+
+                AddLine(vh, startPos, endPos);
+            }
+        }
+
+        void AddLine(VertexHelper vh, Vector2 startPos, Vector2 endPos)
+        {
+            UIVertex[] quad = new UIVertex[4];
+            Vector2 lineDirection = (endPos - startPos).normalized;
+            Vector2 lineNormal = new Vector2(-lineDirection.y, lineDirection.x);
+
+            quad[0].position = startPos + lineNormal * (lineWidth / 2);
+            quad[1].position = startPos - lineNormal * (lineWidth / 2);
+            quad[2].position = endPos + lineNormal * (lineWidth / 2);
+            quad[3].position = endPos - lineNormal * (lineWidth / 2);
+
+            for (int i = 0; i < 4; i++)
+                quad[i].color = color;
+
+            vh.AddUIVertexQuad(quad);
+        }
+    }
+    /*
+    public class UILineRenderer : Graphic
+    {
         public Vector2Int girdSize;
 
         public List<Vector2> pointList = new List<Vector2>();
@@ -23,7 +63,7 @@ namespace UI.Base
         protected override void OnPopulateMesh(VertexHelper _vh)
         {
             base.OnPopulateMesh(_vh); 
-            _vh.Clear();
+            _vh.Clear();        
 
             width = rectTransform.rect.width;
             height = rectTransform.rect.height;
@@ -33,7 +73,7 @@ namespace UI.Base
 
             if(pointList.Count < 2)
             {
-                return; 
+                return;     
             }
 
             for(int i =0; i < pointList.Count; i++)
@@ -66,5 +106,6 @@ namespace UI.Base
             _vh.AddVert(_vertex);
         }
     }
+    */
 }
 
