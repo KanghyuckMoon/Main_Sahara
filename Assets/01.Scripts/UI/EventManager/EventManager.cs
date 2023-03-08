@@ -12,6 +12,7 @@ namespace UI.EventManage
         UpdateMapPos, 
         UpdateMapScale, 
         UpdateMapLine,
+        ClearMapLine,
         ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>

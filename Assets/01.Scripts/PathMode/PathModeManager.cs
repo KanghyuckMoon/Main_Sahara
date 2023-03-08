@@ -29,7 +29,7 @@ namespace PathMode
         private Vector3 lastPos = Vector3.zero;
 
         private MapInfo mapInfo = new MapInfo(); 
-
+            
         public PathSave pathSave = new PathSave();
 
         private void Update()
