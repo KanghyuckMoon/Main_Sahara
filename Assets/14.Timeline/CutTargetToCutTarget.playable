@@ -37,6 +37,22 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 1745899634192767568}
+--- !u!114 &594895514816635811
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0.2
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: fc78403bcb6b46b40b905c10407f5c2b, type: 2}
 --- !u!114 &1745899634192767568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -61,6 +77,8 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -5035984256537642435}
+    - {fileID: 3229393698422847237}
+    - {fileID: 594895514816635811}
 --- !u!114 &2606727020287452384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,6 +95,22 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: d3157e2a2c40a7c41a5edf23f74213db
     defaultValue: {fileID: 0}
+--- !u!114 &3229393698422847237
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 2.8
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 37c8a9f32c4343a468234496fbedba9a, type: 2}
 --- !u!114 &6077062403395441675
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,7 +185,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -169,7 +221,7 @@ MonoBehaviour:
     m_Start: 1.4499999999999997
     m_ClipIn: 0
     m_Asset: {fileID: 2606727020287452384}
-    m_Duration: 1.5500000000000003
+    m_Duration: 2.55
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8521158729959816167}
     m_EaseInDuration: 0
@@ -178,25 +230,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

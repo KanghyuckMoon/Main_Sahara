@@ -9,6 +9,10 @@ using Module.Talk;
 using Module;
 using Cinemachine;
 using DG.Tweening;
+using Quest;
+using Module;
+using Module.Talk;
+using CondinedModule;
 
 namespace CutScene
 {
@@ -49,9 +53,14 @@ namespace CutScene
 
             }
 		}
+
 		private CamList camList;
         private TimelineAsset timelineAsset;
 		private PlayableDirector playableDirector;
+        private CutSceneDataList cutSceneDataList;
+        private int index = 0;
+        private CamType praviouslastCamType = CamType.PlayerCam;
+        private CamType lastCamType = CamType.PlayerCam;
 
         //Target
         private Transform target1;
@@ -67,17 +76,52 @@ namespace CutScene
         //Talk
         private TalkModule talkModule;
 
+        //ZoonInOut
+        private float zoomInOutDistance;
+
         //Base
-        public void SetCutScene(CutSceneType _cutSceneType)
+        public void SetCutScene(CutSceneDataList _cutSceneDataList)
         {
             AllPropertyReset();
-            string _address = _cutSceneType.ToString();
-            timelineAsset = AddressablesManager.Instance.GetResource<TimelineAsset>(_address);
+            cutSceneDataList = _cutSceneDataList;
+            index = 0;
         }
 
         public void PlayCutScene()
         {
-            PlayableDirector.Play(timelineAsset);
+            CutSceneData _cutSceneData = cutSceneDataList.cutSceneDataList[index];
+            string _address = _cutSceneData.cutSceneType.ToString();
+            timelineAsset = AddressablesManager.Instance.GetResource<TimelineAsset>(_address);
+
+            SettingParameterCutSceneData(_cutSceneData);
+
+
+            if (index == 0)
+			{
+                PlayableDirector.Play(timelineAsset);
+            }
+            else
+            {
+                PlayableDirector.Pause();
+                PlayableDirector.playableAsset = timelineAsset;
+                playableDirector.Play();
+                Playable playable = playableDirector.playableGraph.GetRootPlayable(0);
+                playable.SetSpeed(0);
+                PlayableDirector.time = 0.1F;
+                playable.SetSpeed(1);
+                PlayableDirector.Resume();
+            }
+
+            //if (playableDirector.state == PlayState.Paused)
+            //{
+            //    //PlayableDirector.playableAsset = timelineAsset;
+            //    //playableDirector.time = 1.0F;
+            //    //playableDirector.Play();
+            //    //playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
+            //    playableDirector.Resume();
+            //    //playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
+            //}
+            //PlayableDirector.Pause();
 
             if (isTrack)
             {
@@ -91,6 +135,58 @@ namespace CutScene
                 }
             }
         }
+        private void SettingParameterCutSceneData(CutSceneData _cutSceneData)
+		{
+            switch (_cutSceneData.cutSceneType)
+            {
+                case CutSceneType.PlayerToTarget:
+                    CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    ChangeLastCam(CamType.TargetCam1);
+                    break;
+                case CutSceneType.PlayerToTrack:
+                    if (_cutSceneData.isNotUseTrackLookAt)
+                    {
+                        CutSceneManager.Instance.SetTrackTarget(null);
+                    }
+                    else
+                    {
+                        CutSceneManager.Instance.SetTrackTarget(_cutSceneData.trackTarget);
+                    }
+                    CutSceneManager.Instance.SetCinemachineSmoothPath(_cutSceneData.smoothPath);
+                    ChangeLastCam(CamType.TrackCam);
+                    break;
+                case CutSceneType.PlayerToCutTarget:
+                    CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    ChangeLastCam(CamType.TargetCam1);
+                    break;
+                case CutSceneType.PlayerToZoomInOut:
+                    CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    CutSceneManager.Instance.SetZoomInOutDistance(_cutSceneData.zoomInOutDistance);
+                    ChangeLastCam(CamType.CutSceneZoomCam);
+                    break;
+                case CutSceneType.TargetToPlayer:
+                    CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    ChangeLastCam(CamType.PlayerCam);
+                    break;
+                case CutSceneType.CutTargetToCutTarget:
+                    CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    CutSceneManager.Instance.SetTarget2(_cutSceneData.target2);
+                    ChangeLastCam(CamType.TargetCam2);
+                    break;
+                case CutSceneType.CutTargetToTarget:
+                    CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    CutSceneManager.Instance.SetTarget2(_cutSceneData.target2);
+                    ChangeLastCam(CamType.TargetCam2);
+                    break;
+            }
+            if (_cutSceneData.isTalk)
+            {
+                _cutSceneData.talkModule = _cutSceneData.testTalk.GetModuleComponent<TalkModule>(ModuleType.Talk);
+                CutSceneManager.Instance.SetTalkModule(_cutSceneData.talkModule);
+                _cutSceneData.talkModule = null;
+            }
+        }
+
         public void ResumeCutScene()
         {
             PlayableDirector.Resume();
@@ -104,11 +200,63 @@ namespace CutScene
         {
             PlayableDirector.Stop();
         }
+        public void NextCutScene()
+		{
+            if (cutSceneDataList is null)
+			{
+                ResetCam();
+                return;
+			}
+            if(cutSceneDataList.cutSceneDataList.Count > index + 1)
+			{
+                SetContinueCam();
+                index++;
+                PlayCutScene();
+            }
+            else
+			{
+                ResetCam();
+                return;
+			}
+		}
+
+        public void ResetCam()
+		{
+            CamList.GetCam(CamType.PlayerCam).gameObject.SetActive(true);
+            
+            if (lastCamType is not CamType.PlayerCam)
+			{
+                CamList.GetCam(lastCamType).gameObject.SetActive(false);
+            }
+            if (praviouslastCamType is not CamType.PlayerCam)
+			{
+                CamList.GetCam(praviouslastCamType).gameObject.SetActive(false);
+			}
+        }
+
+        public void SetContinueCam()
+        {
+            CamList.GetCam(lastCamType).gameObject.SetActive(false);
+            //Vector3 _pos = CamList.GetCam(lastCamType).transform.position;
+            CamList.GetCam(lastCamType).gameObject.SetActive(true);
+            //CamList.GetCam(lastCamType).transform.position = _pos;
+            CamList.GetCam(praviouslastCamType).gameObject.SetActive(false);
+        }
+
+        public void ChangeLastCam(CamType _camType)
+		{
+            praviouslastCamType = lastCamType;
+            lastCamType = _camType;
+            //CamList.GetCam(lastCamType).transform.position = CamList.GetCam(praviouslastCamType).transform.position;
+        }
 
         public void AllPropertyReset()
         {
+            praviouslastCamType = CamType.PlayerCam;
+            lastCamType = CamType.PlayerCam;
             pathLength = 0f;
             isTrack = false;
+            cutSceneDataList = null;
             playableDirector = null;
             camList = null;
             target1 = null;
@@ -124,12 +272,18 @@ namespace CutScene
         {
             target1 = _target;
             CamList.GetCam(CamType.TargetCam1).Follow = _target;
-            CamList.GetCam(CamType.CutScneeZoomCam).Follow = _target;
+            CamList.GetCam(CamType.CutSceneZoomCam).Follow = _target;
         }
         public void SetTarget2(Transform _target)
         {
             target2 = _target;
             CamList.GetCam(CamType.TargetCam2).Follow = _target;
+        }
+
+        public void SetZoomInOutDistance(float _distance)
+        {
+            zoomInOutDistance = _distance;
+            CamList.GetCam(CamType.CutSceneZoomCam).GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = _distance;
         }
 
         //Track
@@ -173,5 +327,37 @@ namespace CutScene
             talkModule.Talk();
         }
 
+    }
+
+    [System.Serializable]
+    public class CutSceneDataList
+	{
+        public List<CutSceneData> cutSceneDataList = new List<CutSceneData>();
+    }
+
+    [System.Serializable]
+    public class CutSceneData
+    {
+        //CutScene
+        public CutSceneType cutSceneType;
+
+        //Target
+        public Transform target1;
+        public Transform target2;
+
+        //Track
+        public Transform trackTarget;
+        public CinemachineSmoothPath smoothPath;
+
+        //Talk
+        public TestTalkNPC testTalk;
+        public TalkModule talkModule;
+
+        //ZoomInOut
+        public float zoomInOutDistance;
+
+        //Condition
+        public bool isTalk;
+        public bool isNotUseTrackLookAt;
     }
 }

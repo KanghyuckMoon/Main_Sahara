@@ -26,5 +26,13 @@ namespace CutScene
         {
             CutSceneManager.Instance.StartTalk();
         }
+        public void CutNextCutScene()
+        {
+            CutSceneManager.Instance.NextCutScene();
+        }
+        public void CutSetCam()
+        {
+            CutSceneManager.Instance.SetContinueCam();
+        }
     }
 }

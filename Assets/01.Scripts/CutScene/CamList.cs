@@ -10,7 +10,7 @@ namespace CutScene
 		PlayerCam,
 		GroupCam,
 		ZoomCam,
-		CutScneeZoomCam,
+		CutSceneZoomCam,
 		TargetCam1,
 		TargetCam2,
 		TrackCam,
