@@ -209,9 +209,17 @@ namespace CutScene
 			}
             if(cutSceneDataList.cutSceneDataList.Count > index + 1)
 			{
-                SetContinueCam();
-                index++;
-                PlayCutScene();
+                if (cutSceneDataList.cutSceneDataList[index + 1].isTalk)
+                {
+                    PlayableDirector.Pause();
+                    StartCoroutine(WaitEndTalk());
+                }
+                else
+                {
+                    SetContinueCam();
+                    index++;
+                    PlayCutScene();
+                }
             }
             else
 			{
@@ -219,6 +227,18 @@ namespace CutScene
                 return;
 			}
 		}
+
+        private IEnumerator WaitEndTalk()
+		{
+            while(!talkModule.IsEndTalk)
+			{
+                yield return null;
+            }
+
+            SetContinueCam();
+            index++;
+            PlayCutScene();
+        }
 
         public void ResetCam()
 		{
@@ -237,9 +257,7 @@ namespace CutScene
         public void SetContinueCam()
         {
             CamList.GetCam(lastCamType).gameObject.SetActive(false);
-            //Vector3 _pos = CamList.GetCam(lastCamType).transform.position;
             CamList.GetCam(lastCamType).gameObject.SetActive(true);
-            //CamList.GetCam(lastCamType).transform.position = _pos;
             CamList.GetCam(praviouslastCamType).gameObject.SetActive(false);
         }
 
@@ -247,7 +265,6 @@ namespace CutScene
 		{
             praviouslastCamType = lastCamType;
             lastCamType = _camType;
-            //CamList.GetCam(lastCamType).transform.position = CamList.GetCam(praviouslastCamType).transform.position;
         }
 
         public void AllPropertyReset()
