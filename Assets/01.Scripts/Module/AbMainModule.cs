@@ -262,6 +262,17 @@ namespace Module
                 gravity = value;
             }
         }
+        public bool IsCanHit
+        {
+            get
+            {
+                return isCanHit;
+            }
+            set
+            {
+                isCanHit = value;
+            }
+        }
         public float GravityScale
 		{
             get
@@ -408,7 +419,7 @@ namespace Module
         private bool isJump;
         [SerializeField, Header("떨어졌나?")] 
         private bool isFreeFall;
-        [SerializeField, Header("경사정도")] 
+        [SerializeField, Header("경사정도")]
         private bool isSlope;
         [SerializeField, Header("점프버퍼링타임")] 
         private bool isJumpBuf;
@@ -424,6 +435,8 @@ namespace Module
         private bool isHit;
         [SerializeField, Header("차징중인가?")]
         private bool isCharging;
+        [SerializeField, Header("맞을 수 있나?")]
+        private bool isCanHit;
 
         [Space]
         [SerializeField, Header("공격하나?")] 

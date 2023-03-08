@@ -12,6 +12,8 @@ namespace Module
     {
         HpUp,
         Fire,
+        DoubleJump,
+        Dash,
         NONE
     }
     public partial class ItemModule : AbBaseModule
@@ -55,11 +57,25 @@ namespace Module
         {
 
         }
+
+        public override void Start()
+        {
+            SetPassiveItem(AccessoriesItemType.DoubleJump);
+            SetPassiveItem(AccessoriesItemType.Dash);
+        }
         private void ApplyPassive()
         {
             foreach(ItemPassive _itemPassive in passiveItem.Values)
             {
                 _itemPassive?.ApplyEffect();
+            }
+        }
+
+        public override void Update()
+        {
+            foreach (ItemPassive _itemPassive in passiveItem.Values)
+            {
+                _itemPassive?.UpdateEffect();
             }
         }
 

@@ -21,6 +21,14 @@ namespace PassiveItem
             }
         }
 
+        public void UpdateEffect()
+        {
+            foreach (IPassive _passive in passiveEffects)
+            {
+                _passive.UpdateEffect();
+            }
+        }
+
         public void UndoEffect()
         {
             foreach (IPassive _passive in passiveEffects)

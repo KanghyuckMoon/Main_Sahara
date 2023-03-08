@@ -10,6 +10,10 @@ namespace PassiveItem
         {
             HpUp();
         }
+        public void UpdateEffect()
+        {
+            //throw new System.NotImplementedException();
+        }
 
         public void ClearPassiveEffect()
         {
@@ -27,5 +31,6 @@ namespace PassiveItem
         {
             Debug.Log("체력 30%다운!");
         }
+
     }
 }
