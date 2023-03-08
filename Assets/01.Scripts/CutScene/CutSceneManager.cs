@@ -44,14 +44,23 @@ namespace CutScene
         //Base
         public void SetCutScene(CutSceneType _cutSceneType)
         {
+            AllPropertyReset();
             playableDirector.playableAsset = AddressablesManager.Instance.GetResource<PlayableAsset>(_cutSceneType.ToString());
         }
 
-        public void StartCutScene()
+        public void PlayCutScene()
         {
             playableDirector.Play();
         }
+        public void ResumeCutScene()
+        {
+            playableDirector.Resume();
+        }
 
+        public void PauseCutScene()
+        {
+            playableDirector.Pause();
+        }
         public void StopCutScene()
         {
             playableDirector.Stop();
