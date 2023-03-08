@@ -35,7 +35,7 @@ namespace PassiveItem
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
-                    Vector3 _dir = mainModule.transform.forward * Time.deltaTime * 60f;
+                    Vector3 _dir = mainModule.transform.forward * Time.deltaTime * 28f;
                     characterController.Move(_dir);
 
                     mainModule.Animator.SetBool("Dash", true);
