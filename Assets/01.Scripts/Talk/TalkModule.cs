@@ -61,6 +61,14 @@ namespace Module.Talk
 				return mainModule.GetModuleComponent<ShopModule>(ModuleType.Shop);
 			}
 		}
+		private ITalkWithCutScene TalkWithCutScene
+		{
+			get
+			{
+				talkWithCutScene ??= mainModule.GetComponent<ITalkWithCutScene>();
+				return talkWithCutScene;
+			}
+		}
 
 		private Transform player = null;
 		private TalkDataSO talkDataSO = null;
@@ -68,6 +76,8 @@ namespace Module.Talk
 		private bool isEndTalk = false;
 		private bool isTalking = false;
 		private bool isCutScene = false;
+
+		private ITalkWithCutScene talkWithCutScene;
 
 		public TalkModule(AbMainModule _mainModule, string _talkSOAddress) : base(_mainModule)
 		{
@@ -133,6 +143,12 @@ namespace Module.Talk
 					UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
 						.SetTexts(_talkData.authorText, _talkData.talkText);
 					isTalking = true;
+
+					if (_talkData.isUseCutScene)
+					{
+						TalkWithCutScene.PlayCutScene(_talkData.cutSceneKey);
+					}
+
 					return true;
 				}
 			}
