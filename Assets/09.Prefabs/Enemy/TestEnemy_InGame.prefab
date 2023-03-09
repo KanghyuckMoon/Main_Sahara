@@ -1453,6 +1453,7 @@ GameObject:
   - component: {fileID: 5591809630521021360}
   - component: {fileID: -7492230939507027689}
   - component: {fileID: -6891164452034629031}
+  - component: {fileID: -1389331116278033805}
   m_Layer: 0
   m_Name: TestEnemy_InGame
   m_TagString: Enemy
@@ -1534,6 +1535,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
+  objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
@@ -1550,6 +1552,7 @@ MonoBehaviour:
   isWeaponExist: 0
   isHit: 0
   isCharging: 0
+  isCanHit: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -1568,8 +1571,10 @@ MonoBehaviour:
   animator: {fileID: 3699875109982235525}
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
+  back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   aiSOAddress: TestEnemySO
+  smoothPath: {fileID: 0}
 --- !u!114 &2648207059958673375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1631,6 +1636,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 3699875109982235640}
   attackMulti: 1
+--- !u!114 &-1389331116278033805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699875109982235521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
 --- !u!1 &3699875109997962231
 GameObject:
   m_ObjectHideFlags: 0

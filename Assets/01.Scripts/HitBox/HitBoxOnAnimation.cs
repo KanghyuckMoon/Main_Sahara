@@ -31,7 +31,7 @@ namespace HitBox
 			if (hitBoxDataList is not null)
 			{
 				string tagname = gameObject.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
-				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
+				foreach (HitBoxData hitBoxData in hitBoxDataList.hitBoxDataList)
 				{
 					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
 					hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname);
