@@ -15,6 +15,7 @@ using Streaming;
 using PathMode;
 using Unity.Jobs;
 using Unity.Collections;
+using Tutorial;
 
 namespace Json
 {
@@ -151,6 +152,9 @@ namespace Json
                     File.Delete(StaticSave.GetPath() + _data.date + ".png");
                     File.Delete(StaticSave.GetPath() + "InventorySave" + _data.date);
                     File.Delete(StaticSave.GetPath() + "QuestSaveDataSave" + _data.date);
+                    File.Delete(StaticSave.GetPath() + "PathSave" + _data.date);
+                    File.Delete(StaticSave.GetPath() + "TutorialSaveData" + _data.date);
+
                     var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
                     foreach (var _sceneData in _sceneDataList)
                     {
@@ -373,6 +377,7 @@ namespace Json
 
             JobHandle _sceneJobHandle = _sceneSaveJob.Schedule(_sceneDataList.Count, 10);
             JobHandle _shopJobHandle = _shopSaveJob.Schedule(ShopAllSO.shopSOList.Count, 5);
+            StaticSave.Save<TutorialSaveData>(ref TutorialManager.Instance.tutorialSaveData, _date);
 
 
             ScreenCapture.CaptureScreenshot(_imagePath);
@@ -413,8 +418,7 @@ namespace Json
             StaticSave.Save<InventorySave>(ref inventorySO.inventorySave, _date);
             StaticSave.Save<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
             StaticSave.Save<PathSave>(ref PathModeManager.Instance.pathSave, _date);
-            string _json = StaticSave.ReturnJson<PathSave>(PathModeManager.Instance.pathSave);
-            //StaticSave.save<ObjectDataList>(_json, date.ToString());
+            StaticSave.Save<TutorialSaveData>(ref TutorialManager.Instance.tutorialSaveData, _date);
             var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
 
             foreach(var _sceneData in _sceneDataList)
@@ -447,6 +451,8 @@ namespace Json
                 File.Delete(StaticSave.GetPath() + _data.date + ".png");
                 File.Delete(StaticSave.GetPath() + "InventorySave" + _data.date);
                 File.Delete(StaticSave.GetPath() + "QuestSaveDataSave" + _data.date);
+                File.Delete(StaticSave.GetPath() + "PathSave" + _data.date);
+                File.Delete(StaticSave.GetPath() + "TutorialSaveData" + _data.date);
 
                 foreach (var _sceneData in _sceneDataList)
                 {

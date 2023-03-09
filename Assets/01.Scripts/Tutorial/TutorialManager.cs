@@ -10,7 +10,7 @@ namespace Tutorial
 	public class TutorialManager : MonoSingleton<TutorialManager>
 	{
 		private TutorialSO tutorialSO;
-		private TutorialSaveData tutorialSaveData = new TutorialSaveData();
+		public TutorialSaveData tutorialSaveData = new TutorialSaveData();
 
 		private void Start()
 		{
