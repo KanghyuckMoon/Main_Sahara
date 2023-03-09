@@ -48,6 +48,10 @@ namespace HitBox
 				hitBoxDataList.hitBoxDataList.Add(HitBoxData.CopyNew(hitBoxData));
 				hitBoxDataDic.Add(hitBoxData.hitBoxName, hitBoxDataList);
 			}
+
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+#endif
 		}
 		public void UploadHitBoxNoneCopy(HitBoxData hitBoxData)
 		{
@@ -75,6 +79,10 @@ namespace HitBox
 				hitBoxDataList.hitBoxDataList.Add(HitBoxData.CopyNew(hitBoxData));
 				hitBoxDataDic.Add(hitBoxData.hitBoxName, hitBoxDataList);
 			}
+
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+#endif
 		}
 	}
 
@@ -124,7 +132,6 @@ namespace HitBox
 
 			_newHitBox.knockbackDir = _hitBoxData.knockbackDir;
 			_newHitBox.defaultPower = _hitBoxData.defaultPower;
-
 
 			_newHitBox.swingEffectOffset = _hitBoxData.swingEffectOffset;
 			_newHitBox.swingEffectRotation = _hitBoxData.swingEffectRotation;
