@@ -28,15 +28,23 @@ namespace PathMode
 
         private Vector3 lastPos = Vector3.zero;
 
-        private MapInfo mapInfo = new MapInfo(); 
-            
+        private MapInfo mapInfo = new MapInfo();
+
+        private const float updateDistance = 16f; //4*4, 4m마다 업데이트
+
         public PathSave pathSave = new PathSave();
 
         private void Update()
         {
-            if((lastPos - Player.position).sqrMagnitude > 4f)
+            Vector3 _lastPos = lastPos;
+            _lastPos.y = 0;
+
+            Vector3 _playerPos = Player.position;
+            _playerPos.y = 0;
+
+            if ((_lastPos - _playerPos).sqrMagnitude > updateDistance)
             {
-                AddPath(Player.position);
+                AddPath(_playerPos);
                 lastPos = Player.position;
             }
         }
@@ -45,6 +53,10 @@ namespace PathMode
         {
             Vector2 _pathPos = WorldToUIPos(pos);
             pathSave.pathList.Add(_pathPos);
+            if(pathSave.pathList.Count > 200)
+			{
+                pathSave.pathList.RemoveAt(0);
+            }
         }
 
         /// <summary>
@@ -54,14 +66,6 @@ namespace PathMode
         /// <returns></returns>
         public Vector2 WorldToUIPos(Vector3 _worldPos)
         {
-            //Vector2 _uiPos;
-            //_uiPos.x = Mathf.Clamp((_worldPos.x /*+ sceneSize.x * 0.5f*/) / mapInfo.SceneSize.x * mapInfo.UIMapSize.x,
-            //                                        -mapInfo.UIMapSize.x * 0.5f, mapInfo.UIMapSize.x * 0.5f);
-            //_uiPos.y = Mathf.Clamp(-(_worldPos.z/* + sceneSize.y * 0.5f*/) / mapInfo.SceneSize.y * mapInfo.UIMapSize.y,
-            //                                        -mapInfo.UIMapSize.y * 0.5f, mapInfo.UIMapSize.y * 0.5f);
-
-            //return _uiPos;
-
             return mapInfo.WorldToUIPos(_worldPos);
         }
 
