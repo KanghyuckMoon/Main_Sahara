@@ -44,7 +44,8 @@ namespace UI.Inventory
 
         private SlotItemPresenter dragItemPresenter; // 드래그시 활성화될 뷰( 아이템 이미지 그대로 복사해서 커서 따라가는 )  
 
-        private InventoryGridSlotsPr inventoryGridSlotsPr; 
+        private InventoryGridSlotsPr inventoryGridSlotsPr;
+        private Dictionary<ItemType, Action<ItemData,int>> slotCallbackDic = new Dictionary<ItemType, Action<ItemData, int>>(); 
         // 프로퍼티
         private VisualElement DragItem => GetVisualElement((int)Elements.drag_item);
         public override void Cashing()
@@ -77,6 +78,8 @@ namespace UI.Inventory
             // 장착 슬롯 초기화 
             InitEquipSlots();
 
+            // 아이템 드랍시 실행할 함수 초기화 
+            InitCallbackDic(); 
 
         }
 
@@ -165,6 +168,14 @@ namespace UI.Inventory
                 // 하나는 자기가 꺼지면 팬러끄고 
                 // 하는ㄴ 자기가 키면 패널 키고 
                 SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
+                if(_list[i].parent.name == "ArrowSlot")
+                {
+                    _slotIPr.SetSlotType(ItemType.Consumption);
+                }
+                else
+                {
+                    _slotIPr.SetSlotType(ItemType.Weapon);
+                }
 
                 _slotIPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotIPr.ItemData, // 마우스 위에 둘시 설명창 
                    _slotIPr.WorldPos, _slotIPr.ItemSize));
@@ -219,11 +230,12 @@ namespace UI.Inventory
             {
                 // 가장 가깝게 드랍한 슬롯 
                 SlotItemPresenter _closedSlot = _slots.OrderBy(x => Vector2.Distance(x.Item.worldBound.position, dragItemPresenter.Item.worldBound.position)).First();
-
+                slotCallbackDic[_closedSlot.SlotType]?.Invoke(_closedSlot.ItemData, _closedSlot.Index);
+                   
+                // SO 데이터도 설정
+                  //  InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
                 _closedSlot.SetItemData(dragItemPresenter.ItemData); 
 
-                // SO 데이터도 
-                InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData,_closedSlot.Index);
             }
             else
             {
@@ -244,7 +256,14 @@ namespace UI.Inventory
             ShowVisualElement(GetVisualElement((int)Elements.drag_item), _isActive);
         }
 
+        private void InitCallbackDic()
+        {
+            this.slotCallbackDic.Clear(); 
 
+            this.slotCallbackDic.Add(ItemType.None, (x1,x2)=> { });
+            this.slotCallbackDic.Add(ItemType.Weapon, (x1, x2) => InventoryManager.Instance.SetQuickSlotItem(x1, x2));
+            this.slotCallbackDic.Add(ItemType.Consumption, (x1, x2) => InventoryManager.Instance.SetQuickSlotItem(x1, x2));
+        }
     }
 }
 

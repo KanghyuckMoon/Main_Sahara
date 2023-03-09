@@ -17,10 +17,12 @@ namespace UI.Inventory
         private SlotItemView slotItemView;
         private VisualElement parent;
         private ItemData itemData;
+        private ItemType slotType = ItemType.None;  
 
         private int index;
 
         // 프로퍼티 
+        public ItemType SlotType => slotType; 
         public int Index => index;
         public SlotItemView SlotItemView => slotItemView;
         public VisualElement Parent => parent;
@@ -58,6 +60,10 @@ namespace UI.Inventory
             slotItemView = new SlotItemView(_v);
         }
 
+        public void SetSlotType(ItemType _type)
+        {
+            this.slotType = _type; 
+        }
         public void ClearData()
         {
             this.itemData = null;

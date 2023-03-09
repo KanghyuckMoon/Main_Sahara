@@ -120,6 +120,7 @@ namespace UI.Inventory
                 ItemType _iType = invenItemUISO.GetItemType(_itemType);
 
                 SlotItemPresenter _slotPr = new SlotItemPresenter();
+
                 // 슬롯 이벤트 등록 
                 if(isDragger == true)
                     _slotPr.AddDragger(target, () => callback?.Invoke(_slotPr)); // 드래거 이벤트 
