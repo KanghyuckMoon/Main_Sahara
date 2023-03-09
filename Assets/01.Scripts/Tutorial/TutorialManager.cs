@@ -28,9 +28,11 @@ namespace Tutorial
 
 		private void CheckMessage(string _message)
 		{
-			if (!CheckAlreadyView(_message))
+			string _key = tutorialSO.tutorialKeyDic[_message];
+			if (!CheckAlreadyView(_key))
 			{
-				CheckAlreadyView(tutorialSO.tutorialKeyDic[_message]);
+				//UI
+				Debug.Log("Tutorial : UI Ç¥½Ã");
 			}
 		}
 
