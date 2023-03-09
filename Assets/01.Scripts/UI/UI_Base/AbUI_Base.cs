@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Linq; 
+using System.Linq;
+using DG.Tweening; 
 
 namespace UI    
 {
@@ -26,14 +27,14 @@ namespace UI
         protected Dictionary<Type, List<VisualElement>> elementsDic = new Dictionary<Type, List<VisualElement>>(); // 모든 자식 요소들 
 
         // 프로퍼티 
-        public VisualElement ParentElement => parentElement; 
+        public VisualElement ParentElement => parentElement;
 
         /// <summary>
         /// parentElement 캐싱 
         /// </summary>
         public virtual void Cashing()
         {
-            if(uiDocument == null /*|| String.IsNullOrEmpty(_parentElementName)*/)
+            if (uiDocument == null /*|| String.IsNullOrEmpty(_parentElementName)*/)
             {
                 Debug.LogError("NULL에러 : 인스펙터 확인");
             }
@@ -42,7 +43,7 @@ namespace UI
         }
         public void InitUIDocument(UIDocument uiDoc)
         {
-            this.uiDocument = uiDoc; 
+            this.uiDocument = uiDoc;
         }
         public void InitUIParent(VisualElement v)
         {
@@ -51,11 +52,14 @@ namespace UI
         /// <summary>
         /// 초기화 
         /// </summary>
-        public virtual void Init() { }
+        public virtual void Init()
+        {
+            //parentElement.RegisterCallback<TransitionEndEvent>((x) => EndScreenTransition(x));
+        }
 
         protected VisualElement GetElementByName(string _name)
         {
-            return new VisualElement(); 
+            return new VisualElement();
         }
 
         /// <summary>
@@ -83,7 +87,7 @@ namespace UI
             //    _elementsDic.Add(name, element);
             //}
             //return element; 
-        
+
             return parentElement.Q(name: name);
         }
 
@@ -107,8 +111,8 @@ namespace UI
         /// <returns></returns>
         protected bool IsVisible(VisualElement _element = null)
         {
-            VisualElement e = _element != null ? _element : parentElement; 
-            return e.style.display == DisplayStyle.Flex; 
+            VisualElement e = _element != null ? _element : parentElement;
+            return e.style.display == DisplayStyle.Flex;
         }
 
         /// <summary>
@@ -116,15 +120,58 @@ namespace UI
         /// </summary>
         public bool ActiveScreen()
         {
-            ShowVisualElement(parentElement, !IsVisible());
-            return IsVisible(); 
+            Debug.Log("ActiveScreen");
+            float _targetV = !IsVisible() ? 1f : 0;
+            isTargetActive = !IsVisible();
+            if (!IsVisible() == true)
+            {
+                parentElement.style.opacity = _targetV;
+                ShowVisualElement(parentElement, isTargetActive);
+                return true;
+            }
+            Sequence _seq = DOTween.Sequence();
+            _seq.Append(DOTween.To(() => parentElement.style.opacity.value, (x) => parentElement.style.opacity = x, _targetV, 0.125f));
+            _seq.AppendCallback(() => ShowVisualElement(parentElement, false)); 
+//            parentElement.style.opacity = _targetV;
+
+            return false;
+//            ShowVisualElement(parentElement, !IsVisible());
+ //           bool _isVisible = IsVisible();
+
         }
 
+        private bool isTargetActive; 
         public virtual void ActiveScreen(bool _isActive)
         {
+            Debug.Log("ActiveScreen bool");
+            float _targetV = _isActive ? 1f : 0;
+            isTargetActive = _isActive; 
+          //  if (_isActive == true)
+           // {
+            //    ShowVisualElement(parentElement, _isActive);
+             //   parentElement.style.opacity = _targetV;
+              //  return;
+           // }
             ShowVisualElement(parentElement, _isActive);
+           // Sequence _seq = DOTween.Sequence();
+           // _seq.Append(DOTween.To(() => parentElement.style.opacity.value, (x) => parentElement.style.opacity = x, _targetV, 0.125f));
+           // _seq.AppendCallback(() => ShowVisualElement(parentElement, false));
+           // parentElement.style.opacity = _targetV;
+            
+            // 비활성화시 전환 이벤트 종료 후 비활성화 
+            // 바로 활성화 
         }
 
+        /// <summary>
+        /// ParentElement Opacity 설정 
+        /// </summary>
+        /// <param name="_isVisible"></param>
+        protected void EndScreenTransition(TransitionEndEvent _evt)
+        {
+            if (_evt.stylePropertyNames.Contains("opacity") == false || isTargetActive == true) return;
+            Debug.Log(isTargetActive); 
+            ShowVisualElement(parentElement, isTargetActive);
+        }
         /// <summary>
         /// elements 바인딩 하기 (enum으로 쭉 쓰고 넣어줘) 
         /// </summary>

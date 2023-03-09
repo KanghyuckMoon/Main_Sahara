@@ -19,7 +19,7 @@ namespace UI.Shop
         enum Elements
         {
             content, 
-
+              
         }
 
         public override void Cashing()

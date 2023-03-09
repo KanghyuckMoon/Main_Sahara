@@ -24,6 +24,18 @@ namespace Module.Talk
 			}
 		}
 
+		public bool IsEndTalk
+		{
+			get
+			{
+				return isEndTalk;
+			}
+			set
+			{
+				isEndTalk = value;
+			}
+		}
+
 		private string talkCode;
 		[SerializeField]
 		private string authorCode;
@@ -53,6 +65,7 @@ namespace Module.Talk
 		private Transform player = null;
 		private TalkDataSO talkDataSO = null;
 		private bool isFirst = false;
+		private bool isEndTalk = false;
 
 		public TalkModule(AbMainModule _mainModule, string _talkSOAddress) : base(_mainModule)
 		{
@@ -139,9 +152,15 @@ namespace Module.Talk
 			{
 				_index = Random.Range(0, talkDataSO.defaultTalkCodeList.Count);
 			}
+			isEndTalk = false;
 			UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
-				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
+				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index], EndTalk);
 			//DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
+		}
+
+		private void EndTalk()
+		{
+			isEndTalk = true;
 		}
 
 		public void LogText()

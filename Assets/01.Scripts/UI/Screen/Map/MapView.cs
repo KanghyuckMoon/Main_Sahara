@@ -44,7 +44,7 @@ namespace UI
             center_marker,
             minimap_mask,
             markers,
-
+         //   paths
         }
 
         enum Buttons
@@ -69,16 +69,20 @@ namespace UI
             AddButtonEvents();
             width = Screen.width;
             height = Screen.height;
-            SeMapUISize(); 
+        //    SeMapUISize(); 
         }
 
-        public void SeMapUISize()
+        public void SetParent(VisualElement _v)
+        {
+
+        }
+        public void SetMapUISize(Vector2 _mapSize)
         {
 //            map.style.width = width * 2;
 //            map.style.height = height * 4;
 
-            map.style.width = mapSize.x;
-            map.style.height = mapSize.y;
+            map.style.width = _mapSize.x;
+            map.style.height = _mapSize.y;
 
             //  map.contentRect = new Rect(map.contentRect.x, map.contentRect.y, Screen.width * 2, Screen.width * 4);
         }
@@ -118,12 +122,33 @@ namespace UI
             SetMask(true); 
         }
 
+      
+        public void SetMask(bool _isActive)
+        {
+            VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
+            _minimapMask.Add(map);
+
+            ShowVisualElement(_minimapMask, _isActive);
+            ShowVisualElement(GetVisualElement((int)Elements.map_panel), true); 
+        }
+
+        public void Test()
+        {
+            Logging.Log("Overflow Hidden");
+            GetVisualElement((int)Elements.minimap_mask).style.overflow = Overflow.Hidden;
+        }
+        public void Test2()
+        {
+            Logging.Log("Overflow Visible");
+            GetVisualElement((int)Elements.minimap_mask).style.overflow = Overflow.Visible;
+
+        }
         private void ShowFullMap()
         {
             // 전체맵 UI 활성화하고 
-            ShowVisualElement(GetVisualElement((int)Elements.full_map_panel),true); 
+            ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), true);
             // 입력 허용하고 
-            
+
             // 패널 설정
             VisualElement _panel = GetVisualElement((int)Elements.map_panel);
             _panel.RemoveFromClassList("minimap_panel");
@@ -161,22 +186,14 @@ namespace UI
             var _markers = MarkerParent.Children();
             foreach (var _marker in _markers)
             {
-                _marker.transform.scale = Vector2.one; 
+                _marker.transform.scale = Vector2.one;
             }
-            SetMapPanel(_isMinimap: true); 
+            SetMapPanel(_isMinimap: true);
             // 마스크 키고
             //SetMask(true); 
             //SetMask(true); 
-         }
-
-        public void SetMask(bool _isActive)
-        {
-            VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
-            _minimapMask.Add(map);
-
-            ShowVisualElement(_minimapMask, _isActive);
-            ShowVisualElement(GetVisualElement((int)Elements.map_panel), true); 
         }
+
 
         private void SetMapPanel(bool _isMinimap)
         {
@@ -185,29 +202,18 @@ namespace UI
             if (_isMinimap == true)
             {
                 // 전체맵 UI 비활성화하고 
-                ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), ! _isMinimap); 
+                ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), !_isMinimap);
                 _panel.RemoveFromClassList("map_panel");
                 _panel.AddToClassList("minimap_panel");
-                return; 
+                return;
             }
 
             // 전체맵 UI 활성화하고 
-            ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), _isMinimap); 
+            ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), _isMinimap);
             _panel.AddToClassList("map_panel");
             _panel.RemoveFromClassList("minimap_panel");
         }
 
-        public void Test()
-        {
-            Logging.Log("Overflow Hidden");
-            GetVisualElement((int)Elements.minimap_mask).style.overflow = Overflow.Hidden;
-        }
-        public void Test2()
-        {
-            Logging.Log("Overflow Visible");
-            GetVisualElement((int)Elements.minimap_mask).style.overflow = Overflow.Visible;
-
-        }
     }
 }
 

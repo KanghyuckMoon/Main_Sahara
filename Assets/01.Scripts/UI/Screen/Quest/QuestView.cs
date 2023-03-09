@@ -8,8 +8,8 @@ using System;
 using UI.ConstructorManager;
 using Utill.Pattern;
 using GoogleSpreadSheet;
-using System.Linq; 
-//using Utill.M
+using System.Linq;
+using UI.UtilManager;
 
 namespace UI.Quest
 {
@@ -82,7 +82,9 @@ namespace UI.Quest
         public void SetTitleAndDetail(string _title,string _detail)
         {
             GetLabel((int)Labels.quest_name_label).text = _title;
-            GetLabel((int)Labels.quest_detail_label).text = _detail;
+            // 애니메이션 ㄱㄱ 
+        //    GetLabel((int)Labels.quest_detail_label).text = _detail;
+            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_detail_label), _detail);
         }
 
         /// <summary>

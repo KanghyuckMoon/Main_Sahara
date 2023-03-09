@@ -1,15 +1,26 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
-    <ui:VisualElement name="loading_view" class="screen" style="background-color: rgb(0, 0, 0);">
-        <ui:VisualElement name="top_panel" class="panel topleft_margin_panel">
-            <ui:VisualElement name="label_group">
-                <ui:Label text="그거 아시나요?" display-tooltip-when-elided="false" name="DoYouKnow" class="font_base" style="font-size: 80px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
-                <ui:Label text="정정배는 기획자입니다 " display-tooltip-when-elided="true" name="tip_label" class="font_base" style="font-size: 40px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+    <Style src="project://database/Assets/UIToolkit/Uss/TIp.uss?fileID=7433441132597879392&amp;guid=f82f1a3e58aaae94babfe0403e8c3884&amp;type=3#TIp" />
+    <ui:VisualElement name="loading_view" class="screen" style="background-color: rgb(233, 233, 233);">
+        <ui:VisualElement name="screen" style="align-items: center; justify-content: center; width: 100%; height: 100%; position: absolute;">
+            <ui:VisualElement name="deco" style="position: absolute; width: 200%; height: 200%; rotate: 45deg;">
+                <ui:VisualElement name="deco_1" class="panel_deco panel_deco_top" style="transition-property: all; opacity: 1;" />
+                <ui:VisualElement name="deco_2" class="panel_deco panel_deco_bot" />
+                <ui:VisualElement name="deco_3" class="panel_deco panel_deco_top" />
+                <ui:VisualElement name="deco_4" class="panel_deco panel_deco_bot" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="mid_panel" class="panel" />
-        <ui:VisualElement name="bottom_panel" class="panel rightbot_align_panel rightbot_margin">
-            <ui:VisualElement name="loading_icon" style="background-image: url(&apos;project://database/Assets/Emerald%20Treasure/images/icons_small.png?fileID=21300018&amp;guid=5ca9013004c0ec84cbfaaaee55090805&amp;type=3#icons_small_targets&apos;); width: 200px; height: 200px; opacity: 1; background-color: rgba(255, 255, 255, 0); -unity-background-image-tint-color: rgb(255, 255, 255); -unity-background-scale-mode: scale-to-fit;" />
+        <ui:VisualElement name="panels" style="position: absolute; width: 100%; height: 100%; transition-property: opacity; transition-duration: 0.4s;">
+            <ui:VisualElement name="top_panel" class="panel topleft_margin_panel">
+                <ui:VisualElement name="label_group">
+                    <ui:Label text="그거 아시나요?" display-tooltip-when-elided="false" name="DoYouKnow" class="font_base" style="font-size: 80px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                    <ui:Label display-tooltip-when-elided="true" name="tip_label" class="font_base" style="font-size: 40px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="mid_panel" class="panel" />
+            <ui:VisualElement name="bottom_panel" class="panel rightbot_align_panel rightbot_margin">
+                <ui:VisualElement name="loading_icon" style="background-image: url(&apos;project://database/Assets/12.Texture/UI/images/icons_small.png?fileID=21300026&amp;guid=5ca9013004c0ec84cbfaaaee55090805&amp;type=3#icons_small_rotate_to_right&apos;); width: 100px; height: 100px; opacity: 1; background-color: rgba(255, 255, 255, 0); -unity-background-image-tint-color: rgb(255, 255, 255); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
