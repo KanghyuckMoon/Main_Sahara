@@ -11,7 +11,7 @@ namespace UI
     {
         private RectTransform panel;
         private RectTransform center; 
-        private MapInfo mapInfo;
+        //private MapInfo mapInfo;
 
         private UILineRenderer uiLineRenderer; 
 
@@ -42,6 +42,7 @@ namespace UI
             EventManager.Instance.StartListening(EventsType.UpdateMapScale, (x) => UpdateScale((Vector2)x));
             EventManager.Instance.StartListening(EventsType.ClearMapLine, () => ClearMapLine());
             EventManager.Instance.StartListening(EventsType.UpdateMapLine, (x) => UpdateMapLine((List<Vector2>)x));
+        
         }
 
         private void OnDisable()

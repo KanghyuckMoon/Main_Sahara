@@ -170,7 +170,7 @@ namespace UI.Upgrade
         /// <param name="_itemUpgradeDataSO"></param>
         private void CreateTree()
         {
-            List<ItemData> _slotDataList = new List<ItemData>(); // 재료 슬롯 데이터 리스트 (연결점 생성시 필요)
+            List<UpgradeSlotData> _slotDataList = new List<UpgradeSlotData>(); // 재료 슬롯 데이터 리스트 (연결점 생성시 필요)
             List<ItemData> _list = new List<ItemData>(); // 한 무기에서 필요한 재료무기들 
 
             CreateRow(); // 처음줄 생성 
@@ -218,10 +218,10 @@ namespace UI.Upgrade
                         UpgradeSlotData _slotData = new UpgradeSlotData(_parent, x, _idx, _weaponDList.Count);
                         itemDataQueue.Enqueue(_slotData);
                         allItemDataList.Add(_slotData);
+                        _slotDataList.Add(_slotData); // 연결점 생성시 필요 
                         ++_idx;
                     });
 
-                    _slotDataList.AddRange(_dataList); // 연결점 생성시 필요 
                 }
                 ++_index;
             }
@@ -332,11 +332,22 @@ namespace UI.Upgrade
         {
             this.allSlotList.ForEach((x) => x.ActiveMark(false));
         }
-        private void CreateConnection(List<ItemData> _slotList)
+        private void CreateConnection(List<UpgradeSlotData> _slotList)
         {
             CreateRow(); // 줄 생성 
             int _count = _slotList.Count; // 자식 개수 
             int _midCount = (_count / 2); // 중간 개수 
+
+            Vector2 _startPoint, _midPoint,_targetPoint;
+            List<Vector2> _pointList = new List<Vector2>(); 
+            foreach(var _slot in _slotList)
+            {
+                _startPoint = new Vector2(_slot.parentSlot.worldBound.x, _slot.parentSlot.worldBound.y);
+                _pointList.Add(_startPoint);
+                _targetPoint = new Vector2(0, 0); 
+            }
+
+            /*
             if (_count % 2 == 0) //  짝수라면
             {
                 for (int i = 0; i < _count; i++)
@@ -380,6 +391,8 @@ namespace UI.Upgrade
 
                 }
             }
+                        */
+
         }
 
         /// <summary>
