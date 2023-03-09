@@ -40,6 +40,10 @@ namespace Effect
 				_effectDataList.effectDataList.Add(EffectData.CopyNew(_effectData));
 				effectDataListDic.Add(_key, _effectDataList);
 			}
+
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+#endif
 		}
 
 		public void RemoveEffect()

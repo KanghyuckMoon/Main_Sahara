@@ -40,22 +40,9 @@ namespace Module
                 return jumpModule;
             }
         }
-        private PlayerLandEffectSO Effect
-        {
-            get
-            {
-                effect ??= AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
-                return effect;
-            }
-        }
         private JumpModule jumpModule;
         private HitModule hitModule;
         private StateModule stateModule;
-        private PlayerLandEffectSO effect;
-
-        private float effectSpownDelay => effect.effectDelayTime;
-        private float currenteffectSpownDelay;
-        private bool isRight;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -66,10 +53,6 @@ namespace Module
 
         }
 
-        public override void Start()
-        {
-            effect = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
-        }
         public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
         {
             foreach (string _tagName in mainModule.HitCollider)
@@ -124,7 +107,6 @@ namespace Module
         public override void FixedUpdate()
         {
             GroundCheack();
-            SetEffect();
             Slope();
         }
 
@@ -172,7 +154,6 @@ namespace Module
                 StateModule.RemoveState(State.JUMP);
 
                 mainModule.KnockBackVector = Vector3.zero;
-                EffectManager.Instance.SetEffectDefault(Effect.landEffectName, mainModule.transform.position, Quaternion.identity);
                 //StatModule.
 
 
@@ -186,30 +167,6 @@ namespace Module
         {
             yield return new WaitForSeconds(0.3f);
             mainModule.StopOrNot = 1;
-        }
-
-        private void SetEffect()
-        {
-            if (mainModule.isGround && mainModule.ObjDir != Vector2.zero)
-            {
-                float delay = 1;
-                if (currenteffectSpownDelay > effectSpownDelay)
-                {
-                    currenteffectSpownDelay = 0;
-
-                    if (mainModule.IsSprint)
-                    {
-                        delay = Effect.runEffectDelay;
-                        EffectManager.Instance.SetEffectDefault(isRight ? Effect.runREffectName : Effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
-                    }
-                    else
-                    {
-                        EffectManager.Instance.SetEffectDefault(isRight ? Effect.walkRffectName : Effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
-                    }
-                    isRight = !isRight;
-                }
-                currenteffectSpownDelay += Time.deltaTime * delay;
-            }
         }
 
         private void FallDamage()
