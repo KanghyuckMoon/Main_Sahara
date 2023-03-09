@@ -413,7 +413,8 @@ namespace Json
             StaticSave.Save<InventorySave>(ref inventorySO.inventorySave, _date);
             StaticSave.Save<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
             StaticSave.Save<PathSave>(ref PathModeManager.Instance.pathSave, _date);
-
+            string _json = StaticSave.ReturnJson<PathSave>(PathModeManager.Instance.pathSave);
+            //StaticSave.save<ObjectDataList>(_json, date.ToString());
             var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
 
             foreach(var _sceneData in _sceneDataList)

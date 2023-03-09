@@ -3,37 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
 
-public class EventTriggerManager : MonoSingleton<EventTriggerManager>
+namespace EventTrigger
 {
-	private Dictionary<string, System.Action> eventActionDic = new Dictionary<string, System.Action>();
-
-	public void EventCall(string _message)
+	public class EventTriggerManager : MonoSingleton<EventTriggerManager>
 	{
-		if (eventActionDic.TryGetValue(_message, out var _action))
-		{
-			_action?.Invoke();
-		}
-	}
+		private Dictionary<string, System.Action<string>> eventActionDic = new Dictionary<string, System.Action<string>>();
 
-	public void AddAction(string _message, System.Action _addAction)
-	{
-		if (eventActionDic.TryGetValue(_message, out var _action))
+		public void EventCall(string _message)
 		{
-			_action += _addAction;
+			if (eventActionDic.TryGetValue(_message, out var _action))
+			{
+				_action?.Invoke(_message);
+			}
 		}
-		else
-		{
-			eventActionDic.Add(_message, _addAction);
-		}
-	}
-	
-	public void RemoveAction(string _message, System.Action _removeAction)
-	{
-		if (eventActionDic.TryGetValue(_message, out var _action))
-		{
-			_action -= _removeAction;
-		}
-	}
 
+		public void AddAction(string _message, System.Action<string> _addAction)
+		{
+			if (eventActionDic.TryGetValue(_message, out var _action))
+			{
+				_action += _addAction;
+			}
+			else
+			{
+				eventActionDic.Add(_message, _addAction);
+			}
+		}
+
+		public void RemoveAction(string _message, System.Action<string> _removeAction)
+		{
+			if (eventActionDic.TryGetValue(_message, out var _action))
+			{
+				_action -= _removeAction;
+			}
+		}
+
+
+	}
 
 }
