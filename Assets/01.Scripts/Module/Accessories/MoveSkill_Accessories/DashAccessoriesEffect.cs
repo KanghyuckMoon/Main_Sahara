@@ -8,6 +8,7 @@ namespace PassiveItem
     public class DashAccessoriesEffect : IPassive
     {
         private AbMainModule mainModule;
+        private StateModule stateModule;
         private CharacterController characterController;
 
         private int dashAnimationIndex;
@@ -15,6 +16,7 @@ namespace PassiveItem
         public DashAccessoriesEffect(AbMainModule _mainModule)
         {
             mainModule = _mainModule;
+            stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
             characterController = mainModule.CharacterController;
             //dashAnimationIndex = mainModule.Animator.();
         }
@@ -38,6 +40,7 @@ namespace PassiveItem
                     Vector3 _dir = mainModule.transform.forward * Time.deltaTime * 28f;
                     characterController.Move(_dir);
 
+                    stateModule.AddState(State.SKILL);
                     mainModule.Animator.SetBool("Dash", true);
                 }
             }
