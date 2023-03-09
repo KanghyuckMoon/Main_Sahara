@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using System;
 using Module;
 using Data;
+using Buff;
 
 namespace UI
 {
@@ -16,7 +17,8 @@ namespace UI
         private BuffContainer buffControlView;
         // private BuffData buffData; 
 
-        private StatData statData; 
+        private StatData statData;
+        private BuffModule buffData;  
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set; }
 
@@ -32,6 +34,11 @@ namespace UI
             this.statData = _statData;
         }
 
+        public void Start(object _data)
+        {
+            buffData = _data as AbBuffEffect;
+        }
+
         public void UpdateUI()
         {
         //    buffView.
@@ -42,6 +49,7 @@ namespace UI
             buffControlView.CreateBuffIcon();
         }
 
+       
     }
 
 }

@@ -33,7 +33,11 @@ namespace UI
             _hpView.Init();
             this.statData = _statData; 
         }
-
+        public void Start(object _data)
+        {
+            _hpView.Init();
+            this.statData = _data as StatData;
+        }
         // 선택한 오브젝트의 스크립트 가져오고 
         // 함수 리플렉션으로 쭉 빼와서 드롭다운으로 설정 
 
@@ -71,6 +75,8 @@ namespace UI
             //_hpView.Test(_testHp);
 
         }
+
+
     }
 
 }

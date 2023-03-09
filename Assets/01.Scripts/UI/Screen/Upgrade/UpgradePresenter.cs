@@ -11,6 +11,7 @@ using UI.ConstructorManager;
 using UI.Production;
 using System.Linq;
 using DG.Tweening;
+using UI;
 
 namespace UI.Upgrade
 {
@@ -24,17 +25,19 @@ namespace UI.Upgrade
         private UpgradePickPresenter upgradePickPresenter; // 슬롯 선택시 나타날 업드레이드 패널 
         private UpgradeCtrlPresenter ctrlPresenter; // 좌우 버튼 , 상단 라벨 조작 Pr 
         private UpgradeSlotPresenter _curSlotPr; // 현재 선택한 슬롯
+        private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소 
 
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
         private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // 모든 슬롯 리스트 
 
-        private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소 
         private Dictionary<int, List<Vector2>> slotPosDIc = new Dictionary<int, List<Vector2>>(); // 재료 수에 따른 위치 딕셔너리 
         private Queue<UpgradeSlotData> itemDataQueue = new Queue<UpgradeSlotData>(); // 생성할 아이템 저장 큐 
         private List<UpgradeSlotData> allItemDataList = new List<UpgradeSlotData>(); // 현재 트리의 모든 데이터 리스트
         private List<VisualElement> allItemList = new List<VisualElement>(); // 현재 트리의 모든 아이템 리스트 
+        private Dictionary<VisualElement, List<VisualElement>> parentSlotDic = new Dictionary<VisualElement, List<VisualElement>>(); 
 
         private float midX; // 중심 좌표 
+        private float midY; // 중심 좌표 
         private bool isFirstSlot = true;
 
         // 프로퍼티 
@@ -76,6 +79,8 @@ namespace UI.Upgrade
             StartCoroutine(SetAllSlotPos());
             yield return new WaitForSecondsRealtime(0.01f);
             StartCoroutine(SetAllSlotPos());
+            yield return new WaitForSecondsRealtime(0.02f);
+            StartCoroutine(SetAllSlotPos());
         }
 
         private void OnEnable()
@@ -111,6 +116,13 @@ namespace UI.Upgrade
         private void LateUpdate()
         {
             ElementCtrlComponent.Update();
+            if(isConnection == true)
+            {
+                LineCreateManager.Instance.UpdateLinesPos(ScreenType.Upgrade, upgradeView.MoveScreen.transform.position);
+                LineCreateManager.Instance.UpdateLinesScale(ScreenType.Upgrade, upgradeView.MoveScreen.transform.scale);
+
+            }
+
         }
 
         #region Init
@@ -118,6 +130,7 @@ namespace UI.Upgrade
         private void InitDic()
         {
             midX = Screen.width / 2;
+            midY = Screen.height / 2; 
 
             List<Vector2> _oneList = new List<Vector2>();
             _oneList.Add(Vector2.zero);
@@ -146,17 +159,27 @@ namespace UI.Upgrade
 
         #endregion
 
+        [SerializeField]
+        private ItemDataSO testItemDataSO; 
+        [ContextMenu("테스트")]
+        public void Test()
+        {                                                                                                                               
+            CreateItemTree(testItemDataSO);
+        }
+
         [ContextMenu("아이템 트리 생성")]
         /// <summary>
         ///  아이템 트리 UI 생성 및 데이터 넣기 
         /// </summary>
         public void CreateItemTree(ItemDataSO _itemDataSO)
         {
+            // 연결점 잇다면 삭제 
+            LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade); 
             // 최종템 UI 생성
             ClearAllSlots();
             //allItemDataList.Clear();
             ItemData _itemData = ItemData.CopyItemDataSO(_itemDataSO);
-            itemDataQueue.Enqueue(new UpgradeSlotData(new VisualElement(), _itemData, 0, 1));
+            itemDataQueue.Enqueue(new UpgradeSlotData(null, _itemData, 0, 1));
 
             CreateTree(); // 재료 템 트리 생성 
             this.ElementCtrlComponent.ResetPosAndZoom();
@@ -177,11 +200,12 @@ namespace UI.Upgrade
             int _count = itemDataQueue.Count();
             int _index = 0;
 
-            while (itemDataQueue.Count > 0)
+                while (itemDataQueue.Count > 0)
             {
                 if (_index >= _count) // 한 줄 생성 끝 다음 줄 시작 
                 {
-                    CreateConnection(_slotDataList);
+                    CreateRow(); // 줄 생성(빈칸) 
+                    //CreateConnection(_slotDataList);
                     _count = itemDataQueue.Count;
                     _index = 0;
                     _slotDataList.Clear();
@@ -194,6 +218,7 @@ namespace UI.Upgrade
                 _parent.style.opacity = 0f;
                 allItemList.Add(_parent);
 
+
                 //// 위치 설정 
                 if (isFirstSlot == true) // 최종 아이템이면 가운데 고정 생성 
                 {
@@ -203,21 +228,35 @@ namespace UI.Upgrade
                 else
                 {
                     _parent.style.left = _slotData.parentSlot.worldBound.x + slotPosDIc[_slotData.maxIndex].ElementAt(_slotData.index).x;
+
+                }
+
+                // 연결점 생성 위해 부모 자식 관계 설정 
+                if (_slotData.parentSlot != null)
+                {
+                    this.parentSlotDic[_slotData.parentSlot].Add(_parent);
                 }
 
                 ItemUpgradeDataSO _childItemData = ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_itemData.key);
                 if (_childItemData != null) // 재료템이 존재한다면 큐에 추가 
                 {
+
                     var _dataList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key);
 
                     // 무기만 생성 
                     int _idx = 0; // 몇 번째 아이템인지 ( 트리 중에 )  같은 줄 내에서 
                     var _weaponDList = _dataList.Where((x) => x.itemType == ItemType.Weapon).ToList();
+                    if (_weaponDList.Count != 0)
+                    {
+                        // 연결점 생성 위한 추가 
+                        this.parentSlotDic.Add(_parent, new List<VisualElement>());
+                    }
                     _weaponDList.ForEach((x) =>
                     {
                         UpgradeSlotData _slotData = new UpgradeSlotData(_parent, x, _idx, _weaponDList.Count);
                         itemDataQueue.Enqueue(_slotData);
                         allItemDataList.Add(_slotData);
+
                         _slotDataList.Add(_slotData); // 연결점 생성시 필요 
                         ++_idx;
                     });
@@ -228,31 +267,43 @@ namespace UI.Upgrade
 
         }
         private bool isActive = false; // 포지션 설정시 활성화 여부 
+        private bool isConnection = false; // 연결점 생성 여부 
 
         [ContextMenu("고고")]
         private IEnumerator SetAllSlotPos()
         {
             int _idx = 1;
             allItemList[0].style.left = midX - allItemList[0].resolvedStyle.width / 2;
-            allItemList[0].style.opacity = isActive ? 1 : 0;
+            allItemList[0].style.opacity = isConnection ? 1 : 0;
 
             foreach (var _v in allItemDataList)
             {
+                
                 float _moveX = slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
                 _moveX = _moveX < 0 ? _moveX - allItemList[_idx].resolvedStyle.width : _moveX;
                 allItemList[_idx].style.left = _moveX + _v.parentSlot.worldBound.x;
 
                 // opacity 설정
-                float _op = isActive ? 1 : 0;
+                float _op = isConnection ? 1 : 0;
                 //DOTween.To(() =>0f, x => allItemList[_idx].style.opacity = x, _op, 0.5f).SetDelay(0.5f); 
-                allItemList[_idx].style.opacity = isActive ? 1 : 0;
-                if (isActive == true)
+                allItemList[_idx].style.opacity = isConnection ? 1 : 0;
+
+                if (isConnection == true)
                 {
                     yield return new WaitForSecondsRealtime(0.05f);
+
+                    CreateConnection(allItemList[_idx]);
+                    yield return new WaitForSecondsRealtime(0.05f);
+
                 }
                 ++_idx;
             }
+            if (isActive == true)
+            {
+                isConnection = true;
+            }
             isActive = true;
+
         }
 
         [ContextMenu("삭제")]
@@ -266,6 +317,7 @@ namespace UI.Upgrade
 
             this.upgradeView.ClearAllSlots();
             isActive = false;
+            isConnection = false; 
         }
 
         private VisualElement CreateSlot(ItemData _itemData)
@@ -327,25 +379,48 @@ namespace UI.Upgrade
 
         /// <summary>
         /// 선택시 활성화 마크 모두비활성화하기 
-        /// </summary>
+        /// </summary>  
         private void InActiveAllMark()
         {
             this.allSlotList.ForEach((x) => x.ActiveMark(false));
         }
-        private void CreateConnection(List<UpgradeSlotData> _slotList)
-        {
-            CreateRow(); // 줄 생성 
-            int _count = _slotList.Count; // 자식 개수 
-            int _midCount = (_count / 2); // 중간 개수 
 
-            Vector2 _startPoint, _midPoint,_targetPoint;
+        private void CreateConnection(VisualElement _targeSlot/*List<UpgradeSlotData> _slotList*/)
+        {
             List<Vector2> _pointList = new List<Vector2>(); 
-            foreach(var _slot in _slotList)
+            Vector2 _startPoint, _midPoint, _midPoint2, _targetPoint;
+            //CreateRow(); // 줄 생성 
+            foreach (var _slot in this.parentSlotDic)
             {
-                _startPoint = new Vector2(_slot.parentSlot.worldBound.x, _slot.parentSlot.worldBound.y);
-                _pointList.Add(_startPoint);
-                _targetPoint = new Vector2(0, 0); 
+                foreach(var _slot2 in _slot.Value)
+                {
+                    if(_slot2 == _targeSlot)
+                    {
+                        _pointList.Clear();
+
+                        float _slotX = _slot.Key.worldBound.x + _slot.Key.resolvedStyle.width / 2;
+                        float _slotY = _slot.Key.worldBound.y + _slot.Key.resolvedStyle.height;
+                        float _slot2X = _slot2.worldBound.x + _slot2.resolvedStyle.width / 2;
+                        float _slot2Y = _slot2.worldBound.y;
+
+                        _startPoint = new Vector2(_slotX - midX, _slotY - midY); // 부모 위치 
+                        _midPoint = new Vector2(_slotX - midX, _slotY+( _slot2Y - _slotY)/2 - midY);
+                        _midPoint2 = new Vector2(_slot2X - midX, _slotY+(_slot2Y- _slotY)/2 - midY);
+                        _targetPoint = new Vector2(_slot2X - midX, _slot2Y - midY);
+
+                        _pointList.Add(_startPoint);
+                        _pointList.Add(_midPoint);
+                        _pointList.Add(_midPoint2);
+                        _pointList.Add(_targetPoint);
+
+                        var _line = LineCreateManager.Instance.CreateLine(ScreenType.Upgrade);
+                        _line.UpdateMapLine(_pointList);
+                        return;
+
+                    }
+                }
             }
+ 
 
             /*
             if (_count % 2 == 0) //  짝수라면

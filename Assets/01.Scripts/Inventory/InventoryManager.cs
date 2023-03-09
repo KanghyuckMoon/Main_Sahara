@@ -216,6 +216,14 @@ namespace Inventory
 		{
 			return inventorySO.money;
 		}
+		public ItemData GetArrow()
+        {
+			if (inventorySO.arrow == null)
+            {
+				return null; 
+            }
+			return inventorySO.arrow;
+		}
 		public int IncreaseMoney(int _money)
 		{
 			return inventorySO.money += _money;

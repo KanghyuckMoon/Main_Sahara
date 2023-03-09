@@ -8,6 +8,12 @@ using Data;
 
 namespace UI
 {
+    public enum HudType
+    {
+        hp, 
+        mp, 
+        buff
+    }
     public class EntityPresenter : MonoBehaviour, IUIOwner, Observer
     {
         // 디버그용
@@ -31,12 +37,12 @@ namespace UI
 
         private VisualElement hudElement;
         private PresenterFollower presenterFollower;
-        [SerializeField]
         private UIModule uiModule;
-        [SerializeField]
         private StatData statData;
+        private BuffModule buffModule;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
+        private Dictionary<HudType, IUIFollower> _presenterDic = new Dictionary<HudType, IUIFollower>(); 
 
         // 프로퍼티 
         public UIDocument Root { get; set; }
@@ -62,15 +68,6 @@ namespace UI
                 return target;
 
             }
-        }
-
-        public void DebugTest()
-        {
-            hpPresenter.Test1();
-        }
-        public void DebugTest2()
-        {
-            hpPresenter.Test2();
         }
 
         private void OnEnable()
@@ -170,11 +167,16 @@ namespace UI
         /// </summary>
         private void ContructPresenters()
         {
-            _presenterList.Clear(); 
+            _presenterList.Clear();
+            _presenterDic.Clear(); 
 
             _presenterList.Add(hpPresenter);
             _presenterList.Add(mpPresenter);
             _presenterList.Add(buffPresenter);
+
+            _presenterDic.Add(HudType.hp, hpPresenter);
+            _presenterDic.Add(HudType.mp, mpPresenter);
+            _presenterDic.Add(HudType.buff, buffPresenter);
         }
 
         private void AwakePresenters()
@@ -187,11 +189,24 @@ namespace UI
         }
         private void StartPresenters()
         {
-            foreach (var p in _presenterList)
+            foreach (var p in _presenterDic.Keys)
             {
-                //p.Start(stateData);
-                p.Start(statData);
+                switch (p)
+                {
+                    case HudType.hp: case HudType.mp:
+                        _presenterDic[p].Start(statData);
+                        break;
+                    case HudType.buff:
+                        _presenterDic[p].Start(buff);
+                        break;
+                }
+                { 
             }
+            //foreach (var p in _presenterList)
+            //{
+            //    //p.Start(stateData);
+            //    p.Start(statData);
+            //}
         }
 
         [ContextMenu("버프 아이콘 생성")]
@@ -209,7 +224,9 @@ namespace UI
             }
             while (transform.parent != null && statData == null)
             {
-                this.uiModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI);
+                AbMainModule _mainModule = transform.parent.GetComponentInChildren<AbMainModule>(); 
+                this.uiModule = _mainModule.GetModuleComponent<UIModule>(ModuleType.UI);
+                this.buffModule = _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
                 this.statData = transform.parent.GetComponent<StatData>();
                 if (statData != null)
                 {

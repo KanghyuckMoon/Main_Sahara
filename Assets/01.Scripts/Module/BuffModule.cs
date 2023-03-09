@@ -15,6 +15,7 @@ namespace Module
     public class BuffModule : AbBaseModule
     {
         public Dictionary<IBuff, Bufftype> buffDic = new Dictionary<IBuff, Bufftype>();
+        public List<AbBuffEffect> buffList = new List<AbBuffEffect>();
 
         public BuffModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -26,20 +27,22 @@ namespace Module
             AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect"), Bufftype.Update);
         }
 
-        public void AddBuff(IBuff _buff, Bufftype _bufftype)
+        public void AddBuff(AbBuffEffect _buff, Bufftype _bufftype)
         {
             buffDic.Add(_buff, _bufftype);
+            buffList.Add(_buff);
 
             if (_bufftype == Bufftype.Once)
             {
                 _buff.Buff(mainModule);
                 buffDic.Remove(_buff);
+                buffList.Remove(_buff);
             }
         }
 
         public override void Update()
         {
-            foreach(IBuff _buff in buffDic.Keys)
+            foreach(IBuff _buff in buffList)
             {
                 if (buffDic[_buff] == Bufftype.Update)
                     _buff.Buff(mainModule);
