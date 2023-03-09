@@ -51,14 +51,14 @@ namespace UI
         {
             InitScreenPresenters();
 
-            //screenDic.Add(ScreenType.Inventory, inventoryPresenter);
+            screenDic.Add(ScreenType.Inventory, inventoryPresenter);
             screenDic.Add(ScreenType.Map, mapPresenter);
-        //    screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
-        //    screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
-        //    screenDic.Add(ScreenType.Quest, questPresenter);
-        //    screenDic.Add(ScreenType.Upgrade, upgradePresenter);
-        //    screenDic.Add(ScreenType.Shop, shopPresenter);
-        //    screenDic.Add(ScreenType.Save, saveLoadPresenter);
+            screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
+            screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
+            screenDic.Add(ScreenType.Quest, questPresenter);
+            screenDic.Add(ScreenType.Upgrade, upgradePresenter);
+            screenDic.Add(ScreenType.Shop, shopPresenter);
+            screenDic.Add(ScreenType.Save, saveLoadPresenter);
         }
 
         private void Start()
@@ -104,14 +104,14 @@ namespace UI
         }
         private void InitScreenPresenters()
         {
-            //inventoryPresenter = GetComponentInChildren<InventoryPresenter>();
+            inventoryPresenter = GetComponentInChildren<InventoryPresenter>();
             mapPresenter = GetComponentInChildren<MapPresenter>();
-            //dialoguePresenter = GetComponentInChildren<DialoguePresenter>();
-            //eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
-            //questPresenter = GetComponentInChildren<QuestPresenter>();
-            //upgradePresenter = GetComponentInChildren<UpgradePresenter>();
-            //shopPresenter = GetComponentInChildren<ShopPresenter>();
-            //saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
+            dialoguePresenter = GetComponentInChildren<DialoguePresenter>();
+            eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
+            questPresenter = GetComponentInChildren<QuestPresenter>();
+            upgradePresenter = GetComponentInChildren<UpgradePresenter>();
+            shopPresenter = GetComponentInChildren<ShopPresenter>();
+            saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
 
             //// UIController 넣어주기 
             foreach (var _pr in screenDic)
