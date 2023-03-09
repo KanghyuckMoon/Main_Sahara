@@ -16,6 +16,14 @@ namespace Inventory
 		Valuable,
 		None,
 	}
+	public enum ConsumptionType
+	{
+		None,
+		Posion = 1,
+		Arrow = 2,
+		Others,
+	}
+
 	public enum EquipmentType
 	{
 		None,
@@ -49,6 +57,7 @@ namespace Inventory
 		public bool stackble; //겹치기 가능 여부
 		public int stackMax = 64; // 최대 겹치기 량
 		public ItemType itemType; // 아이템 타입
+		public ConsumptionType consumptionType; // 소모품 타입
 		public string prefebkey; //프리펩 키 (인게임에서 사용)
 		public string animationLayer; // 애니메이션 레이어 (인게임에서 사용)
 		public string dropItemPrefebKey;
@@ -75,6 +84,7 @@ namespace Inventory
 			_newItemData.stackble = _itemData.stackble;
 			_newItemData.stackMax = _itemData.stackMax;
 			_newItemData.itemType = _itemData.itemType;
+			_newItemData.consumptionType = _itemData.consumptionType;
 			_newItemData.prefebkey = _itemData.prefebkey;
 			_newItemData.animationLayer = _itemData.animationLayer;
 			_newItemData.dropItemPrefebKey = _itemData.dropItemPrefebKey;
@@ -93,6 +103,7 @@ namespace Inventory
 			_newItemData.stackble = _itemDataSO.stackble;
 			_newItemData.stackMax = _itemDataSO.stackMax;
 			_newItemData.itemType = _itemDataSO.itemType;
+			_newItemData.consumptionType = _itemDataSO.consumptionType;
 			_newItemData.prefebkey = _itemDataSO.prefebkey;
 			_newItemData.animationLayer = _itemDataSO.animationLayer;
 			_newItemData.dropItemPrefebKey = _itemDataSO.dropItemPrefebKey;

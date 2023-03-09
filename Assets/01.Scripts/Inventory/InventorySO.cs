@@ -13,6 +13,7 @@ namespace Inventory
         public ItemData[] equipments = new ItemData[4];
         public ItemData[] accessories = new ItemData[4];
         public ItemData[] skills = new ItemData[2];
+        public ItemData arrow = new ItemData();
 
         public InventorySave inventorySave = new InventorySave();
 
