@@ -17,7 +17,7 @@ namespace UI.Inventory
     {
         #region enum
 
-        enum Elements
+        public enum Elements
         {
             // 패널 다음 인덱스부터 시작 
             quick_slot_panel = 0, // 퀵슬롯
@@ -26,6 +26,7 @@ namespace UI.Inventory
             skill_equip_panel, // 스킬 장착 
 
             drag_item,
+            contents
         }
 
         enum RadioButtonGroups
@@ -63,18 +64,10 @@ namespace UI.Inventory
             dragItemPresenter.AddDropper(() => DropItem());
 
             // 인벤토리 슬롯들 뷰 생성 
-            inventoryGridSlotsPr = new InventoryGridSlotsPr(ParentElement);
+            inventoryGridSlotsPr = new InventoryGridSlotsPr(GetVisualElement((int)Elements.contents));
             inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item,ClickItem);
             // 슬롯 생성 
             inventoryGridSlotsPr.Init();
-
-            // 버튼 이벤트 추가 
-            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.weapon_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.quick_slot_panel), x));
-            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.consumation_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.quick_slot_panel), x));
-            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.skill_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.skill_equip_panel), x));
-            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.armor_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.armor_equip_panel), x));
-            inventoryGridSlotsPr.AddButtonEvent(InventoryGridSlotsView.RadioButtons.accessories_button, (x) => ShowVisualElement(GetVisualElement((int)Elements.accessoire_equip_panel), x));
-             
 
             ActiveDragItem(false); 
             // SO 불러오기 
@@ -92,6 +85,28 @@ namespace UI.Inventory
 
         }
 
+        public void AddButtonEvt(InventoryGridSlotsView.RadioButtons _btnType, Action<bool> _callback)
+        {
+            switch (_btnType)
+            {
+                case InventoryGridSlotsView.RadioButtons.weapon_button:
+                    inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
+                    break;
+                case InventoryGridSlotsView.RadioButtons.armor_button:
+                    inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
+                    break;
+                case InventoryGridSlotsView.RadioButtons.consumation_button:
+                    inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
+                    break;
+                case InventoryGridSlotsView.RadioButtons.skill_button:
+                    inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
+                    break;
+                case InventoryGridSlotsView.RadioButtons.accessories_button:
+                    inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
+                    break;
+            }
+
+        }
         /// <summary>
         /// 퀵 슬롯UI에 데이터 넣기 
         /// </summary>
@@ -126,6 +141,15 @@ namespace UI.Inventory
             _ui.SetItemDataUI(_itemData);
 
         }
+
+        public List<VisualElement> GetSlotList(Elements _type, bool _isActive)
+        {
+            ShowVisualElement(GetVisualElement((int)_type), _isActive);
+
+            List<VisualElement> _slotList = GetVisualElement((int)_type).Query<VisualElement>(className: "quick_slot_transition").ToList();
+            return _slotList; 
+        }
+    
 
         /// <summary>
         /// 장착 슬롯 캐싱 초기화 

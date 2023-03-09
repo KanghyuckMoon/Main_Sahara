@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
+using UI; 
 
 namespace PathMode
 {
@@ -27,11 +28,13 @@ namespace PathMode
 
         private Vector3 lastPos = Vector3.zero;
 
+        private MapInfo mapInfo = new MapInfo(); 
+            
         public PathSave pathSave = new PathSave();
 
         private void Update()
         {
-            if((lastPos - Player.position).sqrMagnitude < 4f)
+            if((lastPos - Player.position).sqrMagnitude > 4f)
             {
                 AddPath(Player.position);
                 lastPos = Player.position;
@@ -51,13 +54,15 @@ namespace PathMode
         /// <returns></returns>
         public Vector2 WorldToUIPos(Vector3 _worldPos)
         {
-            Vector2 _uiPos;
-            _uiPos.x = Mathf.Clamp((_worldPos.x /*+ sceneSize.x * 0.5f*/) / 50 * 50,
-                                                    -50 * 0.5f, 50 * 0.5f);
-            _uiPos.y = Mathf.Clamp(-(_worldPos.z/* + sceneSize.y * 0.5f*/) / 50 * 50,
-                                                    -50 * 0.5f, 50 * 0.5f);
+            //Vector2 _uiPos;
+            //_uiPos.x = Mathf.Clamp((_worldPos.x /*+ sceneSize.x * 0.5f*/) / mapInfo.SceneSize.x * mapInfo.UIMapSize.x,
+            //                                        -mapInfo.UIMapSize.x * 0.5f, mapInfo.UIMapSize.x * 0.5f);
+            //_uiPos.y = Mathf.Clamp(-(_worldPos.z/* + sceneSize.y * 0.5f*/) / mapInfo.SceneSize.y * mapInfo.UIMapSize.y,
+            //                                        -mapInfo.UIMapSize.y * 0.5f, mapInfo.UIMapSize.y * 0.5f);
 
-            return _uiPos;
+            //return _uiPos;
+
+            return mapInfo.WorldToUIPos(_worldPos);
         }
 
         public List<Vector2> GetPathList()

@@ -111,9 +111,9 @@ namespace UI
             questPresenter = GetComponentInChildren<QuestPresenter>();
             upgradePresenter = GetComponentInChildren<UpgradePresenter>();
             shopPresenter = GetComponentInChildren<ShopPresenter>();
-            saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>(); 
+            saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
 
-            // UIController 持绢林扁 
+            //// UIController 持绢林扁 
             foreach (var _pr in screenDic)
             {
                 _pr.Value.Init(this);

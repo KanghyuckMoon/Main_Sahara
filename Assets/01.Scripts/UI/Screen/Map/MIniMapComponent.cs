@@ -14,7 +14,7 @@ namespace UI
     public class MIniMapComponent
     {
         // 인스펙터 참조 
-        [SerializeField]
+       // [SerializeField]
         private MapInfo mapInfo;
 
         [SerializeField]
@@ -23,6 +23,7 @@ namespace UI
         // 프라이빗 변수 
         private GameObject player;
         private MapView mapView;
+
         [SerializeField]
         private Camera cam;
 
@@ -61,13 +62,15 @@ namespace UI
 
         public void Init(MapView _mapView)
         {
+            mapInfo = new MapInfo(); 
             this.mapView = _mapView;
             // MapInfo 초기화 
 
-            mapInfo.UIMapSize = new Vector2(mapView.Map.style.width.value.value, mapView.Map.style.height.value.value);
-            mapInfo.UIMapCenterPos = new Vector2(mapView.Map.style.width.value.value / 2, mapView.Map.style.height.value.value / 2);
-            mapInfo.sceneSize.x = mapInfo.MaxScenePos.x - mapInfo.MinScenePos.x;
-            mapInfo.sceneSize.y = mapInfo.MaxScenePos.y - mapInfo.MinScenePos.y;
+            mapView.SetMapUISize(mapInfo.UIMapSize);
+            //mapInfo.UIMapSize = new Vector2(mapView.Map.style.width.value.value, mapView.Map.style.height.value.value);
+            //mapInfo.UIMapCenterPos = new Vector2(mapView.Map.style.width.value.value / 2, mapView.Map.style.height.value.value / 2);
+            //mapInfo.SceneSize.x = mapInfo.MaxScenePos.x - mapInfo.MinScenePos.x;
+            //mapInfo.SceneSize.y = mapInfo.MaxScenePos.y - mapInfo.MinScenePos.y;
 
             playerMarker = null; 
         }

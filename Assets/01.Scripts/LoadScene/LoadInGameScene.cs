@@ -8,6 +8,7 @@ using Utill.Addressable;
 using UpdateManager;
 using Json;
 using Pool;
+using UI.Manager;
 
 namespace LoadScene
 {
@@ -21,6 +22,7 @@ namespace LoadScene
             ClassPoolManager.Instance.Clear();
             ObjectPoolManager.Instance.Clear();
             System.GC.Collect(); 
+            UIManager.Instance.Init();
             StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
             SceneManager.LoadScene("InGame");
         }

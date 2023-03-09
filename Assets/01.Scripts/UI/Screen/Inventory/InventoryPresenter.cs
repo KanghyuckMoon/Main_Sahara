@@ -33,6 +33,12 @@ namespace UI.Inventory
         {
             inventoryView.Cashing();
             inventoryView.Init();
+
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, (x) => AnimateSlot(InventoryView.Elements.quick_slot_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.consumation_button, (x) => AnimateSlot(InventoryView.Elements.quick_slot_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.skill_button, (x) => AnimateSlot(InventoryView.Elements.skill_equip_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.armor_button, (x) => AnimateSlot(InventoryView.Elements.armor_equip_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.accessories_button, (x) => AnimateSlot(InventoryView.Elements.accessoire_equip_panel, x));
         }
         void Start()
         {
@@ -71,6 +77,31 @@ namespace UI.Inventory
                 this.inventoryView.UpdateQuickSlotUI(_quickSlotData, i); 
             }
 
+        }
+
+        private void AnimateSlot(InventoryView.Elements _type, bool _isActive)
+        {
+            StartCoroutine(AnimateCo(_type, _isActive));
+        }
+
+        private IEnumerator AnimateCo(InventoryView.Elements _type, bool _isActive)
+        {
+            WaitForSeconds _w = new WaitForSeconds(0.1f); 
+            var _list = inventoryView.GetSlotList(_type, _isActive);
+            foreach (var _slot in _list)
+            {
+                if (_isActive == false)
+                {
+                    //_slot.style.translate = new StyleTranslate(new Translate(500f,0));
+                    _slot.AddToClassList("quick_slot_init");
+                }
+                else
+                {
+                    //_slot.style.translate = new StyleTranslate(new Translate(0, 0));
+                    _slot.RemoveFromClassList("quick_slot_init");
+                }
+                yield return _w; 
+            }
         }
     }
 

@@ -11,26 +11,39 @@ namespace UI.Loading
     public class LoadingView : AbUI_Base
     {
         [SerializeField, Header("로딩팁 유지 시간")]
-        private float time = 2f; 
+        private float time = 1f; 
         enum Labels
         {
             tip_label
         }
         enum Elements
         {
-            loading_icon
+            loading_icon,
+            panels
         }
 
+        enum Decos
+        {
+            deco_1 =2,
+            deco_2,
+            deco_3,
+            deco_4,
+        }
+
+        public VisualElement Panels => GetVisualElement((int)Elements.panels);
         public override void Cashing()
         {
             base.Cashing();
             BindLabels(typeof(Labels));
             BindVisualElements(typeof(Elements));
+            BindVisualElements(typeof(Decos));
         }
 
         public override void Init()
         {
             base.Init();
+            InitDecosStyle();
+            Panels.style.opacity = 0f; 
         }
 
         /// <summary>
@@ -51,12 +64,49 @@ namespace UI.Loading
             VisualElement _icon = GetVisualElement((int)Elements.loading_icon);
             DOTween.To(() => 1f, x => _icon.style.opacity = new StyleFloat(x), 0.5f, time)
                 .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.OutQuad);
+
+//            DOTween.To(() => 1f, x => _icon.style.rotate = new StyleRotate(new Rotate(x)), 0.5f, time)
+ //               .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.OutQuad);
         }
 
         public void StopTween()
         {
             DOTween.KillAll();
         }
+
+        public List<VisualElement> GetDecos()
+        {
+            List<VisualElement> _list = new List<VisualElement>(); 
+            foreach (var _deco in Enum.GetValues(typeof(Decos)))
+            {
+                _list.Add(GetVisualElement((int)_deco));
+            }
+            return _list; 
+        }
+
+        public void InitDecosStyle()
+        {
+            bool _isUp = true;
+            foreach (var _deco in Enum.GetValues(typeof(Decos)))
+            {
+                VisualElement _e = GetVisualElement((int)_deco);
+                if (_isUp == true)
+                {
+                    //GetVisualElement((int)_deco).AddToClassList("panel_deco_top");
+                    DOTween.To(() => _e.transform.position, (x) => _e.transform.position = x, new Vector3(-3000,0,0), 0f);
+                    //GetVisualElement((int)_deco).style.translate = new StyleTranslate(new Translate(3000, 0));
+                    _isUp = false;
+                    continue;
+                }
+                // GetVisualElement((int)_deco).AddToClassList("panel_deco_bot");
+                DOTween.To(() => _e.transform.position, (x) => _e.transform.position = x, new Vector3(3000, 0, 0), 0f);
+
+//                GetVisualElement((int)_deco).style.translate = new StyleTranslate(new Translate(-3000, 0));
+                _isUp = true;
+            }
+        }
+
+
     }
 
 }
