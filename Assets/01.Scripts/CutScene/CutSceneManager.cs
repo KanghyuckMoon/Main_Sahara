@@ -88,6 +88,14 @@ namespace CutScene
             TalkModuleCutSceneOn();
         }
 
+        public void SetCutScene(TimelineAsset _timelineAsset)
+        {
+            AllPropertyReset();
+            index = 0;
+            timelineAsset = _timelineAsset;
+            playableDirector.Play(timelineAsset);
+        }
+
         public void PlayCutScene()
         {
             CutSceneData _cutSceneData = cutSceneDataList.cutSceneDataList[index];

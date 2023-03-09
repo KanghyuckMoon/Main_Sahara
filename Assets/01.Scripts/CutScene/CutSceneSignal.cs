@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CutScene
 {
     public class CutSceneSignal : MonoBehaviour
     {
+        [SerializeField]
+        private string moveScene;
+
         public void CutScenePause()
         {
             CutSceneManager.Instance.PauseCutScene();
@@ -34,5 +38,10 @@ namespace CutScene
         {
             CutSceneManager.Instance.SetContinueCam();
         }
+
+        public void SceneMove()
+		{
+            SceneManager.LoadScene(moveScene);
+		}
     }
 }
