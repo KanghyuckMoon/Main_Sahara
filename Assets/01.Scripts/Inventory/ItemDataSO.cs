@@ -15,6 +15,7 @@ namespace Inventory
 		public bool stackble;
 		public int stackMax = 64;
 		public ItemType itemType;
+		public ConsumptionType consumptionType; // 소모품 타입
 		public string prefebkey;
 		public string animationLayer;
 		public string dropItemPrefebKey;

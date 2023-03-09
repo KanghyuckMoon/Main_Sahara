@@ -524,6 +524,29 @@ namespace Inventory
 			}
 		}
 
+		//Arrow
+		public void EquipArrow(ItemData _arrow)
+		{
+			if (_arrow.consumptionType is not ConsumptionType.Arrow)
+			{
+				return;
+			}
+			inventorySO.arrow = _arrow;
+			//Weapon에 데이터 전달
+			weaponModule.SetArrow(_arrow.prefebkey, SpendArrow);
+		}
+
+		private void SpendArrow()
+		{
+			inventorySO.arrow.count--;
+			if (inventorySO.arrow.count == 0)
+			{
+				ItemRemove(inventorySO.arrow);
+				inventorySO.arrow = null;
+				weaponModule.SetArrow(null, null);
+			}
+		}
+
 		private void Init()
 		{
 			allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
