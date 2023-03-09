@@ -185,6 +185,10 @@ namespace CutScene
                 CutSceneManager.Instance.SetTalkModule(_cutSceneData.talkModule);
                 _cutSceneData.talkModule = null;
             }
+            else
+			{
+                talkModule = null;
+			}
         }
 
         public void ResumeCutScene()
@@ -201,31 +205,32 @@ namespace CutScene
             PlayableDirector.Stop();
         }
         public void NextCutScene()
-		{
-            if (cutSceneDataList is null)
-			{
-                ResetCam();
-                return;
-			}
-            if(cutSceneDataList.cutSceneDataList.Count > index + 1)
-			{
-                if (cutSceneDataList.cutSceneDataList[index + 1].isTalk)
+        {
+            if (cutSceneDataList.cutSceneDataList[index].isTalk)
+            {
+                PlayableDirector.Pause();
+                StartCoroutine(WaitEndTalk());
+            }
+            else
+            {
+                if (cutSceneDataList is null)
                 {
-                    PlayableDirector.Pause();
-                    StartCoroutine(WaitEndTalk());
+                    ResetCam();
+                    return;
                 }
-                else
+                if (cutSceneDataList.cutSceneDataList.Count > index + 1)
                 {
                     SetContinueCam();
                     index++;
                     PlayCutScene();
                 }
+                else
+                {
+                    ResetCam();
+                    return;
+                }
             }
-            else
-			{
-                ResetCam();
-                return;
-			}
+
 		}
 
         private IEnumerator WaitEndTalk()
@@ -234,10 +239,17 @@ namespace CutScene
 			{
                 yield return null;
             }
+            if (cutSceneDataList.cutSceneDataList.Count > index + 1)
+            {
+                SetContinueCam();
+                index++;
+                PlayCutScene();
+            }
+            else
+            {
+                ResetCam();
+            }
 
-            SetContinueCam();
-            index++;
-            PlayCutScene();
         }
 
         public void ResetCam()

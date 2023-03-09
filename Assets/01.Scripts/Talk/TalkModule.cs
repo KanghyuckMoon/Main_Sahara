@@ -152,8 +152,9 @@ namespace Module.Talk
 			{
 				_index = Random.Range(0, talkDataSO.defaultTalkCodeList.Count);
 			}
+			isEndTalk = false;
 			UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
-				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
+				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index], EndTalk);
 			//DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 		}
 
