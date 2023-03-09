@@ -420,6 +420,30 @@ namespace AI
 			aiModule.IsHostilities = true;
 		}
 
+		private float trackPos = 0f;
+		private void TrackMove()
+		{
+			//¹æÇâ
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			{
+				Vector3 vec = aiModule.SmoothPath.EvaluateTangent(aiModule.SmoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
+				Debug.Log($"AI : {vec}");
+				trackPos += Time.deltaTime;
+
+				Vector2 _inputdir = new Vector2(vec.x, vec.z);
+				aiModule.Input = _inputdir;
+
+				aiModule.AIModuleState = AIModule.AIState.Walk;
+				aiModule.MainModule.IsSprint = false;
+				aiModule.MainModule.ObjDir = aiModule.Input;
+
+				if (trackPos > 0f && aiModule.SmoothPath.Looped)
+				{
+					trackPos = 0f;
+				}
+			}
+		}
+
 		//Utill
 		private Vector3 AngleToDir(float angle)
 		{

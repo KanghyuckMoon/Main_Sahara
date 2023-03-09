@@ -1,10 +1,11 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Module;
 using Pool;
 using Utill.Pattern;
+using Cinemachine;
 
 namespace CondinedModule
 {
@@ -12,6 +13,22 @@ namespace CondinedModule
     {
         public string aiSOAddress = "TestEnemySO";
 		public string AIAddress => aiSOAddress;
+
+
+		public CinemachineSmoothPath SmoothPath
+		{
+			get
+			{
+                return smoothPath;
+            }
+            set
+			{
+                smoothPath = value;
+            }
+        }
+
+        [SerializeField]
+        private CinemachineSmoothPath smoothPath;
 
 		protected void OnEnable()
         {

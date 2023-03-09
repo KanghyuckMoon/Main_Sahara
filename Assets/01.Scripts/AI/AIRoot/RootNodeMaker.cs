@@ -63,12 +63,15 @@ namespace AI
 					return TestEnemy();
 				case "TestWorm":
 					return TestWorm();
+				case "TestTrack":
+					return TestTrack();
 			}
 		}
 
 		private partial INode TestEnemy();
 		private partial INode TestWorm();
 		private partial INode TestTalkNPC();
+		private partial INode TestTrack();
 
 		public void Dead()
 		{

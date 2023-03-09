@@ -83,6 +83,15 @@ namespace Module.Talk
 		{
 			talkDataSO = AddressablesManager.Instance.GetResource<TalkDataSO>(_talkSOAddress);
 		}
+		public TalkModule() : base()
+		{
+		}
+
+		public override void Init(AbMainModule _mainModule, params string[] _parameters)
+		{
+			base.Init(_mainModule, _parameters);
+			talkDataSO = AddressablesManager.Instance.GetResource<TalkDataSO>(_parameters[0]);
+		}
 
 		public void Talk()
 		{
