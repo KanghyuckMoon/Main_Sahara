@@ -66,6 +66,8 @@ namespace Module.Talk
 		private TalkDataSO talkDataSO = null;
 		private bool isFirst = false;
 		private bool isEndTalk = false;
+		private bool isTalking = false;
+		private bool isCutScene = false;
 
 		public TalkModule(AbMainModule _mainModule, string _talkSOAddress) : base(_mainModule)
 		{
@@ -91,16 +93,32 @@ namespace Module.Talk
 			}
 		}
 
+		public void SetCutScene(bool _bool)
+		{
+			isCutScene = _bool;
+		}
+
+		public void CutSceneTalk()
+		{
+			if (ShopModule is not null)
+			{
+				ShopManager.Instance.SetShopModule(ShopModule);
+			}
+
+			//이벤트로 사용된 대화가 있는가?
+			if (!GetText())
+			{
+				//없을시 기본 대화
+				RandomDefaultText();
+			}
+		}
+
 		private bool CanTalk()
 		{
 			//적대 상태인지 아닌지
-			if(!AIModule.IsHostilities)
+			if(!AIModule.IsHostilities && !isTalking && !isCutScene)
 			{
-				Vector3 _distancePos = Player.position - mainModule.transform.position;
-				if(_distancePos.sqrMagnitude < talkDataSO.talkRange * talkDataSO.talkRange)
-				{
-					return true;
-				}
+				return true;
 			}
 			return false;
 		}
@@ -114,7 +132,7 @@ namespace Module.Talk
 				{
 					UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
 						.SetTexts(_talkData.authorText, _talkData.talkText);
-					//DialoguePresenter.SetTexts(_talkData.authorText, _talkData.talkText);
+					isTalking = true;
 					return true;
 				}
 			}
@@ -161,6 +179,7 @@ namespace Module.Talk
 		private void EndTalk()
 		{
 			isEndTalk = true;
+			isTalking = false;
 		}
 
 		public void LogText()
