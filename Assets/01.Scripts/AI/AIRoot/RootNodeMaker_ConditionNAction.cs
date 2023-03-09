@@ -427,7 +427,6 @@ namespace AI
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
 				Vector3 vec = aiModule.SmoothPath.EvaluateTangent(aiModule.SmoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
-				Debug.Log($"AI : {vec}");
 				trackPos += Time.deltaTime;
 
 				Vector2 _inputdir = new Vector2(vec.x, vec.z);
