@@ -14,7 +14,7 @@ namespace Module
 {
     public class PhysicsModule : AbBaseModule
     {
-        private float rayDistance = 0.6f;
+        private float rayDistance = 1f;
         private ulong praviousHitBoxIndex = 0;
         private HitModule HitModule
         {
@@ -74,7 +74,7 @@ namespace Module
         {
             foreach (string _tagName in mainModule.HitCollider)
             {
-                if (other.CompareTag(_tagName) && !mainModule.IsDead)
+                if (other.CompareTag(_tagName) && !mainModule.IsDead && !mainModule.IsCanHit)
                 {
                     
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
@@ -130,20 +130,31 @@ namespace Module
 
         private void Slope()
         {
-            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y- mainModule.groundOffset,
+            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
                 mainModule.transform.position.z);
 
             Ray ray = new Ray(rayPos, Vector3.down);
             RaycastHit _raycastHit;
             if (Physics.Raycast(ray, out _raycastHit, rayDistance, mainModule.groundLayer))
             {
-                mainModule.SlopeHit = _raycastHit;
-                var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
-                mainModule.IsSlope = (angle > -90 + mainModule.MaxSlope) && (angle < 90 - mainModule.MaxSlope); // 90 - mainModule.MaxSlope = 올라갈 수 있는 각도
+                //mainModule.SlopeHit = _raycastHit;
+                var angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
+                //Debug.LogError(angle + " : : : : " + Vector3.Angle(Vector3.up, _raycastHit.normal));
+                mainModule.IsSlope = (angle < mainModule.CharacterController.slopeLimit) && (angle > -mainModule.CharacterController.slopeLimit); // 90 - mainModule.MaxSlope = 올라갈 수 있는 각도
                 //return;
+                if(mainModule.IsSlope is false)
+                {
+                    mainModule.SlopeVector = Vector3.ProjectOnPlane(new Vector3(0, mainModule.Gravity, 0), _raycastHit.normal);
+                }
+            }
+            else
+            {
+                //Debug.LogError("안닿아닿아닿아");
+                mainModule.IsSlope = true;
             }
 
-            Debug.DrawLine(rayPos, rayPos + new Vector3(0, -rayDistance, 0), Color.red);
+            //Debug.DrawLine(rayPos, rayPos + new Vector3(0, 100, 0), Color.red);
+            Debug.DrawRay(rayPos, Vector3.down, Color.red);
         }
 
 
