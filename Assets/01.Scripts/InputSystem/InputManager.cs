@@ -21,6 +21,10 @@ namespace InputSystem
 			}
 		}
 
+		public bool CheckKey(string _str)
+		{
+			return keyInputDic[_str];
+		}
 
 		public void Update()
 		{
