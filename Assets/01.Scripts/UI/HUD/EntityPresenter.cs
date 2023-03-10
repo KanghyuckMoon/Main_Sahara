@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using Module;
 using Utill.Measurement;
 using Data;
+using System;
 
 namespace UI
 {
@@ -42,7 +43,8 @@ namespace UI
         private BuffModule buffModule;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
-        private Dictionary<HudType, IUIFollower> _presenterDic = new Dictionary<HudType, IUIFollower>(); 
+        private Dictionary<HudType, IUIFollower> _presenterDic = new Dictionary<HudType, IUIFollower>();
+        private Dictionary<Type, IUIFollower> _prDic = new Dictionary<Type, IUIFollower>(); 
 
         // 프로퍼티 
         public UIDocument Root { get; set; }
@@ -197,10 +199,9 @@ namespace UI
                         _presenterDic[p].Start(statData);
                         break;
                     case HudType.buff:
-                        _presenterDic[p].Start(buff);
+                        _presenterDic[p].Start(buffModule);
                         break;
                 }
-                { 
             }
             //foreach (var p in _presenterList)
             //{
@@ -233,6 +234,7 @@ namespace UI
                     StartPresenters();
                     this.statData.AddObserver(this);
                     this.uiModule.AddObserver(this);
+                    this.buffModule.AddObserver(this); 
                 }
                 yield return null;
             }

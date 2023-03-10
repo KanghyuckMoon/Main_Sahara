@@ -36,7 +36,7 @@ namespace UI
 
         public void Start(object _data)
         {
-            buffData = _data as AbBuffEffect;
+            buffData = _data as BuffModule;
         }
 
         public void UpdateUI()

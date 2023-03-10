@@ -34,6 +34,8 @@ namespace Buff
 
         protected string spownObjectName;
 
+        private string spriteadress;
+
         public AbBuffEffect(BuffModule _buffModule)
         {
             buffModule = _buffModule;
@@ -43,6 +45,7 @@ namespace Buff
         public AbBuffEffect SetDuration(float _duration) { maxDuration = _duration; duration = maxDuration;  return this; }
         public AbBuffEffect SetPeriod(float _period) { period = _period;  return this; }
         public AbBuffEffect SetSpownObjectName(string _spownObjectName) { spownObjectName = _spownObjectName;  return this; }
+        public AbBuffEffect SetSprite(string _spriteadress) { spriteadress = _spriteadress;  return this; }
 
         public abstract void Buff(AbMainModule _mainModule);
     }
