@@ -31,7 +31,7 @@ namespace HitBox
 			if (hitBoxDataList is not null)
 			{
 				string tagname = gameObject.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
-				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
+				foreach (HitBoxData hitBoxData in hitBoxDataList.hitBoxDataList)
 				{
 					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
 					hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname);
@@ -47,7 +47,7 @@ namespace HitBox
 
 #if UNITY_EDITOR
 
-		private List<BoxColEditor> boxColEditorList = new List<BoxColEditor>();
+		private List<CapsuleColEditor> boxColEditorList = new List<CapsuleColEditor>();
 
 		public string hitBoxName = "";
 
@@ -60,12 +60,12 @@ namespace HitBox
 				return;
 			}
 			GameObject obj = new GameObject();
-			BoxColEditor _boxColEditor = obj.AddComponent<BoxColEditor>();
+			CapsuleColEditor _boxColEditor = obj.AddComponent<CapsuleColEditor>();
 			HitBoxData _hitBoxData = new HitBoxData();
 			_hitBoxData.hitBoxName = hitBoxName;
 			_boxColEditor.hitBoxDataSO = hitBoxDataSO;
 			_boxColEditor.SetHitBox(_hitBoxData);
-			_boxColEditor.UploadNoneCopy();
+			_boxColEditor.Upload();
 			boxColEditorList.Add(_boxColEditor);
 
 			//Animator _animator = GetComponent<Animator>();
@@ -98,8 +98,9 @@ namespace HitBox
 					for (int i = 0; i < hitBoxDataList.hitBoxDataList.Count; ++i)
 					{
 						GameObject obj = new GameObject();
-						BoxColEditor boxColEditor = obj.AddComponent<BoxColEditor>();
+						CapsuleColEditor boxColEditor = obj.AddComponent<CapsuleColEditor>();
 						boxColEditor.SetHitBox(hitBoxDataList.hitBoxDataList[i]);
+						boxColEditor.hitBoxDataSO = hitBoxDataSO;
 						boxColEditorList.Add(boxColEditor);
 					}
 				}

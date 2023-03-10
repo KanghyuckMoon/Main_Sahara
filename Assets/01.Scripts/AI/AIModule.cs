@@ -5,6 +5,7 @@ using DynamicBGM;
 using Utill.Pattern;
 using Pool;
 using static NodeUtill;
+using Cinemachine;
 
 namespace Module
 {
@@ -13,6 +14,12 @@ namespace Module
 		public string AIAddress
 		{
 			get;
+		}
+
+		public CinemachineSmoothPath SmoothPath
+		{
+			get;
+			set;
 		}
 	}
 
@@ -139,7 +146,17 @@ namespace Module
 				isHostilities = value;
 			}
 		}
-
+		public CinemachineSmoothPath SmoothPath
+		{
+			get
+			{
+				return smoothPath;
+			}
+			set
+			{
+				smoothPath = value;
+			}
+		}
 		private Transform player;
 		protected INode _rootNode;
 		private bool isInit = false;
@@ -152,6 +169,8 @@ namespace Module
 		private float suspicionGauge = 0f;
 		private bool isFirstAttack = true;
 		private bool isHostilities = true;
+		private CinemachineSmoothPath smoothPath;
+
 
 		public AIModule() : base()
 		{
@@ -166,6 +185,10 @@ namespace Module
 		public override void Init(AbMainModule _mainModule, params string[] _parameters)
 		{
 			base.Init(_mainModule, _parameters);
+			if ((_mainModule as IEnemy).SmoothPath is not null)
+			{
+				smoothPath = (_mainModule as IEnemy).SmoothPath;
+			}
 			rootNodeMaker ??= new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
 			rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
 		}

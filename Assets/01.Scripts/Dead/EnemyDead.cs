@@ -57,14 +57,26 @@ namespace Module
             abMainModule.AddObserver(this);
         }
 
+        private void OnEnable()
+        {
+            isDead = false;
+            isDestroy = false;
+        }
+
         public void Receive()
         {
             if (abMainModule.IsDead)
             {
+                if(isDead || isDestroy)
+				{
+                    return;
+				}
+
                 if(questClearKey is not "NULL")
 				{
                     QuestManager.Instance.ChangeQuestClear(questClearKey);
                 }
+                isDead = true;
                 StartCoroutine(IDead());
             }
         }
@@ -85,12 +97,9 @@ namespace Module
                 }
                 ItemDrop(dropItemListSO.dropItemKeyArr[_index]); 
             }
-
-
             yield return new WaitForSeconds(0.2f);
             abMainModule.Model.gameObject.SetActive(false);
             yield return new WaitForSeconds(3f);
-            isDead = true;
             Send();
             animator.speed = 1;
             abMainModule.Model.gameObject.SetActive(true);

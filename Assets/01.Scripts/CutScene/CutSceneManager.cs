@@ -85,6 +85,15 @@ namespace CutScene
             AllPropertyReset();
             cutSceneDataList = _cutSceneDataList;
             index = 0;
+            TalkModuleCutSceneOn();
+        }
+
+        public void SetCutScene(TimelineAsset _timelineAsset)
+        {
+            AllPropertyReset();
+            index = 0;
+            timelineAsset = _timelineAsset;
+            playableDirector.Play(timelineAsset);
         }
 
         public void PlayCutScene()
@@ -111,17 +120,6 @@ namespace CutScene
                 playable.SetSpeed(1);
                 PlayableDirector.Resume();
             }
-
-            //if (playableDirector.state == PlayState.Paused)
-            //{
-            //    //PlayableDirector.playableAsset = timelineAsset;
-            //    //playableDirector.time = 1.0F;
-            //    //playableDirector.Play();
-            //    //playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
-            //    playableDirector.Resume();
-            //    //playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
-            //}
-            //PlayableDirector.Pause();
 
             if (isTrack)
             {
@@ -183,7 +181,7 @@ namespace CutScene
             {
                 _cutSceneData.talkModule = _cutSceneData.testTalk.GetModuleComponent<TalkModule>(ModuleType.Talk);
                 CutSceneManager.Instance.SetTalkModule(_cutSceneData.talkModule);
-                _cutSceneData.talkModule = null;
+                talkModule.SetCutScene(true);
             }
             else
 			{
@@ -227,6 +225,7 @@ namespace CutScene
                 else
                 {
                     ResetCam();
+                    TalkModuleCutSceneOff();
                     return;
                 }
             }
@@ -247,6 +246,7 @@ namespace CutScene
             }
             else
             {
+                TalkModuleCutSceneOff();
                 ResetCam();
             }
 
@@ -353,7 +353,28 @@ namespace CutScene
             {
                 return;
             }
-            talkModule.Talk();
+            talkModule.CutSceneTalk();
+        }
+
+        public void TalkModuleCutSceneOff()
+		{
+            foreach (var _obj in cutSceneDataList.cutSceneDataList)
+			{
+                if(_obj.isTalk)
+                {
+                    _obj?.testTalk?.GetModuleComponent<TalkModule>(ModuleType.Talk)?.SetCutScene(false);
+				}
+			}
+        }
+        public void TalkModuleCutSceneOn()
+        {
+            foreach (var _obj in cutSceneDataList.cutSceneDataList)
+            {
+                if(_obj.isTalk)
+                {
+                    _obj?.testTalk?.GetModuleComponent<TalkModule>(ModuleType.Talk)?.SetCutScene(true);
+                }
+            }
         }
 
     }

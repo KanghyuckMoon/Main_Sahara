@@ -4,6 +4,7 @@ using UnityEngine;
 using Module;
 using Module.Talk;
 using Module.Shop;
+using Cinemachine;
 
 namespace CondinedModule
 {
@@ -11,6 +12,21 @@ namespace CondinedModule
 	{
 		public string aiSOAddress = "TestEnemySO";
 		public string AIAddress => aiSOAddress;
+
+		public CinemachineSmoothPath SmoothPath
+		{
+            get
+			{
+                return smoothPath;
+            }
+            set
+			{
+                smoothPath = value;
+            }
+		}
+
+        [SerializeField]
+        private CinemachineSmoothPath smoothPath;
 
 		public string textSOAddress;
 
@@ -24,18 +40,18 @@ namespace CondinedModule
             moduleComponentsDic = new();
             CharacterController = GetComponent<CharacterController>();
             AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
-            AddModule(ModuleType.Move, new MoveModule(this));
-            AddModule(ModuleType.Stat, new StatModule(this));
-            AddModule(ModuleType.Jump, new JumpModule(this));
-            AddModule(ModuleType.Hp, new HpModule(this));
-            AddModule(ModuleType.Animation, new AnimationModule(this));
-            AddModule(ModuleType.Physics, new PhysicsModule(this));
-            AddModule(ModuleType.UI, new UIModule(this, "HudUI"));
-            AddModule(ModuleType.Attack, new AttackModule(this));
-            AddModule(ModuleType.Weapon, new WeaponModule(this));
-            AddModule(ModuleType.Hit, new HitModule(this));
-            AddModule(ModuleType.State, new StateModule(this));
-            AddModule(ModuleType.Talk, new TalkModule(this, textSOAddress));
+            AddModuleWithPool<MoveModule>(ModuleType.Move, "MoveModule");
+            AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
+            AddModuleWithPool<JumpModule>(ModuleType.Jump, "JumpModule");
+            AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
+            AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
+            AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
+            AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule");
+            AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
+            AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
+            AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
+            AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
+            AddModuleWithPool<TalkModule>(ModuleType.Talk, "TalkModule", textSOAddress);
 
             Animator = GetComponent<Animator>();
             visualObject ??= transform.Find("Visual")?.gameObject;

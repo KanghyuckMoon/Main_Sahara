@@ -170,8 +170,8 @@ namespace Module
 
 
             mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, Time.fixedDeltaTime);
-            mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
-
+            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
+            else mainModule.CharacterController.Move(mainModule.SlopeVector * Time.deltaTime);
             Animator.SetFloat("MoveSpeed", animationBlend);
         }
 

@@ -1409,6 +1409,7 @@ GameObject:
   - component: {fileID: 8916465765858849036}
   - component: {fileID: 3146007014063944715}
   - component: {fileID: -8034988879816503624}
+  - component: {fileID: 3536251414588842485}
   m_Layer: 0
   m_Name: TestTalkNPC
   m_TagString: Enemy
@@ -1499,11 +1500,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84761ad46399969499440c6518ee2447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopOrNot: 0
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
+  objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
@@ -1520,6 +1521,7 @@ MonoBehaviour:
   isWeaponExist: 0
   isHit: 0
   isCharging: 0
+  isCanHit: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -1538,8 +1540,10 @@ MonoBehaviour:
   animator: {fileID: 3699875109982235525}
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
+  back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   aiSOAddress: TestTalkNPCSO
+  smoothPath: {fileID: 0}
   textSOAddress: TestTalkDataSO
 --- !u!114 &-2401013249460836972
 MonoBehaviour:
@@ -1560,6 +1564,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 3699875110483129543}
   rootTransform: {fileID: 3699875110759865318}
   animator: {fileID: 3699875109982235525}
+  dropItemListSO: {fileID: 0}
 --- !u!114 &8916465765858849036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1601,6 +1606,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
   hitBoxName: 
+--- !u!114 &3536251414588842485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699875109982235521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
 --- !u!1 &3699875109997962231
 GameObject:
   m_ObjectHideFlags: 0
