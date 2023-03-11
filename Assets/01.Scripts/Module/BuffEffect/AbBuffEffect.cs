@@ -24,7 +24,13 @@ namespace Buff
                 return maxDuration;
             }
         }
-
+        public string Spriteaddress
+        {
+            get
+            {
+                return spriteadress; 
+            }
+        }
         protected BuffModule buffModule;
 
         protected float value = 0;

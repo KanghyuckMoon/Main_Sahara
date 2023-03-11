@@ -2,47 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System; 
+using System;
+using UI.Production;  
 
 namespace UI
 {
+    // 모든 Presenter마다 UIDocument 받아오느냐 
+    // PresenterController 에서만 UIDocument 받아와서 넘겨주느냐 
+
+    [Serializable]
     public class BuffView : AbUI_Base
     {
-        private SliderView coolView; 
-        private float coolTime; // 쿨타임 시간 
-        enum Elements
-        {
-            buff_image
-        }
-
-        enum ProgressBars 
-        {
-            buff_cool
-        }
-
-        public BuffView(VisualElement root )
-        {
-            this.parentElement = root; 
-        }
-
         public override void Cashing()
         {
-            //base.Cashing();
-            Bind<VisualElement>(typeof(Elements));
-            Bind<ProgressBar>(typeof(ProgressBars)); 
+            base.Cashing();
         }
 
-        //public void Init(/*BuffData buffData*/)
-        //{
-        //    Init(); 
-        //}
         public override void Init()
         {
             base.Init();
-            coolView = new SliderView(Get<ProgressBar>((int)ProgressBars.buff_cool));
         }
-        
     }
-
 }
 

@@ -30,6 +30,12 @@ namespace Module
             AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), Bufftype.Update);
         }
 
+        [ContextMenu("Å×½ºÆ®")]
+        public void TestBuff()
+        {
+            AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), Bufftype.Update);
+
+        }
         public void AddBuff(AbBuffEffect _buff, Bufftype _bufftype)
         {
             buffDic.Add(_buff, _bufftype);
