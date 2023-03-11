@@ -56,7 +56,7 @@ namespace PassiveItem
         private void Jumping()
         {
             mainModule.Animator.SetBool("DoubleJump", true);
-            jumpModule.Jumping();
+            jumpModule.Jumping(0);
         }
     }
 }

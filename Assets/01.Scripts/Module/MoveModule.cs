@@ -72,7 +72,7 @@ namespace Module
         {
             //if (StateModule.CheckState(State.MOVING))
             #region 속도 관련 부분
-            float _targetSpeed = mainModule.IsSprint ? moveSpeed + 4 : moveSpeed;
+            float _targetSpeed = mainModule.IsSprint ? moveSpeed + 5 : moveSpeed;
             float _lockOnspeed = mainModule.LockOn ? -2 : 0;
 
             float _speed;
