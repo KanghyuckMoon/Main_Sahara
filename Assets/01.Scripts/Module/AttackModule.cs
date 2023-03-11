@@ -44,6 +44,7 @@ namespace Module
             }
         }
 
+
         private WeaponModule weaponModule;
         private GameObject projectileObject;
 
@@ -65,7 +66,10 @@ namespace Module
         {
             if (WeaponModule.isProjectileWeapon)
             {
-                GameObject _projectile = ObjectPoolManager.Instance.GetObject(_projectileObjectData.projectileAddress);
+                string _name = ProjectileName == "Arrow" ? WeaponModule.CurrentArrowInfo.arrowAddress : ProjectileName;
+                GameObject _projectile = ObjectPoolManager.Instance.GetObject(_name);
+
+                if (_name == "Arrow") WeaponModule.CurrentArrowInfo.action?.Invoke();
 
                 _projectile.transform.SetParent(WhichHandToHold(_projectileObjectData.weaponHand));
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();

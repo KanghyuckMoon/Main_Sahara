@@ -25,6 +25,7 @@ namespace Module
         Item,
         Equipment,
         Skill,
+        Buff,
         None
     }
 

@@ -20,6 +20,10 @@ namespace Module.Talk
 		public string authorText;
 		public TalkCondition talkCondition;
 
+		//CutScene
+		public string cutSceneKey = null;
+		public bool isUseCutScene = false;
+
 		//Condition Check
 		public string questKey;
 		public QuestState questState;

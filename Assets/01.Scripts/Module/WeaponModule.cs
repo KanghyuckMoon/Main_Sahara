@@ -4,6 +4,7 @@ using UnityEngine;
 using Pool;
 using Weapon;
 using HitBox;
+using System;
 
 namespace Module
 {
@@ -74,7 +75,7 @@ namespace Module
         private int animationIndex;
         private string currentWeaponName;
 
-        private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow", WeaponHand.RightHand);
+        private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow");
         private AttackModule attackModule;
         private BaseWeapon baseWeapon;
         private ProjectileGenerator projectileGenerator;
@@ -104,7 +105,7 @@ namespace Module
         {
             animationIndex = int.MaxValue;
             currentArrowInfo.arrowAddress = "Arrow";
-            currentArrowInfo.weaponHand = WeaponHand.RightHand;
+            currentArrowInfo.action = null;
 
             projectileGenerator = mainModule.GetComponent<ProjectileGenerator>();
         }
@@ -190,7 +191,11 @@ namespace Module
             MainModule.AnimatorOverrideController["Ready"] = BaseWeapon.WeaponDataSO.readyAttackAnimation;
             MainModule.AnimatorOverrideController["ChargeAttack"] = BaseWeapon.WeaponDataSO.chargeAttackAnimation;
         }
-
+        public void SetArrow(string _name, Action _action)
+        {
+            currentArrowInfo.arrowAddress = _name;
+            currentArrowInfo.action = _action;
+        }
         public override void OnDisable()
         {
             currentWeapon = null;
@@ -203,7 +208,6 @@ namespace Module
             base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<WeaponModule>("WeaponModule", this);
         }
-
         public override void OnDestroy()
         {
             currentWeapon = null;

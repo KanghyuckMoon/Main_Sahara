@@ -21,6 +21,10 @@ namespace PassiveItem
         {
             AddFire();
         }
+        public void UpdateEffect()
+        {
+            //throw new System.NotImplementedException();
+        }
 
         public void ClearPassiveEffect()
         {
@@ -43,5 +47,6 @@ namespace PassiveItem
             effect.SetActive(false);
             effect = null;
         }
+
     }
 }

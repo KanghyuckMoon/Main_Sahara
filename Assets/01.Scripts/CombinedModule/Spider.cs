@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Module;
+using Cinemachine;
 
 namespace CondinedModule
 {
@@ -9,8 +10,22 @@ namespace CondinedModule
     {
         public string aiSOAddress = "TestEnemySO";
         public string AIAddress => aiSOAddress;
+		public CinemachineSmoothPath SmoothPath
+		{
+            get
+			{
+                return smoothPath;
+            }
+            set
+			{
+                smoothPath = value;
+            }
+		}
 
-        private void Awake()
+        [SerializeField]
+        private CinemachineSmoothPath smoothPath;
+
+		private void Awake()
         {
             StopOrNot = 1;
             CanMove = true;

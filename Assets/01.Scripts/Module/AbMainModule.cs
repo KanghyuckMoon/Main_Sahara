@@ -16,16 +16,16 @@ namespace Module
         //그건 풀링 할때 각각의 모듈을 밑에 복합데이터에 넣어주는 형식으로 한다. 메인모듈에 넣어준다.
 
         public float StopOrNot
-		{
+        {
             get
-			{
+            {
                 return stopOrNot;
-			}
+            }
             set
-			{
+            {
                 stopOrNot = value;
-			}
-		}
+            }
+        }
 
         public Transform LockOnTarget
         {
@@ -46,9 +46,9 @@ namespace Module
                 return characterController;
             }
             set
-			{
+            {
                 characterController = value;
-			}
+            }
         }
         public Vector2 ObjDir
         {
@@ -57,9 +57,9 @@ namespace Module
                 return objDir;
             }
             set
-			{
+            {
                 objDir = value;
-			}
+            }
         }
         public Quaternion ObjRotation
         {
@@ -68,7 +68,7 @@ namespace Module
                 return objRotation;
             }
             set
-			{
+            {
                 objRotation = value;
             }
         }
@@ -116,85 +116,85 @@ namespace Module
 
             }
             set
-			{
+            {
                 isSprint = value;
-			}
+            }
         }
 
         public bool IsJump
-		{
+        {
             get
-			{
+            {
                 return isJump;
-			}
+            }
             set
-			{
+            {
                 isJump = value;
-			}
-		}
+            }
+        }
         public bool IsFreeFall
-		{
+        {
             get
-			{
+            {
                 return isFreeFall;
-			}
-		}
+            }
+        }
         public bool IsSlope
-		{
+        {
             get
-			{
+            {
                 return isSlope;
-			}
+            }
             set
-			{
+            {
                 isSlope = value;
-			}
-		}
+            }
+        }
         public bool IsJumpBuf
-		{
+        {
             get
-			{
+            {
                 return isJumpBuf;
-			}
+            }
             set
-			{
+            {
                 isJumpBuf = value;
-			}
-		}
+            }
+        }
         public bool CanMove
-		{
+        {
             get
-			{
+            {
                 return canMove;
-			}
+            }
             set
-			{
+            {
                 canMove = value;
-			}
-		}
+            }
+        }
         public bool IsDead
-		{
+        {
             get
-			{
+            {
                 return isDead;
-			}
-			set
-			{
-				isDead = value;
+            }
+            set
+            {
+                isDead = value;
                 Send();
-			}
-		}
-		public bool IsAttack
-		{
+            }
+        }
+        public bool IsAttack
+        {
             get
-			{
+            {
                 return isAttack;
-			}
-		}
+            }
+        }
         public bool IsWeaponExist
-		{
+        {
             get
-			{
+            {
                 return isWeaponExist;
             }
             set
@@ -203,16 +203,16 @@ namespace Module
             }
         }
         public bool IsHit
-		{
+        {
             get
-			{
+            {
                 return isHit;
-			}
+            }
             set
-			{
+            {
                 isHit = value;
-			}
-		}
+            }
+        }
 
         public bool IsCharging
         {
@@ -233,28 +233,28 @@ namespace Module
                 return attacking;
             }
             set
-			{
+            {
                 attacking = value;
                 Animator.SetBool("Attack", attacking);
             }
         }
         public bool StrongAttacking
-		{
+        {
             get
-			{
+            {
                 return strongAttacking;
-			}
+            }
             set
-			{
+            {
                 strongAttacking = value;
                 Animator.SetBool("StrongAttack", strongAttacking);
             }
-		}
+        }
 
         public float Gravity
-		{
+        {
             get
-			{
+            {
                 return gravity;
             }
             set
@@ -262,24 +262,46 @@ namespace Module
                 gravity = value;
             }
         }
-        public float GravityScale
-		{
+        public bool IsCanHit
+        {
             get
-			{
+            {
+                return isCanHit;
+            }
+            set
+            {
+                isCanHit = value;
+            }
+        }
+        public float GravityScale
+        {
+            get
+            {
                 return gravityScale;
-			}
-		}
+            }
+        }
         public Vector3 KnockBackVector
         {
             get
-			{
+            {
                 return knockBackVector;
-			}
+            }
             set
-			{
+            {
                 knockBackVector = value;
-			}
-		}
+            }
+        }
+        public Vector3 SlopeVector
+        {
+            get
+            {
+                return slopeVector;
+            }
+            set
+            {
+                slopeVector = value;
+            }
+        }
 
         public bool LockOn
         {
@@ -408,7 +430,7 @@ namespace Module
         private bool isJump;
         [SerializeField, Header("떨어졌나?")] 
         private bool isFreeFall;
-        [SerializeField, Header("경사정도")] 
+        [SerializeField, Header("경사정도")]
         private bool isSlope;
         [SerializeField, Header("점프버퍼링타임")] 
         private bool isJumpBuf;
@@ -424,6 +446,8 @@ namespace Module
         private bool isHit;
         [SerializeField, Header("차징중인가?")]
         private bool isCharging;
+        [SerializeField, Header("맞을 수 있나?")]
+        private bool isCanHit;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
@@ -440,6 +464,8 @@ namespace Module
         public float groundOffset;
         [SerializeField, Header("넉백")]
         private Vector3 knockBackVector;
+        [SerializeField, Header("바닥 경사")]
+        private Vector3 slopeVector;
 
         [Space]
         public float hitDelay;

@@ -31,6 +31,7 @@ namespace Module
         private HpModule hpModule;
 
         private StatData statData;
+        private bool isLoad = false;
 
         public StatModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -38,7 +39,6 @@ namespace Module
         }
         public StatModule() : base()
         {
-
         }
 
         public override void Awake()
@@ -47,7 +47,16 @@ namespace Module
             statData = mainModule.GetComponent<Data.StatData>();
         }
 
-        public void SetAttackDamage(WeaponDataSO weaponDataSO)
+		public override void Start()
+		{
+			base.Start();
+            if (!isLoad)
+            {
+                statData.CurrentHp = statData.MaxHp;
+            }
+        }
+
+		public void SetAttackDamage(WeaponDataSO weaponDataSO)
         {
             statData.MeleeAttack = weaponDataSO.meleeAttack;
             statData.RangeAttack = weaponDataSO.rangedAttack;
@@ -72,6 +81,7 @@ namespace Module
             statData.CurrentHp = saveData.hp;
             statData.CurrentMana = saveData.mana;
             mainModule.transform.position = saveData.position;
+            isLoad = true;
         }
 
         public override void OnDisable()

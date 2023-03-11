@@ -10,7 +10,8 @@ using UI.ConstructorManager;
 using UI;
 using UI.Base;
 using UI.Manager;
-using UI.Shop; 
+using UI.Shop;
+using System;
 
 namespace UI.Dialogue
 {
@@ -25,6 +26,8 @@ namespace UI.Dialogue
         private static string nameCode, dialogueCode;
         private static int index;
         private static bool isDialogue; // 대화중
+
+        private Action _endCallback = null; // 대화 끝났을 떄 호출
 
         // 프로퍼티 
         public IUIController UIController { get; set; }
@@ -55,7 +58,7 @@ namespace UI.Dialogue
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_dialogue"></param>    
-        public void SetTexts(string _name, string _dialogue)
+        public void SetTexts(string _name, string _dialogue,Action _callback = null)
         {
             if (isDialogue == true) return; 
             ActiveViewS(true); // 활성화 하고 
@@ -64,6 +67,7 @@ namespace UI.Dialogue
             Logging.Log("내용 코드 : " + _dialogue);
             nameCode = _name;
             dialogueCode = _dialogue;
+            _endCallback = _callback; 
 
             SetCodeToText();
             StartCoroutine(CheckNextDialogue()); 
@@ -263,6 +267,12 @@ namespace UI.Dialogue
             isDialogue = _isActive;
             dialogueView.ActiveViewS(_isActive);
             UIManager.Instance.ActiveCursor(_isActive); 
+
+            if (_isActive == false)
+            {
+                _endCallback?.Invoke();
+                _endCallback = null; 
+            }
         }
 
         public bool TestBool;

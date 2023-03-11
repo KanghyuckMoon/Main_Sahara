@@ -92,6 +92,7 @@ namespace Effect
             }
 
             GameObject effect = ObjectPoolManager.Instance.GetObject(_adress);
+            effect.transform.SetParent(null);
             if (_scene != null)
 			{
                 SceneManager.MoveGameObjectToScene(effect, _scene);

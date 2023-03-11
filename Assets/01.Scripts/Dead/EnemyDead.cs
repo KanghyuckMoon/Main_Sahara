@@ -11,8 +11,10 @@ using Utill.Random;
 
 namespace Module
 {
-    public class EnemyDead : MonoBehaviour, Observer
+    public class EnemyDead : MonoBehaviour, Observer, Obserble
     {
+
+
         [SerializeField]
         private string enemyKey = "NULL";
 
@@ -39,21 +41,42 @@ namespace Module
 
         private AbMainModule abMainModule;
 
+        private bool isDestroy;
+        private bool isDead;
+        public bool IsDestroy => isDestroy;
+        public bool IsDead => isDead;
+
+        public List<Observer> Observers => observers;
+        public List<Observer> observers = new List<Observer>();
 
         private void Start()
         {
+            isDead = false;
+            isDestroy = false;
             abMainModule = GetComponent<AbMainModule>();
             abMainModule.AddObserver(this);
+        }
+
+        private void OnEnable()
+        {
+            isDead = false;
+            isDestroy = false;
         }
 
         public void Receive()
         {
             if (abMainModule.IsDead)
             {
+                if(isDead || isDestroy)
+				{
+                    return;
+				}
+
                 if(questClearKey is not "NULL")
 				{
                     QuestManager.Instance.ChangeQuestClear(questClearKey);
                 }
+                isDead = true;
                 StartCoroutine(IDead());
             }
         }
@@ -64,7 +87,6 @@ namespace Module
             animator.speed = 0;
             EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
             EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, transform, rootTransform, gameObject.scene);
-            
             //Item Drop
             for (int i = 0; i < dropItemListSO.dropCount; ++i)
             {
@@ -75,11 +97,10 @@ namespace Module
                 }
                 ItemDrop(dropItemListSO.dropItemKeyArr[_index]); 
             }
-
-
             yield return new WaitForSeconds(0.2f);
             abMainModule.Model.gameObject.SetActive(false);
             yield return new WaitForSeconds(3f);
+            Send();
             animator.speed = 1;
             abMainModule.Model.gameObject.SetActive(true);
             ObjectPoolManager.Instance.RegisterObject(enemyKey, gameObject);
@@ -97,5 +118,24 @@ namespace Module
             _dropObj.SetActive(true);
         }
 
+        private void OnDestroy()
+        {
+            isDead = true;
+            isDestroy = true;
+            Send();
+        }
+
+        public void AddObserver(Observer _observer)
+        {
+            observers.Add(_observer);
+        }
+
+        public void Send()
+        {
+            foreach (Observer _observer in observers)
+            {
+                _observer.Receive();
+            }
+        }
     }
 }

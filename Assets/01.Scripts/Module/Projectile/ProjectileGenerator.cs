@@ -19,6 +19,10 @@ namespace Module
         private ProjectilePositionSO positionSO;
         private AttackModule attackModule;
         private AbMainModule mainModule;
+        private StateModule stateModule;
+
+        private float delay = 1;
+        private bool canSpwon;
 
         private List<GameObject> projectileObjects = new List<GameObject>();
 
@@ -26,6 +30,7 @@ namespace Module
         {
             mainModule = GetComponent<AbMainModule>();
             attackModule = mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
+            stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         }
 
         public void ChangeSO(ProjectilePositionSO _positionSO)
@@ -35,6 +40,8 @@ namespace Module
 
         public void SpownAndMove(string _projectileName)
         {
+            //if (stateModule.CheckState(State.ATTACK)) return;
+            if (canSpwon) return;
             if (PositionSO is null)
                 return;
 
@@ -46,10 +53,14 @@ namespace Module
         {
             //for (int i = 0; i < _count; i++)
             //{
+            if (canSpwon) return;
             if (PositionSO is null)
                 return;
 
-            ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(_projectileName);
+            //if (stateModule.CheckState(State.ATTACK)) return;
+            Delay();
+
+            ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(attackModule.ProjectileName);
 
             if (_list is not null)
             {
@@ -65,6 +76,8 @@ namespace Module
 
         public void MoveProjectile()
         {
+            //if (stateModule.CheckState(State.ATTACK)) return;
+            if (canSpwon) return;
             if (PositionSO is null)
                 return;
 
@@ -73,6 +86,13 @@ namespace Module
             projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation));
 
             projectileObjects.Clear();
+        }
+
+        IEnumerator Delay()
+        {
+            canSpwon = true;
+            yield return new WaitForSeconds(delay);
+            canSpwon = false;
         }
     }
 }

@@ -21,6 +21,12 @@ namespace Module
 					case AccessoriesItemType.Fire:
 						_itemPassive = new FireAccessories(mainModule);
 						break;
+					case AccessoriesItemType.DoubleJump:
+						_itemPassive = new DoubleJump_Accessories(mainModule);
+						break;
+					case AccessoriesItemType.Dash:
+						_itemPassive = new Dash_Accessories(mainModule);
+						break;
 					case AccessoriesItemType.NONE:
 						break;
 				}

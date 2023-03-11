@@ -45,9 +45,13 @@ namespace HitBox
 			else
 			{
 				HitBoxDataList hitBoxDataList = new HitBoxDataList();
-				hitBoxDataList.hitBoxDataList.Add(HitBoxData.Copy(hitBoxData));
+				hitBoxDataList.hitBoxDataList.Add(HitBoxData.CopyNew(hitBoxData));
 				hitBoxDataDic.Add(hitBoxData.hitBoxName, hitBoxDataList);
 			}
+
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+#endif
 		}
 		public void UploadHitBoxNoneCopy(HitBoxData hitBoxData)
 		{
@@ -62,19 +66,23 @@ namespace HitBox
 				HitBoxData _hitBoxClassificationData = list.hitBoxDataList.Find(x => x.ClassificationName == hitBoxData.ClassificationName);
 				if (_hitBoxClassificationData is not null)
 				{
-					_hitBoxClassificationData = hitBoxData;
+					_hitBoxClassificationData.Copy(hitBoxData);
 				}
 				else
 				{
-					list.hitBoxDataList.Add(hitBoxData);
+					list.hitBoxDataList.Add(HitBoxData.CopyNew(hitBoxData));
 				}
 			}
 			else
 			{
 				HitBoxDataList hitBoxDataList = new HitBoxDataList();
-				hitBoxDataList.hitBoxDataList.Add(hitBoxData);
+				hitBoxDataList.hitBoxDataList.Add(HitBoxData.CopyNew(hitBoxData));
 				hitBoxDataDic.Add(hitBoxData.hitBoxName, hitBoxDataList);
 			}
+
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+#endif
 		}
 	}
 
@@ -93,8 +101,10 @@ namespace HitBox
 		public ulong hitBoxIndex;
 		public float deleteDelay = 0.1f;
 		public bool childization = false;
-		public Vector3 offset;
-		public Vector3 size;
+		public Vector3 offset = Vector3.zero;
+		public float radius = 1f;
+		public float height = 1f;
+		public Vector3 rotation = Vector3.zero;
 
 		//³Ë¹é
 		public bool isContactDirection = false; 
@@ -108,7 +118,7 @@ namespace HitBox
 		public string swingEffect = "NULL";
 		public string hitEffect = "NULL";
 
-		public static HitBoxData Copy(HitBoxData _hitBoxData)
+		public static HitBoxData CopyNew(HitBoxData _hitBoxData)
 		{
 			HitBoxData _newHitBox = new HitBoxData();
 			_newHitBox.hitBoxName = _hitBoxData.hitBoxName;
@@ -117,11 +127,11 @@ namespace HitBox
 			_newHitBox.deleteDelay = _hitBoxData.deleteDelay;
 			_newHitBox.childization = _hitBoxData.childization;
 			_newHitBox.offset = _hitBoxData.offset;
-			_newHitBox.size = _hitBoxData.size;
+			_newHitBox.radius = _hitBoxData.radius;
+			_newHitBox.rotation = _hitBoxData.rotation;
 
 			_newHitBox.knockbackDir = _hitBoxData.knockbackDir;
 			_newHitBox.defaultPower = _hitBoxData.defaultPower;
-
 
 			_newHitBox.swingEffectOffset = _hitBoxData.swingEffectOffset;
 			_newHitBox.swingEffectRotation = _hitBoxData.swingEffectRotation;
@@ -130,6 +140,27 @@ namespace HitBox
 			_newHitBox.hitEffect = _hitBoxData.hitEffect;
 
 			return _newHitBox;
+		}
+
+		public void Copy(HitBoxData _hitBoxData)
+		{
+			hitBoxName = _hitBoxData.hitBoxName;
+			ClassificationName = _hitBoxData.ClassificationName;
+			hitBoxIndex = _hitBoxData.hitBoxIndex;
+			deleteDelay = _hitBoxData.deleteDelay;
+			childization = _hitBoxData.childization;
+			offset = _hitBoxData.offset;
+			radius = _hitBoxData.radius;
+			rotation = _hitBoxData.rotation;
+
+			knockbackDir = _hitBoxData.knockbackDir;
+			defaultPower = _hitBoxData.defaultPower;
+
+			swingEffectOffset = _hitBoxData.swingEffectOffset;
+			swingEffectRotation = _hitBoxData.swingEffectRotation;
+			swingEffectSize = _hitBoxData.swingEffectSize;
+			swingEffect = _hitBoxData.swingEffect;
+			hitEffect = _hitBoxData.hitEffect;
 		}
 	}
 

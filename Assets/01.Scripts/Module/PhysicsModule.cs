@@ -14,7 +14,7 @@ namespace Module
 {
     public class PhysicsModule : AbBaseModule
     {
-        private float rayDistance = 0.6f;
+        private float rayDistance = 1f;
         private ulong praviousHitBoxIndex = 0;
         private HitModule HitModule
         {
@@ -40,22 +40,9 @@ namespace Module
                 return jumpModule;
             }
         }
-        private PlayerLandEffectSO Effect
-        {
-            get
-            {
-                effect ??= AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
-                return effect;
-            }
-        }
         private JumpModule jumpModule;
         private HitModule hitModule;
         private StateModule stateModule;
-        private PlayerLandEffectSO effect;
-
-        private float effectSpownDelay => effect.effectDelayTime;
-        private float currenteffectSpownDelay;
-        private bool isRight;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -66,15 +53,11 @@ namespace Module
 
         }
 
-        public override void Start()
-        {
-            effect = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerLandEffectSO");
-        }
         public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
         {
             foreach (string _tagName in mainModule.HitCollider)
             {
-                if (other.CompareTag(_tagName) && !mainModule.IsDead)
+                if (other.CompareTag(_tagName) && !mainModule.IsDead && !mainModule.IsCanHit)
                 {
                     
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
@@ -124,26 +107,36 @@ namespace Module
         public override void FixedUpdate()
         {
             GroundCheack();
-            SetEffect();
             Slope();
         }
 
         private void Slope()
         {
-            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y- mainModule.groundOffset,
+            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
                 mainModule.transform.position.z);
 
             Ray ray = new Ray(rayPos, Vector3.down);
             RaycastHit _raycastHit;
             if (Physics.Raycast(ray, out _raycastHit, rayDistance, mainModule.groundLayer))
             {
-                mainModule.SlopeHit = _raycastHit;
-                var angle = Vector3.Angle(Vector3.up, mainModule.SlopeHit.normal);
-                mainModule.IsSlope = (angle > -90 + mainModule.MaxSlope) && (angle < 90 - mainModule.MaxSlope); // 90 - mainModule.MaxSlope = 올라갈 수 있는 각도
+                //mainModule.SlopeHit = _raycastHit;
+                var angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
+                //Debug.LogError(angle + " : : : : " + Vector3.Angle(Vector3.up, _raycastHit.normal));
+                mainModule.IsSlope = (angle < mainModule.CharacterController.slopeLimit) && (angle > -mainModule.CharacterController.slopeLimit); // 90 - mainModule.MaxSlope = 올라갈 수 있는 각도
                 //return;
+                if(mainModule.IsSlope is false)
+                {
+                    mainModule.SlopeVector = Vector3.ProjectOnPlane(new Vector3(0, mainModule.Gravity, 0), _raycastHit.normal);
+                }
+            }
+            else
+            {
+                //Debug.LogError("안닿아닿아닿아");
+                mainModule.IsSlope = true;
             }
 
-            Debug.DrawLine(rayPos, rayPos + new Vector3(0, -rayDistance, 0), Color.red);
+            //Debug.DrawLine(rayPos, rayPos + new Vector3(0, 100, 0), Color.red);
+            Debug.DrawRay(rayPos, Vector3.down, Color.red);
         }
 
 
@@ -151,7 +144,7 @@ namespace Module
         {
             Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
                 mainModule.transform.position.z);
-            bool _isLand = Physics.CheckSphere(_spherePosition, 0.36f, mainModule.groundLayer,
+            bool _isLand = Physics.CheckSphere(_spherePosition, 0.25f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
             if (!mainModule.isGround && _isLand)
@@ -161,7 +154,6 @@ namespace Module
                 StateModule.RemoveState(State.JUMP);
 
                 mainModule.KnockBackVector = Vector3.zero;
-                EffectManager.Instance.SetEffectDefault(Effect.landEffectName, mainModule.transform.position, Quaternion.identity);
                 //StatModule.
 
 
@@ -175,30 +167,6 @@ namespace Module
         {
             yield return new WaitForSeconds(0.3f);
             mainModule.StopOrNot = 1;
-        }
-
-        private void SetEffect()
-        {
-            if (mainModule.isGround && mainModule.ObjDir != Vector2.zero)
-            {
-                float delay = 1;
-                if (currenteffectSpownDelay > effectSpownDelay)
-                {
-                    currenteffectSpownDelay = 0;
-
-                    if (mainModule.IsSprint)
-                    {
-                        delay = Effect.runEffectDelay;
-                        EffectManager.Instance.SetEffectDefault(isRight ? Effect.runREffectName : Effect.runLEffectName, mainModule.transform.position, Quaternion.identity);
-                    }
-                    else
-                    {
-                        EffectManager.Instance.SetEffectDefault(isRight ? Effect.walkRffectName : Effect.walkLffectName, mainModule.transform.position, Quaternion.identity);
-                    }
-                    isRight = !isRight;
-                }
-                currenteffectSpownDelay += Time.deltaTime * delay;
-            }
         }
 
         private void FallDamage()
