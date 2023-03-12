@@ -10,13 +10,37 @@ namespace Buff
     /// </summary>
     public abstract class AbBuffEffect : IBuff
     {
+        public float Duration
+        {
+            get
+            {
+                return duration;
+            }
+        }
+        public float MaxDuration
+        {
+            get
+            {
+                return maxDuration;
+            }
+        }
+        public string Spriteaddress
+        {
+            get
+            {
+                return spriteadress; 
+            }
+        }
         protected BuffModule buffModule;
 
         protected float value = 0;
+        protected float maxDuration = 0;
         protected float duration = 0;
         protected float period = 0;
 
         protected string spownObjectName;
+
+        private string spriteadress;
 
         public AbBuffEffect(BuffModule _buffModule)
         {
@@ -24,9 +48,10 @@ namespace Buff
         }
 
         public AbBuffEffect SetValue(float _value) { value = _value;  return this; }
-        public AbBuffEffect SetDuration(float _duration) { duration = _duration;  return this; }
+        public AbBuffEffect SetDuration(float _duration) { maxDuration = _duration; duration = maxDuration;  return this; }
         public AbBuffEffect SetPeriod(float _period) { period = _period;  return this; }
         public AbBuffEffect SetSpownObjectName(string _spownObjectName) { spownObjectName = _spownObjectName;  return this; }
+        public AbBuffEffect SetSprite(string _spriteadress) { spriteadress = _spriteadress;  return this; }
 
         public abstract void Buff(AbMainModule _mainModule);
     }

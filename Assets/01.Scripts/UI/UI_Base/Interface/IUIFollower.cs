@@ -16,7 +16,8 @@ namespace UI
         public UIDocument RootUIDocument { get; set; }
         public void Awake();
         //public void Start(StateData _stateData);
-        public void Start(StatData _statData);
+   //     public void Start(StatData _statData);
+        public void Start(object _data);
         public void UpdateUI();
 
     }

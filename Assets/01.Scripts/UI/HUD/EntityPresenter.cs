@@ -5,9 +5,15 @@ using UnityEngine.UIElements;
 using Module;
 using Utill.Measurement;
 using Data;
+using System;
 
 namespace UI
 {
+    public enum HudType
+    {
+        statData, 
+        buffData,
+    }
     public class EntityPresenter : MonoBehaviour, IUIOwner, Observer
     {
         // 디버그용
@@ -31,12 +37,14 @@ namespace UI
 
         private VisualElement hudElement;
         private PresenterFollower presenterFollower;
-        [SerializeField]
+
+        // 데이터 
         private UIModule uiModule;
-        [SerializeField]
         private StatData statData;
+        private BuffModule buffModule;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
+        private Dictionary<HudType, List<IUIFollower>> _dataPresenterDic = new Dictionary<HudType, List<IUIFollower>>(); // 데이터 타입, 프레젠터 
 
         // 프로퍼티 
         public UIDocument Root { get; set; }
@@ -62,15 +70,6 @@ namespace UI
                 return target;
 
             }
-        }
-
-        public void DebugTest()
-        {
-            hpPresenter.Test1();
-        }
-        public void DebugTest2()
-        {
-            hpPresenter.Test2();
         }
 
         private void OnEnable()
@@ -109,6 +108,10 @@ namespace UI
             {
                 presenterFollower = new PresenterFollower(this, hudElement, target, targetRenderer);
             }
+            if(buffModule != null)
+            {
+                buffPresenter.Update(); 
+            }
         }
         
         private void LateUpdate()
@@ -123,6 +126,12 @@ namespace UI
                 //Debug.Log("따라가는중");
             }
 
+        }
+
+        [ContextMenu("버프 테스트")]
+        public void Test()
+        {
+            buffModule.TestBuff(); 
         }
         private IEnumerator ActivePn()
         {
@@ -170,11 +179,18 @@ namespace UI
         /// </summary>
         private void ContructPresenters()
         {
-            _presenterList.Clear(); 
+            _presenterList.Clear();
 
             _presenterList.Add(hpPresenter);
             _presenterList.Add(mpPresenter);
             _presenterList.Add(buffPresenter);
+
+            _dataPresenterDic.Add(HudType.statData, new List<IUIFollower>());
+            _dataPresenterDic.Add(HudType.buffData, new List<IUIFollower>());
+        
+            _dataPresenterDic[HudType.statData].Add(hpPresenter);
+            _dataPresenterDic[HudType.statData].Add(mpPresenter);
+            _dataPresenterDic[HudType.buffData].Add(buffPresenter);
         }
 
         private void AwakePresenters()
@@ -187,29 +203,56 @@ namespace UI
         }
         private void StartPresenters()
         {
-            foreach (var p in _presenterList)
+            foreach(var _p in _dataPresenterDic.Keys)
             {
-                //p.Start(stateData);
-                p.Start(statData);
+                switch (_p)
+                {
+                    case HudType.statData:
+                        _dataPresenterDic[_p].ForEach((x) => x.Start(statData));
+                        break; 
+                    case HudType.buffData:
+                        _dataPresenterDic[_p].ForEach((x) => x.Start(buffModule));
+                        break;
+                }
             }
+            //foreach (var p in _presenterDic.Keys)
+            //{
+            //    switch (p)
+            //    {
+            //        case HudType.hp: case HudType.mp:
+            //            _presenterDic[p].Start(statData);
+            //            break;
+            //        case HudType.buff:
+            //            _presenterDic[p].Start(buffModule);
+            //            break;
+            //    }
+            //}
+
+            //foreach (var p in _presenterList)
+            //{
+            //    //p.Start(stateData);
+            //    p.Start(statData);
+            //}
         }
 
         [ContextMenu("버프 아이콘 생성")]
         public void TestCreateBuffIcon()
         {
-            buffPresenter.CreateBuffIcon();
+       //     buffPresenter.CreateBuffIcon();
         }
 
 
         IEnumerator Init()
         {
-            if(statData != null)
+            if(statData != null && buffModule != null)
             {
                 StartPresenters();
             }
             while (transform.parent != null && statData == null)
             {
-                this.uiModule = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI);
+                AbMainModule _mainModule = transform.parent.GetComponentInChildren<AbMainModule>(); 
+                this.uiModule = _mainModule.GetModuleComponent<UIModule>(ModuleType.UI);
+                this.buffModule = _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
                 this.statData = transform.parent.GetComponent<StatData>();
                 if (statData != null)
                 {
