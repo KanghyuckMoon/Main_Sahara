@@ -34,6 +34,9 @@ namespace Module
 
         private float jumpDelay;
         private float calculatedTime;
+        private float currentDelay;
+
+        private bool isJumotrue;
 
         private float antiFallTime;
         private float calculatedFallTime;
@@ -62,6 +65,11 @@ namespace Module
             Weight();
         }
 
+        public override void Update()
+        {
+
+        }
+
         void Weight()
         {
             if (gravityWeight >= mainModule.Gravity)
@@ -81,9 +89,9 @@ namespace Module
 
                 if (mainModule.IsJump && calculatedTime <= 0.0f)
                 {
-                    Jumping();
-
                     Animator.SetBool("Jump", true);
+
+                    Jumping(0.2f);
                 }
 
                 if (calculatedTime > 0.0f)
@@ -108,9 +116,13 @@ namespace Module
             //if()
         }
 
-        public void Jumping()
+        public void Jumping(float _delay)
         {
             //Debug.LogError("점ㅊ프프프프프");
+            //isJumotrue = true;
+
+            //if(currentDelay < )
+
             mainModule.Gravity = Mathf.Sqrt(JumpHeight * -2f * _GravityScale);
             //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
