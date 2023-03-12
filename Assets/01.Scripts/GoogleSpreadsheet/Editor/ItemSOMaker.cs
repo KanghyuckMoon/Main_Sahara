@@ -15,6 +15,7 @@ public class ItemSOMaker : MonoBehaviour
     public AllItemDataSO allItemDataSO;
     public AllItemDataSO allDropItemDataSO;
     public AllItemUpgradeDataSO allItemUpgradeDataSO;
+    public AllDropItemListSO allDropItemListSO;
 
     [ContextMenu("MakeItemSO")]
     public void MakeItemSO()
@@ -35,6 +36,10 @@ public class ItemSOMaker : MonoBehaviour
         UnityWebRequest wwwUpgradeItemSO = UnityWebRequest.Get(URL.UPGRADEITEMSO);
         yield return wwwUpgradeItemSO.SendWebRequest();
         SetSOUpgradeItem(wwwUpgradeItemSO.downloadHandler.text);
+
+        UnityWebRequest wwwDropItemListSO = UnityWebRequest.Get(URL.DROPITEMLISTSO);
+        yield return wwwDropItemListSO.SendWebRequest();
+        SetSODropItemList(wwwDropItemListSO.downloadHandler.text);
     }
 
     private void SetSOItem(string tsv)
@@ -215,6 +220,61 @@ public class ItemSOMaker : MonoBehaviour
                 _itemData.count = int.Parse(_nCount);
                 _asset.needItemDataList.Add(_itemData);
             }
+
+            AssetDatabase.SaveAssets();
+
+            EditorUtility.FocusProjectWindow();
+
+            Selection.activeObject = _asset;
+        }
+    }
+
+    private void SetSODropItemList(string tsv)
+    {
+        string[] row = tsv.Split('\n');
+        int rowSize = row.Length;
+
+        for (int i = 1; i < rowSize; i++)
+        {
+            string[] column = row[i].Split('\t');
+
+            string _name = column[0];
+            string _dropCount = column[1];
+            string[] _dropPercentArr = column[2].Split(',');
+            string[] _dropItemKeyArr = column[3].Split(',');
+
+            DropItemListSO _asset = null;
+            _asset = allDropItemListSO.dropItemListSOList.Find(x => x.listName == _name);
+            //이미 있는지
+            if (_asset == null)
+            {
+                _asset = ScriptableObject.CreateInstance<DropItemListSO>();
+
+                AssetDatabase.CreateAsset(_asset, $"Assets/02.ScriptableObject/EnemyDropItemListSO/{_name}_DropListSO.asset");
+                AssetDatabase.SaveAssets();
+
+                EditorUtility.FocusProjectWindow();
+
+                Selection.activeObject = _asset;
+
+                allDropItemListSO.dropItemListSOList.Add(_asset);
+            }
+            _asset.listName = _name;
+            _asset.dropCount = int.Parse(_dropCount);
+
+            float[] _randomPercentArr = new float[_dropPercentArr.Length];
+            string[] _randomDropItemKeyArr = new string[_dropItemKeyArr.Length];
+
+            for (int j = 0; j < _randomPercentArr.Length; ++j)
+            {
+                string _nPercent = _dropPercentArr[j];
+                string _nItemKey = _dropItemKeyArr[j];
+                _randomPercentArr[j] = float.Parse(_nPercent);
+                _randomDropItemKeyArr[j] = _nItemKey;
+            }
+
+            _asset.randomPercentArr = _randomPercentArr;
+            _asset.dropItemKeyArr = _randomDropItemKeyArr;
 
             AssetDatabase.SaveAssets();
 

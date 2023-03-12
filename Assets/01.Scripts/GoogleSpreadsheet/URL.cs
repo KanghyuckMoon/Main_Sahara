@@ -13,6 +13,7 @@ namespace GoogleSpreadSheet
         public const string ITEMSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=136508589";
         public const string DROPITEMSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=1391864184";
         public const string UPGRADEITEMSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=354037005";
+        public const string DROPITEMLISTSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=192564105";
 
     }
 }
