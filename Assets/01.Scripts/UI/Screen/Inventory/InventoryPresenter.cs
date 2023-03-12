@@ -20,6 +20,8 @@ namespace UI.Inventory
         [SerializeField]
         private InventoryView inventoryView;
 
+     //   private 
+
         // 프로퍼티 
         public IUIController UIController { get; set; }
         
