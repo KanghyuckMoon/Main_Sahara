@@ -1,10 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UIToolkit/Uss/Slider.uss?fileID=7433441132597879392&amp;guid=4d4caa61570a49f49a00d4dbc1809e15&amp;type=3#Slider" />
-    <ui:VisualElement name="hp_view">
-        <ui:VisualElement name="hp_frame" style="width: 400px; height: 40px; border-left-color: rgb(202, 202, 202); border-right-color: rgb(202, 202, 202); border-top-color: rgb(202, 202, 202); border-bottom-color: rgb(202, 202, 202); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; overflow: visible; align-items: center; flex-grow: 1; justify-content: center;">
-            <ui:VisualElement name="frame" class="slider_frame" style="display: flex; bottom: -29px;" />
-            <ui:ProgressBar value="1" name="back_bar" high-value="1" class="hp_bar" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-bottom: 0; position: absolute; width: 95%; height: 95%; display: flex; align-items: stretch;" />
-            <ui:ProgressBar name="front_bar" value="1" high-value="1" class="front_bar hp_bar" style="display: flex; width: 95%; height: 95%; justify-content: flex-start;" />
+    <ui:VisualElement name="hp_view" style="width: 100%; height: 100%;">
+        <ui:VisualElement name="hp_frame" style="width: 100%; height: 100%; border-left-color: rgb(202, 202, 202); border-right-color: rgb(202, 202, 202); border-top-color: rgb(202, 202, 202); border-bottom-color: rgb(202, 202, 202); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; overflow: visible; align-items: center; flex-grow: 1; justify-content: center;">
+            <ui:VisualElement name="frame" class="slider_frame" style="height: 100%;" />
+            <ui:VisualElement name="bar" class="bar_parent">
+                <ui:ProgressBar value="1" name="back_bar" high-value="1" class="hp_bar" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-bottom: 0; position: relative; width: 100%; height: 100%; display: flex; align-items: stretch;" />
+                <ui:ProgressBar name="front_bar" value="1" high-value="1" class="front_bar hp_bar" style="display: flex; width: 100%; height: 100%; justify-content: flex-start; position: relative; bottom: 100%;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
