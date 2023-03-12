@@ -341,6 +341,12 @@ namespace Inventory
 			}
 			return null;
 		}
+
+		public int GetCurrentQuickSlotIndex()
+		{
+			return quickSlotIndex;
+		}
+
 		public ItemData GetQuickSlotItem(int _index)
 		{
 			return inventorySO.quickSlot[_index];
