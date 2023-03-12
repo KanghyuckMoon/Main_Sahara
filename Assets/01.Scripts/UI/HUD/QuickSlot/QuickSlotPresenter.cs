@@ -35,10 +35,11 @@ namespace UI
         }
         public void UpdateUI()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < quickSlotView.SlotList.Count; i++)
             {
                 quickSlotView.SlotList[i].SetItemData(InventoryManager.Instance.GetQuickSlotItem(i));
             }
+            quickSlotView.ArrowSlot.SetItemData(InventoryManager.Instance.GetArrow()); 
         }
     }
 

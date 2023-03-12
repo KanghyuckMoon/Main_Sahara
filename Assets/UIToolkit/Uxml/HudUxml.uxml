@@ -5,13 +5,14 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Hud.uss?fileID=7433441132597879392&amp;guid=1841124dd9e19824ab71e01edca4d30f&amp;type=3#Hud" />
     <Style src="project://database/Assets/UIToolkit/Uss/Container.uss?fileID=7433441132597879392&amp;guid=fb415ed2a98934248b9610f643b8b73f&amp;type=3#Container" />
     <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Buff.uss?fileID=7433441132597879392&amp;guid=d10c99d3eefb88e4c9b775f260c76aaa&amp;type=3#Buff" />
     <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%;">
         <ui:VisualElement name="top_panel" class="top_panel">
-            <ui:VisualElement name="top_left_panel" style="flex-basis: 30%; flex-grow: 1;">
-                <ui:VisualElement style="scale: 0.75 0.75; transform-origin: left;">
+            <ui:VisualElement name="top_left_panel" style="flex-basis: 30%; flex-grow: 1; justify-content: flex-start; align-items: stretch;">
+                <ui:VisualElement style="scale: 0.5 0.5; transform-origin: left; height: 275px; width: 793px;">
                     <ui:Instance template="HpUxml" name="HpUxml" style="margin-bottom: 0;" />
-                    <ui:Instance template="MpUxml" name="MpUxml" style="margin-bottom: 5px; display: none;" />
-                    <ui:VisualElement name="buff_view" class="Container" />
+                    <ui:Instance template="MpUxml" name="MpUxml" style="margin-bottom: 5px; display: none; top: 63px;" />
+                    <ui:VisualElement name="buff_view" class="Container" style="top: 49px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="top_mid_panel" style="flex-basis: 30%; flex-grow: 1;" />
@@ -28,46 +29,55 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="bottom_right_panel" class="bottom_right_panel" style="flex-basis: 20%; flex-grow: 1;">
-                <ui:VisualElement name="quickslot_view" picking-mode="Ignore" class="weapon_panel">
-                    <ui:VisualElement name="quick_slot" class="quick_slot_hud">
-                        <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
-                            <ui:VisualElement name="frame" class="quick_slot_frame" />
-                            <ui:VisualElement name="image" class="quick_slot_image" />
-                            <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: flex-end; flex-direction: column-reverse;">
+                    <ui:VisualElement name="quickslot_view" picking-mode="Ignore" class="weapon_panel" style="flex-grow: 1; position: absolute; align-items: flex-end; flex-direction: column-reverse;">
+                        <ui:VisualElement name="quick_slot" class="quick_slot_hud">
+                            <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                                <ui:VisualElement name="frame" class="quick_slot_frame" />
+                                <ui:VisualElement name="image" class="quick_slot_image" />
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="select_effect" class="select_effect" style="rotate: -3deg;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="select_effect" class="select_effect" style="rotate: -3deg;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="quick_slot" class="quick_slot_hud">
-                        <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
-                            <ui:VisualElement name="frame" class="quick_slot_frame" />
-                            <ui:VisualElement name="image" class="quick_slot_image" />
-                            <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                        <ui:VisualElement name="quick_slot" class="quick_slot_hud">
+                            <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                                <ui:VisualElement name="frame" class="quick_slot_frame" />
+                                <ui:VisualElement name="image" class="quick_slot_image" />
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                            </ui:VisualElement>
                         </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement name="quick_slot" class="quick_slot_hud">
-                        <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
-                            <ui:VisualElement name="frame" class="quick_slot_frame" />
-                            <ui:VisualElement name="image" class="quick_slot_image" />
-                            <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                        <ui:VisualElement name="quick_slot" class="quick_slot_hud">
+                            <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                                <ui:VisualElement name="frame" class="quick_slot_frame" />
+                                <ui:VisualElement name="image" class="quick_slot_image" />
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                            </ui:VisualElement>
                         </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement name="quick_slot" class="quick_slot_hud">
-                        <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
-                            <ui:VisualElement name="frame" class="quick_slot_frame" />
-                            <ui:VisualElement name="image" class="quick_slot_image" />
-                            <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                        <ui:VisualElement name="quick_slot" class="quick_slot_hud">
+                            <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                                <ui:VisualElement name="frame" class="quick_slot_frame" />
+                                <ui:VisualElement name="image" class="quick_slot_image" />
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                            </ui:VisualElement>
                         </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement name="quick_slot" class="quick_slot_hud">
-                        <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
-                            <ui:VisualElement name="frame" class="quick_slot_frame" />
-                            <ui:VisualElement name="image" class="quick_slot_image" />
-                            <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                        <ui:VisualElement name="quick_slot" class="quick_slot_hud">
+                            <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                                <ui:VisualElement name="frame" class="quick_slot_frame" />
+                                <ui:VisualElement name="image" class="quick_slot_image" />
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                            </ui:VisualElement>
                         </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement name="weapon_icon" class="weapon_icon" style="display: none;">
-                        <ui:VisualElement name="weapon_background" class="skill_background">
-                            <ui:VisualElement name="weapon_icon" class="skill_image" />
+                        <ui:VisualElement name="arrow_slot" class="quick_slot_hud" style="display: flex; margin-bottom: 55px; scale: 1.1 1.1;">
+                            <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                                <ui:VisualElement name="frame" class="quick_slot_frame" />
+                                <ui:VisualElement name="image" class="quick_slot_image" />
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="weapon_icon" class="weapon_icon" style="display: none;">
+                            <ui:VisualElement name="weapon_background" class="skill_background">
+                                <ui:VisualElement name="weapon_icon" class="skill_image" />
+                            </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>

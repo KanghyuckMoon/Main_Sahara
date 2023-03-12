@@ -17,8 +17,11 @@ namespace UI
         }
 
         private List<SlotItemPresenter> _slotList = new List<SlotItemPresenter>();
+        private SlotItemPresenter arrowSlot; 
 
-        public List<SlotItemPresenter> SlotList => _slotList; 
+        public List<SlotItemPresenter> SlotList => _slotList;
+        public SlotItemPresenter ArrowSlot { get => arrowSlot; set => arrowSlot = value; }
+
         public override void Cashing()
         {
             base.Cashing();
@@ -37,6 +40,12 @@ namespace UI
             List<VisualElement> _vList = GetVisualElement((int)Elements.quickslot_view).Query(className: "quick_slot_hud").ToList(); 
             foreach(var _v in _vList)
             {
+                // 화살 슬롯은 다르게 처리 
+                if(_v.name == "arrow_slot")
+                {
+                    arrowSlot = new SlotItemPresenter(_v);
+                    continue; 
+                }
                 _slotList.Add(new SlotItemPresenter(_v, _index));
                 ++_index; 
             }

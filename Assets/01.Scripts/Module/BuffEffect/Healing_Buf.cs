@@ -41,6 +41,7 @@ namespace Buff
             else
             {
                 buffModule.buffDic.Remove(this);
+                buffModule.buffList.Remove(this);
             }
         }
     }

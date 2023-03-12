@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 namespace UI.ConstructorManager
 {
     /// <summary>
-    /// µ¿ÀûÀ¸·Î UI »ý¼ºÇØÁÖ´Â ¾Öµé °ü¸®ÇØÁÖ´Â °÷ 
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Öµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ 
     /// </summary>
     public class UIConstructorManager : MonoSingleton<UIConstructorManager>
     {
@@ -22,12 +22,13 @@ namespace UI.ConstructorManager
         private UIConstructor<ItemDescriptionView> itemDescriptionConstructor;
         private UIConstructor<PopupView> popupConstructor;
         private UIConstructor<SaveEntryView> saveEntryConstructor; 
+        private UIConstructor<BuffEntryView> buffEntryConstructor; 
 
         private EventAlarmPresenter eventAlarmPresenter; 
 
         private Dictionary<Type, ICreateUI> uiConstructorDic = new Dictionary<Type, ICreateUI>();
 
-        // ÇÁ·ÎÆÛÆ¼
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼
         public Dictionary<Type, ICreateUI> UIConstructorDic => uiConstructorDic; 
         public EventAlarmPresenter EventAlarmPresenter
         {
@@ -61,6 +62,7 @@ namespace UI.ConstructorManager
             itemDescriptionConstructor = new UIConstructor<ItemDescriptionView>("ItemDescription");
             popupConstructor = new UIConstructor<PopupView>("Popup");
             saveEntryConstructor = new UIConstructor<SaveEntryView>("SaveEntry");
+            buffEntryConstructor= new UIConstructor<BuffEntryView>("BuffEntry"); 
 
             uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor);
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
@@ -69,6 +71,7 @@ namespace UI.ConstructorManager
             uiConstructorDic.Add(typeof(ItemDescriptionView), itemDescriptionConstructor);
             uiConstructorDic.Add(typeof(PopupView), popupConstructor);
             uiConstructorDic.Add(typeof(SaveEntryView), saveEntryConstructor);
+            uiConstructorDic.Add(typeof(BuffEntryView), buffEntryConstructor);
         }
 
         private void Awake()
@@ -77,7 +80,7 @@ namespace UI.ConstructorManager
         }
 
         /// <summary>
-        /// UI »ý¼º ¹ÝÈ¯ 
+        /// UI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ 
         /// </summary>
         /// <param name="_type"></param>
         /// <returns></returns>
@@ -87,7 +90,7 @@ namespace UI.ConstructorManager
             {
                return _creater.CreateUI(); 
             }
-            Debug.LogWarning($"UIConstructor Dictionary¿¡ {_type.Name} °¡ ¾ø½À´Ï´Ù");
+            Debug.LogWarning($"UIConstructor Dictionaryï¿½ï¿½ {_type.Name} ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
             return (null,null); 
         }
 

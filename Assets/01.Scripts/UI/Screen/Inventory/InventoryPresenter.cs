@@ -74,8 +74,11 @@ namespace UI.Inventory
             for (int i = 0; i <5; i++ )
             {
                 ItemData _quickSlotData = InventoryManager.Instance.GetQuickSlotItem(i);
-                this.inventoryView.UpdateQuickSlotUI(_quickSlotData, i); 
+                this.inventoryView.UpdateQuickSlotUI(_quickSlotData, i);
             }
+
+            ItemData _arrowData = InventoryManager.Instance.GetArrow();
+            this.inventoryView.UpdateQuickSlotUI(_arrowData, 5);
 
         }
 
