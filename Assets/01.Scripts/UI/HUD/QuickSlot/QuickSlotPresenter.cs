@@ -39,7 +39,9 @@ namespace UI
             {
                 quickSlotView.SlotList[i].SetItemData(InventoryManager.Instance.GetQuickSlotItem(i));
             }
-            quickSlotView.ArrowSlot.SetItemData(InventoryManager.Instance.GetArrow()); 
+            quickSlotView.ArrowSlot.SetItemData(InventoryManager.Instance.GetArrow());
+
+            quickSlotView.UpdateActiveEffect(); 
         }
     }
 

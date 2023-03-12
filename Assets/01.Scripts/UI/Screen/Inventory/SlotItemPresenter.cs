@@ -60,6 +60,16 @@ namespace UI.Inventory
             slotItemView = new SlotItemView(_v);
         }
 
+        /// <summary>
+        /// 선택시 크기 up 
+        /// </summary>
+        /// <param name="_isSelect"></param>
+        public void SelectSlot(bool _isSelect)
+        {
+            float _v = _isSelect ? 1.2f : 1f;
+            Parent.style.scale = new StyleScale(new Scale(new Vector2(_v, _v)));
+        }
+
         public void SetSlotType(ItemType _type)
         {
             this.slotType = _type; 
