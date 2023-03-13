@@ -8,7 +8,8 @@ using Utill.Addressable;
 using UI.Dialogue;
 using Module.Shop;
 using Shop;
-using UI.Manager; 
+using UI.Manager;
+using UI.PublicManager; 
 
 namespace Module.Talk
 {
@@ -148,7 +149,7 @@ namespace Module.Talk
 				TalkData _talkData = talkDataSO.talkDataList[i];
 				if (ConditionCheck(_talkData))
 				{
-					UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
+					PublicUIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
 						.SetTexts(_talkData.authorText, _talkData.talkText);
 					isTalking = true;
 
@@ -195,7 +196,7 @@ namespace Module.Talk
 				_index = Random.Range(0, talkDataSO.defaultTalkCodeList.Count);
 			}
 			isEndTalk = false;
-			UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
+			PublicUIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
 				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index], EndTalk);
 			//DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 		}
