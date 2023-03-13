@@ -51,22 +51,6 @@ namespace UI.Manager
             }
         }
 
-        public IUIController ScreenUIController
-        {
-            get
-            {
-                if (screenUIController is null)
-                {
-                    GameObject _parent = GameObject.FindWithTag("UIParent");
-                    if(_parent is not null)
-                    {
-                        screenUIController = _parent.GetComponentInChildren<IUIController>();
-                        return screenUIController;
-                    }
-                }
-                return screenUIController; 
-            }
-        }
         public override void Awake()
         {
             base.Awake();
