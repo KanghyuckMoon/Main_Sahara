@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
-using UI.Base; 
+using UI.Base;
+using UI.Dialogue;
+using System;
 
 namespace UI.PublicManager
 {
@@ -30,9 +32,15 @@ namespace UI.PublicManager
             }
         }
 
-        public void SetTexts()
+        /// <summary>
+        /// 처음 대화 텍스트 설정
+        /// </summary>
+        /// <param name="_name"></param>
+        /// <param name="_dialogue"></param>
+        /// <param name="_callback"></param>
+        public void SetTexts(string _name, string _dialogue, Action _callback = null)
         {
-           
+            ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).SetTexts(_name, _dialogue, _callback);
         }
 
     }
