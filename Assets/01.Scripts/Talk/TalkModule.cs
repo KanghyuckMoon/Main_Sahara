@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleSpreadSheet;
 using Utill.Measurement;
 using Quest;
 using Module;
@@ -205,31 +204,6 @@ namespace Module.Talk
 		{
 			isEndTalk = true;
 			isTalking = false;
-		}
-
-		public void LogText()
-		{
-			string text = TextManager.Instance.GetText($"{talkCode}_{index}");
-			string authortext = TextManager.Instance.GetText($"{authorCode}_{index}");
-			Logging.Log($"{text}{authortext}");
-
-			if (authortext[0] is '!')
-			{
-				switch (authortext)
-				{
-					case "!END\r":
-						return;
-					case "!TACTIVE\r":
-						QuestManager.Instance.ChangeQuestActive(text);
-						return;
-					case "!TCLEAR\r":
-						QuestManager.Instance.ChangeQuestClear(text);
-						return;
-				}
-			}
-
-			index++;
-			LogText();
 		}
 
 	}

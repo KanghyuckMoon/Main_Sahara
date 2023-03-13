@@ -122,20 +122,6 @@ public class ItemSOMaker : MonoBehaviour
 
             string _key = column[0];
             string _count = column[1];
-            string _price = column[2];
-            string _nameKey = column[3];
-            string _explationKey = column[4];
-            string _spritekey = column[5];
-            string _stackble = column[6];
-            string _stackMax = column[7];
-            string _itemType = column[8];
-            string _consumptionType = column[9];
-            string _prefebKey = column[10];
-            string _animationLayer = column[11];
-            string _dropItemKey = column[12];
-            string _accessoriesItemType = column[13];
-            string _equipmentType = column[14];
-            string _isSlot = column[15];
 
             ItemDataSO _asset = null;
             _asset = allDropItemDataSO.itemDataSOList.Find(x => x.key == _key);
@@ -153,22 +139,9 @@ public class ItemSOMaker : MonoBehaviour
 
                 allDropItemDataSO.itemDataSOList.Add(_asset);
             }
+            _asset.Copy(allItemDataSO.itemDataSOList.Find(x => x.key == _key));
             _asset.key = _key;
             _asset.count = int.Parse(_count);
-            _asset.price = int.Parse(_price);
-            _asset.nameKey = _nameKey;
-            _asset.explanationKey = _explationKey;
-            _asset.spriteKey = _spritekey;
-            _asset.stackble = Convert.ToBoolean(_stackble);
-            _asset.stackMax = int.Parse(_stackMax);
-            _asset.itemType = (ItemType)Enum.Parse(typeof(ItemType), _itemType);
-            _asset.consumptionType = (ConsumptionType)Enum.Parse(typeof(ConsumptionType), _consumptionType);
-            _asset.prefebkey = _prefebKey;
-            _asset.animationLayer = _animationLayer;
-            _asset.dropItemPrefebKey = _dropItemKey;
-            _asset.accessoriesItemType = (AccessoriesItemType)Enum.Parse(typeof(AccessoriesItemType), _accessoriesItemType);
-            _asset.equipmentType = (EquipmentType)Enum.Parse(typeof(EquipmentType), _equipmentType);
-            _asset.isSlot = Convert.ToBoolean(_isSlot);
 
             allDropItemDataSO.ItemDataGenerate();
 
