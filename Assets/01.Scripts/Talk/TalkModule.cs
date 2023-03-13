@@ -5,10 +5,8 @@ using Utill.Measurement;
 using Quest;
 using Module;
 using Utill.Addressable;
-using UI.Dialogue;
 using Module.Shop;
 using Shop;
-using UI.Manager;
 using UI.PublicManager; 
 
 namespace Module.Talk
@@ -149,8 +147,7 @@ namespace Module.Talk
 				TalkData _talkData = talkDataSO.talkDataList[i];
 				if (ConditionCheck(_talkData))
 				{
-					PublicUIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
-						.SetTexts(_talkData.authorText, _talkData.talkText);
+					PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText);
 					isTalking = true;
 
 					if (_talkData.isUseCutScene)
@@ -196,8 +193,7 @@ namespace Module.Talk
 				_index = Random.Range(0, talkDataSO.defaultTalkCodeList.Count);
 			}
 			isEndTalk = false;
-			PublicUIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
-				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index], EndTalk);
+			PublicUIManager.Instance.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index], EndTalk);
 			//DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 		}
 
