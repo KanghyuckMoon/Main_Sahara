@@ -5,7 +5,8 @@ using UnityEngine.UIElements;
 using System;
 using PathMode;
 using UI.EventManage;
-using UI.MapLiner; 
+using UI.Liner;
+using UI.Base; 
 
 namespace UI
 {
@@ -28,7 +29,7 @@ namespace UI
         private float minZoomValue;
 
         // 프라이빗 
-//        private MapLiner mapLiner; 
+        private MapLiner mapLiner; 
 
         private float zoomValue;
         private float xMoveValue;
@@ -41,6 +42,8 @@ namespace UI
         public void Init(MapView _mapView)
         {
             this.mapView = _mapView;
+
+            mapLiner = LineCreateManager.Instance.CreateLine(ScreenType.Map); 
         }
 
         public void UpdateUI()
@@ -52,8 +55,10 @@ namespace UI
             // 확대 축소 
             ZoomMap();
             //mapView.MapRect.width 
-            EventManager.Instance.TriggerEvent(EventsType.UpdateMapPos, (Vector2)mapView.Map.transform.position);
-            EventManager.Instance.TriggerEvent(EventsType.UpdateMapScale, (Vector2)mapView.Map.transform.scale);
+            mapLiner.UpdatePos(mapView.Map.transform.position);
+            mapLiner.UpdateScale(mapView.Map.transform.scale);
+            //EventManager.Instance.TriggerEvent(EventsType.UpdateMapPos, (Vector2)mapView.Map.transform.position);
+            //EventManager.Instance.TriggerEvent(EventsType.UpdateMapScale, (Vector2)mapView.Map.transform.scale);
             // 마커 생성
             if (Input.GetKeyDown(KeyCode.G))
             {
@@ -164,12 +169,14 @@ namespace UI
         public void ActivePath()
         {
             var _list = PathModeManager.Instance.GetPathList();
-            EventManager.Instance.TriggerEvent(EventsType.UpdateMapLine,_list);
+            mapLiner.UpdateMapLine(_list);
+        //    EventManager.Instance.TriggerEvent(EventsType.UpdateMapLine,_list);
         }
 
         public void ClearLines()
         {
-            EventManager.Instance.TriggerEvent(EventsType.ClearMapLine); 
+            mapLiner.ClearMapLine(); 
+        //    EventManager.Instance.TriggerEvent(EventsType.ClearMapLine); 
         }
 
 

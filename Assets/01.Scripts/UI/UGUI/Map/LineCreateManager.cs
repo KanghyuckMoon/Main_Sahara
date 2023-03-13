@@ -7,7 +7,7 @@ using Utill.Addressable;
 using UI.Base;
 using Pool; 
 
-namespace UI.MapLiner
+namespace UI.Liner
 {
     public class LineCreateManager : MonoSingleton<LineCreateManager>
     {
@@ -46,10 +46,20 @@ namespace UI.MapLiner
         public override void Awake()
         {
             base.Awake();
-            pLiner = AddressablesManager.Instance.GetResource<GameObject>("MapLiner").GetComponent<MapLiner>(); 
-         //   GameObject _poolObj = AddressablesManager.Instance.GetResource<GameObject>("MapLiner");
-         //   ObjectPoolManager.Instance.RegisterObject(lineAddress, _poolObj);
+            pLiner = AddressablesManager.Instance.GetResource<GameObject>("MapLiner").GetComponent<MapLiner>();
+            //   GameObject _poolObj = AddressablesManager.Instance.GetResource<GameObject>("MapLiner");
+            //   ObjectPoolManager.Instance.RegisterObject(lineAddress, _poolObj);
         }
+
+        public MapLiner CreateLine(ScreenType _screenType)
+        {
+            var _line = Instantiate(Liner, Canvas);
+            //    var _line = ObjectPoolManager.Instance.GetObject(lineAddress).GetComponent<MapLiner>();
+            //   _line.transform.SetParent(Canvas);
+            AddLineToDic(_screenType, _line);
+            return _line;
+        }
+
         private void AddLineToDic(ScreenType _screenType, MapLiner _liner)
         {
             if(linerDic.ContainsKey(_screenType) == false)
@@ -58,14 +68,6 @@ namespace UI.MapLiner
             }
             this.linerDic[_screenType].Add(_liner);
 
-        }
-        public MapLiner CreateLine(ScreenType _screenType)
-        {
-              var _line = Instantiate(Liner, Canvas);
-        //    var _line = ObjectPoolManager.Instance.GetObject(lineAddress).GetComponent<MapLiner>();
-         //   _line.transform.SetParent(Canvas);
-            AddLineToDic(_screenType, _line);
-            return _line; 
         }
 
         public void DestroyLine(ScreenType _screenType)

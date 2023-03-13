@@ -12,7 +12,7 @@ using UI.Production;
 using System.Linq;
 using DG.Tweening;
 using UI;
-using UI.MapLiner;
+using UI.Liner;
 
 namespace UI.Upgrade
 {

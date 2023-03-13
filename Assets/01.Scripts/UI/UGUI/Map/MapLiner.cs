@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UI.EventManage;
 using UnityEngine.UI.Extensions; 
 
-namespace UI.MapLiner
+namespace UI.Liner
 {
     public class MapLiner : MonoBehaviour
     {
