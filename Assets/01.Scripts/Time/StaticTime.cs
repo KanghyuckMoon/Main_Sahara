@@ -32,9 +32,25 @@ namespace TimeManager
 		{
 			get
 			{
-				return Time.fixedUnscaledDeltaTime * physicsTime * entierTime * uiTime;
+				return physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
 			}
 		}
+		public static float PhysicsPlayerFixedDeltaTime
+		{
+			get
+			{
+				return playerTime * physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
+			}
+		}
+
+		public static float PhysicsEnemyFixedDeltaTime
+		{
+			get
+			{
+				return enemyTime * physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
+			}
+		}
+
 
 		public static float PlayerTime
 		{
