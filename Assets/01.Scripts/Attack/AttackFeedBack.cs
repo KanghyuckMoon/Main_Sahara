@@ -14,7 +14,7 @@ namespace Attack
     /// </summary>
     public class AttackFeedBack : MonoBehaviour
     {
-        public UnityEvent<Vector3> attackFeedBackEvent;
+        public UnityEvent<Vector3, string> attackFeedBackEvent;
 
         private PlayerLandEffectSO effectSO;
 
@@ -23,9 +23,9 @@ namespace Attack
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
         }
 
-        public void InvokeEvent(Vector3 closetPoint)
+        public void InvokeEvent(Vector3 closetPoint, string _effectName)
         {
-            attackFeedBackEvent?.Invoke(closetPoint);
+            attackFeedBackEvent?.Invoke(closetPoint, _effectName);
         }
 
         //private void OnTriggerEnter(Collider other)
@@ -40,8 +40,8 @@ namespace Attack
 
         private void OnEnable()
         {
-            attackFeedBackEvent.AddListener((vec) => AttackEffect(vec));
-            attackFeedBackEvent.AddListener((vec) => TimeSlow(vec));
+            attackFeedBackEvent.AddListener((vec, s) => AttackEffect(vec, s));
+            //attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
         }
 
         private void OnDisable()
@@ -49,12 +49,12 @@ namespace Attack
             attackFeedBackEvent.RemoveAllListeners();
         }
 
-        private void AttackEffect(Vector3 vec)
+        private void AttackEffect(Vector3 vec, string _efectName)
         {
-            EffectManager.Instance.SetEffectDefault("HitEffect1", vec, Quaternion.identity);
+            EffectManager.Instance.SetEffectDefault(_efectName, vec, Quaternion.identity);
         }
 
-        private void TimeSlow(Vector3 vec)
+        private void TimeSlow()
         {
             StaticCoroutineManager.Instance.InstanceDoCoroutine(AttackFeedBack_TimeSlow());
         }
