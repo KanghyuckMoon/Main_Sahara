@@ -9,7 +9,8 @@ using UI.Base;
 using UI.Upgrade;
 using UI.Shop;
 using System;
-using UI.Save; 
+using UI.Save;
+using TimeManager; 
 
 namespace UI
 {
@@ -236,6 +237,7 @@ namespace UI
         /// </summary>
         private void SetTime(bool _isActive)
         {
+            StaticTime.EntierTime = _isActive ? 0f : 1f; 
             //Time.timeScale = _isActive ? 0f : 1f; 
         }
         /// <summary>
