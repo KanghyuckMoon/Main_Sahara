@@ -32,5 +32,25 @@ namespace Inventory
 		//아이템 슬롯에 표시용도
 		[Header("아이템 슬롯에 표시용도")]
 		public bool isSlot = true;
+
+		public void Copy(ItemDataSO _itemDataSO)
+		{
+			key = _itemDataSO.key;
+			count = _itemDataSO.count;
+			price = _itemDataSO.price;
+			nameKey = _itemDataSO.nameKey;
+			explanationKey = _itemDataSO.explanationKey;
+			spriteKey = _itemDataSO.spriteKey;
+			stackble = _itemDataSO.stackble;
+			stackMax = _itemDataSO.stackMax;
+			itemType = _itemDataSO.itemType;
+			consumptionType = _itemDataSO.consumptionType;
+			prefebkey = _itemDataSO.prefebkey;
+			animationLayer = _itemDataSO.animationLayer;
+			dropItemPrefebKey = _itemDataSO.dropItemPrefebKey;
+			accessoriesItemType = _itemDataSO.accessoriesItemType;
+			equipmentType = _itemDataSO.equipmentType;
+			isSlot = _itemDataSO.isSlot;
+		}
 	}
 }
