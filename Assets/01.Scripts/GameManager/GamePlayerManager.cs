@@ -5,7 +5,7 @@ using Utill.Pattern;
 
 namespace GameManager
 {
-	public class GamePlayerManager : MonoSingleton<GamePlayerManager>, Obserble
+	public class GamePlayerManager : MonoSingleton<GamePlayerManager>, IObserble
 	{
 		public bool IsPlaying
 		{

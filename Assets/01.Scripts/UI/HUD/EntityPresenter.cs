@@ -16,7 +16,7 @@ namespace UI
     }
     public class EntityPresenter : MonoBehaviour, IUIOwner, Observer
     {
-        // µğ¹ö±×¿ë
+        // ë””ë²„ê·¸ìš©
         public float a, b;
         [SerializeField]
         private Transform target;
@@ -32,21 +32,21 @@ namespace UI
         [SerializeField]
         private BuffPresenter buffPresenter;
 
-        [SerializeField, Header("False¸é ¸Ó¸® À§¿¡ Hud ¶ßµµ·Ï")]
+        [SerializeField, Header("Falseë©´ ë¨¸ë¦¬ ìœ„ì— Hud ëœ¨ë„ë¡")]
         private bool isPlayerHud;
 
         private VisualElement hudElement;
         private PresenterFollower presenterFollower;
 
-        // µ¥ÀÌÅÍ 
+        // ë°ì´í„° 
         private UIModule uiModule;
         private StatData statData;
         private BuffModule buffModule;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
-        private Dictionary<HudType, List<IUIFollower>> _dataPresenterDic = new Dictionary<HudType, List<IUIFollower>>(); // µ¥ÀÌÅÍ Å¸ÀÔ, ÇÁ·¹Á¨ÅÍ 
+        private Dictionary<HudType, List<IUIFollower>> _dataPresenterDic = new Dictionary<HudType, List<IUIFollower>>(); // ë°ì´í„° íƒ€ì…, í”„ë ˆì  í„° 
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public UIDocument Root { get; set; }
         public UIDocument RootUIDocument => uiDocument;
         public List<IUIFollower> PresenterList => _presenterList;
@@ -58,15 +58,15 @@ namespace UI
                 {
                     //target = GetComponentInParent<Transform>();
                     target = transform.parent;
-                    Logging.Log("Å¸°Ù Ã£´ÂÁß..");
+                    Logging.Log("íƒ€ê²Ÿ ì°¾ëŠ”ì¤‘..");
                     if (target != null)
                     {
-                        Logging.Log("Å¸°Ù·»´õ·¯ Ã£´ÂÁß..");
+                        Logging.Log("íƒ€ê²Ÿë Œë”ëŸ¬ ì°¾ëŠ”ì¤‘..");
                         targetRenderer = target?.GetComponentInChildren<Renderer>();
                     }
                     else return null;
                 }
-                Logging.Log("Å¸°Ù ¹İÈ¯");
+                Logging.Log("íƒ€ê²Ÿ ë°˜í™˜");
                 return target;
 
             }
@@ -104,7 +104,7 @@ namespace UI
             //{
             //    hpPresenter.Test3();
             //}
-            if (presenterFollower == null && isPlayerHud == false) // ¸Ó¸® À§¿¡ hud ¶ç¿ö¾ßÇØ 
+            if (presenterFollower == null && isPlayerHud == false) // ë¨¸ë¦¬ ìœ„ì— hud ë„ì›Œì•¼í•´ 
             {
                 presenterFollower = new PresenterFollower(this, hudElement, target, targetRenderer);
             }
@@ -123,12 +123,12 @@ namespace UI
                 {
                     StartCoroutine(ActivePn());
                 }
-                //Debug.Log("µû¶ó°¡´ÂÁß");
+                //Debug.Log("ë”°ë¼ê°€ëŠ”ì¤‘");
             }
 
         }
 
-        [ContextMenu("¹öÇÁ Å×½ºÆ®")]
+        [ContextMenu("ë²„í”„ í…ŒìŠ¤íŠ¸")]
         public void Test()
         {
             buffModule.TestBuff(); 
@@ -139,7 +139,7 @@ namespace UI
             hudElement.style.display = DisplayStyle.Flex;
         }
         /// <summary>
-        /// º¯¼ö ÃÊ±âÈ­ 
+        /// ë³€ìˆ˜ ì´ˆê¸°í™” 
         /// </summary>
         private void Clear()
         {
@@ -149,7 +149,7 @@ namespace UI
             isPlayerHud = false;
             statData = null; 
         }
-        [ContextMenu("Å×½ºÆ®")]
+        [ContextMenu("í…ŒìŠ¤íŠ¸")]
         public void UpdateUI()
         {
             foreach (var p in _presenterList)
@@ -159,7 +159,7 @@ namespace UI
         }
 
         /// <summary>
-        /// È°¼ºÈ­ ¿©ºÎ ¾×Æ¼ºê 
+        /// í™œì„±í™” ì—¬ë¶€ ì•¡í‹°ë¸Œ 
         /// </summary>
         private void UpdateUIActive()
         {
@@ -167,7 +167,7 @@ namespace UI
         }
 
         /// <summary>
-        /// hud È°¼ºÈ­ ºñÈ°¼ºÈ­ 
+        /// hud í™œì„±í™” ë¹„í™œì„±í™” 
         /// </summary>
         public void SetActive(bool _isActive)
         {
@@ -175,7 +175,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Presenter »ı¼º
+        /// Presenter ìƒì„±
         /// </summary>
         private void ContructPresenters()
         {
@@ -235,7 +235,7 @@ namespace UI
             //}
         }
 
-        [ContextMenu("¹öÇÁ ¾ÆÀÌÄÜ »ı¼º")]
+        [ContextMenu("ë²„í”„ ì•„ì´ì½˜ ìƒì„±")]
         public void TestCreateBuffIcon()
         {
        //     buffPresenter.CreateBuffIcon();
@@ -267,7 +267,7 @@ namespace UI
         //{
         //    while (stateData == null)
         //    {
-        //        //stateData = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI).stateData; // ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ µ¥ÀÌÅÍ °¡Á®¿À±â 
+        //        //stateData = transform.parent.GetComponentInChildren<AbMainModule>().GetModuleComponent<UIModule>(ModuleType.UI).stateData; // ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ ë°ì´í„° ê°€ì ¸ì˜¤ê¸° 
         //        if (stateData != null)
         //        {
         //            StartPresenters();

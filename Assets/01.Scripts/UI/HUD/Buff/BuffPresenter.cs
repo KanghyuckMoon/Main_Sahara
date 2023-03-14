@@ -12,7 +12,7 @@ namespace UI
     [Serializable]
     public class BuffPresenter : IUIFollower,Observer
     {
-        // ÀÎ½ºÆåÅÍ ÂüÁ¶ º¯¼ö 
+        // ì¸ìŠ¤í™í„° ì°¸ì¡° ë³€ìˆ˜ 
         [SerializeField]
         private BuffView buffView;
         // private BuffData buffData; 
@@ -20,11 +20,11 @@ namespace UI
         private StatData statData;
         private BuffModule buffData;
 
-        // ÇöÀç È°¼ºÈ­ ÁßÀÎ ¹öÇÁUI 
+        // í˜„ì¬ í™œì„±í™” ì¤‘ì¸ ë²„í”„UI 
         private List<BuffEntryPresenter> curBuffViewList = new List<BuffEntryPresenter>();
 
         //private List<Buff>
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public UIDocument RootUIDocument { get; set; }
 
         public void Awake()
@@ -51,15 +51,15 @@ namespace UI
         }
 
         /// <summary>
-        /// ¹öÇÁ µ¥ÀÌÅÍ Ãß°¡½Ã ¾÷µ¥ÀÌÆ® ( »ı¼º)
+        /// ë²„í”„ ë°ì´í„° ì¶”ê°€ì‹œ ì—…ë°ì´íŠ¸ ( ìƒì„±)
         /// </summary>
         public void UpdateUI()
         {
             bool _isHave = false; 
-            // ¹öÇÁ ¸ğµâÀÇ È°¼ºÈ­ ÁßÀÎ ¹öÇÁ µ¹¸é¼­ 
+            // ë²„í”„ ëª¨ë“ˆì˜ í™œì„±í™” ì¤‘ì¸ ë²„í”„ ëŒë©´ì„œ 
             foreach(var _buff in buffData.buffList)
             {
-                // ÇöÀç È°¼ºÈ­ÁßÀÎ ¹öÇÁUI¿Í ºñ±³ÇÏ±â 
+                // í˜„ì¬ í™œì„±í™”ì¤‘ì¸ ë²„í”„UIì™€ ë¹„êµí•˜ê¸° 
                 foreach(var _curBuff in curBuffViewList)
                 {
                     if(_buff == _curBuff.BuffData)
@@ -68,7 +68,7 @@ namespace UI
                     }
                 }
                 
-                if(_isHave == false) // »õ·Î¿î °ÍÀÌ¶ó¸é 
+                if(_isHave == false) // ìƒˆë¡œìš´ ê²ƒì´ë¼ë©´ 
                 {
                     CreateBuffIcon(_buff); 
                 }
@@ -76,14 +76,14 @@ namespace UI
         }
 
         /// <summary>
-        /// ¹öÇÁ ½Ã°£ ¾÷µ¥ÀÌÆ®
+        /// ë²„í”„ ì‹œê°„ ì—…ë°ì´íŠ¸
         /// </summary>
         public void UpdateBuffTime()
         {
             if (curBuffViewList.Count <= 0) return; 
             foreach(var _buffView in curBuffViewList)
             {
-                // ½Ã°£ÀÌ ³¡³µÀ¸¸é 
+                // ì‹œê°„ì´ ëë‚¬ìœ¼ë©´ 
                 if (_buffView.UpdateUI() == false)
                 {
                     curBuffViewList.Remove(_buffView);
@@ -95,7 +95,7 @@ namespace UI
 
         public VisualElement CreateBuffIcon(AbBuffEffect _buffData)
         {
-            // ¹¹ µ¥ÀÌÅÍ ³Ñ°Ü¼­ »ı¼º 
+            // ë­ ë°ì´í„° ë„˜ê²¨ì„œ ìƒì„± 
             BuffEntryPresenter buffEntryPresenter = new BuffEntryPresenter();
             buffEntryPresenter.SetBuffData(_buffData); 
             buffEntryPresenter.SetParent(buffView.ParentElement);
@@ -103,7 +103,7 @@ namespace UI
 
             return buffEntryPresenter.Parent;
 
-            // buffView.ÄğÅ¸ÀÓ ½ÃÀÛ 
+            // buffView.ì¿¨íƒ€ì„ ì‹œì‘ 
         }
 
        

@@ -11,7 +11,7 @@ using Utill.Random;
 
 namespace Module
 {
-    public class EnemyDead : MonoBehaviour, Observer, Obserble
+    public class EnemyDead : MonoBehaviour, Observer, IObserble
     {
 
 

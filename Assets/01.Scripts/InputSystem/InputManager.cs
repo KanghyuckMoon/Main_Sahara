@@ -26,6 +26,11 @@ namespace InputSystem
 			return keyInputDic[_str];
 		}
 
+		public void ChangeKey(string _str, KeyCode _keyCode)
+		{
+			inputSO.keyCodeDic[_str].keyCode = _keyCode;
+		}
+
 		public void Update()
 		{
 			foreach(var _key in inputSO.keyCodeDic)

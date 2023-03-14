@@ -5,7 +5,7 @@ using Utill.Pattern;
 
 namespace TimeManager
 {
-	public class StaticTime : Singleton<StaticTime>, Obserble 
+	public class StaticTime : Singleton<StaticTime>, IObserble 
 	{
 		public static float PlayerDeltaTime
 		{
@@ -32,9 +32,25 @@ namespace TimeManager
 		{
 			get
 			{
-				return Time.fixedUnscaledDeltaTime * physicsTime * entierTime * uiTime;
+				return physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
 			}
 		}
+		public static float PhysicsPlayerFixedDeltaTime
+		{
+			get
+			{
+				return playerTime * physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
+			}
+		}
+
+		public static float PhysicsEnemyFixedDeltaTime
+		{
+			get
+			{
+				return enemyTime * physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
+			}
+		}
+
 
 		public static float PlayerTime
 		{
@@ -45,7 +61,7 @@ namespace TimeManager
 			set
 			{
 				playerTime = value;
-				StaticTime.Instance.Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float EnemyTime
@@ -57,7 +73,7 @@ namespace TimeManager
 			set
 			{
 				enemyTime = value;
-				StaticTime.Instance.Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float PhysicsTime
@@ -69,7 +85,7 @@ namespace TimeManager
 			set
 			{
 				physicsTime = value;
-				StaticTime.Instance.Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 
@@ -82,7 +98,7 @@ namespace TimeManager
 			set
 			{
 				entierTime = value;
-				StaticTime.Instance.Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float UITime
@@ -94,7 +110,7 @@ namespace TimeManager
 			set
 			{
 				uiTime = value;
-				StaticTime.Instance.Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 
@@ -112,7 +128,7 @@ namespace TimeManager
 		private static float entierTime = 1f;
 		private static float uiTime = 1f;
 		private static List<Observer> observers = new List<Observer>();
-
+		private IObserble _obserble;
 
 		public float GetEntireTimeWithIndi(float time)
 		{
@@ -127,28 +143,10 @@ namespace TimeManager
 			return playerTime * uiTime * time;
 		}
 
-		public void AddObserver(Observer _observer)
+		public IObserble GetIObserble()
 		{
-			if (!Observers.Contains(_observer))
-			{
-				Observers.Add(_observer);
-			}
-		}
-
-		public void RemoveObserver(Observer _observer)
-		{
-			if (Observers.Contains(_observer))
-			{
-				Observers.Remove(_observer);
-			}
-		}
-
-		public void Send()
-		{
-			foreach (Observer observer in Observers)
-			{
-				observer.Receive();
-			}
+			_obserble ??= (StaticTime.Instance as IObserble);
+			return _obserble;
 		}
 	}
 
