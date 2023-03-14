@@ -10,23 +10,39 @@ using UI.Upgrade;
 using UI.Shop;
 using System;
 using UI.Save;
-using TimeManager; 
+using TimeManager;
+using InputSystem;
+using UI.UtilManager; 
 
 namespace UI
 {
     public class UIInputData
     {
-        public KeyCode keyCode;
+        //public string keyStr; 
+        public string keyStr;
         public bool isCan; 
 
-        public UIInputData(KeyCode _keyCode, bool _isCan)
+        public UIInputData(string _keyCode, bool _isCan)
         {
-            this.keyCode = _keyCode;
+            this.keyStr = _keyCode;
             this.isCan = _isCan; 
         }
     }
     public class ScreenUIController : MonoBehaviour, IUIController
     {
+        enum Keys
+        {
+            QuestUI, 
+            InventoryUI, 
+            MapUI, 
+            SaveLoadUI,
+            ShopUI, 
+            UpgradeUI, 
+
+        }
+
+
+
         private InventoryPresenter inventoryPresenter;
         private MapPresenter mapPresenter;
         private DialoguePresenter dialoguePresenter;
@@ -123,50 +139,53 @@ namespace UI
 
         private void SetInputEvent()
         {
-            inputDic.Clear(); 
+            InputManager.Instance.CheckKey("MapUI");
 
-            inputDic.Add(new UIInputData(KeyCode.I, true), () =>
+            inputDic.Clear();
+
+            ;
+            inputDic.Add(new UIInputData(Get(Keys.InventoryUI), true), () =>
             {
                 // 인벤토리 활성화 
                 bool _isActive = inventoryPresenter.ActiveView();
-                SetUIAndCursor(_isActive, KeyCode.I); 
+                SetUIAndCursor(_isActive, Get(Keys.InventoryUI)); 
             });
-            inputDic.Add(new UIInputData(KeyCode.M, true), () =>
+            inputDic.Add(new UIInputData(Get(Keys.MapUI), true), () =>
             {
                 // 맵 활성화
                 bool _isActive = mapPresenter.ActiveView();
-                SetUI(_isActive, KeyCode.M);
+                SetUI(_isActive, Get(Keys.MapUI));
             });
-            inputDic.Add(new UIInputData(KeyCode.Q,true), () =>
+            inputDic.Add(new UIInputData(Get(Keys.QuestUI), true), () =>
             {
                 // 퀘스트 활성화
                 bool _isActive = questPresenter.ActiveView();
-                SetUIAndCursor(_isActive, KeyCode.Q); 
+                SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
             });
-            inputDic.Add(new UIInputData(KeyCode.U, true), () =>
+            inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
             {
                 //  활성화
                 bool _isActive = upgradePresenter.ActiveView();
-                SetUIAndCursor(_isActive, KeyCode.U);
+                SetUIAndCursor(_isActive, Get(Keys.UpgradeUI));
             });
-            inputDic.Add(new UIInputData(KeyCode.O,true), () =>
+            inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
             {
                 //  활성화
                 bool _isActive = shopPresenter.ActiveView();
-                SetUIAndCursor(_isActive, KeyCode.O);
+                SetUIAndCursor(_isActive, Get(Keys.InventoryUI));
             });
-            inputDic.Add(new UIInputData(KeyCode.L, true), () =>
+            inputDic.Add(new UIInputData(Get(Keys.SaveLoadUI), true), () =>
             {
                 //  활성화
                 bool _isActive = saveLoadPresenter.ActiveView();
-                SetUIAndCursor(_isActive, KeyCode.L);
+                SetUIAndCursor(_isActive, Get(Keys.SaveLoadUI));
             });
         }
 
         /// <summary>
         /// 스크린 활성화시 세팅 + 커서 활성화 
         /// </summary>
-        private void SetUIAndCursor(bool _isActive, KeyCode _keyCode)
+        private void SetUIAndCursor(bool _isActive, string _keyCode)
         {
             ActiveCursor(_isActive);
             SetTime(_isActive);
@@ -175,7 +194,7 @@ namespace UI
         /// <summary>
         /// 스크린 활성화시 세팅 
         /// </summary>
-        private void SetUI(bool _isActive, KeyCode _keyCode)
+        private void SetUI(bool _isActive, string _keyCode)
         {
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
@@ -196,7 +215,7 @@ namespace UI
             if (isUIInput == false) return;
             foreach(var _v in inputDic)
             {
-                if(_v.Key.isCan == true && Input.GetKeyDown(_v.Key.keyCode))
+                if(_v.Key.isCan == true && InputManager.Instance.CheckKey(_v.Key.keyStr))
                 {
                     _v.Value?.Invoke();
                 }
@@ -265,11 +284,11 @@ namespace UI
             }
         }
 
-        private void SetKeyAble(KeyCode _keyCode, bool _isActive)
+        private void SetKeyAble(string _keyStr, bool _isActive)
         {
             foreach (var _v in inputDic)
             {
-                if(_v.Key.keyCode == _keyCode)
+                if(_v.Key.keyStr == _keyStr)
                 {
                     _v.Key.isCan = true;
                     continue; 
@@ -290,6 +309,11 @@ namespace UI
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
+        }
+
+        private string Get(Keys _key)
+        {
+            return UIUtil.GetEnumStr(typeof(Keys), (int)_key);
         }
     }
 }

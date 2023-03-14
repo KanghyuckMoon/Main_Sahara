@@ -5,7 +5,8 @@ using UnityEngine.UIElements;
 using System;
 using PathMode;
 using UI.EventManage;
-using UI.MapLiner; 
+using UI.MapLiner;
+using InputSystem; 
 
 namespace UI
 {
@@ -63,30 +64,31 @@ namespace UI
 
         private void KeyInput()
         {
+            
             // 움직임 
-            if (Input.GetKey(KeyCode.W))
+            if (InputManager.Instance.CheckKey("MapMoveF"))
             {
                 yMoveValue = 1f;
             }
-            if (Input.GetKey(KeyCode.A))
+            if (InputManager.Instance.CheckKey("MapMoveL"))
             {
                 xMoveValue = -1f;
             }
-            if (Input.GetKey(KeyCode.S))
+            if (InputManager.Instance.CheckKey("MapMoveB"))
             {
                 yMoveValue = -1f;
             }
-            if (Input.GetKey(KeyCode.D))
+            if (InputManager.Instance.CheckKey("MapMoveR"))
             {
                 xMoveValue = 1f;
             }
 
             // 키 뗐을때 초기화 
-            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+            if (InputManager.Instance.CheckKey("MapMoveF") || InputManager.Instance.CheckKey("MapMoveB"))
             {
                 yMoveValue = 0f;
             }
-            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+            if (InputManager.Instance.CheckKey("MapMoveL") || InputManager.Instance.CheckKey("MapMoveR"))
             {
                 xMoveValue = 0f;
             }
