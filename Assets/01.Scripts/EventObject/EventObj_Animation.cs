@@ -29,9 +29,12 @@ namespace EventObject
 			}
 		}
 
+		[SerializeField]
 		private bool isInfinityPlay;
+		[SerializeField]
 		private bool isAlreadyPlay;
 
+		[SerializeField]
 		private Animator animator;
 
 		[SerializeField]
@@ -45,6 +48,7 @@ namespace EventObject
 			}
 
 			//Process
+			animator.enabled = true;
 			animator ??= GetComponent<Animator>();
 			animator.Play(animationKey);
 
