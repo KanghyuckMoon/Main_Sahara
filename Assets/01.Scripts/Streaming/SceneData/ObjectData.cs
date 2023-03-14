@@ -36,7 +36,7 @@ namespace Streaming
 		private StatData statData;
 
 		/// <summary>
-		/// ¿ÀºêÁ§Æ® µ¥ÀÌÅÍ SO¸¦ º¹»çÇÔ
+		/// ì˜¤ë¸Œì íŠ¸ ë°ì´í„° SOë¥¼ ë³µì‚¬í•¨
 		/// </summary>
 		/// <param name="_objectDataSO"></param>
 		public void CopyObjectDataSO(ObjectDataSO _objectDataSO)

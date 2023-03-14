@@ -72,7 +72,7 @@ namespace Quest
 						{
 							_quest.QuestState = QuestState.Achievable;
 							questSaveDataSO.ChangeQuestSaveData(_quest.QuestKey, _quest.QuestState);
-							//NPC ´ëÈ­ µ¥ÀÌÅÍ ¼³Á¤
+							//NPC ëŒ€í™” ë°ì´í„° ì„¤ì •
 						}
 						else
 						{
@@ -118,7 +118,7 @@ namespace Quest
 		}
 
 		/// <summary>
-		/// ºñÈ°¼ºÈ­ÁßÀÎ Äù½ºÆ®µéÀ» °¡Á®¿Â´Ù
+		/// ë¹„í™œì„±í™”ì¤‘ì¸ í€˜ìŠ¤íŠ¸ë“¤ì„ ê°€ì ¸ì˜¨ë‹¤
 		/// </summary>
 		/// <returns></returns>
 		public List<QuestData> GetDisableQuest(QuestCategory _questCategory = QuestCategory.Main)
@@ -127,7 +127,7 @@ namespace Quest
 			return disableQuestList;
 		}
 		/// <summary>
-		/// ¹ß°ß °¡´ÉÇÑ Äù½ºÆ®µéÀ» °¡Á®¿Â´Ù
+		/// ë°œê²¬ ê°€ëŠ¥í•œ í€˜ìŠ¤íŠ¸ë“¤ì„ ê°€ì ¸ì˜¨ë‹¤
 		/// </summary>
 		/// <returns></returns>
 		public List<QuestData> GetDiscoverableQuest(QuestCategory _questCategory = QuestCategory.Main)
@@ -136,7 +136,7 @@ namespace Quest
 			return discoverableQuestList;
 		}
 		/// <summary>
-		/// ¹ß°ßÇÑ Äù½ºÆ®µéÀ» °¡Á®¿Â´Ù
+		/// ë°œê²¬í•œ í€˜ìŠ¤íŠ¸ë“¤ì„ ê°€ì ¸ì˜¨ë‹¤
 		/// </summary>
 		/// <returns></returns>
 		public List<QuestData> GetActiveQuest(QuestCategory _questCategory = QuestCategory.Main)
@@ -145,7 +145,7 @@ namespace Quest
 			return activeQuestList;
 		}
 		/// <summary>
-		/// Å¬¸®¾îÇÑ Äù½ºÆ®µéÀ» °¡Á®¿Â´Ù
+		/// í´ë¦¬ì–´í•œ í€˜ìŠ¤íŠ¸ë“¤ì„ ê°€ì ¸ì˜¨ë‹¤
 		/// </summary>
 		/// <returns></returns>
 		public List<QuestData> GetClearQuest(QuestCategory _questCategory = QuestCategory.Main)
@@ -154,7 +154,7 @@ namespace Quest
 			return clearQuestList;
 		}
 		/// <summary>
-		/// ¹ß°ßÇß°Å³ª Å¬¸®¾îÇÑ Äù½ºÆ®µéÀ» °¡Á´³ë´Ù
+		/// ë°œê²¬í–ˆê±°ë‚˜ í´ë¦¬ì–´í•œ í€˜ìŠ¤íŠ¸ë“¤ì„ ê°€ì¡ë…¸ë‹¤
 		/// </summary>
 		/// <returns></returns>
 		public List<QuestData> GetActiveOrClearQuest()
@@ -238,7 +238,7 @@ namespace Quest
 
 		private void CreateAllObject(List<QuestCreateObjectSO> _questCreateObjectSOList)
 		{
-			//¿ÀºêÁ§Æ® »ı¼º
+			//ì˜¤ë¸Œì íŠ¸ ìƒì„±
 			foreach (var _createObjectSO in _questCreateObjectSOList)
 			{
 				if (_createObjectSO.targetSceneName == null)
@@ -264,7 +264,7 @@ namespace Quest
 					{
 						_quest.Value.QuestState = QuestState.Achievable;
 						questSaveDataSO.ChangeQuestSaveData(_quest.Value.QuestKey, _quest.Value.QuestState);
-						//NPC ´ëÈ­ µ¥ÀÌÅÍ ¼³Á¤
+						//NPC ëŒ€í™” ë°ì´í„° ì„¤ì •
 					}
 					else
 					{
@@ -276,7 +276,7 @@ namespace Quest
 
 		private void QuestClear(QuestData _questData)
 		{
-			Logging.Log($"Äù½ºÆ® Å¬¸®¾î : {_questData.QuestKey}");
+			Logging.Log($"í€˜ìŠ¤íŠ¸ í´ë¦¬ì–´ : {_questData.QuestKey}");
 			_questData.QuestState = QuestState.Clear;
 			questSaveDataSO.ChangeQuestSaveData(_questData.QuestKey, _questData.QuestState);
 

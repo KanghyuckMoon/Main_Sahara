@@ -65,6 +65,7 @@ namespace Pool
                 MakeQueueGetAsync(key, _action);
             }
         }
+        // ReSharper disable Unity.PerformanceAnalysis
         public void GetObjectAsyncParameter<J>(string key, System.Action<GameObject, J> _action, J _parameter)
         {
             Queue<GameObject> queue;
@@ -72,7 +73,10 @@ namespace Pool
             {
                 GameObject obj = queue.Dequeue();
                 PoolParentManager.Instance.SetUseParent(key, obj);
-                _action(obj, _parameter);
+                if (_action != null)
+                {
+                    _action(obj, _parameter);
+                }
             }
             else
             {
@@ -128,7 +132,7 @@ namespace Pool
             }
         }
 
-        //≈• ª˝º∫
+        //ÌÅê ÏÉùÏÑ±
 
         //Get
         private Queue<GameObject> MakeQueueGet(string key)
