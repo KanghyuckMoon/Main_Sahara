@@ -85,7 +85,7 @@ namespace Module
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f * mainModule.PersonalDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f * mainModule.PersonalFixedDeltaTime);
             }
             else
             {
@@ -93,7 +93,7 @@ namespace Module
             }
 
             animationBlend = mainModule.isGround ? animationBlend : 0;
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, mainModule.PersonalDeltaTime * 5);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, mainModule.PersonalFixedDeltaTime * 5);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
@@ -171,12 +171,12 @@ namespace Module
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * mainModule.PersonalDeltaTime;
+            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * mainModule.PersonalFixedDeltaTime;
 
 
-            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, mainModule.PersonalDeltaTime);
-            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * mainModule.PersonalDeltaTime));
-            else mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalDeltaTime);
+            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, mainModule.PersonalFixedDeltaTime);
+            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * mainModule.PersonalFixedDeltaTime));
+            else mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalFixedDeltaTime);
             Animator.SetFloat("MoveSpeed", animationBlend);
         }
 
@@ -222,7 +222,7 @@ namespace Module
             }
             if (mainModule.Gravity < 100)
             {
-                mainModule.Gravity += mainModule.GravityScale * Time.fixedDeltaTime * 2;
+                mainModule.Gravity += mainModule.GravityScale * mainModule.PersonalFixedDeltaTime * 2;
             }
         }
 
