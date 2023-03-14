@@ -232,12 +232,26 @@ namespace UI
 
         }
 
+        [SerializeField]
+        private float testV = 0.1f; 
+        [ContextMenu("시간 정지 테스트")]
+        public void TestSetTime()
+        {
+            StaticTime.UITime = testV; 
+        //    SetTime(true); 
+        }
+        [ContextMenu("시간 정지해제 테스트")]
+        public void TestSetTime2()
+        {
+            StaticTime.UITime = 1f; 
+          //  SetTime(false);
+        }
         /// <summary>
         /// 시간 정지 
         /// </summary>
         private void SetTime(bool _isActive)
         {
-            StaticTime.EntierTime = _isActive ? 0f : 1f; 
+            //StaticTime.UITime = _isActive ? 0f : 1f; 
             //Time.timeScale = _isActive ? 0f : 1f; 
         }
         /// <summary>
