@@ -59,13 +59,15 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.IsDead && !mainModule.IsCanHit)
                 {
-                    
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (_inGameHitBox is null) return;
                     if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
                     praviousHitBoxIndex = _inGameHitBox.GetIndex();
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
+
+
+
                     mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
                     if (_statData != null)

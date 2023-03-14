@@ -7,6 +7,7 @@ using UpdateManager;
 using Utill.Pattern;
 using Data;
 using Pool;
+using TimeManager;
 
 namespace Module
 {
@@ -15,6 +16,7 @@ namespace Module
         //메인 모듈에서 지금 오브젝트가 가지고 있는 모든 모듈을 가지고 와야해
         //그건 풀링 할때 각각의 모듈을 밑에 복합데이터에 넣어주는 형식으로 한다. 메인모듈에 넣어준다.
 
+        #region 프로퍼티
         public float StopOrNot
         {
             get
@@ -26,7 +28,6 @@ namespace Module
                 stopOrNot = value;
             }
         }
-
         public Transform LockOnTarget
         {
             get
@@ -38,7 +39,6 @@ namespace Module
                 lockOnTarget = value;
             }
         }
-
         public CharacterController CharacterController
         {
             get
@@ -91,20 +91,19 @@ namespace Module
                 return statData;
             }
         }
-
-        public string[] HitCollider
-        {
-            get
-            {
-                return hitCollider;
-
-            }
-        }
         public float MoveSpeed
         {
             get
             {
                 return moveSpeed;
+
+            }
+        }
+        public string[] HitCollider
+        {
+            get
+            {
+                return hitCollider;
 
             }
         }
@@ -120,7 +119,6 @@ namespace Module
                 isSprint = value;
             }
         }
-
         public bool IsJump
         {
             get
@@ -213,7 +211,6 @@ namespace Module
                 isHit = value;
             }
         }
-
         public bool IsCharging
         {
             get
@@ -225,7 +222,6 @@ namespace Module
                 isCharging = value;
             }
         }
-
         public bool Attacking
         {
             get
@@ -250,7 +246,6 @@ namespace Module
                 Animator.SetBool("StrongAttack", strongAttacking);
             }
         }
-
         public float Gravity
         {
             get
@@ -273,11 +268,48 @@ namespace Module
                 isCanHit = value;
             }
         }
+        public bool IsStaticTime
+        {
+            get
+            {
+                return isStaticTime;
+            }
+            set
+            {
+                isStaticTime = value;
+            }
+        }
         public float GravityScale
         {
             get
             {
                 return gravityScale;
+            }
+        }
+        public float EntireTime
+        {
+            get
+            {
+                return IsStaticTime ? StaticTime.EntierTime : PersonalTime;
+            }
+        }
+        public float PersonalTime
+        {
+            get
+            {
+                return player ? StaticTime.PlayerTime : StaticTime.EnemyTime;
+            }
+            set 
+            {
+                if(player == true)
+                {
+                    StaticTime.PlayerTime = value; 
+                }
+                else
+                {
+                    StaticTime.EnemyTime = value;
+                }
+
             }
         }
         public Vector3 KnockBackVector
@@ -302,7 +334,6 @@ namespace Module
                 slopeVector = value;
             }
         }
-
         public bool LockOn
         {
             get
@@ -315,7 +346,6 @@ namespace Module
                 Animator.SetBool("LockOn", lockOn);
             }
         }
-
         public float MaxSlope
 		{
             get
@@ -323,7 +353,6 @@ namespace Module
                 return maxSlope;
 			}
 		}
-
         public Transform RaycastTarget
 		{
             get
@@ -335,7 +364,6 @@ namespace Module
                 raycastTarget = value;
 			}
 		}
-
         public GameObject VisualObject
         {
             get
@@ -344,7 +372,6 @@ namespace Module
                 return visualObject;
             }
         }
-
         public RaycastHit SlopeHit
 		{
 			get
@@ -356,7 +383,6 @@ namespace Module
                 slopeHit = value;
 			}
 		}
-
         public Transform Model
 		{
             get
@@ -364,7 +390,6 @@ namespace Module
                 return model;
 			}
 		}
-
         public AnimatorOverrideController AnimatorOverrideController
         {
             get
@@ -374,7 +399,6 @@ namespace Module
                 return animatorOverrideController;
             }
         }
-
         public Animator Animator
 		{
             get
@@ -387,7 +411,6 @@ namespace Module
                 animator = value;
 			}
 		}
-
         public GameObject Back
         {
             get
@@ -395,8 +418,12 @@ namespace Module
                 return back;
             }
         }
+        #endregion
 
-		private float stopOrNot;
+        #region 변수
+        public bool player;
+
+        private float stopOrNot;
 
         [SerializeField, Header("(록온)타겟")]
         private Transform lockOnTarget = null;
@@ -448,6 +475,8 @@ namespace Module
         private bool isCharging;
         [SerializeField, Header("맞을 수 있나?")]
         private bool isCanHit;
+        [SerializeField, Header("전체 시간인가?")]
+        private bool isStaticTime;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
@@ -492,7 +521,9 @@ namespace Module
         private Transform model;
 
         [SerializeField, Header("애니메이터")]
-        public Animator animator;
+        protected Animator animator;
+
+        private float personalTime;
 
         [Space]
         [SerializeField, Header("양쪽 발")]
@@ -505,6 +536,7 @@ namespace Module
 
         [Space]
         public AnimatorOverrideController animatorOverrideController;
+        #endregion
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 
