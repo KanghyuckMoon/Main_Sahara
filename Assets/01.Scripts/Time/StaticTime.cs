@@ -113,6 +113,20 @@ namespace TimeManager
 		private static float uiTime = 1f;
 		private static List<Observer> observers = new List<Observer>();
 
+
+		public float GetEntireTimeWithIndi(float time)
+		{
+			return entierTime * uiTime * time;
+		}
+		public float GetEnemyTimeWithIndi(float time)
+		{
+			return enemyTime * uiTime * time;
+		}
+		public float GetPlayerTimeWithIndi(float time)
+		{
+			return playerTime * uiTime * time;
+		}
+
 		public void AddObserver(Observer _observer)
 		{
 			if (!Observers.Contains(_observer))
