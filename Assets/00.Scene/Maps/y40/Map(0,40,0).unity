@@ -388,6 +388,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88757ba3bb12e8644975077a2ea4ac4c, type: 3}
+--- !u!1 &381204768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381204769}
+  m_Layer: 0
+  m_Name: CutScene2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &381204769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381204768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 976988957}
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &414120123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1229,83 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d76f4c6bf0dea6749811cbd530bef722, type: 3}
+--- !u!1 &976988956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 976988957}
+  - component: {fileID: 976988958}
+  m_Layer: 0
+  m_Name: DollyTrack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &976988957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976988956}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -85.47199, y: 4049.2546, z: -0.5272002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 381204769}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &976988958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976988956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: 39.5259, y: -11.079102, z: 7.049455}
+    roll: 0
+  - position: {x: 29.05893, y: -11.079102, z: 9.046377}
+    roll: 0
+  - position: {x: 29.13974, y: -11.079102, z: -3.697535}
+    roll: 0
+  - position: {x: 42.08736, y: -11.079102, z: -5.710116}
+    roll: 0
+  - position: {x: 48.840862, y: -11.079102, z: 6.314914}
+    roll: 0
+  - position: {x: 43.371216, y: -11.079102, z: 17.059393}
+    roll: 0
+  - position: {x: 33.595394, y: -11.079102, z: 13.335085}
+    roll: 0
+  - position: {x: 33.93326, y: -11.079102, z: 3.0288272}
+    roll: 0
+  - position: {x: 42.527878, y: -9.379395, z: -1.9023299}
+    roll: 0
+  - position: {x: 47.991913, y: -0.98828125, z: 6.233565}
+    roll: 0
+  - position: {x: 43.031555, y: 9.228027, z: 17.205904}
+    roll: 0
+  - position: {x: 35.8948, y: 9.180664, z: 11.764763}
+    roll: 0
+  - position: {x: 29.018562, y: -14.51001, z: 8.624529}
+    roll: 0
 --- !u!1 &981637102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,13 +1351,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutSceneDataList:
     cutSceneDataList:
-    - cutSceneType: 1
+    - cutSceneType: 10
       target1: {fileID: 443461764}
       target2: {fileID: 0}
       trackTarget: {fileID: 0}
       smoothPath: {fileID: 0}
       testTalk: {fileID: 126699731}
       zoomInOutDistance: 0
+      questKey: 
+      questState: 0
+      eventObj: {fileID: 1394382651}
       isTalk: 1
       isNotUseTrackLookAt: 0
     - cutSceneType: 6
@@ -1258,6 +1370,9 @@ MonoBehaviour:
       smoothPath: {fileID: 0}
       testTalk: {fileID: 0}
       zoomInOutDistance: 0
+      questKey: 
+      questState: 0
+      eventObj: {fileID: 0}
       isTalk: 0
       isNotUseTrackLookAt: 0
     - cutSceneType: 1
@@ -1267,6 +1382,9 @@ MonoBehaviour:
       smoothPath: {fileID: 0}
       testTalk: {fileID: 126699731}
       zoomInOutDistance: 0
+      questKey: 
+      questState: 0
+      eventObj: {fileID: 0}
       isTalk: 1
       isNotUseTrackLookAt: 0
     - cutSceneType: 6
@@ -1276,6 +1394,9 @@ MonoBehaviour:
       smoothPath: {fileID: 0}
       testTalk: {fileID: 0}
       zoomInOutDistance: 0
+      questKey: 
+      questState: 0
+      eventObj: {fileID: 0}
       isTalk: 0
       isNotUseTrackLookAt: 0
   questKey: 
@@ -1721,6 +1842,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 157854ad31c11b94f9cc04dfe48d0a0b, type: 3}
+--- !u!1 &1394382651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 910813654809553077, guid: 157854ad31c11b94f9cc04dfe48d0a0b, type: 3}
+  m_PrefabInstance: {fileID: 1394382650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1394382652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394382651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa690f50737eb148b93c789bd65ebe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInfinityPlay: 0
+  isAlreadyPlay: 0
+  animator: {fileID: 1394382653}
+  animationKey: BuildingUp
+--- !u!95 &1394382653
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394382651}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c4008ba495ff13b49923e9adb3b951f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!4 &1394382654 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4999911855925594895, guid: 157854ad31c11b94f9cc04dfe48d0a0b, type: 3}
+  m_PrefabInstance: {fileID: 1394382650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1556226577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2238,6 +2405,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2053828218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2053828221}
+  - component: {fileID: 2053828220}
+  - component: {fileID: 2053828219}
+  m_Layer: 0
+  m_Name: CutSceneCol2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &2053828219
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053828218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15, y: 15, z: 15}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2053828220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053828218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c01afc539c9d9d4893735fb5ef112b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutSceneDataList:
+    cutSceneDataList:
+    - cutSceneType: 2
+      target1: {fileID: 0}
+      target2: {fileID: 0}
+      trackTarget: {fileID: 1394382654}
+      smoothPath: {fileID: 976988958}
+      testTalk: {fileID: 0}
+      zoomInOutDistance: 0
+      questKey: 
+      questState: 0
+      eventObj: {fileID: 1394382651}
+      isTalk: 0
+      isNotUseTrackLookAt: 0
+  questKey: 
+  questState: 0
+  isPlayCutScene: 0
+--- !u!4 &2053828221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053828218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -44.69, y: 4035.6, z: 7.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &498428295891883774
 MonoBehaviour:
@@ -4755,6 +4997,7 @@ MonoBehaviour:
   gravityScale: -19.8
   groundOffset: 0
   knockBackVector: {x: 0, y: 0, z: 0}
+  slopeVector: {x: 0, y: 0, z: 0}
   hitDelay: 0
   lockOn: 0
   groundLayer:

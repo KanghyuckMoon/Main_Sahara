@@ -13,7 +13,7 @@ using CutScene;
 
 namespace Module
 {
-	public class BossDead : MonoBehaviour, Observer, Obserble
+	public class BossDead : MonoBehaviour, Observer, IObserble
     {
         [SerializeField]
         private string enemyKey = "NULL";

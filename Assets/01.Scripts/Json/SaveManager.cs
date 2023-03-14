@@ -491,7 +491,7 @@ namespace Json
             StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
             StaticSave.Load<PathSave>(ref PathModeManager.Instance.pathSave, _date);
 
-            //º°µµÀÇ Àû¿ë ÇÊ¿äÇÔ
+            //ë³„ë„ì˜ ì ìš© í•„ìš”í•¨
             Player.GetComponentInChildren<CharacterController>().enabled = false;
             //(Player.GetComponent<AbMainModule>() as Player).OnEnable();
             stateModule = (Player.GetComponent<AbMainModule>() as Player).GetModuleComponent<StatModule>(ModuleType.Stat);

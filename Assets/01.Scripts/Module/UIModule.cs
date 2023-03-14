@@ -9,7 +9,7 @@ using Pool;
 
 namespace Module
 {
-    public class UIModule : AbBaseModule, Obserble
+    public class UIModule : AbBaseModule, IObserble
     {
         public List<Observer> Observers
         {
@@ -86,7 +86,7 @@ namespace Module
                 return;
             }
 
-            //UI µ¿Àû »ı¼º
+            //UI ë™ì  ìƒì„±
             //hudObject = ObjectPoolManager.Instance.GetObject(address);
             //hudObject.transform.SetParent(mainModule.transform);
             //hudObject.SetActive(true);

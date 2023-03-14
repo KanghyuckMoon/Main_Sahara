@@ -7,7 +7,7 @@ using ForTheTest;
 
 namespace Data
 {
-    public class StatData : MonoBehaviour, Obserble
+    public class StatData : MonoBehaviour, IObserble
     {
         [SerializeField] private string dataSOPath;
 
@@ -189,7 +189,7 @@ namespace Data
             Send();
         }
 
-        #region ¿ÉÀú¹ö ºÎºÐ
+        #region ì˜µì €ë²„ ë¶€ë¶„
         public void AddObserver(Observer _observer)
         {
             Observers.Add(_observer);

@@ -12,7 +12,7 @@ namespace Module
         None
     }
 
-    public class BuffModule : AbBaseModule,Obserble
+    public class BuffModule : AbBaseModule,IObserble
     {
         public Dictionary<IBuff, Bufftype> buffDic = new Dictionary<IBuff, Bufftype>();
         public List<AbBuffEffect> buffList = new List<AbBuffEffect>();
@@ -30,7 +30,7 @@ namespace Module
             AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), Bufftype.Update);
         }
 
-        [ContextMenu("≈◊Ω∫∆Æ")]
+        [ContextMenu("ÌÖåÏä§Ìä∏")]
         public void TestBuff()
         {
             AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), Bufftype.Update);
@@ -47,7 +47,7 @@ namespace Module
                 buffDic.Remove(_buff);
                 buffList.Remove(_buff);
             }
-            Send(); // UIø° Ω≈»£ ∫∏≥ª±‚, 
+            Send(); // UIÏóê Ïã†Ìò∏ Î≥¥ÎÇ¥Í∏∞, 
         }
 
         public override void Update()

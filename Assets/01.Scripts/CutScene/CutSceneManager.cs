@@ -13,6 +13,7 @@ using Quest;
 using Module;
 using Module.Talk;
 using CondinedModule;
+using EventObject;
 
 namespace CutScene
 {
@@ -21,6 +22,7 @@ namespace CutScene
         None,
         PlayerToTarget = 1,
         PlayerToTrack = 2,
+        PlayerToTrack10f = 10,
         PlayerToCutTarget = 3,
         PlayerToZoomInOut = 4,
         //PlayerToRotate = 5,
@@ -125,12 +127,26 @@ namespace CutScene
             {
                 var _cinemachineTrackedDolly = CamList.GetCam(CamType.TrackCam).GetCinemachineComponent<CinemachineTrackedDolly>();
                 _cinemachineTrackedDolly.m_PathPosition = 0f;
-                DOTween.To(() => _cinemachineTrackedDolly.m_PathPosition, x => _cinemachineTrackedDolly.m_PathPosition = x, 1, 3f);
+                float _time = 0f;
+                if (_cutSceneData.cutSceneType == CutSceneType.PlayerToTrack)
+                {
+                    _time = 3f;
+                }
+                else if(_cutSceneData.cutSceneType == CutSceneType.PlayerToTrack10f)
+                {
+                    _time = 10f;
+                }
+                DOTween.To(() => _cinemachineTrackedDolly.m_PathPosition, x => _cinemachineTrackedDolly.m_PathPosition = x, 1, _time);
                 if (isForward)
                 {
                     var _cart = CamList.GetCameraDollyCart();
-                    DOTween.To(() => _cart.m_Position, x => _cart.m_Position = x, 1, 2.9f);
+                    DOTween.To(() => _cart.m_Position, x => _cart.m_Position = x, 1, _time - 0.1f);
                 }
+            }
+
+            if (_cutSceneData.eventObj != null)
+            {
+                _cutSceneData.eventObj.GetComponent<IEventObj>()?.PlayEvent();
             }
         }
         private void SettingParameterCutSceneData(CutSceneData _cutSceneData)
@@ -142,6 +158,7 @@ namespace CutScene
                     ChangeLastCam(CamType.TargetCam1);
                     break;
                 case CutSceneType.PlayerToTrack:
+                case CutSceneType.PlayerToTrack10f:
                     if (_cutSceneData.isNotUseTrackLookAt)
                     {
                         CutSceneManager.Instance.SetTrackTarget(null);
@@ -427,6 +444,9 @@ namespace CutScene
         //Clear Quest
         public string questKey;
         public QuestState questState;
+
+        //Event
+        public GameObject eventObj;
 
         //Condition
         public bool isTalk;
