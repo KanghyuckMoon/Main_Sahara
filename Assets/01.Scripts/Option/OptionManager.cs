@@ -7,6 +7,6 @@ namespace Option
 {
     public class OptionManager : Singleton<OptionManager>
     {
-        private OptionData optionData;
+        public OptionData optionData = new OptionData();
     }   
 }
