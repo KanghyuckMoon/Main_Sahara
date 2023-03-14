@@ -37,7 +37,7 @@ namespace PassiveItem
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
-                    Vector3 _dir = mainModule.transform.forward * Time.deltaTime * 28f;
+                    Vector3 _dir = mainModule.transform.forward * mainModule.PersonalDeltaTime * 28f;
                     characterController.Move(_dir);
 
                     stateModule.AddState(State.SKILL);

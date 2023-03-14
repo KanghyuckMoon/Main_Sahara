@@ -85,7 +85,7 @@ namespace Module
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f * Time.fixedDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f * mainModule.PersonalDeltaTime);
             }
             else
             {
@@ -93,7 +93,7 @@ namespace Module
             }
 
             animationBlend = mainModule.isGround ? animationBlend : 0;
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, Time.fixedDeltaTime * 5);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, mainModule.PersonalDeltaTime * 5);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
@@ -171,12 +171,12 @@ namespace Module
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * Time.fixedDeltaTime;
+            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * mainModule.PersonalDeltaTime;
 
 
-            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, Time.fixedDeltaTime);
-            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
-            else mainModule.CharacterController.Move(mainModule.SlopeVector * Time.deltaTime);
+            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, mainModule.PersonalDeltaTime);
+            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * mainModule.PersonalDeltaTime));
+            else mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalDeltaTime);
             Animator.SetFloat("MoveSpeed", animationBlend);
         }
 

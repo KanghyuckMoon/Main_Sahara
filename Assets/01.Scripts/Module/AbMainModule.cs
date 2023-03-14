@@ -312,6 +312,13 @@ namespace Module
 
             }
         }
+        public float PersonalDeltaTime
+        {
+            get
+            {
+                return player ? StaticTime.PlayerDeltaTime : StaticTime.EnemyDeltaTime;
+            }
+        }
         public Vector3 KnockBackVector
         {
             get
@@ -411,6 +418,13 @@ namespace Module
                 animator = value;
 			}
 		}
+        public SettingTime SettingTime
+        {
+            get
+            {
+                return settingTime ??= GetComponent<SettingTime>();
+            }
+        }
         public GameObject Back
         {
             get
@@ -522,6 +536,8 @@ namespace Module
 
         [SerializeField, Header("애니메이터")]
         protected Animator animator;
+
+        private SettingTime settingTime;
 
         private float personalTime;
 
