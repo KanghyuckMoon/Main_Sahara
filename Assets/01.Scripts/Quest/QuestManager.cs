@@ -165,7 +165,12 @@ namespace Quest
 
 		public void ChangeQuestActive(string _key)
 		{
-			questDataDic[_key].QuestState = QuestState.Active;
+			QuestData _questData = questDataDic[_key];
+			if (_questData.QuestState == QuestState.Active || _questData.QuestState == QuestState.Clear || _questData.QuestState == QuestState.Achievable)
+			{
+				return;
+			}
+			_questData.QuestState = QuestState.Active;
 		}
 		public void ChangeQuestClear(string _key)
 		{
@@ -184,6 +189,17 @@ namespace Quest
 			{
 				QuestClear(questDataDic[_key]);
 			}
+		}
+		public void ChangeQuestDiscoverable(string _key)
+		{
+			QuestData _questData = questDataDic[_key];
+			if (_questData.QuestState == QuestState.Active || _questData.QuestState == QuestState.Clear || _questData.QuestState == QuestState.Achievable)
+			{
+				return;
+			}
+			_questData.QuestState = QuestState.Discoverable;
+			questSaveDataSO.ChangeQuestSaveData(_questData.QuestKey, _questData.QuestState);
+			CreateAllObject(_questData.QuestCreateObjectSOList);
 		}
 
 		public void TalkQuestClear(string _key)

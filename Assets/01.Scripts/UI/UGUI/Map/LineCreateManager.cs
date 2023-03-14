@@ -7,7 +7,7 @@ using Utill.Addressable;
 using UI.Base;
 using Pool; 
 
-namespace UI
+namespace UI.MapLiner
 {
     public class LineCreateManager : MonoSingleton<LineCreateManager>
     {

@@ -78,6 +78,7 @@ namespace Inventory
 			ItemData _newItemData = new ItemData();
 			_newItemData.key = _itemData.key;
 			_newItemData.count = _itemData.count;
+			_newItemData.price = _itemData.price;
 			_newItemData.nameKey = _itemData.nameKey;
 			_newItemData.explanationKey = _itemData.explanationKey;
 			_newItemData.spriteKey = _itemData.spriteKey;
@@ -88,6 +89,9 @@ namespace Inventory
 			_newItemData.prefebkey = _itemData.prefebkey;
 			_newItemData.animationLayer = _itemData.animationLayer;
 			_newItemData.dropItemPrefebKey = _itemData.dropItemPrefebKey;
+			_newItemData.accessoriesItemType = _itemData.accessoriesItemType;
+			_newItemData.equipmentType = _itemData.equipmentType;
+			_newItemData.isSlot = _itemData.isSlot;
 
 			return _newItemData;
 		}
@@ -97,6 +101,7 @@ namespace Inventory
 			ItemData _newItemData = new ItemData();
 			_newItemData.key = _itemDataSO.key;
 			_newItemData.count = _itemDataSO.count;
+			_newItemData.price = _itemDataSO.price;
 			_newItemData.nameKey = _itemDataSO.nameKey;
 			_newItemData.explanationKey = _itemDataSO.explanationKey;
 			_newItemData.spriteKey = _itemDataSO.spriteKey;
@@ -107,6 +112,9 @@ namespace Inventory
 			_newItemData.prefebkey = _itemDataSO.prefebkey;
 			_newItemData.animationLayer = _itemDataSO.animationLayer;
 			_newItemData.dropItemPrefebKey = _itemDataSO.dropItemPrefebKey;
+			_newItemData.accessoriesItemType = _itemDataSO.accessoriesItemType;
+			_newItemData.equipmentType = _itemDataSO.equipmentType;
+			_newItemData.isSlot = _itemDataSO.isSlot;
 
 			return _newItemData;
 		}

@@ -23,6 +23,7 @@
     visibility: hidden;
     justify-content: center;
     align-items: stretch;
+    height: 100%;
 }
 
 .front_bar {
@@ -52,12 +53,16 @@
     display: flex;
     background-color: rgb(242, 47, 46);
     visibility: visible;
-    height: 200%;
+    height: 100%;
     background-image: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .skill_image {
-    background-image: url('project://database/Assets/12.Texture/UI/images/icons_small.png?fileID=21300010&guid=5ca9013004c0ec84cbfaaaee55090805&type=3#icons_small_achievements');
+    background-image: url('project://database/Assets/14.Texture/UI/images/icons_small.png?fileID=21300010&guid=5ca9013004c0ec84cbfaaaee55090805&type=3#icons_small_achievements');
     -unity-background-scale-mode: scale-to-fit;
     width: 80%;
     height: 80%;
@@ -68,7 +73,11 @@
     background-color: rgb(125, 110, 112);
     justify-content: space-around;
     visibility: visible;
-    height: 200%;
+    height: 100%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .mp_bar {
@@ -79,7 +88,7 @@
     background-color: rgb(46, 162, 242);
     justify-content: space-around;
     visibility: visible;
-    height: 200%;
+    height: 100%;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -91,13 +100,17 @@
     background-color: rgb(75, 75, 87);
     justify-content: space-around;
     visibility: visible;
-    height: 200%;
+    height: 100%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .slider_frame {
     width: 101%;
     height: 200%;
-    background-image: url('project://database/Assets/12.Texture/UI/Make/HUD/PlayerDeco.png?fileID=2800000&guid=871046fb9845e8b4891f4fdf6de4d639&type=3#PlayerDeco');
+    background-image: url('project://database/Assets/14.Texture/UI/Make/HUD/PlayerDeco.png?fileID=2800000&guid=871046fb9845e8b4891f4fdf6de4d639&type=3#PlayerDeco');
     -unity-background-scale-mode: stretch-to-fill;
     position: absolute;
     border-top-left-radius: 4px;
@@ -108,4 +121,14 @@
 
 .unity-progress-bar .unity-progress-bar__title-container {
     display: none;
+}
+
+.bar_parent {
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
 }

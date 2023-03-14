@@ -21,10 +21,10 @@ namespace Quest
 			{
                 questDataDic.Add(_questSO.questKey, new QuestData(_questSO.questKey, _questSO.nameKey, _questSO.explanationKey, _questSO.earlyQuestState, _questSO.questConditionType, _questSO.questCreateObjectSOList, _questSO.linkQuestKeyList, _questSO.isTalkQuest));
 
-                if (_questSO.earlyQuestState == QuestState.Discoverable || _questSO.earlyQuestState == QuestState.Active)
-				{
-                    CreateAllObject(_questSO.questCreateObjectSOList);
-				}
+    //            if (_questSO.earlyQuestState == QuestState.Discoverable || _questSO.earlyQuestState == QuestState.Active)
+				//{
+    //                CreateAllObject(_questSO.questCreateObjectSOList);
+				//}
 
 				switch (_questSO.questConditionType)
 				{

@@ -27,7 +27,7 @@ namespace UI.Production
 
         enum Labels
         {
-            text_label
+            time_label
         }
 
         public BuffEntryView()
@@ -63,7 +63,7 @@ namespace UI.Production
         }
         public void SetText(string _str)
         {
-            GetLabel((int)Labels.text_label).text = _str; 
+            GetLabel((int)Labels.time_label).text = _str; 
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
+using InputSystem;
 
 namespace Module
 {
@@ -82,7 +83,7 @@ namespace Module
 			{
 				if (mainModule.StopOrNot >= 1 && !StateModule.CheckState(State.SKILL))
 				{
-					bool _inputup = Input.GetKey(KeyCode.Space);
+					bool _inputup = InputManager.Instance.CheckKey("Jump");// Input.GetKey(KeyCode.Space);
 
 					mainModule.IsJump = _inputup;
 					mainModule.IsJumpBuf = _inputup;
@@ -95,7 +96,7 @@ namespace Module
 
 		private void InputSprint()
         {
-			bool _inputrun = Input.GetKey(KeyCode.LeftShift);
+			bool _inputrun = InputManager.Instance.CheckKey("Sprint");
 
 			mainModule.IsSprint = _inputrun;
 		}
@@ -106,16 +107,16 @@ namespace Module
 			{
 				if (!StateModule.CheckState(State.SKILL))
 				{
-					if (Input.GetKeyDown(KeyCode.E))
+					if (InputManager.Instance.CheckKey("Skill1"))
 					{
 						//Input.key
 						SkillModule.UseSkill("E");//.BaseWeapon.weaponSkills.Invoke();
 					}
-					if (Input.GetKeyDown(KeyCode.R))
+					if (InputManager.Instance.CheckKey("Skill2"))
 					{
 						SkillModule.UseSkill("R");
 					}
-					if (Input.GetKeyDown(KeyCode.Q))
+					if (InputManager.Instance.CheckKey("WeaponSkill"))
 					{
 						SkillModule.UseWeaponSkill();
 					}

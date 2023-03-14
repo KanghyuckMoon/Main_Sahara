@@ -204,7 +204,25 @@ namespace CutScene
         }
         public void NextCutScene()
         {
-            if (cutSceneDataList.cutSceneDataList[index].isTalk)
+            //퀘스트 조건이 달려있으면 퀘스트 클리어
+            if(cutSceneDataList.cutSceneDataList[index].questKey != null)
+			{
+				switch (cutSceneDataList.cutSceneDataList[index].questState)
+				{
+					case QuestState.Discoverable:
+                        QuestManager.Instance.ChangeQuestDiscoverable(cutSceneDataList.cutSceneDataList[index].questKey);
+                        break;
+					case QuestState.Active:
+                        QuestManager.Instance.ChangeQuestActive(cutSceneDataList.cutSceneDataList[index].questKey);
+                        break;
+					case QuestState.Achievable:
+					case QuestState.Clear:
+                        QuestManager.Instance.ChangeQuestClear(cutSceneDataList.cutSceneDataList[index].questKey);
+                        break;
+				}
+			}
+
+			if (cutSceneDataList.cutSceneDataList[index].isTalk)
             {
                 PlayableDirector.Pause();
                 StartCoroutine(WaitEndTalk());
@@ -232,7 +250,7 @@ namespace CutScene
 
 		}
 
-        private IEnumerator WaitEndTalk()
+		private IEnumerator WaitEndTalk()
 		{
             while(!talkModule.IsEndTalk)
 			{
@@ -377,9 +395,9 @@ namespace CutScene
             }
         }
 
-    }
+	}
 
-    [System.Serializable]
+	[System.Serializable]
     public class CutSceneDataList
 	{
         public List<CutSceneData> cutSceneDataList = new List<CutSceneData>();
@@ -406,8 +424,13 @@ namespace CutScene
         //ZoomInOut
         public float zoomInOutDistance;
 
+        //Clear Quest
+        public string questKey;
+        public QuestState questState;
+
         //Condition
         public bool isTalk;
         public bool isNotUseTrackLookAt;
+
     }
 }

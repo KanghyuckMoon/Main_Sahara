@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UI.Base;
 using UI.Inventory;
-using Inventory; 
-
+using Inventory;
 namespace UI
 {
     [System.Serializable]
@@ -13,11 +12,14 @@ namespace UI
     {
         enum Elements
         {
-            quickslot_view
+            quickslot_view,
+            select_effect
         }
 
         private List<SlotItemPresenter> _slotList = new List<SlotItemPresenter>();
-        private SlotItemPresenter arrowSlot; 
+        private SlotItemPresenter arrowSlot;
+
+        private SlotItemPresenter selectSlotPr; 
 
         public List<SlotItemPresenter> SlotList => _slotList;
         public SlotItemPresenter ArrowSlot { get => arrowSlot; set => arrowSlot = value; }
@@ -32,6 +34,18 @@ namespace UI
         {
             base.Init();
             InitSlots(); 
+        }
+
+        /// <summary>
+        /// º±≈√µ» ƒ¸ΩΩ∑‘ »∞º∫»≠ ¿Ã∆Â∆Æ 
+        /// </summary>
+        public void UpdateActiveEffect()
+        {
+            selectSlotPr.SelectSlot(false);
+
+            selectSlotPr = _slotList[InventoryManager.Instance.GetCurrentQuickSlotIndex()];
+            selectSlotPr.SelectSlot(true);
+            selectSlotPr.Parent.Add(GetVisualElement((int)Elements.select_effect));
         }
 
         private void InitSlots()
@@ -49,6 +63,8 @@ namespace UI
                 _slotList.Add(new SlotItemPresenter(_v, _index));
                 ++_index; 
             }
+            // «ˆ¿Á º±≈√ ΩΩ∑‘ º≥¡§ 
+            selectSlotPr = _slotList[InventoryManager.Instance.GetCurrentQuickSlotIndex()];
         }
 
 
