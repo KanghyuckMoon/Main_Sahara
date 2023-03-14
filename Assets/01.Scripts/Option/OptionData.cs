@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InputSystem;
 
 namespace Option
 {
@@ -17,7 +18,7 @@ namespace Option
         public int width;
         public int height;
         public bool isFullScreen;
-        
-        
+
+        public List<InputData> inputDataList = new List<InputData>();
     }   
 }

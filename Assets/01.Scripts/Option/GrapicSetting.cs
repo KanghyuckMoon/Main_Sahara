@@ -81,6 +81,9 @@ public class GrapicSetting : MonoBehaviour
     public void ApplySettingScreen()
     {
         Screen.SetResolution(Width, Height, IsFoolScreen);
+        OptionManager.Instance.optionData.width = Width;
+        OptionManager.Instance.optionData.height = Height;
+        OptionManager.Instance.optionData.isFullScreen = IsFoolScreen;
     }
 }
 

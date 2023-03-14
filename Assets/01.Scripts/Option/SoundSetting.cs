@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Option;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -38,5 +39,8 @@ public class SoundSetting : MonoBehaviour
     {
         _audioMixer.SetFloat("BGMVolume", _bgmAudioSlider.value);
         _audioMixer.SetFloat("EFFVolume", _effAudioSlider.value);
+
+        OptionManager.Instance.optionData.bgmVolume = _bgmAudioSlider.value;
+        OptionManager.Instance.optionData.effVolume = _effAudioSlider.value;
     }
 }
