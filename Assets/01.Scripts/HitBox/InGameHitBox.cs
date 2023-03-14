@@ -35,6 +35,14 @@ namespace HitBox
 			}
 		}
 
+		public HitBoxData HitBoxData
+		{
+			get
+			{
+				return hitBoxData;
+			}
+		}
+
 		private CapsuleCollider col;
 		private HitBoxData hitBoxData;
 		private GameObject owner;

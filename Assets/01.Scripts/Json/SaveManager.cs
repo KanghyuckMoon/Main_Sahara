@@ -16,6 +16,7 @@ using PathMode;
 using Unity.Jobs;
 using Unity.Collections;
 using Tutorial;
+using Option;
 
 namespace Json
 {
@@ -521,6 +522,16 @@ namespace Json
             }
             //StaticTime.EntierTime = 1;
             isLoadSuccess = true;
+        }
+
+        public void OptionSave()
+        {
+            StaticSave.Save<OptionData>(ref OptionManager.Instance.optionData);
+        }
+
+        public void OptionLoad()
+        {
+            StaticSave.Load<OptionData>(ref OptionManager.Instance.optionData);
         }
 
 #if UNITY_EDITOR

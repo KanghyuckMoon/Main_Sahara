@@ -29,6 +29,7 @@ namespace InputSystem
 		public void ChangeKey(string _str, KeyCode _keyCode)
 		{
 			inputSO.keyCodeDic[_str].keyCode = _keyCode;
+			inputSO.inputDataList.Find(x => x.key == _str).keyCode = _keyCode;
 		}
 
 		public void Update()

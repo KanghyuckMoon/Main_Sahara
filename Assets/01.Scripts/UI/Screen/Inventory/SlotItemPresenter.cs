@@ -25,7 +25,17 @@ namespace UI.Inventory
         public ItemType SlotType => slotType; 
         public int Index => index;
         public SlotItemView SlotItemView => slotItemView;
-        public VisualElement Parent => parent;
+        public VisualElement Parent
+        {
+            get
+            {
+                if(parent == null)
+                {
+                    parent = slotItemView.ParentElement; 
+                }
+                return parent;
+            }
+        }
         public VisualElement Item => slotItemView.Item; 
         public ItemData ItemData => itemData;
         public Vector2 WorldPos => slotItemView.SlotWorldBound.position;

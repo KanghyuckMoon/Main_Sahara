@@ -14,6 +14,8 @@ namespace PhysicsTime
         {
             if (Physics.autoSimulation)
                 return; // do nothing if the automatic simulation is enabled
+            if (StaticTime.PhysicsDeltaTime == 0f)
+                return;
 
             timer += StaticTime.PhysicsDeltaTime;
 
@@ -22,6 +24,10 @@ namespace PhysicsTime
             // Note that generally, we don't want to pass variable delta to Simulate as that leads to unstable results.
             while (timer >= StaticTime.PhysicsFixedDeltaTime)
             {
+                if(StaticTime.PhysicsFixedDeltaTime == 0f)
+                {
+                    break;
+                }
                 timer -= StaticTime.PhysicsFixedDeltaTime;
                 Physics.Simulate(StaticTime.PhysicsFixedDeltaTime);
             }
