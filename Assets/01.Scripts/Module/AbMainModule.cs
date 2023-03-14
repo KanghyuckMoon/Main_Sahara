@@ -319,6 +319,13 @@ namespace Module
                 return player ? StaticTime.PlayerDeltaTime : StaticTime.EnemyDeltaTime;
             }
         }
+        public float PersonalFixedDeltaTime
+        {
+            get
+            {
+                return player ? StaticTime.PhysicsPlayerFixedDeltaTime : StaticTime.PhysicsEnemyFixedDeltaTime;
+            }
+        }
         public Vector3 KnockBackVector
         {
             get

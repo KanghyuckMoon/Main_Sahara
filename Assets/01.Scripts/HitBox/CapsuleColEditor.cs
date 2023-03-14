@@ -30,7 +30,8 @@ namespace HitBox
 		private CapsuleCollider col;
 		public HitBoxDatasSO hitBoxDataSO;
 		public HitBoxData hitBoxData = new HitBoxData();
-
+		public GameObject swingEffectObj = null;
+		
 		public void SetHitBox(HitBoxData _hitBoxData)
 		{
 			hitBoxData = _hitBoxData;
@@ -51,6 +52,13 @@ namespace HitBox
 			hitBoxData.radius = col.radius;
 			hitBoxData.height = col.height;
 			hitBoxData.rotation = transform.eulerAngles;
+
+			if (swingEffectObj != null)
+			{
+				hitBoxData.swingEffectOffset = swingEffectObj.transform.position;
+				hitBoxData.swingEffectRotation = swingEffectObj.transform.eulerAngles;
+				hitBoxData.swingEffectSize = swingEffectObj.transform.localScale;
+			}
 		}
 
 		[ContextMenu("GetHitBox")]

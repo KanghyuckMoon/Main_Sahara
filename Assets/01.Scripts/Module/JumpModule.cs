@@ -95,7 +95,7 @@ namespace Module
                 }
 
                 if (calculatedTime > 0.0f)
-                    calculatedTime -= Time.deltaTime;
+                    calculatedTime -= mainModule.PersonalDeltaTime;
             }
             else
             {
@@ -103,7 +103,7 @@ namespace Module
 
                 if (calculatedFallTime >= 0.0f)
                 {
-                    calculatedFallTime -= Time.deltaTime;
+                    calculatedFallTime -= mainModule.PersonalDeltaTime;
                 }
                 else
                 {

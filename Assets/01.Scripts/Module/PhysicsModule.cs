@@ -70,7 +70,7 @@ namespace Module
                     mainModule.SettingTime.SetTime(1, 0.1f);
 
                     mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
-                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
+                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
                     if (_statData != null)
                     {
                         HitModule.GetHit(Mathf.RoundToInt(_statData.MeleeAttack * _locationHitBox.AttackMulti));
