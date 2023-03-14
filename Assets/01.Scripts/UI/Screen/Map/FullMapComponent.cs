@@ -6,7 +6,8 @@ using System;
 using PathMode;
 using UI.EventManage;
 using UI.MapLiner;
-using InputSystem; 
+using InputSystem;
+using UI.Base; 
 
 namespace UI
 {
@@ -29,7 +30,7 @@ namespace UI
         private float minZoomValue;
 
         // 프라이빗 
-//        private MapLiner mapLiner; 
+        private MapLiner.MapLiner mapLiner; 
 
         private float zoomValue;
         private float xMoveValue;
@@ -42,6 +43,8 @@ namespace UI
         public void Init(MapView _mapView)
         {
             this.mapView = _mapView;
+            this.mapLiner = LineCreateManager.Instance.CreateLine(ScreenType.Map);
+
         }
 
         public void UpdateUI()
@@ -53,8 +56,11 @@ namespace UI
             // 확대 축소 
             ZoomMap();
             //mapView.MapRect.width 
-            EventManager.Instance.TriggerEvent(EventsType.UpdateMapPos, (Vector2)mapView.Map.transform.position);
-            EventManager.Instance.TriggerEvent(EventsType.UpdateMapScale, (Vector2)mapView.Map.transform.scale);
+            LineCreateManager.Instance.UpdateLinesPos(ScreenType.Map, (Vector2)mapView.Map.transform.position); 
+            LineCreateManager.Instance.UpdateLinesScale(ScreenType.Map, (Vector2)mapView.Map.transform.scale); 
+          
+            //EventManager.Instance.TriggerEvent(EventsType.UpdateMapPos, (Vector2)mapView.Map.transform.position);
+           // EventManager.Instance.TriggerEvent(EventsType.UpdateMapScale, (Vector2)mapView.Map.transform.scale);
             // 마커 생성
             if (Input.GetKeyDown(KeyCode.G))
             {
@@ -66,29 +72,29 @@ namespace UI
         {
             
             // 움직임 
-            if (InputManager.Instance.CheckKey("MapMoveF"))
+            if (InputManager.Instance.CheckKey("MapMoveF_Down"))
             {
                 yMoveValue = 1f;
             }
-            if (InputManager.Instance.CheckKey("MapMoveL"))
+            if (InputManager.Instance.CheckKey("MapMoveL_Down"))
             {
                 xMoveValue = -1f;
             }
-            if (InputManager.Instance.CheckKey("MapMoveB"))
+            if (InputManager.Instance.CheckKey("MapMoveB_Down"))
             {
                 yMoveValue = -1f;
             }
-            if (InputManager.Instance.CheckKey("MapMoveR"))
+            if (InputManager.Instance.CheckKey("MapMoveR_Down"))
             {
                 xMoveValue = 1f;
             }
 
             // 키 뗐을때 초기화 
-            if (InputManager.Instance.CheckKey("MapMoveF") || InputManager.Instance.CheckKey("MapMoveB"))
+            if (InputManager.Instance.CheckKey("MapMoveF_Up") || InputManager.Instance.CheckKey("MapMoveB_Up"))
             {
                 yMoveValue = 0f;
             }
-            if (InputManager.Instance.CheckKey("MapMoveL") || InputManager.Instance.CheckKey("MapMoveR"))
+            if (InputManager.Instance.CheckKey("MapMoveL_Up") || InputManager.Instance.CheckKey("MapMoveR_Up"))
             {
                 xMoveValue = 0f;
             }
@@ -166,12 +172,15 @@ namespace UI
         public void ActivePath()
         {
             var _list = PathModeManager.Instance.GetPathList();
-            EventManager.Instance.TriggerEvent(EventsType.UpdateMapLine,_list);
+            //EventManager.Instance.TriggerEvent(EventsType.UpdateMapLine,_list);
+
+            this.mapLiner.UpdateMapLine(_list); 
         }
 
         public void ClearLines()
         {
-            EventManager.Instance.TriggerEvent(EventsType.ClearMapLine); 
+            //EventManager.Instance.TriggerEvent(EventsType.ClearMapLine); 
+            this.mapLiner.ClearMapLine(); 
         }
 
 

@@ -73,7 +73,7 @@ namespace UI.MapLiner
             if (linerDic.ContainsKey(_screenType) == false) return;
             foreach (var _line in linerDic[_screenType])
             {
-                Destroy(pLiner); 
+                Destroy(_line); 
               //  _line.gameObject.SetActive(false); 
                // ObjectPoolManager.Instance.RegisterObject(lineAddress, _line.gameObject);
             }

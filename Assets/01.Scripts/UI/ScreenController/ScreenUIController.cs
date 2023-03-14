@@ -139,11 +139,8 @@ namespace UI
 
         private void SetInputEvent()
         {
-            InputManager.Instance.CheckKey("MapUI");
-
             inputDic.Clear();
 
-            ;
             inputDic.Add(new UIInputData(Get(Keys.InventoryUI), true), () =>
             {
                 // 인벤토리 활성화 
@@ -270,7 +267,7 @@ namespace UI
         /// </summary>
         private void SetTime(bool _isActive)
         {
-            //StaticTime.UITime = _isActive ? 0f : 1f; 
+            StaticTime.UITime = _isActive ? 0f : 1f; 
             //Time.timeScale = _isActive ? 0f : 1f; 
         }
         /// <summary>
