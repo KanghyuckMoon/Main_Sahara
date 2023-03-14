@@ -70,7 +70,7 @@ public class ItemSOMaker : MonoBehaviour
 
             ItemDataSO _asset = null;
             _asset = allItemDataSO.itemDataSOList.Find(x => x.key == _key);
-            //ÀÌ¹Ì ÀÖ´ÂÁö
+            //ï¿½Ì¹ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
             if (_asset == null)
             {
                 _asset = ScriptableObject.CreateInstance<ItemDataSO>();
@@ -125,7 +125,7 @@ public class ItemSOMaker : MonoBehaviour
 
             ItemDataSO _asset = null;
             _asset = allDropItemDataSO.itemDataSOList.Find(x => x.key == _key);
-            //ÀÌ¹Ì ÀÖ´ÂÁö
+            //ï¿½Ì¹ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
             if (_asset == null)
             {
                 _asset = ScriptableObject.CreateInstance<ItemDataSO>();
@@ -169,7 +169,7 @@ public class ItemSOMaker : MonoBehaviour
 
             ItemUpgradeDataSO _asset = null;
             _asset = allItemUpgradeDataSO.itemUpgradeDataList.Find(x => x.key == _key);
-            //ÀÌ¹Ì ÀÖ´ÂÁö
+            //ï¿½Ì¹ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
             if (_asset == null)
             {
                 _asset = ScriptableObject.CreateInstance<ItemUpgradeDataSO>();
@@ -191,7 +191,15 @@ public class ItemSOMaker : MonoBehaviour
                 string _nCount = _needItemCount[j];
                 ItemData _itemData = ItemData.CopyItemDataSO(allItemDataSO.itemDataSOList.Find(x => x.key == _nkey));
                 _itemData.count = int.Parse(_nCount);
-                _asset.needItemDataList.Add(_itemData);
+                ItemData _alreadyData = _asset.needItemDataList.Find(x => x.key == _nkey);
+                if (_alreadyData != null)
+                {
+                    _alreadyData = _itemData;
+                }
+                else
+                {
+                    _asset.needItemDataList.Add(_itemData);
+                }
             }
 
             AssetDatabase.SaveAssets();
@@ -218,7 +226,7 @@ public class ItemSOMaker : MonoBehaviour
 
             DropItemListSO _asset = null;
             _asset = allDropItemListSO.dropItemListSOList.Find(x => x.listName == _name);
-            //ÀÌ¹Ì ÀÖ´ÂÁö
+            //ï¿½Ì¹ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
             if (_asset == null)
             {
                 _asset = ScriptableObject.CreateInstance<DropItemListSO>();
