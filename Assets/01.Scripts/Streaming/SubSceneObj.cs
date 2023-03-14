@@ -34,8 +34,11 @@ namespace Streaming
 			{
 				if (lodMaker is null)
 				{
-					lodMaker ??= GetComponent<LODMaker>();
-					lodMaker?.Init(this);
+					lodMaker = GetComponent<LODMaker>();
+					if (lodMaker != null)
+					{
+						lodMaker.Init(this);
+					}
 				}
 				return lodMaker;
 			}
@@ -141,6 +144,15 @@ namespace Streaming
 
 		public void Start()
 		{
+			if (lodMaker is null)
+			{
+				lodMaker = GetComponent<LODMaker>();
+				if (lodMaker != null)
+				{
+					lodMaker.Init(this);
+				}
+			}
+			
 			if (SceneName != null)
 			{
 				SceneData sceneData = SceneDataManager.Instance.GetSceneData(SceneName);

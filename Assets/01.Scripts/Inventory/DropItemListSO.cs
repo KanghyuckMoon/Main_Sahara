@@ -7,6 +7,8 @@ namespace Inventory
     [CreateAssetMenu(fileName = "DropItemListSO", menuName = "SO/DropItemListSO ")]
     public class DropItemListSO : ScriptableObject
     {
+        public string listName;
+
         public int dropCount = 1;
 
         public float[] randomPercentArr;

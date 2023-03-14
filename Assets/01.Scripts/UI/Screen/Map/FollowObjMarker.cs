@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Utill.Addressable;
 using UI.Manager;
-
+using UI.PublicManager;
+using Utill.Pattern; 
 namespace UI
 {
 
@@ -59,7 +60,7 @@ namespace UI
         private void Start()
         {
             // this.mapPresenter = GameObject.FindGameObjectWithTag("UIParent").GetComponentInChildren<ScreenUIController>().MapPresenter;
-            this.mapPresenter = UIManager.Instance.ScreenUIController.GetScreen<MapPresenter>(Base.ScreenType.Map);
+            this.mapPresenter = PublicManager.PublicUIManager.Instance.ScreenUIController.GetScreen<MapPresenter>(Base.ScreenType.Map);
             CreateMarker();
 
 

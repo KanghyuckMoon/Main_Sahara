@@ -16,6 +16,7 @@ using PathMode;
 using Unity.Jobs;
 using Unity.Collections;
 using Tutorial;
+using Option;
 
 namespace Json
 {
@@ -491,7 +492,7 @@ namespace Json
             StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
             StaticSave.Load<PathSave>(ref PathModeManager.Instance.pathSave, _date);
 
-            //º°µµÀÇ Àû¿ë ÇÊ¿äÇÔ
+            //ë³„ë„ì˜ ì ìš© í•„ìš”í•¨
             Player.GetComponentInChildren<CharacterController>().enabled = false;
             //(Player.GetComponent<AbMainModule>() as Player).OnEnable();
             stateModule = (Player.GetComponent<AbMainModule>() as Player).GetModuleComponent<StatModule>(ModuleType.Stat);
@@ -521,6 +522,16 @@ namespace Json
             }
             //StaticTime.EntierTime = 1;
             isLoadSuccess = true;
+        }
+
+        public void OptionSave()
+        {
+            StaticSave.Save<OptionData>(ref OptionManager.Instance.optionData);
+        }
+
+        public void OptionLoad()
+        {
+            StaticSave.Load<OptionData>(ref OptionManager.Instance.optionData);
         }
 
 #if UNITY_EDITOR

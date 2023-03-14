@@ -7,14 +7,34 @@ public interface Observer
 	void Receive();
 }
 
-public interface Obserble
+public interface IObserble
 {
 	public List<Observer> Observers
 	{
 		get;
 	}
 
-	void AddObserver(Observer _observer);
+	void AddObserver(Observer _observer)
+	{
+		if (!Observers.Contains(_observer))
+		{
+			Observers.Add(_observer);
+		}
+	}
+	
+	public void RemoveObserver(Observer _observer)
+	{
+		if (Observers.Contains(_observer))
+		{
+			Observers.Remove(_observer);
+		}
+	}
 
-	void Send();
+	public void Send()
+	{
+		foreach (var _observer in Observers)
+		{
+			_observer.Receive();
+		}
+	}
 }

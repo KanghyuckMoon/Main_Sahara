@@ -78,13 +78,13 @@ namespace Streaming
 		//}
 
 		/// <summary>
-		/// ¾À¿¡ µû¶ó ÃÊ±â µ¥ÀÌÅÍ¸¦ ´Ù¸£°Ô Ã³¸®
+		/// ì”¬ì— ë”°ë¼ ì´ˆê¸° ë°ì´í„°ë¥¼ ë‹¤ë¥´ê²Œ ì²˜ë¦¬
 		/// </summary>
 		/// <param name="_sceneName"></param>
 		partial void InitScene(string _sceneName);
 
 		/// <summary>
-		/// ÀÚ½ÅÀ» »ç¿ëÇÏ´Â SubSceneObj¿Í LODMaker¸¦ ¾ò°ÔÇÑ´Ù
+		/// ìì‹ ì„ ì‚¬ìš©í•˜ëŠ” SubSceneObjì™€ LODMakerë¥¼ ì–»ê²Œí•œë‹¤
 		/// </summary>
 		/// <param name="_loadSceneObj"></param>
 		/// <param name="_lodMaker"></param>
@@ -96,7 +96,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ObjectData¸¦ Ãß°¡ÇÑ´Ù
+		/// ObjectDataë¥¼ ì¶”ê°€í•œë‹¤
 		/// </summary>
 		/// <param name="_objectData"></param>
 		public void AddObjectData(ObjectData _objectData)
@@ -123,7 +123,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ObjectData¸¦ Á¦°ÅÇÑ´Ù
+		/// ObjectDataë¥¼ ì œê±°í•œë‹¤
 		/// </summary>
 		/// <param name="_objectData"></param>
 		public void RemoveObjectData(ObjectData _objectData)
@@ -137,7 +137,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ¿ÀºêÁ§Æ® Ã¼Ä¿¸¦ Ãß°¡ÇÑ´Ù
+		/// ì˜¤ë¸Œì íŠ¸ ì²´ì»¤ë¥¼ ì¶”ê°€í•œë‹¤
 		/// </summary>
 		/// <param name="_obj"></param>
 		public void AddObjectChecker(ObjectSceneChecker _obj)
@@ -146,7 +146,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ¿ÀºêÁ§Æ® Ã¼Ä¿¸¦ Á¦°ÅÇÑ´Ù
+		/// ì˜¤ë¸Œì íŠ¸ ì²´ì»¤ë¥¼ ì œê±°í•œë‹¤
 		/// </summary>
 		/// <param name="_obj"></param>
 		public void RemoveObjectChecker(ObjectSceneChecker _obj)
@@ -155,7 +155,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ¾À ¿ÀºêÁ§Æ®µéÀ» ºÒ·¯¿Â´Ù
+		/// ì”¬ ì˜¤ë¸Œì íŠ¸ë“¤ì„ ë¶ˆëŸ¬ì˜¨ë‹¤
 		/// </summary>
 		public void Load()
 		{
@@ -167,12 +167,12 @@ namespace Streaming
 					continue;
 				}
 				LoadObjectData(_objectData);
-				//ÃßÈÄ Ç®¸µÀ¸·Î ±³Ã¼
+				//ì¶”í›„ í’€ë§ìœ¼ë¡œ êµì²´
 			}
 		}
 
 		/// <summary>
-		/// ¾À ¿ÀºêÁ§Æ®µéÀ» Á¦°ÅÇÑ´Ù
+		/// ì”¬ ì˜¤ë¸Œì íŠ¸ë“¤ì„ ì œê±°í•œë‹¤
 		/// </summary>
 		public void UnLoad()
 		{
@@ -245,7 +245,7 @@ namespace Streaming
 					//	continue;
 					//}
 					LoadObjectData(_objectData);
-					//ÃßÈÄ Ç®¸µÀ¸·Î ±³Ã¼
+					//ì¶”í›„ í’€ë§ìœ¼ë¡œ êµì²´
 				}
 			}
 		}
@@ -289,7 +289,7 @@ namespace Streaming
 			gameObject.SetActive(true);
 
 			objectCheckerList.Add(_objectSceneChecker);
-			//ÃßÈÄ Ç®¸µÀ¸·Î ±³Ã¼
+			//ì¶”í›„ í’€ë§ìœ¼ë¡œ êµì²´
 		}
 
 
@@ -301,7 +301,7 @@ namespace Streaming
 				{
 					lodMaker?.InitAddLOD(_objectData);
 				}
-				//ÃßÈÄ Ç®¸µÀ¸·Î ±³Ã¼
+				//ì¶”í›„ í’€ë§ìœ¼ë¡œ êµì²´
 			}
 		}
 

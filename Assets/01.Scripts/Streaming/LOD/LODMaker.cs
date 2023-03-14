@@ -74,7 +74,7 @@ namespace Streaming
 		public void Load()
 		{
 			//lodGroup.enabled = false;
-			//¿ÀºêÁ§Æ® Á¦°Å
+			//ì˜¤ë¸Œì íŠ¸ ì œê±°
 			foreach (var obj in objectList)
 			{
 				obj.Value.SetActive(false);
@@ -90,7 +90,7 @@ namespace Streaming
 		public void UnLoad()
 		{
 			//lodGroup.enabled = true;
-			//¿ÀºêÁ§Æ® »ı¼º
+			//ì˜¤ë¸Œì íŠ¸ ìƒì„±
 			StartCoroutine(IEUnLoad());
 		}
 
@@ -142,7 +142,7 @@ namespace Streaming
 		}
 		
 		/// <summary>
-		/// Debug µ¥ÀÌÅÍ¿¡ ±âÀÔÇÑ »çÇ×´ë·Î ¿ÀºêÁ§Æ®µ¥ÀÌÅÍ¿Í LOD¸¦ Ãß°¡ÇÔ
+		/// Debug ë°ì´í„°ì— ê¸°ì…í•œ ì‚¬í•­ëŒ€ë¡œ ì˜¤ë¸Œì íŠ¸ë°ì´í„°ì™€ LODë¥¼ ì¶”ê°€í•¨
 		/// </summary>
 		[ContextMenu("Generate")]
 		public void Generate()
@@ -165,7 +165,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// LOD ¼³Á¤À» ´Ù½Ã ºÒ·¯¿È
+		/// LOD ì„¤ì •ì„ ë‹¤ì‹œ ë¶ˆëŸ¬ì˜´
 		/// </summary>
 		[ContextMenu("SetLOD")]
 		public void SetLOD()
@@ -173,7 +173,7 @@ namespace Streaming
 			ResetLOD();
 		}
 		/// <summary>
-		/// ObejctData¿¡ µû¶ó LOD »ı¼º
+		/// ObejctDataì— ë”°ë¼ LOD ìƒì„±
 		/// </summary>
 		/// <param name="_objectData"></param>
 		public void InitAddLOD(ObjectData _objectData)
@@ -187,7 +187,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ObejctData¿¡ µû¶ó LOD »ı¼º
+		/// ObejctDataì— ë”°ë¼ LOD ìƒì„±
 		/// </summary>
 		/// <param name="_objectData"></param>
 		public void AddLOD(ObjectData _objectData)
@@ -223,7 +223,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// Æ¯Á¤ LOD Á¦°Å
+		/// íŠ¹ì • LOD ì œê±°
 		/// </summary>
 		/// <param name="_key"></param>
 		public void RemoveLOD(long _key)

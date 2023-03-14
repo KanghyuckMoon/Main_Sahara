@@ -48,14 +48,14 @@ namespace Module
 
 		private void SettingAnimatorSpeed()
         {
-            Animator.speed = StaticTime.EntierTime;
+            Animator.speed = mainModule.EntireTime;
         }
 
         public override void Awake()
         {
             swordLayerIndex = Animator.GetLayerIndex("Sword");
             
-            StaticTime.Instance.AddObserver(this);
+            (StaticTime.Instance as IObserble).AddObserver(this);
         }
 
         public override void FixedUpdate()
@@ -97,7 +97,7 @@ namespace Module
         {
             animator = null;
             mainModule = null;
-            StaticTime.Instance.RemoveObserver(this);
+            (StaticTime.Instance as IObserble).RemoveObserver(this);
             base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<AnimationModule>("AnimationModule", this);
         }
@@ -105,7 +105,7 @@ namespace Module
         {
             animator = null;
             mainModule = null;
-            StaticTime.Instance.RemoveObserver(this);
+            (StaticTime.Instance as IObserble).RemoveObserver(this);
             base.OnDestroy();
             ClassPoolManager.Instance.RegisterObject<AnimationModule>("AnimationModule", this);
         }

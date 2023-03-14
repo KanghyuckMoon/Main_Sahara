@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System;
 using PathMode;
-using UI.EventManage; 
+using UI.EventManage;
+using UI.MapLiner; 
 
 namespace UI
 {
@@ -27,6 +28,8 @@ namespace UI
         private float minZoomValue;
 
         // ÇÁ¶óÀÌºø 
+//        private MapLiner mapLiner; 
+
         private float zoomValue;
         private float xMoveValue;
         private float yMoveValue;

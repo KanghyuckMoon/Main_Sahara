@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleSpreadSheet;
 using Utill.Measurement;
 using Quest;
 using Module;
 using Utill.Addressable;
-using UI.Dialogue;
 using Module.Shop;
 using Shop;
-using UI.Manager; 
+using UI.PublicManager; 
 
 namespace Module.Talk
 {
@@ -149,8 +147,7 @@ namespace Module.Talk
 				TalkData _talkData = talkDataSO.talkDataList[i];
 				if (ConditionCheck(_talkData))
 				{
-					UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
-						.SetTexts(_talkData.authorText, _talkData.talkText);
+					PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText);
 					isTalking = true;
 
 					if (_talkData.isUseCutScene)
@@ -196,8 +193,7 @@ namespace Module.Talk
 				_index = Random.Range(0, talkDataSO.defaultTalkCodeList.Count);
 			}
 			isEndTalk = false;
-			UIManager.Instance.ScreenUIController.GetScreen<DialoguePresenter>(UI.Base.ScreenType.Dialogue)
-				.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index], EndTalk);
+			PublicUIManager.Instance.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index], EndTalk);
 			//DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 		}
 
@@ -205,31 +201,6 @@ namespace Module.Talk
 		{
 			isEndTalk = true;
 			isTalking = false;
-		}
-
-		public void LogText()
-		{
-			string text = TextManager.Instance.GetText($"{talkCode}_{index}");
-			string authortext = TextManager.Instance.GetText($"{authorCode}_{index}");
-			Logging.Log($"{text}{authortext}");
-
-			if (authortext[0] is '!')
-			{
-				switch (authortext)
-				{
-					case "!END\r":
-						return;
-					case "!TACTIVE\r":
-						QuestManager.Instance.ChangeQuestActive(text);
-						return;
-					case "!TCLEAR\r":
-						QuestManager.Instance.ChangeQuestClear(text);
-						return;
-				}
-			}
-
-			index++;
-			LogText();
 		}
 
 	}

@@ -25,7 +25,17 @@ namespace UI.Inventory
         public ItemType SlotType => slotType; 
         public int Index => index;
         public SlotItemView SlotItemView => slotItemView;
-        public VisualElement Parent => parent;
+        public VisualElement Parent
+        {
+            get
+            {
+                if(parent == null)
+                {
+                    parent = slotItemView.ParentElement; 
+                }
+                return parent;
+            }
+        }
         public VisualElement Item => slotItemView.Item; 
         public ItemData ItemData => itemData;
         public Vector2 WorldPos => slotItemView.SlotWorldBound.position;
@@ -58,6 +68,16 @@ namespace UI.Inventory
         public SlotItemPresenter(VisualElement _v)
         {
             slotItemView = new SlotItemView(_v);
+        }
+
+        /// <summary>
+        /// 선택시 크기 up 
+        /// </summary>
+        /// <param name="_isSelect"></param>
+        public void SelectSlot(bool _isSelect)
+        {
+            float _v = _isSelect ? 1.2f : 1f;
+            Parent.style.scale = new StyleScale(new Scale(new Vector2(_v, _v)));
         }
 
         public void SetSlotType(ItemType _type)

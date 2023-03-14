@@ -27,10 +27,20 @@ namespace GoogleSpreadSheet
 
 		[SerializeField]
 		private TextSO textSO = null;
+
+		[SerializeField]
+		private bool isReset = false;
+
 		private bool isInit =	false;
 
 		public void Start()
 		{
+			if (!isReset)
+			{
+				isInit = true;
+				return;
+			}
+
 			if (!isInit)
 			{
 				Instance.textSO.InitTextDatas();

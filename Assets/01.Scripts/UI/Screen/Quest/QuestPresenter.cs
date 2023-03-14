@@ -36,6 +36,8 @@ namespace UI.Quest
             
             questView.Cashing();
             questView.Init();
+
+
         }
 
         private void Start()
@@ -43,7 +45,9 @@ namespace UI.Quest
             questView.InitListView(); 
         }
 
-        [ContextMenu("퀘스트UI 생성")]
+
+
+            [ContextMenu("퀘스트UI 생성")]
         /// <summary>
         /// 특정 QuestData 받아서 퀘스트 생성   
         /// </summary>
