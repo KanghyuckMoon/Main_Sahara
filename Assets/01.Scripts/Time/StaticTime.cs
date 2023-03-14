@@ -11,28 +11,28 @@ namespace TimeManager
 		{
 			get
 			{
-				return Time.unscaledDeltaTime * playerTime * entierTime;
+				return Time.unscaledDeltaTime * playerTime * entierTime * uiTime;
 			}
 		}
 		public static float EnemyDeltaTime
 		{
 			get
 			{
-				return Time.unscaledDeltaTime * enemyTime * entierTime;
+				return Time.unscaledDeltaTime * enemyTime * entierTime * uiTime;
 			}
 		}
 		public static float PhysicsDeltaTime
 		{
 			get
 			{
-				return Time.unscaledDeltaTime * physicsTime * entierTime;
+				return Time.unscaledDeltaTime * physicsTime * entierTime * uiTime;
 			}
 		}
 		public static float PhysicsFixedDeltaTime
 		{
 			get
 			{
-				return Time.fixedUnscaledDeltaTime * physicsTime * entierTime;
+				return Time.fixedUnscaledDeltaTime * physicsTime * entierTime * uiTime;
 			}
 		}
 
@@ -85,6 +85,18 @@ namespace TimeManager
 				StaticTime.Instance.Send();
 			}
 		}
+		public static float UITime
+		{
+			get
+			{
+				return uiTime;
+			}
+			set
+			{
+				uiTime = value;
+				StaticTime.Instance.Send();
+			}
+		}
 
 		public List<Observer> Observers
 		{
@@ -98,6 +110,7 @@ namespace TimeManager
 		private static float enemyTime = 1f;
 		private static float physicsTime = 1f;
 		private static float entierTime = 1f;
+		private static float uiTime = 1f;
 		private static List<Observer> observers = new List<Observer>();
 
 		public void AddObserver(Observer _observer)
