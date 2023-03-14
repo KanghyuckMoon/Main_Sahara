@@ -85,7 +85,7 @@ namespace Module
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f * Time.fixedDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f * mainModule.PersonalDeltaTime);
             }
             else
             {
@@ -93,7 +93,7 @@ namespace Module
             }
 
             animationBlend = mainModule.isGround ? animationBlend : 0;
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, Time.fixedDeltaTime * 5);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, mainModule.PersonalDeltaTime * 5);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
@@ -114,64 +114,69 @@ namespace Module
 
                 if (!mainModule.Attacking || !mainModule.StrongAttacking)
                 {
-                    if (mainModule.LockOnTarget is null && mainModule.ObjDir != Vector2.zero) mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                    /*else
-                    {
-                        Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
-                        //Vector3 _targetPos = new Vector3(mainModule.ObjRotation.x, mainModule.transform.position.y, mainModule.ObjRotation.z);
-                        //Vector3 _targetPos = mainModule.ObjRotation.eulerAngles;
-                        //_targetPos.y = mainModule.transform.position.y;
-
-                        mainModule.transform.LookAt(_targetPos);
-
-                        //Vector3 _targetDir = mainModule.LockOnTarget.position - mainModule.transform.position;
-                        //float _angle = Mathf.Atan2(_targetDir.x, _targetDir.z) * Mathf.Rad2Deg;
-
-                        //targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg + _angle;
-                    }*/
+                if (mainModule.LockOnTarget is null && mainModule.ObjDir != Vector2.zero)
+                {
+                    //Debug.LogError(rotation);
+                    mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                 }
+                /*else
+                {
+                    Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
+                    //Vector3 _targetPos = new Vector3(mainModule.ObjRotation.x, mainModule.transform.position.y, mainModule.ObjRotation.z);
+                    //Vector3 _targetPos = mainModule.ObjRotation.eulerAngles;
+                    //_targetPos.y = mainModule.transform.position.y;
+
+                    mainModule.transform.LookAt(_targetPos);
+
+                    //Vector3 _targetDir = mainModule.LockOnTarget.position - mainModule.transform.position;
+                    //float _angle = Mathf.Atan2(_targetDir.x, _targetDir.z) * Mathf.Rad2Deg;
+
+                    //targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg + _angle;
+                }*/
+                if (mainModule.LockOnTarget is not null)
+                {
+                    //Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
+
+                    //Vector3 _playerForward = mainModule.transform.position - mainModule.LockOnTarget.position;
+                    //_playerForward.y = mainModule.transform.position.y; 
+
+                    //Vector3 _targetPosNoneY = mainModule.LockOnTarget.position;
+                    //_targetPosNoneY.y = mainModule.transform.position.y;
+                    //Vector3 _targetPos = new Vector3(mainModule.ObjRotation.x, mainModule.transform.position.y, mainModule.ObjRotation.z);
+                    //Vector3 _targetPos = mainModule.ObjRotation.eulerAngles;
+                    //_targetPos.y = mainModule.transform.position.y;
+
+                    //mainModule.Back.transform.LookAt(mainModule.LockOnTarget.transform);
+                    //Vector3 _bodyRot = mainModule.ObjRotation.eulerAngles;
+                    //_bodyRot.z = _bodyRot.x = 0;
+
+                    //mainModule.Back.transform.LookAt(_bodyRot);
+
+                    //Vector3 _targetDir = mainModule.ObjRotation.eulerAngles;
+                    //_targetDir.z = _targetDir.x = 0;
+
+                    //Vector3 _pos = mainModule.ObjForword;
+                    //_pos.y = 0;// = mainModule.ObjForword;
+
+                    //mainModule.transform.rotation = Quaternion.Euler(_pos);
+                    //Debug.LogError(mainModule.transform.rotation);
+                    mainModule.transform.rotation = Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
+                }
+            }
             //}
 
-            if (mainModule.LockOnTarget is not null)
-            {
-                //Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
-
-                //Vector3 _playerForward = mainModule.transform.position - mainModule.LockOnTarget.position;
-                //_playerForward.y = mainModule.transform.position.y; 
-
-                //Vector3 _targetPosNoneY = mainModule.LockOnTarget.position;
-                //_targetPosNoneY.y = mainModule.transform.position.y;
-                //Vector3 _targetPos = new Vector3(mainModule.ObjRotation.x, mainModule.transform.position.y, mainModule.ObjRotation.z);
-                //Vector3 _targetPos = mainModule.ObjRotation.eulerAngles;
-                //_targetPos.y = mainModule.transform.position.y;
-
-                //mainModule.Back.transform.LookAt(mainModule.LockOnTarget.transform);
-                //Vector3 _bodyRot = mainModule.ObjRotation.eulerAngles;
-                //_bodyRot.z = _bodyRot.x = 0;
-
-                //mainModule.Back.transform.LookAt(_bodyRot);
-
-                //Vector3 _targetDir = mainModule.ObjRotation.eulerAngles;
-                //_targetDir.z = _targetDir.x = 0;
-
-                //Vector3 _pos = mainModule.ObjForword;
-                //_pos.y = 0;// = mainModule.ObjForword;
-
-                //mainModule.transform.rotation = Quaternion.Euler(_pos);
-
-                mainModule.transform.rotation = Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
-            }
+            
 
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * Time.fixedDeltaTime;
+            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * mainModule.PersonalDeltaTime;
 
 
-            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, Time.fixedDeltaTime);
-            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * Time.fixedDeltaTime));
-            else mainModule.CharacterController.Move(mainModule.SlopeVector * Time.deltaTime);
+            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, mainModule.PersonalDeltaTime);
+            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * mainModule.PersonalDeltaTime));
+            else mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalDeltaTime);
             Animator.SetFloat("MoveSpeed", animationBlend);
         }
 

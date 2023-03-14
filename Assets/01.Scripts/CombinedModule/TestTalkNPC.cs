@@ -53,6 +53,8 @@ namespace CondinedModule
             AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
             AddModuleWithPool<TalkModule>(ModuleType.Talk, "TalkModule", textSOAddress);
 
+            LockOnTarget = null;
+
             Animator = GetComponent<Animator>();
             visualObject ??= transform.Find("Visual")?.gameObject;
             animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);

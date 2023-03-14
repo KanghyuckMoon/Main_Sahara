@@ -65,7 +65,13 @@ namespace UI.Quest
             base.Init();
             InitQuestDic(); 
             AddEvents();
-            InitListView(); 
+            InitListView();
+            SendEvent(); 
+        }
+
+        public void SendEvent()
+        {
+            UIUtil.SendEvent(GetRadioButton((int)RadioButtons.main_button));
         }
 
         public override void ActiveScreen(bool _isActive)

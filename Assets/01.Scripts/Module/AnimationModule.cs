@@ -48,7 +48,7 @@ namespace Module
 
 		private void SettingAnimatorSpeed()
         {
-            Animator.speed = StaticTime.EntierTime;
+            Animator.speed = mainModule.EntireTime;
         }
 
         public override void Awake()

@@ -59,13 +59,16 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.IsDead && !mainModule.IsCanHit)
                 {
-                    
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (_inGameHitBox is null) return;
                     if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
                     praviousHitBoxIndex = _inGameHitBox.GetIndex();
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
+
+                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(1f, 0.1f);
+                    mainModule.SettingTime.SetTime(1, 0.1f);
+
                     mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position));
                     if (_statData != null)
@@ -138,8 +141,6 @@ namespace Module
             //Debug.DrawLine(rayPos, rayPos + new Vector3(0, 100, 0), Color.red);
             Debug.DrawRay(rayPos, Vector3.down, Color.red);
         }
-
-
         private void GroundCheack()
         {
             Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
