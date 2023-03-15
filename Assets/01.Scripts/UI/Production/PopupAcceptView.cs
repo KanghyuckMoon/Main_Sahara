@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System; 
 
-namespace UI.Base
+namespace UI.Production
 {
-    public class PopupView : AbUI_Base
+    /// <summary>
+    /// 수락 취소 팝업창(~하시겠습니까? 예 아니요) 
+    /// </summary>
+    public class PopupAcceptView : AbUI_Base
     {
         enum Labels
         {
