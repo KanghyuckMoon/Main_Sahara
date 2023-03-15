@@ -248,7 +248,6 @@ namespace Streaming
 				originChunkCoordY = _currentChunkCoordY;
 				originChunkCoordZ = _currentChunkCoordZ;
 
-				StartCoroutine(UpdateChunk());
 				//StartCoroutine(UpdateChunk());
 				streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}
