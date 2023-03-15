@@ -48,29 +48,29 @@ namespace Inventory
 			}
 		}
 
-		public string key; // ì•„ì´í…œ í‚¤
-		public int count; // ê°¯ìˆ˜
-		public int price; // ê°€ê²©
-		public string nameKey; //ì´ë¦„ í‚¤
-		public string explanationKey; //ì„¤ëª… í‚¤
-		public string spriteKey; //ìŠ¤í”„ë¼ì´íŠ¸ í‚¤
-		public bool stackble; //ê²¹ì¹˜ê¸° ê°€ëŠ¥ ì—¬ë¶€
-		public int stackMax = 64; // ìµœëŒ€ ê²¹ì¹˜ê¸° ëŸ‰
-		public ItemType itemType; // ì•„ì´í…œ íƒ€ì…
-		public ConsumptionType consumptionType; // ì†Œëª¨í’ˆ íƒ€ì…
-		public string prefebkey; //í”„ë¦¬í© í‚¤ (ì¸ê²Œì„ì—ì„œ ì‚¬ìš©)
-		public string animationLayer; // ì• ë‹ˆë©”ì´ì…˜ ë ˆì´ì–´ (ì¸ê²Œì„ì—ì„œ ì‚¬ìš©)
+		public string key; // ¾ÆÀÌÅÛ Å°
+		public int count; // °¹¼ö
+		public int price; // °¡°İ
+		public string nameKey; //ÀÌ¸§ Å°
+		public string explanationKey; //¼³¸í Å°
+		public string spriteKey; //½ºÇÁ¶óÀÌÆ® Å°
+		public bool stackble; //°ãÄ¡±â °¡´É ¿©ºÎ
+		public int stackMax = 64; // ÃÖ´ë °ãÄ¡±â ·®
+		public ItemType itemType; // ¾ÆÀÌÅÛ Å¸ÀÔ
+		public ConsumptionType consumptionType; // ¼Ò¸ğÇ° Å¸ÀÔ
+		public string prefebkey; //ÇÁ¸®Æé Å° (ÀÎ°ÔÀÓ¿¡¼­ »ç¿ë)
+		public string animationLayer; // ¾Ö´Ï¸ŞÀÌ¼Ç ·¹ÀÌ¾î (ÀÎ°ÔÀÓ¿¡¼­ »ç¿ë)
 		public string dropItemPrefebKey;
 
-		//ì¥ì‹ êµ¬ ë¶„ë¥˜ìš©
+		//Àå½Å±¸ ºĞ·ù¿ë
 		public AccessoriesItemType accessoriesItemType;
 
-		//ì•„ì´í…œ ì¥ë¹„ìš©
-		[Header("ì¥ë¹„ ìŠ¬ë¡¯ ìš©ë„")]
+		//¾ÆÀÌÅÛ Àåºñ¿ë
+		[Header("Àåºñ ½½·Ô ¿ëµµ")]
 		public EquipmentType equipmentType;
 
-		//ì•„ì´í…œ ìŠ¬ë¡¯ì— í‘œì‹œìš©ë„
-		[Header("ì•„ì´í…œ ìŠ¬ë¡¯ì— í‘œì‹œìš©ë„")]
+		//¾ÆÀÌÅÛ ½½·Ô¿¡ Ç¥½Ã¿ëµµ
+		[Header("¾ÆÀÌÅÛ ½½·Ô¿¡ Ç¥½Ã¿ëµµ")]
 		public bool isSlot = true;
 
 		public static ItemData CopyItemData(ItemData _itemData)

@@ -115,6 +115,8 @@ namespace HitBox
 		public Vector3 swingEffectOffset = Vector3.zero;
 		public Vector3 swingEffectRotation = Vector3.zero;
 		public Vector3 swingEffectSize = Vector3.one;
+		public float hitStunDelay;
+		public float attackStunDelay;
 		public string swingEffect = "NULL";
 		public string hitEffect = "NULL";
 
