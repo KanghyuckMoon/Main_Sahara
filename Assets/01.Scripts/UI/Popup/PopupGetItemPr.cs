@@ -25,6 +25,7 @@ namespace UI.Popup
 
         public void Undo()
         {
+            popupGetItemView.ParentElement.RemoveFromHierarchy();
         }
     }
 
