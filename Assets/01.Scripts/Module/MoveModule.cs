@@ -126,8 +126,9 @@ namespace Module
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot * mainModule.PersonalFixedDeltaTime);
-
+            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot);
+            _moveValue *= mainModule.PersonalFixedDeltaTime;
+            
             mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, mainModule.PersonalFixedDeltaTime);
             if (mainModule.IsSlope)
             {
