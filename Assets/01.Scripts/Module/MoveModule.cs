@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Data;
+using Utill.Measurement;
 
 namespace Module
 {
@@ -54,6 +55,7 @@ namespace Module
         private StatData statData;
         private Vector3 currentDirection;
         private StateModule stateModule;
+        private static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
 
         public MoveModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -79,7 +81,8 @@ namespace Module
             if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? moveSpeed - 2 + 4 : moveSpeed - 2;
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
-            float currentSpeed = new Vector3(mainModule.CharacterController.velocity.x, 0, mainModule.CharacterController.velocity.z).magnitude;
+            var velocity = mainModule.CharacterController.velocity;
+            float currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
 
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset)// && mainModule.objDir != Vector2.up)
@@ -123,18 +126,26 @@ namespace Module
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * mainModule.PersonalFixedDeltaTime;
+            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot * mainModule.PersonalFixedDeltaTime);
 
             mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, mainModule.PersonalFixedDeltaTime);
-            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * mainModule.PersonalFixedDeltaTime));
-            else mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalFixedDeltaTime);
-            Animator.SetFloat("MoveSpeed", animationBlend);
+            if (mainModule.IsSlope)
+            {
+                mainModule.CharacterController.Move((_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0)) * mainModule.PersonalFixedDeltaTime));
+            }
+            else
+            {
+                mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalFixedDeltaTime);
+            }
+            Animator.SetFloat(MoveSpeed, animationBlend);
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
-            Vector3 _rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
-                mainModule.transform.position.z);
+            var position = mainModule.transform.position;
+            Vector3 _rayPos = new Vector3(position.x, position.y + mainModule.groundOffset,
+                position.z);
             var _ray = new Ray(_rayPos, Vector3.down);
 
             if (Physics.Raycast(_ray, out RaycastHit _hitInfo, 0.2f))
@@ -145,7 +156,7 @@ namespace Module
                 if (_adjustedVelocity.y < 0)
                 {
                     addSpeed = ((0.5f - _adjustedVelocity.y) * (0.3f - _adjustedVelocity.y) * 1.1f);
-                    Debug.Log(addSpeed);
+                    Logging.Log(addSpeed);
                     return _adjustedVelocity;
                 }
             }
