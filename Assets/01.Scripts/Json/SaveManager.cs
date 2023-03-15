@@ -238,6 +238,17 @@ namespace Json
 
             }
 		}
+
+        private Camera MainCam
+        {
+            get
+            {
+                mainCam ??= Camera.main;
+                return mainCam;
+            }
+            
+        }
+        
 		private InventorySO inventorySO = null;
 
         [SerializeField]
@@ -295,6 +306,7 @@ namespace Json
 
         private SaveEventTransmit saveEventTransmit = default;
         private bool isContinue = false;
+        private Camera mainCam;
 
         public bool isLoadSuccess = false;
 
@@ -314,11 +326,10 @@ namespace Json
 
         public IEnumerator SaveBackgroundThread(string _date)
         {
-            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null || PathModeManager.Instance is null)
+            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null || PathModeManager.Instance is null || MainCam is null)
             {
                 yield break;
             }
-
             string _staticSavepath = StaticSave.GetPath();
 
             if (!File.Exists(_staticSavepath))
@@ -389,6 +400,7 @@ namespace Json
             JobHandle _shopJobHandle = _shopSaveJob.Schedule(ShopAllSO.shopSOList.Count, 5);
             StaticSave.Save<TutorialSaveData>(ref TutorialManager.Instance.tutorialSaveData, _date);
 
+            File.WriteAllBytes(_imagePath, SaveManager.CaptureFrame(MainCam)); 
             //ScreenCapture.CaptureScreenshot(_imagePath);
             //StartCoroutine(AsyncCapture()); 
             //while (!_sceneJobHandle.IsCompleted)
@@ -493,6 +505,7 @@ namespace Json
         public void Load(string _date)
         {
             isLoadSuccess = false;
+            mainCam = null;
             if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null)
             {
                 isLoadSuccess = false;
@@ -590,6 +603,17 @@ namespace Json
         File.WriteAllBytes(_imagePath, ImageConversion.EncodeToPNG(texture));
         Destroy(texture);
         // todo: hook this up with my twitter.py script
+    }
+    public static byte[] CaptureFrame(Camera camera)
+    {
+        RenderTexture _targetTexture = camera.targetTexture;
+        RenderTexture.active = _targetTexture;
+        Texture2D _texture2D = new Texture2D(_targetTexture.width, _targetTexture.height, TextureFormat.RGB24, false);
+        _texture2D.ReadPixels(new Rect(0, 0, _targetTexture.width, _targetTexture.height), 0, 0);
+        _texture2D.Apply();
+        byte[] image = _texture2D.EncodeToJPG();	
+        UnityEngine.Object.DestroyImmediate(_texture2D); // Required to prevent leaking the texture
+        return image;
     }
 
     }
