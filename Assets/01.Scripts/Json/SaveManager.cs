@@ -17,6 +17,7 @@ using Unity.Jobs;
 using Unity.Collections;
 using Tutorial;
 using Option;
+using UnityEngine.Rendering;
 
 namespace Json
 {
@@ -26,11 +27,10 @@ namespace Json
     {
         public struct SceneSaveJob : IJobParallelFor
 		{
-            public NativeArray<FixedString4096Bytes> testArray;
             public FixedString128Bytes date;
             public void Execute(int index)
-			{
-                string _sceneKey = testArray[index].ToString();
+            {
+                string _sceneKey = SaveManager.Instance.sceneKeyList[index];// testArray[index].ToString();
                 var _sceneData = SceneDataManager.Instance.SceneDataDic[_sceneKey].objectDataList;
                 string _json = StaticSave.ReturnJson<ObjectDataList>(_sceneData);
 				try
@@ -238,6 +238,17 @@ namespace Json
 
             }
 		}
+
+        private Camera MainCam
+        {
+            get
+            {
+                mainCam ??= Camera.main;
+                return mainCam;
+            }
+            
+        }
+        
 		private InventorySO inventorySO = null;
 
         [SerializeField]
@@ -267,6 +278,7 @@ namespace Json
 		}            
 
         private string testDate;
+        public List<string> sceneKeyList = new List<string>();
 
         public bool IsContinue
 		{
@@ -294,6 +306,7 @@ namespace Json
 
         private SaveEventTransmit saveEventTransmit = default;
         private bool isContinue = false;
+        private Camera mainCam;
 
         public bool isLoadSuccess = false;
 
@@ -313,11 +326,10 @@ namespace Json
 
         public IEnumerator SaveBackgroundThread(string _date)
         {
-            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null || PathModeManager.Instance is null)
+            if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null || StateModule is null || PathModeManager.Instance is null || MainCam is null)
             {
                 yield break;
             }
-
             string _staticSavepath = StaticSave.GetPath();
 
             if (!File.Exists(_staticSavepath))
@@ -327,9 +339,7 @@ namespace Json
 
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
             sw.Start();
-
-            StaticTime.EntierTime = 0;
-
+            
             stateModule.SaveData();
             inventorySO.SaveData();
             questSaveDataSO.SaveData();
@@ -340,62 +350,75 @@ namespace Json
             FixedString128Bytes _fixedimagePath = new FixedString128Bytes(_imagePath);
 
 
-            StateSaveJob _stateSaveJob = new StateSaveJob();
-            InventorySaveJob _inventorySaveJob = new InventorySaveJob();
-            QuestSaveJob _questSaveJob = new QuestSaveJob();
-            PathSaveJob _pathSaveJob = new PathSaveJob();
-            RecordSaveJob _recordSaveJob = new RecordSaveJob();
-
-            _stateSaveJob.date = _fixedDate;
-            _inventorySaveJob.date = _fixedDate;
-            _questSaveJob.date = _fixedDate;
-            _pathSaveJob.date = _fixedDate;
-            _recordSaveJob.date = _fixedDate;
-            _recordSaveJob.imagePath = _fixedimagePath;
+            StateSaveJob _stateSaveJob = new StateSaveJob()
+            {
+                date = _fixedDate,
+            };
+            InventorySaveJob _inventorySaveJob = new InventorySaveJob()
+            {
+                date = _fixedDate,
+            };
+            QuestSaveJob _questSaveJob = new QuestSaveJob()
+            {
+                date = _fixedDate,
+            };
+            PathSaveJob _pathSaveJob = new PathSaveJob()
+            {
+                date = _fixedDate,
+            };
+            RecordSaveJob _recordSaveJob = new RecordSaveJob()
+            {
+                date = _fixedDate,
+            };
 
             JobHandle _stateSaveJobHandle = _stateSaveJob.Schedule();
             JobHandle _inventorySaveJobHandle = _inventorySaveJob.Schedule();
             JobHandle _questSaveJobHandle = _questSaveJob.Schedule();
             JobHandle _pathSaveJobHandle = _pathSaveJob.Schedule();
-            JobHandle __recordSaveJobHandle = _recordSaveJob.Schedule();
+            JobHandle _recordSaveJobHandle = _recordSaveJob.Schedule();
 
             var _sceneDataList = SceneDataManager.Instance.SceneDataDic;
-            NativeArray<FixedString4096Bytes> _sceneKeyArray = new NativeArray<FixedString4096Bytes>(_sceneDataList.Count, Allocator.TempJob);
-
-            SceneSaveJob _sceneSaveJob = new SceneSaveJob();
-            _sceneSaveJob.testArray = _sceneKeyArray;
-            _sceneSaveJob.date = _fixedDate;
-
-            ShopSaveJob _shopSaveJob = new ShopSaveJob();
-            _shopSaveJob.date = _fixedDate;
+            sceneKeyList.Clear();
 
 
-            int _sceneIndex = 0;
             foreach (var _sceneData in _sceneDataList)
             {
-                _sceneKeyArray[_sceneIndex++] = new FixedString128Bytes(_sceneData.Key);
+                sceneKeyList.Add(_sceneData.Key);
             }
 
+            SceneSaveJob _sceneSaveJob = new SceneSaveJob()
+            {
+                date = _fixedDate,
+            };
+            //_sceneSaveJob.testArray = _sceneKeyArray;
+            ShopSaveJob _shopSaveJob = new ShopSaveJob()
+            {
+                date = _fixedDate,
+            };
+            
             JobHandle _sceneJobHandle = _sceneSaveJob.Schedule(_sceneDataList.Count, 10);
             JobHandle _shopJobHandle = _shopSaveJob.Schedule(ShopAllSO.shopSOList.Count, 5);
             StaticSave.Save<TutorialSaveData>(ref TutorialManager.Instance.tutorialSaveData, _date);
 
-
-            ScreenCapture.CaptureScreenshot(_imagePath);
-
-
-            StaticTime.EntierTime = 1;
-
-            while (!_sceneJobHandle.IsCompleted)
-            {
-                yield return null;
-            }
-            _sceneJobHandle.Complete();
+            File.WriteAllBytes(_imagePath, SaveManager.CaptureFrame(MainCam)); 
+            //ScreenCapture.CaptureScreenshot(_imagePath);
+            //StartCoroutine(AsyncCapture()); 
+            //while (!_sceneJobHandle.IsCompleted)
+            //{
+            //    yield return null;
+            //}
+            //
+            //_sceneJobHandle.Complete();
+            
+            //yield return new WaitUntil(() => _sceneJobHandle.IsCompleted);
+            
             //DisPose
-            _sceneSaveJob.testArray.Dispose();
+            //_sceneSaveJob.testArray.Dispose();
 
             sw.Stop();
             Debug.Log("Save: " + sw.ElapsedMilliseconds.ToString() + "ms");
+
+            yield return null;
         }
 
         [ContextMenu("Save")]
@@ -435,7 +458,7 @@ namespace Json
             }
 
             string _imagePath = StaticSave.GetPath() + _date + ".png";
-            ScreenCapture.CaptureScreenshot(_imagePath);
+            StartCoroutine(AsyncCapture());
 
             SaveRecordDataList _saveRecordDataList = new SaveRecordDataList();
             StaticSave.Load<SaveRecordDataList>(ref _saveRecordDataList);
@@ -482,6 +505,7 @@ namespace Json
         public void Load(string _date)
         {
             isLoadSuccess = false;
+            mainCam = null;
             if (InventorySO is null || QuestSaveDataSO is null || ShopAllSO is null || Player is null)
             {
                 isLoadSuccess = false;
@@ -534,20 +558,63 @@ namespace Json
             StaticSave.Load<OptionData>(ref OptionManager.Instance.optionData);
         }
 
-#if UNITY_EDITOR
-        public void Update()
-		{
-            if (Input.GetKeyDown(KeyCode.P))
-			{
-                testDate = DateTime.Now.ToString("yyyyMMddhhmmss");
-                Save(testDate);
-            }
-            else if (Input.GetKeyDown(KeyCode.O))
-            {
-                Load(testDate);
-            }
+        
+    IEnumerator AsyncCapture()
+    {
+        yield return new WaitForEndOfFrame();
+        var rt = RenderTexture.GetTemporary(Screen.width, Screen.height, 0, RenderTextureFormat.ARGB32);
+        ScreenCapture.CaptureScreenshotIntoRenderTexture(rt);
+        AsyncGPUReadback.Request(rt, 0, TextureFormat.RGBA32, OnCompleteReadback);
+        RenderTexture.ReleaseTemporary(rt);
+    }
+ 
+    void OnCompleteReadback(AsyncGPUReadbackRequest asyncGPUReadbackRequest)
+    {
+        // get screenshot data as nativearray or handle error
+        if (asyncGPUReadbackRequest.hasError)
+        {
+            Debug.LogError("Error Capturing Screenshot: With AsyncGPUReadbackRequest.");
+            return;
         }
+        var rawData = asyncGPUReadbackRequest.GetData<byte>();
+        // Grab screen dimensions
+        var width = Screen.width;
+        var height = Screen.height;
+        var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
+        var processedData = texture.GetRawTextureData<byte>();
+        // now flip vertical pixels
+        for (int i = 0; i < rawData.Length; i += 4)
+        {
+            var arrayIndex = i / 4;
+            var x = arrayIndex % width;
+            var y = arrayIndex / width;
+            var flippedY = (height - 1 - y);
+            var flippedIndex = x + flippedY * width;
+            // flip the data
+            processedData[i] = rawData[flippedIndex * 4];
+            processedData[i + 1] = rawData[flippedIndex * 4 + 1];
+            processedData[i + 2] = rawData[flippedIndex * 4 + 2];
+            processedData[i + 3] = rawData[flippedIndex * 4 + 3];
+        }
+        // create texture and save as png using datetime
+        string _imagePath = StaticSave.GetPath() + testDate.ToString() + ".png";
+        var dateTime = DateTime.Now;
+        var dateTimeString = dateTime.ToString("-yyyy-MM-dd_") + dateTime.Hour + "h-" + dateTime.Minute + "m";
+        File.WriteAllBytes(_imagePath, ImageConversion.EncodeToPNG(texture));
+        Destroy(texture);
+        // todo: hook this up with my twitter.py script
+    }
+    public static byte[] CaptureFrame(Camera camera)
+    {
+        RenderTexture _targetTexture = camera.targetTexture;
+        RenderTexture.active = _targetTexture;
+        Texture2D _texture2D = new Texture2D(_targetTexture.width, _targetTexture.height, TextureFormat.RGB24, false);
+        _texture2D.ReadPixels(new Rect(0, 0, _targetTexture.width, _targetTexture.height), 0, 0);
+        _texture2D.Apply();
+        byte[] image = _texture2D.EncodeToJPG();	
+        UnityEngine.Object.DestroyImmediate(_texture2D); // Required to prevent leaking the texture
+        return image;
+    }
 
-#endif
     }
 }

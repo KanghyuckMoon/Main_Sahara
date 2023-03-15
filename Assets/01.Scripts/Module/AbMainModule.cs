@@ -13,10 +13,10 @@ namespace Module
 {
     public abstract class AbMainModule : MonoBehaviour, IUpdateObj, IObserble
     {
-        //¸ŞÀÎ ¸ğµâ¿¡¼­ Áö±İ ¿ÀºêÁ§Æ®°¡ °¡Áö°í ÀÖ´Â ¸ğµç ¸ğµâÀ» °¡Áö°í ¿Í¾ßÇØ
-        //±×°Ç Ç®¸µ ÇÒ¶§ °¢°¢ÀÇ ¸ğµâÀ» ¹Ø¿¡ º¹ÇÕµ¥ÀÌÅÍ¿¡ ³Ö¾îÁÖ´Â Çü½ÄÀ¸·Î ÇÑ´Ù. ¸ŞÀÎ¸ğµâ¿¡ ³Ö¾îÁØ´Ù.
+        //ë©”ì¸ ëª¨ë“ˆì—ì„œ ì§€ê¸ˆ ì˜¤ë¸Œì íŠ¸ê°€ ê°€ì§€ê³  ìˆëŠ” ëª¨ë“  ëª¨ë“ˆì„ ê°€ì§€ê³  ì™€ì•¼í•´
+        //ê·¸ê±´ í’€ë§ í• ë•Œ ê°ê°ì˜ ëª¨ë“ˆì„ ë°‘ì— ë³µí•©ë°ì´í„°ì— ë„£ì–´ì£¼ëŠ” í˜•ì‹ìœ¼ë¡œ í•œë‹¤. ë©”ì¸ëª¨ë“ˆì— ë„£ì–´ì¤€ë‹¤.
 
-        #region ÇÁ·ÎÆÛÆ¼
+        #region í”„ë¡œí¼í‹°
         public float StopOrNot
         {
             get
@@ -441,107 +441,107 @@ namespace Module
         }
         #endregion
 
-        #region º¯¼ö
+        #region ë³€ìˆ˜
         public bool player;
 
         private float stopOrNot;
 
-        [SerializeField, Header("(·Ï¿Â)Å¸°Ù")]
+        [SerializeField, Header("(ë¡ì˜¨)íƒ€ê²Ÿ")]
         private Transform lockOnTarget = null;
 
-        [SerializeField, Header("Ä³¸¯ÅÍ ÄÁÆ®·Ñ·¯")] 
+        [SerializeField, Header("ìºë¦­í„° ì»¨íŠ¸ë¡¤ëŸ¬")] 
         private CharacterController characterController;
-        [SerializeField, Header("Ä³¸¯ÅÍ°¡ °¥ ¹æÇâ")] 
+        [SerializeField, Header("ìºë¦­í„°ê°€ ê°ˆ ë°©í–¥")] 
         private Vector2 objDir;
-        [SerializeField, Header("Ä«¸Ş¶óÀÇ È¸Àü")] 
+        [SerializeField, Header("ì¹´ë©”ë¼ì˜ íšŒì „")] 
         private Quaternion objRotation;
-        [SerializeField, Header("Ä«¸Ş¶ó ¾Õ¹æÇâ")]
+        [SerializeField, Header("ì¹´ë©”ë¼ ì•ë°©í–¥")]
         private Vector3 objForword;
 
         [Space]
-        [SerializeField, Header("µ¥ÀÌÅÍ °¡Á®¿Ã µ¥")]
+        [SerializeField, Header("ë°ì´í„° ê°€ì ¸ì˜¬ ë°")]
         private StatData statData;
 
         [Space]
-        [SerializeField, Header("ÇÇ°İ ÆÇÁ¤ÀÌ¸§")] 
+        [SerializeField, Header("í”¼ê²© íŒì •ì´ë¦„")] 
         private string[] hitCollider;
-        [SerializeField, Header("ÇöÀç Ä³¸¯ÅÍ ¼Óµµ")] 
+        [SerializeField, Header("í˜„ì¬ ìºë¦­í„° ì†ë„")] 
         private float moveSpeed;
-        [SerializeField, Header("´Ş¸®±âÁß?")] 
+        [SerializeField, Header("ë‹¬ë¦¬ê¸°ì¤‘?")] 
         private bool isSprint;
 
-        //¹°¸® °ü·ÃÀº ÃÖÀûÈ­¸¦ À§ÇØ PublicÀ» »ç¿ë
+        //ë¬¼ë¦¬ ê´€ë ¨ì€ ìµœì í™”ë¥¼ ìœ„í•´ Publicì„ ì‚¬ìš©
         [Space]
-        [SerializeField, Header("°øÁßÀÎ°¡?")] 
+        [SerializeField, Header("ê³µì¤‘ì¸ê°€?")] 
         public bool isGround; 
-        [SerializeField, Header("Á¡ÇÁÇß³ª?")] 
+        [SerializeField, Header("ì í”„í–ˆë‚˜?")] 
         private bool isJump;
-        [SerializeField, Header("¶³¾îÁ³³ª?")] 
+        [SerializeField, Header("ë–¨ì–´ì¡Œë‚˜?")] 
         private bool isFreeFall;
-        [SerializeField, Header("°æ»çÁ¤µµ")]
+        [SerializeField, Header("ê²½ì‚¬ì •ë„")]
         private bool isSlope;
-        [SerializeField, Header("Á¡ÇÁ¹öÆÛ¸µÅ¸ÀÓ")] 
+        [SerializeField, Header("ì í”„ë²„í¼ë§íƒ€ì„")] 
         private bool isJumpBuf;
-        [SerializeField, Header("¿òÁ÷ÀÏ¼ö ÀÖ³ª?")] 
+        [SerializeField, Header("ì›€ì§ì¼ìˆ˜ ìˆë‚˜?")] 
         private bool canMove;
-        [SerializeField, Header("Á×¾ú³ª?")] 
+        [SerializeField, Header("ì£½ì—ˆë‚˜?")] 
         private bool isDead;
-        [SerializeField, Header("°ø°İÁßÀÎ°¡?")] 
+        [SerializeField, Header("ê³µê²©ì¤‘ì¸ê°€?")] 
         private bool isAttack;
-        [SerializeField, Header("¹«±â¸¦ °¡Áö°í ÀÖ³ª?")] 
+        [SerializeField, Header("ë¬´ê¸°ë¥¼ ê°€ì§€ê³  ìˆë‚˜?")] 
         private bool isWeaponExist;
-        [SerializeField, Header("¸Â¾Ò³Ä?")] 
+        [SerializeField, Header("ë§ì•˜ëƒ?")] 
         private bool isHit;
-        [SerializeField, Header("Â÷Â¡ÁßÀÎ°¡?")]
+        [SerializeField, Header("ì°¨ì§•ì¤‘ì¸ê°€?")]
         private bool isCharging;
-        [SerializeField, Header("¸ÂÀ» ¼ö ÀÖ³ª?")]
+        [SerializeField, Header("ë§ì„ ìˆ˜ ìˆë‚˜?")]
         private bool isCanHit;
-        [SerializeField, Header("ÀüÃ¼ ½Ã°£ÀÎ°¡?")]
+        [SerializeField, Header("ì „ì²´ ì‹œê°„ì¸ê°€?")]
         private bool isStaticTime;
 
         [Space]
-        [SerializeField, Header("°ø°İÇÏ³ª?")] 
+        [SerializeField, Header("ê³µê²©í•˜ë‚˜?")] 
         private bool attacking;
-        [SerializeField, Header("°­°ø°İÇÏ³ª?")] 
+        [SerializeField, Header("ê°•ê³µê²©í•˜ë‚˜?")] 
         private bool strongAttacking;
 
         [Space]
-        [SerializeField, Header("Áß·Â")] 
+        [SerializeField, Header("ì¤‘ë ¥")] 
         private float gravity;
-        [SerializeField, Header("Áß·ÂÅ©±â")] 
+        [SerializeField, Header("ì¤‘ë ¥í¬ê¸°")] 
         private float gravityScale = -9.8f;
-        [SerializeField, Header("¶¥Ã¼Å© »ç°Å¸®")] 
+        [SerializeField, Header("ë•…ì²´í¬ ì‚¬ê±°ë¦¬")] 
         public float groundOffset;
-        [SerializeField, Header("³Ë¹é")]
+        [SerializeField, Header("ë„‰ë°±")]
         private Vector3 knockBackVector;
-        [SerializeField, Header("¹Ù´Ú °æ»ç")]
+        [SerializeField, Header("ë°”ë‹¥ ê²½ì‚¬")]
         private Vector3 slopeVector;
 
         [Space]
         public float hitDelay;
 
         [Space]
-        [SerializeField, Header("¶ô¿Â")] 
+        [SerializeField, Header("ë½ì˜¨")] 
         private bool lockOn;
 
         [Space]
-        [SerializeField, Header("¼­ÀÖÀ» ¼ö ÀÖ´Â ¹°Ã¼")] 
+        [SerializeField, Header("ì„œìˆì„ ìˆ˜ ìˆëŠ” ë¬¼ì²´")] 
         public LayerMask groundLayer;
 
-        [SerializeField, Header("ÃÖ´ë°æ»ç¸é")] 
+        [SerializeField, Header("ìµœëŒ€ê²½ì‚¬ë©´")] 
         private float maxSlope;
         
-        [SerializeField, Header("·¹ÀÌÄ³½ºÆ® ½òÀ§Ä¡")]
+        [SerializeField, Header("ë ˆì´ìºìŠ¤íŠ¸ ì ìœ„ì¹˜")]
         private Transform raycastTarget;
         private RaycastHit slopeHit;
 
-        [SerializeField, Header("ºñÁÖ¾ó")]
+        [SerializeField, Header("ë¹„ì£¼ì–¼")]
         public GameObject visualObject;
 
         [SerializeField]
         private Transform model;
 
-        [SerializeField, Header("¾Ö´Ï¸ŞÀÌÅÍ")]
+        [SerializeField, Header("ì• ë‹ˆë©”ì´í„°")]
         protected Animator animator;
 
         private SettingTime settingTime;
@@ -549,12 +549,12 @@ namespace Module
         private float personalTime;
 
         [Space]
-        [SerializeField, Header("¾çÂÊ ¹ß")]
+        [SerializeField, Header("ì–‘ìª½ ë°œ")]
         public Transform leftFeet;
         public Transform rightFeet;
 
         [Space]
-        [SerializeField, Header("Çã¸®")]
+        [SerializeField, Header("í—ˆë¦¬")]
         private GameObject back;
 
         [Space]

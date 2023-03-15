@@ -16,6 +16,7 @@ namespace GoogleSpreadSheet
         public const string DROPITEMLISTSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=192564105";
         public const string QUESTSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=450505504";
         public const string TALKSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=194337131";
+        public const string RANDOMMONSTERLISTSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=2105918619";
 
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Data;
+using Utill.Measurement;
 
 namespace Module
 {
@@ -54,6 +55,7 @@ namespace Module
         private StatData statData;
         private Vector3 currentDirection;
         private StateModule stateModule;
+        private static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
 
         public MoveModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -70,7 +72,6 @@ namespace Module
         /// </summary>
         public void Move()
         {
-            //if (StateModule.CheckState(State.MOVING))
             #region 속도 관련 부분
             float _targetSpeed = mainModule.IsSprint ? moveSpeed + 5 : moveSpeed;
             float _lockOnspeed = mainModule.LockOn ? -2 : 0;
@@ -80,7 +81,8 @@ namespace Module
             if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? moveSpeed - 2 + 4 : moveSpeed - 2;
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
-            float currentSpeed = new Vector3(mainModule.CharacterController.velocity.x, 0, mainModule.CharacterController.velocity.z).magnitude;
+            var velocity = mainModule.CharacterController.velocity;
+            float currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
 
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset)// && mainModule.objDir != Vector2.up)
@@ -99,15 +101,11 @@ namespace Module
 
             Vector3 _targetDirection = new Vector3(mainModule.ObjDir.x, 0, mainModule.ObjDir.y);
 
-            //Vector3 _velocity = NextStepGroundAngle(_speed, _targetDirection) > mainModule.maxSlope ? _targetDirection : Vector3.zero;
-
             Vector3 _rotate = mainModule.transform.eulerAngles;
             Vector3 _dir = _targetDirection.normalized;
-            float _gravity = mainModule.Gravity;//Vector3.down * Mathf.Abs(mainModule.characterController.velocity.y);
+            float _gravity = mainModule.Gravity;
             Vector3 _moveValue;
 
-            //if (mainModule.ObjDir != Vector2.zero)
-            //{
                 targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
                                   mainModule.ObjRotation.eulerAngles.y;
                 rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity, 0.05f);
@@ -116,90 +114,50 @@ namespace Module
                 {
                 if (mainModule.LockOnTarget is null && mainModule.ObjDir != Vector2.zero)
                 {
-                    //Debug.LogError(rotation);
                     mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                 }
-                /*else
-                {
-                    Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
-                    //Vector3 _targetPos = new Vector3(mainModule.ObjRotation.x, mainModule.transform.position.y, mainModule.ObjRotation.z);
-                    //Vector3 _targetPos = mainModule.ObjRotation.eulerAngles;
-                    //_targetPos.y = mainModule.transform.position.y;
-
-                    mainModule.transform.LookAt(_targetPos);
-
-                    //Vector3 _targetDir = mainModule.LockOnTarget.position - mainModule.transform.position;
-                    //float _angle = Mathf.Atan2(_targetDir.x, _targetDir.z) * Mathf.Rad2Deg;
-
-                    //targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg + _angle;
-                }*/
                 if (mainModule.LockOnTarget is not null)
                 {
-                    //Vector3 _targetPos = new Vector3(mainModule.LockOnTarget.position.x, mainModule.transform.position.y, mainModule.LockOnTarget.position.z);
-
-                    //Vector3 _playerForward = mainModule.transform.position - mainModule.LockOnTarget.position;
-                    //_playerForward.y = mainModule.transform.position.y; 
-
-                    //Vector3 _targetPosNoneY = mainModule.LockOnTarget.position;
-                    //_targetPosNoneY.y = mainModule.transform.position.y;
-                    //Vector3 _targetPos = new Vector3(mainModule.ObjRotation.x, mainModule.transform.position.y, mainModule.ObjRotation.z);
-                    //Vector3 _targetPos = mainModule.ObjRotation.eulerAngles;
-                    //_targetPos.y = mainModule.transform.position.y;
-
-                    //mainModule.Back.transform.LookAt(mainModule.LockOnTarget.transform);
-                    //Vector3 _bodyRot = mainModule.ObjRotation.eulerAngles;
-                    //_bodyRot.z = _bodyRot.x = 0;
-
-                    //mainModule.Back.transform.LookAt(_bodyRot);
-
-                    //Vector3 _targetDir = mainModule.ObjRotation.eulerAngles;
-                    //_targetDir.z = _targetDir.x = 0;
-
-                    //Vector3 _pos = mainModule.ObjForword;
-                    //_pos.y = 0;// = mainModule.ObjForword;
-
-                    //mainModule.transform.rotation = Quaternion.Euler(_pos);
-                    //Debug.LogError(mainModule.transform.rotation);
                     mainModule.transform.rotation = Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
                 }
             }
-            //}
-
-            
 
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * mainModule.PersonalFixedDeltaTime;
-
-
+            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot);
+            _moveValue *= mainModule.PersonalFixedDeltaTime;
+            
             mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, mainModule.PersonalFixedDeltaTime);
-            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * mainModule.PersonalFixedDeltaTime));
-            else mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalFixedDeltaTime);
-            Animator.SetFloat("MoveSpeed", animationBlend);
+            if (mainModule.IsSlope)
+            {
+                mainModule.CharacterController.Move((_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0)) * mainModule.PersonalFixedDeltaTime));
+            }
+            else
+            {
+                mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalFixedDeltaTime);
+            }
+            Animator.SetFloat(MoveSpeed, animationBlend);
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
-            Vector3 _rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
-                mainModule.transform.position.z);
+            var position = mainModule.transform.position;
+            Vector3 _rayPos = new Vector3(position.x, position.y + mainModule.groundOffset,
+                position.z);
             var _ray = new Ray(_rayPos, Vector3.down);
-
-            //if (dir == Vector3.zero) { mainModule.StopOrNot = 0; }
-            //else mainModule.StopOrNot = 1;
 
             if (Physics.Raycast(_ray, out RaycastHit _hitInfo, 0.2f))
             {
                 var _slopRotation = Quaternion.FromToRotation(Vector3.up, _hitInfo.normal);
                 var _adjustedVelocity = _slopRotation * velocity;
 
-                if (_adjustedVelocity.y < 0)// && _adjustedVelocity.y > 60)
+                if (_adjustedVelocity.y < 0)
                 {
                     addSpeed = ((0.5f - _adjustedVelocity.y) * (0.3f - _adjustedVelocity.y) * 1.1f);
-                    Debug.Log(addSpeed);
-                    //if (dir == Vector3.zero) { addSpeed = 0; mainModule.StopOrNot = 0; }
-                    //else mainModule.StopOrNot = 1;
+                    Logging.Log(addSpeed);
                     return _adjustedVelocity;
                 }
             }
