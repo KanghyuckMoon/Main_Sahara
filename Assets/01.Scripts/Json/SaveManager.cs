@@ -246,7 +246,10 @@ namespace Json
                 mainCam ??= Camera.main;
                 return mainCam;
             }
-            
+            set
+            {
+                mainCam = value;
+            }
         }
         
 		private InventorySO inventorySO = null;
@@ -400,6 +403,7 @@ namespace Json
             JobHandle _shopJobHandle = _shopSaveJob.Schedule(ShopAllSO.shopSOList.Count, 5);
             StaticSave.Save<TutorialSaveData>(ref TutorialManager.Instance.tutorialSaveData, _date);
 
+            yield return new WaitForEndOfFrame();
             File.WriteAllBytes(_imagePath, SaveManager.CaptureFrame(MainCam)); 
             //ScreenCapture.CaptureScreenshot(_imagePath);
             //StartCoroutine(AsyncCapture()); 
@@ -598,18 +602,13 @@ namespace Json
         }
         // create texture and save as png using datetime
         string _imagePath = StaticSave.GetPath() + testDate.ToString() + ".png";
-        var dateTime = DateTime.Now;
-        var dateTimeString = dateTime.ToString("-yyyy-MM-dd_") + dateTime.Hour + "h-" + dateTime.Minute + "m";
         File.WriteAllBytes(_imagePath, ImageConversion.EncodeToPNG(texture));
         Destroy(texture);
-        // todo: hook this up with my twitter.py script
     }
     public static byte[] CaptureFrame(Camera camera)
     {
-        RenderTexture _targetTexture = camera.targetTexture;
-        RenderTexture.active = _targetTexture;
-        Texture2D _texture2D = new Texture2D(_targetTexture.width, _targetTexture.height, TextureFormat.RGB24, false);
-        _texture2D.ReadPixels(new Rect(0, 0, _targetTexture.width, _targetTexture.height), 0, 0);
+        Texture2D _texture2D = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
+        _texture2D.ReadPixels(new Rect(0, 0, 1920, 1080), 0, 0);
         _texture2D.Apply();
         byte[] image = _texture2D.EncodeToJPG();	
         UnityEngine.Object.DestroyImmediate(_texture2D); // Required to prevent leaking the texture
