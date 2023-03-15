@@ -10,8 +10,6 @@ using GoogleSpreadSheet;
 using System;
 using Module;
 
-namespace GoogleSpreadSheet
-{
 	public class QuestSOMaker : MonoBehaviour
 	{
 		public QuestDataAllSO questDataAllSO;
@@ -82,6 +80,5 @@ namespace GoogleSpreadSheet
         }
 
     }
-}
 
 #endif

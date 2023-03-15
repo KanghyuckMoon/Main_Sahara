@@ -8,6 +8,8 @@ namespace Spawner
     [CreateAssetMenu(fileName = "RandomMonsterListSO ", menuName = "SO/RandomMonsterListSO")]
     public class RandomMonsterListSO : ScriptableObject
     {
+        public string key;
+
         public int minSpawnCount = 0;
         public int maxSpawnCount = 1;
 

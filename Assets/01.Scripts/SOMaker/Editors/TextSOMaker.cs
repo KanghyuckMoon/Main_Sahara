@@ -11,8 +11,6 @@ using System;
 using Module;
 using Module.Talk;
 
-namespace GoogleSpreadSheet
-{
 	public class TextSOMaker : MonoBehaviour
     {
         public AllTalkDataSO allTalkDataSO;
@@ -100,5 +98,4 @@ namespace GoogleSpreadSheet
         }
 
     }
-}
 #endif

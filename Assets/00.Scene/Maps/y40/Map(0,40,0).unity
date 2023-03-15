@@ -317,7 +317,7 @@ Transform:
   - {fileID: 414120124}
   - {fileID: 1337548510}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &260972635
 PrefabInstance:
@@ -418,7 +418,7 @@ Transform:
   m_Children:
   - {fileID: 976988957}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &414120123
 GameObject:
@@ -738,7 +738,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &665735379
 PrefabInstance:
@@ -1415,7 +1415,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &999891324
 PrefabInstance:
@@ -1957,57 +1957,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faa095053e8fb2249925f1cfb7a2a31f, type: 3}
---- !u!1 &1568620745
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1568620746}
-  - component: {fileID: 1568620747}
-  m_Layer: 0
-  m_Name: RandomMonsterSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1568620746
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568620745}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4034.7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1568620747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568620745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83c1da4780729d240a3a2f1acab2f80e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomMonsterListSO: {fileID: 11400000, guid: 7b496825c96f5b94bb63c9c66ad0a7fc, type: 2}
-  spawnLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  minSpawnTime: 1
-  maxSpawnTime: 3
-  radius: 33.6
 --- !u!1 &1616985445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,7 +1987,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1616985447
 MonoBehaviour:
@@ -2404,7 +2353,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2053828218
 GameObject:
@@ -2479,7 +2428,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &498428295891883774
 MonoBehaviour:
@@ -4295,7 +4244,7 @@ Transform:
   - {fileID: 2724573340997224670}
   - {fileID: 8406285843013544534}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &2724573341980406722
 CharacterController:
@@ -4969,6 +4918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84761ad46399969499440c6518ee2447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: 0
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
@@ -4991,6 +4941,7 @@ MonoBehaviour:
   isHit: 0
   isCharging: 0
   isCanHit: 0
+  isStaticTime: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
