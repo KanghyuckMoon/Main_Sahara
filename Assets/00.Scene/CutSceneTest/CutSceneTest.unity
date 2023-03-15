@@ -2094,6 +2094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325afc7641fdb9a4e8671887fc0b58aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: 0
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
@@ -2115,12 +2116,15 @@ MonoBehaviour:
   isWeaponExist: 0
   isHit: 0
   isCharging: 0
+  isCanHit: 0
+  isStaticTime: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -9.8
   groundOffset: -0.12
   knockBackVector: {x: 0, y: 0, z: 0}
+  slopeVector: {x: 0, y: 0, z: 0}
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -3616,7 +3620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d342084e91270654698d7969c507da04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 740911931}
 --- !u!4 &1624514838
 Transform:
   m_ObjectHideFlags: 0
@@ -4478,7 +4481,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40
+  field of view: 25.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -4504,7 +4507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072355909}
   m_LocalRotation: {x: -3e-45, y: 1e-45, z: 0, w: 1}
-  m_LocalPosition: {x: -4e-44, y: 4090.66, z: 6.1899996}
+  m_LocalPosition: {x: -2.8e-44, y: 4090.66, z: 10.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4821,6 +4824,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117346108}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &998900584607544003
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2437400427037660839, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_Name
+      value: DropTestItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2872748197873770440, guid: bce56a8eb784f1349950a33995456c40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bce56a8eb784f1349950a33995456c40, type: 3}
 --- !u!4 &2052671042607152490
 Transform:
   m_ObjectHideFlags: 3
