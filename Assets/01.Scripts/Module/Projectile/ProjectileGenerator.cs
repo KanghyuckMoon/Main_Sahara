@@ -38,18 +38,18 @@ namespace Module
             positionSO = _positionSO;
         }
 
-        public void SpownAndMove(string _projectileName)
+        public void SpownAndMove()
         {
             //if (stateModule.CheckState(State.ATTACK)) return;
             if (canSpwon) return;
             if (PositionSO is null)
                 return;
 
-            SpownProjectile(_projectileName);
+            SpownProjectile();
             MoveProjectile();
         }
 
-        public void SpownProjectile(string _projectileName)
+        public void SpownProjectile()
         {
             //for (int i = 0; i < _count; i++)
             //{
