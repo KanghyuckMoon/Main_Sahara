@@ -127,12 +127,13 @@ namespace Module
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot);
-            _moveValue *= mainModule.PersonalDeltaTime;
+            //_moveValue *= mainModule.PersonalDeltaTime;
+            Vector3 _moveVector3 = _moveValue + mainModule.KnockBackVector + new Vector3(0, _gravity, 0);
             
             mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero,  mainModule.PersonalDeltaTime);
             if (mainModule.IsSlope)
             {
-                mainModule.CharacterController.Move((_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0)) *  mainModule.PersonalDeltaTime));
+                mainModule.CharacterController.Move(_moveVector3 *  mainModule.PersonalDeltaTime);
             }
             else
             {

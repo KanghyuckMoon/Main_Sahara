@@ -194,42 +194,15 @@ namespace Streaming
 		/// </summary>
 		public void LoadScene()
 		{
-			//if (!IsActiveScene())
-			//{
-			//}
-			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
-		}
-		/// <summary>
-		/// 맡은 씬을 불러온다
-		/// </summary>
-		public void LoadSceneNoneCheck()
-		{
 			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
 		}
 
-		/// <summary>
-		/// 맡은 씬이 활성화되어 있어 있다면 비활성화한다
-		/// </summary>
-		public void UnLoadScene()
-		{
-			if (IsActiveScene())
-			{
-				//SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
-
-				//LODMaker.UnLoad();
-				
-				AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
-			}
-		}
-		
-		
 		/// <summary>
 		/// 맡은 씬이 활성화되어 있어 있다면 비활성화한다
 		/// </summary>
 		public void UnLoadSceneNoneCheck()
 		{
 			SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
-
 			LODMaker.UnLoad();
 				
 			AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
@@ -249,17 +222,6 @@ namespace Streaming
 			LODMaker.Load();
 			yield return null;
 		}
-
-		private void UnLoadSceneObject(AsyncOperationHandle<SceneInstance> obj)
-		{
-			if (obj.Status == AsyncOperationStatus.Succeeded)
-			{
-			}
-		}
-
-#if UNITY_EDITOR
-
-#endif
 
 		#region DebugCode
 
