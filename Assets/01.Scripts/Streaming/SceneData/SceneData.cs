@@ -173,7 +173,7 @@ namespace Streaming
 		/// <summary>
 		/// 씬 오브젝트들을 제거한다
 		/// </summary>
-		public void UnLoad()
+		public IEnumerator UnLoad()
 		{
 			isLoad = false;
 			while (objectCheckerList.Count > 0)
@@ -201,7 +201,10 @@ namespace Streaming
 				}
 
 				objectCheckerList.RemoveAt(0);
+				yield return null;
 			}
+
+			yield return null;
 		}
 
 		public void SaveUnLoad()

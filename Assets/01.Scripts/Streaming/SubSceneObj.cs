@@ -214,12 +214,25 @@ namespace Streaming
 		{
 			if (IsActiveScene())
 			{
-				SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
+				//SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
 
-				LODMaker.UnLoad();
+				//LODMaker.UnLoad();
 				
 				AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
 			}
+		}
+		
+		
+		/// <summary>
+		/// 맡은 씬이 활성화되어 있어 있다면 비활성화한다
+		/// </summary>
+		public void UnLoadSceneNoneCheck()
+		{
+			SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
+
+			LODMaker.UnLoad();
+				
+			AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
 		}
 
 		private void LoadSceneObject(AsyncOperationHandle<SceneInstance> obj)

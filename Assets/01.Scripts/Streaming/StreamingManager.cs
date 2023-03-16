@@ -27,30 +27,47 @@ namespace Streaming
 
 			public void Execute()
 			{
-				for (int _zOffset = -chunksVisibleInViewDst; _zOffset <= chunksVisibleInViewDst; _zOffset++)
+				// for (int _zOffset = -chunksVisibleInViewDst; _zOffset <= chunksVisibleInViewDst; _zOffset++)
+				// {
+				// 	for (int _yOffset = -chunksVisibleInViewDst; _yOffset <= chunksVisibleInViewDst; _yOffset++)
+				// 	{
+				// 		for (int _xOffset = -chunksVisibleInViewDst; _xOffset <= chunksVisibleInViewDst; _xOffset++)
+				// 		{
+				// 			Vector3 _viewedChunkCoord = new Vector3(originChunkCoordX + _xOffset, originChunkCoordY + _yOffset, originChunkCoordZ + _zOffset);
+				//
+				// 			if (StreamingManager.Instance.chunkDictionary.ContainsKey(_viewedChunkCoord))
+				// 			{
+				// 				//씬 데이터가 있어야함
+				// 				if (!StreamingManager.Instance.chunkDictionary.TryGetValue(_viewedChunkCoord, out var a))
+				// 				{
+				// 					continue;
+				// 				}
+				//
+				// 				//씬이 비활성화된 상태여야함
+				// 				if (!StreamingManager.Instance.chunksCurrentVisibleList.Contains(_viewedChunkCoord))
+				// 				{
+				// 					StreamingManager.Instance.chunksCurrentVisibleList.Add(_viewedChunkCoord);
+				// 				}
+				// 				StreamingManager.Instance.LoadSubScene(_viewedChunkCoord);
+				// 			}
+				// 		}
+				// 	}
+				// }
+
+				foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
 				{
-					for (int _yOffset = -chunksVisibleInViewDst; _yOffset <= chunksVisibleInViewDst; _yOffset++)
+					Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+					if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
 					{
-						for (int _xOffset = -chunksVisibleInViewDst; _xOffset <= chunksVisibleInViewDst; _xOffset++)
-						{
-							Vector3 _viewedChunkCoord = new Vector3(originChunkCoordX + _xOffset, originChunkCoordY + _yOffset, originChunkCoordZ + _zOffset);
-
-							if (StreamingManager.Instance.chunkDictionary.ContainsKey(_viewedChunkCoord))
-							{
-								//씬 데이터가 있어야함
-								if (!StreamingManager.Instance.chunkDictionary.TryGetValue(_viewedChunkCoord, out var a))
-								{
-									continue;
-								}
-
-								//씬이 비활성화된 상태여야함
-								if (!StreamingManager.Instance.chunksCurrentVisibleList.Contains(_viewedChunkCoord))
-								{
-									StreamingManager.Instance.chunksCurrentVisibleList.Add(_viewedChunkCoord);
-								}
-								StreamingManager.Instance.LoadSubScene(_viewedChunkCoord);
-							}
-						}
+						//if (!StreamingManager.Instance.chunksCurrentVisibleList.Contains(_sceneObj.Key))
+						//{
+						//	StreamingManager.Instance.chunksCurrentVisibleList.Add(_sceneObj.Key);
+						//}
+						StreamingManager.Instance.LoadSubScene(_sceneObj.Key);	
+					}
+					else
+					{
+						StreamingManager.Instance.UnLoadSubSceneNoneCheck(_sceneObj.Key);	
 					}
 				}
 			}
@@ -125,8 +142,8 @@ namespace Streaming
 		private int originChunkCoordY;
 		private int originChunkCoordZ;
 
-		private const int chunkSize = 100;
-		private const int chunksVisibleInViewDst = 2;
+		public const int chunkSize = 100;
+		public const int chunksVisibleInViewDst = 2;
 		private const int LODDst = 1;
 		private const int interval = 3;
 		private Vector3 defaultPosition = new Vector3(0,4050,0);
@@ -250,7 +267,7 @@ namespace Streaming
 				originChunkCoordZ = _currentChunkCoordZ;
 
 				StartCoroutine(UpdateChunk());
-				//streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
+				streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 
@@ -279,15 +296,14 @@ namespace Streaming
 			};
 			JobHandle _jobHandle = _sceneStreamingJob.Schedule();
 			
-			while (!_jobHandle.IsCompleted)
-			{
-				yield return null;
-			}
-			_jobHandle.Complete();
+			//while (!_jobHandle.IsCompleted)
+			//{
+			//	yield return null;
+			//}
+			//_jobHandle.Complete();
 
-			UnLoadVisibleChunk();
-			chunksPreviousVisibleList = chunksCurrentVisibleList.ToList();
-
+			//UnLoadVisibleChunk();
+			yield return null;
 
 		}
 		private void UnLoadVisibleChunk()
@@ -301,13 +317,14 @@ namespace Streaming
 			}
 
 			//혹시 모를 언로드
-			foreach (var _chunk in chunkDictionary)
-			{
-				if (_chunk.Value.IsActiveScene() && !chunksCurrentVisibleList.Contains(_chunk.Key))
-				{
-					UnLoadSubScene(_chunk.Key);
-				}
-			}
+			//foreach (var _chunk in chunkDictionary)
+			//{
+			//	if (_chunk.Value.IsActiveScene() && !chunksCurrentVisibleList.Contains(_chunk.Key))
+			//	{
+			//		UnLoadSubScene(_chunk.Key);
+			//	}
+			//}
+			chunksPreviousVisibleList = chunksCurrentVisibleList.ToList();
 		}
 
 		/// <summary>
@@ -319,6 +336,19 @@ namespace Streaming
 			if (!CheckCurrentlyActhive(chunkDictionary[_viewedChunkCoord].SceneName))
 			{
 				chunkDictionary[_viewedChunkCoord].LoadScene();
+			}
+		}
+		
+		
+		/// <summary>
+		/// 서브씬 활성화
+		/// </summary>
+		/// <param name="_viewedChunkCoord"></param>
+		private void UnLoadSubSceneNoneCheck(Vector3 _viewedChunkCoord)
+		{
+			if (CheckCurrentlyActhive(chunkDictionary[_viewedChunkCoord].SceneName))
+			{
+				chunkDictionary[_viewedChunkCoord].UnLoadSceneNoneCheck();
 			}
 		}
 		/// <summary>

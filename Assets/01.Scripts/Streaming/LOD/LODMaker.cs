@@ -48,6 +48,7 @@ namespace Streaming
 		private Dictionary<long, GameObject> objectList = new Dictionary<long, GameObject>();
 		private bool isInit = false;
 		private int unloadCount = 0;
+		private bool isUnLoadUpdate = false;
 
 		public void Init(SubSceneObj _subSceneObj)
 		{
@@ -69,6 +70,8 @@ namespace Streaming
 				AddObjectToDic(transform.GetChild(i).gameObject);
 			}
 			isInit = true;
+
+			StartCoroutine(IEUpdateLODObjects());
 		}
 
 		public void Load()
@@ -91,10 +94,34 @@ namespace Streaming
 		{
 			//lodGroup.enabled = true;
 			//오브젝트 생성
-			StartCoroutine(IEUnLoad());
+			//IEUnLoad();
+			//StartCoroutine();
+			//isUnLoadUpdate = true;
 		}
 
-		private IEnumerator IEUnLoad()
+		private IEnumerator IEUpdateLODObjects()
+		{
+			while (true)
+			{
+				if (isUnLoadUpdate)
+				{
+					isUnLoadUpdate = false;
+					foreach (var obj in renderObjectDic)
+					{
+						if (!objectList.ContainsKey(obj.Key))
+						{
+							unloadCount++;
+							objectList.Add(obj.Key, null);
+							ObjectPoolManager.Instance.GetObjectAsyncParameter<KeyValuePair<long, ObjectData>>(obj.Value.lodAddress, UnloadObjectAsync, obj);
+						}
+					}
+				}
+				yield return null;
+			}
+			yield return null;
+		}
+
+		private void IEUnLoad()
 		{
 			foreach (var obj in renderObjectDic)
 			{
@@ -102,7 +129,7 @@ namespace Streaming
 				{
 					unloadCount++;
 					objectList.Add(obj.Key, null);
-					GameObject _obj = ObjectPoolManager.Instance.GetObject(obj.Value.lodAddress);//(obj.Value.lodAddress, UnloadObjectAsync, obj);
+					//GameObject _obj = ObjectPoolManager.Instance.GetObject(obj.Value.lodAddress);//(obj.Value.lodAddress, UnloadObjectAsync, obj);
 					//objectList[obj.Key] = _obj;
 					//objectList.Add(_keyValuePair.Key, _lodObj);
 					//ObjectSettingData(_obj, obj.Value);
@@ -111,7 +138,7 @@ namespace Streaming
 				}
 			}
 
-			yield return null;
+			//yield return null;
 		}
 
 		private void UnloadObjectAsync(GameObject _lodObj, KeyValuePair<long, ObjectData> _keyValuePair)
@@ -121,7 +148,7 @@ namespace Streaming
 			//objectList.Add(_keyValuePair.Key, _lodObj);
 			ObjectSettingData(_lodObj, _keyValuePair.Value);
 			_lodObj.SetActive(true);
-
+			
 			if (unloadCount == 0)
 			{
 				ResetLODObject();
