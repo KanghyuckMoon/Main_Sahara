@@ -11,13 +11,13 @@ using System;
 namespace UI.Inventory
 {
     /// <summary>
-    /// ÀÎº¥Åä¸®ÀÇ ½½·Ôµé º¸¿©ÁØ´Â ºÎºĞ 
+    /// ì¸ë²¤í† ë¦¬ì˜ ìŠ¬ë¡¯ë“¤ ë³´ì—¬ì¤€ëŠ” ë¶€ë¶„ 
     /// </summary>
     public class InventoryGridSlotsView : AbUI_Base
     {
         public enum InvenPanelElements
         {
-            // ÆĞ³Îµé¸¸ ³Ö¾î¾ßÇØ 
+            // íŒ¨ë„ë“¤ë§Œ ë„£ì–´ì•¼í•´ 
             weapon_panel,
             armor_panel,
             consumation_panel,
@@ -36,18 +36,18 @@ namespace UI.Inventory
             accessories_button,
             material_button,
             valuable_button
-            //Àåºñ
-            //¼Òºñ
-            //±âÅ¸
+            //ì¥ë¹„
+            //ì†Œë¹„
+            //ê¸°íƒ€
         }
         enum ScrollViews
         {
             inventory_scroll_panel
         }
 
-        private InvenPanelElements curPanelType; // ÇöÀç È°¼ºÈ­ÁßÀÎ ÆĞ³Î 
+        private InvenPanelElements curPanelType; // í˜„ì¬ í™œì„±í™”ì¤‘ì¸ íŒ¨ë„ 
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public InvenPanelElements CurPanelType => curPanelType;
         public override void Cashing()
         {
@@ -79,7 +79,7 @@ namespace UI.Inventory
             return GetVisualElement((int)_type);
         }
         /// <summary>
-        /// Æ¯Á¤ ÀÎº¥Åä¸® Ã¢¿¡ ½½·Ô »ı¼º 
+        /// íŠ¹ì • ì¸ë²¤í† ë¦¬ ì°½ì— ìŠ¬ë¡¯ ìƒì„± 
         /// </summary>
         /// <param name="_itemType"></param>
         /// <param name="_v"></param>
@@ -89,11 +89,11 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ¹öÆ° ÀÌº¥Æ® Ãß°¡
+        /// ë²„íŠ¼ ì´ë²¤íŠ¸ ì¶”ê°€
         /// </summary>
         private void AddButtonEvents()
         {
-            // ÆĞ³Î È°¼ºÈ­ 
+            // íŒ¨ë„ í™œì„±í™” 
             foreach (var _p in Enum.GetValues(typeof(InvenPanelElements)))
             {
                 AddRadioBtnChangedEvent((int)_p, (x) =>
@@ -106,15 +106,16 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ÀÎº¥Åä¸® ÆĞ³Î È°¼ºÈ­orºñÈ°¼ºÈ­ ½ÃÅ°±â 
+        /// ì¸ë²¤í† ë¦¬ íŒ¨ë„ í™œì„±í™”orë¹„í™œì„±í™” ì‹œí‚¤ê¸° 
         /// </summary>
         /// <param name="_elementType"></param>
         private void ActiveInventoryPanel(InvenPanelElements _elementType, bool _isActive)
         {
-            // ¹Ù²î¾úÀ¸¸é 
-            if (curPanelType != _elementType)
+            // ë°”ë€Œì—ˆìœ¼ë©´ 
+            if (curPanelType != _elementType && _isActive == true)
             {
-                // ½ºÅ©·Ñ ÃÊ±âÈ­ 
+                // ìŠ¤í¬ë¡¤ ì´ˆê¸°í™” 
+           
                 curPanelType = _elementType;
                 GetScrollView((int)ScrollViews.inventory_scroll_panel).scrollOffset = Vector2.zero;
             }
@@ -124,7 +125,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ¹öÆ° ÀÌº¥Æ® Ãß°¡ 
+        /// ë²„íŠ¼ ì´ë²¤íŠ¸ ì¶”ê°€ 
         /// </summary>
         /// <param name="_type"></param>
         /// <param name="_callback"></param>
