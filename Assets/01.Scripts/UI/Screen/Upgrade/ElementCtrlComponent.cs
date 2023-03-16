@@ -121,7 +121,7 @@ namespace UI.Upgrade
            // _targetY = Mathf.Clamp(distY + mapPos.y, -_limitY * 0.5f, _limitY * 0.5f);
 
          //   this.target.transform.position = new Vector3(_targetX, _targetY, 0);
-            this.target.transform.position = new Vector3(distX, distY, 0);
+            this.target.transform.position = new Vector3(mapPos.x + distX, mapPos.y + distY, 0);
         }
         public void Move()
         {

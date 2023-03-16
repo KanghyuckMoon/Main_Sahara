@@ -18,7 +18,7 @@ namespace Effect
 		{
 			if (_key is null)
 			{
-				Debug.LogError("ÀÌÆåÆ® µ¥ÀÌÅÍÀÇ ÀÌ¸§ÀÌ ¾øÀ½");
+				Debug.LogError("ì´í™íŠ¸ ë°ì´í„°ì˜ ì´ë¦„ì´ ì—†ìŒ");
 				return;
 			}
 

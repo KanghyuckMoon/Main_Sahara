@@ -75,7 +75,7 @@ namespace UI
             screenDic.Add(ScreenType.Quest, questPresenter);
             screenDic.Add(ScreenType.Upgrade, upgradePresenter);
             screenDic.Add(ScreenType.Shop, shopPresenter);
-            screenDic.Add(ScreenType.Save, saveLoadPresenter);
+            /*screenDic.Add(ScreenType.Save, saveLoadPresenter);*/
         }
 
         private void Start()
@@ -128,7 +128,9 @@ namespace UI
             questPresenter = GetComponentInChildren<QuestPresenter>();
             upgradePresenter = GetComponentInChildren<UpgradePresenter>();
             shopPresenter = GetComponentInChildren<ShopPresenter>();
+            /*
             saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
+            */
 
             //// UIController 넣어주기 
             foreach (var _pr in screenDic)
@@ -171,12 +173,12 @@ namespace UI
                 bool _isActive = shopPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.InventoryUI));
             });
-            inputDic.Add(new UIInputData(Get(Keys.SaveLoadUI), true), () =>
+            /*inputDic.Add(new UIInputData(Get(Keys.SaveLoadUI), true), () =>
             {
                 //  활성화
                 bool _isActive = saveLoadPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SaveLoadUI));
-            });
+            });*/
         }
 
         /// <summary>

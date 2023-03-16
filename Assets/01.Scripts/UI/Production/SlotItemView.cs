@@ -26,10 +26,10 @@ namespace UI.Production
             text
         }
 
-        private bool isStackable; // ¼¿¼ö ÀÖ³Ä 
+        private bool isStackable; // ì…€ìˆ˜ ìžˆëƒ 
         private Manipulator curManipulator;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public VisualElement Item => GetVisualElement((int)Elements.item);
         public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
         public Texture2D ItemSprite => GetVisualElement((int)Elements.image).style.backgroundImage.value.texture;
@@ -100,7 +100,7 @@ namespace UI.Production
             parentElement.RemoveFromHierarchy();
         }
         
-        // === UI ¼³Á¤ °ü·Ã === //
+        // === UI ì„¤ì • ê´€ë ¨ === //
         public void ClearUI()
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = null;
@@ -110,7 +110,7 @@ namespace UI.Production
         public void SetSpriteAndText(Texture2D _sprite, int _count)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);
-            if(_count ==1) // ÇÏ³ª¸¸ ÀÖÀ¸¸é Ç¥½Ã X
+            if(_count <=1) // í•˜ë‚˜ë§Œ ìžˆìœ¼ë©´ í‘œì‹œ X
             {
                 ShowVisualElement(GetLabel((int)Labels.text), false);
                 return; 

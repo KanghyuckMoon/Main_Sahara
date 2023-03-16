@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Codice.Client.GameUI.Checkin;
 using UnityEngine;
 
 namespace Inventory
@@ -15,13 +17,21 @@ namespace Inventory
 			itemDataDic.Clear();
 			for (int i = 0; i < itemDataSOList.Count; ++i)
 			{
-				itemDataDic.Add(itemDataSOList[i].key, ItemData.CopyItemDataSO(itemDataSOList[i]));
+				try
+				{
+					itemDataDic.Add(itemDataSOList[i].key, ItemData.CopyItemDataSO(itemDataSOList[i]));
+				}
+				catch (Exception e)
+				{
+					Debug.Log("ItemdataKey Same" + itemDataSOList[i].key);
+					throw;
+				}
 			}
 		}
 
 		public ItemData GetItemData(string key)
 		{
-			ItemData itemData;
+				ItemData itemData;
 			if (itemDataDic.TryGetValue(key, out itemData))
 			{
 				return itemData;
