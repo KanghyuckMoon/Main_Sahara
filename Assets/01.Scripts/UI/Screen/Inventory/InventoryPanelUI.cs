@@ -9,18 +9,18 @@ using Utill.Addressable;
 namespace UI.Inventory
 {
     /// <summary>
-    /// ÀÎº¥Åä¸®ÀÇ ÇÑ ÆĞ³Î ºä °ü¸® Å¬·¡½º
+    /// ì¸ë²¤í† ë¦¬ì˜ í•œ íŒ¨ë„ ë·° ê´€ë¦¬ í´ë˜ìŠ¤
     /// </summary>
     public class InventoryPanelUI
     {
-        public int index = 0; // ³²Àº Ä­ÀÇ À§Ä¡ ÀÎµ¦½º 
+        public int index = 0; // ë‚¨ì€ ì¹¸ì˜ ìœ„ì¹˜ ì¸ë±ìŠ¤ 
         public int addRow;
         public List<SlotItemPresenter> slotItemViewList = new List<SlotItemPresenter>();
         public List<SlotItemPresenter> equipItemViewList = new List<SlotItemPresenter>();
 
         private VisualElement parent;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public VisualElement Parent => parent;
         public List<SlotItemPresenter> SlotItemViewList => slotItemViewList;
         public InventoryPanelUI()
@@ -45,7 +45,7 @@ namespace UI.Inventory
             this.slotItemViewList.Add(_slotItemView);
         }
 
-        // ¸Å´ÏÀú¿¡¼­ µ¥ÀÌÅÍ ¹Ş¾Æ¿Í¼­ 
+        // ë§¤ë‹ˆì €ì—ì„œ ë°ì´í„° ë°›ì•„ì™€ì„œ 
         public void AddEquipSlotView(SlotItemPresenter _slotItemView)
         {
             this.equipItemViewList.Add(_slotItemView);
@@ -53,11 +53,11 @@ namespace UI.Inventory
 
         public void RemoveSlotView()
         {
-            // _col ¸¸Å­ »èÁ¦ 
+            // _col ë§Œí¼ ì‚­ì œ 
             int a = ((slotItemViewList.Count - index) / 4) * 4;
             // 20 - 15  5 / 4  
             int _count = slotItemViewList.Count;
-            for (int i = 0; i < a * 4; i++) // 4¸¦ º¯¼ö·Î »©¾ßÇØ (³ªÁß¿¡ »ı¼ºÀÚ·Î ¹Ş¾Æ¿À±â) 
+            for (int i = 0; i < a * 4; i++) // 4ë¥¼ ë³€ìˆ˜ë¡œ ë¹¼ì•¼í•´ (ë‚˜ì¤‘ì— ìƒì„±ìë¡œ ë°›ì•„ì˜¤ê¸°) 
             {
                 this.slotItemViewList.ElementAt(_count - i).RemoveView();
                 this.slotItemViewList.RemoveAt(_count - i);
@@ -65,7 +65,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ½½·ÔUI ¿¡ ItemData Ãß°¡ÇØ¼­ UI º¯°æ 
+        /// ìŠ¬ë¡¯UI ì— ItemData ì¶”ê°€í•´ì„œ UI ë³€ê²½ 
         /// </summary>
         public void SetItemDataUI(ItemData _itemData)
         {
@@ -75,7 +75,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ½½·ÔUI ¿¡ ItemData Ãß°¡ÇØ¼­ UI º¯°æ 
+        /// ìŠ¬ë¡¯UI ì— ItemData ì¶”ê°€í•´ì„œ UI ë³€ê²½ 
         /// </summary>
         public void SetItemDataUI(ItemData _itemData, int _index)
         {
@@ -85,7 +85,7 @@ namespace UI.Inventory
 
 
         /// <summary>
-        /// ½½·ÔUI ¿¡ ItemData Ãß°¡ÇØ¼­ UI º¯°æ 
+        /// ìŠ¬ë¡¯UI ì— ItemData ì¶”ê°€í•´ì„œ UI ë³€ê²½ 
         /// </summary>
         public void SetEquipItemDataUI(ItemData _itemData, int _index)
         {

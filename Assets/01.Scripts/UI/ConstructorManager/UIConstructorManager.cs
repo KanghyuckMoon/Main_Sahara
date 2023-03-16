@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 namespace UI.ConstructorManager
 {
     /// <summary>
-    /// �������� UI �������ִ� �ֵ� �������ִ� �� 
+    /// 占쏙옙占쏙옙占쏙옙占쏙옙 UI 占쏙옙占쏙옙占쏙옙占쌍댐옙 占쌍듸옙 占쏙옙占쏙옙占쏙옙占쌍댐옙 占쏙옙 
     /// </summary>
     public class UIConstructorManager : MonoSingleton<UIConstructorManager>
     {
@@ -20,15 +20,16 @@ namespace UI.ConstructorManager
         private UIConstructor<SlotItemView> slotItemConstructor;
         private UIConstructor<UpgradeSlotView> upgradeSlotConstructor;
         private UIConstructor<ItemDescriptionView> itemDescriptionConstructor;
-        private UIConstructor<PopupView> popupConstructor;
-        private UIConstructor<SaveEntryView> saveEntryConstructor; 
-        private UIConstructor<BuffEntryView> buffEntryConstructor; 
+        private UIConstructor<PopupAcceptView> popupConstructor;
+        private UIConstructor<SaveEntryView> saveEntryConstructor;
+        private UIConstructor<BuffEntryView> buffEntryConstructor;
+        private UIConstructor<PopupGetItemView> popupGetItemConstructor;
 
         private EventAlarmPresenter eventAlarmPresenter; 
 
         private Dictionary<Type, ICreateUI> uiConstructorDic = new Dictionary<Type, ICreateUI>();
 
-        // ������Ƽ
+        // 占쏙옙占쏙옙占쏙옙티
         public Dictionary<Type, ICreateUI> UIConstructorDic => uiConstructorDic; 
         public EventAlarmPresenter EventAlarmPresenter
         {
@@ -60,18 +61,20 @@ namespace UI.ConstructorManager
             slotItemConstructor = new UIConstructor<SlotItemView>("SlotItem");
             upgradeSlotConstructor = new UIConstructor<UpgradeSlotView>("UpgradeSlot");
             itemDescriptionConstructor = new UIConstructor<ItemDescriptionView>("ItemDescription");
-            popupConstructor = new UIConstructor<PopupView>("Popup");
+            popupConstructor = new UIConstructor<PopupAcceptView>("Popup");
             saveEntryConstructor = new UIConstructor<SaveEntryView>("SaveEntry");
-            buffEntryConstructor= new UIConstructor<BuffEntryView>("BuffEntry"); 
+            buffEntryConstructor= new UIConstructor<BuffEntryView>("BuffEntry");
+            popupGetItemConstructor = new UIConstructor<PopupGetItemView>("PopupGetItem");
 
             uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor);
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
             uiConstructorDic.Add(typeof(SlotItemView), slotItemConstructor);
             uiConstructorDic.Add(typeof(UpgradeSlotView), upgradeSlotConstructor);
             uiConstructorDic.Add(typeof(ItemDescriptionView), itemDescriptionConstructor);
-            uiConstructorDic.Add(typeof(PopupView), popupConstructor);
+            uiConstructorDic.Add(typeof(PopupAcceptView), popupConstructor);
             uiConstructorDic.Add(typeof(SaveEntryView), saveEntryConstructor);
             uiConstructorDic.Add(typeof(BuffEntryView), buffEntryConstructor);
+            uiConstructorDic.Add(typeof(PopupGetItemView), popupGetItemConstructor);
         }
 
         private void Awake()
@@ -80,7 +83,7 @@ namespace UI.ConstructorManager
         }
 
         /// <summary>
-        /// UI ���� ��ȯ 
+        /// UI 占쏙옙占쏙옙 占쏙옙환 
         /// </summary>
         /// <param name="_type"></param>
         /// <returns></returns>
@@ -90,7 +93,7 @@ namespace UI.ConstructorManager
             {
                return _creater.CreateUI(); 
             }
-            Debug.LogWarning($"UIConstructor Dictionary�� {_type.Name} �� �����ϴ�");
+            Debug.LogWarning($"UIConstructor Dictionary占쏙옙 {_type.Name} 占쏙옙 占쏙옙占쏙옙占싹댐옙");
             return (null,null); 
         }
 

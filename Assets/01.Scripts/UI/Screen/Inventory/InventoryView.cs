@@ -19,11 +19,11 @@ namespace UI.Inventory
 
         public enum Elements
         {
-            // ÆĞ³Î ´ÙÀ½ ÀÎµ¦½ººÎÅÍ ½ÃÀÛ 
-            quick_slot_panel = 0, // Äü½½·Ô
-            armor_equip_panel, // Àåºñ ÀåÂø
-            accessoire_equip_panel, // Àå½Å±¸ ÀåÂø
-            skill_equip_panel, // ½ºÅ³ ÀåÂø 
+            // íŒ¨ë„ ë‹¤ìŒ ì¸ë±ìŠ¤ë¶€í„° ì‹œì‘ 
+            quick_slot_panel = 0, // í€µìŠ¬ë¡¯
+            armor_equip_panel, // ì¥ë¹„ ì¥ì°©
+            accessoire_equip_panel, // ì¥ì‹ êµ¬ ì¥ì°©
+            skill_equip_panel, // ìŠ¤í‚¬ ì¥ì°© 
 
             drag_item,
             contents
@@ -42,11 +42,11 @@ namespace UI.Inventory
 
         private InvenItemUISO invenItemUISO;
 
-        private SlotItemPresenter dragItemPresenter; // µå·¡±×½Ã È°¼ºÈ­µÉ ºä( ¾ÆÀÌÅÛ ÀÌ¹ÌÁö ±×´ë·Î º¹»çÇØ¼­ Ä¿¼­ µû¶ó°¡´Â )  
+        private SlotItemPresenter dragItemPresenter; // ë“œë˜ê·¸ì‹œ í™œì„±í™”ë  ë·°( ì•„ì´í…œ ì´ë¯¸ì§€ ê·¸ëŒ€ë¡œ ë³µì‚¬í•´ì„œ ì»¤ì„œ ë”°ë¼ê°€ëŠ” )  
 
         private InventoryGridSlotsPr inventoryGridSlotsPr;
         private Dictionary<ItemType, Action<ItemData, int>> slotCallbackDic = new Dictionary<ItemType, Action<ItemData, int>>();
-        // ÇÁ·ÎÆÛÆ¼
+        // í”„ë¡œí¼í‹°
         private VisualElement DragItem => GetVisualElement((int)Elements.drag_item);
         public override void Cashing()
         {
@@ -60,25 +60,25 @@ namespace UI.Inventory
         {
             base.Init();
 
-            // µå·¡±× ¾ÆÀÌÅÛ ÃÊ±âÈ­ 
+            // ë“œë˜ê·¸ ì•„ì´í…œ ì´ˆê¸°í™” 
             dragItemPresenter = new SlotItemPresenter(DragItem);
             dragItemPresenter.AddDropper(() => DropItem());
 
-            // ÀÎº¥Åä¸® ½½·Ôµé ºä »ı¼º 
+            // ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ë“¤ ë·° ìƒì„± 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(GetVisualElement((int)Elements.contents));
             inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item, ClickItem);
-            // ½½·Ô »ı¼º 
+            // ìŠ¬ë¡¯ ìƒì„± 
             inventoryGridSlotsPr.Init();
 
             ActiveDragItem(false);
-            // SO ºÒ·¯¿À±â 
+            // SO ë¶ˆëŸ¬ì˜¤ê¸° 
             invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
             //InitPanelList();
 
-            // ÀåÂø ½½·Ô ÃÊ±âÈ­ 
+            // ì¥ì°© ìŠ¬ë¡¯ ì´ˆê¸°í™” 
             InitEquipSlots();
 
-            // ¾ÆÀÌÅÛ µå¶ø½Ã ½ÇÇàÇÒ ÇÔ¼ö ÃÊ±âÈ­ 
+            // ì•„ì´í…œ ë“œëì‹œ ì‹¤í–‰í•  í•¨ìˆ˜ ì´ˆê¸°í™” 
             InitCallbackDic();
 
         }
@@ -110,7 +110,7 @@ namespace UI.Inventory
 
         }
         /// <summary>
-        /// Äü ½½·ÔUI¿¡ µ¥ÀÌÅÍ ³Ö±â 
+        /// í€µ ìŠ¬ë¡¯UIì— ë°ì´í„° ë„£ê¸° 
         /// </summary>
         public void UpdateQuickSlotUI(ItemData _itemData, int _index)
         {
@@ -125,28 +125,28 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ÀÎº¥Åä¸® ½½·ÔUI¿¡ µ¥ÀÌÅÍ ³Ö±â 
+        /// ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯UIì— ë°ì´í„° ë„£ê¸° 
         /// </summary>
         /// <param name="_itemData"></param>
         public void UpdateInventoryUI(ItemData _itemData)
         {
-            // ¼¿ ¼ö ÀÖ´Â°ÇÁö Ã¼Å© 
-            // Å¸ÀÔ Ã¼Å© 
-            // ½½·Ô ÇÏ³ª¾¿ °¡Á®¿Í¼­ µ¥ÀÌÅÍ ³Ö±â 
-            // ½½·Ô °³¼ö ÃÊ°úÇÏ¸é ÇÑ ÁÙ ´õ »ı¼º 
-            // row ÃÊ°úÀÎµ¥ µ¥ÀÌÅÍ ¾øÀ¸¸é »èÁ¦ 
+            // ì…€ ìˆ˜ ìˆëŠ”ê±´ì§€ ì²´í¬ 
+            // íƒ€ì… ì²´í¬ 
+            // ìŠ¬ë¡¯ í•˜ë‚˜ì”© ê°€ì ¸ì™€ì„œ ë°ì´í„° ë„£ê¸° 
+            // ìŠ¬ë¡¯ ê°œìˆ˜ ì´ˆê³¼í•˜ë©´ í•œ ì¤„ ë” ìƒì„± 
+            // row ì´ˆê³¼ì¸ë° ë°ì´í„° ì—†ìœ¼ë©´ ì‚­ì œ 
 
-            // ½½·Ô¿¡ ¼ø¼­´ë·Î 
+            // ìŠ¬ë¡¯ì— ìˆœì„œëŒ€ë¡œ 
             InventoryPanelUI _ui = inventoryGridSlotsPr.ItemSlotDic[_itemData.itemType];
             if (_ui.slotItemViewList.Count <= _ui.index)
             {
                 inventoryGridSlotsPr.CreateRow(invenItemUISO.GetItemUIType(_itemData.itemType));
             }
-            else if (_ui.slotItemViewList.Count > inventoryGridSlotsPr.Row * inventoryGridSlotsPr.Col) // ±âº» ÀÎº¥Åä¸®º¸´Ù ´õ ¸¹Àºµ¥ ¾ÆÀÌÅÛÀÌ ÀÖ´Â °Íµµ ¾Æ´Ï¸é 
+            else if (_ui.slotItemViewList.Count > inventoryGridSlotsPr.Row * inventoryGridSlotsPr.Col) // ê¸°ë³¸ ì¸ë²¤í† ë¦¬ë³´ë‹¤ ë” ë§ì€ë° ì•„ì´í…œì´ ìˆëŠ” ê²ƒë„ ì•„ë‹ˆë©´ 
             {
                 //_ui.RemoveSlotView(); 
             }
-            //  ÇöÀç ³²Àº Ä­¿¡ µ¥ÀÌÅÍ ³Ö±â 
+            //  í˜„ì¬ ë‚¨ì€ ì¹¸ì— ë°ì´í„° ë„£ê¸° 
             _ui.SetItemDataUI(_itemData);
 
         }
@@ -161,18 +161,18 @@ namespace UI.Inventory
     
 
         /// <summary>
-        /// ÀåÂø ½½·Ô Ä³½Ì ÃÊ±âÈ­ 
+        /// ì¥ì°© ìŠ¬ë¡¯ ìºì‹± ì´ˆê¸°í™” 
         /// </summary>
         private void InitEquipSlots()
         {
    //         equipInvenPanel = new EquipInventoryPanelUI();
-            List<VisualElement> _list = GetVisualElement((int)Elements.quick_slot_panel).Query<VisualElement>(className: "quick_slot").ToList();
+            List<VisualElement> _list = GetVisualElement((int)Elements.quick_slot_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
             for (int i = 0; i < _list.Count(); i++)
             {
                 //           equipInvenPanel.AddEquipSlotView(new SlotItemView(_list[i]));
-                // ¹öÆ° 2°³¿¡¼­ 
-                // ÇÏ³ª´Â ÀÚ±â°¡ ²¨Áö¸é ÆÒ·¯²ô°í 
-                // ÇÏ´Â¤¤ ÀÚ±â°¡ Å°¸é ÆĞ³Î Å°°í 
+                // ë²„íŠ¼ 2ê°œì—ì„œ 
+                // í•˜ë‚˜ëŠ” ìê¸°ê°€ êº¼ì§€ë©´ íŒ¬ëŸ¬ë„ê³  
+                // í•˜ëŠ”ã„´ ìê¸°ê°€ í‚¤ë©´ íŒ¨ë„ í‚¤ê³  
                 SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
                 if(_list[i].parent.name == "ArrowSlot")
                 {
@@ -182,30 +182,30 @@ namespace UI.Inventory
                 {
                     _slotIPr.SetSlotType(ItemType.Weapon);
                 }
-                //  ¿©±â¼­
+                //  ì—¬ê¸°ì„œ
 
-                _slotIPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotIPr.ItemData, // ¸¶¿ì½º À§¿¡ µÑ½Ã ¼³¸íÃ¢ 
+                _slotIPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotIPr.ItemData, // ë§ˆìš°ìŠ¤ ìœ„ì— ë‘˜ì‹œ ì„¤ëª…ì°½ 
                    _slotIPr.WorldPos, _slotIPr.ItemSize));
-                _slotIPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // ¸¶¿ì½º À§¿¡¼­ ¶°³¯½Ã ¼³¸íÃ¢ ºñÈ°¼ºÈ­
+                _slotIPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // ë§ˆìš°ìŠ¤ ìœ„ì—ì„œ ë– ë‚ ì‹œ ì„¤ëª…ì°½ ë¹„í™œì„±í™”
 
                 inventoryGridSlotsPr.ItemSlotDic[ItemType.Weapon].AddEquipSlotView(_slotIPr);
             }
         }
 
         /// <summary>
-        /// ÀÎº¥Åä¸® ÆĞ³Î ¸®½ºÆ®¿¡ ³Ö±â (ÃÊ±âÈ­)
+        /// ì¸ë²¤í† ë¦¬ íŒ¨ë„ ë¦¬ìŠ¤íŠ¸ì— ë„£ê¸° (ì´ˆê¸°í™”)
         /// </summary>
         //private void InitPanelList()
         //{
         //    inventoryPanelList.Clear();
 
-        //    // ÀÎº¥Åä¸® ÆĞ³Î ¸®½ºÆ®¿¡ Ãß°¡ 
+        //    // ì¸ë²¤í† ë¦¬ íŒ¨ë„ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€ 
         //    foreach (var _p in Enum.GetValues(typeof(InvenPanelElements)))
         //    {
         //        inventoryPanelList.Add(GetVisualElement((int)_p));
         //    }
 
-        //    // weapon ÆĞ³Î¸¸ È°¼ºÈ­ ÈÄ ³ª¸ÓÁø ºñÈ°¼ºÈ­ 
+        //    // weapon íŒ¨ë„ë§Œ í™œì„±í™” í›„ ë‚˜ë¨¸ì§„ ë¹„í™œì„±í™” 
         //    for (int i = 0; i < inventoryPanelList.Count; i++)
         //    {
         //        if (i == (int)InvenPanelElements.weapon_panel)
@@ -219,11 +219,11 @@ namespace UI.Inventory
 
 
         /// <summary>
-        /// ¾ÆÀÌÅÛ µå·¡±× µå¶ø½Ã ¹Ø¿¡ ½º¸£·Ô Ã¼Å©ÇÔ¼ö 
+        /// ì•„ì´í…œ ë“œë˜ê·¸ ë“œëì‹œ ë°‘ì— ìŠ¤ë¥´ë¡¯ ì²´í¬í•¨ìˆ˜ 
         /// </summary>
         private void DropItem()
         {
-            // ¶³¾î¶ß¸° °÷ÀÌ ½½·ÔÀÌ ÀÖ´ÂÁö Ã¼Å© 
+            // ë–¨ì–´ëœ¨ë¦° ê³³ì´ ìŠ¬ë¡¯ì´ ìˆëŠ”ì§€ ì²´í¬ 
             VisualElement _v = GetVisualElement((int)Elements.drag_item);
 
             //            IEnumerable<SlotItemPresenter> slots = itemSlotDic[invenItemUISO.GetItemType(curPanelType)].equipItemViewList.
@@ -232,14 +232,15 @@ namespace UI.Inventory
             IEnumerable<SlotItemPresenter> _slots = inventoryGridSlotsPr.CurInvenPanel.equipItemViewList.
                                                                     Where((x) => x.Item.worldBound.Overlaps(dragItemPresenter.Item.worldBound));
 
-            // ½½·Ô¿¡ µå¶ø Çß´Ù¸é
+            // ìŠ¬ë¡¯ì— ë“œë í–ˆë‹¤ë©´
             if (_slots.Count() != 0)
             {
-                // °¡Àå °¡±õ°Ô µå¶øÇÑ ½½·Ô 
-                SlotItemPresenter _closedSlot = _slots.OrderBy(x => Vector2.Distance(x.Item.worldBound.position, dragItemPresenter.Item.worldBound.position)).First();
+                // ê°€ì¥ ê°€ê¹ê²Œ ë“œëí•œ ìŠ¬ë¡¯ 
+                SlotItemPresenter _closedSlot = _slots.OrderBy(x =>
+                    Vector2.Distance(x.Item.worldBound.position, dragItemPresenter.Item.worldBound.position)).First();
                 slotCallbackDic[_closedSlot.SlotType]?.Invoke(_closedSlot.ItemData, _closedSlot.Index);
                    
-                // SO µ¥ÀÌÅÍµµ ¼³Á¤
+                // SO ë°ì´í„°ë„ ì„¤ì •
                   //  InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
                 _closedSlot.SetItemData(dragItemPresenter.ItemData); 
 
@@ -253,7 +254,7 @@ namespace UI.Inventory
 
         private void ClickItem(SlotItemPresenter _slotView)
         {
-            //dragItemView ¿¡ Å¬¸¯ÇÑ ½½·ÔÀÇ ¾ÆÀÌÅÛ ³Ñ°ÜÁÖ±â 
+            //dragItemView ì— í´ë¦­í•œ ìŠ¬ë¡¯ì˜ ì•„ì´í…œ ë„˜ê²¨ì£¼ê¸° 
             dragItemPresenter.SetItemData(_slotView.ItemData);
 
             ActiveDragItem(true);

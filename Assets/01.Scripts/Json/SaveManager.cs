@@ -516,7 +516,7 @@ namespace Json
             StaticSave.Load<QuestSaveDataSave>(ref questSaveDataSO.questSaveDataSave, _date);
             StaticSave.Load<PathSave>(ref PathModeManager.Instance.pathSave, _date);
 
-            //별도의 적용 필요함
+            //별도???�용 ?�요??
             Player.GetComponentInChildren<CharacterController>().enabled = false;
             //(Player.GetComponent<AbMainModule>() as Player).OnEnable();
             stateModule = (Player.GetComponent<AbMainModule>() as Player).GetModuleComponent<StatModule>(ModuleType.Stat);
