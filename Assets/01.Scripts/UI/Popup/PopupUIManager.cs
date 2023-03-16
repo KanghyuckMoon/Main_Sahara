@@ -9,8 +9,8 @@ namespace UI.Popup
 {
     public enum PopupType
     {
-        GetItem, //  ¾ÆÀÌÅÛ È¹µæ½Ã 
-        FindItem, // ¾ÆÀÌÅÛ ÁÖº¯ ´Ù°¡°¬À» ¶§
+        GetItem, //  ì•„ì´í…œ íšë“ì‹œ 
+        FindItem, // ì•„ì´í…œ ì£¼ë³€ ë‹¤ê°€ê°”ì„ ë•Œ
     }
 
     public class PopupUIManager : MonoSingleton<PopupUIManager>

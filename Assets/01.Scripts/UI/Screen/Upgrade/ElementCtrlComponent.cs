@@ -14,11 +14,19 @@ namespace UI.Upgrade
         private bool isCtrl;
         private float xMoveValue, yMoveValue, moveSpeed = 600f, zoomValue, zoomSpeed = 1f;
         private float minZoomValue = 1f, maxZoomValue = 2f;
+
+        private bool isInput = true; 
         // 프로퍼티 
         public bool IsCtrl
         {
             get => isCtrl;
             set => isCtrl = value; 
+        }
+
+        public bool IsInput
+        {
+            get => isInput;
+            set => isInput = value; 
         }
         public ElementCtrlComponent(VisualElement _v)
         {
@@ -27,8 +35,9 @@ namespace UI.Upgrade
 
         public void Update()
         {
+            //if (IsInput == false) return; 
             InputKey();
-       //     Move();
+            Move();
             Zoom(); 
         }
 
@@ -111,7 +120,7 @@ namespace UI.Upgrade
 
             float distX, distY; // 움직일 거리 
             distX = _value.x/* / target.transform.scale.x*/;
-            distY = _value.y/* / target.transform.scale.y*/;
+            distY = _value.y/* /  target.transform.scale.y*/;
 
             float _targetX, _targetY; // 현재 포지션 + 움직이 거리]
             float _limitX = Mathf.Clamp(target.contentRect.width * target.transform.scale.x   - Screen.width,0,float.MaxValue); // 화면 크기 보다 대장장이 창이 크면 조작 가능  
@@ -122,6 +131,7 @@ namespace UI.Upgrade
 
          //   this.target.transform.position = new Vector3(_targetX, _targetY, 0);
             this.target.transform.position = new Vector3(mapPos.x + distX, mapPos.y + distY, 0);
+            
         }
         public void Move()
         {

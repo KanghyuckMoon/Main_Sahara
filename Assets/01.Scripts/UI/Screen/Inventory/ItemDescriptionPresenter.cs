@@ -41,9 +41,10 @@ namespace UI.Inventory
         {
             this.itemDescriptionView.ActiveScreen(_isActive);
         }
-        /// <summary>
+        // ReSharper disable Unity.PerformanceAnalysis
+        /// <summary> 
         /// 설명창 설정 
-        /// </summary>
+        /// </summary> 
         public void SetItemData(ItemData _itemData,Vector2 _slotPos, Vector2 _slotSize)
         {
             if (_itemData == null) return; // 빈 슬롯이면 리턴 

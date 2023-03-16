@@ -19,7 +19,7 @@ namespace UI.Upgrade
  
         public VisualElement Parent => parentElement; 
         public VisualElement UpgradePickParent => GetVisualElement((int)Elements.upgrade_pick);
-        public VisualElement SelectParent => GetVisualElement((int)Elements.select_active_panel); // Å¬¸¯½Ã »ç¹æÀ¸·Î Àç·á ¶ß´Â °Å 
+        public VisualElement SelectParent => GetVisualElement((int)Elements.select_active_panel); // í´ë¦­ì‹œ ì‚¬ë°©ìœ¼ë¡œ ì¬ë£Œ ëœ¨ëŠ” ê±° 
         public VisualElement MoveScreen => GetVisualElement((int)Elements.move_screen);
 
         public override void Cashing()
@@ -34,7 +34,7 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// ½½·Ô ºÎ¸ğ ·Î ¼³Á¤ 
+        /// ìŠ¬ë¡¯ ë¶€ëª¨ ë¡œ ì„¤ì • 
         /// </summary>
         /// <param name="_v"></param>
         public void SetParentSlot(VisualElement _v)
@@ -43,7 +43,7 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// È­¸é Å¬¸®¾î 
+        /// í™”ë©´ í´ë¦¬ì–´ 
         /// </summary>
         public void ClearAllSlots()
         {
