@@ -210,7 +210,8 @@ namespace Streaming
 				}
 				else
 				{
-					viewerPosition = new Vector3(viewer.position.x, viewer.position.y, viewer.position.z);
+					var _position = viewer.position;
+					viewerPosition = new Vector3(_position.x, _position.y, _position.z);
 				}
 				CheckOutChunk();
 			}
@@ -248,8 +249,8 @@ namespace Streaming
 				originChunkCoordY = _currentChunkCoordY;
 				originChunkCoordZ = _currentChunkCoordZ;
 
-				//StartCoroutine(UpdateChunk());
-				streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
+				StartCoroutine(UpdateChunk());
+				//streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 

@@ -405,19 +405,6 @@ namespace Json
 
             yield return new WaitForEndOfFrame();
             File.WriteAllBytes(_imagePath, SaveManager.CaptureFrame(MainCam)); 
-            //ScreenCapture.CaptureScreenshot(_imagePath);
-            //StartCoroutine(AsyncCapture()); 
-            //while (!_sceneJobHandle.IsCompleted)
-            //{
-            //    yield return null;
-            //}
-            //
-            //_sceneJobHandle.Complete();
-            
-            //yield return new WaitUntil(() => _sceneJobHandle.IsCompleted);
-            
-            //DisPose
-            //_sceneSaveJob.testArray.Dispose();
 
             sw.Stop();
             Debug.Log("Save: " + sw.ElapsedMilliseconds.ToString() + "ms");

@@ -102,6 +102,11 @@ namespace Streaming
 				{
 					unloadCount++;
 					objectList.Add(obj.Key, null);
+					GameObject _obj = ObjectPoolManager.Instance.GetObject(obj.Value.lodAddress);//(obj.Value.lodAddress, UnloadObjectAsync, obj);
+					//objectList[obj.Key] = _obj;
+					//objectList.Add(_keyValuePair.Key, _lodObj);
+					//ObjectSettingData(_obj, obj.Value);
+					//_obj.SetActive(true);
 					ObjectPoolManager.Instance.GetObjectAsyncParameter<KeyValuePair<long, ObjectData>>(obj.Value.lodAddress, UnloadObjectAsync, obj);
 				}
 			}
@@ -125,19 +130,19 @@ namespace Streaming
 
 		private void ResetLODObject()
 		{
-			if (objectList.Count != renderObjectDic.Count)
-			{
-				foreach (var obj in renderObjectDic)
-				{
-					if (!objectList.ContainsKey(obj.Key))
-					{
-						GameObject lodObj = ObjectPoolManager.Instance.GetObject(obj.Value.lodAddress);
-						objectList.Add(obj.Key, lodObj);
-						ObjectSettingData(lodObj, obj.Value);
-						lodObj.SetActive(true);
-					}
-				}
-			}
+			//if (objectList.Count != renderObjectDic.Count)
+			//{
+			//	foreach (var obj in renderObjectDic)
+			//	{
+			//		if (!objectList.ContainsKey(obj.Key))
+			//		{
+			//			GameObject lodObj = ObjectPoolManager.Instance.GetObject(obj.Value.lodAddress);
+			//			objectList.Add(obj.Key, lodObj);
+			//			ObjectSettingData(lodObj, obj.Value);
+			//			lodObj.SetActive(true);
+			//		}
+			//	}
+			//}
 			ResetLOD();
 		}
 		

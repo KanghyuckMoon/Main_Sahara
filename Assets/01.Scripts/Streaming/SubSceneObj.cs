@@ -217,8 +217,7 @@ namespace Streaming
 				SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
 
 				LODMaker.UnLoad();
-
-
+				
 				AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
 			}
 		}
@@ -227,9 +226,15 @@ namespace Streaming
 		{
 			if (obj.Status == AsyncOperationStatus.Succeeded)
 			{
-				SceneDataManager.Instance.GetSceneData(SceneName).Load();
-				LODMaker.Load();
+				StartCoroutine(IELoadScene());
 			}
+		}
+
+		private IEnumerator IELoadScene()
+		{
+			SceneDataManager.Instance.GetSceneData(SceneName).Load();
+			LODMaker.Load();
+			yield return null;
 		}
 
 		private void UnLoadSceneObject(AsyncOperationHandle<SceneInstance> obj)
