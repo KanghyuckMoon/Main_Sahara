@@ -14,7 +14,7 @@ namespace Module
 {
     public class PhysicsModule : AbBaseModule
     {
-        private float rayDistance = 1f;
+        private float rayDistance = 0.25f;
         private ulong praviousHitBoxIndex = 0;
         private HitModule HitModule
         {

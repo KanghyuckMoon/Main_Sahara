@@ -184,7 +184,7 @@ namespace Module
         }
         private void SetBehaveAnimation()
         {
-            Debug.Log(MainModule.AnimatorOverrideController);
+            //Debug.Log(MainModule.AnimatorOverrideController);
             AnimationClip _a = BaseWeapon.WeaponDataSO.attackAnimation;
             MainModule.AnimatorOverrideController["Attack"] = _a;
             MainModule.AnimatorOverrideController["StrongAttack"] = BaseWeapon.WeaponDataSO.strongAttackAnimation;

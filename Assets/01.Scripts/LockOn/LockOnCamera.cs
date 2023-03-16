@@ -30,7 +30,7 @@ namespace LockOn
         private AbMainModule playerModule;
 
         private List<Transform> lockOnTargetList = new List<Transform>();
-        public Transform target;    // ¾ê publicÀ¸·Î ¹Ù²Ş!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public Transform target;    // ì–˜ publicìœ¼ë¡œ ë°”ê¿ˆ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private bool isTarget;
 
         //private Camera 
@@ -65,7 +65,7 @@ namespace LockOn
 		{
             if (isTarget)
 			{
-                //·Ï¿Â ÇØÁ¦
+                //ë¡ì˜¨ í•´ì œ
                 cinemachineTargetGroup.RemoveMember(target);
                 isTarget = false;
                 target = null;
@@ -78,14 +78,14 @@ namespace LockOn
                 playerModule.LockOn = false;
                 playerModule.LockOnTarget = null;
 
-                Debug.Log("t:·Ï¿Â ÇØÁ¦");
+                Debug.Log("t:ë¡ì˜¨ í•´ì œ");
                 return;
             }
 
             if(lockOnTargetList.Count == 0)
 			{
-                //Ä³¸¯ÅÍÀÇ Àü¹æÀ» º»´Ù
-                Debug.Log("t:Àü¹æ1");
+                //ìºë¦­í„°ì˜ ì „ë°©ì„ ë³¸ë‹¤
+                Debug.Log("t:ì „ë°©1");
                 thirdPersonCameraController.ChangeCamera(10, -player.eulerAngles.y);
                 return;
             }
@@ -104,19 +104,19 @@ namespace LockOn
                     }
                 }
 
-                //¸ñÇ¥ÇÏ´Â ´ë»óÀÌ ¾ø°Å³ª ÃÖ´Ü°Å¸® ´ë»óÀÌ ³Ê¹« ¸Ö´Ù¸é 
+                //ëª©í‘œí•˜ëŠ” ëŒ€ìƒì´ ì—†ê±°ë‚˜ ìµœë‹¨ê±°ë¦¬ ëŒ€ìƒì´ ë„ˆë¬´ ë©€ë‹¤ë©´ 
                 if(_target is null || _minDistance > 1000f)
 				{
-                    //Ä³¸¯ÅÍÀÇ Àü¹æÀ» º»´Ù
+                    //ìºë¦­í„°ì˜ ì „ë°©ì„ ë³¸ë‹¤
                     thirdPersonCameraController.ChangeCamera(10, -player.eulerAngles.y);
-                    Debug.Log("t:Àü¹æ2");
+                    Debug.Log("t:ì „ë°©2");
                     return;
                 }
                 else
 				{
                     target = _target;
                     isTarget = true;
-                    Debug.Log("t:Å¸°ÙÆÃ");
+                    Debug.Log("t:íƒ€ê²ŸíŒ…");
                     cinemachineTargetGroup.AddMember(target, 1f, 1);
                     groupCam.LookAt = target;
 
