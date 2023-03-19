@@ -40,8 +40,10 @@ namespace PassiveItem
                     stateModule.AddState(State.SKILL);
                     mainModule.Animator.SetBool("Dash", true);
                     
+                    
+                    
                     Vector3 _inputDir = new Vector3(mainModule.ObjDir.x, 0, mainModule.ObjDir.y);
-                    Vector3 _dir = mainModule.transform.forward * (mainModule.PersonalDeltaTime * 28f);  
+                    Vector3 _dir = mainModule.ObjRotation.eulerAngles * mainModule.ObjDir * (mainModule.PersonalDeltaTime * 28f);  
                     characterController.Move(_dir);
                 }
             }

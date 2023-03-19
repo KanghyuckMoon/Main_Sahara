@@ -56,7 +56,7 @@ namespace CondinedModule
             LockOnTarget = null;
 
             Animator = GetComponent<Animator>();
-            visualObject ??= transform.Find("Visual")?.gameObject;
+            //visualObject ??= transform.Find("Visual")?.gameObject;
             animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
             RaycastTarget = transform.Find("RayCastPoint");
 
