@@ -21,7 +21,7 @@ namespace UI.Inventory
 
         private int index;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public ItemType SlotType => slotType; 
         public int Index => index;
         public SlotItemView SlotItemView => slotItemView;
@@ -42,7 +42,7 @@ namespace UI.Inventory
         public Vector2 ItemSize => new Vector2(slotItemView.SlotWorldBound.width, slotItemView.SlotWorldBound.height);
 
         /// <summary>
-        /// »ı¼º 
+        /// ìƒì„± 
         /// </summary>
         public SlotItemPresenter()
         {
@@ -52,7 +52,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ÀÖ´Â°Å Ä³½Ì
+        /// ìˆëŠ”ê±° ìºì‹±
         /// </summary>
         /// <param name="_v"></param>
         public SlotItemPresenter(VisualElement _v, int _idx)
@@ -62,7 +62,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ÀÖ´Â°Å Ä³½Ì
+        /// ìˆëŠ”ê±° ìºì‹±
         /// </summary>
         /// <param name="_v"></param>
         public SlotItemPresenter(VisualElement _v)
@@ -71,7 +71,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ¼±ÅÃ½Ã Å©±â up 
+        /// ì„ íƒì‹œ í¬ê¸° up 
         /// </summary>
         /// <param name="_isSelect"></param>
         public void SelectSlot(bool _isSelect)
@@ -106,7 +106,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// Å¬¸¯ ÀÌº¥Æ® Ãß°¡ 
+        /// í´ë¦­ ì´ë²¤íŠ¸ ì¶”ê°€ 
         /// </summary>
         public void AddClickEvent(Action _callback)
         {
@@ -120,7 +120,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// µå·¡°Å±â´É Ãß°¡
+        /// ë“œë˜ê±°ê¸°ëŠ¥ ì¶”ê°€
         /// </summary>
         /// <param name="_target"></param>
         /// <param name="startCallback"></param>
@@ -130,7 +130,7 @@ namespace UI.Inventory
         }
         
         /// <summary>
-        /// µå·ÓÆÛ ±â´ÉÃß°¡
+        /// ë“œë¡­í¼ ê¸°ëŠ¥ì¶”ê°€
         /// </summary>
         /// <param name="_dropCallback"></param>
         public void AddDropper(Action _dropCallback)
@@ -143,7 +143,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ¸¶¿ì½º À§¿¡ µÑ½Ã ÀÌº¥Æ® 
+        /// ë§ˆìš°ìŠ¤ ìœ„ì— ë‘˜ì‹œ ì´ë²¤íŠ¸ 
         /// </summary>
         public void AddHoverEvent(Action _callback)
         {
@@ -151,7 +151,7 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// ¸¶¿ì½º À§¿¡¼­ ¶°³¯½Ã ÀÌº¥Æ® 
+        /// ë§ˆìš°ìŠ¤ ìœ„ì—ì„œ ë– ë‚ ì‹œ ì´ë²¤íŠ¸ 
         /// </summary>
         /// <param name="_callback"></param>
         public void AddOutEvent(Action _callback)

@@ -62,6 +62,14 @@ namespace Utill.Addressable
 			
 			return _handle;
 		}
+		
+		
+		public AsyncOperationHandle<T> GetResourceThread<T>(string _name)
+		{
+			var _handle = Addressables.LoadAssetAsync<T>(_name);
+			
+			return _handle;
+		}
 
 		/// <summary>
 		/// 비동기로 리소스를 가져오는 함수, 별도의 함수를 만들고 넣어줘야함

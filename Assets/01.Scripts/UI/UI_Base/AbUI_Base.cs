@@ -21,22 +21,22 @@ namespace UI
         protected VisualElement rootElement;
 
         [SerializeField]
-        protected string parentElementName; // ÀÚ±â ÀÚ½Å ÀÌ¸§ 
-        protected VisualElement parentElement; // ÀÚ±â ÀÚ½Å 
+        protected string parentElementName; // ìê¸° ìì‹  ì´ë¦„ 
+        protected VisualElement parentElement; // ìê¸° ìì‹  
 
-        protected Dictionary<Type, List<VisualElement>> elementsDic = new Dictionary<Type, List<VisualElement>>(); // ¸ğµç ÀÚ½Ä ¿ä¼Òµé 
+        protected Dictionary<Type, List<VisualElement>> elementsDic = new Dictionary<Type, List<VisualElement>>(); // ëª¨ë“  ìì‹ ìš”ì†Œë“¤ 
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public VisualElement ParentElement => parentElement;
 
         /// <summary>
-        /// parentElement Ä³½Ì 
+        /// parentElement ìºì‹± 
         /// </summary>
         public virtual void Cashing()
         {
             if (uiDocument == null /*|| String.IsNullOrEmpty(_parentElementName)*/)
             {
-                Debug.LogError("NULL¿¡·¯ : ÀÎ½ºÆåÅÍ È®ÀÎ");
+                Debug.LogError("NULLì—ëŸ¬ : ì¸ìŠ¤í™í„° í™•ì¸");
             }
             rootElement = uiDocument.rootVisualElement;
             parentElement = rootElement.Q<VisualElement>(parentElementName);
@@ -50,7 +50,7 @@ namespace UI
             this.parentElement = v;
         }
         /// <summary>
-        /// ÃÊ±âÈ­ 
+        /// ì´ˆê¸°í™” 
         /// </summary>
         public virtual void Init()
         {
@@ -63,7 +63,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Å¬·¡½º ÀÌ¸§À¸·Î element °¡Á®¿À±â 
+        /// í´ë˜ìŠ¤ ì´ë¦„ìœ¼ë¡œ element ê°€ì ¸ì˜¤ê¸° 
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -73,15 +73,15 @@ namespace UI
         }
 
         /// <summary>
-        /// ÀÌ¸§À¸·Î element °¡Á®¿À°í Ä³½ÌÇÏ±â 
+        /// ì´ë¦„ìœ¼ë¡œ element ê°€ì ¸ì˜¤ê³  ìºì‹±í•˜ê¸° 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         protected VisualElement GetElement(string name)
         {
-            // ÀÌ¹Ì Ä³½ÌµÇ¾î ÀÖÀ¸¸é µñ¼Å³Ê¸®¿¡¼­ °¡Á®¿À±â
+            // ì´ë¯¸ ìºì‹±ë˜ì–´ ìˆìœ¼ë©´ ë”•ì…”ë„ˆë¦¬ì—ì„œ ê°€ì ¸ì˜¤ê¸°
             //VisualElement element = _elementsDic.Where(e => e.Key == name).Select(e => e.Value).First();
-            //if(element == null) // ¾ø´Ù¸é Ã£¾Æ¿À±â 
+            //if(element == null) // ì—†ë‹¤ë©´ ì°¾ì•„ì˜¤ê¸° 
             //{
             //    element = _parentElement.Q(name);
             //    _elementsDic.Add(name, element);
@@ -106,7 +106,7 @@ namespace UI
         }
 
         /// <summary>
-        /// ÇöÀç È°¼ºÈ­µÇ¾î ÀÖ´Â°¡ ( element°¡ nullÀÌ¸é ÀÚ½Å ) 
+        /// í˜„ì¬ í™œì„±í™”ë˜ì–´ ìˆëŠ”ê°€ ( elementê°€ nullì´ë©´ ìì‹  ) 
         /// </summary>
         /// <returns></returns>
         protected bool IsVisible(VisualElement _element = null)
@@ -116,7 +116,7 @@ namespace UI
         }
 
         /// <summary>
-        /// ÇöÀç ½ºÅ©¸°ÀÌ È°¼ºÈ­¸é ºñÈ°¼ºÈ­ , ºñÈ°¼ºÈ­¸é È°¼ºÈ­ 
+        /// í˜„ì¬ ìŠ¤í¬ë¦°ì´ í™œì„±í™”ë©´ ë¹„í™œì„±í™” , ë¹„í™œì„±í™”ë©´ í™œì„±í™” 
         /// </summary>
         public bool ActiveScreen()
         {
@@ -158,12 +158,12 @@ namespace UI
            // _seq.AppendCallback(() => ShowVisualElement(parentElement, false));
            // parentElement.style.opacity = _targetV;
             
-            // ºñÈ°¼ºÈ­½Ã ÀüÈ¯ ÀÌº¥Æ® Á¾·á ÈÄ ºñÈ°¼ºÈ­ 
-            // ¹Ù·Î È°¼ºÈ­ 
+            // ë¹„í™œì„±í™”ì‹œ ì „í™˜ ì´ë²¤íŠ¸ ì¢…ë£Œ í›„ ë¹„í™œì„±í™” 
+            // ë°”ë¡œ í™œì„±í™” 
         }
 
         /// <summary>
-        /// ParentElement Opacity ¼³Á¤ 
+        /// ParentElement Opacity ì„¤ì • 
         /// </summary>
         /// <param name="_isVisible"></param>
         protected void EndScreenTransition(TransitionEndEvent _evt)
@@ -173,7 +173,7 @@ namespace UI
             ShowVisualElement(parentElement, isTargetActive);
         }
         /// <summary>
-        /// elements ¹ÙÀÎµù ÇÏ±â (enumÀ¸·Î Âß ¾²°í ³Ö¾îÁà) 
+        /// elements ë°”ì¸ë”© í•˜ê¸° (enumìœ¼ë¡œ ì­‰ ì“°ê³  ë„£ì–´ì¤˜) 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_type"></param>
@@ -182,7 +182,7 @@ namespace UI
             string[] names = Enum.GetNames(_type);
             List<VisualElement> elements = new VisualElement[names.Length].ToList();
 
-            // ÇÑ ¹ø ¹ÙÀÎµù ÇßÀ¸¸é 
+            // í•œ ë²ˆ ë°”ì¸ë”© í–ˆìœ¼ë©´ 
             if (this.elementsDic.ContainsKey(typeof(T)))
             {
                 int _count = this.elementsDic[typeof(T)].Count;
@@ -190,8 +190,8 @@ namespace UI
                 for (int i = 0; i < names.Length; i++)
                 {
                     elements[i] = GetElement(names[i]);
-                    if (elements[i] == null) // names[i] ÀÇ ÀÌ¸§ÀÇ ¿ä¼Ò°¡ ¾øÀ¸¸é ¿¡·¯ 
-                        Debug.LogError($"ÁöÁ¤µÈ ÀÌ¸§ÀÇ ¿ä¼Ò°¡ ¾ø½À´Ï´Ù");
+                    if (elements[i] == null) // names[i] ì˜ ì´ë¦„ì˜ ìš”ì†Œê°€ ì—†ìœ¼ë©´ ì—ëŸ¬ 
+                        Debug.LogError($"ì§€ì •ëœ ì´ë¦„ì˜ ìš”ì†Œê°€ ì—†ìŠµë‹ˆë‹¤");
                 }
                 this.elementsDic[typeof(T)].AddRange(elements);
 
@@ -206,8 +206,8 @@ namespace UI
 //                {
                     elements[i] = GetElement(names[i]);
 //                }
-                if (elements[i] == null) // names[i] ÀÇ ÀÌ¸§ÀÇ ¿ä¼Ò°¡ ¾øÀ¸¸é ¿¡·¯ 
-                    Debug.LogError($"ÁöÁ¤µÈ ÀÌ¸§ÀÇ ¿ä¼Ò°¡ ¾ø½À´Ï´Ù");
+                if (elements[i] == null) // names[i] ì˜ ì´ë¦„ì˜ ìš”ì†Œê°€ ì—†ìœ¼ë©´ ì—ëŸ¬ 
+                    Debug.LogError($"ì§€ì •ëœ ì´ë¦„ì˜ ìš”ì†Œê°€ ì—†ìŠµë‹ˆë‹¤");
             }
         }
 
@@ -240,7 +240,7 @@ namespace UI
             Bind<ScrollView>(_type);
         }
         /// <summary>
-        /// element °¡Á®¿À±â (idx´Â enumÀ» ÅëÇØ ) 
+        /// element ê°€ì ¸ì˜¤ê¸° (idxëŠ” enumì„ í†µí•´ ) 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_idx"></param>
@@ -282,7 +282,7 @@ namespace UI
         {
             return Get<ScrollView>(_idx); 
         }
-        // == ÀÌº¥Æ® °ü·Ã == //
+        // == ì´ë²¤íŠ¸ ê´€ë ¨ == //
 
         //public void AddClickEvent(int _idx,Action _event)
         //{
@@ -291,47 +291,47 @@ namespace UI
         //    AddButtonEvent<ClickEvent>(1,()=> { });
         //}
 
-        // == ÀÌºÎºĞ ¼öÁ¤? 
+        // == ì´ë¶€ë¶„ ìˆ˜ì •? 
 
         /// <summary>
-        /// ¹öÆ°¿¡ ÀÌº¥Æ® Ãß°¡ 
+        /// ë²„íŠ¼ì— ì´ë²¤íŠ¸ ì¶”ê°€ 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
         protected void AddButtonEvent<T>(int _idx, Action _event) where T : EventBase<T>, new() 
         {
-            // Get<Å¸ÀÔ> 
+            // Get<íƒ€ì…> 
             Get<Button>(_idx).RegisterCallback<T>((e) => _event?.Invoke());
         }
 
         /// <summary>
-        /// VisualElement¿¡ ÀÌº¥Æ® Ãß°¡ 
+        /// VisualElementì— ì´ë²¤íŠ¸ ì¶”ê°€ 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
         protected void AddElementEvent<T>(int _idx, Action _event) where T : EventBase<T>, new()
         {
-            // Get<Å¸ÀÔ> 
+            // Get<íƒ€ì…> 
             Get<VisualElement>(_idx).RegisterCallback<T>((e) => _event?.Invoke());
         }
 
         /// <summary>
-        /// VisualElement¿¡ ÀÌº¥Æ® »èÁ¦ 
+        /// VisualElementì— ì´ë²¤íŠ¸ ì‚­ì œ 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
         protected void RemoveElementEvent<T>(int _idx, Action _event) where T : EventBase<T>, new()
         {
-            // Get<Å¸ÀÔ> 
+            // Get<íƒ€ì…> 
             Get<VisualElement>(_idx).UnregisterCallback<T>((e) => _event?.Invoke());
         }
-        //== °ªÀÌ º¯°æµÉ ¶§ ÀÌº¥Æ® == 
+        //== ê°’ì´ ë³€ê²½ë  ë•Œ ì´ë²¤íŠ¸ == 
 
         /// <summary>
-        /// RadioButton ÀÌº¥Æ®
+        /// RadioButton ì´ë²¤íŠ¸
         /// </summary>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>
@@ -341,7 +341,7 @@ namespace UI
         }
 
         /// <summary>
-        /// ÅØ½ºÆ®ÇÊµå ÀÌº¥Æ®
+        /// í…ìŠ¤íŠ¸í•„ë“œ ì´ë²¤íŠ¸
         /// </summary>
         /// <param name="_idx"></param>
         /// <param name="_event"></param>

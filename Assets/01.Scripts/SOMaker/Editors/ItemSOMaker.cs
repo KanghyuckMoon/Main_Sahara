@@ -70,7 +70,7 @@ public class ItemSOMaker : MonoBehaviour
 
             ItemDataSO _asset = null;
             _asset = allItemDataSO.itemDataSOList.Find(x => x.key == _key);
-            //ÀÌ¹Ì ÀÖ´ÂÁö
+            //ï¿½Ì¹ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
             if (_asset == null)
             {
                 _asset = ScriptableObject.CreateInstance<ItemDataSO>();
@@ -106,6 +106,8 @@ public class ItemSOMaker : MonoBehaviour
             AssetDatabase.SaveAssets();
 
             EditorUtility.FocusProjectWindow();
+            
+            UnityEditor.EditorUtility.SetDirty(_asset);
 
             Selection.activeObject = _asset;
         }
@@ -125,7 +127,7 @@ public class ItemSOMaker : MonoBehaviour
 
             ItemDataSO _asset = null;
             _asset = allDropItemDataSO.itemDataSOList.Find(x => x.key == _key);
-            //ÀÌ¹Ì ÀÖ´ÂÁö
+            //ï¿½Ì¹ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
             if (_asset == null)
             {
                 _asset = ScriptableObject.CreateInstance<ItemDataSO>();
@@ -148,6 +150,7 @@ public class ItemSOMaker : MonoBehaviour
             AssetDatabase.SaveAssets();
 
             EditorUtility.FocusProjectWindow();
+            UnityEditor.EditorUtility.SetDirty(_asset);
 
             Selection.activeObject = _asset;
         }
@@ -169,7 +172,7 @@ public class ItemSOMaker : MonoBehaviour
 
             ItemUpgradeDataSO _asset = null;
             _asset = allItemUpgradeDataSO.itemUpgradeDataList.Find(x => x.key == _key);
-            //ÀÌ¹Ì ÀÖ´ÂÁö
+            //ï¿½Ì¹ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
             if (_asset == null)
             {
                 _asset = ScriptableObject.CreateInstance<ItemUpgradeDataSO>();
@@ -178,6 +181,7 @@ public class ItemSOMaker : MonoBehaviour
                 AssetDatabase.SaveAssets();
 
                 EditorUtility.FocusProjectWindow();
+                UnityEditor.EditorUtility.SetDirty(_asset);
 
                 Selection.activeObject = _asset;
 
@@ -197,6 +201,7 @@ public class ItemSOMaker : MonoBehaviour
             AssetDatabase.SaveAssets();
 
             EditorUtility.FocusProjectWindow();
+            UnityEditor.EditorUtility.SetDirty(_asset);
 
             Selection.activeObject = _asset;
         }
@@ -218,7 +223,7 @@ public class ItemSOMaker : MonoBehaviour
 
             DropItemListSO _asset = null;
             _asset = allDropItemListSO.dropItemListSOList.Find(x => x.listName == _name);
-            //ÀÌ¹Ì ÀÖ´ÂÁö
+            //ï¿½Ì¹ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
             if (_asset == null)
             {
                 _asset = ScriptableObject.CreateInstance<DropItemListSO>();
@@ -252,6 +257,7 @@ public class ItemSOMaker : MonoBehaviour
             AssetDatabase.SaveAssets();
 
             EditorUtility.FocusProjectWindow();
+            UnityEditor.EditorUtility.SetDirty(_asset);
 
             Selection.activeObject = _asset;
         }
