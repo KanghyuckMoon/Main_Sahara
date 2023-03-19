@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Utill.Addressable;
+using Pool;
 
 namespace Module
 {
@@ -25,6 +26,11 @@ namespace Module
         public SkillModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
+        }
+
+        public SkillModule() : base()
+        {
+            
         }
 
         public override void Start()
@@ -60,5 +66,25 @@ namespace Module
             weaponSkill.Skills(mainModule);
             StateModule.AddState(State.SKILL);
         }
+        
+        
+        public override void OnDisable()
+        {
+            currentSkill.Clear();
+            weaponSkill = null;
+            stateModule = null;
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<SkillModule>("SkillModule", this);
+        }
+        
+        public override void OnDestroy()
+        {
+            currentSkill.Clear();
+            weaponSkill = null;
+            stateModule = null;
+            base.OnDestroy();
+            ClassPoolManager.Instance.RegisterObject<SkillModule>("SkillModule", this);
+        }
+        
     }
 }
