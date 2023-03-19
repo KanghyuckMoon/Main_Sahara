@@ -25,7 +25,8 @@ namespace Module
 
         public SkillModule(AbMainModule _mainModule) : base(_mainModule)
         {
-
+            SetSkill("E", "TestSkill_01");
+            SetSkill("R", "TestSkill_02");
         }
 
         public SkillModule() : base()
@@ -35,7 +36,7 @@ namespace Module
 
         public override void Start()
         {
-            SetSkill("E", "TestSkill");
+            
         }
 
 
@@ -56,15 +57,28 @@ namespace Module
         {
             currentSkill.Remove(_keyCode);
         }
+        // ReSharper disable Unity.PerformanceAnalysis
         public void UseSkill(string _keyCode)
         {
-            currentSkill[_keyCode]?.Skill(mainModule);
+            if (!CheakSkill(_keyCode)) return;
             StateModule.AddState(State.SKILL);
+            currentSkill[_keyCode].Skill(mainModule);
         }
         public void UseWeaponSkill()
         {
-            weaponSkill.Skills(mainModule);
+            if (!CheakWeaponSkill()) return;
             StateModule.AddState(State.SKILL);
+            weaponSkill.Skills(mainModule);
+        }
+
+        private bool CheakSkill(string _keyCode)
+        {
+            return currentSkill.TryGetValue(_keyCode, out var _skill);
+        }
+
+        private bool CheakWeaponSkill()
+        {
+            return weaponSkill is not null;
         }
         
         

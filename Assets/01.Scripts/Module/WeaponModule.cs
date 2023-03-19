@@ -139,7 +139,7 @@ namespace Module
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 BaseWeapon.tagName = _tagname;
                 mainModule.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
-                projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
+                projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSo);
 
                 StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
@@ -184,7 +184,7 @@ namespace Module
         }
         private void SetBehaveAnimation()
         {
-            Debug.Log(MainModule.AnimatorOverrideController);
+            //Debug.Log(MainModule.AnimatorOverrideController);
             AnimationClip _a = BaseWeapon.WeaponDataSO.attackAnimation;
             MainModule.AnimatorOverrideController["Attack"] = _a;
             MainModule.AnimatorOverrideController["StrongAttack"] = BaseWeapon.WeaponDataSO.strongAttackAnimation;

@@ -14,7 +14,7 @@ namespace Module
 {
     public class PhysicsModule : AbBaseModule
     {
-        private float rayDistance = 1f;
+        private float rayDistance = 0.25f;
         private ulong praviousHitBoxIndex = 0;
         private HitModule HitModule
         {
@@ -73,8 +73,8 @@ namespace Module
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
                     if (_statData != null)
                     {
-                        HitModule.GetHit(Mathf.RoundToInt(_statData.MeleeAttack * _locationHitBox.AttackMulti));
-                        _statData.ChargeMana(10);
+                        HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
+                        _statData.ChargeMana(mainModule.StatData.ManaRegen);
                     }
                     else
                     {

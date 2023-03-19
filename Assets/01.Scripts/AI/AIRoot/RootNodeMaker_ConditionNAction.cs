@@ -35,7 +35,7 @@ namespace AI
 			Vector3 vec = aiModule.MainModule.transform.position - aiModule.Player.position;
 			float sqrLen = vec.sqrMagnitude;
 
-			//»ç°Å¸® ¾È¿¡ µé¾î¿À¸é
+			//ï¿½ï¿½Å¸ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (sqrLen < aiSO.ViewRadius * aiSO.ViewRadius)
 			{
 				return false;
@@ -121,8 +121,8 @@ namespace AI
 			jumpCheckVector.y = 0;
 			jumpCheckVector = jumpCheckVector.normalized;
 
-			float dir = Mathf.Atan2(aiModule.MainModule.StatData.Jump, aiModule.MainModule.StatData.Speed);
-			float force = aiModule.MainModule.StatData.Speed;
+			float dir = Mathf.Atan2(aiModule.MainModule.StatData.Jump, aiModule.MainModule.StatData.WalkSpeed);
+			float force = aiModule.MainModule.StatData.WalkSpeed;
 			float width = Caculated_Width(force, dir);
 			RaycastHit raycastHit;
 			jumpCheckVector *= width;
@@ -241,7 +241,7 @@ namespace AI
 				return;
 			}
 
-			//¹ß°ß°¢
+			//ï¿½ß°ß°ï¿½
 			if (targetAngle <= aiSO.ViewAngle * 0.5f && !Physics.Raycast(Position, targetDir, aiSO.ViewRadius, aiSO.ObstacleMask) && (targetPos - Position).sqrMagnitude < aiSO.ViewRadius * aiSO.ViewRadius)
 			{
 				aiModule.AIModuleHostileState = AIModule.AIHostileState.Discovery;
@@ -422,7 +422,7 @@ namespace AI
 
 		private void TrackMove()
 		{
-			//¹æÇâ
+			//ï¿½ï¿½ï¿½ï¿½
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
 				Vector3 vec = aiModule.SmoothPath.EvaluateTangent(aiModule.SmoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));

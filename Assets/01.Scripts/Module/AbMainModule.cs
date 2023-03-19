@@ -382,7 +382,7 @@ namespace Module
         {
             get
             {
-                visualObject ??= transform.Find("Visual").gameObject;
+                visualObject ??= transform.Find("Visual").GetComponent<GameObject>();
                 return visualObject;
             }
         }
@@ -536,7 +536,7 @@ namespace Module
         private RaycastHit slopeHit;
 
         [SerializeField, Header("비주얼")]
-        public GameObject visualObject;
+        private GameObject visualObject;
 
         [SerializeField]
         private Transform model;
