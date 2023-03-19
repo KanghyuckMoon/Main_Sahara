@@ -489,6 +489,9 @@ namespace UI.Upgrade
                 //ClearAllSlots();
                 this.UpgradeCtrlPr.UpdateUI();
                 //StartCoroutine(SetAllSlotPosCo());
+            }else
+            {
+                LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade);
             }
             return _isActive;
         }

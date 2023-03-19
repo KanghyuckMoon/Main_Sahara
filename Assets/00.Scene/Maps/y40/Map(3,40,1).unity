@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 19c08346fbeb575479416de48409de47, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5ccac1ff15be53b4d8c648f13cf58a7b, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 30b5e508478cd5a4ab8afaa056b918a5, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -253,6 +253,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca94ec8ebe1eb74394e53893f81acc9, type: 3}
+--- !u!1 &1530668842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1530668844}
+  - component: {fileID: 1530668843}
+  m_Layer: 0
+  m_Name: RandomMonsterSpawner(3,40,1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1530668843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530668842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c1da4780729d240a3a2f1acab2f80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomMonsterListSO: {fileID: 11400000, guid: 6c86efbeacf2e5f4b9ebaf3dcd861e47, type: 2}
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  minSpawnTime: 1
+  maxSpawnTime: 3
+  radius: 33.6
+--- !u!4 &1530668844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530668842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 276.4, y: 4034.7, z: 112.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1863243474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -585,8 +636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Profile: {fileID: 11400000, guid: 7f342610b85f4164f808a1f380dcc668, type: 2}
-  m_StaticLightingSkyUniqueID: 1
+  m_Profile: {fileID: 0}
+  m_StaticLightingSkyUniqueID: 0
   m_StaticLightingCloudsUniqueID: 0
   m_StaticLightingVolumetricClouds: 0
 --- !u!4 &1947816982

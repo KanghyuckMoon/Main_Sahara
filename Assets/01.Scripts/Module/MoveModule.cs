@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Data;
+using Utill.Measurement;
 
 namespace Module
 {
@@ -39,8 +40,7 @@ namespace Module
             }
 		}
         private Animator animator;
-        private float walkSpeed => mainModule.StatData.WalkSpeed;
-        private float runSpeed => mainModule.StatData.RunSpeed;
+        private float moveSpeed => StatData.Speed;
         private float rotationVelocity;
         private float targetRotation;
         private float rotation;
@@ -55,6 +55,7 @@ namespace Module
         private StatData statData;
         private Vector3 currentDirection;
         private StateModule stateModule;
+        private static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
 
         public MoveModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -72,20 +73,21 @@ namespace Module
         public void Move()
         {
             #region 속도 관련 부분
-            float _targetSpeed = mainModule.IsSprint ? runSpeed : walkSpeed;
+            float _targetSpeed = mainModule.IsSprint ? moveSpeed + 5 : moveSpeed;
             float _lockOnspeed = mainModule.LockOn ? -2 : 0;
 
             float _speed;
 
-            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? runSpeed - 2 : walkSpeed - 2;
+            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? moveSpeed - 2 + 4 : moveSpeed - 2;
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
-            float currentSpeed = new Vector3(mainModule.CharacterController.velocity.x, 0, mainModule.CharacterController.velocity.z).magnitude;
+            var velocity = mainModule.CharacterController.velocity;
+            float currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
 
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset)// && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f * mainModule.PersonalFixedDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.8f *  mainModule.PersonalDeltaTime);
             }
             else
             {
@@ -93,7 +95,7 @@ namespace Module
             }
 
             animationBlend = mainModule.isGround ? animationBlend : 0;
-            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed, mainModule.PersonalFixedDeltaTime * 5);
+            animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed,  mainModule.PersonalDeltaTime * 5);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
 
@@ -124,18 +126,28 @@ namespace Module
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot) * mainModule.PersonalFixedDeltaTime;
-
-            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero, mainModule.PersonalFixedDeltaTime);
-            if (mainModule.IsSlope) mainModule.CharacterController.Move(_moveValue + mainModule.KnockBackVector + (new Vector3(0, _gravity, 0) * mainModule.PersonalFixedDeltaTime));
-            else if(!mainModule.IsSlope) mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalFixedDeltaTime);
-            Animator.SetFloat("MoveSpeed", animationBlend);
+            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot);
+            //_moveValue *= mainModule.PersonalDeltaTime;
+            Vector3 _moveVector3 = _moveValue + mainModule.KnockBackVector + new Vector3(0, _gravity, 0);
+            
+            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero,  mainModule.PersonalDeltaTime);
+            if (mainModule.IsSlope)
+            {
+                mainModule.CharacterController.Move(_moveVector3 *  mainModule.PersonalDeltaTime);
+            }
+            else
+            {
+                mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalDeltaTime);
+            }
+            Animator.SetFloat(MoveSpeed, animationBlend);
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
-            Vector3 _rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
-                mainModule.transform.position.z);
+            var position = mainModule.transform.position;
+            Vector3 _rayPos = new Vector3(position.x, position.y + mainModule.groundOffset,
+                position.z);
             var _ray = new Ray(_rayPos, Vector3.down);
 
             if (Physics.Raycast(_ray, out RaycastHit _hitInfo, 0.2f))
@@ -146,7 +158,7 @@ namespace Module
                 if (_adjustedVelocity.y < 0)
                 {
                     addSpeed = ((0.5f - _adjustedVelocity.y) * (0.3f - _adjustedVelocity.y) * 1.1f);
-                    Debug.Log(addSpeed);
+                    Logging.Log(addSpeed);
                     return _adjustedVelocity;
                 }
             }
@@ -175,8 +187,12 @@ namespace Module
 
         public override void FixedUpdate()
         {
-            Move();
             Gravity();
+        }
+
+        public override void Update()
+        {
+            Move();
         }
 
         public override void Start()

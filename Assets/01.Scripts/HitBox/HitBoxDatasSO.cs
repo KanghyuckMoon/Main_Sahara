@@ -26,7 +26,7 @@ namespace HitBox
 		{
 			if (hitBoxData.hitBoxName is null)
 			{
-				Debug.LogError("È÷Æ®¹Ú½º µ¥ÀÌÅÍÀÇ ÀÌ¸§ÀÌ ¾øÀ½");
+				Debug.LogError("íˆíŠ¸ë°•ìŠ¤ ë°ì´í„°ì˜ ì´ë¦„ì´ ì—†ìŒ");
 				return;
 			}
 
@@ -57,7 +57,7 @@ namespace HitBox
 		{
 			if (hitBoxData.hitBoxName is null)
 			{
-				Debug.LogError("È÷Æ®¹Ú½º µ¥ÀÌÅÍÀÇ ÀÌ¸§ÀÌ ¾øÀ½");
+				Debug.LogError("íˆíŠ¸ë°•ìŠ¤ ë°ì´í„°ì˜ ì´ë¦„ì´ ì—†ìŒ");
 				return;
 			}
 
@@ -95,7 +95,7 @@ namespace HitBox
 	[System.Serializable]
 	public class HitBoxData
 	{
-		//ÆÇÁ¤
+		//íŒì •
 		public string hitBoxName = "NULL";
 		public string ClassificationName = "NULL";
 		public ulong hitBoxIndex;
@@ -106,12 +106,12 @@ namespace HitBox
 		public float height = 1f;
 		public Vector3 rotation = Vector3.zero;
 
-		//³Ë¹é
+		//ë„‰ë°±
 		public bool isContactDirection = false; 
 		public Vector3 knockbackDir = Vector3.forward;
 		public float defaultPower = 1f;
 
-		//ÀÌÆåÆ®
+		//ì´í™íŠ¸
 		public Vector3 swingEffectOffset = Vector3.zero;
 		public Vector3 swingEffectRotation = Vector3.zero;
 		public Vector3 swingEffectSize = Vector3.one;
