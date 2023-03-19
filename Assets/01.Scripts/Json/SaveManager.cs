@@ -246,7 +246,10 @@ namespace Json
                 mainCam ??= Camera.main;
                 return mainCam;
             }
-            
+            set
+            {
+                mainCam = value;
+            }
         }
         
 		private InventorySO inventorySO = null;
@@ -307,12 +310,19 @@ namespace Json
         private SaveEventTransmit saveEventTransmit = default;
         private bool isContinue = false;
         private Camera mainCam;
-
+        private AsyncScreenCapture asyncScreenCapture;
         public bool isLoadSuccess = false;
 
+        
+        private void Start()
+        {
+            asyncScreenCapture = new AsyncScreenCapture();
+        }
+        
         public void ReceiveEvent(string _sender, object _obj)
         {
             string _date = DateTime.Now.ToString("yyyyMMddhhmmss");
+            testDate = _date;
             StartCoroutine(SaveBackgroundThread(_date));
         }
 
@@ -400,21 +410,11 @@ namespace Json
             JobHandle _shopJobHandle = _shopSaveJob.Schedule(ShopAllSO.shopSOList.Count, 5);
             StaticSave.Save<TutorialSaveData>(ref TutorialManager.Instance.tutorialSaveData, _date);
 
-            File.WriteAllBytes(_imagePath, SaveManager.CaptureFrame(MainCam)); 
-            //ScreenCapture.CaptureScreenshot(_imagePath);
-            //StartCoroutine(AsyncCapture()); 
-            //while (!_sceneJobHandle.IsCompleted)
-            //{
-            //    yield return null;
-            //}
-            //
-            //_sceneJobHandle.Complete();
-            
-            //yield return new WaitUntil(() => _sceneJobHandle.IsCompleted);
-            
-            //DisPose
-            //_sceneSaveJob.testArray.Dispose();
-
+            yield return new WaitForEndOfFrame();
+            //File.WriteAllBytes(_imagePath, SaveManager.CaptureFrame(MainCam)); 
+            //StartCoroutine(Capture());
+            StartCoroutine(asyncScreenCapture.CaptureAsync(_imagePath));
+                
             sw.Stop();
             Debug.Log("Save: " + sw.ElapsedMilliseconds.ToString() + "ms");
 
@@ -458,7 +458,7 @@ namespace Json
             }
 
             string _imagePath = StaticSave.GetPath() + _date + ".png";
-            StartCoroutine(AsyncCapture());
+            //StartCoroutine(Capture());
 
             SaveRecordDataList _saveRecordDataList = new SaveRecordDataList();
             StaticSave.Load<SaveRecordDataList>(ref _saveRecordDataList);
@@ -557,64 +557,6 @@ namespace Json
         {
             StaticSave.Load<OptionData>(ref OptionManager.Instance.optionData);
         }
-
-        
-    IEnumerator AsyncCapture()
-    {
-        yield return new WaitForEndOfFrame();
-        var rt = RenderTexture.GetTemporary(Screen.width, Screen.height, 0, RenderTextureFormat.ARGB32);
-        ScreenCapture.CaptureScreenshotIntoRenderTexture(rt);
-        AsyncGPUReadback.Request(rt, 0, TextureFormat.RGBA32, OnCompleteReadback);
-        RenderTexture.ReleaseTemporary(rt);
-    }
- 
-    void OnCompleteReadback(AsyncGPUReadbackRequest asyncGPUReadbackRequest)
-    {
-        // get screenshot data as nativearray or handle error
-        if (asyncGPUReadbackRequest.hasError)
-        {
-            Debug.LogError("Error Capturing Screenshot: With AsyncGPUReadbackRequest.");
-            return;
-        }
-        var rawData = asyncGPUReadbackRequest.GetData<byte>();
-        // Grab screen dimensions
-        var width = Screen.width;
-        var height = Screen.height;
-        var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-        var processedData = texture.GetRawTextureData<byte>();
-        // now flip vertical pixels
-        for (int i = 0; i < rawData.Length; i += 4)
-        {
-            var arrayIndex = i / 4;
-            var x = arrayIndex % width;
-            var y = arrayIndex / width;
-            var flippedY = (height - 1 - y);
-            var flippedIndex = x + flippedY * width;
-            // flip the data
-            processedData[i] = rawData[flippedIndex * 4];
-            processedData[i + 1] = rawData[flippedIndex * 4 + 1];
-            processedData[i + 2] = rawData[flippedIndex * 4 + 2];
-            processedData[i + 3] = rawData[flippedIndex * 4 + 3];
-        }
-        // create texture and save as png using datetime
-        string _imagePath = StaticSave.GetPath() + testDate.ToString() + ".png";
-        var dateTime = DateTime.Now;
-        var dateTimeString = dateTime.ToString("-yyyy-MM-dd_") + dateTime.Hour + "h-" + dateTime.Minute + "m";
-        File.WriteAllBytes(_imagePath, ImageConversion.EncodeToPNG(texture));
-        Destroy(texture);
-        // todo: hook this up with my twitter.py script
-    }
-    public static byte[] CaptureFrame(Camera camera)
-    {
-        RenderTexture _targetTexture = camera.targetTexture;
-        RenderTexture.active = _targetTexture;
-        Texture2D _texture2D = new Texture2D(_targetTexture.width, _targetTexture.height, TextureFormat.RGB24, false);
-        _texture2D.ReadPixels(new Rect(0, 0, _targetTexture.width, _targetTexture.height), 0, 0);
-        _texture2D.Apply();
-        byte[] image = _texture2D.EncodeToJPG();	
-        UnityEngine.Object.DestroyImmediate(_texture2D); // Required to prevent leaking the texture
-        return image;
-    }
 
     }
 }

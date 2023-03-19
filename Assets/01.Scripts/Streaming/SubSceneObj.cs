@@ -194,54 +194,34 @@ namespace Streaming
 		/// </summary>
 		public void LoadScene()
 		{
-			//if (!IsActiveScene())
-			//{
-			//}
-			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
-		}
-		/// <summary>
-		/// 맡은 씬을 불러온다
-		/// </summary>
-		public void LoadSceneNoneCheck()
-		{
 			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
 		}
 
 		/// <summary>
 		/// 맡은 씬이 활성화되어 있어 있다면 비활성화한다
 		/// </summary>
-		public void UnLoadScene()
+		public void UnLoadSceneNoneCheck()
 		{
-			if (IsActiveScene())
-			{
-				SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
-
-				LODMaker.UnLoad();
-
-
-				AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
-			}
+			SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
+			LODMaker.UnLoad();
+				
+			AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
 		}
 
 		private void LoadSceneObject(AsyncOperationHandle<SceneInstance> obj)
 		{
 			if (obj.Status == AsyncOperationStatus.Succeeded)
 			{
-				SceneDataManager.Instance.GetSceneData(SceneName).Load();
-				LODMaker.Load();
+				StartCoroutine(IELoadScene());
 			}
 		}
 
-		private void UnLoadSceneObject(AsyncOperationHandle<SceneInstance> obj)
+		private IEnumerator IELoadScene()
 		{
-			if (obj.Status == AsyncOperationStatus.Succeeded)
-			{
-			}
+			SceneDataManager.Instance.GetSceneData(SceneName).Load();
+			LODMaker.Load();
+			yield return null;
 		}
-
-#if UNITY_EDITOR
-
-#endif
 
 		#region DebugCode
 

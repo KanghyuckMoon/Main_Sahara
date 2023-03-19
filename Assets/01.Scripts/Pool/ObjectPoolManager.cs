@@ -170,8 +170,8 @@ namespace Pool
             handle.Completed += (_x) =>
             {
                 PrefebManager.Instance.AddPrefeb(key, _x.Result);
-                MakeQueueGet(key, _x.Result);
-                GameObject obj = GetObject(key);
+                var q = MakeQueueGet(key, _x.Result);
+                GameObject obj = q.Dequeue();
                 PoolParentManager.Instance.SetUseParent(key, obj);
                 _action?.Invoke(obj);
             };
@@ -182,8 +182,8 @@ namespace Pool
             handle.Completed += (_x) =>
             {
                 PrefebManager.Instance.AddPrefeb(key, _x.Result);
-                MakeQueueGet(key, _x.Result);
-                GameObject obj = GetObject(key);
+                var q = MakeQueueGet(key, _x.Result);
+                GameObject obj = q.Dequeue();
                 PoolParentManager.Instance.SetUseParent(key, obj);
                 _action.Invoke(obj, _parameter);
             };

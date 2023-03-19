@@ -167,14 +167,13 @@ namespace Streaming
 					continue;
 				}
 				LoadObjectData(_objectData);
-				//추후 풀링으로 교체
 			}
 		}
 
 		/// <summary>
 		/// 씬 오브젝트들을 제거한다
 		/// </summary>
-		public void UnLoad()
+		public IEnumerator UnLoad()
 		{
 			isLoad = false;
 			while (objectCheckerList.Count > 0)
@@ -202,7 +201,10 @@ namespace Streaming
 				}
 
 				objectCheckerList.RemoveAt(0);
+				yield return null;
 			}
+
+			yield return null;
 		}
 
 		public void SaveUnLoad()
@@ -268,16 +270,20 @@ namespace Streaming
 			gameObject.name = $"{_objectData.address} {SceneName}";
 
 			ObjectClassCycle _objectClassCycle = gameObject.GetComponentInChildren<ObjectClassCycle>();
-			ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
-			if (_objectSceneChecker is null)
+			if (_objectClassCycle != null)
 			{
-				_objectSceneChecker = new ObjectSceneChecker();
+				ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
+				if (_objectSceneChecker is null)
+				{
+					_objectSceneChecker = new ObjectSceneChecker();
+				}
+				_objectSceneChecker.TargetSceneData = this;
+				_objectSceneChecker.ObjectData = _objectData;
+				_objectSceneChecker.ObjectClassCycle = _objectClassCycle;
+				_objectClassCycle.AddObjectClass(_objectSceneChecker);
+				_objectSceneChecker.Use();
+				objectCheckerList.Add(_objectSceneChecker);
 			}
-			_objectSceneChecker.TargetSceneData = this;
-			_objectSceneChecker.ObjectData = _objectData;
-			_objectSceneChecker.ObjectClassCycle = _objectClassCycle;
-			_objectClassCycle.AddObjectClass(_objectSceneChecker);
-			_objectSceneChecker.Use();
 
 			if (_objectData.isMonster)
 			{
@@ -287,9 +293,6 @@ namespace Streaming
 			}
 
 			gameObject.SetActive(true);
-
-			objectCheckerList.Add(_objectSceneChecker);
-			//추후 풀링으로 교체
 		}
 
 
