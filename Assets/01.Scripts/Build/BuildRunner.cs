@@ -16,7 +16,7 @@ public class BuildRunner : MonoBehaviour
     public static void BuildWindowIL2CPP()
     {
         string fileName = SetPlayerSettingsForAndroid();
-        AddressableAssetSettings.BuildPlayerContent();
+        //AddressableAssetSettings.BuildPlayerContent();
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = GetBuildSceneList();
@@ -24,7 +24,7 @@ public class BuildRunner : MonoBehaviour
         buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
         buildPlayerOptions.options = BuildOptions.None;
         
-        PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
+        //PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
         
         BuildPipeline.BuildPlayer(buildPlayerOptions);
     }
