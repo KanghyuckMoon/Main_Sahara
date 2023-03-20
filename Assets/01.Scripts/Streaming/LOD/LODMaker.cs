@@ -93,10 +93,8 @@ namespace Streaming
 		public void UnLoad()
 		{
 			//lodGroup.enabled = true;
-			//오브젝트 생성
-			//IEUnLoad();
-			//StartCoroutine();
-			//isUnLoadUpdate = true;
+			isUnLoadUpdate = true;
+			StartCoroutine(IEUpdateLODObjects());
 		}
 
 		private IEnumerator IEUpdateLODObjects()

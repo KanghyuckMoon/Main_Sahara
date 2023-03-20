@@ -80,7 +80,7 @@ namespace Module
             if (canSpwon) return;
             if (PositionSO is null)
                 return;
-
+        
             //Quaternion _quaternion = Quaternion.Euler(transform.forward);
 
             projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation));
