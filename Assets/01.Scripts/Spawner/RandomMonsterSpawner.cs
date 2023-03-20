@@ -46,7 +46,8 @@ namespace Spawner
 		private bool isMonsterNone = true;
 
 		private List<EnemyDead> enemyDeadList = new List<EnemyDead>();
-
+		private Vector3 spawnPos = Vector3.zero;
+		
         private void OnDisable()
         {
 			player = null;
@@ -102,11 +103,11 @@ namespace Spawner
 			int _randomRange = Random.Range(_randomMonsterData.minSpawnCount, _randomMonsterData.maxSpawnCount + 1);
 			for(; _randomRange-- > 0; )
             {
-				Spawn(_randomMonsterData);
+				StartCoroutine(Spawn(_randomMonsterData));
 			}
         }
 
-		public void Spawn(RandomMonsterData _randomMonsterData)
+		public IEnumerator Spawn(RandomMonsterData _randomMonsterData)
 		{
 			GameObject obj = ObjectPoolManager.Instance.GetObject(_randomMonsterData.enemyAddress);
 			ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
@@ -121,13 +122,14 @@ namespace Spawner
 			objectClassCycle.AddObjectClass(_objectSceneChecker);
 			EnemyDead _enemyDead = obj.GetComponent<EnemyDead>();
 			_enemyDead.AddObserver(this);
-			enemyDeadList.Add(_enemyDead);	
-			obj.transform.position = GetRandomPos();
+			enemyDeadList.Add(_enemyDead);
+			yield return StartCoroutine(GetRandomPos());
+			obj.transform.position = spawnPos;
 			obj.SetActive(true);
 			isMonsterNone = false;
 		}
 
-		private Vector3 GetRandomPos()
+		private IEnumerator GetRandomPos()
         {
 			Vector3 _result = new Vector3();
 
@@ -136,7 +138,7 @@ namespace Spawner
 				float randomPosX = Random.Range(-radius, radius);
 				float randomPosZ = Random.Range(-radius, radius);
 
-				Vector3 rayPos = new Vector3(randomPosX, transform.position.y + 50, randomPosZ);
+				Vector3 rayPos = new Vector3(transform.position.x + randomPosX, transform.position.y + 50, transform.position.z +randomPosZ);
 				RaycastHit raycastHit;
 
 				if (Physics.Raycast(rayPos, Vector3.down, out raycastHit, 150f, spawnLayerMask))
@@ -144,11 +146,13 @@ namespace Spawner
 					_result = rayPos;
 					_result.y = raycastHit.point.y + 3f;
 					break;
-				}
-				
+                }
+
+				yield return null;
 			}
 
-			return _result;
+			spawnPos = _result;
+			yield return null;
         }
 
         public void Receive()

@@ -85,6 +85,8 @@ public class EnemySpawnListSOMaker : MonoBehaviour
 
             EditorUtility.FocusProjectWindow();
 
+            UnityEditor.EditorUtility.SetDirty(_asset);
+
             Selection.activeObject = _asset;
         }
     }

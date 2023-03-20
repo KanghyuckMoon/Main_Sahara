@@ -27,42 +27,11 @@ namespace Streaming
 
 			public void Execute()
 			{
-				// for (int _zOffset = -chunksVisibleInViewDst; _zOffset <= chunksVisibleInViewDst; _zOffset++)
-				// {
-				// 	for (int _yOffset = -chunksVisibleInViewDst; _yOffset <= chunksVisibleInViewDst; _yOffset++)
-				// 	{
-				// 		for (int _xOffset = -chunksVisibleInViewDst; _xOffset <= chunksVisibleInViewDst; _xOffset++)
-				// 		{
-				// 			Vector3 _viewedChunkCoord = new Vector3(originChunkCoordX + _xOffset, originChunkCoordY + _yOffset, originChunkCoordZ + _zOffset);
-				//
-				// 			if (StreamingManager.Instance.chunkDictionary.ContainsKey(_viewedChunkCoord))
-				// 			{
-				// 				//씬 데이터가 있어야함
-				// 				if (!StreamingManager.Instance.chunkDictionary.TryGetValue(_viewedChunkCoord, out var a))
-				// 				{
-				// 					continue;
-				// 				}
-				//
-				// 				//씬이 비활성화된 상태여야함
-				// 				if (!StreamingManager.Instance.chunksCurrentVisibleList.Contains(_viewedChunkCoord))
-				// 				{
-				// 					StreamingManager.Instance.chunksCurrentVisibleList.Add(_viewedChunkCoord);
-				// 				}
-				// 				StreamingManager.Instance.LoadSubScene(_viewedChunkCoord);
-				// 			}
-				// 		}
-				// 	}
-				// }
-
 				foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
 				{
 					Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
 					if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
 					{
-						//if (!StreamingManager.Instance.chunksCurrentVisibleList.Contains(_sceneObj.Key))
-						//{
-						//	StreamingManager.Instance.chunksCurrentVisibleList.Add(_sceneObj.Key);
-						//}
 						StreamingManager.Instance.LoadSubScene(_sceneObj.Key);	
 					}
 					else
@@ -141,7 +110,7 @@ namespace Streaming
 		private int originChunkCoordZ;
 
 		public const int chunkSize = 100;
-		public const int chunksVisibleInViewDst = 2;
+		public const int chunksVisibleInViewDst = 3;
 		private const int LODDst = 1;
 		private const int interval = 3;
 		private Vector3 defaultPosition = new Vector3(0,4050,0);
