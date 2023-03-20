@@ -25,7 +25,7 @@ namespace UI.Upgrade
         private UpgradePickPresenter upgradePickPresenter; // 슬롯 선택시 나타날 업드레이드 패널 
         private UpgradeCtrlPresenter ctrlPresenter; // 좌우 버튼 , 상단 라벨 조작 Pr 
         private UpgradeSlotPresenter _curSlotPr; // 현재 선택한 슬롯
-        private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소 
+        private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소
 
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
         private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // 모든 슬롯 리스트 
@@ -72,6 +72,7 @@ namespace UI.Upgrade
             }
         }
 
+        private Vector2 MoveScreenV => upgradeView.MoveScreen.transform.position; 
         private void Start()
         {
             elementCtrlComponent = new ElementCtrlComponent(upgradeView.MoveScreen);
@@ -83,11 +84,11 @@ namespace UI.Upgrade
             // UIToolkit은 레이아웃 구축 시간이 소요되기 때문에
             // 다른 element의 worldbound를 제대로 가져오기 위해서는 구축될 시간이 지난후 가져와야함 
             elementCtrlComponent.IsInput = false;
-            yield return new WaitForSecondsRealtime(0.01f);
+            yield return new WaitForSecondsRealtime(0.05f);
             StartCoroutine(SetAllSlotPos());
-            yield return new WaitForSecondsRealtime(0.01f);
+            yield return new WaitForSecondsRealtime(0.05f);
             StartCoroutine(SetAllSlotPos());
-            yield return new WaitForSecondsRealtime(0.02f);
+            yield return new WaitForSecondsRealtime(0.05f);
             StartCoroutine(SetAllSlotPos());
         }
 
@@ -121,9 +122,14 @@ namespace UI.Upgrade
             ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
         }
 
+        [SerializeField]
+        private bool isComplete = false; // 대장장이 UI 생성이 완료 되었는가 ( 안됐으면 조작 불가 )
         private void LateUpdate()
         {
-            ElementCtrlComponent.Update();
+            if (isComplete == true)
+            {
+                ElementCtrlComponent.Update();
+            }
             if (isConnection == true)
             {
                 LineCreateManager.Instance.UpdateLinesPos(ScreenType.Upgrade,
@@ -140,7 +146,7 @@ namespace UI.Upgrade
 
         #region Init
 
-        private float slotDist = 150f; // 슬롯 간의 거리 
+        private float slotDist = 300f; // 슬롯 간의 거리 
 
         private void InitDic()
         {
@@ -289,9 +295,12 @@ namespace UI.Upgrade
         private bool isActive = false; // 포지션 설정시 활성화 여부 
         private bool isConnection = false; // 연결점 생성 여부 
 
+        private int a = 0; 
         [ContextMenu("고고")]
         private IEnumerator SetAllSlotPos()
         {
+            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.05f); 
+
             int _idx = 1;
             allItemList[0].style.left = midX - allItemList[0].resolvedStyle.width / 2;
             allItemList[0].style.opacity = isConnection ? 1 : 0;
@@ -299,34 +308,48 @@ namespace UI.Upgrade
             foreach (var _v in allItemDataList)
             {
                 float _moveX = slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
-                _moveX = _moveX < 0 ? _moveX - allItemList[_idx].resolvedStyle.width : _moveX;
-                allItemList[_idx].style.left = _moveX + _v.parentSlot.worldBound.x - transform.position.x;
-                float _op = isConnection ? 1 : 0;
+                
+                //float _op = _v.parentSlot.worldBound.x - _v.parentSlot.resolvedStyle.left; //  slot이 relative이기 때문에 left == 0 인데 world bound는 200 일 수 있다. 
+                //if (isConnection == false)
+                //{
+                allItemList[_idx].style.left =
+                    _moveX + _v.parentSlot.worldBound.x + upgradeView.MoveScreen.transform.position.x;
+                        //*upgradeView.MoveScreen.transform.scale.x;
+                //}
+
+                //yield return new WaitForSeconds(0.05f); 
                 // opacity 설정
                 //DOTween.To(() =>0f, x => allItemList[_idx].style.opacity = x, _op, 0.5f).SetDelay(0.5f); 
                 allItemList[_idx].style.opacity = isConnection ? 1 : 0;
-
+                
                 if (isConnection == true)
                 {
-                    //yield return new WaitForSecondsRealtime(0.05f);
-
+                  
+                    if (allItemList[_idx].worldBound.y + allItemList[_idx].resolvedStyle.height + 100 >
+                        upgradeView.MoveScreen.resolvedStyle.height)
+                        {
+                        elementCtrlComponent.TweenMove(new Vector2(0,-200));
+                    }
+                    yield return _w;
+                    float _targetMoveX = allItemList[_idx].style.left.value.value -
+                                         (allItemList[_idx].worldBound.x - allItemList[_idx].style.left.value.value); 
+                    allItemList[_idx].style.left = _targetMoveX;
+                    yield return _w;
+                    Debug.Log("선 생성");
                     CreateConnection(allItemList[_idx]);
-                    yield return new WaitForSecondsRealtime(0.05f);
+                    yield return _w;
                 }
 
                 ++_idx;
             }
-
+            if (isConnection == true)
+            {
+                isComplete = true; 
+            }
             if (isActive == true)
             {
                 isConnection = true;
             }
-
-            if (isConnection == true)
-            {
-                elementCtrlComponent.IsInput = true;
-            }
-
             isActive = true;
         }
 
@@ -342,7 +365,7 @@ namespace UI.Upgrade
             this.upgradeView.ClearAllSlots();
             isActive = false;
             isConnection = false;
-            elementCtrlComponent.IsInput = true;
+            isComplete = false; 
         }
 
         private VisualElement CreateSlot(ItemData _itemData)
@@ -427,10 +450,10 @@ namespace UI.Upgrade
                     {
                         _pointList.Clear();
 
-                        float _slotX = _slot.Key.worldBound.x + _slot.Key.resolvedStyle.width / 2;
-                        float _slotY = _slot.Key.worldBound.y + _slot.Key.resolvedStyle.height;
-                        float _slot2X = _slot2.worldBound.x + _slot2.resolvedStyle.width / 2;
-                        float _slot2Y = _slot2.worldBound.y;
+                        float _slotX =  MoveScreenV.x + _slot.Key.worldBound.x + _slot.Key.resolvedStyle.width / 2;
+                        float _slotY = -MoveScreenV.y +_slot.Key.worldBound.y + _slot.Key.resolvedStyle.height;
+                        float _slot2X = MoveScreenV.x + _slot2.worldBound.x + _slot2.resolvedStyle.width / 2;
+                        float _slot2Y = -MoveScreenV.y +_slot2.worldBound.y;
 
                         _startPoint = new Vector2(_slotX - midX, _slotY - midY); // 부모 위치 
                         _midPoint = new Vector2(_slotX - midX, _slotY + (_slot2Y - _slotY) / 2 - midY);
