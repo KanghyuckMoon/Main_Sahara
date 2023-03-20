@@ -67,7 +67,7 @@ namespace Module
             if (WeaponModule.isProjectileWeapon)
             {
                 string _name = ProjectileName == "Arrow" ? WeaponModule.CurrentArrowInfo.arrowAddress : ProjectileName;
-                GameObject _projectile = ObjectPoolManager.Instance.GetObject(_name);
+                GameObject _projectile = ObjectPoolManager.Instance.GetObject(ProjectileName);
 
                 if (_name == "Arrow") WeaponModule.CurrentArrowInfo.action?.Invoke();
 

@@ -45,7 +45,7 @@ namespace Utill.Addressable
 		{
 			var _handle = Addressables.LoadAssetAsync<T>(_name);
 
-			_handle.WaitForCompletion();
+    			_handle.WaitForCompletion();
 
 			return _handle.Result;
 		}

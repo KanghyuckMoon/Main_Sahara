@@ -76,6 +76,10 @@ namespace Module
 
 				StateModule.AddState(State.MOVING);
 			}
+			else
+			{
+				mainModule.ObjDir = Vector2.zero;
+			}
 		}
 
 		private void InputJump()
@@ -111,14 +115,18 @@ namespace Module
 					if (InputManager.Instance.CheckKey("Skill1"))
 					{
 						//Input.key
+						//StateModule.AddState(State.SKILL);
+						//Debug.LogError(("sdffgafgadfadfafgafgafgasgasgasgd"));
 						SkillModule.UseSkill("E");//.BaseWeapon.weaponSkills.Invoke();
 					}
 					if (InputManager.Instance.CheckKey("Skill2"))
 					{
+						//StateModule.AddState(State.SKILL);
 						SkillModule.UseSkill("R");
 					}
 					if (InputManager.Instance.CheckKey("WeaponSkill"))
 					{
+						//StateModule.AddState(State.SKILL);
 						SkillModule.UseWeaponSkill();
 					}
 				}

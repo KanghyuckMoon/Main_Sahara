@@ -20,16 +20,6 @@ namespace Module
     {
         public SaveData saveData;
 
-        private HpModule HpModule
-        {
-            get
-            {
-                hpModule ??= mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
-                return hpModule;
-            }
-        }
-        private HpModule hpModule;
-
         private StatData statData;
         private bool isLoad = false;
 
@@ -44,7 +34,7 @@ namespace Module
         public override void Awake()
         {
             saveData ??= new SaveData();
-            statData = mainModule.GetComponent<Data.StatData>();
+            statData = mainModule.StatData;
         }
 
 		public override void Start()
@@ -58,17 +48,18 @@ namespace Module
 
 		public void SetAttackDamage(WeaponDataSO weaponDataSO)
         {
-            statData.MeleeAttack = weaponDataSO.meleeAttack;
-            statData.RangeAttack = weaponDataSO.rangedAttack;
-            statData.MagicAttack = weaponDataSO.magicAttack;
+            statData.MeleeAttack = weaponDataSO.meleeAttack + mainModule.StatData.MeleeAttack;
+            statData.RangeAttack = weaponDataSO.rangedAttack + mainModule.StatData.RangeAttack;
+            statData.MagicAttack = weaponDataSO.magicAttack + mainModule.StatData.MagicAttack;
             //statData.Att = weaponDataSO.meleeAttack + weaponDataSO.rangedAttack + playerdata.meleeAttack + playerdata.rangedAttack;
             //apAttack = weaponDataSO.magicAttack + playerdata.magicAttack;
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public void SaveData()
         {
             saveData ??= new SaveData();
-            statData ??= mainModule.GetComponent<Data.StatData>();
+            statData ??= mainModule.GetComponent<StatData>();
             saveData.hp = statData.CurrentHp;
             saveData.mana = statData.CurrentMana;
             saveData.position = mainModule.transform.position;
@@ -77,7 +68,7 @@ namespace Module
         public void LoadData()
         {
             saveData ??= new SaveData();
-            statData ??= mainModule.GetComponent<Data.StatData>();
+            statData ??= mainModule.StatData;
             statData.CurrentHp = saveData.hp;
             statData.CurrentMana = saveData.mana;
             mainModule.transform.position = saveData.position;
@@ -86,7 +77,6 @@ namespace Module
 
         public override void OnDisable()
         {
-            hpModule = null;
             statData = null;
             saveData = null;
             mainModule = null;
