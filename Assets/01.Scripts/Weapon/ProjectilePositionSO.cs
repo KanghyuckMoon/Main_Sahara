@@ -34,7 +34,9 @@ namespace Weapon
                 {
                     //ProjectileObjectData에 카피함수 만들기
                     //_date.Copy(_projectileObjectData) 이런 식으로 되도록
-                    _data.Copy(_projectileObjectData);
+                    //_data.Copy(_projectileObjectData); // = ProjectileObjectData.StaticCopy(_projectileObjectData);
+
+                    _data.Copy(_projectileObjectData); // = ProjectileObjectData.StaticCopy(_projectileObjectData);
                 }
                 else
                     _list.list.Add(_projectileObjectData);
@@ -88,20 +90,16 @@ namespace Weapon
             return _data;
         }
 
-        public ProjectileObjectData Copy(ProjectileObjectData _projectileObjectData)
+        public void Copy(ProjectileObjectData _projectileObjectData)
         {
-            ProjectileObjectData _data = new ProjectileObjectData();
+            projectileName = _projectileObjectData.projectileName;
+            distinguishingName = _projectileObjectData.distinguishingName;
 
-            _data.projectileName = _projectileObjectData.projectileName;
-            _data.distinguishingName = _projectileObjectData.distinguishingName;
+            position = _projectileObjectData.position;
+            rotation = _projectileObjectData.rotation;
+            weaponHand = _projectileObjectData.weaponHand;
 
-            _data.position = _projectileObjectData.position;
-            _data.rotation = _projectileObjectData.rotation;
-            _data.weaponHand = _projectileObjectData.weaponHand;
-
-            _data.speed = _projectileObjectData.speed;
-
-            return _data;
+            speed = _projectileObjectData.speed;
         }
     }
 }
