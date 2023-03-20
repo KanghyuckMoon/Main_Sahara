@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-70464497737113228
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 11
+  hdPluginSubTargetMaterialVersions:
+    m_Keys: []
+    m_Values: 
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,9 +23,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MI_MBody
+  m_Name: MI_Head 2
   m_Shader: {fileID: 4800000, guid: 5a84d0554b20c754687512c99ebb990b, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ISEXTRAMASKEUP_ON
   m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   - _NORMALMAP_TANGENT_SPACE
@@ -57,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Dirt:
-        m_Texture: {fileID: 2800000, guid: 04ee2c68f1fae0443a44bbf69810eb35, type: 3}
+        m_Texture: {fileID: 2800000, guid: f94dc1ad5d4cc31499fc73bf906c79ea, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
@@ -65,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveMask:
-        m_Texture: {fileID: 2800000, guid: fcd484b921524a448b3eff9ba735303c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 937599cb8c3c1b748842feed92c8ad35, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissivePannerMap:
@@ -73,7 +90,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ExtraMask:
-        m_Texture: {fileID: 2800000, guid: fcd484b921524a448b3eff9ba735303c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 937599cb8c3c1b748842feed92c8ad35, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeightMap:
@@ -93,7 +110,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:
-        m_Texture: {fileID: 2800000, guid: fcd484b921524a448b3eff9ba735303c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6758a133ad43c2d4e84d4e1a1c4b0696, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -109,19 +126,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ORM:
-        m_Texture: {fileID: 2800000, guid: 10969296b621a8a4e901d1c15c5fb36c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1c085c4850d599545ad7cd11a16fea31, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RoughnessMod_R:
         m_Texture: {fileID: 2800000, guid: c0b7b18616e3d4c4d9f007d6681e9331, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SSSMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SkinColor:
-        m_Texture: {fileID: 2800000, guid: 0f180ef2f0e0f794c94b4e667b0d3848, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3561befa3e1c88e40a398a219017d2b6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SkinNormal:
-        m_Texture: {fileID: 2800000, guid: fbef51102216e3a4a8e4319183d081f8, type: 3}
+        m_Texture: {fileID: 2800000, guid: d965f18df85419a4085f4a24949db928, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SkinPore:
@@ -145,7 +166,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TattoMask:
-        m_Texture: {fileID: 2800000, guid: 400bb9365bac7864eb3c9453d7826ea6, type: 3}
+        m_Texture: {fileID: 2800000, guid: f00b066186f772940a5763f3c1104ee3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ThicknessMap:
@@ -193,7 +214,7 @@ Material:
     - _BlushPower: 0
     - _CoatMask: 0
     - _CoatMaskPower: 0
-    - _ColorPow: 0.85
+    - _ColorPow: 0.75
     - _CullMode: 2
     - _CullModeForward: 2
     - _Cutoff: 0.5
@@ -203,7 +224,7 @@ Material:
     - _DetailSmoothnessScale: 1
     - _DiffusionProfile: 0
     - _DiffusionProfileHash: 3.178028
-    - _DirtBoots: 1
+    - _DirtBoots: 0
     - _DirtRoughness_Power: 0
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
@@ -230,8 +251,8 @@ Material:
     - _FemaleLipsNailIMaleBeardNailsPower: 0
     - _FemaleLipsNailIMaleBeardNailsRoughnessBoost: 0.75
     - _FreaklesColorPower: 0
-    - _HairCapColorPower: 0
-    - _HairCapRoughness: 0.6
+    - _HairCapColorPower: 1
+    - _HairCapRoughness: 0
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -245,7 +266,7 @@ Material:
     - _Ior: 1.5
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
-    - _IsExtraMaskeUp: 0
+    - _IsExtraMaskeUp: 1
     - _LinkDetailsWithBase: 1
     - _LipNailColorPower: 0
     - _LipsNailRoughnessBoost: 0.75
@@ -317,8 +338,8 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseColorMul: {r: 0.69803923, g: 0.57647055, b: 0.6024918, a: 0}
-    - _BlushColor: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColorMul: {r: 0.7647059, g: 0.6901961, b: 0.61960787, a: 0}
+    - _BlushColor: {r: 0.4811321, g: 0.37025517, b: 0.20198469, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: -116986.89, g: -8.678446e-17, b: 4.7554902e+17, a: -6.3653175e+18}
     - _DirtColor: {r: 0.15094337, g: 0.087430365, b: 0.05339977, a: 0}
@@ -329,8 +350,8 @@ Material:
     - _EmissiveColor2: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor3: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
-    - _EyeShadowInColor: {r: 1, g: 1, b: 1, a: 0}
-    - _EyeShadowOutColor: {r: 1, g: 1, b: 1, a: 0}
+    - _EyeShadowInColor: {r: 0.4245283, g: 0.13817194, b: 0.13817194, a: 0}
+    - _EyeShadowOutColor: {r: 0.754717, g: 0.5456536, b: 0.23851903, a: 0}
     - _FemaleLipsNailIMaleBeardNailsColor: {r: 1, g: 1, b: 1, a: 0}
     - _FreaklesColor: {r: 0, g: 0, b: 0, a: 0}
     - _HairCapColor: {r: 0, g: 0, b: 0, a: 0}
@@ -346,23 +367,7 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &1232282869280387443
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 11
-  hdPluginSubTargetMaterialVersions:
-    m_Keys: []
-    m_Values: 
---- !u!114 &4286139924600083640
+--- !u!114 &5887510177843821469
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
