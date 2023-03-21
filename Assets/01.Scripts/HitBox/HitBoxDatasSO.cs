@@ -32,7 +32,7 @@ namespace HitBox
 			{
 				foreach (var _hit in _hitList.Value.hitBoxDataList)
 				{
-					_hit.buff = setAllHitBoxBuffList.ToList();
+					_hit.buffList = setAllHitBoxBuffList.ToList();
 				}
 			}
 		}

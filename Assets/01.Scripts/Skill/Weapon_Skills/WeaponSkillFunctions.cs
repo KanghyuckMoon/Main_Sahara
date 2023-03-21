@@ -7,24 +7,6 @@ using Module;
 
 namespace Skill
 {
-    public enum Buffs
-    {
-        U_Healing,
-        U_ReduceDamage,
-        None
-    }
-    
-    [System.Serializable]
-    public class BuffData
-    {
-        public Buffs buffs;
-        public float duration;
-        public float value;
-        public float period;
-        public string spownObjectName;
-        public string spriteName;
-        public Bufftype bufftype;
-    }
     public class WeaponSkillFunctions : MonoBehaviour
     {
         public string animationName = "WeaponSkill";
