@@ -53,7 +53,7 @@ namespace Module
 
         }
 
-        public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
+        /*public override void OnTriggerEnter(Collider other)
         {
             foreach (string _tagName in mainModule.HitCollider)
             {
@@ -73,6 +73,40 @@ namespace Module
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
                     if (_statData != null)
                     {
+                        HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance));
+                        _statData.ChargeMana(mainModule.StatData.ManaRegen);
+                    }
+                    else
+                    {
+                        HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
+                    }
+                }
+            }
+        }*/
+
+        public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
+        {
+            foreach (string _tagName in mainModule.HitCollider)
+            {
+                if (other.CompareTag(_tagName) && !mainModule.IsDead && !mainModule.IsCanHit)
+                {
+                    InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
+                    if (_inGameHitBox is null) return;
+                    if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
+                    praviousHitBoxIndex = _inGameHitBox.GetIndex();
+                    AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
+                    StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
+
+                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.1f);
+                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.1f);
+
+                    mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
+                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
+                    
+                    mainModule.SettingTime.SetTime(0.15f, 0.1f);
+                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(0.2f, 0.1f);
+                    if (_statData != null)
+                    {
                         HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
                         _statData.ChargeMana(mainModule.StatData.ManaRegen);
                     }
@@ -83,7 +117,6 @@ namespace Module
                 }
             }
         }
-
         private IEnumerator HitKnockBack(InGameHitBox _inGameHitBox, Vector3 _closetPos)
         {
             Vector3 _dir;
@@ -106,13 +139,11 @@ namespace Module
 
             mainModule.KnockBackVector = _dir * _inGameHitBox.KnockbackPower();
         }
-
         public override void FixedUpdate()
         {
             GroundCheack();
             Slope();
         }
-
         private void Slope()
         {
             Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
@@ -163,13 +194,11 @@ namespace Module
 
             mainModule.isGround = _isLand && mainModule.IsSlope;
         }
-
         IEnumerator LandingDelay()
         {
             yield return new WaitForSeconds(0.3f);
             mainModule.StopOrNot = 1;
         }
-
         private void FallDamage()
         {
             if (JumpModule.gravityWeight <= -100)

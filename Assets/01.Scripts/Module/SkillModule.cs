@@ -25,8 +25,7 @@ namespace Module
 
         public SkillModule(AbMainModule _mainModule) : base(_mainModule)
         {
-            SetSkill("E", "TestSkill_01");
-            SetSkill("R", "TestSkill_02");
+            
         }
 
         public SkillModule() : base()
@@ -36,7 +35,8 @@ namespace Module
 
         public override void Start()
         {
-            
+            SetSkill("E", "TestSkill_01");
+            SetSkill("R", "TestSkill_02");
         }
 
 

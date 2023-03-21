@@ -40,10 +40,18 @@ namespace PassiveItem
                     stateModule.AddState(State.SKILL);
                     mainModule.Animator.SetBool("Dash", true);
                     
-                    
+                    //Debug.LogError(TimeManager.StaticTime.PlayerDeltaTime);
                     
                     Vector3 _inputDir = new Vector3(mainModule.ObjDir.x, 0, mainModule.ObjDir.y);
-                    Vector3 _dir = mainModule.ObjRotation.eulerAngles * mainModule.ObjDir * (mainModule.PersonalDeltaTime * 28f);  
+
+                    float _direction = Mathf.Atan2(_inputDir.x, _inputDir.z) * Mathf.Rad2Deg +
+                                       mainModule.ObjRotation.eulerAngles.y;
+                    mainModule.transform.rotation = Quaternion.Euler(0, _direction, 0);
+                    //Vector3 _realVec = Quaternion.Euler((_vec));
+                    
+                    //Debug.LogError((mainModule.transform.rotation.eulerAngles));
+
+                    Vector3 _dir = (mainModule.transform.forward) * 36f * TimeManager.StaticTime.PlayerDeltaTime;
                     characterController.Move(_dir);
                 }
             }

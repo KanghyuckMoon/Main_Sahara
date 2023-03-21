@@ -24,6 +24,9 @@ namespace Weapon
         [ContextMenu("위치 저장")]
         public void Upload()
         {
+            objectData.position = transform.localPosition;
+            objectData.rotation = transform.localRotation;
+            
             projectilePosSO ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
             projectilePosSO.Upload(objectData);
         }
