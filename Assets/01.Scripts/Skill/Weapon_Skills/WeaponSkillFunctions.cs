@@ -1,14 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using Buff;
+using DG.Tweening.Plugins;
 using UnityEngine;
 using Module;
 
 namespace Skill
 {
+    public enum Buffs
+    {
+        U_Healing,
+        U_ReduceDamage,
+        None
+    }
+    
+    [System.Serializable]
+    public class BuffData
+    {
+        public Buffs buffs;
+        public float duration;
+        public float value;
+        public float period;
+        public string spownObjectName;
+        public string spriteName;
+        public Bufftype bufftype;
+    }
     public class WeaponSkillFunctions : MonoBehaviour
     {
         public string animationName = "WeaponSkill";
+
+        public List<BuffData> buffList = new List<BuffData>();
+        public List<BuffData> debuffList = new List<BuffData>();
 
         protected void PlaySkillAnimation(AbMainModule _mainModule, AnimationClip _animationClip)
         {
@@ -20,13 +42,24 @@ namespace Skill
 
         protected void GetBuff(AbMainModule _mainModule)
         {
-            BuffModule _bufmodule= _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff); 
-            _bufmodule.AddBuff(new ReduceDamage_Buf(_bufmodule)
-                .SetValue(10)
-                .SetDuration(10)
-                .SetPeriod(11)
-                .SetSpownObjectName("HealEffect")
-                .SetSprite("Demon"), Bufftype.Update);
+            BuffModule _bufmodule= _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
+            
+            foreach (var _buffs in buffList)
+            {
+                GetBuff(_buffs, _bufmodule)
+                    .SetDuration(_buffs.duration)
+                    .SetPeriod(_buffs.period)
+                    .SetValue(_buffs.value)
+                    .SetSprite(_buffs.spriteName)
+                    .SetSpownObjectName(_buffs.spownObjectName);
+            }
         }
+
+        public AbBuffEffect GetBuff(BuffData _buffs, BuffModule _bufmodule) => _buffs.buffs switch
+        {
+            Buffs.U_Healing => new Healing_Buf(_bufmodule),
+            Buffs.U_ReduceDamage => new ReduceDamage_Buf(_bufmodule),
+            Buffs.None => null
+        };
     }
 }
