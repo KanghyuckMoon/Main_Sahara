@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.SeralizableDictionary;
+using System.Linq;
+using Skill;
 
 namespace HitBox
 {
@@ -12,7 +14,8 @@ namespace HitBox
 	public class HitBoxDatasSO : ScriptableObject
 	{
 		public StringListHitBoxData hitBoxDataDic = new StringListHitBoxData();
-
+		public List<Buffs> setAllHitBoxBuffList = new List<Buffs>();
+		
 		public HitBoxDataList GetHitboxList(string str)
 		{
 			if (hitBoxDataDic.TryGetValue(str, out var value))
@@ -20,6 +23,18 @@ namespace HitBox
 				return value;
 			}
 			return null;
+		}
+
+		[ContextMenu("SetAllHitBoxBuff")]
+		public void SetAllHitBoxBuff()
+		{
+			foreach (var _hitList in hitBoxDataDic)
+			{
+				foreach (var _hit in _hitList.Value.hitBoxDataList)
+				{
+					_hit.buff = setAllHitBoxBuffList.ToList();
+				}
+			}
 		}
 
 		public void UploadHitBox(HitBoxData hitBoxData)
@@ -119,6 +134,9 @@ namespace HitBox
 		public float attackStunDelay;
 		public string swingEffect = "NULL";
 		public string hitEffect = "NULL";
+		
+		//버프, 디버프
+		public List<Buffs> buffList = new List<Buffs>();
 
 		public static HitBoxData CopyNew(HitBoxData _hitBoxData)
 		{
@@ -140,6 +158,7 @@ namespace HitBox
 			_newHitBox.swingEffectSize = _hitBoxData.swingEffectSize;
 			_newHitBox.swingEffect = _hitBoxData.swingEffect;
 			_newHitBox.hitEffect = _hitBoxData.hitEffect;
+			_newHitBox.buffList = _hitBoxData.buffList;
 
 			return _newHitBox;
 		}
@@ -163,6 +182,8 @@ namespace HitBox
 			swingEffectSize = _hitBoxData.swingEffectSize;
 			swingEffect = _hitBoxData.swingEffect;
 			hitEffect = _hitBoxData.hitEffect;
+			
+			buffList = _hitBoxData.buffList;
 		}
 	}
 
