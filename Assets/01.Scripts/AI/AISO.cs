@@ -30,6 +30,10 @@ public class AISO : ScriptableObject
 	//Around
 	public float AroundRadius = 1f;
 
+	//Move Input Delta
+	public float rotateMoveInputSpeed = 1f;
+	public float runMoveInputSpeed = 1f;
+	
 	//����ĳ��Ʈ
 	public LayerMask TargetMask;
 	public LayerMask ObstacleMask;
