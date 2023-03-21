@@ -49,7 +49,7 @@ namespace PassiveItem
                     mainModule.transform.rotation = Quaternion.Euler(0, _direction, 0);
                     //Vector3 _realVec = Quaternion.Euler((_vec));
                     
-                    Debug.LogError((mainModule.transform.rotation.eulerAngles));
+                    //Debug.LogError((mainModule.transform.rotation.eulerAngles));
 
                     Vector3 _dir = (mainModule.transform.forward) * 36f * TimeManager.StaticTime.PlayerDeltaTime;
                     characterController.Move(_dir);

@@ -20,6 +20,7 @@ namespace Module
         private AttackModule attackModule;
         private AbMainModule mainModule;
         private StateModule stateModule;
+        private WeaponModule weaponModule;
 
         private float delay = 1;
         private bool canSpwon;
@@ -31,6 +32,7 @@ namespace Module
             mainModule = GetComponent<AbMainModule>();
             attackModule = mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+            weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
         }
 
         public void ChangeSO(ProjectilePositionSO _positionSO)
@@ -77,6 +79,7 @@ namespace Module
         public void MoveProjectile()
         {
             //if (stateModule.CheckState(State.ATTACK)) return;
+            if (!weaponModule.isProjectileWeapon) return;
             if (canSpwon) return;
             if (PositionSO is null)
                 return;
