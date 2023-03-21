@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Buff;
+using Pool;
 
 namespace Module
 {
@@ -24,6 +25,12 @@ namespace Module
         {
 
         }
+        
+        public BuffModule() : base()
+        {
+
+        }
+
 
         public override void Start()
         {
@@ -77,6 +84,24 @@ namespace Module
             {
                 observer.Receive();
             }
+        }
+        
+        public override void OnDisable()
+        {
+            buffDic.Clear();
+            buffList = null;
+            observers = null;
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<BuffModule>("BuffModule", this);
+        }
+        
+        public override void OnDestroy()
+        {
+            buffDic.Clear();
+            buffList = null;
+            observers = null;
+            base.OnDestroy();
+            ClassPoolManager.Instance.RegisterObject<BuffModule>("BuffModule", this);
         }
     }
 }

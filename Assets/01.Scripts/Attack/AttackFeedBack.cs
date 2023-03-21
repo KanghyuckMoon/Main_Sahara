@@ -10,7 +10,7 @@ using Utill.Coroutine;
 namespace Attack
 {
     /// <summary>
-    /// ÀÌ³à¼®Àº ¸ðµç ¹«±â¿¡ µé¾î°¥ ³à¼®ÀÌ¸ç ¿©±â¼­ ¸ðµç °ø°ÝÇßÀ» ¶§ÀÇ ¼³Á¤µéÀÌ µé¾î°£´Ù.
+    /// ï¿½Ì³à¼®ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½î°¥ ï¿½à¼®ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½.
     /// </summary>
     public class AttackFeedBack : MonoBehaviour
     {
@@ -51,6 +51,10 @@ namespace Attack
 
         private void AttackEffect(Vector3 vec, string _efectName)
         {
+            if (_efectName == null || _efectName == "NULL")
+            {
+                return;
+            }
             EffectManager.Instance.SetEffectDefault(_efectName, vec, Quaternion.identity);
         }
 

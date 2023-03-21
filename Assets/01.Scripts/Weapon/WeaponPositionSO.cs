@@ -32,12 +32,17 @@ namespace Weapon
 
             if (positionDatas.TryGetValue(_weaponPositionData.objectName, out var _list))
             {
-                _list = _weaponPositionData;
+                positionDatas[_weaponPositionData.objectName] = WeaponPositionData.Copy(_weaponPositionData);
             }
             else
             {
                 positionDatas.Add(_weaponPositionData.objectName, _weaponPositionData);
             }
+            
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
+            
         }
     }
 
@@ -53,5 +58,16 @@ namespace Weapon
         public string objectName;
         public Vector3 weaponPosition;
         public Quaternion weaponRotation;
+
+        public static WeaponPositionData Copy(WeaponPositionData _weaponPositionData)
+        {
+            WeaponPositionData _data = new WeaponPositionData();
+            _data.objectName = _weaponPositionData.objectName;
+            _data.weaponPosition = _weaponPositionData.weaponPosition;
+            _data.weaponRotation = _weaponPositionData.weaponRotation;
+            return _data;
+        }
     }
+    
+    
 }

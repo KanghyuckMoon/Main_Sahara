@@ -214,27 +214,27 @@ namespace Data
 
         public void Awake()
 		{
-			try
-			{
-				playerdata = AddressablesManager.Instance.GetResource<CreatureDataSO>(dataSOPath);
-				MaxHp = playerdata.hp;
-				CurrentHp = playerdata.hp;
-				MaxMana = playerdata.mp;
-				Jump = playerdata.jumpScale;
-                PhysicalResistance = playerdata.physicalResistance;
-                MagicResistance = playerdata.magicResistance;
-                MeleeAttack = playerdata.physicalMeleeAttack;
-                RangeAttack = playerdata.physicalRangedAttack;
-                MagicAttack = playerdata.magicAttack;
-                HealthRegen = playerdata.healthRegen;
-                ManaRegen = playerdata.manaRegen;
-				WalkSpeed = playerdata.walkingSpeed;
-				RunSpeed = playerdata.runSpeed;
-			}
-			catch
-			{
-                AddressablesManager.Instance.GetResourceAsync<CreatureDataSO>(dataSOPath, AsyncSetPlayerData);
-            }
+			playerdata = AddressablesManager.Instance.GetResource<CreatureDataSO>(dataSOPath);
+			MaxHp = playerdata.hp;
+			CurrentHp = playerdata.hp;
+			MaxMana = playerdata.mp;
+			Jump = playerdata.jumpScale;
+            PhysicalResistance = playerdata.physicalResistance;
+            MagicResistance = playerdata.magicResistance;
+            MeleeAttack = playerdata.physicalMeleeAttack;
+            RangeAttack = playerdata.physicalRangedAttack;
+            MagicAttack = playerdata.magicAttack;
+            HealthRegen = playerdata.healthRegen;
+            ManaRegen = playerdata.manaRegen;
+			WalkSpeed = playerdata.walkingSpeed;
+			RunSpeed = playerdata.runSpeed;
+			//try
+			//{
+			//}
+			//catch
+			//{
+            //    AddressablesManager.Instance.GetResourceAsync<CreatureDataSO>(dataSOPath, AsyncSetPlayerData);
+            //}
 		}
         private void AsyncSetPlayerData(CreatureDataSO _creatureDataSO)
         {

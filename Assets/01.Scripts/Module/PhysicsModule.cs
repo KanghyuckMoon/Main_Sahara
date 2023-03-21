@@ -125,7 +125,7 @@ namespace Module
                 //mainModule.SlopeHit = _raycastHit;
                 var angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
                 //Debug.LogError(angle + " : : : : " + Vector3.Angle(Vector3.up, _raycastHit.normal));
-                mainModule.IsSlope = (angle < mainModule.CharacterController.slopeLimit) && (angle > -mainModule.CharacterController.slopeLimit); // 90 - mainModule.MaxSlope = ¿Ã¶ó°¥ ¼ö ÀÖ´Â °¢µµ
+                mainModule.IsSlope = (angle < mainModule.CharacterController.slopeLimit) && (angle > -mainModule.CharacterController.slopeLimit); // 90 - mainModule.MaxSlope = ï¿½Ã¶ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
                 //return;
                 if(mainModule.IsSlope is false)
                 {
@@ -134,7 +134,7 @@ namespace Module
             }
             else
             {
-                //Debug.LogError("¾È´ê¾Æ´ê¾Æ´ê¾Æ");
+                //Debug.LogError("ï¿½È´ï¿½Æ´ï¿½Æ´ï¿½ï¿½");
                 mainModule.IsSlope = true;
             }
 
@@ -174,7 +174,7 @@ namespace Module
         {
             if (JumpModule.gravityWeight <= -100)
             {
-                //Debug.LogError("³«»ç ³«»ç");
+                //Debug.LogError("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 HitModule.GetHit(20);
             }
 
