@@ -32,7 +32,7 @@ namespace HitBox
 			{
 				foreach (var _hit in _hitList.Value.hitBoxDataList)
 				{
-					_hit.buffList = setAllHitBoxBuffList.ToList();
+					//_hit.buffList = setAllHitBoxBuffList.ToList();
 				}
 			}
 		}
@@ -136,7 +136,7 @@ namespace HitBox
 		public string hitEffect = "NULL";
 		
 		//버프, 디버프
-		public List<Buffs> buffList = new List<Buffs>();
+		public List<BuffData> buffList = new List<BuffData>();
 
 		public static HitBoxData CopyNew(HitBoxData _hitBoxData)
 		{

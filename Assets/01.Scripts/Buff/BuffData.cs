@@ -24,8 +24,8 @@ namespace Buff
         public float duration;
         public float value;
         public float period;
-        public string spownObjectName;
-        public string spriteName;
+        /*public string spownObjectName;
+        public string spriteName;*/
         public BuffType bufftype;
     }
     
