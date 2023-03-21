@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
-using UI.EventAlarm;
+//using UI.EventAlarm;
 using UI.Base;
 using System;
 using UI.Production;
@@ -25,9 +25,10 @@ namespace UI.ConstructorManager
         private UIConstructor<BuffEntryView> buffEntryConstructor;
         private UIConstructor<PopupGetItemView> popupGetItemConstructor;
 
-        private EventAlarmPresenter eventAlarmPresenter; 
 
         private Dictionary<Type, ICreateUI> uiConstructorDic = new Dictionary<Type, ICreateUI>();
+
+        /*private EventAlarmPresenter eventAlarmPresenter; 
 
         // 占쏙옙占쏙옙占쏙옙티
         public Dictionary<Type, ICreateUI> UIConstructorDic => uiConstructorDic; 
@@ -49,7 +50,7 @@ namespace UI.ConstructorManager
                 }
                 return eventAlarmPresenter;
             }
-        }
+        }*/
 
 
         private void OnEnable()

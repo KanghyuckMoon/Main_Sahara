@@ -18,5 +18,9 @@ public class PopupTest : MonoBehaviour
             ItemData itemData = ItemData.CopyItemDataSO(ItemDataSo);
             PopupUIManager.Instance.CreatePopup<PopupGetItemPr>(PopupType.GetItem, itemData);
         }
+        if (Input.GetKeyDown(KeyCode.B))
+        {  
+            PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, "temData");
+        }
     }
 }

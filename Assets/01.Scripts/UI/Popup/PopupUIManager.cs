@@ -8,7 +8,8 @@ using System;
 using UI.Base;
 using UI.Popup;
 using UI.Production; 
-using System.Linq; 
+using System.Linq;
+using UI.EventAlarm;
 
 namespace UI.Popup
 {
@@ -19,6 +20,8 @@ namespace UI.Popup
         private Transform popupParent;
 
         private PopupHudPr popupHudPr;
+        private EventAlarmScreenPresenter _eventAlarmScreenPr; 
+        
         private List<IPopupPr> popupPrList = new List<IPopupPr>(); 
 
         public Transform PopupParent
@@ -52,9 +55,13 @@ namespace UI.Popup
             T _popupGetItemPr = new T();
             
             popupPrList.First(x => x.PopupType == _popupType).SetParent(_popupGetItemPr.Parent);
-            StartCoroutine(_popupGetItemPr.TimerCo(2f));
+            if (_time > 0f)
+            {
+                StartCoroutine(_popupGetItemPr.TimerCo(_time));
+            }
             _popupGetItemPr.SetData(_data);
         }
+        
         private void Init()
         {
             GameObject _parent = GameObject.FindWithTag("UIParent");
@@ -66,8 +73,11 @@ namespace UI.Popup
 
         private void SetPresenters()
         {
-            popupHudPr = popupParent.GetComponentInChildren<PopupHudPr>(); 
+            popupHudPr = popupParent.GetComponentInChildren<PopupHudPr>();
+            _eventAlarmScreenPr = popupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
+            
             popupPrList.Add(popupHudPr);
+            popupPrList.Add(_eventAlarmScreenPr);
         }
         /*private Dictionary<PopupType, Type> popupChangeDic = new Dictionary<PopupType, Type>();
         private Dictionary<PopupType, IPopup> popupDic = new Dictionary<PopupType, IPopup>();

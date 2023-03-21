@@ -10,6 +10,7 @@ namespace UI.Base
     {
         GetItem, //  아이템 획득시 
         FindItem, // 아이템 주변 다가갔을 때
+        EventAlarm, // 알림창
     }
     public interface IPopupPr
     {
