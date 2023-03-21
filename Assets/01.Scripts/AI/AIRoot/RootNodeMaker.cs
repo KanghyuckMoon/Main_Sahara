@@ -151,6 +151,9 @@ namespace AI
 				case NodeType.PercentAction:
 					_node = Action(NodeModelToINodeAction(_nodeModel.nodeAction));
 					break;
+				case NodeType.IfSelector:
+					_node = IfSelector(NodeModelToINodeCondition(_nodeModel.nodeCondition));
+					break;
 			}
 			if (_parent is not null)
 			{

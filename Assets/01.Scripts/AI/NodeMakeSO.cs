@@ -12,7 +12,7 @@ namespace AI
 		Selector,
 		PercentRandomChoice,
 		PercentAction,
-
+		IfSelector,
 	}
 
 	public enum NodeAction
