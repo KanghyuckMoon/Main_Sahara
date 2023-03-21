@@ -13,7 +13,7 @@ namespace AI
 	public partial class RootNodeMaker
 	{
 		//Condition
-		private bool FerCloserMoveCondition()
+		private bool FerCloserMoveCondition() //Make
 		{
 			Vector3 vec = aiModule.MainModule.transform.position - aiModule.Player.position;
 			float sqrLen = vec.sqrMagnitude;
@@ -30,7 +30,7 @@ namespace AI
 			}
 			return true;
 		}
-		private bool DiscorverCondition()
+		private bool DiscorverCondition() //Make
 		{
 			Vector3 vec = aiModule.MainModule.transform.position - aiModule.Player.position;
 			float sqrLen = vec.sqrMagnitude;
@@ -43,7 +43,7 @@ namespace AI
 			return true;
 		}
 
-		private bool AttackCondition()
+		private bool AttackCondition() //Make
 		{
 			Vector3 targetPos = aiModule.Player.position;
 			Vector3 targetDir = (targetPos - Position).normalized;
@@ -58,7 +58,7 @@ namespace AI
 			return false;
 		}
 
-		private bool AttackRangeCondition()
+		private bool AttackRangeCondition() //Make
 		{
 			Vector3 targetPos = aiModule.Player.position;
 			
@@ -69,7 +69,7 @@ namespace AI
 			return false;
 		}
 
-		private bool TargetFindCondition()
+		private bool TargetFindCondition() //Make
 		{
 			Collider[] Targets = Physics.OverlapSphere(Position, aiSO.ViewRadius, aiSO.TargetMask);
 			Vector3 targetPos = aiModule.Player.position;
@@ -85,7 +85,7 @@ namespace AI
 			return false;
 		}
 
-		private bool DiscoveryCondition()
+		private bool AIHostileStateNotUnknow() //Make
 		{
 			if (aiModule.AIModuleHostileState == AIModule.AIHostileState.Unknow)
 			{
@@ -93,7 +93,7 @@ namespace AI
 			}
 			return true;
 		}
-		private bool NotDiscoveryCondition()
+		private bool AIHostileStateNotDiscovery() //Make
 		{
 			if (aiModule.AIModuleHostileState == AIModule.AIHostileState.Unknow || aiModule.AIModuleHostileState == AIModule.AIHostileState.Investigate || aiModule.AIModuleHostileState == AIModule.AIHostileState.Suspicion)
 			{
@@ -101,7 +101,39 @@ namespace AI
 			}
 			return false;
 		}
-		private bool JumpMoveCondition()
+		private bool AIHostileStateUnKnow()
+		{
+			if (aiModule.AIModuleHostileState ==  AIModule.AIHostileState.Unknow)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool AIHostileStateDiscovery() //Make
+		{
+			if (aiModule.AIModuleHostileState ==  AIModule.AIHostileState.Discovery)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool AIHostileStateInvestigate() //Make
+		{
+			if (aiModule.AIModuleHostileState ==  AIModule.AIHostileState.Investigate)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool AIHostileStateSuspicion() //Make
+		{
+			if (aiModule.AIModuleHostileState ==  AIModule.AIHostileState.Suspicion)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool JumpMoveCondition() //Make
 		{
 			if (path.corners.Length > 1)
 			{
@@ -114,7 +146,7 @@ namespace AI
 			return false;
 		}
 
-		private bool JumpCheck()
+		private bool JumpCheck() //Make
 		{
 			jumpCheckVector = Vector3.zero;
 			jumpCheckVector = aiModule.Player.position - Position;
@@ -147,7 +179,7 @@ namespace AI
 			return false;
 		}
 
-		private bool HitCheck()
+		private bool HitCheck() //Make
 		{
 			if (aiModule.MainModule.IsHit)
 			{
@@ -156,7 +188,7 @@ namespace AI
 			return false;
 		}
 
-		private bool HostileCheck()
+		private bool HostileCheck() //Make
 		{
 			return aiModule.IsHostilities;
 		}
@@ -172,21 +204,45 @@ namespace AI
 			time1f = 1f;
 			return true;
 		}
-		private bool JumpAndTime1fCondition()
+		private bool JumpAndTime1fCondition() //Make
 		{
-			return JumpCondition() & Time1fCondition();
+			return GroundCondition() & Time1fCondition();
 		}
-		private bool JumpCondition()
+		private bool GroundCondition() //Make
 		{
 			return aiModule.MainModule.isGround;
 		}
-		private bool NotJumpCondition()
+		private bool NotGroundCondition() //Make
 		{
 			return !aiModule.MainModule.isGround;
 		}
+		private bool CheckHPPercent50Condition() //Make
+		{
+		    if(GetPercent() < 0.5f)
+		    { 
+			    return true;
+		    }
+		    return false;
+		}
+		private bool CheckHPPercent30Condition() //Make
+		{
+			if(GetPercent() < 0.3f)
+			{ 
+				return true;
+			}
+			return false;
+		}
+		private bool CheckHPPercent20Condition() //Make
+		{
+			if(GetPercent() < 0.2f)
+			{ 
+				return true;
+			}
+			return false;
+		}
 
 		//Action
-		private void SuspicionGaugeSet()
+		private void SuspicionGaugeSet() //Make
 		{
 			switch (aiModule.AIModuleHostileState)
 			{
@@ -228,7 +284,7 @@ namespace AI
 			}
 		}
 
-		private void TargetFind()
+		private void TargetFind() //Make
 		{
 			Vector3 targetPos = aiModule.Player.position;
 			Vector3 targetDir = (targetPos - Position).normalized;
@@ -263,25 +319,37 @@ namespace AI
 			}
 		}
 
-		private void Reset()
+		private void Reset() //Make
 		{
 			aiModule.MainModule.Attacking = false;
 			aiModule.MainModule.IsJump = false;
 			aiModule.MainModule.IsJumpBuf = false;
 		}
-		private void MoveReset()
+		private void MoveReset() //Make
 		{
 			aiModule.AIModuleState = AIModule.AIState.Idle;
 			aiModule.MainModule.IsSprint = false;
 			aiModule.MainModule.ObjDir = Vector2.zero;
 		}
 
-		private void Attack()
+		private void Attack() //Make
 		{
 			aiModule.AIModuleState = AIModule.AIState.Attack;
 			aiModule.MainModule.Attacking = true;
 		}
-		private void CloserMove()
+		private void SkillWeapon() //Make
+		{
+			aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).UseWeaponSkill();
+		}
+		private void SkillE() //Make
+		{
+			aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).UseSkill("E");
+		}
+		private void SkillR() //Make
+		{
+			aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).UseSkill("R");
+		}
+		private void CloserMove() //Make
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
@@ -305,7 +373,44 @@ namespace AI
 				aiModule.MainModule.ObjDir = aiModule.Input;
 			}
 		}
-		private void SetMoveDir()
+		
+		private void WalkAwayMove() //Make
+		{
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			{
+				PathSetting();
+				Vector3 vec = Vector3.zero;
+				vec =  Position - aiModule.Player.position;
+				vec.y = 0;
+				vec = vec.normalized;
+				Vector2 _inputdir = new Vector2(vec.x, vec.z);
+				aiModule.Input = _inputdir;
+
+				aiModule.AIModuleState = AIModule.AIState.Walk;
+				aiModule.MainModule.IsSprint = false;
+				aiModule.MainModule.ObjDir = aiModule.Input;
+			}
+		}
+		
+		private void RunAwayMove() //Make
+		{
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			{
+				PathSetting();
+				Vector3 vec = Vector3.zero;
+				vec =  Position - aiModule.Player.position;
+				vec.y = 0;
+				vec = vec.normalized;
+				Vector2 _inputdir = new Vector2(vec.x, vec.z);
+				aiModule.Input = _inputdir;
+
+				aiModule.AIModuleState = AIModule.AIState.Run;
+				aiModule.MainModule.IsSprint = true;
+				aiModule.MainModule.ObjDir = aiModule.Input;
+			}
+		}
+		
+		private void SetMoveDir() //Make
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
@@ -330,7 +435,7 @@ namespace AI
 			}
 		}
 
-		private void RunMove()
+		private void RunMove()//Make
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
@@ -354,7 +459,7 @@ namespace AI
 				aiModule.MainModule.ObjDir = aiModule.Input;
 			}
 		}
-		private void JumpAndRunMove()
+		private void JumpAndRunMove() //Make
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
@@ -381,7 +486,7 @@ namespace AI
 			}
 		}
 
-		private void Ignore()
+		private void Ignore() //Make
 		{
 			aiModule.Input = Vector2.Lerp(aiModule.Input, Vector2.zero, Time.deltaTime * 10);
 			aiModule.AIModuleState = AIModule.AIState.Idle;
@@ -389,28 +494,27 @@ namespace AI
 			aiModule.MainModule.ObjDir = aiModule.Input;
 		}
 
-		private void Jump()
+		private void Jump() //Make 
 		{
 			aiModule.AIModuleState = AIModule.AIState.Jump;
 			aiModule.MainModule.IsJump = true;
 			aiModule.MainModule.IsJumpBuf = true;
 		}
 
-		private void Rotate()
+		private void Rotate() //Make
 		{
 			Vector3 _vec = (aiModule.Player.position - Position).normalized;
 			_vec.y = aiModule.MainModule.transform.forward.y;
 			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime);
 		}
 
-		private void RotateXYZ()
+		private void RotateXYZ() //Make
 		{
 			Vector3 _vec = (aiModule.Player.position - Position).normalized;
-			//_vec.y = aiModule.MainModule.transform.forward.y;
 			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime);
 		}
 
-		private void ModelRotateXYZ()
+		private void ModelRotateXYZ() //Make
 		{
 			Vector3 _vec = (aiModule.Player.position - Position).normalized;
 			aiModule.MainModule.Model.forward = Vector3.Lerp(aiModule.MainModule.Model.forward, _vec, Time.deltaTime);
@@ -420,9 +524,8 @@ namespace AI
 			aiModule.IsHostilities = true;
 		}
 
-		private void TrackMove()
+		private void TrackMove() //Make
 		{
-			//����
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
 				Vector3 vec = aiModule.SmoothPath.EvaluateTangent(aiModule.SmoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
@@ -470,6 +573,11 @@ namespace AI
 				elapsed = 0f;
 				NavMesh.CalculatePath(Position, aiModule.Player.position, NavMesh.AllAreas, path);
 			}
+		}
+
+		private float GetPercent()
+		{
+			return (float)aiModule.MainModule.StatData.CurrentHp / aiModule.MainModule.StatData.MaxHp;
 		}
 
 	}

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.ResourceManagement;
 using Utill.Addressable;
@@ -169,6 +171,7 @@ namespace AI
 			return _node;
 		}
 
+		[CanBeNull]
 		private System.Action NodeModelToINodeAction(NodeAction _nodeAction)
 		{
 			return _nodeAction switch
@@ -183,7 +186,14 @@ namespace AI
 				NodeAction.JumpAndRunMove => JumpAndRunMove,
 				NodeAction.TargetFind => TargetFind,
 				NodeAction.SuspicionGaugeSet => SuspicionGaugeSet,
-				_ => null,
+				NodeAction.MoveReset => MoveReset,
+				NodeAction.WalkAwayMove => WalkAwayMove,
+				NodeAction.RunAwayMove => RunAwayMove,
+				NodeAction.SetMoveDir => SetMoveDir,
+				NodeAction.RotateXYZ => RotateXYZ,
+				NodeAction.ModelRotateXYZ => ModelRotateXYZ,
+				NodeAction.TrackMove => TrackMove,
+				_ => null
 			};
 		}
 		private System.Func<bool> NodeModelToINodeCondition(NodeCondition _nodeCondition)
@@ -194,11 +204,25 @@ namespace AI
 				NodeCondition.DiscorverCondition => DiscorverCondition,
 				NodeCondition.AttackCondition => AttackCondition,
 				NodeCondition.JumpMoveCondition => JumpMoveCondition,
-				NodeCondition.NotDiscoveryCondition => NotDiscoveryCondition,
-				NodeCondition.DiscoveryCondition => DiscorverCondition,
+				NodeCondition.AIHostileStateNotDiscovery => AIHostileStateNotDiscovery,
 				NodeCondition.TargetFindCondition => TargetFindCondition,
 				NodeCondition.AttackRangeCondition => AttackRangeCondition,
-				_ => null,
+				NodeCondition.AIHostileStateUnknow => AIHostileStateUnKnow,
+				NodeCondition.AIHostileStateNotUnknow => AIHostileStateNotUnknow,
+				NodeCondition.AIHostileStateInvestigate => AIHostileStateInvestigate,
+				NodeCondition.AIHostileStateSuspicion => AIHostileStateSuspicion,
+				NodeCondition.AIHostileStateDiscovery => AIHostileStateDiscovery,
+				NodeCondition.JumpCheck => JumpCheck,
+				NodeCondition.HitCheck => HitCheck,
+				NodeCondition.HostileCheck => HostileCheck,
+				NodeCondition.JumpAndTime1fCondition => JumpAndTime1fCondition,
+				NodeCondition.GroundCondition => GroundCondition,
+				NodeCondition.NotGroundCondition => NotGroundCondition,
+				NodeCondition.CheckHPPercent50Condition => CheckHPPercent50Condition,
+				NodeCondition.CheckHPPercent30Condition => CheckHPPercent30Condition,
+				NodeCondition.CheckHPPercent20Condition => CheckHPPercent20Condition,
+				NodeCondition.Time1FCondition => Time1fCondition,
+				_ => null
 			};
 		}
 	}

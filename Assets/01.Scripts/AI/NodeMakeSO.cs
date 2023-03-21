@@ -28,6 +28,13 @@ namespace AI
 		JumpAndRunMove,
 		TargetFind,
 		SuspicionGaugeSet,
+		MoveReset,
+		WalkAwayMove,
+		RunAwayMove,
+		SetMoveDir,
+		RotateXYZ,
+		ModelRotateXYZ,
+		TrackMove,
 	}
 
 	public enum NodeCondition
@@ -37,10 +44,24 @@ namespace AI
 		DiscorverCondition,
 		AttackCondition,
 		JumpMoveCondition,
-		NotDiscoveryCondition,
-		DiscoveryCondition,
+		AIHostileStateNotDiscovery,
 		TargetFindCondition,
 		AttackRangeCondition,
+		AIHostileStateUnknow,
+		AIHostileStateNotUnknow,
+		AIHostileStateInvestigate,
+		AIHostileStateSuspicion,
+		AIHostileStateDiscovery,
+		JumpCheck,
+		HitCheck,
+		HostileCheck,
+		JumpAndTime1fCondition,
+		GroundCondition,
+		NotGroundCondition,
+		CheckHPPercent50Condition,
+		CheckHPPercent30Condition,
+		CheckHPPercent20Condition,
+		Time1FCondition,
 	}
 
 	[CreateAssetMenu(fileName = "NodeMakeSO", menuName = "SO/NodeMakeSO")]

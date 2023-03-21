@@ -14,9 +14,9 @@ namespace AI
 		{
 			return Selector
 			(
-				IgnoreAction(Reset), //¸®¼Â
+				IgnoreAction(Reset), //ë¦¬ì…‹
 				IgnoreAction(TargetFind),
-				IfAction(NotDiscoveryCondition, MoveReset),
+				IfAction(AIHostileStateNotDiscovery, MoveReset),
 				IgnoreAction(ModelRotateXYZ),
 				IfSelector(JumpAndTime1fCondition, 
 				IgnoreAction(Jump),

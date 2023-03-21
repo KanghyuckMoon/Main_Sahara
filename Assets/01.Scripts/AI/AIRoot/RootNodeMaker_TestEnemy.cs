@@ -14,20 +14,20 @@ namespace AI
 		{
 			return Selector
 			(
-				IgnoreAction(Reset), //¸®¼Â
+				IgnoreAction(Reset), //ë¦¬ì…‹
 				IgnoreAction(TargetFind),
 				IgnoreAction(SuspicionGaugeSet),
-				IfAction(NotDiscoveryCondition, Ignore),
-				IfAction(FerCloserMoveCondition, RunMove), //³Ê¹« ¸Ö¸® ÀÖÀ¸¸é ±ÙÁ¢
-				IfSelector(AttackRangeCondition, //°ø°İ »ç°Å¸® ¾È¿¡ µé¾î¿ÔÀ¸¸é
-					IfAction(AttackCondition, Attack), //½Ã¾ß°¢ÀÌ µÇ¸é °ø°İ
-					Action(Rotate) //½Ã¾ß°¢ÀÌ ¾È µÇ¸é È¸Àü
+				IfAction(AIHostileStateNotDiscovery, Ignore),
+				IfAction(FerCloserMoveCondition, RunMove), //ë„ˆë¬´ ë©€ë¦¬ ìˆìœ¼ë©´ ê·¼ì ‘
+				IfSelector(AttackRangeCondition, //ê³µê²© ì‚¬ê±°ë¦¬ ì•ˆì— ë“¤ì–´ì™”ìœ¼ë©´
+					IfAction(AttackCondition, Attack), //ì‹œì•¼ê°ì´ ë˜ë©´ ê³µê²©
+					Action(Rotate) //ì‹œì•¼ê°ì´ ì•ˆ ë˜ë©´ íšŒì „
 				),
 				IfAction(JumpMoveCondition, JumpAndRunMove),
 				Action(CloserMove)
 				//PercentRandomChoiceNode(0.1f,
-				//	PercentAction(10f, Action(Jump)), //Á¡ÇÁ
-				//	PercentAction(90f, Action(CloserMove)) //±ÙÁ¢
+				//	PercentAction(10f, Action(Jump)), //ì í”„
+				//	PercentAction(90f, Action(CloserMove)) //ê·¼ì ‘
 				//	)
 			);
 		}
