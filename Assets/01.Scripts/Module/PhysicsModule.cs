@@ -8,6 +8,7 @@ using Utill;
 using HitBox;
 using Data;
 using Attack;
+using Buff;
 using DG.Tweening;
 
 namespace Module
@@ -16,6 +17,15 @@ namespace Module
     {
         private float rayDistance = 0.25f;
         private ulong praviousHitBoxIndex = 0;
+
+        private BuffModule BuffModule
+        {
+            get
+            {
+                buffModule ??= mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
+                return buffModule;
+            }
+        }
         private HitModule HitModule
         {
             get
@@ -42,7 +52,11 @@ namespace Module
         }
         private JumpModule jumpModule;
         private HitModule hitModule;
+        private BuffModule buffModule;
         private StateModule stateModule;
+
+        private string buffIconString = "_Icon";
+        private string buffEffectString = "_Effect";
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -102,6 +116,9 @@ namespace Module
 
                     mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
+
+                    
+                    SetDeBuff(_inGameHitBox.HitBoxData.buffList);
                     
                     mainModule.SettingTime.SetTime(0.15f, 0.1f);
                     _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(0.2f, 0.1f);
@@ -117,6 +134,8 @@ namespace Module
                 }
             }
         }
+        
+        
         private IEnumerator HitKnockBack(InGameHitBox _inGameHitBox, Vector3 _closetPos)
         {
             Vector3 _dir;
@@ -209,6 +228,27 @@ namespace Module
 
             JumpModule.gravityWeight = 0;
         }
+        //private AbBuffEffect 
+        private void SetDeBuff(List<BuffData> _buffDatas)
+        {
+            if (_buffDatas.Count == 0) return;
+            
+            foreach (var _buffs in _buffDatas)
+            {
+                GetBuff(_buffs, buffModule)
+                    .SetDuration(_buffs.duration)
+                    .SetPeriod(_buffs.period)
+                    .SetValue(_buffs.value)
+                    .SetSprite(_buffs.buffs.ToString() + buffIconString)
+                    .SetSpownObjectName(_buffs.buffs.ToString() + buffEffectString);
+            }
+        }
+        private AbBuffEffect GetBuff(BuffData _buffs, BuffModule _bufmodule) => _buffs.buffs switch
+        {
+            Buffs.U_Healing => new Healing_Buf(_bufmodule),
+            Buffs.U_ReduceDamage => new ReduceDamage_Buf(_bufmodule),
+            Buffs.None => null
+        };
         public override void OnDisable()
         {
             hitModule = null;

@@ -10,9 +10,11 @@ namespace Skill
     public class WeaponSkillFunctions : MonoBehaviour
     {
         public string animationName = "WeaponSkill";
+        public string buffIconString = "_Icon";
+        public string buffEffectString = "_Effect";
 
         public List<BuffData> buffList = new List<BuffData>();
-        public List<BuffData> debuffList = new List<BuffData>();
+        //public List<BuffData> debuffList = new List<BuffData>();
 
         protected void PlaySkillAnimation(AbMainModule _mainModule, AnimationClip _animationClip)
         {
@@ -26,14 +28,16 @@ namespace Skill
         {
             BuffModule _bufmodule= _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
             
+            if (buffList.Count == 0) return;
+            
             foreach (var _buffs in buffList)
             {
                 GetBuff(_buffs, _bufmodule)
                     .SetDuration(_buffs.duration)
                     .SetPeriod(_buffs.period)
                     .SetValue(_buffs.value)
-                    .SetSprite(_buffs.spriteName)
-                    .SetSpownObjectName(_buffs.spownObjectName);
+                    .SetSprite(_buffs.buffs.ToString() + buffIconString)
+                    .SetSpownObjectName(_buffs.buffs.ToString() + buffEffectString);
             }
         }
 
