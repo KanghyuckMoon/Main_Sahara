@@ -274,8 +274,6 @@ namespace Data
             var mDamage = (MagicAttack) - _magicResistance;
 
             return Mathf.Max(pDamage + mDamage, 10);
-            
-            return 0;
         }
 
         #region 옵저버 부분

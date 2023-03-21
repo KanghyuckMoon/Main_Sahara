@@ -12,6 +12,7 @@ namespace Module
         private int currentHp;
 
         private float reduceDamagePercentage = 0;
+        private float increseDamagePercentage = 0;
 
         private StatData _StatData => mainModule.StatData;
 
@@ -40,7 +41,8 @@ namespace Module
         {
             value = -value;
             
-            value -= (int)(value * (reduceDamagePercentage / 100));
+            value += (int)(value * Mathf.Min(1,reduceDamagePercentage / 100));
+            value -= (int)(value * Mathf.Min(1,increseDamagePercentage / 100));
             
             return ChangeHpValue(value);
         }
