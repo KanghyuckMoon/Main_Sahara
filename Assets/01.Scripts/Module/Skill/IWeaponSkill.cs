@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Module
 {
-    
     public interface IWeaponSkill
     {
         public void Skills(AbMainModule _mainModule);

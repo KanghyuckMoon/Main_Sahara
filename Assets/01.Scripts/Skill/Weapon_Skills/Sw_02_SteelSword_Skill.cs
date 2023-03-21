@@ -13,6 +13,7 @@ namespace Skill
         public void Skills(AbMainModule _mainModule)
         {
             PlaySkillAnimation(_mainModule, animationClip);
+            GetBuff(_mainModule);
         }
     }
 }
