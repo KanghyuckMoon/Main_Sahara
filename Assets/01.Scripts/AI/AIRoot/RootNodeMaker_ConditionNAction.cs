@@ -462,11 +462,12 @@ namespace AI
 				}
 				else
 				{
-					while (true)
+					int _count = 3;
+					while (_count-- > 0)
 					{
 						RaycastHit _raycastHit;
 						Vector3 _aroundFindPos = new Vector3(aiModule.OriginPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.OriginPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
-						if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.ViewRadius, aiSO.GroundMask))
+						if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.GroundMask))
 						{
 							aroundPos = _raycastHit.point;
 							break;
@@ -501,11 +502,12 @@ namespace AI
 				}
 				else
 				{
-					while (true)
+					int _count = 3;
+					while (_count-- > 0)
 					{
 						RaycastHit _raycastHit;
 						Vector3 _aroundFindPos = new Vector3(aiModule.LastFindPlayerPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.LastFindPlayerPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
-						if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.ViewRadius, aiSO.GroundMask))
+						if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.GroundMask))
 						{
 							aroundPos = _raycastHit.point;
 							break;
