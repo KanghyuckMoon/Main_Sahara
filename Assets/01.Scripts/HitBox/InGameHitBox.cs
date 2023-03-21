@@ -58,7 +58,9 @@ namespace HitBox
 			hitBoxData = _hitBoxData;
 			isContactDir = hitBoxData.isContactDirection;
 			transform.position = _owner.transform.position;
-			transform.rotation = _owner.transform.rotation * Quaternion.LookRotation(_hitBoxData.rotation, Vector3.up);
+			transform.eulerAngles = _hitBoxData.rotation;
+			transform.rotation *= _owner.transform.rotation;
+			//transform.rotation = _owner.transform.rotation * Quaternion.LookRotation(_hitBoxData.rotation, Vector3.up);
 			col.center = _hitBoxData.offset;
 			col.radius = _hitBoxData.radius;
 			col.height = _hitBoxData.height;
