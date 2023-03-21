@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.SeralizableDictionary;
 using System.Linq;
-using Skill;
+using Buff;
 
 namespace HitBox
 {
