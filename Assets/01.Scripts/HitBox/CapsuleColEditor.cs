@@ -35,6 +35,7 @@ namespace HitBox
 		public void SetHitBox(HitBoxData _hitBoxData)
 		{
 			hitBoxData = _hitBoxData;
+			col = GetComponent<CapsuleCollider>();
 			col.center = hitBoxData.offset;
 			col.radius = hitBoxData.radius;
 			col.height = hitBoxData.height;
