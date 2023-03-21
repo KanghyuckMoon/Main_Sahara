@@ -38,9 +38,8 @@ namespace UI.Upgrade
 
         }
 
-        [ContextMenu("업데이트")]
         /// <summary>
-        /// 라벨, 버튼 UI 업데이트
+        /// 라벨, 버튼 UI 업데이트  
         /// </summary>
         public void UpdateUI()
         {

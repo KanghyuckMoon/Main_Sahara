@@ -80,7 +80,7 @@ namespace UI.ConstructorManager
         private void Awake()
         {
             
-        }
+        }   
 
         /// <summary>
         /// UI 占쏙옙占쏙옙 占쏙옙환 
