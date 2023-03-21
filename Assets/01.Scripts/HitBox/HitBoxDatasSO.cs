@@ -14,7 +14,7 @@ namespace HitBox
 	public class HitBoxDatasSO : ScriptableObject
 	{
 		public StringListHitBoxData hitBoxDataDic = new StringListHitBoxData();
-		public List<Buffs> setAllHitBoxBuffList = new List<Buffs>();
+		public List<BuffData> setAllHitBoxBuffList = new List<BuffData>();
 		
 		public HitBoxDataList GetHitboxList(string str)
 		{
@@ -32,7 +32,7 @@ namespace HitBox
 			{
 				foreach (var _hit in _hitList.Value.hitBoxDataList)
 				{
-					//_hit.buffList = setAllHitBoxBuffList.ToList();
+					_hit.buffList =  setAllHitBoxBuffList.Select(x => new BuffData(x)).ToList();
 				}
 			}
 		}
