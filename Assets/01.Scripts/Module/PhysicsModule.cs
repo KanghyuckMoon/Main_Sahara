@@ -231,6 +231,8 @@ namespace Module
         //private AbBuffEffect 
         private void SetDeBuff(List<BuffData> _buffDatas)
         {
+            if (_buffDatas.Count == 0) return;
+            
             foreach (var _buffs in _buffDatas)
             {
                 GetBuff(_buffs, buffModule)

@@ -28,6 +28,8 @@ namespace Skill
         {
             BuffModule _bufmodule= _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
             
+            if (buffList.Count == 0) return;
+            
             foreach (var _buffs in buffList)
             {
                 GetBuff(_buffs, _bufmodule)
