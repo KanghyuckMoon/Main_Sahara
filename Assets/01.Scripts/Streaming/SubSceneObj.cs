@@ -6,6 +6,7 @@ using Utill.Addressable;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using static Streaming.StreamingUtill;
+using EventQueue;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -202,8 +203,8 @@ namespace Streaming
 		/// </summary>
 		public void UnLoadSceneNoneCheck()
 		{
-			SceneDataManager.Instance.GetSceneData(SceneName).UnLoad();
-			LODMaker.UnLoad();
+		    EventQueueManager.Instance.AddAction(SceneDataManager.Instance.GetSceneData(SceneName).UnLoad);
+		    EventQueueManager.Instance.AddAction(LODMaker.UnLoad);
 				
 			AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
 		}
@@ -212,15 +213,9 @@ namespace Streaming
 		{
 			if (obj.Status == AsyncOperationStatus.Succeeded)
 			{
-				StartCoroutine(IELoadScene());
+				EventQueueManager.Instance.AddAction(SceneDataManager.Instance.GetSceneData(SceneName).Load);
+				EventQueueManager.Instance.AddAction(LODMaker.Load);
 			}
-		}
-
-		private IEnumerator IELoadScene()
-		{
-			SceneDataManager.Instance.GetSceneData(SceneName).Load();
-			LODMaker.Load();
-			yield return null;
 		}
 
 		#region DebugCode

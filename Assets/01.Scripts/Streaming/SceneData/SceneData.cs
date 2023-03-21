@@ -6,6 +6,7 @@ using Utill.Addressable;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Pool;
 using Data;
+using Utill.Coroutine;
 
 namespace Streaming
 {
@@ -170,10 +171,15 @@ namespace Streaming
 			}
 		}
 
+		public void UnLoad()
+		{
+			StaticCoroutineManager.Instance.InstanceDoCoroutine(IEUnLoad());
+		}
+		
 		/// <summary>
 		/// 씬 오브젝트들을 제거한다
 		/// </summary>
-		public IEnumerator UnLoad()
+		public IEnumerator IEUnLoad()
 		{
 			isLoad = false;
 			while (objectCheckerList.Count > 0)
