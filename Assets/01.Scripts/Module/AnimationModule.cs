@@ -48,7 +48,7 @@ namespace Module
 
 		private void SettingAnimatorSpeed()
         {
-            Animator.speed = mainModule.EntireTime;
+            Animator.speed = mainModule.PersonalTime;
         }
 
         public override void Awake()
@@ -71,8 +71,9 @@ namespace Module
             Animator.SetBool("Charge", mainModule.IsCharging);
 
             //Debug.LogError(mainModule.ObjRotation.eulerAngles.x);
+            SettingAnimatorSpeed();
 
-            Animator.SetFloat("BodyRotation", RotateWeight(mainModule.ObjRotation.eulerAngles.x));
+            Animator.SetFloat("BodyRotation", RotateWeight(mainModule.ObjRotation.eulerAngles.x-9));
         }
 
         private float RotateWeight(float _rotate)
