@@ -124,6 +124,8 @@ namespace AI
 			{
 				Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
 			}
+			Gizmos.color = Color.yellow;
+			Gizmos.DrawWireSphere(Position, aiSO.AroundRadius);
 		}
 
 		private INode NodeModelToINode(NodeModel _nodeModel, INode _parent)
@@ -193,6 +195,8 @@ namespace AI
 				NodeAction.RotateXYZ => RotateXYZ,
 				NodeAction.ModelRotateXYZ => ModelRotateXYZ,
 				NodeAction.TrackMove => TrackMove,
+				NodeAction.AroundOriginPos => AroundOriginPos,
+				NodeAction.AroundLastFindPlayerPos => AroundLastFindPlayerPos,
 				_ => null
 			};
 		}

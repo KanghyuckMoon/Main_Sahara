@@ -9,29 +9,33 @@ public class AISO : ScriptableObject
 	public float ferDistance = 10f;
 	public bool isFirstAttack = true;
 
-	//ÀÇ½É°ÔÀÌÁö
+	//ï¿½Ç½É°ï¿½ï¿½ï¿½ï¿½ï¿½
 	public float maxSuspicionGauge = 100f;
 
-	//½Ã¾ß°¢
+	//ï¿½Ã¾ß°ï¿½
 	[Range(0f, 360f)]
 	public float ViewAngle = 0f;
 	public float ViewRadius = 1f;
 
-	//°ø°Ý°¢
+	//ï¿½ï¿½ï¿½Ý°ï¿½
 	[Range(0f, 360f)]
 	public float AttackAngle = 0f;
 	public float AttackRadius = 1f;
 
-	//ÀÇ½É°¢
+	//ï¿½Ç½É°ï¿½
 	[Range(0f, 360f)]
 	public float SuspicionAngle = 0f;
 	public float SuspicionRadius = 1f;
+	
+	//Around
+	public float AroundRadius = 1f;
 
-	//·¹ÀÌÄ³½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®
 	public LayerMask TargetMask;
 	public LayerMask ObstacleMask;
+	public LayerMask GroundMask;
 
-	//±âÁî¸ð »ö
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public Color gizmoColor_discorver;
 	public Color gizmoColor_fer;
 	public Color gizmoColor_attack;

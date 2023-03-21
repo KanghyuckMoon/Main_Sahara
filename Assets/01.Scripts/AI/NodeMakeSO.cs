@@ -35,6 +35,8 @@ namespace AI
 		RotateXYZ,
 		ModelRotateXYZ,
 		TrackMove,
+		AroundOriginPos,
+		AroundLastFindPlayerPos,
 	}
 
 	public enum NodeCondition

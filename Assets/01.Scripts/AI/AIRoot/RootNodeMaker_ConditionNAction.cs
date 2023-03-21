@@ -283,7 +283,7 @@ namespace AI
 					break;
 			}
 		}
-
+		
 		private void TargetFind() //Make
 		{
 			Vector3 targetPos = aiModule.Player.position;
@@ -300,6 +300,7 @@ namespace AI
 			//�߰߰�
 			if (targetAngle <= aiSO.ViewAngle * 0.5f && !Physics.Raycast(Position, targetDir, aiSO.ViewRadius, aiSO.ObstacleMask) && (targetPos - Position).sqrMagnitude < aiSO.ViewRadius * aiSO.ViewRadius)
 			{
+				aiModule.LastFindPlayerPos = targetPos;
 				aiModule.AIModuleHostileState = AIModule.AIHostileState.Discovery;
 			}
 			else if (targetAngle <= aiSO.SuspicionAngle * 0.5f && !Physics.Raycast(Position, targetDir, aiSO.SuspicionRadius, aiSO.ObstacleMask) && (targetPos - Position).sqrMagnitude < aiSO.SuspicionRadius * aiSO.SuspicionRadius)
@@ -432,6 +433,87 @@ namespace AI
 				aiModule.AIModuleState = AIModule.AIState.Walk;
 				aiModule.MainModule.IsSprint = false;
 				aiModule.MainModule.ObjDir = aiModule.Input;
+			}
+		}
+
+		private bool isGetAroundPos = false;
+		private Vector3 aroundPos = Vector3.zero;
+		private void AroundOriginPos()
+		{
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			{
+				if (isGetAroundPos)
+				{
+					Vector2 _aroundPosXZ = new Vector2(aroundPos.x, aroundPos.z);
+					Vector2 _transformPosXZ = new Vector2(Position.x, Position.z);
+					if (Vector2.SqrMagnitude(_aroundPosXZ - _transformPosXZ) < 0.2f)
+					{
+						isGetAroundPos = false;
+					}
+					Vector3 vec = Vector3.zero;
+					vec = aiModule.Player.position - Position;
+					vec.y = 0;
+					vec = vec.normalized;
+					Vector2 _inputdir = new Vector2(vec.x, vec.z);
+					aiModule.Input = _inputdir;
+					aiModule.AIModuleState = AIModule.AIState.Walk;
+					aiModule.MainModule.IsSprint = false;
+					aiModule.MainModule.ObjDir = aiModule.Input;	
+				}
+				else
+				{
+					while (true)
+					{
+						RaycastHit _raycastHit;
+						Vector3 _aroundFindPos = new Vector3(aiModule.OriginPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.OriginPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
+						if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.ViewRadius, aiSO.GroundMask))
+						{
+							aroundPos = _raycastHit.point;
+							break;
+						}
+					}
+
+					isGetAroundPos = true;
+				}
+			}
+		}
+		private void AroundLastFindPlayerPos()
+		{
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			{
+				if (isGetAroundPos)
+				{
+					Vector2 _aroundPosXZ = new Vector2(aroundPos.x, aroundPos.z);
+					Vector2 _transformPosXZ = new Vector2(Position.x, Position.z);
+					if (Vector2.SqrMagnitude(_aroundPosXZ - _transformPosXZ) < 0.2f)
+					{
+						isGetAroundPos = false;
+					}
+					Vector3 vec = Vector3.zero;
+					vec = aiModule.Player.position - Position;
+					vec.y = 0;
+					vec = vec.normalized;
+					Vector2 _inputdir = new Vector2(vec.x, vec.z);
+					aiModule.Input = _inputdir;
+					aiModule.AIModuleState = AIModule.AIState.Walk;
+					aiModule.MainModule.IsSprint = false;
+					aiModule.MainModule.ObjDir = aiModule.Input;	
+				}
+				else
+				{
+					while (true)
+					{
+						RaycastHit _raycastHit;
+						Vector3 _aroundFindPos = new Vector3(aiModule.LastFindPlayerPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.LastFindPlayerPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
+						if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.ViewRadius, aiSO.GroundMask))
+						{
+							aroundPos = _raycastHit.point;
+							break;
+						}
+					}
+
+					isGetAroundPos = true;
+				}
 			}
 		}
 
