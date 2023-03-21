@@ -199,7 +199,7 @@ namespace UI.Upgrade
             Logging.Log("아이템 트리 생성 시작");
             // 실행중인 트윈 종료 
             elementCtrlComponent.StopTween(); 
-            StopAllCoroutines();
+            StopAllCoroutines();    
             // 연결점 잇다면 삭제 
             LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade);
             // 최종템 UI 생성

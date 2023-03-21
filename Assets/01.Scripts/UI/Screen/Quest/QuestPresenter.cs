@@ -70,7 +70,9 @@ namespace UI.Quest
                 // 생성 퀘스트UI에 텍스트 설정 
                 string _nameT = TextManager.Instance.GetText(_nameKey);
                 string _detailT = TextManager.Instance.GetText(_detailKey);
-                _qEntryView.SetNameAndDetail(_nameT,_detailT);
+                string _stateT = Enum.GetName((typeof(QuestState)),_state);
+                    ;
+                _qEntryView.SetNameAndDetailAndState(_nameT,_detailT,_stateT);
 
                 // 퀘스트 타입별로 나눈 채 딕셔너리 추가 
                 this.questView.QuestEntryDic[_state].Add(_qEntryView); 

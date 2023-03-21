@@ -23,7 +23,8 @@ namespace UI.Quest
         enum Labels
         {
             quest_name_label, 
-            quest_detail_label
+            quest_detail_label,
+            quest_state_label
         }
 
         enum Elements
@@ -131,10 +132,11 @@ namespace UI.Quest
             {
                 string _name = TextManager.Instance.GetText(_questDataList[_index].NameKey);
                 string _detail = TextManager.Instance.GetText(_questDataList[_index].ExplanationKey);
+                string _state = Enum.GetName(typeof(QuestState), _questDataList[_index].QuestState);
                 Debug.Log("BIND");
                 _questEntryList.Add((_questDataList[_index], _item));
 
-                (_item.userData as QuestEntryView).SetNameAndDetail(_name, _detail);
+                (_item.userData as QuestEntryView).SetNameAndDetailAndState(_name, _detail,_state);
             };
 
             _listView.itemsSource = _questDataList;
@@ -147,6 +149,8 @@ namespace UI.Quest
                 string _detail = TextManager.Instance.GetText(_selected.ExplanationKey);
 
                 SetTitleAndDetail(_name, _detail);
+                UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_state_label),  Enum.GetName(typeof(QuestState), _selected.QuestState));
+
             };
 
         }
