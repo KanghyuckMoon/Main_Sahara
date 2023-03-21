@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Skill
 {
-    public class TestSwordSkill : WeaponSkillFunctions, IWeaponSkill
+    public class Sw_02_SteelSword_Skill : WeaponSkillFunctions, IWeaponSkill
     {
         [SerializeField]
         private AnimationClip animationClip;
-        
+
         public void Skills(AbMainModule _mainModule)
         {
             PlaySkillAnimation(_mainModule, animationClip);
