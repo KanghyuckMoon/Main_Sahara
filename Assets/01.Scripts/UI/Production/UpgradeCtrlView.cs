@@ -46,7 +46,7 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// ºñÈ°¼ºÈ­ ¶óº§ 
+        /// ë¹„í™œì„±í™” ë¼ë²¨ 
         /// </summary>
         /// <param name="_type"></param>
         public void InActiveLabel(PosType _type)
@@ -64,14 +64,14 @@ namespace UI.Upgrade
                     _selectLabel = GetLabel((int)Labels.right_label);
                     break;
                 default:
-                    Debug.LogWarning("PosTypeÀÌ Àß¸øµÇ¾ú½À´Ï´Ù" + _type);
+                    Debug.LogWarning("PosTypeì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤" + _type);
                     break;
             }
             _selectLabel.style.visibility = Visibility.Hidden;
         }
 
         /// <summary>
-        /// »ó´Ü¿¡ ³ªÅ¸³¯ ¶óº§ ¼³Á¤ 
+        /// ìƒë‹¨ì— ë‚˜íƒ€ë‚  ë¼ë²¨ ì„¤ì • 
         /// </summary>
         /// <param name="_posType"></param>
         /// <param name="_text"></param>
@@ -90,7 +90,7 @@ namespace UI.Upgrade
                     _selectLabel = GetLabel((int)Labels.right_label);
                     break;
                 default:
-                    Debug.LogWarning("PosTypeÀÌ Àß¸øµÇ¾ú½À´Ï´Ù" + _posType);
+                    Debug.LogWarning("PosTypeì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤" + _posType);
                     break;
             }
             _selectLabel.style.visibility = Visibility.Visible; 
@@ -99,7 +99,7 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// ¹öÆ° È°¼ºÈ­ 
+        /// ë²„íŠ¼ í™œì„±í™” 
         /// </summary>
         /// <param name="_isLeft"></param>
         public void ActiveButton(bool _isLeft,bool _isActive)
@@ -108,17 +108,44 @@ namespace UI.Upgrade
             GetButton((int)_type).style.visibility = _isActive ? Visibility.Visible : Visibility.Hidden; 
         //    ShowVisualElement(GetButton((int)_type), _isActive); 
         }
+
+        private Action leftBtnEvent = null; 
+        private Action rightBtnEvent = null; 
         /// <summary>
-        /// ÁÂ¿ì ÀÌµ¿ ¹öÆ° ÀÌº¥Æ® µî·Ï  
+        /// ì¢Œìš° ì´ë™ ë²„íŠ¼ ì´ë²¤íŠ¸ ë“±ë¡  
         /// </summary>
         /// <param name="_isLeft"></param>
         /// <param name="_callback"></param>
         public void AddButtonEvent(bool _isLeft, Action _callback)
         {
             Buttons _type = _isLeft ? Buttons.left_button : Buttons.right_button;
+
+            if(leftBtnEvent != null && _isLeft == true)
+                RemoveButtonEvent<ClickEvent>((int)_type, leftBtnEvent);
+            if(rightBtnEvent != null && _isLeft == false)
+                RemoveButtonEvent<ClickEvent>((int)_type, rightBtnEvent);
+            if (_isLeft == true)
+            {
+                leftBtnEvent = _callback; 
+            }
+            else
+            {
+                rightBtnEvent = _callback; 
+            }
             AddButtonEvent<ClickEvent>((int)_type, _callback);
         }
 
+        public void RemoveButtonEvent(bool _isLeft,Action _callback)
+        {
+            Buttons _type = _isLeft ? Buttons.left_button : Buttons.right_button;
+            RemoveButtonEvent<ClickEvent>((int)_type, _callback);
+        }
+
+        public void ClearButtonEvent(bool _isLeft)
+        {
+            Buttons _type = _isLeft ? Buttons.left_button : Buttons.right_button;
+            GetButton((int)_type).clickable = null; 
+        }
 
     }
 }

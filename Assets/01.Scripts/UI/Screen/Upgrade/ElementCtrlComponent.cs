@@ -130,14 +130,23 @@ namespace UI.Upgrade
             target.transform.scale = Vector2.one;
         }
 
+        public void StopTween()
+        {
+            DOTween.KillAll();
+        }
         /// <summary>
-        /// 닷트윈을 통한 움직임 
+        /// 닷트윈을 통한 움직임 (현재 포지션 + _pos) 
         /// </summary>
         public void TweenMove(Vector2 _pos)
         {
             Vector2 _targetVec = (Vector2)target.transform.position + _pos; 
             DOTween.To(() => TargetV.x, (x) => TargetV =new Vector2(x,TargetV.y) , _targetVec.x, 0.5f);
             DOTween.To(() => TargetV.y, (y) => TargetV =new Vector2(TargetV.x,y) , _targetVec.y, 0.5f);
+        }
+
+        public void SetPos(Vector2 _pos)
+        {
+            target.transform.position = _pos; 
         }
 
         private void Move(Vector2 _value)
@@ -178,7 +187,7 @@ namespace UI.Upgrade
             float _limitY = target.contentRect.height * target.transform.scale.y;
 
             float _targetX = Mathf.Clamp(TargetV.x, -_limitX, _limitX);
-            float _targetY = Mathf.Clamp(TargetV.y, -_limitY, _limitY);
+            float _targetY = Mathf.Clamp(TargetV.y, -_limitY, _limitY* 0.5f);
 
             realTargetV = new Vector2(_targetX, _targetY);
             //   this.target.transform.position = new Vector3(_targetX, _targetY, 0);

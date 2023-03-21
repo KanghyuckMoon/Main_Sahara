@@ -31,6 +31,7 @@ namespace UI.Upgrade
             upgradeCtrlView.Cashing();
             upgradeCtrlView.Init();
             // 함수 등로
+            this.callback = null; 
             this.callback = _callback;
             // 버튼 이벤트 등록
             AddButtonsEvent();
@@ -79,20 +80,22 @@ namespace UI.Upgrade
 
         private void AddButtonsEvent()
         {
+            upgradeCtrlView.ClearButtonEvent(true); 
+            upgradeCtrlView.ClearButtonEvent(false); 
             this.upgradeCtrlView.AddButtonEvent(_isLeft:true, () =>
              {
                  --curIdx;
-                 callback?.Invoke(CurDataSO);
+                 //callback?.Invoke(CurDataSO);
                  UpdateUI(); 
              });
             this.upgradeCtrlView.AddButtonEvent(_isLeft: false, () =>
             {
                 ++curIdx;
-                callback?.Invoke(CurDataSO);
+                //callback?.Invoke(CurDataSO);
                 UpdateUI(); 
             });
         }
-
+        
         private string GetName(string _key)
         {
             return TextManager.Instance.GetText(_key);

@@ -65,6 +65,7 @@ namespace UI.Upgrade
             {
                 if (ctrlPresenter == null)
                 {
+                    Logging.Log("@@@@@@@@@@@등록");
                     ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
                 }
 
@@ -119,6 +120,7 @@ namespace UI.Upgrade
 
             InitDic();
 
+            Logging.Log("@@@@@@@@@@@등록");
             ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
         }
 
@@ -194,16 +196,22 @@ namespace UI.Upgrade
         /// </summary>
         public void CreateItemTree(ItemDataSO _itemDataSO)
         {
+            Logging.Log("아이템 트리 생성 시작");
+            // 실행중인 트윈 종료 
+            elementCtrlComponent.StopTween(); 
+            StopAllCoroutines();
             // 연결점 잇다면 삭제 
             LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade);
             // 최종템 UI 생성
             ClearAllSlots();
-            //allItemDataList.Clear();
+           //
+           this.ElementCtrlComponent.ResetPosAndZoom();
+           this.ElementCtrlComponent.SetPos(Vector2.zero);
+           //allItemDataList.Clear();
             ItemData _itemData = ItemData.CopyItemDataSO(_itemDataSO);
             itemDataQueue.Enqueue(new UpgradeSlotData(null, _itemData, 0, 1));
 
             CreateTree(); // 재료 템 트리 생성 
-            this.ElementCtrlComponent.ResetPosAndZoom();
             StartCoroutine(SetAllSlotPosCo());
         }
 
@@ -292,7 +300,9 @@ namespace UI.Upgrade
             }
         }
 
+        [SerializeField]
         private bool isActive = false; // 포지션 설정시 활성화 여부 
+        [SerializeField]
         private bool isConnection = false; // 연결점 생성 여부 
 
         private int a = 0; 
@@ -307,6 +317,8 @@ namespace UI.Upgrade
 
             foreach (var _v in allItemDataList)
             {
+                Debug.Log("순회 시작");
+
                 float _moveX = slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
                 
                 //float _op = _v.parentSlot.worldBound.x - _v.parentSlot.resolvedStyle.left; //  slot이 relative이기 때문에 left == 0 인데 world bound는 200 일 수 있다. 
@@ -324,15 +336,20 @@ namespace UI.Upgrade
                 
                 if (isConnection == true)
                 {
-                  
+                    Debug.Log("생성 시작");
+
                     if (allItemList[_idx].worldBound.y + allItemList[_idx].resolvedStyle.height + 100 >
                         upgradeView.MoveScreen.resolvedStyle.height)
                         {
                         elementCtrlComponent.TweenMove(new Vector2(0,-200));
-                    }
+                        }
                     yield return _w;
-                    float _targetMoveX = allItemList[_idx].style.left.value.value -
-                                         (allItemList[_idx].worldBound.x - allItemList[_idx].style.left.value.value); 
+                    Debug.Log("슬롯 위치 설정");
+                    float _slotL = allItemList[_idx].style.left.value.value;
+                    float _slotB = allItemList[_idx].worldBound.x;
+                    float _r1 = _slotB - _slotL;
+                    float _r2 = _slotL - _r1; 
+                    float _targetMoveX =  _r2; 
                     allItemList[_idx].style.left = _targetMoveX;
                     yield return _w;
                     Debug.Log("선 생성");
