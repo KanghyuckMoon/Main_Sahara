@@ -35,6 +35,10 @@ namespace HitBox
 		public void SetHitBox(HitBoxData _hitBoxData)
 		{
 			hitBoxData = _hitBoxData;
+			col.center = hitBoxData.offset;
+			col.radius = hitBoxData.radius;
+			col.height = hitBoxData.height;
+			transform.eulerAngles = hitBoxData.rotation;
 		}
 
 		private void Start()
