@@ -137,7 +137,7 @@ namespace Module
         {
 			if(Input.GetMouseButtonDown(2))
             {
-				Debug.LogError("asdfawefaeabraergae");
+				//Debug.LogError("asdfawefaeabraergae");
 				mainModule.SettingTime.SetTime(1, 0.1f);
             }
         }

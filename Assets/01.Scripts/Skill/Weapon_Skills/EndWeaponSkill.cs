@@ -10,9 +10,12 @@ namespace Skill
         [SerializeField]
         private AnimationClip animationClip;
 
+        
+        //[SerializeField] private buv
+
         public void Skills(AbMainModule _mainModule)
         {
-            TestWeaponFunc(_mainModule, animationClip);
+            PlaySkillAnimation(_mainModule, animationClip);
         }
     }
 }
