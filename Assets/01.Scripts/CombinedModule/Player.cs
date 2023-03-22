@@ -43,6 +43,12 @@ namespace CondinedModule
             base.OnEnable();
         }
 
+        public void SetConsecutiveAttack(int _on)
+        {
+            bool _isOn = _on > 0;
+            CanConsecutiveAttack = _isOn;
+        }
+
         private void OnDestroy()
         {
             CharacterController = null;

@@ -155,8 +155,10 @@ namespace Module
             yield return new WaitForSeconds(0.22f);
             mainModule.Model.DOKill();
             mainModule.Model.localPosition = Vector3.zero;
-
-            mainModule.KnockBackVector = _dir * _inGameHitBox.KnockbackPower();
+           
+            mainModule.attackedTime = 0f;
+            mainModule.knockBackPower =  _inGameHitBox.KnockbackPower();
+            mainModule.KnockBackVector = _dir;
         }
         public override void FixedUpdate()
         {
