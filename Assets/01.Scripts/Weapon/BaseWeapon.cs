@@ -83,6 +83,10 @@ namespace Weapon
 
             weaponPositionSO ??= AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
             weaponPositionSO.UploadWeaponPositionData(_weaponPositionData);
+            
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
         }
     }
 }
