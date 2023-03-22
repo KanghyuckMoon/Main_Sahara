@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,17 @@ namespace HitBox
 		private bool isInit = false;
 		private List<InGameHitBox> inGameHitBoxeList = null;
 
+		[SerializeField] private bool isOnEnalbe = false;
+
 		private void OnEnable()
+		{
+			if (isOnEnalbe)
+			{
+				SetEnable();
+			}
+		}
+
+		public void SetEnable()
 		{
 			if (!isInit)
 			{
@@ -74,6 +85,11 @@ namespace HitBox
 				_col.gameObject.SetActive(false);
 				Pool.ObjectPoolManager.Instance.RegisterObject("HitBox", _col.gameObject);
 			}
+		}
+
+		public void SetOwner(GameObject _owner)
+		{
+			owner = _owner;
 		}
 
 		public void OnHitBox(string _str)

@@ -43,5 +43,11 @@ namespace Module
             isRunning = false;
             mainModule.PersonalTime = 1;
         }
+        
+        public void SettingCanMove(int _on)
+        {
+            bool _isOn = _on > 0;
+            mainModule.CanMove = _isOn;
+        }
     }
 }

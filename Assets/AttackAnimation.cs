@@ -18,6 +18,9 @@ public class AttackAnimation : StateMachineBehaviour
 
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
+        mainModule.CanConsecutiveAttack = false;
+
+        mainModule.Animator.SetBool("ConsecutiveAttack", false);
 
         stateModule.RemoveState(State.ATTACK);
         //Debug.Log("aflahfaiufhaliuhlaiuehgaliuehlaueghlawiueghliueghlawueghlahuegl");

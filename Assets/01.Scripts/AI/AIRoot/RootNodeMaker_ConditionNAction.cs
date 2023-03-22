@@ -536,7 +536,7 @@ namespace AI
 				vec.y = 0;
 				vec = vec.normalized;
 				Vector2 _inputdir = new Vector2(vec.x, vec.z);
-				aiModule.Input = Vector2.Lerp(aiModule.Input, _inputdir, Time.deltaTime);
+				aiModule.Input = Vector2.Lerp(aiModule.Input, _inputdir, Time.deltaTime * aiSO.runMoveInputSpeed);
 
 				aiModule.AIModuleState = AIModule.AIState.Run;
 				aiModule.MainModule.IsSprint = true;
@@ -589,19 +589,19 @@ namespace AI
 		{
 			Vector3 _vec = (aiModule.Player.position - Position).normalized;
 			_vec.y = aiModule.MainModule.transform.forward.y;
-			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime);
+			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime * aiSO.rotateMoveInputSpeed);
 		}
 
 		private void RotateXYZ() //Make
 		{
 			Vector3 _vec = (aiModule.Player.position - Position).normalized;
-			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime);
+			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime * aiSO.rotateMoveInputSpeed);
 		}
 
 		private void ModelRotateXYZ() //Make
 		{
 			Vector3 _vec = (aiModule.Player.position - Position).normalized;
-			aiModule.MainModule.Model.forward = Vector3.Lerp(aiModule.MainModule.Model.forward, _vec, Time.deltaTime);
+			aiModule.MainModule.Model.forward = Vector3.Lerp(aiModule.MainModule.Model.forward, _vec, Time.deltaTime * aiSO.rotateMoveInputSpeed);
 		}
 		private void HostileStart()
 		{

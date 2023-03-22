@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: -0.185, y: 0.043, z: 0.264}
   m_LocalScale: {x: 0.25, y: 0.24999993, z: 0.24999994}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2606280975543115690}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -2.668, y: -361.908, z: -9.749}
@@ -100,7 +101,7 @@ MonoBehaviour:
   weaponHand: 0
   weaponName: EndSword
   tagName: 
-  isProjectile: 0
+  isProjectile: 1
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
 --- !u!114 &4250785250363506289
 MonoBehaviour:
@@ -115,6 +116,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationName: WeaponSkill
+  buffIconString: _Icon
+  buffEffectString: _Effect
   buffList: []
-  debuffList: []
   animationClip: {fileID: 8054657191847103693, guid: 1a725bbf2abe6f54cacf6cd7b97c5155, type: 3}
+--- !u!1 &7141461509016944517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2606280975543115690}
+  - component: {fileID: 6059325998513664808}
+  m_Layer: 0
+  m_Name: Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2606280975543115690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7141461509016944517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4512123110019644374}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6059325998513664808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7141461509016944517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5dac14e876e334cad42edef5add5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHand: 2
