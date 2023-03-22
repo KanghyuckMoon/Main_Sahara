@@ -10,6 +10,7 @@ using UI.Popup;
 using UI.Production; 
 using System.Linq;
 using UI.EventAlarm;
+using UnityEditor;
 
 namespace UI.Popup
 {
@@ -21,6 +22,7 @@ namespace UI.Popup
 
         private PopupHudPr popupHudPr;
         private EventAlarmScreenPresenter _eventAlarmScreenPr; 
+//        private   
         
         private List<IPopupPr> popupPrList = new List<IPopupPr>(); 
 

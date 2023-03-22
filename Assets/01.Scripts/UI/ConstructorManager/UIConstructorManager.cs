@@ -5,6 +5,7 @@ using Utill.Pattern;
 //using UI.EventAlarm;
 using UI.Base;
 using System;
+using UI.Popup;
 using UI.Production;
 using UnityEngine.UIElements; 
 
@@ -24,6 +25,8 @@ namespace UI.ConstructorManager
         private UIConstructor<SaveEntryView> saveEntryConstructor;
         private UIConstructor<BuffEntryView> buffEntryConstructor;
         private UIConstructor<PopupGetItemView> popupGetItemConstructor;
+        private UIConstructor<InteracftionPopupView> interacftionPopupView; 
+    //        private  UIConstructor<popupPr>
 
 
         private Dictionary<Type, ICreateUI> uiConstructorDic = new Dictionary<Type, ICreateUI>();
@@ -66,7 +69,8 @@ namespace UI.ConstructorManager
             saveEntryConstructor = new UIConstructor<SaveEntryView>("SaveEntry");
             buffEntryConstructor= new UIConstructor<BuffEntryView>("BuffEntry");
             popupGetItemConstructor = new UIConstructor<PopupGetItemView>("PopupGetItem");
-
+            interacftionPopupView = new UIConstructor<InteracftionPopupView>("InteractionEntry");
+            
             uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor);
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
             uiConstructorDic.Add(typeof(SlotItemView), slotItemConstructor);
@@ -76,6 +80,8 @@ namespace UI.ConstructorManager
             uiConstructorDic.Add(typeof(SaveEntryView), saveEntryConstructor);
             uiConstructorDic.Add(typeof(BuffEntryView), buffEntryConstructor);
             uiConstructorDic.Add(typeof(PopupGetItemView), popupGetItemConstructor);
+            uiConstructorDic.Add(typeof(InteracftionPopupView), interacftionPopupView);
+
         }
 
         private void Awake()

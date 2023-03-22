@@ -9,8 +9,9 @@ namespace UI.Base
     public enum PopupType
     {
         GetItem, //  아이템 획득시 
-        FindItem, // 아이템 주변 다가갔을 때
+        //FindItem, // 아이템 주변 다가갔을 때
         EventAlarm, // 알림창
+        Interaction, // 상호작용 창 ( 아이템 주변 다가갔을 때 
     }
     public interface IPopupPr
     {

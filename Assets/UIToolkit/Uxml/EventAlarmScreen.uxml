@@ -4,8 +4,9 @@
     <Style src="project://database/Assets/UIToolkit/Uss/EventAlarm.uss?fileID=7433441132597879392&amp;guid=c7befbdc02cf5bd4ebe9b50938b35a68&amp;type=3#EventAlarm" />
     <ui:VisualElement name="event_alarm_view" picking-mode="Ignore" class="screen">
         <ui:VisualElement name="top_panel" picking-mode="Ignore" class="panel center_align">
-            <ui:Instance template="EventAlarm" name="EventAlarm" style="display: none;" />
-            <ui:VisualElement name="event_alarm_parent" picking-mode="Ignore" style="width: 100%; height: 100%; align-items: center; padding-top: 30px;" />
+            <ui:VisualElement name="event_alarm_parent" picking-mode="Ignore" style="width: 100%; height: 100%; align-items: center; padding-top: 30px;">
+                <ui:Instance template="EventAlarm" name="EventAlarm" style="display: flex;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="mid_panel" picking-mode="Ignore" class="panel" />
         <ui:VisualElement name="bottom_panel" picking-mode="Ignore" class="panel" />

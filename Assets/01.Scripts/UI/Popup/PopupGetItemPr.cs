@@ -25,15 +25,22 @@ namespace UI.Popup
             
             // 애니메이션 
             //  popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
+     //       popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
+        }
+        public void ActiveTween()
+        {
+            popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
             popupGetItemView.Parent.AddToClassList("show_getitem_popup");
         }
-        public void Active()
+
+        public void InActiveTween()
         {
+            popupGetItemView.Parent.RemoveFromClassList("show_getitem_popup");
+            popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
         }
 
         public void Undo()
         {
-            
             popupGetItemView.ParentElement.RemoveFromHierarchy();
         }
 
@@ -54,25 +61,7 @@ namespace UI.Popup
             popupGetItemView.SetData(_stringData);
         }
 
-        public IEnumerator TimerCo(float _time)
-        {
-            float _curTime = 0f; 
-            while (true)
-            {
-                _curTime += Time.deltaTime;
-                if (_curTime >= _time)
-                {
-                    // 애니메이션 
-                    //popupGetItemView.Parent.RemoveFromClassList("show_getitem_popup");
-                    popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
-                    yield return new WaitForSecondsRealtime(0.2f);
-                    Undo();
-                    yield break; 
-                }
-                yield return null; 
-            }
-        }
-        
+
         
     }
 
