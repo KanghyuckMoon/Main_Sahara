@@ -74,7 +74,7 @@ namespace Module
                     
                     HitBoxOnProjectile _hitProj = _projectile.GetComponent<HitBoxOnProjectile>();
                     _hitProj.SetOwner(gameObject);
-                    _projectile.tag = mainModule.player ? "Player_Weapon" : "EnemyWeapon";
+                    _projectile.tag = mainModule.player ? "Player" : "EnemyWeapon";
                     projectileObjects.Add(_projectile);
                     _hitProj.SetEnable();
                     //projectileObjects
