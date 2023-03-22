@@ -425,11 +425,11 @@ namespace AI
 		private void FixiedMove()
 		{
 			Vector3 targetPos = aiModule.Player.position;
-			if ((targetPos - Position).sqrMagnitude < aiSO.FixedRadius * aiSO.FixedRadius)
+			if ((targetPos - Position).sqrMagnitude > (aiSO.FixedRadius + 0.5f) * (aiSO.FixedRadius + 0.5f))
 			{
 				CloserMove();
 			}
-			else
+			else if((targetPos - Position).sqrMagnitude < (aiSO.FixedRadius - 0.5f) * (aiSO.FixedRadius - 0.5f))
 			{
 				WalkAwayMove();
 			}
