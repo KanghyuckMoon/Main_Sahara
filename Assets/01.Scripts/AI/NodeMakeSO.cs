@@ -17,6 +17,7 @@ namespace AI
 		IfStringAction,
 		IfInvertAction,
 		IfTimerAction,
+		IfIgnoreAction,
 	}
 
 	public enum NodeAction
@@ -48,6 +49,7 @@ namespace AI
 		RageOn,
 		Nothing,
 		FixiedMove,
+		LockOnPlayer,
 	}
 
 	public enum NodeCondition
@@ -83,6 +85,7 @@ namespace AI
 		ViewRangeCondition,
 		OutSuspicionRangeCondition,
 		OutViewRangeCondition,
+		LockOnCheck,
 	}
 
 	[CreateAssetMenu(fileName = "NodeMakeSO", menuName = "SO/NodeMakeSO")]

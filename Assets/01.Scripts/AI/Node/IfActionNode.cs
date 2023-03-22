@@ -33,9 +33,9 @@ public class IfInvertActionNode : ActionNode
 
     public override bool Run()
     {
-        bool result = Condition();
+        bool result = !Condition();
         if (result) Action();
-        return !result;
+        return result;
     }
 }
 public class IfTimerActionNode : ActionNode
@@ -64,7 +64,6 @@ public class IfTimerActionNode : ActionNode
         }
     }
 }
-
 public class IfStringActionNode : INode
 {
     public string str = null;
@@ -81,5 +80,22 @@ public class IfStringActionNode : INode
         bool result = Condition();
         if (result) Action(str);
         return result;
+    }
+}
+public class IfIgnoreActionNode : INode
+{
+    public Func<bool> Condition { get; private set; }
+    public Action Action { get; protected set; }
+    public IfIgnoreActionNode(Func<bool> condition,Action action)
+    {
+        Condition = condition;
+        Action = action;
+    }
+
+    public virtual bool Run()
+    {
+        bool result = Condition();
+        if (result) Action();
+        return false;
     }
 }

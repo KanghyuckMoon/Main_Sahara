@@ -189,6 +189,9 @@ namespace AI
 				case NodeType.IfTimerAction:
 					_node = IfTimerAction(_nodeModel.delay, NodeModelToINodeAction(_nodeModel.nodeAction));
 					break;
+				case NodeType.IfIgnoreAction:
+					_node = IfIgnoreAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
+					break;
 			}
 			if (_parent is not null)
 			{
@@ -240,6 +243,7 @@ namespace AI
 				NodeAction.RageOn => RageOn,
 				NodeAction.Nothing => Nothing,
 				NodeAction.FixiedMove => FixiedMove,
+				NodeAction.LockOnPlayer => LockOnPlayer,
 				_ => null
 			};
 		}
@@ -287,6 +291,7 @@ namespace AI
 				NodeCondition.ViewRangeCondition => ViewRangeCondition,
 				NodeCondition.OutSuspicionRangeCondition => OutSuspicionRangeCondition,
 				NodeCondition.OutViewRangeCondition => OutViewRangeCondition,
+				NodeCondition.LockOnCheck => LockOnCheck,
 				_ => null
 			};
 		}

@@ -257,6 +257,11 @@ namespace AI
 			}
 			return false;
 		}
+		private bool LockOnCheck() //Make
+		{
+			return aiModule.MainModule.LockOn;
+		}
+
 
 		private bool HostileCheck() //Make
 		{
@@ -354,6 +359,12 @@ namespace AI
 					break;
 			}
 		}
+		private void LockOnPlayer() //Make
+		{
+			aiModule.MainModule.LockOn = true;
+			aiModule.MainModule.LockOnTarget = aiModule.Player;
+		}
+
 		
 		private void TargetFind() //Make
 		{

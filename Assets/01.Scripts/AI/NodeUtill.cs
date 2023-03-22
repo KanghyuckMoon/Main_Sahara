@@ -23,6 +23,8 @@ public static class NodeUtill
         => new IfInvertActionNode(condition, action);
     public static IfTimerActionNode IfTimerAction(float delay, Action action)
         => new IfTimerActionNode(delay, action);
+    public static IfIgnoreActionNode IfIgnoreAction(Func<bool> condition, Action action)
+        => new IfIgnoreActionNode(condition, action);
     public static IfElseActionNode IfElseAction(Func<bool> condition, Action ifAction, Action ifElseAction)
         => new IfElseActionNode(condition, ifAction, ifElseAction);
 }
