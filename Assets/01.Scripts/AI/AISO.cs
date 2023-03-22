@@ -29,6 +29,9 @@ public class AISO : ScriptableObject
 	
 	//Around
 	public float AroundRadius = 1f;
+	
+	//FixedRadius
+	public float FixedRadius = 1f;
 
 	//Move Input Delta
 	public float rotateMoveInputSpeed = 1f;

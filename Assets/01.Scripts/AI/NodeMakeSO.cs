@@ -16,6 +16,7 @@ namespace AI
 		StringAction,
 		IfStringAction,
 		IfInvertAction,
+		IfTimerAction,
 	}
 
 	public enum NodeAction
@@ -46,6 +47,7 @@ namespace AI
 		SkillR,
 		RageOn,
 		Nothing,
+		FixiedMove,
 	}
 
 	public enum NodeCondition
@@ -102,8 +104,11 @@ namespace AI
 		[Header("PercentActionNode")]
 		public float percent;
 
-		[Header("string")] 
+		[Header("stringNode")] 
 		public string str;
+		
+		[Header("timerNode")] 
+		public float delay;
 
 		public List<NodeModel> nodeModelList = new List<NodeModel>();
 	}

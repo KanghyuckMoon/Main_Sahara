@@ -38,6 +38,32 @@ public class IfInvertActionNode : ActionNode
         return !result;
     }
 }
+public class IfTimerActionNode : ActionNode
+{
+    private float originDelay = 0f;
+    private float currentDelay = 0f;
+    public IfTimerActionNode(float delay, Action action)
+        : base(action)
+    {
+        originDelay = delay;
+        currentDelay = 0f;
+    }
+
+    public override bool Run()
+    {
+        if(currentDelay < originDelay)
+        {
+            currentDelay += Time.deltaTime;
+            return false;
+        }
+        else
+        {
+            currentDelay -= originDelay;
+            Action();
+            return true;
+        }
+    }
+}
 
 public class IfStringActionNode : INode
 {

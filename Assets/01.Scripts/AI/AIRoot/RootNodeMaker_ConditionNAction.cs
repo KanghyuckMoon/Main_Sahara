@@ -421,6 +421,21 @@ namespace AI
 		{
 			aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).UseSkill("R");
 		}
+
+		private void FixiedMove()
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			if ((targetPos - Position).sqrMagnitude < aiSO.FixedRadius * aiSO.FixedRadius)
+			{
+				CloserMove();
+			}
+			else
+			{
+				WalkAwayMove();
+			}
+		}
+		
+
 		private void CloserMove() //Make
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)

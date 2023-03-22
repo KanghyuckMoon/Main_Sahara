@@ -19,8 +19,10 @@ public static class NodeUtill
 
     public static IfActionNode IfAction(Func<bool> condition, Action action)
         => new IfActionNode(condition, action);
-    public static IfInvertActionNode IfInvertActionNode(Func<bool> condition, Action action)
+    public static IfInvertActionNode IfInvertAction(Func<bool> condition, Action action)
         => new IfInvertActionNode(condition, action);
+    public static IfTimerActionNode IfTimerAction(float delay, Action action)
+        => new IfTimerActionNode(delay, action);
     public static IfElseActionNode IfElseAction(Func<bool> condition, Action ifAction, Action ifElseAction)
         => new IfElseActionNode(condition, ifAction, ifElseAction);
 }

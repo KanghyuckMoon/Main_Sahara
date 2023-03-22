@@ -164,7 +164,7 @@ namespace AI
 					_node = IfAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
 					break;
 				case NodeType.IfInvertAction:
-					_node = IfInvertActionNode(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
+					_node = IfInvertAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
 					break;
 				case NodeType.Selector:
 					_node = Selector();
@@ -185,6 +185,9 @@ namespace AI
 				case NodeType.IfStringAction:
 					_node = IfStringAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeStringAction(_nodeModel.nodeAction));
 					(_node as IfStringActionNode).str = _nodeModel.str;
+					break;
+				case NodeType.IfTimerAction:
+					_node = IfTimerAction(_nodeModel.delay, NodeModelToINodeAction(_nodeModel.nodeAction));
 					break;
 			}
 			if (_parent is not null)
@@ -236,6 +239,7 @@ namespace AI
 				NodeAction.SkillR => SkillR,
 				NodeAction.RageOn => RageOn,
 				NodeAction.Nothing => Nothing,
+				NodeAction.FixiedMove => FixiedMove,
 				_ => null
 			};
 		}
