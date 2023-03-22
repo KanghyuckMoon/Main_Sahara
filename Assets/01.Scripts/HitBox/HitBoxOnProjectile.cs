@@ -24,8 +24,9 @@ namespace HitBox
 
 		private ulong index = 0;
 		private bool isInit = false;
+		private bool isSetHitbox = false;
 		private List<InGameHitBox> inGameHitBoxeList = null;
-
+		
 		[SerializeField] private bool isOnEnalbe = false;
 
 		private void OnEnable()
@@ -72,12 +73,15 @@ namespace HitBox
 
 		private void OnDisable()
 		{
-			StaticCoroutineManager.Instance.InstanceDoCoroutine(DisableHitBoxs());
+			if (isSetHitbox)
+			{
+				StaticCoroutineManager.Instance.InstanceDoCoroutine(DisableHitBoxs());
+			}
 		}
 
 		private IEnumerator DisableHitBoxs()
 		{
-			yield return new WaitForSeconds(0.1f);
+			yield return null;
 			InGameHitBox[] _inGameHitBoxArray = GetComponentsInChildren<InGameHitBox>();
 			foreach (var _col in _inGameHitBoxArray)
 			{
@@ -94,6 +98,7 @@ namespace HitBox
 
 		public void OnHitBox(string _str)
 		{
+			isSetHitbox = false;
 			HitBoxDataList hitBoxDataList = hitBoxDataSO.GetHitboxList(_str);
 			if (hitBoxDataList is not null)
 			{
@@ -110,6 +115,7 @@ namespace HitBox
 					}
 				}
 			}
+			isSetHitbox = true;
 		}
 	}
 }
