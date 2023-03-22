@@ -20,6 +20,20 @@ namespace Buff
     [System.Serializable]
     public class BuffData
     {
+        public BuffData()
+        {
+        }
+
+        public BuffData(BuffData _buffData)
+        {
+            buffs = _buffData.buffs;
+            duration = _buffData.duration;
+            buffs = _buffData.buffs;
+            value = _buffData.value;
+            period = _buffData.period;
+            bufftype = _buffData.bufftype;
+        }
+
         public Buffs buffs;
         public float duration;
         public float value;

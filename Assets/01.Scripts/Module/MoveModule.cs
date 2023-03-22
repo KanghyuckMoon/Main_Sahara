@@ -112,40 +112,50 @@ namespace Module
 
                 if (!mainModule.Attacking || !mainModule.StrongAttacking)
                 {
-                    if (mainModule.LockOnTarget is null && mainModule.ObjDir != Vector2.zero)
-                    {
-                        if (mainModule.CanMove)
-                            mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                    }
-
-                    if (mainModule.LockOnTarget is not null)
-                    {
-                        mainModule.transform.rotation =
-                            Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
-                    }
+                if (mainModule.LockOnTarget is null && mainModule.ObjDir != Vector2.zero)
+                {
+                    mainModule.transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                 }
+                if (mainModule.LockOnTarget is not null)
+                {
+                    mainModule.transform.rotation = Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
+                }
+            }
 
-                Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
+            Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot);
             //_moveValue *= mainModule.PersonalDeltaTime;
-            Vector3 _moveVector3 = _moveValue + mainModule.KnockBackVector + new Vector3(0, _gravity, 0);
+            Vector3 _moveVector3 = _moveValue + mainModule.KnockBackVector;
+            mainModule.attackedTime += mainModule.PersonalDeltaTime;
+            float _decreaseKnockBackValue = -3 * mainModule.attackedTime * mainModule.attackedTime;
+            float _knockBackPower = _decreaseKnockBackValue + mainModule.knockBackPower;
+            Vector3 _knockBackVector = _knockBackPower * mainModule.knockBackVector;
             
-            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero,  mainModule.PersonalDeltaTime);
-            if (mainModule.CanMove)
+            if(_knockBackPower <= 0f)
             {
-                if (mainModule.IsSlope)
+                mainModule.knockBackPower = 0f;
+                mainModule.KnockBackVector = Vector3.zero;
+                _knockBackVector = Vector3.zero;
+            }
+            
+            if (mainModule.IsSlope)
+            {
+                if (_knockBackPower > 0f)
                 {
-                    mainModule.CharacterController.Move(_moveVector3 * mainModule.PersonalDeltaTime);
+                    mainModule.CharacterController.Move((_knockBackVector + new Vector3(0, _gravity, 0)) *  mainModule.PersonalDeltaTime);
                 }
                 else
                 {
-                    mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalDeltaTime);
+                    mainModule.CharacterController.Move((_moveVector3 + new Vector3(0, _gravity, 0)) *  mainModule.PersonalDeltaTime);
                 }
             }
-
+            else
+            {
+                mainModule.CharacterController.Move(mainModule.SlopeVector * mainModule.PersonalDeltaTime);
+            }
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
 
