@@ -48,7 +48,7 @@ namespace Weapon
             projectilePositionSo = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(weaponDataSO.projectileObjectName + weaponPosStr);
         }
 
-        [ContextMenu("위치 저장")]
+        [ContextMenu("??? ????")]
         public void Upload()
         {
             WeaponPositionData _weaponPositionData = new WeaponPositionData();

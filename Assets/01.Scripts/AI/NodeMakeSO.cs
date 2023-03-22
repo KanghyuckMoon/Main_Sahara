@@ -13,6 +13,9 @@ namespace AI
 		PercentRandomChoice,
 		PercentAction,
 		IfSelector,
+		StringAction,
+		IfStringAction,
+		IfInvertAction,
 	}
 
 	public enum NodeAction
@@ -37,6 +40,12 @@ namespace AI
 		TrackMove,
 		AroundOriginPos,
 		AroundLastFindPlayerPos,
+		EquipWeapon,
+		SkillWeapon,
+		SkillE,
+		SkillR,
+		RageOn,
+		Nothing,
 	}
 
 	public enum NodeCondition
@@ -64,6 +73,14 @@ namespace AI
 		CheckHPPercent30Condition,
 		CheckHPPercent20Condition,
 		Time1FCondition,
+		InitCheck,
+		RageCheck,
+		NotRageCheck,
+		AroundRangeCondition,
+		SuspicionRangeCondition,
+		ViewRangeCondition,
+		OutSuspicionRangeCondition,
+		OutViewRangeCondition,
 	}
 
 	[CreateAssetMenu(fileName = "NodeMakeSO", menuName = "SO/NodeMakeSO")]
@@ -84,6 +101,9 @@ namespace AI
 
 		[Header("PercentActionNode")]
 		public float percent;
+
+		[Header("string")] 
+		public string str;
 
 		public List<NodeModel> nodeModelList = new List<NodeModel>();
 	}

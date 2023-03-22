@@ -34,6 +34,9 @@ public class AISO : ScriptableObject
 	public float rotateMoveInputSpeed = 1f;
 	public float runMoveInputSpeed = 1f;
 	
+	//start weapon
+	public string startWeapon;
+	
 	//����ĳ��Ʈ
 	public LayerMask TargetMask;
 	public LayerMask ObstacleMask;
