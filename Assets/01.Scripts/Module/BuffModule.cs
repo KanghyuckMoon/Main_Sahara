@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Buff;
+using Pool;
 
 namespace Module
 {
-    public enum Bufftype
-    {
-        Update,
-        Once,
-        None
-    }
-
     public class BuffModule : AbBaseModule,IObserble
     {
-        public Dictionary<IBuff, Bufftype> buffDic = new Dictionary<IBuff, Bufftype>();
+        public Dictionary<IBuff, BuffType> buffDic = new Dictionary<IBuff, BuffType>();
         public List<AbBuffEffect> buffList = new List<AbBuffEffect>();
         private List<Observer> observers = new List<Observer>();
             
@@ -24,24 +18,30 @@ namespace Module
         {
 
         }
+        
+        public BuffModule() : base()
+        {
+
+        }
+
 
         public override void Start()
         {
-            AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), Bufftype.Update);
+            AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), BuffType.Update);
         }
 
         [ContextMenu("테스트")]
         public void TestBuff()
         {
-            AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), Bufftype.Update);
+            AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), BuffType.Update);
 
         }
-        public void AddBuff(AbBuffEffect _buff, Bufftype _bufftype)
+        public void AddBuff(AbBuffEffect _buff, BuffType _bufftype)
         {
             buffDic.Add(_buff, _bufftype);
             buffList.Add(_buff);
 
-            if (_bufftype == Bufftype.Once)
+            if (_bufftype == BuffType.Once)
             {
                 _buff.Buff(mainModule);
                 buffDic.Remove(_buff);
@@ -54,7 +54,7 @@ namespace Module
         {
             foreach(IBuff _buff in buffList)
             {
-                if (buffDic[_buff] == Bufftype.Update)
+                if (buffDic[_buff] == BuffType.Update)
                     _buff.Buff(mainModule);
             }
         }
@@ -77,6 +77,24 @@ namespace Module
             {
                 observer.Receive();
             }
+        }
+        
+        public override void OnDisable()
+        {
+            buffDic.Clear();
+            buffList = null;
+            observers = null;
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<BuffModule>("BuffModule", this);
+        }
+        
+        public override void OnDestroy()
+        {
+            buffDic.Clear();
+            buffList = null;
+            observers = null;
+            base.OnDestroy();
+            ClassPoolManager.Instance.RegisterObject<BuffModule>("BuffModule", this);
         }
     }
 }

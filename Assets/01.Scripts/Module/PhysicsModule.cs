@@ -8,14 +8,24 @@ using Utill;
 using HitBox;
 using Data;
 using Attack;
+using Buff;
 using DG.Tweening;
 
 namespace Module
 {
     public class PhysicsModule : AbBaseModule
     {
-        private float rayDistance = 1f;
+        private float rayDistance = 0.25f;
         private ulong praviousHitBoxIndex = 0;
+
+        private BuffModule BuffModule
+        {
+            get
+            {
+                buffModule ??= mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
+                return buffModule;
+            }
+        }
         private HitModule HitModule
         {
             get
@@ -42,7 +52,11 @@ namespace Module
         }
         private JumpModule jumpModule;
         private HitModule hitModule;
+        private BuffModule buffModule;
         private StateModule stateModule;
+
+        private string buffIconString = "_Icon";
+        private string buffEffectString = "_Effect";
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -53,7 +67,7 @@ namespace Module
 
         }
 
-        public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
+        /*public override void OnTriggerEnter(Collider other)
         {
             foreach (string _tagName in mainModule.HitCollider)
             {
@@ -73,8 +87,45 @@ namespace Module
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
                     if (_statData != null)
                     {
-                        HitModule.GetHit(Mathf.RoundToInt(_statData.MeleeAttack * _locationHitBox.AttackMulti));
-                        _statData.ChargeMana(10);
+                        HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance));
+                        _statData.ChargeMana(mainModule.StatData.ManaRegen);
+                    }
+                    else
+                    {
+                        HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
+                    }
+                }
+            }
+        }*/
+
+        public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
+        {
+            foreach (string _tagName in mainModule.HitCollider)
+            {
+                if (other.CompareTag(_tagName) && !mainModule.IsDead && !mainModule.IsCanHit)
+                {
+                    InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
+                    if (_inGameHitBox is null) return;
+                    if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
+                    praviousHitBoxIndex = _inGameHitBox.GetIndex();
+                    AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
+                    StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
+
+                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.1f);
+                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.1f);
+
+                    mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
+                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
+
+                    
+                    SetDeBuff(_inGameHitBox.HitBoxData.buffList);
+                    
+                    mainModule.SettingTime.SetTime(0.15f, 0.1f);
+                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(0.2f, 0.1f);
+                    if (_statData != null)
+                    {
+                        HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
+                        _statData.ChargeMana(mainModule.StatData.ManaRegen);
                     }
                     else
                     {
@@ -83,7 +134,8 @@ namespace Module
                 }
             }
         }
-
+        
+        
         private IEnumerator HitKnockBack(InGameHitBox _inGameHitBox, Vector3 _closetPos)
         {
             Vector3 _dir;
@@ -103,16 +155,16 @@ namespace Module
             yield return new WaitForSeconds(0.22f);
             mainModule.Model.DOKill();
             mainModule.Model.localPosition = Vector3.zero;
-
-            mainModule.KnockBackVector = _dir * _inGameHitBox.KnockbackPower();
+           
+            mainModule.attackedTime = 0f;
+            mainModule.knockBackPower =  _inGameHitBox.KnockbackPower();
+            mainModule.KnockBackVector = _dir;
         }
-
         public override void FixedUpdate()
         {
             GroundCheack();
             Slope();
         }
-
         private void Slope()
         {
             Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
@@ -125,7 +177,7 @@ namespace Module
                 //mainModule.SlopeHit = _raycastHit;
                 var angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
                 //Debug.LogError(angle + " : : : : " + Vector3.Angle(Vector3.up, _raycastHit.normal));
-                mainModule.IsSlope = (angle < mainModule.CharacterController.slopeLimit) && (angle > -mainModule.CharacterController.slopeLimit); // 90 - mainModule.MaxSlope = ¿Ã¶ó°¥ ¼ö ÀÖ´Â °¢µµ
+                mainModule.IsSlope = (angle < mainModule.CharacterController.slopeLimit) && (angle > -mainModule.CharacterController.slopeLimit); // 90 - mainModule.MaxSlope = ï¿½Ã¶ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
                 //return;
                 if(mainModule.IsSlope is false)
                 {
@@ -134,7 +186,7 @@ namespace Module
             }
             else
             {
-                //Debug.LogError("¾È´ê¾Æ´ê¾Æ´ê¾Æ");
+                //Debug.LogError("ï¿½È´ï¿½Æ´ï¿½Æ´ï¿½ï¿½");
                 mainModule.IsSlope = true;
             }
 
@@ -163,23 +215,42 @@ namespace Module
 
             mainModule.isGround = _isLand && mainModule.IsSlope;
         }
-
         IEnumerator LandingDelay()
         {
             yield return new WaitForSeconds(0.3f);
             mainModule.StopOrNot = 1;
         }
-
         private void FallDamage()
         {
             if (JumpModule.gravityWeight <= -100)
             {
-                //Debug.LogError("³«»ç ³«»ç");
+                //Debug.LogError("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 HitModule.GetHit(20);
             }
 
             JumpModule.gravityWeight = 0;
         }
+        //private AbBuffEffect 
+        private void SetDeBuff(List<BuffData> _buffDatas)
+        {
+            if (_buffDatas.Count == 0) return;
+            
+            foreach (var _buffs in _buffDatas)
+            {
+                GetBuff(_buffs, buffModule)
+                    .SetDuration(_buffs.duration)
+                    .SetPeriod(_buffs.period)
+                    .SetValue(_buffs.value)
+                    .SetSprite(_buffs.buffs.ToString() + buffIconString)
+                    .SetSpownObjectName(_buffs.buffs.ToString() + buffEffectString);
+            }
+        }
+        private AbBuffEffect GetBuff(BuffData _buffs, BuffModule _bufmodule) => _buffs.buffs switch
+        {
+            Buffs.U_Healing => new Healing_Buf(_bufmodule),
+            Buffs.U_ReduceDamage => new ReduceDamage_Buf(_bufmodule),
+            Buffs.None => null
+        };
         public override void OnDisable()
         {
             hitModule = null;

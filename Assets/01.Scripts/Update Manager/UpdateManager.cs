@@ -69,7 +69,7 @@ namespace UpdateManager
                     }
                     catch
                     {
-                        break;
+                        continue;
                     }
                 }
             }
@@ -93,7 +93,7 @@ namespace UpdateManager
                     }
                     catch
                     {
-                        break;
+                        continue;
                     }
                 }
             }
@@ -117,7 +117,7 @@ namespace UpdateManager
                     }
                     catch
                     {
-                        break;
+                        continue;
                     }
                 }
             }

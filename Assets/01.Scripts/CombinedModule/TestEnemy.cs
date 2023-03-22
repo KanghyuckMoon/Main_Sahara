@@ -55,10 +55,12 @@ namespace CondinedModule
             AddModuleWithPool<ItemModule>(ModuleType.Item, "ItemModule");
             AddModuleWithPool<EquipmentModule>(ModuleType.Equipment, "EquipmentModule");
             AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
+            AddModuleWithPool<SkillModule>(ModuleType.Skill, "SkillModule");
+            AddModuleWithPool<BuffModule>(ModuleType.Buff, "BuffModule");
 
             RaycastTarget ??= transform.Find("RayCastPoint");
 
-            visualObject ??= transform.Find("Visual")?.gameObject;
+            //visualObject ??= transform.Find("Visual")?.gameObject;
             Animator = GetComponent<Animator>();
             animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
             LockOnTarget = null;

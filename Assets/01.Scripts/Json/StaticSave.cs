@@ -19,7 +19,7 @@ namespace Json
         }
 
 		/// <summary>
-		/// À¯Àú µ¥ÀÌÅÍ ÀúÀå
+		/// ìœ ì € ë°ì´í„° ì €ì¥
 		/// </summary>
 		public static void Save<T>(ref T userSaveData, string _dataName = "")
 		{
@@ -30,24 +30,24 @@ namespace Json
 				Directory.CreateDirectory($"{Application.persistentDataPath}/Save");
 			}
 			string jsonData = JsonUtility.ToJson(userSaveData, true);
-            jsonData = Encrypt(jsonData, "Á¾Á¡");
+            jsonData = Encrypt(jsonData, "ì¢…ì ");
             File.WriteAllText(path, jsonData);
 		}
 
 
         /// <summary>
-        /// À¯Àú µ¥ÀÌÅÍ ÀúÀå
+        /// ìœ ì € ë°ì´í„° ì €ì¥
         /// </summary>
         public static string ReturnJson<T>(T userSaveData)
         {
             string jsonData = JsonUtility.ToJson(userSaveData, true);
-            jsonData = Encrypt(jsonData, "Á¾Á¡");
+            jsonData = Encrypt(jsonData, "ì¢…ì ");
             return jsonData;
             //File.WriteAllText(path, jsonData);
         }
 
         /// <summary>
-        /// À¯Àú µ¥ÀÌÅÍ ÀúÀå
+        /// ìœ ì € ë°ì´í„° ì €ì¥
         /// </summary>
         public static void SaveBinary<T>(T userSaveData, string _dateName = "")
         {
@@ -59,13 +59,13 @@ namespace Json
 
 
             //string jsonData = JsonUtility.ToJson(userSaveData, true);
-            //jsonData = Encrypt(jsonData, "Á¾Á¡");
+            //jsonData = Encrypt(jsonData, "ì¢…ì ");
             //return jsonData;
             //File.WriteAllText(path, jsonData);
         }
 
         /// <summary>
-        /// À¯Àú µ¥ÀÌÅÍ ÀúÀå
+        /// ìœ ì € ë°ì´í„° ì €ì¥
         /// </summary>
         public static void SaveJson<T>(string json, string _path)
         {
@@ -74,7 +74,7 @@ namespace Json
         }
 
         /// <summary>
-        /// À¯Àú µ¥ÀÌÅÍ ºÒ·¯¿À±â
+        /// ìœ ì € ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
         /// </summary>
         public static void Load<T>(ref T userSaveData, string _dataName = "")
 		{
@@ -83,7 +83,7 @@ namespace Json
 			if (File.Exists(path))
 			{
 				string jsonData = File.ReadAllText(path);
-                jsonData = Decrypt(jsonData, "Á¾Á¡");
+                jsonData = Decrypt(jsonData, "ì¢…ì ");
                 T saveData = JsonUtility.FromJson<T>(jsonData);
 				userSaveData = saveData;
 			}
@@ -91,7 +91,7 @@ namespace Json
 
 
         /// <summary>
-        /// À¯Àú µ¥ÀÌÅÍ ºÒ·¯¿À±â
+        /// ìœ ì € ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
         /// </summary>
         public static void LoadBinary<T>(ref T userSaveData, string _dataName = "") where T : class
         {
@@ -112,7 +112,7 @@ namespace Json
             if (File.Exists(path))
             {
                 string jsonData = File.ReadAllText(path);
-                jsonData = Decrypt(jsonData, "Á¾Á¡");
+                jsonData = Decrypt(jsonData, "ì¢…ì ");
                 T saveData = JsonUtility.FromJson<T>(jsonData);
                 return saveData;
             }
@@ -121,7 +121,7 @@ namespace Json
 
 
         /// <summary>
-        /// ¼¼ÀÌºêÇÑ ÀûÀÌ ÀÖ´ÂÁö Ã¼Å©
+        /// ì„¸ì´ë¸Œí•œ ì ì´ ìˆëŠ”ì§€ ì²´í¬
         /// </summary>
         /// <returns></returns>
         public static bool GetCheckBool()

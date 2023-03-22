@@ -11,9 +11,9 @@ namespace Module {
     public class EquipmentModule : AbBaseModule
     {
         //[SerializeField]
-        //private EquipmentItem[] equipmentItem = new EquipmentItem[4];//±âº» ¾ÆÀÌÅÛ == ±âº» ½ºÅ²
+        //private EquipmentItem[] equipmentItem = new EquipmentItem[4];//ê¸°ë³¸ ì•„ì´í…œ == ê¸°ë³¸ ìŠ¤í‚¨
 
-        //private BoneItem[] boneItem = new BoneItem[4]; //¾ÆÀÌÅÛ Á¾·ùµé
+        //private BoneItem[] boneItem = new BoneItem[4]; //ì•„ì´í…œ ì¢…ë¥˜ë“¤
         //private CharacterEquipment characterEquipment;
 
         //private StatData statData => mainModule.StatData;
@@ -26,8 +26,8 @@ namespace Module {
             }
         }
 
-        private Dictionary<ItemType, GameObject> equipPositions = new Dictionary<ItemType, GameObject>(); //<<----- À§Ä¡ ÀúÀå¿ë
-        private Dictionary<ItemType, GameObject> equipItem = new Dictionary<ItemType, GameObject>(); //<<---- ½ÇÁ¦ ¾ÆÀÌÅÛ
+        private Dictionary<ItemType, GameObject> equipPositions = new Dictionary<ItemType, GameObject>(); //<<----- ìœ„ì¹˜ ì €ìž¥ìš©
+        private Dictionary<ItemType, GameObject> equipItem = new Dictionary<ItemType, GameObject>(); //<<---- ì‹¤ì œ ì•„ì´í…œ
 
         private string pastItemString;
 
@@ -77,7 +77,7 @@ namespace Module {
 
         private void OnEquipItem(string _itemString)
         {
-            //   ¿©±â¼­ °¡Áö°í ¿Í¾ßÇÔ
+            //   ì—¬ê¸°ì„œ ê°€ì§€ê³  ì™€ì•¼í•¨
             GameObject _item = AddressablesManager.Instance.GetResource<GameObject>(_itemString);
             EquipingItem _equipingItem = _item?.GetComponent<EquipingItem>();
 

@@ -32,9 +32,11 @@ namespace Weapon
                 ProjectileObjectData _data = _list.list.Find(x => x.distinguishingName == _projectileObjectData.distinguishingName);
                 if (_data is not null)
                 {
-                    //ProjectileObjectData¿¡ Ä«ÇÇÇÔ¼ö ¸¸µé±â
-                    //_date.Copy(_projectileObjectData) ÀÌ·± ½ÄÀ¸·Î µÇµµ·Ï
-                    _data.Copy(_projectileObjectData);
+                    //ProjectileObjectDataì— ì¹´í”¼í•¨ìˆ˜ ë§Œë“¤ê¸°
+                    //_date.Copy(_projectileObjectData) ì´ëŸ° ì‹ìœ¼ë¡œ ë˜ë„ë¡
+                    //_data.Copy(_projectileObjectData); // = ProjectileObjectData.StaticCopy(_projectileObjectData);
+
+                    _data.Copy(_projectileObjectData); // = ProjectileObjectData.StaticCopy(_projectileObjectData);
                 }
                 else
                     _list.list.Add(_projectileObjectData);
@@ -60,12 +62,12 @@ namespace Weapon
         public string projectileName;
         public string distinguishingName;
 
-        //»ı¼º À§Ä¡
+        //ìƒì„± ìœ„ì¹˜
         public Vector3 position;
         public Quaternion rotation;
         public WeaponHand weaponHand;
 
-        [Header("³¯¾Æ°¡´Â ¹æÇâ")]
+        [Header("ë‚ ì•„ê°€ëŠ” ë°©í–¥")]
         public Vector3 InitialDirection;
 
         public float speed;
@@ -88,20 +90,16 @@ namespace Weapon
             return _data;
         }
 
-        public ProjectileObjectData Copy(ProjectileObjectData _projectileObjectData)
+        public void Copy(ProjectileObjectData _projectileObjectData)
         {
-            ProjectileObjectData _data = new ProjectileObjectData();
+            projectileName = _projectileObjectData.projectileName;
+            distinguishingName = _projectileObjectData.distinguishingName;
 
-            _data.projectileName = _projectileObjectData.projectileName;
-            _data.distinguishingName = _projectileObjectData.distinguishingName;
+            position = _projectileObjectData.position;
+            rotation = _projectileObjectData.rotation;
+            weaponHand = _projectileObjectData.weaponHand;
 
-            _data.position = _projectileObjectData.position;
-            _data.rotation = _projectileObjectData.rotation;
-            _data.weaponHand = _projectileObjectData.weaponHand;
-
-            _data.speed = _projectileObjectData.speed;
-
-            return _data;
+            speed = _projectileObjectData.speed;
         }
     }
 }

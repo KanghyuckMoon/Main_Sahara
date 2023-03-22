@@ -17,14 +17,17 @@ MonoBehaviour:
   m_MaterialReferences: []
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_MHead
   m_Shader: {fileID: 4800000, guid: 5a84d0554b20c754687512c99ebb990b, type: 3}
-  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _NORMALMAP_TANGENT_SPACE
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _DISABLE_SSR_TRANSPARENT
+  - _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -184,6 +187,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AORemapMax: 1
     - _AORemapMin: 0
@@ -214,12 +218,13 @@ Material:
     - _DetailSmoothnessScale: 1
     - _DiffusionProfile: 0
     - _DiffusionProfileHash: 3.178028
-    - _DirtBoots: 0
+    - _DirtBoots: 1
     - _DirtRoughness_Power: 0
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
     - _DoubleSidedEnable: 0
+    - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _EmissiveColorMode: 1
@@ -239,7 +244,7 @@ Material:
     - _EyeShadowOutPower: 0
     - _FemaleLipsNailIMaleBeardNailsPower: 1
     - _FemaleLipsNailIMaleBeardNailsRoughnessBoost: 0
-    - _FreaklesColorPower: 0
+    - _FreaklesColorPower: 2
     - _HairCapColorPower: 0.9
     - _HairCapRoughness: 0
     - _HeightAmplitude: 0.02
@@ -302,7 +307,7 @@ Material:
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _TattooBoots: 1
+    - _TattooBoots: 0
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
@@ -369,3 +374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 11
+  hdPluginSubTargetMaterialVersions:
+    m_Keys: []
+    m_Values: 

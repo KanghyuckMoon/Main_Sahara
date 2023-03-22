@@ -30,17 +30,23 @@ namespace CondinedModule
             AddModuleWithPool<ItemModule>(ModuleType.Item, "ItemModule");
             AddModuleWithPool<EquipmentModule>(ModuleType.Equipment, "EquipmentModule");
             AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
-            AddModule(ModuleType.Skill, new SkillModule(this));
-            AddModule(ModuleType.Buff, new BuffModule(this));
+            AddModuleWithPool<SkillModule>(ModuleType.Skill, "SkillModule");
+            AddModuleWithPool<BuffModule>(ModuleType.Buff, "BuffModule");
 
             RaycastTarget ??= transform.Find("RayCastPoint");
 
-            visualObject ??= transform.Find("Visual")?.gameObject;
+            //visualObject ??= transform.Find("Visual")?.gameObject;
             Animator = GetComponent<Animator>();
             animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
             LockOnTarget = null;
 
             base.OnEnable();
+        }
+
+        public void SetConsecutiveAttack(int _on)
+        {
+            bool _isOn = _on > 0;
+            CanConsecutiveAttack = _isOn;
         }
 
         private void OnDestroy()

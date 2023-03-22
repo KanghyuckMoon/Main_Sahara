@@ -40,7 +40,7 @@ namespace Module
             }
 		}
         private Animator animator;
-        private float moveSpeed => StatData.Speed;
+        private float moveSpeed => StatData.WalkSpeed;
         private float rotationVelocity;
         private float targetRotation;
         private float rotation;
@@ -128,12 +128,29 @@ namespace Module
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot);
             //_moveValue *= mainModule.PersonalDeltaTime;
-            Vector3 _moveVector3 = _moveValue + mainModule.KnockBackVector + new Vector3(0, _gravity, 0);
+            Vector3 _moveVector3 = _moveValue + mainModule.KnockBackVector;
+            mainModule.attackedTime += mainModule.PersonalDeltaTime;
+            float _decreaseKnockBackValue = -3 * mainModule.attackedTime * mainModule.attackedTime;
+            float _knockBackPower = _decreaseKnockBackValue + mainModule.knockBackPower;
+            Vector3 _knockBackVector = _knockBackPower * mainModule.knockBackVector;
             
-            mainModule.KnockBackVector = Vector3.Lerp(mainModule.KnockBackVector, Vector3.zero,  mainModule.PersonalDeltaTime);
+            if(_knockBackPower <= 0f)
+            {
+                mainModule.knockBackPower = 0f;
+                mainModule.KnockBackVector = Vector3.zero;
+                _knockBackVector = Vector3.zero;
+            }
+            
             if (mainModule.IsSlope)
             {
-                mainModule.CharacterController.Move(_moveVector3 *  mainModule.PersonalDeltaTime);
+                if (_knockBackPower > 0f)
+                {
+                    mainModule.CharacterController.Move((_knockBackVector + new Vector3(0, _gravity, 0)) *  mainModule.PersonalDeltaTime);
+                }
+                else
+                {
+                    mainModule.CharacterController.Move((_moveVector3 + new Vector3(0, _gravity, 0)) *  mainModule.PersonalDeltaTime);
+                }
             }
             else
             {

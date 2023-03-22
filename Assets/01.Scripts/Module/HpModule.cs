@@ -11,6 +11,9 @@ namespace Module
         private int maxHp;
         private int currentHp;
 
+        private float reduceDamagePercentage = 0;
+        private float increseDamagePercentage = 0;
+
         private StatData _StatData => mainModule.StatData;
 
         public HpModule(AbMainModule _mainModule) : base(_mainModule)
@@ -37,12 +40,21 @@ namespace Module
         public int GetDamage(int value)
         {
             value = -value;
+            
+            value += (int)(value * Mathf.Min(1,reduceDamagePercentage / 100));
+            value -= (int)(value * Mathf.Min(1,increseDamagePercentage / 100));
+            
             return ChangeHpValue(value);
         }
 
         public void GetHeal(int value)
         {
             ChangeHpValue(value);
+        }
+
+        public void SetReduceDamagePercent(float _value)
+        {
+            reduceDamagePercentage += _value;
         }
 
         private int ChangeHpValue(int value)

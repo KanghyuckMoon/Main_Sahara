@@ -39,7 +39,7 @@ namespace Module
 			Unknow, //발견 안 함
 			Suspicion, //의심
 			Discovery, //발견
-			Investigate //놓친 플레이어를 찾음
+			Investigate //놓친 플레이어를 찾는중
 		}
 
 		public Transform Player
@@ -157,6 +157,31 @@ namespace Module
 				smoothPath = value;
 			}
 		}
+
+		public Vector3 OriginPos
+		{
+			get
+			{
+				return originPos;
+			}
+			set
+			{
+				originPos = value;
+			}
+		}
+		
+		public Vector3 LastFindPlayerPos
+		{
+			get
+			{
+				return lastFindPlayerPos;
+			}
+			set
+			{
+				lastFindPlayerPos = value;
+			}
+		}
+		
 		private Transform player;
 		protected INode _rootNode;
 		private bool isInit = false;
@@ -170,7 +195,8 @@ namespace Module
 		private bool isFirstAttack = true;
 		private bool isHostilities = true;
 		private CinemachineSmoothPath smoothPath;
-
+		private Vector3 originPos = Vector3.zero;
+		private Vector3 lastFindPlayerPos = Vector3.zero;
 
 		public AIModule() : base()
 		{
@@ -189,6 +215,7 @@ namespace Module
 			{
 				smoothPath = (_mainModule as IEnemy).SmoothPath;
 			}
+			originPos = _mainModule.transform.position;
 			rootNodeMaker ??= new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
 			rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
 		}

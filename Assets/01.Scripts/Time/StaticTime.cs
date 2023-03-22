@@ -11,35 +11,35 @@ namespace TimeManager
 		{
 			get
 			{
-				return Time.unscaledDeltaTime * playerTime * entierTime * uiTime;
+				return Time.deltaTime * playerTime * entierTime * uiTime;
 			}
 		}
 		public static float EnemyDeltaTime
 		{
 			get
 			{
-				return Time.unscaledDeltaTime * enemyTime * entierTime * uiTime;
+				return Time.deltaTime * enemyTime * entierTime * uiTime;
 			}
 		}
 		public static float PhysicsDeltaTime
 		{
 			get
 			{
-				return Time.unscaledDeltaTime * physicsTime * entierTime * uiTime;
+				return Time.deltaTime * physicsTime * entierTime * uiTime;
 			}
 		}
 		public static float PhysicsFixedDeltaTime
 		{
 			get
 			{
-				return physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
+				return physicsTime * entierTime * uiTime * Time.fixedDeltaTime;
 			}
 		}
 		public static float PhysicsPlayerFixedDeltaTime
 		{
 			get
 			{
-				return playerTime * physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
+				return playerTime * physicsTime * entierTime * uiTime * Time.fixedDeltaTime;
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace TimeManager
 		{
 			get
 			{
-				return enemyTime * physicsTime * entierTime * uiTime * Time.fixedUnscaledDeltaTime;
+				return enemyTime * physicsTime * entierTime * uiTime * Time.fixedDeltaTime;
 			}
 		}
 
@@ -61,7 +61,7 @@ namespace TimeManager
 			set
 			{
 				playerTime = value;
-				StaticTime.Instance.GetIObserble().Send();
+				//StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float EnemyTime
@@ -73,7 +73,7 @@ namespace TimeManager
 			set
 			{
 				enemyTime = value;
-				StaticTime.Instance.GetIObserble().Send();
+				//StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float PhysicsTime
@@ -85,7 +85,7 @@ namespace TimeManager
 			set
 			{
 				physicsTime = value;
-				StaticTime.Instance.GetIObserble().Send();
+				//StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 
@@ -98,7 +98,7 @@ namespace TimeManager
 			set
 			{
 				entierTime = value;
-				StaticTime.Instance.GetIObserble().Send();
+				//StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float UITime
@@ -110,7 +110,7 @@ namespace TimeManager
 			set
 			{
 				uiTime = value;
-				StaticTime.Instance.GetIObserble().Send();
+				//StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 

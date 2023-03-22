@@ -8,7 +8,7 @@ public class Skill : StateMachineBehaviour
     private StateModule stateModule;
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        stateModule = animator.GetComponent<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
+        stateModule ??= animator.GetComponent<AbMainModule>().GetModuleComponent<StateModule>(ModuleType.State);
         
         stateModule.RemoveState(State.SKILL);
         

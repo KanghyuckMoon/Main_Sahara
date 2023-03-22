@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Utill.Addressable;
+using Pool;
 
 namespace Module
 {
@@ -24,12 +25,18 @@ namespace Module
 
         public SkillModule(AbMainModule _mainModule) : base(_mainModule)
         {
+            
+        }
 
+        public SkillModule() : base()
+        {
+            
         }
 
         public override void Start()
         {
-            SetSkill("E", "TestSkill");
+            SetSkill("E", "TestSkill_01");
+            SetSkill("R", "TestSkill_02");
         }
 
 
@@ -50,15 +57,48 @@ namespace Module
         {
             currentSkill.Remove(_keyCode);
         }
+        // ReSharper disable Unity.PerformanceAnalysis
         public void UseSkill(string _keyCode)
         {
-            currentSkill[_keyCode]?.Skill(mainModule);
+            if (!CheakSkill(_keyCode)) return;
             StateModule.AddState(State.SKILL);
+            currentSkill[_keyCode].Skill(mainModule);
         }
         public void UseWeaponSkill()
         {
-            weaponSkill.Skills(mainModule);
+            if (!CheakWeaponSkill()) return;
             StateModule.AddState(State.SKILL);
+            weaponSkill.Skills(mainModule);
         }
+
+        private bool CheakSkill(string _keyCode)
+        {
+            return currentSkill.TryGetValue(_keyCode, out var _skill);
+        }
+
+        private bool CheakWeaponSkill()
+        {
+            return weaponSkill is not null;
+        }
+        
+        
+        public override void OnDisable()
+        {
+            currentSkill.Clear();
+            weaponSkill = null;
+            stateModule = null;
+            base.OnDisable();
+            ClassPoolManager.Instance.RegisterObject<SkillModule>("SkillModule", this);
+        }
+        
+        public override void OnDestroy()
+        {
+            currentSkill.Clear();
+            weaponSkill = null;
+            stateModule = null;
+            base.OnDestroy();
+            ClassPoolManager.Instance.RegisterObject<SkillModule>("SkillModule", this);
+        }
+        
     }
 }

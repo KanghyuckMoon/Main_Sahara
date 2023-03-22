@@ -66,10 +66,10 @@ namespace Module
         {
             if (WeaponModule.isProjectileWeapon)
             {
-                string _name = ProjectileName == "Arrow" ? WeaponModule.CurrentArrowInfo.arrowAddress : ProjectileName;
+                string _name = _projectileObjectData.projectileName == "Arrow" ? WeaponModule.CurrentArrowInfo.arrowAddress : _projectileObjectData.projectileName;
                 GameObject _projectile = ObjectPoolManager.Instance.GetObject(_name);
 
-                if (_name == "Arrow") WeaponModule.CurrentArrowInfo.action?.Invoke();
+                if (_projectileObjectData.projectileName == "Arrow") WeaponModule.CurrentArrowInfo.action?.Invoke();
 
                 _projectile.transform.SetParent(WhichHandToHold(_projectileObjectData.weaponHand));
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();

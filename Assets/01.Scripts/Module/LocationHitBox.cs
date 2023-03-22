@@ -25,5 +25,6 @@ namespace Module
 			PhysicsModule _physicsModule = mainModule.GetModuleComponent<PhysicsModule>(ModuleType.Physics);
 			_physicsModule.OnTriggerEnter(other, this);
 		}
+		
 	}
 }

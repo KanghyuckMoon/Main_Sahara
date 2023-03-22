@@ -22,7 +22,7 @@ namespace Module
 
         private Animator animator;
 
-        private float moveSpeed => statData.Speed;
+        private float moveSpeed => statData.WalkSpeed;
         private float rotationVelocity;
         private float targetRotation;
         private float rotation;

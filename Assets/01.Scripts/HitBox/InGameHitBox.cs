@@ -54,11 +54,14 @@ namespace HitBox
 			index = _index;
 			gameObject.tag = _tag;
 			owner = _owner;
-			col = GetComponent<CapsuleCollider>();
+			col ??= GetComponent<CapsuleCollider>();
 			hitBoxData = _hitBoxData;
 			isContactDir = hitBoxData.isContactDirection;
 			transform.position = _owner.transform.position;
-			transform.rotation = _owner.transform.rotation * Quaternion.LookRotation(_hitBoxData.rotation, Vector3.up);
+			transform.eulerAngles = _hitBoxData.rotation + _owner.transform.eulerAngles;
+			transform.localScale = Vector3.one;
+			//transform.rotation *= ;
+			//transform.rotation = _owner.transform.rotation * Quaternion.LookRotation(_hitBoxData.rotation, Vector3.up);
 			col.center = _hitBoxData.offset;
 			col.radius = _hitBoxData.radius;
 			col.height = _hitBoxData.height;
@@ -84,7 +87,6 @@ namespace HitBox
 				gameObject.transform.SetParent(null);
 			}
 			gameObject.SetActive(true);
-			transform.localScale = Vector3.one;
 
 			if (hitBoxData.swingEffect != "NULL")
 			{
@@ -133,7 +135,54 @@ namespace HitBox
 			{
 				return;
 			}
-			DrawCapsule(HitBoxPos, transform.rotation, hitBoxData.height, hitBoxData.radius, Color.green);
+			//Vector3 _pos = transform.position + (transform.forward * col.center.z) + (transform.up * -col.center.y) + (transform.right * col.center.x);
+			//Vector3 _pos = transform.TransformPoint(col.center);
+			
+			Vector3 center = transform.TransformPoint(col.center);
+			float radius = col.radius;
+			float height = col.height;
+			int direction = col.direction;
+
+			// Draw capsule
+			Gizmos.color = Color.green;
+			
+			if (direction == 0) // X-axis
+			{
+				Vector3 right = transform.right;
+				Vector3 up = transform.up;
+				Vector3 forward = transform.forward;
+				Gizmos.DrawWireSphere(center + right * (height / 2 - radius), radius);
+				Gizmos.DrawWireSphere(center - right * (height / 2 - radius), radius);
+				Gizmos.DrawLine(center + right * (height / 2 - radius) + up * radius, center - right * (height / 2 - radius) + up * radius);
+				Gizmos.DrawLine(center + right * (height / 2 - radius) - up * radius, center - right * (height / 2 - radius) - up * radius);
+				Gizmos.DrawLine(center + right * (height / 2 - radius) + forward * radius, center - right * (height / 2 - radius) + forward * radius);
+				Gizmos.DrawLine(center + right * (height / 2 - radius) - forward * radius, center - right * (height / 2 - radius) - forward * radius);
+			}
+			else if (direction == 1) // Y-axis
+			{
+				Vector3 right = transform.right;
+				Vector3 up = transform.up;
+				Vector3 forward = transform.forward;
+				Gizmos.DrawWireSphere(center + up * (height / 2 - radius), radius);
+				Gizmos.DrawWireSphere(center - up * (height / 2 - radius), radius);
+				Gizmos.DrawLine(center + up * (height / 2 - radius) + right * radius, center - up * (height / 2 - radius) + right * radius);
+				Gizmos.DrawLine(center + up * (height / 2 - radius) - right * radius, center - up * (height / 2 - radius) - right * radius);
+				Gizmos.DrawLine(center + up * (height / 2 - radius) + forward * radius, center - up * (height / 2 - radius) + forward * radius);
+				Gizmos.DrawLine(center + up * (height / 2 - radius) - forward * radius, center - up * (height / 2 - radius) - forward * radius);
+			}
+			else if (direction == 2) // Z-axis
+			{
+				Vector3 right = transform.right;
+				Vector3 up = transform.up;
+				Vector3 forward = transform.forward;
+				Gizmos.DrawWireSphere(center + forward * (height / 2 - radius), radius);
+				Gizmos.DrawWireSphere(center - forward * (height / 2 - radius), radius);
+				Gizmos.DrawLine(center + forward * (height / 2 - radius) + up * radius, center - forward * (height / 2 - radius) + up * radius);
+				Gizmos.DrawLine(center + forward * (height / 2 - radius) - up * radius, center - forward * (height / 2 - radius) - up * radius);
+				Gizmos.DrawLine(center + forward * (height / 2 - radius) + right * radius, center - forward * (height / 2 - radius) + right * radius);
+				Gizmos.DrawLine(center + forward * (height / 2 - radius) - right * radius, center - forward * (height / 2 - radius) - right * radius);
+			}
+			//DrawCapsule( _pos, transform.rotation, hitBoxData.height, hitBoxData.radius, Color.green);
 		}
 
 		public void DrawCapsule(Vector3 position, Quaternion orientation, float height, float radius, Color color, bool drawFromBase = true)

@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
 using ForTheTest;
+using PlasticGui.Configuration;
 
 namespace Data
 {
@@ -95,15 +97,75 @@ namespace Data
                 Send();
             }
         }
-        public float Speed
+        public int ManaRegen
         {
             get
             {
-                return speed;
+                return manaRegen;
             }
             set
             {
-                speed = value;
+                manaRegen = value;
+                Send();
+            }
+        }
+        public int HealthRegen
+        {
+            get
+            {
+                return healthRegen;
+            }
+            set
+            {
+                healthRegen = value;
+                Send();
+            }
+        }
+        public int PhysicalResistance
+        {
+            get
+            {
+                return physicalResistance;
+            }
+            set
+            {
+                physicalResistance = value;
+                Send();
+            }
+        }
+        public int MagicResistance
+        {
+            get
+            {
+                return magicResistance;
+            }
+            set
+            {
+                magicResistance = value;
+                Send();
+            }
+        }
+        public float WalkSpeed
+        {
+            get
+            {
+                return walkSpeed;
+            }
+            set
+            {
+                walkSpeed = value;
+                Send();
+            }
+        }
+        public float RunSpeed
+        {
+            get
+            {
+                return runSpeed;
+            }
+            set
+            {
+                runSpeed = value;
                 Send();
             }
         }
@@ -128,7 +190,6 @@ namespace Data
             }
         }
 
-
         private List<Observer> observers = new List<Observer>();
 
         private int maxHp;
@@ -139,42 +200,55 @@ namespace Data
         private int rangeAttack;
         private int magicAttack;
 
-        private float speed;
+        private int physicalResistance;
+        private int magicResistance;
+
+        private int healthRegen;
+        private int manaRegen;
+
+        private float walkSpeed;
+        private float runSpeed;
         private float jump;
 
-        private PlayerData_TesSO playerdata;
+        private CreatureDataSO playerdata;
 
         public void Awake()
 		{
-			try
-			{
-				playerdata = AddressablesManager.Instance.GetResource<PlayerData_TesSO>(dataSOPath);
-				MaxHp = playerdata.hp;
-				CurrentHp = playerdata.hp;
-				MaxMana = playerdata.mana;
-				Jump = playerdata.jumpPower;
-				Speed = playerdata.speed;
-			}
-			catch
-			{
-                AddressablesManager.Instance.GetResourceAsync<PlayerData_TesSO>(dataSOPath, AsyncSetPlayerData);
-            }
+			playerdata = AddressablesManager.Instance.GetResource<CreatureDataSO>(dataSOPath);
+			MaxHp = playerdata.hp;
+			CurrentHp = playerdata.hp;
+			MaxMana = playerdata.mp;
+			Jump = playerdata.jumpScale;
+            PhysicalResistance = playerdata.physicalResistance;
+            MagicResistance = playerdata.magicResistance;
+            MeleeAttack = playerdata.physicalMeleeAttack;
+            RangeAttack = playerdata.physicalRangedAttack;
+            MagicAttack = playerdata.magicAttack;
+            HealthRegen = playerdata.healthRegen;
+            ManaRegen = playerdata.manaRegen;
+			WalkSpeed = playerdata.walkingSpeed;
+			RunSpeed = playerdata.runSpeed;
+			//try
+			//{
+			//}
+			//catch
+			//{
+            //    AddressablesManager.Instance.GetResourceAsync<CreatureDataSO>(dataSOPath, AsyncSetPlayerData);
+            //}
 		}
-
-        private void AsyncSetPlayerData(PlayerData_TesSO _playerData_TesSO)
+        private void AsyncSetPlayerData(CreatureDataSO _creatureDataSO)
         {
-            playerdata = _playerData_TesSO;
+            playerdata = _creatureDataSO;
             MaxHp = playerdata.hp;
-            MaxMana = playerdata.mana;
-            Jump = playerdata.jumpPower;
-            Speed = playerdata.speed;
+            MaxMana = playerdata.mp;
+            Jump = playerdata.jumpScale;
+            WalkSpeed = playerdata.walkingSpeed;
+            RunSpeed = playerdata.runSpeed;
         }
-
-		public void ChargeMana(int addMana)
+        public void ChargeMana(int addMana)
         {
             CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
         }
-
         public void LoadSaveData(StatSaveData _statSaveData)
         {
             maxHp = _statSaveData.maxHp;
@@ -184,9 +258,22 @@ namespace Data
             meleeAttack = _statSaveData.meleeAttack;
             rangeAttack = _statSaveData.rangeAttack;
             magicAttack = _statSaveData.magicAttack;
-            speed = _statSaveData.speed;
+            physicalResistance = _statSaveData.physicalResistance;
+            magicResistance = _statSaveData.magicResistance;
+            healthRegen = _statSaveData.healthRegen;
+            manaRegen = _statSaveData.manaRegen;
+            walkSpeed = _statSaveData.walkSpeed;
+            runSpeed = _statSaveData.runSpeed;
             jump = _statSaveData.jump;
             Send();
+        }
+
+        public int CalculateDamage(int _physicalResistance, int _magicResistance)
+        {
+            var pDamage = (MeleeAttack + RangeAttack) - _physicalResistance;
+            var mDamage = (MagicAttack) - _magicResistance;
+
+            return Mathf.Max(pDamage + mDamage, 10);
         }
 
         #region 옵저버 부분

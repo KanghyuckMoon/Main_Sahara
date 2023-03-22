@@ -24,30 +24,31 @@ namespace Weapon
         public WeaponPositionSO WeaponPositionSO => weaponPositionSO;
         public WeaponDataSO WeaponDataSO => weaponDataSO;
         public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
-        public ProjectilePositionSO ProjectilePositionSO => projectilePositionSO;
-
+        public ProjectilePositionSO ProjectilePositionSo => projectilePositionSo;
 
         public bool isProjectile;
 
         private WeaponDataSO weaponDataSO;
         private WeaponPositionSO weaponPositionSO;
+        private ProjectilePositionSO projectilePositionSo;
         private string weaponPosStr = "_Position";
         private string weaponDataStr = "_Data";
         private string weaponColKey = "_ColKey";
 
         [SerializeField]
         private HitBoxDatasSO hitBoxDataSO;
-        [SerializeField]
-        private ProjectilePositionSO projectilePositionSO;
+        //[SerializeField]
+        //private ProjectilePositionSO projectilePositionSO;
 
         private void Awake()
         {
             //weaponSkills = new WeaponSkills();
             weaponPositionSO = AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
             weaponDataSO = AddressablesManager.Instance.GetResource<WeaponDataSO>(weaponName + weaponDataStr);
+            projectilePositionSo = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(weaponDataSO.projectileObjectName + weaponPosStr);
         }
 
-        [ContextMenu("위치 저장")]
+        [ContextMenu("??? ????")]
         public void Upload()
         {
             WeaponPositionData _weaponPositionData = new WeaponPositionData();

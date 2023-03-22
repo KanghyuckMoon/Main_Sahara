@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using HitBox;
 using UnityEngine;
 using Weapon;
 
@@ -20,6 +21,7 @@ namespace Module
         private AttackModule attackModule;
         private AbMainModule mainModule;
         private StateModule stateModule;
+        private WeaponModule weaponModule;
 
         private float delay = 1;
         private bool canSpwon;
@@ -31,6 +33,7 @@ namespace Module
             mainModule = GetComponent<AbMainModule>();
             attackModule = mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+            weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
         }
 
         public void ChangeSO(ProjectilePositionSO _positionSO)
@@ -60,14 +63,21 @@ namespace Module
             //if (stateModule.CheckState(State.ATTACK)) return;
             Delay();
 
-            ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(attackModule.ProjectileName);
+            ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(_projectileName);
 
             if (_list is not null)
             {
                 foreach (ProjectileObjectData _datas in _list.list)
                 {
                     //KeyValuePair<GameObject, ProjectileObjectData> keyValuePair = new KeyValuePair(attackModule.CreateProjectile(_datas), _datas);
-                    projectileObjects.Add(attackModule.CreateProjectile(_datas));
+                    GameObject _projectile = attackModule.CreateProjectile(_datas);
+                    
+                    HitBoxOnProjectile _hitProj = _projectile.GetComponent<HitBoxOnProjectile>();
+                    _hitProj.SetOwner(gameObject);
+                    _projectile.tag = mainModule.player ? "Player_Weapon" : "EnemyWeapon";
+                    projectileObjects.Add(_projectile);
+                    _hitProj.SetEnable();
+                    //projectileObjects
                 }
             }
             //_gameObject?.GetComponent<IProjectile>().MovingFunc(transform.forward, Quaternion.identity);
@@ -77,13 +87,21 @@ namespace Module
         public void MoveProjectile()
         {
             //if (stateModule.CheckState(State.ATTACK)) return;
+            if (!weaponModule.isProjectileWeapon) return;
             if (canSpwon) return;
             if (PositionSO is null)
                 return;
-
+        
             //Quaternion _quaternion = Quaternion.Euler(transform.forward);
 
-            projectileObjects.ForEach(i => i.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation));
+            /*projectileObjects.ForEach((x) =>
+            {
+                x.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation);
+            });*/
+            foreach (GameObject _projectile in projectileObjects)
+            {
+                _projectile.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation);
+            }
 
             projectileObjects.Clear();
         }

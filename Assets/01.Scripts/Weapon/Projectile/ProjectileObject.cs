@@ -24,13 +24,18 @@ namespace Weapon
         [ContextMenu("위치 저장")]
         public void Upload()
         {
+            objectData.position = transform.localPosition;
+            objectData.rotation = transform.localRotation;
+            
             projectilePosSO ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
             projectilePosSO.Upload(objectData);
         }
 
         protected Vector3 CalculateRotation(Quaternion _quaternion)
         {
+            //Quaternion _qu = _qu;
             Vector3 _vec = _quaternion * objectData.InitialDirection;
+            
             //Vector3 _vec = _rotation.eulerAngles;
 
             //Quaternion _quaternion = Quaternion.Euler(0, _vec.y, 0);
