@@ -175,7 +175,7 @@ namespace Module
 
             animationIndex = int.MaxValue;
 
-            if (animationName != "")
+            if (!string.IsNullOrEmpty(animationName))
             {
                 animationIndex = Animator.GetLayerIndex(animationName);
 

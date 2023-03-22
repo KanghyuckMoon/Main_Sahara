@@ -21,10 +21,34 @@ namespace Weapon
         
         public string weaponName;
         public string tagName;
-        public WeaponPositionSO WeaponPositionSO => weaponPositionSO;
-        public WeaponDataSO WeaponDataSO => weaponDataSO;
+
+        public WeaponPositionSO WeaponPositionSO
+        {
+            get
+            {
+                weaponPositionSO ??= AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
+                return weaponPositionSO;
+            }
+        }
+
+        public WeaponDataSO WeaponDataSO
+        {
+            get
+            {
+                weaponDataSO ??= AddressablesManager.Instance.GetResource<WeaponDataSO>(weaponName + weaponDataStr);
+                return weaponDataSO;
+            }
+        }
         public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
-        public ProjectilePositionSO ProjectilePositionSo => projectilePositionSo;
+
+        public ProjectilePositionSO ProjectilePositionSo
+        {
+            get
+            {
+                projectilePositionSo ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(weaponDataSO.projectileObjectName + weaponPosStr);
+                return projectilePositionSo;
+            }
+        }
 
         public bool isProjectile;
 
@@ -43,9 +67,9 @@ namespace Weapon
         private void Awake()
         {
             //weaponSkills = new WeaponSkills();
-            weaponPositionSO = AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
-            weaponDataSO = AddressablesManager.Instance.GetResource<WeaponDataSO>(weaponName + weaponDataStr);
-            projectilePositionSo = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(weaponDataSO.projectileObjectName + weaponPosStr);
+            weaponPositionSO ??= AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
+            weaponDataSO ??= AddressablesManager.Instance.GetResource<WeaponDataSO>(weaponName + weaponDataStr);
+            projectilePositionSo ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(weaponDataSO.projectileObjectName + weaponPosStr);
         }
 
         [ContextMenu("??? ????")]

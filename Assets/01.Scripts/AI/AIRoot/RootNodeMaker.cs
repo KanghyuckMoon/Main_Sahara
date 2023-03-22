@@ -46,7 +46,7 @@ namespace AI
 		
 		public void StartWeaponSet()
 		{
-			if (aiSO.startWeapon != null)
+			if (!string.IsNullOrEmpty(aiSO.startWeapon))
 			{
 				aiModule.MainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).ChangeWeapon(aiSO.startWeapon, null);
 			}
