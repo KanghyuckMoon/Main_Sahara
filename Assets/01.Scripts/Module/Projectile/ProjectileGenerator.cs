@@ -18,9 +18,12 @@ namespace Module
 
         [SerializeField]
         private ProjectilePositionSO positionSO;
+        [SerializeField]
+        private LayerMask targetLayerMask;
         private AttackModule attackModule;
         private AbMainModule mainModule;
         private StateModule stateModule;
+        private CameraModule cameraModule;
         private WeaponModule weaponModule;
 
         private float delay = 1;
@@ -34,6 +37,7 @@ namespace Module
             attackModule = mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
             weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
+            cameraModule = mainModule.GetModuleComponent<CameraModule>(ModuleType.Camera);
         }
 
         public void ChangeSO(ProjectilePositionSO _positionSO)
@@ -98,9 +102,28 @@ namespace Module
             {
                 x.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation);
             });*/
+
+            Vector3 _vec;
+            
+            
+            
+            //if (mainModule.LockOnTarget is not null)
+            //    _vec = mainModule.LockOnTarget.position + new Vector3(0,1, 0);
+            //else
+            {
+                Ray _ray = new Ray(cameraModule.CurrentCamera.transform.position, cameraModule.CurrentCamera.transform.forward);
+                RaycastHit _raycastHit;
+
+                _vec = cameraModule.CurrentCamera.transform.position + cameraModule.CurrentCamera.transform.forward * 40f;
+                //if (Physics.Raycast(_ray, out _raycastHit, 40f))
+                //    _vec = _raycastHit.point;
+                //else
+
+            }
+            
             foreach (GameObject _projectile in projectileObjects)
             {
-                _projectile.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation);
+                _projectile.GetComponent<IProjectile>().MovingFunc(_vec);
             }
 
             projectileObjects.Clear();

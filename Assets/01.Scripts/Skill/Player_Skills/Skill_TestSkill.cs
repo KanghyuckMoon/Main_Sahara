@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Buff;
 using UnityEngine;
 using Module;
 using Pool;
@@ -21,6 +22,15 @@ namespace Skill
             Vector3 _currentPos = _mainModule.transform.position;
             _effect.transform.position = _currentPos + new Vector3(0, 0.1f, 0);
             _effect.SetActive((true));
+
+            BuffModule _buffModule = _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
+            
+            _buffModule.AddBuff(new Healing_Buf(_buffModule)
+                .SetDuration(10)
+                .SetPeriod(2)
+                .SetValue(5)
+                .SetSprite("HealEffect_Icon")
+                .SetSpownObjectName("HealEffect"), BuffType.Update);
             
             Skill_Test(_mainModule, animationClip);
             //throw new System.NotImplementedException();

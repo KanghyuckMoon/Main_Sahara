@@ -73,7 +73,7 @@ namespace Module
             //Debug.LogError(mainModule.ObjRotation.eulerAngles.x);
             SettingAnimatorSpeed();
 
-            Animator.SetFloat("BodyRotation", RotateWeight(mainModule.ObjRotation.eulerAngles.x-9));
+            Animator.SetFloat("BodyRotation", RotateWeight(mainModule.ObjRotation.eulerAngles.x+5));
         }
 
         private float RotateWeight(float _rotate)

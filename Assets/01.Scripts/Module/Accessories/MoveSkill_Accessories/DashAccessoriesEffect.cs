@@ -35,7 +35,7 @@ namespace PassiveItem
         {
             if (!mainModule.Animator.GetBool("Dash"))
             {
-                if (Input.GetKeyDown(KeyCode.LeftControl))
+                if (mainModule.IsDash)
                 {
                     stateModule.AddState(State.SKILL);
                     mainModule.Animator.SetBool("Dash", true);
@@ -53,6 +53,7 @@ namespace PassiveItem
 
                     Vector3 _dir = (mainModule.transform.forward) * 36f * TimeManager.StaticTime.PlayerDeltaTime;
                     characterController.Move(_dir);
+                    mainModule.IsDash = false;
                 }
             }
         }

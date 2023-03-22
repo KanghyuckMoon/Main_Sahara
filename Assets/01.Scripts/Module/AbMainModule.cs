@@ -292,6 +292,18 @@ namespace Module
                 canConsecutiveAttack = value;
             }
         }
+
+        public bool IsDash
+        {
+            get
+            {
+                return isDash;
+            }
+            set
+            {
+                isDash = value;
+            }
+        }
         public float GravityScale
         {
             get
@@ -513,6 +525,8 @@ namespace Module
         private bool isStaticTime;
         [SerializeField, Header("연속 공격가능한가?")]
         private bool canConsecutiveAttack;
+        [SerializeField, Header("대쉬?")]
+        private bool isDash;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
