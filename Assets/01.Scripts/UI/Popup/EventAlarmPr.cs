@@ -13,7 +13,7 @@ namespace UI.Popup
         private EventAlarmView eventAlarmView;
         private VisualElement parent;
 
-        public VisualElement Parent => eventAlarmView.ParentElement;
+        public VisualElement Parent => parent;
 
         public EventAlarmPr()
         {

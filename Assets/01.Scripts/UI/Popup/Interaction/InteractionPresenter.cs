@@ -19,9 +19,11 @@ namespace UI.Popup
 
         private VisualElement parent;
 
-        private MapInfo mapInfo; 
+        private MapInfo mapInfo;
+
+        private Camera cam; 
        // 프로퍼티 
-        public VisualElement Parent { get; }
+       public VisualElement Parent => parent; 
         
         public InteractionPresenter()
         {
@@ -30,28 +32,37 @@ namespace UI.Popup
             interacftionPopupView = _prod.Item2 as InteracftionPopupView;
             ;
             mapInfo = new MapInfo(); 
+            interacftionPopupView.InteractionParent.AddToClassList("inactive");
+
+            cam = Camera.main; 
         }
         public void ActiveTween()
         {
-            
+            interacftionPopupView.InteractionParent.RemoveFromClassList("inactive");
+            interacftionPopupView.InteractionParent.AddToClassList("active");
         }
 
         public void InActiveTween()
         {
+            interacftionPopupView.InteractionParent.RemoveFromClassList("active");
+            interacftionPopupView.InteractionParent.AddToClassList("inactive");
         }
 
         public void Undo()
         {
-            
+            interacftionPopupView.ParentElement.RemoveFromHierarchy();
         }
 
         public void SetData(object _data)
         {
             InteractionUIData _uiData = _data as InteractionUIData;
             ;
-            Vector2 _uiPos = mapInfo.WorldToUIPos(_uiData.targetVec);
-            interacftionPopupView.ParentElement.transform.position = _uiPos;
+            //Vector2 _uiPos 
+            Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(Parent.panel, _uiData.targetVec
+                ,new Vector2(10,10) ,cam);
+            interacftionPopupView.ParentElement.transform.position = rect.position;
             
+            interacftionPopupView.SetDetail(_uiData.textStr);
         }
 
     }   

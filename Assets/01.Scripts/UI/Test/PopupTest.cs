@@ -10,7 +10,7 @@ using Inventory;
 public class PopupTest : MonoBehaviour
 {
     public ItemDataSO ItemDataSo;
-
+    public Transform trm; 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
@@ -21,6 +21,11 @@ public class PopupTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {  
             PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, "temData");
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {  
+            PopupUIManager.Instance.CreatePopup<InteractionPresenter>(PopupType.Interaction, 
+                new InteractionUIData{targetVec =  trm.position, textStr =  "ADSAFASFSAFSA"},-1f);
         }
     }
 }

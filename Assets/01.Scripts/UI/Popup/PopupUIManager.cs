@@ -21,8 +21,8 @@ namespace UI.Popup
         private Transform popupParent;
 
         private PopupHudPr popupHudPr;
-        private EventAlarmScreenPresenter _eventAlarmScreenPr; 
-//        private   
+        private EventAlarmScreenPresenter eventAlarmScreenPr;
+        private InteractionScreenPr interactionScreenPr;
         
         private List<IPopupPr> popupPrList = new List<IPopupPr>(); 
 
@@ -47,7 +47,7 @@ namespace UI.Popup
             Init(); 
         }
 
-        public void CreatePopup<T>(PopupType _popupType, object _data = null,float _time = 2f) where  T : IPopup,new()
+        public T CreatePopup<T>(PopupType _popupType, object _data = null,float _time = 2f) where  T : IPopup,new()
         {
             if (isInit == false)    
             {
@@ -61,7 +61,13 @@ namespace UI.Popup
             {
                 StartCoroutine(_popupGetItemPr.TimerCo(_time));
             }
+            else
+            {
+                _popupGetItemPr.ActiveTween();   
+            }
             _popupGetItemPr.SetData(_data);
+
+            return _popupGetItemPr; 
         }
         
         private void Init()
@@ -75,11 +81,14 @@ namespace UI.Popup
 
         private void SetPresenters()
         {
+            popupPrList.Clear();
             popupHudPr = popupParent.GetComponentInChildren<PopupHudPr>();
-            _eventAlarmScreenPr = popupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
-            
+            eventAlarmScreenPr = popupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
+            interactionScreenPr = popupParent.GetComponentInChildren<InteractionScreenPr>(); 
+
             popupPrList.Add(popupHudPr);
-            popupPrList.Add(_eventAlarmScreenPr);
+            popupPrList.Add(eventAlarmScreenPr);
+            popupPrList.Add(interactionScreenPr);
         }
         /*private Dictionary<PopupType, Type> popupChangeDic = new Dictionary<PopupType, Type>();
         private Dictionary<PopupType, IPopup> popupDic = new Dictionary<PopupType, IPopup>();

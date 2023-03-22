@@ -71,7 +71,7 @@ namespace UI.ConstructorManager
             popupGetItemConstructor = new UIConstructor<PopupGetItemView>("PopupGetItem");
             interacftionPopupView = new UIConstructor<InteracftionPopupView>("InteractionEntry");
             
-            uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor);
+            uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor); 
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
             uiConstructorDic.Add(typeof(SlotItemView), slotItemConstructor);
             uiConstructorDic.Add(typeof(UpgradeSlotView), upgradeSlotConstructor);
