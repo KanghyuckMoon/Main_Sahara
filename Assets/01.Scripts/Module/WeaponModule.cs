@@ -184,9 +184,13 @@ namespace Module
         }
         private void SetBehaveAnimation()
         {
-            //Debug.Log(MainModule.AnimatorOverrideController);
-            AnimationClip _a = BaseWeapon.WeaponDataSO.attackAnimation;
-            MainModule.AnimatorOverrideController["Attack"] = _a;
+            int count = 0;
+            foreach (var _attackClip in BaseWeapon.WeaponDataSO.attackAnimation)
+            {
+                MainModule.AnimatorOverrideController["Attack" + count] = _attackClip;
+                count++;
+            }
+
             MainModule.AnimatorOverrideController["StrongAttack"] = BaseWeapon.WeaponDataSO.strongAttackAnimation;
             MainModule.AnimatorOverrideController["Ready"] = BaseWeapon.WeaponDataSO.readyAttackAnimation;
             MainModule.AnimatorOverrideController["ChargeAttack"] = BaseWeapon.WeaponDataSO.chargeAttackAnimation;

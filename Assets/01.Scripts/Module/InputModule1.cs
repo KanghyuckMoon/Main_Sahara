@@ -26,7 +26,11 @@ namespace Module
 		{
 			if (mainModule.IsWeaponExist)
 			{
-				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) && !StateModule.CheckState(State.SKILL))
+				if (Input.GetMouseButtonDown(0) && mainModule.CanConsecutiveAttack)
+					mainModule.Animator.SetBool("ConsecutiveAttack", true);
+				
+				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) &&
+				    !StateModule.CheckState(State.SKILL))
 				{
 					//Debug.LogError("공격이다 공격이야!!!!!");
 
@@ -50,9 +54,9 @@ namespace Module
 						AttackModule.SpownAttackEffect();
 					}
 				}
-				mainModule.IsCharging = Input.GetMouseButton(0);
 
-				if (Input.GetMouseButtonUp(0))// || Input.GetMouseButtonUp(1))
+				mainModule.IsCharging = Input.GetMouseButton(0);
+				if (Input.GetMouseButtonUp(0)) // || Input.GetMouseButtonUp(1))
 				{
 					//bool _inputatk = Input.GetMouseButtonUp(0);
 					//AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward, Quaternion.identity);// + new Vector3(0, 1.6f, 0));
@@ -65,7 +69,7 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (!StateModule.CheckState(State.ATTACK, State.SKILL))
+			if (!StateModule.CheckState(State.ATTACK, State.SKILL) && mainModule.CanMove)
 			{
 				float _inputX = Input.GetAxis("Horizontal");
 				float _inputY = Input.GetAxis("Vertical");

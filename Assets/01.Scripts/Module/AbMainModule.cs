@@ -6,6 +6,7 @@ using FischlWorks;
 using UpdateManager;
 using Utill.Pattern;
 using Data;
+using PlasticGui.Configuration;
 using Pool;
 using TimeManager;
 
@@ -279,6 +280,18 @@ namespace Module
                 isStaticTime = value;
             }
         }
+
+        public bool CanConsecutiveAttack
+        {
+            get
+            {
+                return canConsecutiveAttack;
+            }
+            set
+            {
+                canConsecutiveAttack = value;
+            }
+        }
         public float GravityScale
         {
             get
@@ -498,6 +511,8 @@ namespace Module
         private bool isCanHit;
         [SerializeField, Header("전체 시간인가?")]
         private bool isStaticTime;
+        [SerializeField, Header("연속 공격가능한가?")]
+        private bool canConsecutiveAttack;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
