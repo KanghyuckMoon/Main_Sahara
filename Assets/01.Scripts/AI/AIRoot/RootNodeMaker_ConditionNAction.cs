@@ -30,6 +30,26 @@ namespace AI
 			}
 			return true;
 		}
+
+		private bool isRage = false;
+		private bool RageCheck()
+		{
+			return isRage;
+		}
+		private bool NotRageCheck()
+		{
+			return !isRage;
+		}
+		private bool InitCheck()
+		{
+			if (aiModule.IsInit == false)
+			{
+				aiModule.IsInit = true;
+				return true;
+			}
+
+			return false;
+		}
 		private bool DiscorverCondition() //Make
 		{
 			Vector3 vec = aiModule.MainModule.transform.position - aiModule.Player.position;
@@ -67,6 +87,56 @@ namespace AI
 				return true;
 			}
 			return false;
+		}
+		private bool AroundRangeCondition() //Make
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			
+			if ((targetPos - Position).sqrMagnitude < aiSO.AroundRadius * aiSO.AroundRadius)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool SuspicionRangeCondition() //Make
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			
+			if ((targetPos - Position).sqrMagnitude < aiSO.SuspicionRadius * aiSO.SuspicionRadius)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool ViewRangeCondition() //Make
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			
+			if ((targetPos - Position).sqrMagnitude < aiSO.ViewRadius * aiSO.ViewRadius)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool OutSuspicionRangeCondition() //Make
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			
+			if ((targetPos - Position).sqrMagnitude < aiSO.SuspicionRadius * aiSO.SuspicionRadius)
+			{
+				return false;
+			}
+			return true;
+		}
+		private bool OutViewRangeCondition() //Make
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			
+			if ((targetPos - Position).sqrMagnitude < aiSO.ViewRadius * aiSO.ViewRadius)
+			{
+				return false;
+			}
+			return true;
 		}
 
 		private bool TargetFindCondition() //Make
@@ -187,6 +257,11 @@ namespace AI
 			}
 			return false;
 		}
+		private bool LockOnCheck() //Make
+		{
+			return aiModule.MainModule.LockOn;
+		}
+
 
 		private bool HostileCheck() //Make
 		{
@@ -240,6 +315,7 @@ namespace AI
 			}
 			return false;
 		}
+		
 
 		//Action
 		private void SuspicionGaugeSet() //Make
@@ -283,6 +359,12 @@ namespace AI
 					break;
 			}
 		}
+		private void LockOnPlayer() //Make
+		{
+			aiModule.MainModule.LockOn = true;
+			aiModule.MainModule.LockOnTarget = aiModule.Player;
+		}
+
 		
 		private void TargetFind() //Make
 		{
@@ -350,6 +432,21 @@ namespace AI
 		{
 			aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).UseSkill("R");
 		}
+
+		private void FixiedMove()
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			if ((targetPos - Position).sqrMagnitude > (aiSO.FixedRadius + 1f) * (aiSO.FixedRadius + 1f))
+			{
+				RunMove();
+			}
+			else if((targetPos - Position).sqrMagnitude < (aiSO.FixedRadius - 1f) * (aiSO.FixedRadius - 1f))
+			{
+				WalkAwayMove();
+			}
+		}
+		
+
 		private void CloserMove() //Make
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
@@ -621,6 +718,20 @@ namespace AI
 				aiModule.MainModule.IsSprint = false;
 				aiModule.MainModule.ObjDir = aiModule.Input;
 			}
+		}
+
+		private void RageOn()
+		{
+			isRage = true;
+		}
+		private void Nothing()
+		{
+		}
+
+		//string Action
+		private void EquipWeapon(string _str)
+		{
+			aiModule.MainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).ChangeWeapon(_str, null);
 		}
 
 		//Utill

@@ -29,10 +29,16 @@ public class AISO : ScriptableObject
 	
 	//Around
 	public float AroundRadius = 1f;
+	
+	//FixedRadius
+	public float FixedRadius = 1f;
 
 	//Move Input Delta
 	public float rotateMoveInputSpeed = 1f;
 	public float runMoveInputSpeed = 1f;
+	
+	//start weapon
+	public string startWeapon;
 	
 	//����ĳ��Ʈ
 	public LayerMask TargetMask;

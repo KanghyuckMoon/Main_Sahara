@@ -181,6 +181,18 @@ namespace Module
 				lastFindPlayerPos = value;
 			}
 		}
+
+		public bool IsInit
+		{
+			get
+			{
+				return isInit;
+			}
+			set
+			{
+				isInit = value;
+			}
+		}
 		
 		private Transform player;
 		protected INode _rootNode;
@@ -205,7 +217,6 @@ namespace Module
 
 		public AIModule(AbMainModule _mainModule) : base(_mainModule)
 		{
-			Init(_mainModule);
 		}
 
 		public override void Init(AbMainModule _mainModule, params string[] _parameters)
@@ -218,6 +229,13 @@ namespace Module
 			originPos = _mainModule.transform.position;
 			rootNodeMaker ??= new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
 			rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
+			
+		}
+
+		public override void Start()
+		{
+			base.Start();
+			Init(mainModule);
 		}
 
 		public void SetNode(INode _node)
@@ -234,9 +252,8 @@ namespace Module
 
 			if (!isInit)
 			{
+				rootNodeMaker.StartWeaponSet();
 				isInit = true;
-				WeaponModule _weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
-				_weaponModule.ChangeWeapon("EndSword", "Sword");
 			}
 
 			if (mainModule.IsDead)

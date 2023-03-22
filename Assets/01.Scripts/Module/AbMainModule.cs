@@ -310,6 +310,10 @@ namespace Module
             {
                 return gravityScale;
             }
+            set
+            {
+                gravityScale = value;
+            }
         }
         public float EntireTime
         {

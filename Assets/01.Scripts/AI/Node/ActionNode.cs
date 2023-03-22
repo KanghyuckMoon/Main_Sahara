@@ -17,3 +17,19 @@ public class ActionNode : INode
         return true;
     }
 }
+
+public class StringActionNode : INode
+{
+    public string str = null;
+    public Action<string> Action { get; protected set; }
+    public StringActionNode(Action<string> action)
+    {
+        Action = action;
+    }
+
+    public virtual bool Run()
+    {
+        Action(str);
+        return true;
+    }
+}

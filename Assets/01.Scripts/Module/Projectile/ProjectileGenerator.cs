@@ -49,9 +49,8 @@ namespace Module
         {
             //if (stateModule.CheckState(State.ATTACK)) return;
             if (canSpwon) return;
-            if (PositionSO is null)
+            if (positionSO == null)
                 return;
-
             SpownProjectile(_projectileName);
             MoveProjectile();
         }
@@ -61,7 +60,7 @@ namespace Module
             //for (int i = 0; i < _count; i++)
             //{
             if (canSpwon) return;
-            if (PositionSO is null)
+            if (positionSO == null)
                 return;
 
             //if (stateModule.CheckState(State.ATTACK)) return;
@@ -75,7 +74,6 @@ namespace Module
                 {
                     //KeyValuePair<GameObject, ProjectileObjectData> keyValuePair = new KeyValuePair(attackModule.CreateProjectile(_datas), _datas);
                     GameObject _projectile = attackModule.CreateProjectile(_datas);
-                    
                     HitBoxOnProjectile _hitProj = _projectile.GetComponent<HitBoxOnProjectile>();
                     _hitProj.SetOwner(gameObject);
                     _projectile.tag = mainModule.player ? "Player" : "EnemyWeapon";
