@@ -19494,7 +19494,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: NaN, y: 0.58984375, z: 0.14648438, w: 93.60001}
+  m_BoundingSphereOverride: {x: 9.1835e-41, y: NaN, z: 1.7219156e-38, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -29311,6 +29311,7 @@ GameObject:
   - component: {fileID: 4514190911476230108}
   - component: {fileID: 3471397907486319785}
   - component: {fileID: 5443221543028546823}
+  - component: {fileID: 3986065032046533346}
   m_Layer: 0
   m_Name: TestSkill_Projectile
   m_TagString: Untagged
@@ -29346,18 +29347,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e465db825de3c8479e7b397bae52e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePosSO: {fileID: 11400000, guid: e4e977d5b6c172649bf34f4af32c5ea5, type: 2}
+  projectilePosSO: {fileID: 11400000, guid: 834565bd7ab923b4c98a34054594d84f, type: 2}
   weaponHand: 2
   objectData:
-    projectileName: TestProjectile
+    projectileName: TestGeomtry
     distinguishingName: projectile_1
     position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
     weaponHand: 2
-    InitialDirection: {x: 0, y: 0, z: 10}
-    speed: 20
-    projectileAddress: TestProjectile
-  objectName: TestProjectile
+    InitialDirection: {x: 0, y: 0, z: 20}
+    speed: 100
+    projectileAddress: TestGeomtry
+  objectName: TestGeomtry
   rigidbody: {fileID: 5443221543028546823}
 --- !u!54 &5443221543028546823
 Rigidbody:
@@ -29375,3 +29376,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3986065032046533346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4514190911476230107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: 7fb8cb1c7d7f61847bef35bf06afe8c9, type: 2}
+  hitboxString: Col
+  owner: {fileID: 0}
+  isTimeIndexCange: 0
+  isOnEnalbe: 0
