@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 namespace UI.Popup
 {
+
     public class InteractionScreenPr : MonoBehaviour,IPopupPr
     {
         private UIDocument uiDocument;
