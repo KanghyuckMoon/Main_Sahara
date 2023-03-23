@@ -25,7 +25,7 @@ namespace UI
             quickSlotView.Init();
 
             EventManager.Instance.StartListening(EventsType.UpdateQuickSlot, UpdateUI);
-
+    
             UpdateUI(); 
         }
 

@@ -19,7 +19,8 @@ namespace UI.Production
         enum Elements
         {
             image,
-            item
+            item,
+            frame
         }
         enum Labels
         {
@@ -35,6 +36,7 @@ namespace UI.Production
         public Texture2D ItemSprite => GetVisualElement((int)Elements.image).style.backgroundImage.value.texture;
         public int ItemCount => int.Parse(GetLabel((int)Labels.text).text);
         public Rect SlotWorldBound => Item.worldBound;   
+       
         public SlotItemView()
         {
 
