@@ -17,7 +17,7 @@ namespace GoogleSpreadSheet
 				{
 					textSO.InitTextDatas();
 
-					//ÃßÈÄ ¾ğ¾î¿¡ µû¶ó ´Ù¸£°Ô ¼³Á¤
+					//ì¶”í›„ ì–¸ì–´ì— ë”°ë¼ ë‹¤ë¥´ê²Œ ì„¤ì •
 					StartCoroutine(GetText());
 				}
 				return textSO;
@@ -44,13 +44,13 @@ namespace GoogleSpreadSheet
 			if (!isInit)
 			{
 				Instance.textSO.InitTextDatas();
-				//ÃßÈÄ ¾ğ¾î¿¡ µû¶ó ´Ù¸£°Ô ¼³Á¤
+				//ì¶”í›„ ì–¸ì–´ì— ë”°ë¼ ë‹¤ë¥´ê²Œ ì„¤ì •
 				StartCoroutine(GetText());
 			}
 		}
 
 		/// <summary>
-		/// Å°¸¦ ÅëÇØ ÅØ½ºÆ®¸¦ °¡Á®¿È
+		/// í‚¤ë¥¼ í†µí•´ í…ìŠ¤íŠ¸ë¥¼ ê°€ì ¸ì˜´
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
@@ -103,6 +103,7 @@ namespace GoogleSpreadSheet
 			{
 				string[] column = row[i].Split('\t');
 				textSO.AddTextData(column[0], column[1]);
+				textSO.AddTextData(column[2], column[3]);
 			}
 		}
 		private void SetTextMONSTER(string tsv)

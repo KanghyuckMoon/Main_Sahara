@@ -30,7 +30,7 @@ namespace PathMode
 
         private MapInfo mapInfo = new MapInfo();
 
-        private const float updateDistance = 16f; //4*4, 4m¸¶´Ù ¾÷µ¥ÀÌÆ®
+        private const float updateDistance = 16f; //4*4, 4më§ˆë‹¤ ì—…ë°ì´íŠ¸
 
         public PathSave pathSave = new PathSave();
 
@@ -60,7 +60,7 @@ namespace PathMode
         }
 
         /// <summary>
-        /// ¿ùµå Æ÷Áö¼ÇÀ¸·Î UI Æ÷Áö¼ÇÀ¸·Î( absolute ±âÁØ) 
+        /// ì›”ë“œ í¬ì§€ì…˜ìœ¼ë¡œ UI í¬ì§€ì…˜ìœ¼ë¡œ( absolute ê¸°ì¤€) 
         /// </summary>
         /// <param name="_worldPos"></param>
         /// <returns></returns>

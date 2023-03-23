@@ -10,27 +10,27 @@ namespace Inventory
 	{
 		public string key;
 		public int count;
-		public int price; // °¡°İ
-		public string nameKey; //ÀÌ¸§ Å°
-		public string explanationKey; //¼³¸í Å°
-		public string spriteKey; //½ºÇÁ¶óÀÌÆ® Å°
+		public int price; // ê°€ê²©
+		public string nameKey; //ì´ë¦„ í‚¤
+		public string explanationKey; //ì„¤ëª… í‚¤
+		public string spriteKey; //ìŠ¤í”„ë¼ì´íŠ¸ í‚¤
 		public bool stackble;
 		public int stackMax = 64;
 		public ItemType itemType;
-		public ConsumptionType consumptionType; // ¼Ò¸ğÇ° Å¸ÀÔ
+		public ConsumptionType consumptionType; // ì†Œëª¨í’ˆ íƒ€ì…
 		public string prefebkey;
 		public string animationLayer;
 		public string dropItemPrefebKey;
 
-		//Àå½Å±¸ ºĞ·ù¿ë
+		//ì¥ì‹ êµ¬ ë¶„ë¥˜ìš©
 		public AccessoriesItemType accessoriesItemType;
 
-		//¾ÆÀÌÅÛ Àåºñ¿ë
-		[Header("Àåºñ ½½·Ô ¿ëµµ")]
+		//ì•„ì´í…œ ì¥ë¹„ìš©
+		[Header("ì¥ë¹„ ìŠ¬ë¡¯ ìš©ë„")]
 		public EquipmentType equipmentType;
 
-		//¾ÆÀÌÅÛ ½½·Ô¿¡ Ç¥½Ã¿ëµµ
-		[Header("¾ÆÀÌÅÛ ½½·Ô¿¡ Ç¥½Ã¿ëµµ")]
+		//ì•„ì´í…œ ìŠ¬ë¡¯ì— í‘œì‹œìš©ë„
+		[Header("ì•„ì´í…œ ìŠ¬ë¡¯ì— í‘œì‹œìš©ë„")]
 		public bool isSlot = true;
 
 		public void Copy(ItemDataSO _itemDataSO)

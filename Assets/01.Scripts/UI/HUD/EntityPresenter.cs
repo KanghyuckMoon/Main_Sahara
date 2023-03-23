@@ -76,7 +76,7 @@ namespace UI
         {
             uiDocument ??= GetComponent<UIDocument>();
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
-            hudElement.style.display = DisplayStyle.None;
+          //  hudElement.style.display = DisplayStyle.None;
             ContructPresenters();
             AwakePresenters();
             StartCoroutine(Init());

@@ -7,7 +7,7 @@ using UI.Production;
 
 namespace UI.EventAlarm
 {
-    public class EventAlarmPresenter : MonoBehaviour,IScreen
+    public class EventAlarmScreenPresenter : MonoBehaviour,IScreen,IPopupPr
     {
         private UIDocument uiDocument; 
         [SerializeField]
@@ -16,7 +16,8 @@ namespace UI.EventAlarm
 
         private UIConstructor<EventAlarmView> eventAlarmConstructor;
 
-        // «¡∑Œ∆€∆º 
+        // ÌîÑÎ°úÌçºÌã∞ 
+        public PopupType PopupType  => PopupType.EventAlarm; 
         public IUIController UIController { get; set; }
 
         private void OnEnable()
@@ -31,7 +32,7 @@ namespace UI.EventAlarm
             uiDocument = GetComponent<UIDocument>(); 
         }
 
-        [ContextMenu("¿Ã∫•∆Æ æÀ∏≤ ≈◊Ω∫∆Æ")]
+        [ContextMenu("Ïù¥Î≤§Ìä∏ ÏïåÎ¶º ÌÖåÏä§Ìä∏")]
         public void TestEventAlarm()
         {
             (VisualElement, AbUI_Base) t = eventAlarmConstructor.CreateUI();
@@ -52,6 +53,12 @@ namespace UI.EventAlarm
         {
             alarmScreenView.ActiveView(_isActive);
         }
+
+        public void SetParent(VisualElement _v)
+        {
+            alarmScreenView.SetThisParent(_v); 
+        }
+
     }
     
    

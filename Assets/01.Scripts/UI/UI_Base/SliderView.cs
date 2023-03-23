@@ -34,7 +34,7 @@ public class SliderView
     {
         TweeningValue(targetValue); 
         //_bar.value = targetValue; 
-        // 애니메이션 
+        // ??????? 
         //StartCoroutine(UpdateBar(targetValue)); 
     }
 

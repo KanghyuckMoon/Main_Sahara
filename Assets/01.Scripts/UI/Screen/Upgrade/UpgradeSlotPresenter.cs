@@ -18,7 +18,7 @@ namespace UI.Upgrade
         private VisualElement element1; 
         private ItemData itemData;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public UpgradeSlotView UpgradeSlotView => upgradeSlotView;
         public VisualElement Parent => parent;
         public VisualElement Element1 => element1;
@@ -35,7 +35,7 @@ namespace UI.Upgrade
                 }
 
                     ActiveEnough(HaveItemData.count >= ItemData.count); 
-                return HaveItemData.count >= ItemData.count; // Àç·á ÃæºĞÇÑÁö 
+                return HaveItemData.count >= ItemData.count; // ì¬ë£Œ ì¶©ë¶„í•œì§€ 
             }
         }
         public UpgradeSlotPresenter()
@@ -55,7 +55,7 @@ namespace UI.Upgrade
         {
             if(this.upgradeSlotView == null)
             {
-                Debug.LogWarning("UpgradeSlotView¸¦ »ı¼ºÇØÁÖ¼¼¿ä");
+                Debug.LogWarning("UpgradeSlotViewë¥¼ ìƒì„±í•´ì£¼ì„¸ìš”");
             }
 
             this.itemData = _itemData;
@@ -67,23 +67,23 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// ÇÕ¼º ¹öÆ° ¿·¿¡ ³ªÅ¸³¯ ÇöÀç º¸À¯ °³¼ö/ ÇÊ¿ä °³¼ö Ç¥½Ã 
+        /// í•©ì„± ë²„íŠ¼ ì˜†ì— ë‚˜íƒ€ë‚  í˜„ì¬ ë³´ìœ  ê°œìˆ˜/ í•„ìš” ê°œìˆ˜ í‘œì‹œ 
         /// </summary>
         /// <param name="_itemData"></param>
         public void SetItemDataHave(ItemData _itemData)
         {
             if (this.upgradeSlotView == null)
             {
-                Debug.LogWarning("UpgradeSlotView¸¦ »ı¼ºÇØÁÖ¼¼¿ä");
+                Debug.LogWarning("UpgradeSlotViewë¥¼ ìƒì„±í•´ì£¼ì„¸ìš”");
             }
             this.itemData = _itemData;
             //upgradeSlotView.IsStackable = _itemData.IsStackble;
 
-            // ÇöÀç º¸À¯ °³¼ö Ã¼Å©
+            // í˜„ì¬ ë³´ìœ  ê°œìˆ˜ ì²´í¬
             int _curCount = 0;
             if (HaveItemData != null)
             {
-                _curCount = InventoryManager.Instance.GetItem(_itemData.key).count; // ÇöÀç º¸À¯ °³¼ö 
+                _curCount = InventoryManager.Instance.GetItem(_itemData.key).count; // í˜„ì¬ ë³´ìœ  ê°œìˆ˜ 
             }
 
             if (_itemData.spriteKey != "")
@@ -93,7 +93,7 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        ///  ÃæºĞÇÏ¸é ÀÌ¹ÌÁö ºÒÅõ¸íµµ 100%
+        ///  ì¶©ë¶„í•˜ë©´ ì´ë¯¸ì§€ ë¶ˆíˆ¬ëª…ë„ 100%
         /// </summary>
         /// <param name="_isActive"></param>
         public void ActiveEnough(bool _isActive)
@@ -105,7 +105,7 @@ namespace UI.Upgrade
             this.upgradeSlotView.ActiveMark.style.display = _isActive ? DisplayStyle.Flex : DisplayStyle.None;
         }
         /// <summary>
-        /// Å¬¸¯ ÀÌº¥Æ® Ãß°¡ 
+        /// í´ë¦­ ì´ë²¤íŠ¸ ì¶”ê°€ 
         /// </summary>
         public void AddClickEvent(Action _callback)
         {

@@ -328,6 +328,17 @@ namespace UI
             // Get<타입> 
             Get<VisualElement>(_idx).UnregisterCallback<T>((e) => _event?.Invoke());
         }
+        /// <summary>
+        /// VisualElement에 이벤트 삭제 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_idx"></param>
+        /// <param name="_event"></param>
+        protected void RemoveButtonEvent<T>(int _idx, Action _event) where T : EventBase<T>, new()
+        {
+            // Get<타입> 
+            Get<Button>(_idx).UnregisterCallback<T>((e) => _event?.Invoke());
+        }
         //== 값이 변경될 때 이벤트 == 
 
         /// <summary>

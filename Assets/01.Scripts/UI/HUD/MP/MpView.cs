@@ -12,7 +12,7 @@ namespace UI
         private SliderView _frontBarView;
         private SliderView _backBarView;
 
-        // Ä³½ÌÇØÁÙ ¿ä¼Òµé 
+        // ìºì‹±í•´ì¤„ ìš”ì†Œë“¤ 
         enum Elements
         {
             mp_frame,
@@ -34,13 +34,13 @@ namespace UI
         {
             base.Init();
 
-            // »ı¼º 
+            // ìƒì„± 
             _frontBarView = new SliderView(Get<ProgressBar>((int)ProgressBars.front_bar));
             _backBarView = new SliderView(Get<ProgressBar>((int)ProgressBars.back_bar));
         }
 
         /// <summary>
-        /// hp¹Ù UI¾÷µ¥ÀÌÆ®
+        /// hpë°” UIì—…ë°ì´íŠ¸
         /// </summary>
         /// <param name="v"></param>
         public void SetBarUI(float v)

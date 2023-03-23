@@ -10,7 +10,8 @@ namespace UI.EventAlarm
     {
         enum Elements
         {
-            top_panel
+            top_panel,
+            event_alarm_parent
         }
         public override void Cashing()
         {
@@ -20,7 +21,7 @@ namespace UI.EventAlarm
 
         public void SetThisParent(VisualElement _v)
         {
-            GetVisualElement((int)Elements.top_panel).Add(_v); 
+            GetVisualElement((int)Elements.event_alarm_parent).Add(_v); 
         }
 
         public void ActiveView()

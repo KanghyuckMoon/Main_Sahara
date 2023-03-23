@@ -12,7 +12,7 @@ namespace UI.MapLiner
     public class LineCreateManager : MonoSingleton<LineCreateManager>
     {
         private Transform canvas; 
-        private MapLiner pLiner; // ¶óÀÎ ÇÁ¸®ÆÕ 
+        private MapLiner pLiner; // ë¼ì¸ í”„ë¦¬íŒ¹ 
 
         private List<MapLiner> linerList = new List<MapLiner>();
         private Dictionary<ScreenType, List<MapLiner>> linerDic = new Dictionary<ScreenType, List<MapLiner>>();
