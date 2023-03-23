@@ -8,11 +8,11 @@ using UI.Base;
 namespace UI
 {
     /// <summary>
-    /// ÀüÃ¼¸Ê È°¼ºÈ­½Ã ÀÌµ¿, È®´ëÃà¼Ò, ¸¶Ä¿ ±â´É 
+    /// ï¿½ï¿½Ã¼ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ìµï¿½, È®ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ä¿ ï¿½ï¿½ï¿½ 
     /// </summary>
     public class MapPresenter : MonoBehaviour, IScreen
     {
-        // ÀÎ½ºÆåÅÍ ÂüÁ¶ 
+        // ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
         [SerializeField]
         private UIDocument uiDocument;
         [SerializeField]
@@ -23,7 +23,7 @@ namespace UI
         [SerializeField]
         private MIniMapComponent miniMapComponent;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ 
         public IUIController UIController { get; set; }
         public MapView MapView => mapView;
         public MapInfo MapInfo => miniMapComponent.MapInfo; 
@@ -54,16 +54,16 @@ namespace UI
 
         private void LateUpdate()
         {
-            Logging.Log("MarkerParent Scale : " + mapView.MarkerParent.transform.scale);
-            Logging.Log("MarkerParent Origin : " + mapView.MarkerParent.resolvedStyle.transformOrigin);
+            //Logging.Log("MarkerParent Scale : " + mapView.MarkerParent.transform.scale);
+            //Logging.Log("MarkerParent Origin : " + mapView.MarkerParent.resolvedStyle.transformOrigin);
             if (mapView.CurMapType == MapType.FullMap)
             {
-                // ÀüÃ¼¸Ê ·»´õ¸µ
+                // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 fullMapComponent.UpdateUI();
             }
             else if (mapView.CurMapType == MapType.MiniMap)
             {
-                // ¹Ì´Ï¸Ê ·»´õ¸µ
+                // ï¿½Ì´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 miniMapComponent.UpdateUI();
             }
             //if(Input.GetKeyDown(KeyCode.Alpha2))
@@ -108,13 +108,13 @@ namespace UI
                 //StartCoroutine(Test());
         }
 
-        [ContextMenu("¸¶Ä¿ È°¼ºÈ­")]
+        [ContextMenu("ï¿½ï¿½Ä¿ È°ï¿½ï¿½È­")]
         public void ActiveMarkers()
         {
             fullMapComponent.MarkersComponent.ActiveMarkers(true);
         }
 
-        [ContextMenu("¸¶Ä¿ ºñÈ°¼ºÈ­")]
+        [ContextMenu("ï¿½ï¿½Ä¿ ï¿½ï¿½È°ï¿½ï¿½È­")]
         public void DisableMarkers()
         {
             fullMapComponent.MarkersComponent.ActiveMarkers(false);

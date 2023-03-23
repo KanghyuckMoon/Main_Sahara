@@ -24,7 +24,7 @@ namespace UI.Manager
         public int Height => height; 
         // private ScreenUI
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public TextKeySO TextKeySO
         {
             get
@@ -40,9 +40,9 @@ namespace UI.Manager
                 if (player is null)
                 {
                     player ??= GameObject.FindWithTag("Player");
-                    if(player is not null) // ÇÑ ¹ø ½ÇÇàµÊ
+                    if(player is not null) // í•œ ë²ˆ ì‹¤í–‰ë¨
                     {
-                        AddUIToObj(); // UI ÃÊ±âÈ­ 
+                        AddUIToObj(); // UI ì´ˆê¸°í™” 
                         playerHud = player.GetComponentInChildren<EntityPresenter>();
                     }
 
@@ -54,17 +54,17 @@ namespace UI.Manager
         public override void Awake()
         {
             base.Awake();
-            // ¾îµå·¹¼­ºí·Î ¹Ş¾Æ¿À±â 
+            // ì–´ë“œë ˆì„œë¸”ë¡œ ë°›ì•„ì˜¤ê¸° 
             markerUI = AddressablesManager.Instance.GetResource<GameObject>("MarkerUI");
             playerHudUI = AddressablesManager.Instance.GetResource<GameObject>("PlayerHudUI");
             textKeySO ??= AddressablesManager.Instance.GetResource<TextKeySO>("TextKeySO");
-            // ¼³Á¤
+            // ì„¤ì •
             width = Screen.width;
             height = Screen.height; 
         }
     
         /// <summary>
-        /// Àç½ÃÀÛ½Ã ÃÊ±âÈ­ 
+        /// ì¬ì‹œì‘ì‹œ ì´ˆê¸°í™” 
         /// </summary>
         public void Init()
         {
@@ -75,14 +75,14 @@ namespace UI.Manager
         {
             if (playerHud == null)
             {
-                Debug.LogWarning("playerHud ¾ø¾î¿ä");
+                Debug.LogWarning("playerHud ì—†ì–´ìš”");
                 return;
             }
             playerHud.SetActive(_isActive); 
         }
 
         /// <summary>
-        ///  ¿ÀºêÁ§Æ®¿¡ UI ³Ö¾îÁÖ±â 
+        ///  ì˜¤ë¸Œì íŠ¸ì— UI ë„£ì–´ì£¼ê¸° 
         /// </summary>
         private void AddUIToObj()
         {

@@ -66,7 +66,7 @@ namespace UI.Inventory
         public void UpdateUI()
         {
             // 인벤토리 데이터 설정 
-            List<ItemData> _itemList = InventoryManager.Instance.GetWeaponAndConsumptionList(); 
+            List<ItemData> _itemList = InventoryManager.Instance.GetAllItem(); 
             foreach(var _itemData in _itemList)
             {
                 this.inventoryView.UpdateInventoryUI(_itemData); 
