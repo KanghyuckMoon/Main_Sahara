@@ -31,15 +31,17 @@ namespace Weapon
             projectilePosSO.Upload(objectData);
         }
 
-        protected Vector3 CalculateRotation(Quaternion _quaternion)
+        protected Vector3 CalculateRotation(Vector3 _vector3)
         {
             //Quaternion _qu = _qu;
-            Vector3 _vec = _quaternion * objectData.InitialDirection;
+            //Vector3 _vec = _quaternion * objectData.InitialDirection;
             
             //Vector3 _vec = _rotation.eulerAngles;
 
             //Quaternion _quaternion = Quaternion.Euler(0, _vec.y, 0);
-
+            Vector3 _vec = _vector3 - transform.position;
+            
+            
             return _vec;//_quaternion * objectData.InitialDirection;
         }
     }

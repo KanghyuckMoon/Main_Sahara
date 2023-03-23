@@ -88,7 +88,7 @@ namespace Module
                 if (mainModule.Gravity < 0) mainModule.Gravity = -2;
 
                 if (mainModule.IsJump && calculatedTime <= 0.0f)
-                {
+          {
                     Animator.SetBool("Jump", true);
 
                     Jumping(0.2f);

@@ -43,13 +43,30 @@ namespace AI
 		{
 			AddressablesManager.Instance.GetResourceAsync<AISO>(_address, SetAISO);
 		}
+		
+		public void StartWeaponSet()
+		{
+			if (!string.IsNullOrEmpty(aiSO.startWeapon))
+			{
+				aiModule.MainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).ChangeWeapon(aiSO.startWeapon, null);
+			}
+		}
 
 		private void SetAISO(AISO _aiSO)
 		{
 			aiSO = _aiSO;
 			aiModule.IsFirstAttack = aiSO.isFirstAttack;
 			aiModule.IsHostilities = aiSO.isFirstAttack;
-			aiModule.SetNode(ReturnRootNode());
+			INode _node = ReturnRootNode();
+			if (_node != null)
+			{
+				aiModule.SetNode(_node);
+			}
+			else
+			{
+				AddressablesManager.Instance.GetResourceAsync<NodeMakeSO>(aiSO.aiAddress, CallBackNodeMakeSO);
+			}
+			
 		}
 
 		public INode ReturnRootNode()
@@ -57,8 +74,7 @@ namespace AI
 			switch(aiSO.aiAddress)
 			{
 				default:
-					NodeMakeSO nodeMakeSO = AddressablesManager.Instance.GetResource<NodeMakeSO>(aiSO.aiAddress);
-					return NodeModelToINode(nodeMakeSO.nodeModel, null);
+					return null;
 				case "TestTalkNPC":
 					return TestTalkNPC();
 				case "TestEnemy":
@@ -68,6 +84,11 @@ namespace AI
 				case "TestTrack":
 					return TestTrack();
 			}
+		}
+
+		private void CallBackNodeMakeSO(NodeMakeSO _nodeMakeSO)
+		{
+			aiModule.SetNode( NodeModelToINode(_nodeMakeSO.nodeModel, null));
 		}
 
 		private partial INode TestEnemy();
@@ -142,6 +163,9 @@ namespace AI
 				case NodeType.IfAction:
 					_node = IfAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
 					break;
+				case NodeType.IfInvertAction:
+					_node = IfInvertAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
+					break;
 				case NodeType.Selector:
 					_node = Selector();
 					break;
@@ -153,6 +177,20 @@ namespace AI
 					break;
 				case NodeType.IfSelector:
 					_node = IfSelector(NodeModelToINodeCondition(_nodeModel.nodeCondition));
+					break;
+				case NodeType.StringAction:
+					_node = StringAction(NodeModelToINodeStringAction(_nodeModel.nodeAction));
+					(_node as StringActionNode).str = _nodeModel.str;
+					break;
+				case NodeType.IfStringAction:
+					_node = IfStringAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeStringAction(_nodeModel.nodeAction));
+					(_node as IfStringActionNode).str = _nodeModel.str;
+					break;
+				case NodeType.IfTimerAction:
+					_node = IfTimerAction(_nodeModel.delay, NodeModelToINodeAction(_nodeModel.nodeAction));
+					break;
+				case NodeType.IfIgnoreAction:
+					_node = IfIgnoreAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
 					break;
 			}
 			if (_parent is not null)
@@ -176,7 +214,6 @@ namespace AI
 			return _node;
 		}
 
-		[CanBeNull]
 		private System.Action NodeModelToINodeAction(NodeAction _nodeAction)
 		{
 			return _nodeAction switch
@@ -200,9 +237,26 @@ namespace AI
 				NodeAction.TrackMove => TrackMove,
 				NodeAction.AroundOriginPos => AroundOriginPos,
 				NodeAction.AroundLastFindPlayerPos => AroundLastFindPlayerPos,
+				NodeAction.SkillWeapon => SkillWeapon,
+				NodeAction.SkillE => SkillE,
+				NodeAction.SkillR => SkillR,
+				NodeAction.RageOn => RageOn,
+				NodeAction.Nothing => Nothing,
+				NodeAction.FixiedMove => FixiedMove,
+				NodeAction.LockOnPlayer => LockOnPlayer,
 				_ => null
 			};
 		}
+		
+		private System.Action<string> NodeModelToINodeStringAction(NodeAction _nodeAction)
+		{
+			return _nodeAction switch
+			{
+				NodeAction.EquipWeapon => EquipWeapon,
+				_ => null
+			};
+		}
+
 		private System.Func<bool> NodeModelToINodeCondition(NodeCondition _nodeCondition)
 		{
 			return _nodeCondition switch
@@ -229,6 +283,15 @@ namespace AI
 				NodeCondition.CheckHPPercent30Condition => CheckHPPercent30Condition,
 				NodeCondition.CheckHPPercent20Condition => CheckHPPercent20Condition,
 				NodeCondition.Time1FCondition => Time1fCondition,
+				NodeCondition.InitCheck => InitCheck,
+				NodeCondition.RageCheck => RageCheck,
+				NodeCondition.NotRageCheck => NotRageCheck,
+				NodeCondition.AroundRangeCondition => AroundRangeCondition,
+				NodeCondition.SuspicionRangeCondition => SuspicionRangeCondition,
+				NodeCondition.ViewRangeCondition => ViewRangeCondition,
+				NodeCondition.OutSuspicionRangeCondition => OutSuspicionRangeCondition,
+				NodeCondition.OutViewRangeCondition => OutViewRangeCondition,
+				NodeCondition.LockOnCheck => LockOnCheck,
 				_ => null
 			};
 		}

@@ -32,12 +32,12 @@ namespace Skill
             
             foreach (var _buffs in buffList)
             {
-                GetBuff(_buffs, _bufmodule)
+                _bufmodule.AddBuff(GetBuff(_buffs, _bufmodule)
                     .SetDuration(_buffs.duration)
                     .SetPeriod(_buffs.period)
                     .SetValue(_buffs.value)
                     .SetSprite(_buffs.buffs.ToString() + buffIconString)
-                    .SetSpownObjectName(_buffs.buffs.ToString() + buffEffectString);
+                    .SetSpownObjectName(_buffs.buffs.ToString() + buffEffectString), _buffs.bufftype);
             }
         }
 
