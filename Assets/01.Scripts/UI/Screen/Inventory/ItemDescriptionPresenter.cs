@@ -61,9 +61,9 @@ namespace UI.Inventory
                 _pos = new Vector2(_slotPos.x + _slotSize.x / 2, _slotPos.y - 300);
             }
 
-            if (_pos.x + itemDescriptionView.Panel.worldBound.width > Screen.width)
+            if (_pos.x + itemDescriptionView.Panel.worldBound.width + 400 > Screen.width)
             {
-                _pos = new Vector2(_pos.x - itemDescriptionView.Panel.worldBound.width, _pos.y);
+                _pos = new Vector2(_pos.x - itemDescriptionView.Panel.worldBound.width - 400, _pos.y);
             }
         
             itemDescriptionView.SetPos(_pos); 
