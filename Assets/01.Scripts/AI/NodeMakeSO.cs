@@ -44,6 +44,7 @@ namespace AI
 		Nothing,
 		FixiedMove,
 		LockOnPlayer,
+		StrongAttack,
 		//StringAction
 		EquipWeapon = 20,
 		//FloatAction

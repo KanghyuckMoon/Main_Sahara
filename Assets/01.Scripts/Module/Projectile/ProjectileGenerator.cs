@@ -107,18 +107,19 @@ namespace Module
             
             //if (mainModule.LockOnTarget is not null)
             //    _vec = mainModule.LockOnTarget.position + new Vector3(0,1, 0);
-            //else
+            if(mainModule.player)
             {
                 Ray _ray = new Ray(cameraModule.CurrentCamera.transform.position, cameraModule.CurrentCamera.transform.forward);
                 RaycastHit _raycastHit;
 
                 _vec = cameraModule.CurrentCamera.transform.position + cameraModule.CurrentCamera.transform.forward * 40f;
-                //if (Physics.Raycast(_ray, out _raycastHit, 40f))
-                //    _vec = _raycastHit.point;
-                //else
-
+                
             }
-            
+            else
+            {
+                _vec = transform.forward;
+            }
+
             foreach (GameObject _projectile in projectileObjects)
             {
                 _projectile.GetComponent<IProjectile>().MovingFunc(_vec);

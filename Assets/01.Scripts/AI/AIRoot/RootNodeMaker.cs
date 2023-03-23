@@ -211,6 +211,7 @@ namespace AI
 				NodeAction.RunMove => RunMove,
 				NodeAction.Jump => Jump,
 				NodeAction.Attack => Attack,
+				NodeAction.StrongAttack => StrongAttack,
 				NodeAction.Reset => Reset,
 				NodeAction.Ignore => Ignore,
 				NodeAction.Rotate => Rotate,

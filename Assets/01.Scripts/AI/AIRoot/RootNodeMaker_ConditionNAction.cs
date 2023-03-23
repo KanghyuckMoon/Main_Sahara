@@ -425,6 +425,7 @@ namespace AI
 		private void Reset() //Make
 		{
 			aiModule.MainModule.Attacking = false;
+			aiModule.MainModule.StrongAttacking = false;
 			aiModule.MainModule.IsJump = false;
 			aiModule.MainModule.IsJumpBuf = false;
 		}
@@ -439,6 +440,12 @@ namespace AI
 		{
 			aiModule.AIModuleState = AIModule.AIState.Attack;
 			aiModule.MainModule.Attacking = true;
+		}
+		private void StrongAttack() //Make
+		{
+			aiModule.AIModuleState = AIModule.AIState.Attack;
+			aiModule.MainModule.StrongAttacking = true;
+			//aiModule.MainModule.Attacking = true;
 		}
 		private void SkillWeapon() //Make
 		{
