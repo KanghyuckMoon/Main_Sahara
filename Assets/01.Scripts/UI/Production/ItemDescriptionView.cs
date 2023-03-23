@@ -10,15 +10,15 @@ namespace UI.Production
         enum Elements
         {
             description_panel,
-            image, // ¾ÆÀÌÅÛ ÀÌ¹ÌÁö 
+            image, // ì•„ì´í…œ ì´ë¯¸ì§€ 
         }
         enum Labels
         {
-            name_label, // ¾ÆÀÌÅÛ ÀÌ¸§ ÅØ½ºÆ® 
-            description_label, // ¾ÆÀÌÅÛ ¼³¸í ÅØ½ºÆ® 
+            name_label, // ì•„ì´í…œ ì´ë¦„ í…ìŠ¤íŠ¸ 
+            description_label, // ì•„ì´í…œ ì„¤ëª… í…ìŠ¤íŠ¸ 
         }
 
-        public float Height => GetVisualElement((int)Elements.description_panel).layout.height; 
+        public VisualElement Panel => GetVisualElement((int)Elements.description_panel); 
 
         public override void Cashing()
         {
@@ -33,7 +33,7 @@ namespace UI.Production
         }
 
         /// <summary>
-        /// ¾ÆÀÌÅÛ ÀÌ¹ÌÁö ¼³Á¤ 
+        /// ì•„ì´í…œ ì´ë¯¸ì§€ ì„¤ì • 
         /// </summary>
         /// <param name="_image"></param>
         public void SetImage(Texture2D _image)
@@ -42,7 +42,7 @@ namespace UI.Production
         }
 
         /// <summary>
-        /// ÀÌ¸§, ¼³¸í ÅØ½ºÆ® ¼³Á¤ 
+        /// ì´ë¦„, ì„¤ëª… í…ìŠ¤íŠ¸ ì„¤ì • 
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_description"></param>

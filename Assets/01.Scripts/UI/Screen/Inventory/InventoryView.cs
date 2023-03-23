@@ -238,10 +238,10 @@ namespace UI.Inventory
                 // 가장 가깝게 드랍한 슬롯 
                 SlotItemPresenter _closedSlot = _slots.OrderBy(x =>
                     Vector2.Distance(x.Item.worldBound.position, dragItemPresenter.Item.worldBound.position)).First();
-                slotCallbackDic[_closedSlot.SlotType]?.Invoke(_closedSlot.ItemData, _closedSlot.Index);
+                slotCallbackDic[_closedSlot.SlotType]?.Invoke(dragItemPresenter.ItemData, _closedSlot.Index);
                    
                 // SO 데이터도 설정
-                  //  InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
+                //InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
                 _closedSlot.SetItemData(dragItemPresenter.ItemData); 
 
             }
