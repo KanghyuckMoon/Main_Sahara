@@ -31,7 +31,7 @@ namespace AI
 		private float distance = 0.1f;
 		private float jumpDistance = 0.5f;
 		private float yDistance = 3f;
-
+		private float rageGauge = 0f;
 
 		public RootNodeMaker(AIModule _aiModule, string _address)
 		{
@@ -152,19 +152,12 @@ namespace AI
 		private INode NodeModelToINode(NodeModel _nodeModel, INode _parent)
 		{
 			INode _node = null;
+			INode _includeNode = null;
 			switch (_nodeModel.nodeType)
 			{
 				case NodeType.Action:
-					_node = Action(NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
-				case NodeType.IgnoreAction:
-					_node = IgnoreAction(NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
-				case NodeType.IfAction:
-					_node = IfAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
-				case NodeType.IfInvertAction:
-					_node = IfInvertAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
+					_includeNode = Action(NodeModelToINodeAction(_nodeModel.nodeAction));
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay);
 					break;
 				case NodeType.Selector:
 					_node = Selector();
@@ -179,18 +172,14 @@ namespace AI
 					_node = IfSelector(NodeModelToINodeCondition(_nodeModel.nodeCondition));
 					break;
 				case NodeType.StringAction:
-					_node = StringAction(NodeModelToINodeStringAction(_nodeModel.nodeAction));
-					(_node as StringActionNode).str = _nodeModel.str;
+					_includeNode = StringAction(NodeModelToINodeStringAction(_nodeModel.nodeAction));
+					(_includeNode as StringActionNode).str = _nodeModel.str;
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay);
 					break;
-				case NodeType.IfStringAction:
-					_node = IfStringAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeStringAction(_nodeModel.nodeAction));
-					(_node as IfStringActionNode).str = _nodeModel.str;
-					break;
-				case NodeType.IfTimerAction:
-					_node = IfTimerAction(_nodeModel.delay, NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
-				case NodeType.IfIgnoreAction:
-					_node = IfIgnoreAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
+				case NodeType.FloatAction:
+					_includeNode = FloatAction(NodeModelToINodeFloatAction(_nodeModel.nodeAction));
+					(_includeNode as FloatActionNode).value = _nodeModel.value;
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay);
 					break;
 			}
 			if (_parent is not null)
@@ -256,11 +245,20 @@ namespace AI
 				_ => null
 			};
 		}
+		private System.Action<float> NodeModelToINodeFloatAction(NodeAction _nodeAction)
+		{
+			return _nodeAction switch
+			{
+				NodeAction.AddRageGauge => AddRageGauge,
+				_ => null
+			};
+		}
 
 		private System.Func<bool> NodeModelToINodeCondition(NodeCondition _nodeCondition)
 		{
 			return _nodeCondition switch
 			{
+				NodeCondition.None => NoneCondition,
 				NodeCondition.FerCloserMoveCondition => FerCloserMoveCondition,
 				NodeCondition.DiscorverCondition => DiscorverCondition,
 				NodeCondition.AttackCondition => AttackCondition,
@@ -292,6 +290,8 @@ namespace AI
 				NodeCondition.OutSuspicionRangeCondition => OutSuspicionRangeCondition,
 				NodeCondition.OutViewRangeCondition => OutViewRangeCondition,
 				NodeCondition.LockOnCheck => LockOnCheck,
+				NodeCondition.RageGaugeOverCheck => RageGaugeOverCheck,
+				NodeCondition.RageGaugeUnderCheck => RageGaugeUnderCheck,
 				_ => null
 			};
 		}

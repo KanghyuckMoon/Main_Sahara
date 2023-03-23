@@ -33,3 +33,19 @@ public class StringActionNode : INode
         return true;
     }
 }
+
+public class FloatActionNode : INode
+{
+    public float value = 0f;
+    public Action<float> Action { get; protected set; }
+    public FloatActionNode(Action<float> action)
+    {
+        Action = action;
+    }
+
+    public virtual bool Run()
+    {
+        Action(value);
+        return true;
+    }
+}

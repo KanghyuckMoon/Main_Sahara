@@ -315,7 +315,27 @@ namespace AI
 			}
 			return false;
 		}
-		
+		private bool NoneCondition() //Make
+		{
+			return true;
+		}
+		private bool RageGaugeOverCheck()
+        {
+			if(rageGauge >= 100f)
+            {
+				return true;
+			}
+			return false;
+		}
+		private bool RageGaugeUnderCheck()
+		{
+			if (rageGauge <= 0f)
+			{
+				return true;
+			}
+			return false;
+		}
+
 
 		//Action
 		private void SuspicionGaugeSet() //Make
@@ -733,6 +753,13 @@ namespace AI
 		{
 			aiModule.MainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).ChangeWeapon(_str, null);
 		}
+
+		//float Action
+		private void AddRageGauge(float _add)
+		{
+			rageGauge += _add;
+		}
+
 
 		//Utill
 		private Vector3 AngleToDir(float angle)

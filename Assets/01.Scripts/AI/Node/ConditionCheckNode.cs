@@ -7,20 +7,61 @@ public class ConditionCheckNode : INode
 {
     private INode node;
     public Func<bool> Condition { get; private set; }
+    private bool isIgnore = false;
+    private bool isInvert = false;
+    private bool isUseTimer = false;
+    private float originDelay = 0f;
+    private float currentDelay = 0f;
 
-    public ConditionCheckNode(Func<bool> condition, INode node)
+    public ConditionCheckNode(Func<bool> condition, INode node, bool _isIgnore, bool _isInvert, bool _isUseTimer, float _delay)
     {
         Condition = condition;
         this.node = node;
+        isIgnore = _isIgnore;
+        isInvert = _isInvert;
+        isUseTimer = _isUseTimer;
+        originDelay = _delay;
+        currentDelay = 0f;
     }
 
     public bool Run()
     {
         bool result = Condition();
+
+        if(isInvert)
+        {
+            result = !result;
+        }
+
         if (result)
-		{
-            return node.Run();
+        {
+            if(!isUseTimer)
+            {
+                node.Run();
+                if (isIgnore)
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            if (currentDelay < originDelay)
+            {
+                currentDelay += Time.deltaTime;
+                return false;
+            }
+            else
+            {
+                currentDelay -= originDelay;
+                node.Run();
+                if (isIgnore)
+                {
+                    return false;
+                }
+                return true;
+            }
 		}
-        return result;
+
+        return false;
     }
 }

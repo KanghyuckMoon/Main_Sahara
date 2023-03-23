@@ -6,18 +6,13 @@ namespace AI
 {
 	public enum NodeType
 	{
-		Action,
-		IgnoreAction,
-		IfAction,
+		Action = 0,
 		Selector,
 		PercentRandomChoice,
 		PercentAction,
 		IfSelector,
 		StringAction,
-		IfStringAction,
-		IfInvertAction,
-		IfTimerAction,
-		IfIgnoreAction,
+		FloatAction,
 	}
 
 	public enum NodeAction
@@ -42,14 +37,17 @@ namespace AI
 		TrackMove,
 		AroundOriginPos,
 		AroundLastFindPlayerPos,
-		EquipWeapon,
-		SkillWeapon,
+		SkillWeapon = 21,
 		SkillE,
 		SkillR,
 		RageOn,
 		Nothing,
 		FixiedMove,
 		LockOnPlayer,
+		//StringAction
+		EquipWeapon = 20,
+		//FloatAction
+		AddRageGauge = 100,
 	}
 
 	public enum NodeCondition
@@ -86,6 +84,8 @@ namespace AI
 		OutSuspicionRangeCondition,
 		OutViewRangeCondition,
 		LockOnCheck,
+		RageGaugeOverCheck,
+		RageGaugeUnderCheck,
 	}
 
 	[CreateAssetMenu(fileName = "NodeMakeSO", menuName = "SO/NodeMakeSO")]
@@ -109,9 +109,16 @@ namespace AI
 
 		[Header("stringNode")] 
 		public string str;
-		
-		[Header("timerNode")] 
+
+		[Header("FloatNode")]
+		public float value;
+
+		[Header("ConditionCheck")] 
 		public float delay;
+		public bool isIgnore;
+		public bool isInvert;
+		public bool isUseTimer;
+
 
 		public List<NodeModel> nodeModelList = new List<NodeModel>();
 	}
