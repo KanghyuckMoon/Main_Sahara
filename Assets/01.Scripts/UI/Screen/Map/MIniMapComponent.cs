@@ -8,26 +8,26 @@ using UI.Manager;
 namespace UI
 {
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î ¸¶Ä¿ Ç¥½Ã, 
+    /// í”Œë ˆì´ì–´ ë§ˆì»¤ í‘œì‹œ, 
     /// </summary>
     [Serializable]
     public class MIniMapComponent
     {
-        // ÀÎ½ºÆåÅÍ ÂüÁ¶ 
+        // ì¸ìŠ¤í™í„° ì°¸ì¡° 
        // [SerializeField]
         private MapInfo mapInfo;
 
         [SerializeField]
-        private FollowObjMarker playerMarker; // ÀÏ´Ü ÀÓ½Ã·Î, ³ªÁß¿¡ ÇÃ·¹ÀÌ¾î °¡Á®¿Í¼­ ÇÒ°Å¾ß  
+        private FollowObjMarker playerMarker; // ì¼ë‹¨ ì„ì‹œë¡œ, ë‚˜ì¤‘ì— í”Œë ˆì´ì–´ ê°€ì ¸ì™€ì„œ í• ê±°ì•¼  
 
-        // ÇÁ¶óÀÌºø º¯¼ö 
+        // í”„ë¼ì´ë¹— ë³€ìˆ˜ 
         private GameObject player;
         private MapView mapView;
 
         [SerializeField]
         private Camera cam;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public MapInfo MapInfo => mapInfo;
         private GameObject Player
         {
@@ -64,7 +64,7 @@ namespace UI
         {
             mapInfo = new MapInfo(); 
             this.mapView = _mapView;
-            // MapInfo ÃÊ±âÈ­ 
+            // MapInfo ì´ˆê¸°í™” 
 
             mapView.SetMapUISize(mapInfo.UIMapSize);
             //mapInfo.UIMapSize = new Vector2(mapView.Map.style.width.value.value, mapView.Map.style.height.value.value);
@@ -77,13 +77,13 @@ namespace UI
 
         public void UpdateUI()
         {
-            // ÇÃ·¹ÀÌ¾î ¸¶Ä¿ °¡Á®¿Í¼­ 
-            // ±×¿¡ ¸Â°Ô ¸Ê ÀÌ‰¥ 
+            // í”Œë ˆì´ì–´ ë§ˆì»¤ ê°€ì ¸ì™€ì„œ 
+            // ê·¸ì— ë§ê²Œ ë§µ ì´ëŸ 
             // Vector2 _playerMarkerPos = new Vector2(playerMarker.MarkerUI.style.left.value.value, playerMarker.MarkerUI.style.top.value.value);
 
             if (PlayerMarker == null ||PlayerMarker.MarkerUI == null) return; 
             Vector2 _playerMarkerPos = PlayerMarker.MarkerUI.transform.position; 
-            Vector2 _mapPos; // ¸Ê Æ÷Áö¼Ç 
+            Vector2 _mapPos; // ë§µ í¬ì§€ì…˜ 
             _mapPos.x = Mathf.Clamp(mapView.Map.style.width.value.value * 0.5f - (_playerMarkerPos.x + mapInfo.UIMapCenterPos.x),
               -mapInfo.UIMapSize.x * 0.5f + mapView.MinimapMaskW * 0.5f,
               mapInfo.UIMapSize.x * 0.5f - mapView.MinimapMaskW * 0.5f);
@@ -96,7 +96,7 @@ namespace UI
            //mapView.MapTrm.position = Vector2.Lerp(mapView.MapTrm.position,_mapPos,Time.deltaTime * 20f); 
             mapView.MapTrm.position = _mapPos;
 
-            // ¸Ê È¸Àü 
+            // ë§µ íšŒì „ 
             //RotateMap();
             if (PlayerMarker != null)
             {
@@ -107,7 +107,7 @@ namespace UI
         private float prevMapAngle = 0f;
         private float angleDiff = 0f; 
         /// <summary>
-        /// Ä«¸Ş¶ó È¸Àü°ª¿¡ µû¸¥ ¹Ì´Ï¸Ê È¸Àü 
+        /// ì¹´ë©”ë¼ íšŒì „ê°’ì— ë”°ë¥¸ ë¯¸ë‹ˆë§µ íšŒì „ 
         /// </summary>
         private void RotateMap()
         {
@@ -120,7 +120,7 @@ namespace UI
             foreach (var m in _markers)
             {
                 if (m == PlayerMarker.MarkerUI) continue;
-                //  m.style.rotate = new Rotate(new Angle(m.style.rotate.value.angle.value - angleDiff)); // ¸¶Ä¿´Â ¹æÇâ À¯ÁöÇØ¾ßÇÏ´Ñ 
+                //  m.style.rotate = new Rotate(new Angle(m.style.rotate.value.angle.value - angleDiff)); // ë§ˆì»¤ëŠ” ë°©í–¥ ìœ ì§€í•´ì•¼í•˜ë‹Œ 
             }
 
             if(PlayerMarker != null)
@@ -129,11 +129,11 @@ namespace UI
             }
         //    mapView.Sight.style.
         }
-        // ¸¶Ä¿UI°¡ ¿ÀºêÁ§Æ® µû¶ó°¡´Â°Å (ÇÃ·¹ÀÌ¾î, ¸ó½ºÅÍ)
+        // ë§ˆì»¤UIê°€ ì˜¤ë¸Œì íŠ¸ ë”°ë¼ê°€ëŠ”ê±° (í”Œë ˆì´ì–´, ëª¬ìŠ¤í„°)
         // obj -> UI 
-        // mapView °¡Á®¿Í¼­ ¹ØÀ¸·Î °¡¾ßÇØ 
+        // mapView ê°€ì ¸ì™€ì„œ ë°‘ìœ¼ë¡œ ê°€ì•¼í•´ 
 
-        // ¸¶Ä¿ UI ¿òÁ÷ÀÓ¿¡ µû¶ó ¸Ê ÀÌµ¿ÇÏ´Â°Å (ÇÃ·¹ÀÌ¾î) 
+        // ë§ˆì»¤ UI ì›€ì§ì„ì— ë”°ë¼ ë§µ ì´ë™í•˜ëŠ”ê±° (í”Œë ˆì´ì–´) 
     }
 
 }

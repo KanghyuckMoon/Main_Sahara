@@ -27,7 +27,7 @@ namespace UI.EventManage
         }
 
         /// <summary>
-        /// ÀÌº¥Æ® ÇÔ¼ö µî·ÏÇÏ±â 
+        /// ì´ë²¤íŠ¸ í•¨ìˆ˜ ë“±ë¡í•˜ê¸° 
         /// </summary>
         /// <param name="eventName"></param>
         /// <param name="listener"></param>
@@ -36,15 +36,15 @@ namespace UI.EventManage
             Action thisEvent;
             if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
             {
-                //±âÁ¸ ÀÌº¥Æ®¿¡ ´õ ¸¹Àº ÀÌº¥Æ® Ãß°¡ 
+                //ê¸°ì¡´ ì´ë²¤íŠ¸ì— ë” ë§ì€ ì´ë²¤íŠ¸ ì¶”ê°€ 
                 thisEvent += listener;
 
-                //µñ¼Å³Ê¸® ¾÷µ¥ÀÌÆ®
+                //ë”•ì…”ë„ˆë¦¬ ì—…ë°ì´íŠ¸
                 Instance.eventDictionary[eventName] = thisEvent;
             }
             else
             {
-                //Ã³À½À¸·Î µñ¼Å³Ê¸®¿¡ ÀÌº¥Æ® Ãß°¡ 
+                //ì²˜ìŒìœ¼ë¡œ ë”•ì…”ë„ˆë¦¬ì— ì´ë²¤íŠ¸ ì¶”ê°€ 
                 thisEvent += listener;
                 Instance.eventDictionary.Add(eventName, thisEvent);
             }
@@ -66,7 +66,7 @@ namespace UI.EventManage
         }
 
         /// <summary>
-        /// ÀÌº¥Æ® ÇÔ¼ö ÇØÁ¦ÇÏ±â 
+        /// ì´ë²¤íŠ¸ í•¨ìˆ˜ í•´ì œí•˜ê¸° 
         /// </summary>
         /// <param name="eventName"></param>
         /// <param name="listener"></param>
@@ -79,10 +79,10 @@ namespace UI.EventManage
             Action thisEvent;
             if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
             {
-                //±âÁ¸ ÀÌº¥Æ®¿¡¼­ ÀÌº¥Æ® Á¦°Å
+                //ê¸°ì¡´ ì´ë²¤íŠ¸ì—ì„œ ì´ë²¤íŠ¸ ì œê±°
                 thisEvent -= listener;
 
-                //ÀÌº¥Æ® ¾÷µ¥ÀÌÆ® 
+                //ì´ë²¤íŠ¸ ì—…ë°ì´íŠ¸ 
                 Instance.eventDictionary[eventName] = thisEvent;
             }
 
@@ -103,7 +103,7 @@ namespace UI.EventManage
             }
         }
         /// <summary>
-        /// ÀÌº¥Æ® ÇÔ¼ö ½ÇÇà 
+        /// ì´ë²¤íŠ¸ í•¨ìˆ˜ ì‹¤í–‰ 
         /// </summary>
         /// <param name="eventName"></param>
         public void TriggerEvent(EventsType eventName)
@@ -111,12 +111,12 @@ namespace UI.EventManage
             Action thisEvent = null;
             if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
             {
-                Debug.Log("ÀÌº¥Æ® ½ÇÇà!");
+                Debug.Log("ì´ë²¤íŠ¸ ì‹¤í–‰!");
                 thisEvent?.Invoke();
             }
             else
             {
-                Debug.LogError("ºó ÀÌº¥Æ®ÀÔ´Ï´Ù");
+                Debug.LogError("ë¹ˆ ì´ë²¤íŠ¸ì…ë‹ˆë‹¤");
             }
         }
 
@@ -129,7 +129,7 @@ namespace UI.EventManage
             }
             else
             {
-                Debug.LogError("ºó ÀÌº¥Æ®ÀÔ´Ï´Ù");
+                Debug.LogError("ë¹ˆ ì´ë²¤íŠ¸ì…ë‹ˆë‹¤");
             }
         }
 

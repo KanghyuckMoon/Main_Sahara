@@ -11,13 +11,13 @@ namespace UI
     [Serializable]
     public class MpPresenter : IUIFollower
     {
-        // ÀÎ½ºÆåÅÍ ÂüÁ¶ º¯¼ö 
+        // ì¸ìŠ¤í™í„° ì°¸ì¡° ë³€ìˆ˜ 
         [SerializeField]
         private int _testMp;
         [SerializeField]
         private MpView _mpView;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public UIDocument RootUIDocument { get; set; }
 
         private StatData statData; 
@@ -37,8 +37,8 @@ namespace UI
             _mpView.Init();
             this.statData = _data as StatData;
         }
-        // ¼±ÅÃÇÑ ¿ÀºêÁ§Æ®ÀÇ ½ºÅ©¸³Æ® °¡Á®¿À°í 
-        // ÇÔ¼ö ¸®ÇÃ·º¼ÇÀ¸·Î Âß »©¿Í¼­ µå·Ó´Ù¿îÀ¸·Î ¼³Á¤ 
+        // ì„ íƒí•œ ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤í¬ë¦½íŠ¸ ê°€ì ¸ì˜¤ê³  
+        // í•¨ìˆ˜ ë¦¬í”Œë ‰ì…˜ìœ¼ë¡œ ì­‰ ë¹¼ì™€ì„œ ë“œë¡­ë‹¤ìš´ìœ¼ë¡œ ì„¤ì • 
         // 
         public void UpdateUI()
         {
