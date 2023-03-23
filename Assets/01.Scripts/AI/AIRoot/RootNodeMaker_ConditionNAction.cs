@@ -751,6 +751,10 @@ namespace AI
 		{
 			isRage = true;
 		}
+		private void RageOff()
+		{
+			isRage = false;
+		}
 		private void Nothing()
 		{
 		}

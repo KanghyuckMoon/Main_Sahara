@@ -39,6 +39,8 @@ public class AISO : ScriptableObject
 	
 	//start weapon
 	public string startWeapon;
+	public string startItemE;
+	public string startItemR;
 	
 	//����ĳ��Ʈ
 	public LayerMask TargetMask;

@@ -32,6 +32,7 @@ namespace AI
 		private float jumpDistance = 0.5f;
 		private float yDistance = 3f;
 		private float rageGauge = 0f;
+		public bool isSetAISO = false;
 
 		public RootNodeMaker(AIModule _aiModule, string _address)
 		{
@@ -50,6 +51,16 @@ namespace AI
 			{
 				aiModule.MainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).ChangeWeapon(aiSO.startWeapon, null);
 			}
+
+			if(!string.IsNullOrEmpty(aiSO.startItemE))
+			{
+				aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).SetSkill("E", aiSO.startItemE);
+			}
+
+			if (!string.IsNullOrEmpty(aiSO.startItemR))
+			{
+				aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).SetSkill("R", aiSO.startItemR);
+			}
 		}
 
 		private void SetAISO(AISO _aiSO)
@@ -61,6 +72,7 @@ namespace AI
 			if (_node != null)
 			{
 				aiModule.SetNode(_node);
+				isSetAISO = true;
 			}
 			else
 			{
@@ -89,6 +101,7 @@ namespace AI
 		private void CallBackNodeMakeSO(NodeMakeSO _nodeMakeSO)
 		{
 			aiModule.SetNode( NodeModelToINode(_nodeMakeSO.nodeModel, null));
+			isSetAISO = true;
 		}
 
 		private partial INode TestEnemy();
@@ -231,6 +244,7 @@ namespace AI
 				NodeAction.SkillE => SkillE,
 				NodeAction.SkillR => SkillR,
 				NodeAction.RageOn => RageOn,
+				NodeAction.RageOff => RageOff,
 				NodeAction.Nothing => Nothing,
 				NodeAction.FixiedMove => FixiedMove,
 				NodeAction.LockOnPlayer => LockOnPlayer,

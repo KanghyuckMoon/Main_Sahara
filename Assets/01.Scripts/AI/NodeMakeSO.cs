@@ -45,6 +45,7 @@ namespace AI
 		FixiedMove,
 		LockOnPlayer,
 		StrongAttack,
+		RageOff,
 		//StringAction
 		EquipWeapon = 20,
 		//FloatAction
