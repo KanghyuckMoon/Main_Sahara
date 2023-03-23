@@ -11,7 +11,7 @@ public class IfSelectorNode : CompositeNode
         Condition = condition;
     }
 
-    //True ÇÏ³ª°¡ ³ª¿Ã ¶§ ±îÁö µ¹¸²
+    //True í•˜ë‚˜ê°€ ë‚˜ì˜¬ ë•Œ ê¹Œì§€ ëŒë¦¼
     public override bool Run()
     {
         bool firstResult = Condition();

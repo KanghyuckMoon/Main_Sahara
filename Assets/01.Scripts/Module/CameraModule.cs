@@ -10,7 +10,9 @@ namespace Module
 {
     public class CameraModule : AbBaseModule
     {
-        CinemachineVirtualCamera FollawVCam
+	    public GameObject CurrentCamera { get; private set; }
+
+	    CinemachineVirtualCamera FollawVCam
         {
             get
             {
@@ -34,6 +36,7 @@ namespace Module
                 return zoomVCam;
             }
         }
+        
 
         public CinemachineVirtualCamera follawVCam;
         public CinemachineVirtualCamera groupVCam;
@@ -52,6 +55,8 @@ namespace Module
         private CinemachineBasicMultiChannelPerlin followCamNoise;
         private CinemachineBasicMultiChannelPerlin groupCamNoise;
         private CinemachineBasicMultiChannelPerlin zoomCamNoise;
+
+        private GameObject currentCamera;
 
         private float currentShakeDuration = 0;
         //private PlayerFollowCamera camInstance;
@@ -118,6 +123,7 @@ namespace Module
             groupCamNoise = groupVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             zoomCamNoise = zoomVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
+            CurrentCamera = follawVCam.gameObject;
             groupVCam.gameObject.SetActive(false);
             zoomVCam.gameObject.SetActive(false);
             //mainModule.objRotation = mainCam.transform.rotation;
@@ -135,15 +141,18 @@ namespace Module
             if (FollawVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = FollawVCam.transform.rotation;
+                CurrentCamera = FollawVCam.gameObject;
                 //return;
             }
             else if (zoomVCam.gameObject.activeSelf)
             {
                 mainModule.ObjRotation = zoomVCam.transform.rotation;
+                CurrentCamera = zoomVCam.gameObject;
                 mainModule.ObjForword = CamPos(zoomVCam.transform.rotation);
             }
             else if (GroupVCam.gameObject.activeSelf)
             {
+	            CurrentCamera = GroupVCam.gameObject;
                 mainModule.ObjRotation = GroupVCam.transform.rotation;
             }
             //float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
