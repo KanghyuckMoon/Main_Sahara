@@ -7,7 +7,11 @@ namespace Buff
     public enum Buffs
     {
         U_Healing,
-        U_ReduceDamage,
+        U_ChangeMagicDef,
+        U_ChangePhysicDef,
+        U_ChangeMana,
+        U_MoveSpeed,
+        U_AnimationSpeed,
         None
     }
     public enum BuffType

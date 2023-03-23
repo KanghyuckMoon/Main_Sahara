@@ -27,7 +27,7 @@ namespace Module
 
         public override void Start()
         {
-            AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), BuffType.Update);
+            //AddBuff(new Healing_Buf(this).SetValue(10).SetDuration(10).SetPeriod(2).SetSpownObjectName("HealEffect").SetSprite("Demon"), BuffType.Update);
         }
 
         [ContextMenu("테스트")]
