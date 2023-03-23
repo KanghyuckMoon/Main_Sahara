@@ -794,7 +794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586633618700060407, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
@@ -808,6 +808,10 @@ PrefabInstance:
     - target: {fileID: 1695092116382737989, guid: 704afa0bf97191d4ea8d9103e4a434c5, type: 3}
       propertyPath: m_Name
       value: xb_Hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695092116382737989, guid: 704afa0bf97191d4ea8d9103e4a434c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2075594142208933119, guid: 704afa0bf97191d4ea8d9103e4a434c5, type: 3}
       propertyPath: m_RootOrder
@@ -1930,11 +1934,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.206865
+      value: 13.950865
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3194474
+      value: -1.5014472
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15064,6 +15068,7 @@ MonoBehaviour:
   isCanHit: 0
   isStaticTime: 0
   canConsecutiveAttack: 0
+  isDash: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -25069,6 +25074,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionSO: {fileID: 0}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8783047357663303651
 MonoBehaviour:
   m_ObjectHideFlags: 0
