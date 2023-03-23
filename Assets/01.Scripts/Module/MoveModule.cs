@@ -41,6 +41,7 @@ namespace Module
 		}
         private Animator animator;
         private float moveSpeed => StatData.WalkSpeed;
+        private float runSpeed => StatData.RunSpeed;
         private float rotationVelocity;
         private float targetRotation;
         private float rotation;
@@ -73,12 +74,12 @@ namespace Module
         public void Move()
         {
             #region 속도 관련 부분
-            float _targetSpeed = mainModule.IsSprint ? moveSpeed + 5 : moveSpeed;
+            float _targetSpeed = mainModule.IsSprint ? runSpeed : moveSpeed;
             float _lockOnspeed = mainModule.LockOn ? -2 : 0;
 
             float _speed;
 
-            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? moveSpeed - 2 + 4 : moveSpeed - 2;
+            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? runSpeed - 2 : moveSpeed - 2;
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking) _targetSpeed = 0.0f;
 
             var velocity = mainModule.CharacterController.velocity;
