@@ -24,13 +24,13 @@ namespace Skill
             _effect.SetActive((true));
 
             BuffModule _buffModule = _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
-            /*
+            
             _buffModule.AddBuff(new Healing_Buf(_buffModule)
                 .SetDuration(10)
                 .SetPeriod(2)
                 .SetValue(5)
                 .SetSprite("Demon")
-                .SetSpownObjectName("HealEffect"), BuffType.Update);*/
+                .SetSpownObjectName("HealEffect"), BuffType.Update);
             
             Skill_Test(_mainModule, animationClip);
             //throw new System.NotImplementedException();
