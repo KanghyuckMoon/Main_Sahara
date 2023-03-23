@@ -93,7 +93,7 @@ namespace HitBox
 				EffectManager.Instance.SetEffectDefault(hitBoxData.swingEffect, _pos, _hitBoxData.swingEffectRotation + transform.eulerAngles, _hitBoxData.swingEffectSize);
 			}
 
-			if(hitBoxData.deleteDelay != -1)
+			if(hitBoxData.deleteDelay > -0.5f)
 			{
 				StartCoroutine(DestroyHitBox());
 			}

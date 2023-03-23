@@ -133,6 +133,9 @@ namespace Module
 						//StateModule.AddState(State.SKILL);
 						SkillModule.UseWeaponSkill();
 					}
+
+					if (Input.GetKeyDown(KeyCode.LeftControl))
+						mainModule.IsDash = true;
 				}
 			}
 		}

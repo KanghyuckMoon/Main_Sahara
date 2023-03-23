@@ -18,9 +18,12 @@ namespace Module
 
         [SerializeField]
         private ProjectilePositionSO positionSO;
+        [SerializeField]
+        private LayerMask targetLayerMask;
         private AttackModule attackModule;
         private AbMainModule mainModule;
         private StateModule stateModule;
+        private CameraModule cameraModule;
         private WeaponModule weaponModule;
 
         private float delay = 1;
@@ -34,6 +37,7 @@ namespace Module
             attackModule = mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
             weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
+            cameraModule = mainModule.GetModuleComponent<CameraModule>(ModuleType.Camera);
         }
 
         public void ChangeSO(ProjectilePositionSO _positionSO)
@@ -45,9 +49,8 @@ namespace Module
         {
             //if (stateModule.CheckState(State.ATTACK)) return;
             if (canSpwon) return;
-            if (PositionSO is null)
+            if (positionSO == null)
                 return;
-
             SpownProjectile(_projectileName);
             MoveProjectile();
         }
@@ -57,7 +60,7 @@ namespace Module
             //for (int i = 0; i < _count; i++)
             //{
             if (canSpwon) return;
-            if (PositionSO is null)
+            if (positionSO == null)
                 return;
 
             //if (stateModule.CheckState(State.ATTACK)) return;
@@ -71,7 +74,6 @@ namespace Module
                 {
                     //KeyValuePair<GameObject, ProjectileObjectData> keyValuePair = new KeyValuePair(attackModule.CreateProjectile(_datas), _datas);
                     GameObject _projectile = attackModule.CreateProjectile(_datas);
-                    
                     HitBoxOnProjectile _hitProj = _projectile.GetComponent<HitBoxOnProjectile>();
                     _hitProj.SetOwner(gameObject);
                     _projectile.tag = mainModule.player ? "Player" : "EnemyWeapon";
@@ -98,9 +100,28 @@ namespace Module
             {
                 x.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation);
             });*/
+
+            Vector3 _vec;
+            
+            
+            
+            //if (mainModule.LockOnTarget is not null)
+            //    _vec = mainModule.LockOnTarget.position + new Vector3(0,1, 0);
+            //else
+            {
+                Ray _ray = new Ray(cameraModule.CurrentCamera.transform.position, cameraModule.CurrentCamera.transform.forward);
+                RaycastHit _raycastHit;
+
+                _vec = cameraModule.CurrentCamera.transform.position + cameraModule.CurrentCamera.transform.forward * 40f;
+                //if (Physics.Raycast(_ray, out _raycastHit, 40f))
+                //    _vec = _raycastHit.point;
+                //else
+
+            }
+            
             foreach (GameObject _projectile in projectileObjects)
             {
-                _projectile.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation);
+                _projectile.GetComponent<IProjectile>().MovingFunc(_vec);
             }
 
             projectileObjects.Clear();

@@ -125,6 +125,7 @@ namespace Pool
             for (int i = 0; i < count; ++i)
             {
                 GameObject obj = GameObject.Instantiate(prefeb, null);
+                obj.name = prefeb.name;
                 obj.SetActive(false);
                 Queue<GameObject> queue;
                 queue = MakeQueueRegister(key);
@@ -150,6 +151,7 @@ namespace Pool
         private Queue<GameObject> MakeQueueGet(string key, GameObject gameObject)
         {
             GameObject obj = GameObject.Instantiate(gameObject, null);
+            obj.name = gameObject.name;
             Queue<GameObject> queue;
             if (gameObjectQueueDic.TryGetValue(key, out queue))
             {

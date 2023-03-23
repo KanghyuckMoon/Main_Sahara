@@ -128,7 +128,7 @@ namespace Module
 
             _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot);
             //_moveValue *= mainModule.PersonalDeltaTime;
-            Vector3 _moveVector3 = _moveValue + mainModule.KnockBackVector;
+            Vector3 _moveVector3 = _moveValue;
             mainModule.attackedTime += mainModule.PersonalDeltaTime;
             float _decreaseKnockBackValue = -3 * mainModule.attackedTime * mainModule.attackedTime;
             float _knockBackPower = _decreaseKnockBackValue + mainModule.knockBackPower;
