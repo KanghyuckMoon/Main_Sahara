@@ -10,6 +10,7 @@ using Data;
 using Attack;
 using Buff;
 using DG.Tweening;
+using Skill;
 
 namespace Module
 {
@@ -125,7 +126,7 @@ namespace Module
                     if (_statData != null)
                     {
                         HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
-                        _statData.ChargeMana(mainModule.StatData.ManaRegen);
+                        _statData.ChargeMana(_statData.ManaRegen + _statData.ChangeMana(_statData.ManaRegen));
                     }
                     else
                     {
@@ -248,7 +249,8 @@ namespace Module
         private AbBuffEffect GetBuff(BuffData _buffs, BuffModule _bufmodule) => _buffs.buffs switch
         {
             Buffs.U_Healing => new Healing_Buf(_bufmodule),
-            Buffs.U_ReduceDamage => new ReduceDamage_Buf(_bufmodule),
+            Buffs.U_ChangeMagicDef => new ChangeMagicResistance_Buf(_bufmodule),
+            Buffs.U_ChangePhysicDef => new ChangePhysicResistance_Buf(_bufmodule),
             Buffs.None => null
         };
         public override void OnDisable()
