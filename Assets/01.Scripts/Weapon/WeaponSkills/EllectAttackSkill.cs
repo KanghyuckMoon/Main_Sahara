@@ -10,7 +10,7 @@ namespace Weapon
         private Transform player;
         public Rigidbody rigidbody;
 
-        public void MovingFunc(Quaternion _quaternion)
+        public void MovingFunc(Vector3 _vector3)
         {
             transform.SetParent(null);
             player ??= GameObject.FindGameObjectWithTag("Player").transform;
