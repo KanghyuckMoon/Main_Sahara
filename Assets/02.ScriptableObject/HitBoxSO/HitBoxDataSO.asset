@@ -41,6 +41,10 @@ MonoBehaviour:
     - TriSlash_2_0
     - TriSlash_2_1
     - TriSlash_2_2
+    - SpinSlash_0_0
+    - SpinSlash_0_1
+    - SpinSlash_0_2
+    - SpinSlash_0_Ex
     m_values:
     - hitBoxDataList:
       - hitBoxName: EndSword_ColKey
@@ -469,10 +473,10 @@ MonoBehaviour:
         hitBoxIndex: 0
         deleteDelay: 0.1
         childization: 0
-        offset: {x: 0.71700007, y: -0.000000059604645, z: 1.615}
-        radius: 1
-        height: 1
-        rotation: {x: -0, y: 0, z: 90}
+        offset: {x: 0.84, y: 0.85, z: 0.38}
+        radius: 0.54
+        height: 1.95
+        rotation: {x: -0, y: 90, z: 90}
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
         defaultPower: 1
@@ -511,12 +515,12 @@ MonoBehaviour:
         hitBoxIndex: 1
         deleteDelay: 0.1
         childization: 0
-        offset: {x: 0.92, y: 0.08800001, z: 1.79}
-        radius: 0.96
-        height: 3.68
-        rotation: {x: -0, y: 0, z: 90}
+        offset: {x: 0.8, y: -2.02, z: 0}
+        radius: 0.62
+        height: 2.38
+        rotation: {x: -0, y: 270, z: 90}
         isContactDirection: 0
-        knockbackDir: {x: 0, y: 0, z: 1}
+        knockbackDir: {x: 90, y: 0, z: 0}
         defaultPower: 1
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
@@ -532,9 +536,9 @@ MonoBehaviour:
         hitBoxIndex: 2
         deleteDelay: 0.1
         childization: 0
-        offset: {x: 0, y: 1.192, z: -1.207}
-        radius: 0.75
-        height: 1
+        offset: {x: 0, y: 1.51, z: 1.23}
+        radius: 0.93
+        height: 2.97
         rotation: {x: -0, y: 0, z: 0}
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
@@ -553,9 +557,30 @@ MonoBehaviour:
         hitBoxIndex: 2
         deleteDelay: 0.1
         childization: 0
+        offset: {x: 0, y: -0.4300003, z: -2.5100002}
+        radius: 0.95
+        height: 2.95
+        rotation: {x: 90, y: 0, z: 0}
+        isContactDirection: 0
+        knockbackDir: {x: -90, y: 0, z: 1}
+        defaultPower: 1
+        swingEffectOffset: {x: 0, y: 0, z: 0}
+        swingEffectRotation: {x: 0, y: 0, z: 0}
+        swingEffectSize: {x: 1, y: 1, z: 1}
+        hitStunDelay: 0
+        attackStunDelay: 0
+        swingEffect: NULL
+        hitEffect: NULL
+        buffList: []
+    - hitBoxDataList:
+      - hitBoxName: TriSlash_2_2
+        ClassificationName: NULL
+        hitBoxIndex: 0
+        deleteDelay: 0.1
+        childization: 0
         offset: {x: 0, y: 0, z: 0}
         radius: 1
-        height: 1
+        height: 3.53
         rotation: {x: 0, y: 0, z: 0}
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
@@ -569,17 +594,80 @@ MonoBehaviour:
         hitEffect: NULL
         buffList: []
     - hitBoxDataList:
-      - hitBoxName: TriSlash_2_2
+      - hitBoxName: SpinSlash_0_0
         ClassificationName: NULL
         hitBoxIndex: 2
         deleteDelay: 0.1
         childization: 0
-        offset: {x: 0.046, y: 1.6780001, z: -0.82}
-        radius: 0.89
-        height: 1
+        offset: {x: 1.22, y: -0.36000013, z: -0.7800001}
+        radius: 0.81
+        height: 3
         rotation: {x: 90, y: 0, z: 0}
         isContactDirection: 0
-        knockbackDir: {x: -117.15, y: 0, z: 1}
+        knockbackDir: {x: 0, y: 90, z: 1}
+        defaultPower: 1
+        swingEffectOffset: {x: 0, y: 0, z: 0}
+        swingEffectRotation: {x: 0, y: 0, z: 0}
+        swingEffectSize: {x: 1, y: 1, z: 1}
+        hitStunDelay: 0
+        attackStunDelay: 0
+        swingEffect: NULL
+        hitEffect: NULL
+        buffList: []
+    - hitBoxDataList:
+      - hitBoxName: SpinSlash_0_1
+        ClassificationName: NULL
+        hitBoxIndex: 2
+        deleteDelay: 0.1
+        childization: 0
+        offset: {x: 1.131, y: 0.13800001, z: 0.70799994}
+        radius: 1
+        height: 3.45
+        rotation: {x: 270, y: 90, z: 0}
+        isContactDirection: 0
+        knockbackDir: {x: 0, y: 0, z: 1}
+        defaultPower: 1
+        swingEffectOffset: {x: 0, y: 0, z: 0}
+        swingEffectRotation: {x: 0, y: 0, z: 0}
+        swingEffectSize: {x: 1, y: 1, z: 1}
+        hitStunDelay: 0
+        attackStunDelay: 0
+        swingEffect: NULL
+        hitEffect: NULL
+        buffList: []
+    - hitBoxDataList:
+      - hitBoxName: SpinSlash_0_2
+        ClassificationName: NULL
+        hitBoxIndex: 2
+        deleteDelay: 0.1
+        childization: 0
+        offset: {x: 0, y: 0, z: 0}
+        radius: 0.91
+        height: 3
+        rotation: {x: -0, y: 90, z: 270}
+        isContactDirection: 0
+        knockbackDir: {x: -184.18, y: 0, z: 1}
+        defaultPower: 1
+        swingEffectOffset: {x: 0, y: 0, z: 0}
+        swingEffectRotation: {x: 0, y: 0, z: 0}
+        swingEffectSize: {x: 1, y: 1, z: 1}
+        hitStunDelay: 0
+        attackStunDelay: 0
+        swingEffect: NULL
+        hitEffect: NULL
+        buffList: []
+    - hitBoxDataList:
+      - hitBoxName: SpinSlash_0_Ex
+        ClassificationName: NULL
+        hitBoxIndex: 10
+        deleteDelay: 0.1
+        childization: 0
+        offset: {x: 0.15, y: -1.1850002, z: 0.777}
+        radius: 0.75
+        height: 1
+        rotation: {x: 270, y: -0, z: 0}
+        isContactDirection: 0
+        knockbackDir: {x: 82.16, y: 0, z: 1}
         defaultPower: 1
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
