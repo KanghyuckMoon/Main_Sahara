@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
-using UI.EventAlarm;
+//using UI.EventAlarm;
 using UI.Base;
 using System;
+using UI.Popup;
 using UI.Production;
 using UnityEngine.UIElements; 
 
@@ -24,10 +25,13 @@ namespace UI.ConstructorManager
         private UIConstructor<SaveEntryView> saveEntryConstructor;
         private UIConstructor<BuffEntryView> buffEntryConstructor;
         private UIConstructor<PopupGetItemView> popupGetItemConstructor;
+        private UIConstructor<InteracftionPopupView> interacftionPopupView; 
+    //        private  UIConstructor<popupPr>
 
-        private EventAlarmPresenter eventAlarmPresenter; 
 
         private Dictionary<Type, ICreateUI> uiConstructorDic = new Dictionary<Type, ICreateUI>();
+
+        /*private EventAlarmPresenter eventAlarmPresenter; 
 
         // 占쏙옙占쏙옙占쏙옙티
         public Dictionary<Type, ICreateUI> UIConstructorDic => uiConstructorDic; 
@@ -49,7 +53,7 @@ namespace UI.ConstructorManager
                 }
                 return eventAlarmPresenter;
             }
-        }
+        }*/
 
 
         private void OnEnable()
@@ -65,8 +69,9 @@ namespace UI.ConstructorManager
             saveEntryConstructor = new UIConstructor<SaveEntryView>("SaveEntry");
             buffEntryConstructor= new UIConstructor<BuffEntryView>("BuffEntry");
             popupGetItemConstructor = new UIConstructor<PopupGetItemView>("PopupGetItem");
-
-            uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor);
+            interacftionPopupView = new UIConstructor<InteracftionPopupView>("InteractionEntry");
+            
+            uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor); 
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
             uiConstructorDic.Add(typeof(SlotItemView), slotItemConstructor);
             uiConstructorDic.Add(typeof(UpgradeSlotView), upgradeSlotConstructor);
@@ -75,12 +80,14 @@ namespace UI.ConstructorManager
             uiConstructorDic.Add(typeof(SaveEntryView), saveEntryConstructor);
             uiConstructorDic.Add(typeof(BuffEntryView), buffEntryConstructor);
             uiConstructorDic.Add(typeof(PopupGetItemView), popupGetItemConstructor);
+            uiConstructorDic.Add(typeof(InteracftionPopupView), interacftionPopupView);
+
         }
 
         private void Awake()
         {
             
-        }
+        }   
 
         /// <summary>
         /// UI 占쏙옙占쏙옙 占쏙옙환 

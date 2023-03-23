@@ -8,17 +8,17 @@ namespace UI
 
     public class PresenterFollower
     {
-        private GameObject player; // ÇÃ·¹ÀÌ¾î¶û °Å¸®Ã¼Å©ÇØ¼­ UI À§Ä¡ Á¶Á¤ÇÏ±â À§ÇØ ÇÊ¿ä 
-        private Camera cam; // Ä«¸Ş¶ó 
-        private Transform targetTrm; // UI ¶ç¿ï ¿ÀºêÁ§Æ® 
+        private GameObject player; // í”Œë ˆì´ì–´ë‘ ê±°ë¦¬ì²´í¬í•´ì„œ UI ìœ„ì¹˜ ì¡°ì •í•˜ê¸° ìœ„í•´ í•„ìš” 
+        private Camera cam; // ì¹´ë©”ë¼ 
+        private Transform targetTrm; // UI ë„ìš¸ ì˜¤ë¸Œì íŠ¸ 
         private VisualElement followElement; // UI   
         private Renderer renderer;
         private int width, height;
         private int maxL = 25; // UI 
-        //µğ¹÷
+        //ë””ë²…
         private EntityPresenter e;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         private GameObject Player
         {
             get
@@ -58,25 +58,25 @@ namespace UI
         }
 
         /// <summary>
-        /// hud ui¸¦ ¿ùµå Æ÷Áö¼Ç¿¡ µû¶ó ÀÌµ¿ 
+        /// hud uië¥¼ ì›”ë“œ í¬ì§€ì…˜ì— ë”°ë¼ ì´ë™ 
         /// </summary>
         /// <param name="element"></param>
         /// <param name="worldPosition"></param>
         /// <param name="worldSize"></param>
         private void MoveToWorldPosition(VisualElement element, Vector3 worldPosition, Vector2 worldSize)
         {
-            // ¿ÀºêÁ§Æ® Å©±â(³ôÀÌ) ±¸ÇÏ±â 
+            // ì˜¤ë¸Œì íŠ¸ í¬ê¸°(ë†’ì´) êµ¬í•˜ê¸° 
             //            Bounds bounds = GetTotalMeshFilterBounds(targetTrm);
             Bounds bounds = renderer.bounds; 
-            // ¿ùµå ÁÂÇ¥¸¦ ÇöÀç ½ºÅ©¸° ÁÂÇ¥·Î
+            // ì›”ë“œ ì¢Œí‘œë¥¼ í˜„ì¬ ìŠ¤í¬ë¦° ì¢Œí‘œë¡œ
             Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(element.panel, worldPosition + new Vector3(0, bounds.extents.y, 0), worldSize, Cam);
 
             float l = Mathf.Clamp(maxL - (Player.transform.position - targetTrm.position).magnitude, 0, maxL) / maxL; // 0~ 1
             //Debug.Log("Length" + l);
             
-            // UI°¡ ¿ÀºêÁ§Æ® Áß¾Ó¿¡ ¿Àµµ·Ï width /2 ¸¦ ´õÇØÁØ´Ù 
+            // UIê°€ ì˜¤ë¸Œì íŠ¸ ì¤‘ì•™ì— ì˜¤ë„ë¡ width /2 ë¥¼ ë”í•´ì¤€ë‹¤ 
             float width = element.contentRect.width;
-            // UI ³ôÀÌ, °Å¸®¿¡ ¸Â°Ô ´õÇØÁØ´Ù 
+            // UI ë†’ì´, ê±°ë¦¬ì— ë§ê²Œ ë”í•´ì¤€ë‹¤ 
             float height = element.contentRect.height + (bounds.extents.y *2 * 100) * l;
             //height = element.contentRect.height; 
             //Debug.Log("Renderer Exteneds" + bounds.extents);
@@ -91,7 +91,7 @@ namespace UI
         }
 
         /// <summary>
-        /// ¿ÀºêÁ§Æ®ÀÇ bounds ¾ò±â 
+        /// ì˜¤ë¸Œì íŠ¸ì˜ bounds ì–»ê¸° 
         /// </summary>
         /// <param name="objectTransform"></param>
         /// <returns></returns>

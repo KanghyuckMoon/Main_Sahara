@@ -6,16 +6,16 @@ using System;
 namespace UI
 {
     /// <summary>
-    /// ¸Ê¿¡ ´ëÇÑ Á¤º¸( ¿ùµå¸Ê »çÀÌÁî, UI¸Ê »çÀÌÁî µî )
+    /// ë§µì— ëŒ€í•œ ì •ë³´( ì›”ë“œë§µ ì‚¬ì´ì¦ˆ, UIë§µ ì‚¬ì´ì¦ˆ ë“± )
     /// </summary>
   //  [CreateAssetMenu(menuName ="SO/UI/MapInfoSO")]
     public class MapInfo //: ScriptableObject
     {
         [Header("UI")]
         public Vector2 UIMapSize = new Vector2(8000,8000); // 8000,8000
-        public Vector2 UIMapCenterPos => new Vector2(UIMapSize.x * 0.5f, UIMapSize.y * 0.5f); // UI Áß½É ÁÂÇ¥ 
+        public Vector2 UIMapCenterPos => new Vector2(UIMapSize.x * 0.5f, UIMapSize.y * 0.5f); // UI ì¤‘ì‹¬ ì¢Œí‘œ 
 
-        [Header("½ÇÁ¦ ¸Ê")]
+        [Header("ì‹¤ì œ ë§µ")]
         public Transform minScenePos;
         public Transform maxScenePos;
 
@@ -55,17 +55,17 @@ namespace UI
             }
         }
 
-        // ¿ùµå¸Ê »ó¿¡¼­ ¿ÀºêÁ§Æ®·Î Ç¥½ÃµÉ°æ¿ì 
+        // ì›”ë“œë§µ ìƒì—ì„œ ì˜¤ë¸Œì íŠ¸ë¡œ í‘œì‹œë ê²½ìš° 
         public Transform markerParent;
 
         /// <summary>
-        /// ¿ùµå Æ÷Áö¼ÇÀ¸·Î UI Æ÷Áö¼ÇÀ¸·Î( absolute ±âÁØ) 
+        /// ì›”ë“œ í¬ì§€ì…˜ìœ¼ë¡œ UI í¬ì§€ì…˜ìœ¼ë¡œ( absolute ê¸°ì¤€) 
         /// </summary>
         /// <param name="_worldPos"></param>
         /// <returns></returns>
         public Vector2 WorldToUIPos(Vector3 _worldPos)
         {
-            // uxmlÀÇ width /2 , height / 2¸¦ ´õÇØÁà¾ßÇØ 
+            // uxmlì˜ width /2 , height / 2ë¥¼ ë”í•´ì¤˜ì•¼í•´ 
             Vector2 _uiPos;
             _uiPos.x = Mathf.Clamp((_worldPos.x /*+ sceneSize.x * 0.5f*/) / SceneSize.x * UIMapSize.x,
                                                     -UIMapSize.x * 0.5f, UIMapSize.x * 0.5f);

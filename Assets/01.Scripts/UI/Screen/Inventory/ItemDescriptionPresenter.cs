@@ -41,9 +41,10 @@ namespace UI.Inventory
         {
             this.itemDescriptionView.ActiveScreen(_isActive);
         }
-        /// <summary>
+        // ReSharper disable Unity.PerformanceAnalysis
+        /// <summary> 
         /// 설명창 설정 
-        /// </summary>
+        /// </summary> 
         public void SetItemData(ItemData _itemData,Vector2 _slotPos, Vector2 _slotSize)
         {
             if (_itemData == null) return; // 빈 슬롯이면 리턴 
@@ -60,6 +61,11 @@ namespace UI.Inventory
                 _pos = new Vector2(_slotPos.x + _slotSize.x / 2, _slotPos.y - 300);
             }
 
+            if (_pos.x + itemDescriptionView.Panel.worldBound.width + 400 > Screen.width)
+            {
+                _pos = new Vector2(_pos.x - itemDescriptionView.Panel.worldBound.width - 400, _pos.y);
+            }
+        
             itemDescriptionView.SetPos(_pos); 
             ActiveView(true); 
         }

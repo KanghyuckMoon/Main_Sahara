@@ -406,7 +406,7 @@ namespace Inventory
 			return inventorySO.itemDataList[_index];
 		}
 
-		//Àåºñ ÀåÂø
+		//ì¥ë¹„ ì¥ì°©
 		public void EquipEquipment(int index, ItemData _itemData)
 		{
 			switch(index)
@@ -439,7 +439,7 @@ namespace Inventory
 			RemoveEquipment(index);
 			inventorySO.equipments[index] = _itemData;
 
-			//Àåºñ½ºÅÈ Ã³¸®
+			//ì¥ë¹„ìŠ¤íƒ¯ ì²˜ë¦¬
 
 			return;
 		}
@@ -451,7 +451,7 @@ namespace Inventory
 			}
 		}
 
-		//Àå½Å±¸ ÀåÂø
+		//ì¥ì‹ êµ¬ ì¥ì°©
 		public void EquipAccessories(int _index, ItemData _itemData)
 		{
 			if (inventorySO.accessories[0] is not null && inventorySO.accessories[0].key == _itemData.key)
@@ -473,7 +473,7 @@ namespace Inventory
 			RemoveAccessories(_index);
 			inventorySO.accessories[_index] = _itemData;
 
-			//Àå½Å±¸½ºÅÈ Ã³¸®
+			//ì¥ì‹ êµ¬ìŠ¤íƒ¯ ì²˜ë¦¬
 			PlayerItemModule.SetPassiveItem(_itemData.accessoriesItemType);
 
 			return;
@@ -489,7 +489,7 @@ namespace Inventory
 			}
 		}
 
-		//½ºÅ³ ÀåÂø
+		//ìŠ¤í‚¬ ì¥ì°©
 		public void EquipSkill(int _index, ItemData _itemData)
 		{
 			if (inventorySO.skills[0] is not null && inventorySO.skills[0].key == _itemData.key)
@@ -503,7 +503,7 @@ namespace Inventory
 			RemoveSkill(_index);
 			inventorySO.skills[_index] = _itemData;
 
-			//½ºÅ³ Ãß°¡ Ã³¸®
+			//ìŠ¤í‚¬ ì¶”ê°€ ì²˜ë¦¬
 
 			return;
 		}
@@ -546,7 +546,7 @@ namespace Inventory
 				return;
 			}
 			inventorySO.arrow = _arrow;
-			//Weapon¿¡ µ¥ÀÌÅÍ Àü´Ş
+			//Weaponì— ë°ì´í„° ì „ë‹¬
 			weaponModule.SetArrow(_arrow.prefebkey, SpendArrow);
 		}
 

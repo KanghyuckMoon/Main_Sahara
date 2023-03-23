@@ -10,7 +10,8 @@ namespace UI.Production
         enum Labels
         {
             name_label, 
-            detail_label 
+            detail_label,
+            state_label
         }
 
         public QuestEntryView()
@@ -36,14 +37,15 @@ namespace UI.Production
         }
 
         /// <summary>
-        /// ¿Ã∏ß, º≥∏Ì º≥¡§ 
+        /// Ïù¥Î¶Ñ, ÏÑ§Î™Ö ÏÑ§Ï†ï 
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_detail"></param>
-        public void SetNameAndDetail(string _name, string _detail)
+        public void SetNameAndDetailAndState(string _name, string _detail,string _state)
         {
             GetLabel((int)Labels.name_label).text = _name;
             GetLabel((int)Labels.detail_label).text = _detail;
+            GetLabel((int)Labels.state_label).text = _state; 
         }
     }
 

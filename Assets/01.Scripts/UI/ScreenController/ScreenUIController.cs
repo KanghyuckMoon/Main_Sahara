@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UI.Dialogue;
-using UI.EventAlarm;
+//using UI.EventAlarm;
 using UI.Quest;
 using UI.Inventory;
 using UI.Base;
@@ -46,7 +46,7 @@ namespace UI
         private InventoryPresenter inventoryPresenter;
         private MapPresenter mapPresenter;
         private DialoguePresenter dialoguePresenter;
-        private EventAlarmPresenter eventAlarmPresenter;
+        //private EventAlarmPresenter eventAlarmPresenter;
         private QuestPresenter questPresenter;
         private UpgradePresenter upgradePresenter;
         private ShopPresenter shopPresenter;
@@ -71,7 +71,7 @@ namespace UI
             screenDic.Add(ScreenType.Inventory, inventoryPresenter);
             screenDic.Add(ScreenType.Map, mapPresenter);
             screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
-            screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
+            //screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
             screenDic.Add(ScreenType.Quest, questPresenter);
             screenDic.Add(ScreenType.Upgrade, upgradePresenter);
             screenDic.Add(ScreenType.Shop, shopPresenter);
@@ -124,7 +124,7 @@ namespace UI
             inventoryPresenter = GetComponentInChildren<InventoryPresenter>();
             mapPresenter = GetComponentInChildren<MapPresenter>();
             dialoguePresenter = GetComponentInChildren<DialoguePresenter>();
-            eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
+            //eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
             questPresenter = GetComponentInChildren<QuestPresenter>();
             upgradePresenter = GetComponentInChildren<UpgradePresenter>();
             shopPresenter = GetComponentInChildren<ShopPresenter>();

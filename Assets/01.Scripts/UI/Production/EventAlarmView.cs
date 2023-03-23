@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UI.Base; 
+using UI.Base;
+using UnityEngine.UIElements;
 
 namespace UI.Production
 {
@@ -9,7 +10,7 @@ namespace UI.Production
     {
         enum Elements
         {
-
+            event_alarm_view, 
         }
 
         enum Labels
@@ -18,6 +19,8 @@ namespace UI.Production
             event_name_label
         }
 
+        public VisualElement Parent => parentElement;
+        public VisualElement EventAlarmParent => GetVisualElement((int)Elements.event_alarm_view); 
         public EventAlarmView()
         {
  
@@ -25,6 +28,7 @@ namespace UI.Production
         public override void Cashing()
         {
             //base.Cashing();
+            BindVisualElements(typeof(Elements));
             BindLabels(typeof(Labels)); 
         }
 
