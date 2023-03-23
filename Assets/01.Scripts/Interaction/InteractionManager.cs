@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UI.Popup;
+using UI.Base;
+using System.Linq; 
 
 namespace Interaction
 {
@@ -77,6 +80,7 @@ namespace Interaction
 				_targetObject = null;
 				_interactionObj = null;
 			}
+			
 		}
 
 		/// <summary>
@@ -107,11 +111,22 @@ namespace Interaction
 
 		//}
 
+		private IPopup activePopup; 
 		/// <summary>
 		/// InputInteraction
 		/// </summary>
 		private void InputInteraction()
 		{
+			if (_interactionObj != null && activePopup == null)
+			{ 
+				activePopup = PopupUIManager.Instance.CreatePopup<InteractionPresenter>(PopupType.Interaction,
+					new InteractionUIData { targetVec = _interactionObj.PopUpPos, textKey = _interactionObj.Name },-1f);
+			}
+			if (_interactionObj == null && activePopup != null)
+			{
+				activePopup.Undo();
+				activePopup = null;
+			}
 			if (Input.GetKeyDown(KeyCode.F))
 			{
 				if (_interactionObj != null)

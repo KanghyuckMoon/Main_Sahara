@@ -25,7 +25,7 @@ public class PopupTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {  
             PopupUIManager.Instance.CreatePopup<InteractionPresenter>(PopupType.Interaction, 
-                new InteractionUIData{targetVec =  trm.position, textStr =  "ADSAFASFSAFSA"},-1f);
+                new InteractionUIData{targetVec =  trm.position, textKey =  "ADSAFASFSAFSA"},-1f);
         }
     }
 }

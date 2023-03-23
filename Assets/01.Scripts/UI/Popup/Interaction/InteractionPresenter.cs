@@ -4,13 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UI.ConstructorManager;
+using GoogleSpreadSheet;
 
 namespace UI.Popup
 {   
     public class InteractionUIData
     {
         public Vector3 targetVec; // vec3 위치 
-        public string textStr; // ui에 나타날 텍스트
+        public string textKey; // ui에 나타날 텍스트
     }
     
     public class InteractionPresenter : IPopup
@@ -61,8 +62,9 @@ namespace UI.Popup
             Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(Parent.panel, _uiData.targetVec
                 ,new Vector2(10,10) ,cam);
             interacftionPopupView.ParentElement.transform.position = rect.position;
-            
-            interacftionPopupView.SetDetail(_uiData.textStr);
+
+            string _detail = TextManager.Instance.GetText(_uiData.textKey);
+            interacftionPopupView.SetDetail(_detail);
         }
 
     }   
