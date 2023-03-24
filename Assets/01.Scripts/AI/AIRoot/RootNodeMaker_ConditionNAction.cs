@@ -443,6 +443,7 @@ namespace AI
 		}
 		private void StrongAttack() //Make
 		{
+			aiModule.MainModule.ObjDir = Vector2.zero;
 			aiModule.AIModuleState = AIModule.AIState.Attack;
 			aiModule.MainModule.StrongAttacking = true;
 			//aiModule.MainModule.Attacking = true;
@@ -476,7 +477,7 @@ namespace AI
 
 		private void CloserMove() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -501,7 +502,7 @@ namespace AI
 		
 		private void WalkAwayMove() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -519,7 +520,7 @@ namespace AI
 		
 		private void RunAwayMove() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -537,7 +538,7 @@ namespace AI
 		
 		private void SetMoveDir() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -564,7 +565,7 @@ namespace AI
 		private Vector3 aroundPos = Vector3.zero;
 		private void AroundOriginPos()
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				if (isGetAroundPos)
 				{
@@ -604,7 +605,7 @@ namespace AI
 		}
 		private void AroundLastFindPlayerPos()
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				if (isGetAroundPos)
 				{
@@ -645,7 +646,7 @@ namespace AI
 
 		private void RunMove()//Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -669,7 +670,7 @@ namespace AI
 		}
 		private void JumpAndRunMove() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				Vector3 vecDistance = Vector3.zero;
 				vecDistance = path.corners[1] - Position;
