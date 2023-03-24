@@ -50,6 +50,15 @@ namespace AI
 
 			return false;
 		}
+		private bool CheckAttacking()
+		{
+		    return aiModule.MainModule.Attacking;
+		}
+		private bool CheckStrongAttacking()
+		{
+		    return aiModule.MainModule.StrongAttacking;
+		}
+		
 		private bool DiscorverCondition() //Make
 		{
 			Vector3 vec = aiModule.MainModule.transform.position - aiModule.Player.position;
@@ -715,6 +724,13 @@ namespace AI
 			Vector3 _vec = (aiModule.Player.position - Position).normalized;
 			_vec.y = aiModule.MainModule.transform.forward.y;
 			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime * aiSO.rotateMoveInputSpeed);
+		}
+		
+		private void DirectRotate() //Make
+		{
+			Vector3 _vec = (aiModule.Player.position - Position).normalized;
+			_vec.y = aiModule.MainModule.transform.forward.y;
+			aiModule.MainModule.transform.forward = _vec;
 		}
 
 		private void RotateXYZ() //Make

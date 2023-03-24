@@ -46,6 +46,7 @@ namespace AI
 		LockOnPlayer,
 		StrongAttack,
 		RageOff,
+		DirectRotate,
 		//StringAction
 		EquipWeapon = 20,
 		//FloatAction
@@ -88,6 +89,8 @@ namespace AI
 		LockOnCheck,
 		RageGaugeOverCheck,
 		RageGaugeUnderCheck,
+		CheckAttacking,
+		CheckStrongAttacking,
 	}
 
 	[CreateAssetMenu(fileName = "NodeMakeSO", menuName = "SO/NodeMakeSO")]
@@ -120,6 +123,7 @@ namespace AI
 		public bool isIgnore;
 		public bool isInvert;
 		public bool isUseTimer;
+		public bool isInvertTime;
 
 
 		public List<NodeModel> nodeModelList = new List<NodeModel>();

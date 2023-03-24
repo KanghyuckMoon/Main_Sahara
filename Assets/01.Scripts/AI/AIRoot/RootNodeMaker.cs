@@ -169,8 +169,9 @@ namespace AI
 			switch (_nodeModel.nodeType)
 			{
 				case NodeType.Action:
+				case NodeType.PercentAction:
 					_includeNode = Action(NodeModelToINodeAction(_nodeModel.nodeAction));
-					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay);
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay, _nodeModel.isInvertTime);
 					break;
 				case NodeType.Selector:
 					_node = Selector();
@@ -178,21 +179,18 @@ namespace AI
 				case NodeType.PercentRandomChoice:
 					_node = PercentRandomChoiceNode(_nodeModel.changeDelay);
 					break;
-				case NodeType.PercentAction:
-					_node = Action(NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
 				case NodeType.IfSelector:
 					_node = IfSelector(NodeModelToINodeCondition(_nodeModel.nodeCondition));
 					break;
 				case NodeType.StringAction:
 					_includeNode = StringAction(NodeModelToINodeStringAction(_nodeModel.nodeAction));
 					(_includeNode as StringActionNode).str = _nodeModel.str;
-					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay);
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay, _nodeModel.isInvertTime);
 					break;
 				case NodeType.FloatAction:
 					_includeNode = FloatAction(NodeModelToINodeFloatAction(_nodeModel.nodeAction));
 					(_includeNode as FloatActionNode).value = _nodeModel.value;
-					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay);
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay, _nodeModel.isInvertTime);
 					break;
 			}
 			if (_parent is not null)
@@ -201,9 +199,9 @@ namespace AI
 				{
 					(_parent as CompositeNode).Add(_node);
 				}
-				else if (_parent is PercentRandomChoiceNode && _nodeModel.nodeType is NodeType.PercentAction)
+				else if (_parent is PercentRandomChoiceNode)
 				{
-					(_parent as PercentRandomChoiceNode).Add(PercentAction(_nodeModel.percent, _node));
+					(_parent as PercentRandomChoiceNode).Add(new Tuple<float, INode>(_nodeModel.percent, _node));
 				}
 			}
 			if (_nodeModel.nodeModelList.Count > 0)
@@ -228,6 +226,7 @@ namespace AI
 				NodeAction.Reset => Reset,
 				NodeAction.Ignore => Ignore,
 				NodeAction.Rotate => Rotate,
+				NodeAction.DirectRotate => DirectRotate,
 				NodeAction.JumpAndRunMove => JumpAndRunMove,
 				NodeAction.TargetFind => TargetFind,
 				NodeAction.SuspicionGaugeSet => SuspicionGaugeSet,
@@ -307,6 +306,8 @@ namespace AI
 				NodeCondition.LockOnCheck => LockOnCheck,
 				NodeCondition.RageGaugeOverCheck => RageGaugeOverCheck,
 				NodeCondition.RageGaugeUnderCheck => RageGaugeUnderCheck,
+				NodeCondition.CheckAttacking => CheckAttacking,
+				NodeCondition.CheckStrongAttacking => CheckStrongAttacking,
 				_ => null
 			};
 		}
