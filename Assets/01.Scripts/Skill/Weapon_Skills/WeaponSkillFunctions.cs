@@ -44,7 +44,11 @@ namespace Skill
         public AbBuffEffect GetBuff(BuffData _buffs, BuffModule _bufmodule) => _buffs.buffs switch
         {
             Buffs.U_Healing => new Healing_Buf(_bufmodule),
-            Buffs.U_ReduceDamage => new ReduceDamage_Buf(_bufmodule),
+            Buffs.U_ChangeMagicDef => new ChangeMagicResistance_Buf(_bufmodule),
+            Buffs.U_ChangePhysicDef => new ChangePhysicResistance_Buf(_bufmodule),
+            Buffs.U_AnimationSpeed => new AnimationSpeed_Buf(_bufmodule),
+            Buffs.U_ChangeMana => new ChangeMana_Buf(_bufmodule),
+            Buffs.U_MoveSpeed => new MoveSpeed_Buf(_bufmodule),
             Buffs.None => null
         };
     }

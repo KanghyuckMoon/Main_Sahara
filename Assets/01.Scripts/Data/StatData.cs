@@ -145,6 +145,17 @@ namespace Data
                 Send();
             }
         }
+        public float ManaChange
+        {
+            get
+            {
+                return manaChange;
+            }
+            set
+            {
+                manaChange = value;
+            }
+        }
         public float WalkSpeed
         {
             get
@@ -205,6 +216,7 @@ namespace Data
 
         private int healthRegen;
         private int manaRegen;
+        private float manaChange;
 
         private float walkSpeed;
         private float runSpeed;
@@ -248,6 +260,13 @@ namespace Data
         public void ChargeMana(int addMana)
         {
             CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
+        }
+
+        public int ChangeMana(int _mana)
+        {
+            int changed = (int)(_mana * (manaChange / 100));
+
+            return changed;
         }
         public void LoadSaveData(StatSaveData _statSaveData)
         {
