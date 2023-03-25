@@ -57,7 +57,7 @@ namespace UI.Popup
         public void SetData(object _data)
         {
             InteractionUIData _uiData = _data as InteractionUIData;
-            ;
+            
             //Vector2 _uiPos 
             Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(Parent.panel, _uiData.targetVec
                 ,new Vector2(10,10) ,cam);

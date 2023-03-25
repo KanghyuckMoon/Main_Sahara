@@ -111,16 +111,25 @@ namespace Interaction
 
 		//}
 
-		private IPopup activePopup; 
+		private IPopup activePopup;
+
+		private InteractionUIData uiData; 
 		/// <summary>
 		/// InputInteraction
 		/// </summary>
 		private void InputInteraction()
 		{
+			if (_interactionObj != null && activePopup != null)
+			{
+				
+				uiData.targetVec = _interactionObj.PopUpPos;
+				activePopup.SetData(uiData);
+			}
 			if (_interactionObj != null && activePopup == null)
-			{ 
+			{
+				uiData = new InteractionUIData { targetVec = _interactionObj.PopUpPos, textKey = _interactionObj.Name };
 				activePopup = PopupUIManager.Instance.CreatePopup<InteractionPresenter>(PopupType.Interaction,
-					new InteractionUIData { targetVec = _interactionObj.PopUpPos, textKey = _interactionObj.Name },-1f);
+					uiData,-1f);
 			}
 			if (_interactionObj == null && activePopup != null)
 			{
