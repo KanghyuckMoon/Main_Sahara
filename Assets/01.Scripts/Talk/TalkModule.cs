@@ -95,16 +95,16 @@ namespace Module.Talk
 		{
 			if(CanTalk())
 			{
-				Logging.Log("´ëÈ­ °¡´É");
+				Logging.Log("ëŒ€í™” ê°€ëŠ¥");
 				if (ShopModule is not null)
 				{
 					ShopManager.Instance.SetShopModule(ShopModule);
 				}
 
-				//ÀÌº¥Æ®·Î »ç¿ëµÈ ´ëÈ­°¡ ÀÖ´Â°¡?
+				//ì´ë²¤íŠ¸ë¡œ ì‚¬ìš©ëœ ëŒ€í™”ê°€ ìˆëŠ”ê°€?
 				if (!GetText())
 				{
-					//¾øÀ»½Ã ±âº» ´ëÈ­
+					//ì—†ì„ì‹œ ê¸°ë³¸ ëŒ€í™”
 					RandomDefaultText();
 				}
 			}
@@ -122,17 +122,17 @@ namespace Module.Talk
 				ShopManager.Instance.SetShopModule(ShopModule);
 			}
 
-			//ÀÌº¥Æ®·Î »ç¿ëµÈ ´ëÈ­°¡ ÀÖ´Â°¡?
+			//ì´ë²¤íŠ¸ë¡œ ì‚¬ìš©ëœ ëŒ€í™”ê°€ ìˆëŠ”ê°€?
 			if (!GetText())
 			{
-				//¾øÀ»½Ã ±âº» ´ëÈ­
+				//ì—†ì„ì‹œ ê¸°ë³¸ ëŒ€í™”
 				RandomDefaultText();
 			}
 		}
 
 		private bool CanTalk()
 		{
-			//Àû´ë »óÅÂÀÎÁö ¾Æ´ÑÁö
+			//ì ëŒ€ ìƒíƒœì¸ì§€ ì•„ë‹Œì§€
 			if(!AIModule.IsHostilities && !isTalking && !isCutScene)
 			{
 				return true;

@@ -63,6 +63,18 @@ namespace Interaction
 		private bool isEnabled = false;
 		private DropItem dropItem = new DropItem();
 
+        [ContextMenu("GetRigid")]
+        public void GetRigid()
+        {
+            rigid = gameObject.GetComponent<Rigidbody>();
+        }
+        
+        [ContextMenu("GetGameObj")]
+        public void GetGameObj()
+        {
+	        targetObj = gameObject;
+        }
+
 		public void Start()
 		{
 			if(isEnabled is false)
