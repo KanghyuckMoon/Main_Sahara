@@ -44,8 +44,10 @@ namespace Module
         {
             ISkill _skill = AddressablesManager.Instance.GetResource<GameObject>(_address).GetComponent<ISkill>();
 
-            if (currentSkill.TryGetValue(_keyCode, out var _value))
-                _value = _skill;
+            if (currentSkill.ContainsKey(_keyCode))
+            {
+                currentSkill[_keyCode] = _skill;
+            }
             else
                 currentSkill.Add(_keyCode, _skill);
         }

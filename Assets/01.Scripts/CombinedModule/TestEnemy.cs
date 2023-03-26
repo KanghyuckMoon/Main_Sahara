@@ -67,6 +67,15 @@ namespace CondinedModule
 
             base.OnEnable();
         }
+        public void SetActiveAnimatorRoot(int _on)
+        {
+            bool _isOn = _on > 0;
+            Animator.applyRootMotion = _isOn;
+        }
+        public void SetLayer(int layer)
+        {
+            gameObject.layer = layer;
+        }
         private void OnDestroy()
         {
             CharacterController = null;

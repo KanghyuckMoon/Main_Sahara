@@ -228,6 +228,7 @@ namespace Module
 			}
 			originPos = _mainModule.transform.position;
 			rootNodeMaker ??= new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
+			rootNodeMaker.isSetAISO = false;
 			rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
 			
 		}
@@ -249,6 +250,11 @@ namespace Module
 			{
 				return;
 			}
+
+			if (!rootNodeMaker.isSetAISO)
+            {
+				return;
+            }
 
 			if (!isInit)
 			{
