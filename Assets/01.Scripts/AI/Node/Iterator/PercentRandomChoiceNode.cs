@@ -6,13 +6,15 @@ using System;
 public class PercentRandomChoiceNode : INode
 {
 	public PercentRandomChoiceNode(float _changeDelay, params Tuple<float, INode>[] _nodes)
-	{
+    {
+        originDelay = _changeDelay;
         changeDelay = _changeDelay;
         tupleNodeList = new List<Tuple<float, INode>>(_nodes);
     }
 
     private List<Tuple<float, INode>> tupleNodeList;
     private float changeDelay = 0.5f;
+    private float originDelay = 0.5f;
     private int random = 0;
 
     public void Add(Tuple<float, INode> _percentNode)
@@ -22,14 +24,14 @@ public class PercentRandomChoiceNode : INode
 
     public bool Run()
     {
-        if (changeDelay < 0f)
+        if (changeDelay >= originDelay)
         {
-            changeDelay = 0.5f;
+            changeDelay -= originDelay;
         }
         else
         {
             tupleNodeList[random].Item2.Run();
-            changeDelay -= Time.deltaTime;
+            changeDelay += Time.deltaTime;
             return false;
         }
         random = Choose();

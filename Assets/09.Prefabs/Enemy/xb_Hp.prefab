@@ -584,7 +584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2075594142208933119
 Transform:
   m_ObjectHideFlags: 0
@@ -682,6 +682,7 @@ MonoBehaviour:
   isCanHit: 0
   isStaticTime: 0
   canConsecutiveAttack: 0
+  isDash: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -705,7 +706,7 @@ MonoBehaviour:
   rightFeet: {fileID: 7845844785154853748}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
-  aiSOAddress: xb_Hp_AISO
+  aiSOAddress: xb_Hp_DataSO
   smoothPath: {fileID: 0}
 --- !u!114 &5345158356665591433
 MonoBehaviour:
@@ -746,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataSOPath: EnemyDataSO
+  dataSOPath: xb_Hp_DataSO
 --- !u!114 &5345158356665591438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +820,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionSO: {fileID: 11400000, guid: d6ec2535c58f59e4ab8e460a81df98cf, type: 2}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1739654398586514120
 GameObject:
   m_ObjectHideFlags: 0

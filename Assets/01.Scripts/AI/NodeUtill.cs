@@ -13,6 +13,9 @@ public static class NodeUtill
     public static PercentRandomChoiceNode PercentRandomChoiceNode(float changeDelay, params Tuple<float, INode>[] nodes) => new PercentRandomChoiceNode(changeDelay, nodes);
     public static ActionNode Action(Action action) => new ActionNode(action);
     public static StringActionNode StringAction(Action<string> action) => new StringActionNode(action);
+    public static FloatActionNode FloatAction(Action<float> action) => new FloatActionNode(action);
+    public static ConditionCheckNode ConditionCheck(Func<bool> condition, INode node, bool ignore, bool invert, bool isUseTime, float delay, bool inverTime) => new ConditionCheckNode(condition, node, ignore, invert, isUseTime, delay, inverTime);
+
     public static IfStringActionNode IfStringAction(Func<bool> condition, Action<string> action) => new IfStringActionNode(condition,action);
     public static Tuple<float, INode> PercentAction(float _percent, INode _action) => new Tuple<float, INode>(_percent, _action);
     public static IgnoreActionNode IgnoreAction(Action action) => new IgnoreActionNode(action);

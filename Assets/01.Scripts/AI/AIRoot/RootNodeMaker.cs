@@ -31,7 +31,8 @@ namespace AI
 		private float distance = 0.1f;
 		private float jumpDistance = 0.5f;
 		private float yDistance = 3f;
-
+		private float rageGauge = 0f;
+		public bool isSetAISO = false;
 
 		public RootNodeMaker(AIModule _aiModule, string _address)
 		{
@@ -50,6 +51,16 @@ namespace AI
 			{
 				aiModule.MainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).ChangeWeapon(aiSO.startWeapon, null);
 			}
+
+			if(!string.IsNullOrEmpty(aiSO.startItemE))
+			{
+				aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).SetSkill("E", aiSO.startItemE);
+			}
+
+			if (!string.IsNullOrEmpty(aiSO.startItemR))
+			{
+				aiModule.MainModule.GetModuleComponent<SkillModule>(ModuleType.Skill).SetSkill("R", aiSO.startItemR);
+			}
 		}
 
 		private void SetAISO(AISO _aiSO)
@@ -61,6 +72,7 @@ namespace AI
 			if (_node != null)
 			{
 				aiModule.SetNode(_node);
+				isSetAISO = true;
 			}
 			else
 			{
@@ -89,6 +101,7 @@ namespace AI
 		private void CallBackNodeMakeSO(NodeMakeSO _nodeMakeSO)
 		{
 			aiModule.SetNode( NodeModelToINode(_nodeMakeSO.nodeModel, null));
+			isSetAISO = true;
 		}
 
 		private partial INode TestEnemy();
@@ -152,19 +165,13 @@ namespace AI
 		private INode NodeModelToINode(NodeModel _nodeModel, INode _parent)
 		{
 			INode _node = null;
+			INode _includeNode = null;
 			switch (_nodeModel.nodeType)
 			{
 				case NodeType.Action:
-					_node = Action(NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
-				case NodeType.IgnoreAction:
-					_node = IgnoreAction(NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
-				case NodeType.IfAction:
-					_node = IfAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
-				case NodeType.IfInvertAction:
-					_node = IfInvertAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
+				case NodeType.PercentAction:
+					_includeNode = Action(NodeModelToINodeAction(_nodeModel.nodeAction));
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay, _nodeModel.isInvertTime);
 					break;
 				case NodeType.Selector:
 					_node = Selector();
@@ -172,25 +179,18 @@ namespace AI
 				case NodeType.PercentRandomChoice:
 					_node = PercentRandomChoiceNode(_nodeModel.changeDelay);
 					break;
-				case NodeType.PercentAction:
-					_node = Action(NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
 				case NodeType.IfSelector:
 					_node = IfSelector(NodeModelToINodeCondition(_nodeModel.nodeCondition));
 					break;
 				case NodeType.StringAction:
-					_node = StringAction(NodeModelToINodeStringAction(_nodeModel.nodeAction));
-					(_node as StringActionNode).str = _nodeModel.str;
+					_includeNode = StringAction(NodeModelToINodeStringAction(_nodeModel.nodeAction));
+					(_includeNode as StringActionNode).str = _nodeModel.str;
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay, _nodeModel.isInvertTime);
 					break;
-				case NodeType.IfStringAction:
-					_node = IfStringAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeStringAction(_nodeModel.nodeAction));
-					(_node as IfStringActionNode).str = _nodeModel.str;
-					break;
-				case NodeType.IfTimerAction:
-					_node = IfTimerAction(_nodeModel.delay, NodeModelToINodeAction(_nodeModel.nodeAction));
-					break;
-				case NodeType.IfIgnoreAction:
-					_node = IfIgnoreAction(NodeModelToINodeCondition(_nodeModel.nodeCondition), NodeModelToINodeAction(_nodeModel.nodeAction));
+				case NodeType.FloatAction:
+					_includeNode = FloatAction(NodeModelToINodeFloatAction(_nodeModel.nodeAction));
+					(_includeNode as FloatActionNode).value = _nodeModel.value;
+					_node = ConditionCheck(NodeModelToINodeCondition(_nodeModel.nodeCondition), _includeNode, _nodeModel.isIgnore, _nodeModel.isInvert, _nodeModel.isUseTimer, _nodeModel.delay, _nodeModel.isInvertTime);
 					break;
 			}
 			if (_parent is not null)
@@ -199,9 +199,9 @@ namespace AI
 				{
 					(_parent as CompositeNode).Add(_node);
 				}
-				else if (_parent is PercentRandomChoiceNode && _nodeModel.nodeType is NodeType.PercentAction)
+				else if (_parent is PercentRandomChoiceNode)
 				{
-					(_parent as PercentRandomChoiceNode).Add(PercentAction(_nodeModel.percent, _node));
+					(_parent as PercentRandomChoiceNode).Add(new Tuple<float, INode>(_nodeModel.percent, _node));
 				}
 			}
 			if (_nodeModel.nodeModelList.Count > 0)
@@ -222,9 +222,11 @@ namespace AI
 				NodeAction.RunMove => RunMove,
 				NodeAction.Jump => Jump,
 				NodeAction.Attack => Attack,
+				NodeAction.StrongAttack => StrongAttack,
 				NodeAction.Reset => Reset,
 				NodeAction.Ignore => Ignore,
 				NodeAction.Rotate => Rotate,
+				NodeAction.DirectRotate => DirectRotate,
 				NodeAction.JumpAndRunMove => JumpAndRunMove,
 				NodeAction.TargetFind => TargetFind,
 				NodeAction.SuspicionGaugeSet => SuspicionGaugeSet,
@@ -241,6 +243,7 @@ namespace AI
 				NodeAction.SkillE => SkillE,
 				NodeAction.SkillR => SkillR,
 				NodeAction.RageOn => RageOn,
+				NodeAction.RageOff => RageOff,
 				NodeAction.Nothing => Nothing,
 				NodeAction.FixiedMove => FixiedMove,
 				NodeAction.LockOnPlayer => LockOnPlayer,
@@ -256,11 +259,20 @@ namespace AI
 				_ => null
 			};
 		}
+		private System.Action<float> NodeModelToINodeFloatAction(NodeAction _nodeAction)
+		{
+			return _nodeAction switch
+			{
+				NodeAction.AddRageGauge => AddRageGauge,
+				_ => null
+			};
+		}
 
 		private System.Func<bool> NodeModelToINodeCondition(NodeCondition _nodeCondition)
 		{
 			return _nodeCondition switch
 			{
+				NodeCondition.None => NoneCondition,
 				NodeCondition.FerCloserMoveCondition => FerCloserMoveCondition,
 				NodeCondition.DiscorverCondition => DiscorverCondition,
 				NodeCondition.AttackCondition => AttackCondition,
@@ -292,6 +304,10 @@ namespace AI
 				NodeCondition.OutSuspicionRangeCondition => OutSuspicionRangeCondition,
 				NodeCondition.OutViewRangeCondition => OutViewRangeCondition,
 				NodeCondition.LockOnCheck => LockOnCheck,
+				NodeCondition.RageGaugeOverCheck => RageGaugeOverCheck,
+				NodeCondition.RageGaugeUnderCheck => RageGaugeUnderCheck,
+				NodeCondition.CheckAttacking => CheckAttacking,
+				NodeCondition.CheckStrongAttacking => CheckStrongAttacking,
 				_ => null
 			};
 		}

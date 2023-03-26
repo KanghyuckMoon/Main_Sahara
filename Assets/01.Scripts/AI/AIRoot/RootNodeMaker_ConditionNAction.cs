@@ -50,6 +50,15 @@ namespace AI
 
 			return false;
 		}
+		private bool CheckAttacking()
+		{
+		    return aiModule.MainModule.Attacking;
+		}
+		private bool CheckStrongAttacking()
+		{
+		    return aiModule.MainModule.StrongAttacking;
+		}
+		
 		private bool DiscorverCondition() //Make
 		{
 			Vector3 vec = aiModule.MainModule.transform.position - aiModule.Player.position;
@@ -315,7 +324,27 @@ namespace AI
 			}
 			return false;
 		}
-		
+		private bool NoneCondition() //Make
+		{
+			return true;
+		}
+		private bool RageGaugeOverCheck()
+        {
+			if(rageGauge >= 100f)
+            {
+				return true;
+			}
+			return false;
+		}
+		private bool RageGaugeUnderCheck()
+		{
+			if (rageGauge <= 0f)
+			{
+				return true;
+			}
+			return false;
+		}
+
 
 		//Action
 		private void SuspicionGaugeSet() //Make
@@ -405,6 +434,7 @@ namespace AI
 		private void Reset() //Make
 		{
 			aiModule.MainModule.Attacking = false;
+			aiModule.MainModule.StrongAttacking = false;
 			aiModule.MainModule.IsJump = false;
 			aiModule.MainModule.IsJumpBuf = false;
 		}
@@ -419,6 +449,13 @@ namespace AI
 		{
 			aiModule.AIModuleState = AIModule.AIState.Attack;
 			aiModule.MainModule.Attacking = true;
+		}
+		private void StrongAttack() //Make
+		{
+			aiModule.MainModule.ObjDir = Vector2.zero;
+			aiModule.AIModuleState = AIModule.AIState.Attack;
+			aiModule.MainModule.StrongAttacking = true;
+			//aiModule.MainModule.Attacking = true;
 		}
 		private void SkillWeapon() //Make
 		{
@@ -449,7 +486,7 @@ namespace AI
 
 		private void CloserMove() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -474,7 +511,7 @@ namespace AI
 		
 		private void WalkAwayMove() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -492,7 +529,7 @@ namespace AI
 		
 		private void RunAwayMove() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -510,7 +547,7 @@ namespace AI
 		
 		private void SetMoveDir() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -537,7 +574,7 @@ namespace AI
 		private Vector3 aroundPos = Vector3.zero;
 		private void AroundOriginPos()
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				if (isGetAroundPos)
 				{
@@ -577,7 +614,7 @@ namespace AI
 		}
 		private void AroundLastFindPlayerPos()
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				if (isGetAroundPos)
 				{
@@ -618,7 +655,7 @@ namespace AI
 
 		private void RunMove()//Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				PathSetting();
 				Vector3 vec = Vector3.zero;
@@ -642,7 +679,7 @@ namespace AI
 		}
 		private void JumpAndRunMove() //Make
 		{
-			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
 			{
 				Vector3 vecDistance = Vector3.zero;
 				vecDistance = path.corners[1] - Position;
@@ -688,6 +725,13 @@ namespace AI
 			_vec.y = aiModule.MainModule.transform.forward.y;
 			aiModule.MainModule.transform.forward = Vector3.Lerp(aiModule.MainModule.transform.forward, _vec, Time.deltaTime * aiSO.rotateMoveInputSpeed);
 		}
+		
+		private void DirectRotate() //Make
+		{
+			Vector3 _vec = (aiModule.Player.position - Position).normalized;
+			_vec.y = aiModule.MainModule.transform.forward.y;
+			aiModule.MainModule.transform.forward = _vec;
+		}
 
 		private void RotateXYZ() //Make
 		{
@@ -724,6 +768,10 @@ namespace AI
 		{
 			isRage = true;
 		}
+		private void RageOff()
+		{
+			isRage = false;
+		}
 		private void Nothing()
 		{
 		}
@@ -733,6 +781,13 @@ namespace AI
 		{
 			aiModule.MainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).ChangeWeapon(_str, null);
 		}
+
+		//float Action
+		private void AddRageGauge(float _add)
+		{
+			rageGauge += _add;
+		}
+
 
 		//Utill
 		private Vector3 AngleToDir(float angle)

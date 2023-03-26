@@ -9,6 +9,7 @@ using Data;
 using PlasticGui.Configuration;
 using Pool;
 using TimeManager;
+using System;
 
 namespace Module
 {
@@ -642,7 +643,14 @@ namespace Module
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
-                baseModule?.Update();
+                try
+                {
+                    baseModule?.Update();
+                }
+                catch(Exception e)
+                {
+                    Debug.LogError($"Error Module : {baseModule} Error : {e}", gameObject);
+                }
             }
         }
 
