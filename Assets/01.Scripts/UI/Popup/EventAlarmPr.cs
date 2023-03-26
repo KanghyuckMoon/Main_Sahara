@@ -40,8 +40,9 @@ namespace UI.Popup
 
         public void SetData(object _data)
         {
+            (string, string) a = _data is (string, string) ? ((string, string))_data : (null, null); 
             string _str = _data as string;
-            eventAlarmView.SetNameAndDetail(_str, _str);
+            eventAlarmView.SetNameAndDetail(a.Item1, a.Item2);
         }
 
     }

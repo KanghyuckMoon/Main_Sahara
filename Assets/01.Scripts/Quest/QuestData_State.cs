@@ -6,24 +6,24 @@ namespace Quest
 {
 	public enum QuestState
 	{
-		Disable, //ºñÈ°¼ºÈ­
-		Discoverable, //¹ß°ß °¡´É
-		Active, //È°¼ºÈ­
-		Achievable, //´Ş¼º°¡´É
-		Clear, //Å¬¸®¾î
+		Disable, //ë¹„í™œì„±í™”
+		Discoverable, //ë°œê²¬ ê°€ëŠ¥
+		Active, //í™œì„±í™”
+		Achievable, //ë‹¬ì„±ê°€ëŠ¥
+		Clear, //í´ë¦¬ì–´
 	}
 
 	public enum QuestConditionType
 	{
-		Position, //À§Ä¡
-		TargetMonster, //Å¸°Ù ¸ó½ºÅÍ
-		TargetObject, //Å¸°Ù ¿ÀºêÁ§Æ®
-		Inventory, //ÀÎº¥Åä¸®
-		Time, //½Ã°£
+		Position, //ìœ„ì¹˜
+		TargetMonster, //íƒ€ê²Ÿ ëª¬ìŠ¤í„°
+		TargetObject, //íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸
+		Inventory, //ì¸ë²¤í† ë¦¬
+		Time, //ì‹œê°„
 		/// <summary>
-		/// ÇÁ·Î±×·¡¸Ó°¡ ¼öÀÛ¾÷ÇÏ´Â Á¶°Ç
+		/// í”„ë¡œê·¸ë˜ë¨¸ê°€ ìˆ˜ì‘ì—…í•˜ëŠ” ì¡°ê±´
 		/// </summary>
-		Handwork, //¼öÀÛ¾÷
+		Handwork, //ìˆ˜ì‘ì—…
 	}
 
 	public enum QuestCategory
