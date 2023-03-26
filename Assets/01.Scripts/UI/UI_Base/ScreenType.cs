@@ -13,7 +13,8 @@ namespace UI.Base
         Quest,
         Upgrade,
         Shop,
-        Save
+        Save,
+        Option
     }
 }
 

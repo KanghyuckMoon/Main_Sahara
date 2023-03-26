@@ -22,14 +22,14 @@ namespace UI.Dialogue
         [SerializeField]
         private DialogueView dialogueView;
 
-        private static bool isSelecting; // ¼±ÅÃÈ­¸é 
+        private static bool isSelecting; // ì„ íƒí™”ë©´ 
         private static string nameCode, dialogueCode;
         private static int index;
-        private static bool isDialogue; // ´ëÈ­Áß
+        private static bool isDialogue; // ëŒ€í™”ì¤‘
 
-        private Action _endCallback = null; // ´ëÈ­ ³¡³µÀ» ‹š È£Ãâ
+        private Action _endCallback = null; // ëŒ€í™” ëë‚¬ì„ ë–„ í˜¸ì¶œ
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public IUIController UIController { get; set; }
 
         private void OnEnable()
@@ -42,29 +42,29 @@ namespace UI.Dialogue
             uiDocument = GetComponent<UIDocument>();
             dialogueView.InitUIDocument(uiDocument); 
         }
-        [ContextMenu("Å×½ºÆ®")]
+        [ContextMenu("í…ŒìŠ¤íŠ¸")]
         public void Test()
         {
             ActiveViewS(false);
         }
-        [ContextMenu("SelectÅ×½ºÆ®")]
+        [ContextMenu("Selectí…ŒìŠ¤íŠ¸")]
         public void TestSelect()
         {
             index = 0; 
             SetTexts("A00000002", "T00000002");
         }
         /// <summary>
-        /// Ã³À½ ´ëÈ­ ½ÃÀÛ ÄÚµå ³Ñ°ÜÁÖ±â 
+        /// ì²˜ìŒ ëŒ€í™” ì‹œì‘ ì½”ë“œ ë„˜ê²¨ì£¼ê¸° 
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_dialogue"></param>    
         public void SetTexts(string _name, string _dialogue,Action _callback = null)
         {
             if (isDialogue == true) return; 
-            ActiveViewS(true); // È°¼ºÈ­ ÇÏ°í 
+            ActiveViewS(true); // í™œì„±í™” í•˜ê³  
 
-            Logging.Log("ÀÌ¸§ ÄÚµå : " + _name);
-            Logging.Log("³»¿ë ÄÚµå : " + _dialogue);
+            Logging.Log("ì´ë¦„ ì½”ë“œ : " + _name);
+            Logging.Log("ë‚´ìš© ì½”ë“œ : " + _dialogue);
             nameCode = _name;
             dialogueCode = _dialogue;
             _endCallback = _callback; 
@@ -74,7 +74,7 @@ namespace UI.Dialogue
         }
 
         /// <summary>
-        /// ÄÚµå¸¦ ÅØ½ºÆ®·Î º¯È¯ÇØ¼­ UI¿¡ Àû¿ë½ÃÅ°±â 
+        /// ì½”ë“œë¥¼ í…ìŠ¤íŠ¸ë¡œ ë³€í™˜í•´ì„œ UIì— ì ìš©ì‹œí‚¤ê¸° 
         /// </summary>
         private void SetCodeToText()
         {
@@ -99,7 +99,7 @@ namespace UI.Dialogue
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
                         return;
                     case "!TCLEAR":
-                        // ÆĞ³Î ¶ç¿ì±â
+                        // íŒ¨ë„ ë„ìš°ê¸°
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
                         index = 0;
                         ActiveViewS(false);
@@ -109,11 +109,11 @@ namespace UI.Dialogue
                         ActiveSelect(_nameText, fullText); 
                         return;
                     case "!SHOP":
-                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // ±¸¸ÅÃ¢ È°¼ºÈ­ 
+                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // êµ¬ë§¤ì°½ í™œì„±í™” 
                         ActiveViewS(false);
                         return;
                     case "!SELL":
-                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop); // ÆÇ¸Å Ã¢ È°¼ºÈ­ 
+                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop); // íŒë§¤ ì°½ í™œì„±í™” 
                         ActiveViewS(false);
                         return;
                     case "!GIVE":
@@ -123,14 +123,14 @@ namespace UI.Dialogue
                 }
             }
 
-            // ÅØ½ºÆ® Ã³¸® 
-            this.dialogueView.SetNameTextA(_nameText); // ¸»ÇÏ´Â »ç¶÷ ÀÌ¸§ ¼³Á¤ 
+            // í…ìŠ¤íŠ¸ ì²˜ë¦¬ 
+            this.dialogueView.SetNameTextA(_nameText); // ë§í•˜ëŠ” ì‚¬ëŒ ì´ë¦„ ì„¤ì • 
             StartCoroutine(SetText());
         //    StaticCoroutineManager.Instance.InstanceDoCoroutine(SetText(_dialogueText)); //
         }
 
         /// <summary>
-        /// ´ëÈ­ Áß ¼±ÅÃÃ¢ ¶ç¿ì±â 
+        /// ëŒ€í™” ì¤‘ ì„ íƒì°½ ë„ìš°ê¸° 
         /// </summary>
         /// <param name="_nameText"></param>
         /// <param name="_dialogueText"></param>
@@ -142,16 +142,16 @@ namespace UI.Dialogue
             {
                 
                 ++index;
-                string nameText = TextManager.Instance.GetText($"{nameCode}_{index}"); // ´ëÈ­ ³Ñ¾î°¡´Â ÄÚµå 
-                string dialogueText = TextManager.Instance.GetText($"{dialogueCode}_{index}"); // ¼±ÅÃ ¹öÆ° ÀÌ¸§ 
+                string nameText = TextManager.Instance.GetText($"{nameCode}_{index}"); // ëŒ€í™” ë„˜ì–´ê°€ëŠ” ì½”ë“œ 
+                string dialogueText = TextManager.Instance.GetText($"{dialogueCode}_{index}"); // ì„ íƒ ë²„íŠ¼ ì´ë¦„ 
                 this.dialogueView.ActiveSelectButton(dialogueText, () =>
                 {
                     ShowSelectedDialogue(nameText); 
                 });
             }
 
-            // ¼±ÅÃÁö ¸î °³ÀÎÁö Ã¼Å© 
-            // °³¼ö ¸¸Å­ ½ÃÆ® µ¹°í ¹öÆ° È°¼ºÈ­ 
+            // ì„ íƒì§€ ëª‡ ê°œì¸ì§€ ì²´í¬ 
+            // ê°œìˆ˜ ë§Œí¼ ì‹œíŠ¸ ëŒê³  ë²„íŠ¼ í™œì„±í™” 
 
             //_nameText = 
             // _dialogueText = 
@@ -159,19 +159,19 @@ namespace UI.Dialogue
         }
 
         /// <summary>
-        /// ¼±ÅÃÇÑ ´ëÈ­·Î ³Ñ¾î°¡±â 
+        /// ì„ íƒí•œ ëŒ€í™”ë¡œ ë„˜ì–´ê°€ê¸° 
         /// </summary>
         /// <param name="_nameText"></param>
         private void ShowSelectedDialogue(string _nameText)
         {
             index = 0; 
             string _name = _nameText.Replace("\r","");
-            Logging.Log(_name + "Å¬¸¯");
-            SetTexts("A" + _name.Substring(1, _name.Length-1), _name); // ¼±ÅÃ¿¡ ¸Â´Â ´ëÈ­·Î ³Ñ¾î°¡±â
-            this.dialogueView.ResetSelectButtons(); // ¹öÆ° »èÁ¦ 
+            Logging.Log(_name + "í´ë¦­");
+            SetTexts("A" + _name.Substring(1, _name.Length-1), _name); // ì„ íƒì— ë§ëŠ” ëŒ€í™”ë¡œ ë„˜ì–´ê°€ê¸°
+            this.dialogueView.ResetSelectButtons(); // ë²„íŠ¼ ì‚­ì œ 
         }
         /// <summary>
-        /// ´ëÈ­ ³¡ ´ÙÀ½ ´ëÈ­ ³Ñ¾î°¡´Â °Å Ã¼Å© 
+        /// ëŒ€í™” ë ë‹¤ìŒ ëŒ€í™” ë„˜ì–´ê°€ëŠ” ê±° ì²´í¬ 
         /// </summary>
         /// <returns></returns>
         private IEnumerator CheckNextDialogue()
@@ -182,7 +182,7 @@ namespace UI.Dialogue
             {
                 if(Input.GetKeyDown(KeyCode.F))
                 {
-                    if (isTexting == true) // ÅØ½ºÆ®°¡ ÁøÇàÁßÀÌ¾ú´Ù¸é 
+                    if (isTexting == true) // í…ìŠ¤íŠ¸ê°€ ì§„í–‰ì¤‘ì´ì—ˆë‹¤ë©´ 
                     {
                         isTexting = false;
 //                        SetTextInstant(targetText);
@@ -192,28 +192,28 @@ namespace UI.Dialogue
                     {
                         index++;
                         SetCodeToText();
-                        Debug.Log("´ëÈ­ ´ÙÀ½!!");
+                        Debug.Log("ëŒ€í™” ë‹¤ìŒ!!");
 
                     }
 
                     //break; 
                 }
-                Debug.Log("´ëÈ­ ·çÇÁ...");
+                Debug.Log("ëŒ€í™” ë£¨í”„...");
                 yield return null;
             }
         }
 
-        private bool isTexting = false; // ÅØ½ºÆ®°¡ Ãâ·ÂµÇ°í ÀÖ´Â ÁßÀÎ°¡ 
+        private bool isTexting = false; // í…ìŠ¤íŠ¸ê°€ ì¶œë ¥ë˜ê³  ìˆëŠ” ì¤‘ì¸ê°€ 
         private string fullText;
-        private const string TransStr = "<alpha=#00>"; // Åõ¸í ¹®ÀÚ 
+        private const string TransStr = "<alpha=#00>"; // íˆ¬ëª… ë¬¸ì 
         /// <summary>
-        /// ´ëÈ­ÅØ½ºÆ® ¾Ö´Ï¸ŞÀÌ¼Ç 
+        /// ëŒ€í™”í…ìŠ¤íŠ¸ ì• ë‹ˆë©”ì´ì…˜ 
         /// </summary>
         /// <param name="_str"></param>
         /// <returns></returns>
         private IEnumerator SetText()
         {
-            Debug.Log("Ã³À½ ÅØ½ºÆ®");
+            Debug.Log("ì²˜ìŒ í…ìŠ¤íŠ¸");
             WaitForSeconds w  = new WaitForSeconds(0.03f);
             //targetText = _str;
             string _nowText = "";
@@ -224,7 +224,7 @@ namespace UI.Dialogue
                 _targetText = fullText.Substring(0,i)+ TransStr + fullText.Substring(i);
                 if (isTexting == false)  
                 {
-                    // ¸ğµç ÅØ½ºÆ® ¹Ù·Î º¸¿©ÁÖ±â
+                    // ëª¨ë“  í…ìŠ¤íŠ¸ ë°”ë¡œ ë³´ì—¬ì£¼ê¸°
                     //this.dialogueView.SetDialogueTextA(fullText);
                     this.dialogueView.SetDialogueTextA(fullText);
                     yield break;
@@ -232,7 +232,7 @@ namespace UI.Dialogue
                 //_nowText += fullText[i];
                 //this.dialogueView.SetDialogueTextA(_nowText);
                 this.dialogueView.SetDialogueTextA(_targetText);
-                Debug.Log("For ÅØ½ºÆ®");
+                Debug.Log("For í…ìŠ¤íŠ¸");
                 yield return w;
             }
             isTexting = false;
@@ -278,15 +278,15 @@ namespace UI.Dialogue
         public bool TestBool;
 
 
-        [ContextMenu("È°¼ºÈ­ Å×½ºÆ®")]
+        [ContextMenu("í™œì„±í™” í…ŒìŠ¤íŠ¸")]
         public void TestActive()
         {
             this.dialogueView.ActiveViewS(true);
         }
-        #region regacy »óÁ¡ 
+        #region regacy ìƒì  
         /*
         /// <summary>
-        /// »óÁ¡ ¼±ÅÃÃ¢ ¶ç¿ì±â 
+        /// ìƒì  ì„ íƒì°½ ë„ìš°ê¸° 
         /// </summary>
         private void ActiveShopSelect()
         {
@@ -298,7 +298,7 @@ namespace UI.Dialogue
 
             this.dialogueView.ActiveSelectButton(_buyName, () =>
             {
-                // ±¸¸Å 
+                // êµ¬ë§¤ 
                 UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop);
                 ActiveViewS(false);
 
@@ -306,7 +306,7 @@ namespace UI.Dialogue
 
             this.dialogueView.ActiveSelectButton(_sellName, () =>
             {
-                // ÆÇ¸Å 
+                // íŒë§¤ 
                 UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop);
                 ActiveViewS(false);
 
