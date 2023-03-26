@@ -171,6 +171,7 @@ namespace Quest
 				return;
 			}
 			_questData.QuestState = QuestState.Active;
+			SendEvent("PopupUIManager", _questData);
 		}
 		public void ChangeQuestClear(string _key)
 		{
@@ -289,6 +290,8 @@ namespace Quest
 					CreateAllObject(questDataDic[_linkQuest].QuestCreateObjectSOList);
 				}
 			}
+
+			SendEvent("PopupUIManager", _questData);
 		}
 	}
 }
