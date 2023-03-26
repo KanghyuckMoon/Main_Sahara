@@ -13,7 +13,14 @@ public class ActionNode : INode
 
     public virtual bool Run()
     {
-        Action();
+        try
+        {
+            Action();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"{e}");
+        }
         return true;
     }
 }
