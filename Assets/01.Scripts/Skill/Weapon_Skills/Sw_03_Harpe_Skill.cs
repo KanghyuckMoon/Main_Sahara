@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Module;
+using UnityEngine;
 
 namespace Skill
 {
-    public class EndWeaponSkill : WeaponSkillFunctions, IWeaponSkill
+    public class Sw_03_Harpe_Skill : WeaponSkillFunctions, IWeaponSkill
     {
         [SerializeField]
         private AnimationClip animationClip;
 
-        
-        //[SerializeField] private buv
-
         public void Skills(AbMainModule _mainModule)
         {
             PlaySkillAnimation(_mainModule, animationClip);
+            GetBuff(_mainModule);
         }
     }
 }

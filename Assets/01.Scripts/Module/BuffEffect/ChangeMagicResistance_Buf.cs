@@ -1,37 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Buff;
 using Module;
-using TimeManager;
+using Data;
+using UnityEngine;
 
-namespace Buff
+namespace Skill
 {
-    public class ReduceDamage_Buf : AbBuffEffect
+    public class ChangeMagicResistance_Buf : AbBuffEffect
     {
-        private HpModule hpModule;
-
-        //private float currentDuration;
+        private StatData statData;
+        
         private float currentPeriod = 0;
 
-        public ReduceDamage_Buf(BuffModule _buffModule) : base(_buffModule)
+        private float increseResistance;
+        
+        public ChangeMagicResistance_Buf(BuffModule _buffModule) : base(_buffModule)
         {
-            //currentDuration = duration;
+        
         }
-
+        
         public override void Buff(AbMainModule _mainModule)
         {
-            hpModule ??= _mainModule.GetModuleComponent<HpModule>(ModuleType.Hp);
+            statData ??= _mainModule.GetComponent<StatData>();
             Timer();
         }
-
+        
         private void Timer()
         {
             if (duration >= 0)
             {
                 if (currentPeriod <= 0)
                 {
-                    hpModule.SetReduceDamagePercent(value);
+                    increseResistance = CalculateDef(statData.MagicResistance);
+
+                    statData.MagicResistance += (int)increseResistance;
                     //Debug.LogError("회복호복");
+                    
                     currentPeriod = period;
                 }
 
@@ -41,11 +46,18 @@ namespace Buff
 
             else
             {
-                hpModule.SetReduceDamagePercent(-value);
+                statData.MagicResistance -= (int)increseResistance;
                 
                 buffModule.buffDic.Remove(this);
                 buffModule.buffList.Remove(this);
             }
+        }
+
+        private float CalculateDef(float _def)
+        {
+            float addspeed = _def * (value / 100);
+
+            return addspeed;
         }
     }
 }

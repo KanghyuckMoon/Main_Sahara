@@ -143,6 +143,8 @@ namespace Module
 
                 StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
+                mainModule.StatData.ManaRegen = BaseWeapon.WeaponDataSO.chargeMana;
+
                 currentWeaponName = weapon;
                 currentWeapon = _weapon;
 

@@ -29,7 +29,7 @@ namespace Skill
                 .SetDuration(10)
                 .SetPeriod(2)
                 .SetValue(5)
-                .SetSprite("HealEffect_Icon")
+                .SetSprite("Demon")
                 .SetSpownObjectName("HealEffect"), BuffType.Update);
             
             Skill_Test(_mainModule, animationClip);
