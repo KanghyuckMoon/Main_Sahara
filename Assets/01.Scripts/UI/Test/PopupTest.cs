@@ -20,12 +20,12 @@ public class PopupTest : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.B))
         {  
-            PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, "temData");
+            PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, ("위험에 처한 이를 구하라!","퀘스트 활성화"));
         }
         if (Input.GetKeyDown(KeyCode.N))
         {  
             PopupUIManager.Instance.CreatePopup<InteractionPresenter>(PopupType.Interaction, 
-                new InteractionUIData{targetVec =  trm.position, textStr =  "ADSAFASFSAFSA"},-1f);
+                new InteractionUIData{targetVec =  trm.position, textKey =  "ADSAFASFSAFSA"},-1f);
         }
     }
 }

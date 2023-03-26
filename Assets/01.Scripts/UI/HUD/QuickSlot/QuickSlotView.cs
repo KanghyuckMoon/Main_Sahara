@@ -37,7 +37,7 @@ namespace UI
         }
 
         /// <summary>
-        /// ¼±ÅÃµÈ Äü½½·Ô È°¼ºÈ­ ÀÌÆåÆ® 
+        /// ì„ íƒëœ í€µìŠ¬ë¡¯ í™œì„±í™” ì´í™íŠ¸ 
         /// </summary>
         public void UpdateActiveEffect()
         {
@@ -54,7 +54,7 @@ namespace UI
             List<VisualElement> _vList = GetVisualElement((int)Elements.quickslot_view).Query(className: "quick_slot_hud").ToList(); 
             foreach(var _v in _vList)
             {
-                // È­»ì ½½·ÔÀº ´Ù¸£°Ô Ã³¸® 
+                // í™”ì‚´ ìŠ¬ë¡¯ì€ ë‹¤ë¥´ê²Œ ì²˜ë¦¬ 
                 if(_v.name == "arrow_slot")
                 {
                     arrowSlot = new SlotItemPresenter(_v);
@@ -63,7 +63,7 @@ namespace UI
                 _slotList.Add(new SlotItemPresenter(_v, _index));
                 ++_index; 
             }
-            // ÇöÀç ¼±ÅÃ ½½·Ô ¼³Á¤ 
+            // í˜„ì¬ ì„ íƒ ìŠ¬ë¡¯ ì„¤ì • 
             selectSlotPr = _slotList[InventoryManager.Instance.GetCurrentQuickSlotIndex()];
         }
 

@@ -78,6 +78,15 @@ namespace UI.Inventory
         {
             float _v = _isSelect ? 1.2f : 1f;
             Parent.style.scale = new StyleScale(new Scale(new Vector2(_v, _v)));
+
+            if (_isSelect == true)
+            {
+                Parent.AddToClassList("quick_slot_hud_active");
+            }
+            else
+            {
+                Parent.RemoveFromClassList("quick_slot_hud_active");
+            }
         }
 
         public void SetSlotType(ItemType _type)

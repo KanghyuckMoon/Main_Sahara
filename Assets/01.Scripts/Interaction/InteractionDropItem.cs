@@ -21,6 +21,30 @@ namespace Interaction
 			}
 		}
 
+		public string Name
+		{
+			get
+			{
+				return $"{itemDataSO.nameKey}";
+			}
+		}
+
+		public string ActionName
+		{
+			get
+			{
+				return $"{itemDataSO.nameKey}";
+			}
+		}
+		
+		public Vector3 PopUpPos
+		{
+			get
+			{
+				return transform.position + new Vector3(0, 2, 0);
+			}
+		}
+
 		[SerializeField]
 		private ItemDataSO itemDataSO = null;
 

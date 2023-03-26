@@ -11,6 +11,22 @@ namespace Interaction
 			get;
 			set;
 		}
+
+		public string Name
+		{
+			get;
+		}
+
+		public Vector3 PopUpPos
+		{
+			get;
+		}
+
+		public string ActionName
+		{
+			get;
+		}
+		
 		void Interaction();
 	}
 }
