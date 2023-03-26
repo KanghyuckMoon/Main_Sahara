@@ -12,6 +12,7 @@ using System.Linq;
 using Inventory;
 using UI.EventAlarm;
 using UnityEditor;
+using Quest;
 
 namespace UI.Popup
 {
@@ -87,6 +88,12 @@ namespace UI.Popup
             {
                 ItemData _itemData = _obj as ItemData;;
                 CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
+            }
+
+            if (_sender is "QuestManager")
+            {
+                QuestData _questData = _obj as QuestData;
+                CreatePopup<EventAlarmPr>(PopupType.EventAlarm, _questData);
             }
         }
 
