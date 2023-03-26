@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 6629634272637836557}
   - component: {fileID: 2565159348040433323}
   - component: {fileID: 72785184}
+  - component: {fileID: -8704143045201061776}
+  - component: {fileID: 8541860166002395398}
+  - component: {fileID: 7041383259630702888}
   m_Layer: 14
   m_Name: Zakat_Drop
   m_TagString: Untagged
@@ -97,3 +100,49 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.6865573, y: 0.7069678, z: 1.9527122}
   m_Center: {x: 1.2705494e-21, y: 0.00000008940699, z: 2.1316285e-14}
+--- !u!114 &-8704143045201061776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586381869344187901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: bb26b80f9870d4543804f81602c399b5, type: 2}
+  rigid: {fileID: 8541860166002395398}
+  itemAddress: Bw_03_Zakat
+  targetObj: {fileID: 5586381869344187901}
+  isJumping: 1
+--- !u!54 &8541860166002395398
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586381869344187901}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7041383259630702888
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586381869344187901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.6865573, y: 0.7069678, z: 1.9527122}
+  m_Center: {x: 0, y: 0.00000008940699, z: 2.1316285e-14}

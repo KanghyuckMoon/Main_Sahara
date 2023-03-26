@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 4750753186079611103}
   - component: {fileID: 4867910612002346334}
   - component: {fileID: 1736826890}
+  - component: {fileID: 8284574883019783582}
+  - component: {fileID: 8812564677947348905}
+  - component: {fileID: -2669973030290820798}
   m_Layer: 14
   m_Name: Salah_Drop
   m_TagString: Untagged
@@ -85,6 +88,52 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1736826890
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809486366655303918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.441088, y: 0.70696723, z: 6.485346}
+  m_Center: {x: -0.40525344, y: -0.000000014901161, z: 0.4015683}
+--- !u!114 &8284574883019783582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809486366655303918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: f090284982647f1479b92c9c77c81e0b, type: 2}
+  rigid: {fileID: 8812564677947348905}
+  itemAddress: Bw_03_Salah
+  targetObj: {fileID: 7809486366655303918}
+  isJumping: 1
+--- !u!54 &8812564677947348905
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809486366655303918}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &-2669973030290820798
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

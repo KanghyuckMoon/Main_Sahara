@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 4009571806342801764}
   - component: {fileID: 3104768313845441}
   - component: {fileID: 2877783174730224139}
-  - component: {fileID: 45367904}
+  - component: {fileID: 1898450174804443213}
+  - component: {fileID: 7058656343132584937}
+  - component: {fileID: -8071514982983948806}
   m_Layer: 14
   m_Name: SteelSword_Drop
   m_TagString: Untagged
@@ -84,7 +86,40 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &45367904
+--- !u!114 &1898450174804443213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390742442086478814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: 39de47727ae24804aa2e558c3c9c794b, type: 2}
+  rigid: {fileID: 7058656343132584937}
+  itemAddress: Sw_02_SteelSword
+  targetObj: {fileID: 4390742442086478814}
+  isJumping: 1
+--- !u!54 &7058656343132584937
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390742442086478814}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &-8071514982983948806
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
