@@ -24,10 +24,13 @@ namespace Module
 
 		private void InputAttack()
 		{
+			if (mainModule.CanConsecutiveAttack)
+				if (Input.GetMouseButton(0))
+					mainModule.Animator.SetBool("ConsecutiveAttack", true);
+			
 			if (mainModule.IsWeaponExist)
 			{
-				if (Input.GetMouseButtonDown(0) && mainModule.CanConsecutiveAttack)
-					mainModule.Animator.SetBool("ConsecutiveAttack", true);
+				
 				
 				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) &&
 				    !StateModule.CheckState(State.SKILL))
