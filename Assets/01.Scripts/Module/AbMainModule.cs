@@ -610,7 +610,9 @@ namespace Module
 		}
         private List<Observer> observers = new List<Observer>();
 
-		private void Start()
+        public virtual void SetConsecutiveAttack(int _on) { }
+
+        private void Start()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
