@@ -799,6 +799,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2238015083237464201, guid: 7247f49b8e04f2a4a8897c72f5274ff6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2238015083237464201, guid: 7247f49b8e04f2a4a8897c72f5274ff6, type: 3}
       propertyPath: textSOAddress
       value: TestTalkDataSO
       objectReference: {fileID: 0}
@@ -1068,6 +1072,7 @@ GameObject:
   - component: {fileID: 510627453}
   - component: {fileID: 510627452}
   - component: {fileID: 510627454}
+  - component: {fileID: 510627455}
   m_Layer: 0
   m_Name: In
   m_TagString: Untagged
@@ -1120,6 +1125,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textSO: {fileID: 11400000, guid: 6b8ab244737aeea4282564cd46c20d04, type: 2}
   isReset: 0
+--- !u!114 &510627455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510627451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c813fedbaff72408dc4700f2acf7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &671696239
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,6 +3082,73 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1865799476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4614640098047394837, guid: 7247f49b8e04f2a4a8897c72f5274ff6, type: 3}
+  m_PrefabInstance: {fileID: 397603962}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1865799487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865799476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddf7dcff87d35a409f55d7c83b98a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 0
+  lockOnTarget: {fileID: 0}
+  characterController: {fileID: 0}
+  objDir: {x: 0, y: 0}
+  objRotation: {x: 0, y: 0, z: 0, w: 0}
+  objForword: {x: 0, y: 0, z: 0}
+  statData: {fileID: 0}
+  hitCollider: []
+  moveSpeed: 0
+  isSprint: 0
+  isGround: 0
+  isJump: 0
+  isFreeFall: 0
+  isSlope: 0
+  isJumpBuf: 0
+  canMove: 0
+  isDead: 0
+  isAttack: 0
+  isWeaponExist: 0
+  isHit: 0
+  isCharging: 0
+  isCanHit: 0
+  isStaticTime: 0
+  canConsecutiveAttack: 0
+  isDash: 0
+  attacking: 0
+  strongAttacking: 0
+  gravity: 0
+  gravityScale: -9.8
+  groundOffset: 0
+  attackedTime: 0
+  knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
+  slopeVector: {x: 0, y: 0, z: 0}
+  hitDelay: 0
+  lockOn: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxSlope: 0
+  raycastTarget: {fileID: 0}
+  visualObject: {fileID: 0}
+  model: {fileID: 0}
+  animator: {fileID: 0}
+  leftFeet: {fileID: 0}
+  rightFeet: {fileID: 0}
+  back: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
+  textSOAddress: TestTalkDataSO
+  shopSOAddress: TestShopSO
 --- !u!1 &1900813454
 GameObject:
   m_ObjectHideFlags: 0

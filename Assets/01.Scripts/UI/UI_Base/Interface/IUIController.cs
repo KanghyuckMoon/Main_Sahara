@@ -6,9 +6,9 @@ namespace UI.Base
 {
     public interface IUIController
     {
-        // ´Ù¸¥ UIController°¡ »ı±ä´Ù¸é ScreenTypeÀ» TypeÀ¸·Î ¹Ù²Ù°í wher Á¶°Ç ¾ø¾Ö¶ó 
+        // ë‹¤ë¥¸ UIControllerê°€ ìƒê¸´ë‹¤ë©´ ScreenTypeì„ Typeìœ¼ë¡œ ë°”ê¾¸ê³  wher ì¡°ê±´ ì—†ì• ë¼ 
         public T GetScreen<T>(ScreenType _screenType) where T : IScreen;
-        public void ActiveScreen(ScreenType _screenType, bool _isActive); // ÀÌ°Íµµ Áö¿ì°í 
+        public void ActiveScreen(ScreenType _screenType, bool _isActive); // ì´ê²ƒë„ ì§€ìš°ê³  
 
     }
 

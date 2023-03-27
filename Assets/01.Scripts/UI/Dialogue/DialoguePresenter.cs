@@ -61,6 +61,7 @@ namespace UI.Dialogue
         public void SetTexts(string _name, string _dialogue,Action _callback = null)
         {
             if (isDialogue == true) return; 
+                Debug.Log("@@Index " + index);
             ActiveViewS(true); // 활성화 하고 
 
             Logging.Log("이름 코드 : " + _name);
@@ -69,6 +70,7 @@ namespace UI.Dialogue
             dialogueCode = _dialogue;
             _endCallback = _callback; 
 
+            Debug.Log("@@Index " + index);
             SetCodeToText();
             StartCoroutine(CheckNextDialogue()); 
         }
@@ -79,15 +81,17 @@ namespace UI.Dialogue
         private void SetCodeToText()
         {
             string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}");
+            Debug.Log("NameCode " + nameCode);
+            Debug.Log("Index " + index);
             fullText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
             Logging.Log($"{nameCode}_{index}");
             Logging.Log($"{dialogueCode}_{index}"); 
-            Logging.Log($"{fullText}{_nameText}");
+            Logging.Log($"{fullText}{_nameText}");  
 
             if (_nameText[0] is '!')
             {
                 switch (_nameText)
-                {
+                {   
                     case "!END":
                         index = 0;
                         ActiveViewS(false); 
@@ -146,6 +150,7 @@ namespace UI.Dialogue
                 string dialogueText = TextManager.Instance.GetText($"{dialogueCode}_{index}"); // 선택 버튼 이름 
                 this.dialogueView.ActiveSelectButton(dialogueText, () =>
                 {
+                    index = 0; 
                     ShowSelectedDialogue(nameText); 
                 });
             }
@@ -165,9 +170,11 @@ namespace UI.Dialogue
         private void ShowSelectedDialogue(string _nameText)
         {
             index = 0; 
+            Debug.Log("@@Index " + index);
             string _name = _nameText.Replace("\r","");
             Logging.Log(_name + "클릭");
             isDialogue = false; 
+            Debug.Log("@@Index " + index);
             SetTexts("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
             this.dialogueView.ResetSelectButtons(); // 버튼 삭제 
         }

@@ -69,16 +69,6 @@ namespace UI
         private void Awake()
         {
             InitScreenPresenters();
-
-            screenDic.Add(ScreenType.Inventory, inventoryPresenter);
-            screenDic.Add(ScreenType.Map, mapPresenter);
-            screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
-            //screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
-            screenDic.Add(ScreenType.Quest, questPresenter);
-            screenDic.Add(ScreenType.Upgrade, upgradePresenter);
-            screenDic.Add(ScreenType.Shop, shopPresenter);
-            /*screenDic.Add(ScreenType.Save, saveLoadPresenter);*/
-            screenDic.Add(ScreenType.Option, _optionPresenter);
         }
 
         private void Start()
@@ -136,6 +126,17 @@ namespace UI
             */
             _optionPresenter = GetComponentInChildren<OptionPresenter>(); 
             //// UIController 넣어주기 
+           
+            screenDic.Add(ScreenType.Inventory, inventoryPresenter);
+            screenDic.Add(ScreenType.Map, mapPresenter);
+            screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
+            //screenDic.Add(ScreenType.EventAlarm, eventAlarmPresenter);
+            screenDic.Add(ScreenType.Quest, questPresenter);
+            screenDic.Add(ScreenType.Upgrade, upgradePresenter);
+            screenDic.Add(ScreenType.Shop, shopPresenter);
+            /*screenDic.Add(ScreenType.Save, saveLoadPresenter);*/
+            screenDic.Add(ScreenType.Option, _optionPresenter);
+            
             foreach (var _pr in screenDic)
             {
                 _pr.Value.Init(this);

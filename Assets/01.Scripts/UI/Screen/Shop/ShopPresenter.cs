@@ -13,8 +13,8 @@ namespace UI.Shop
 {
     public enum ShopType
     {
-        BuyShop, //±¸¸Å
-        SellShop,   // ÆÇ¸Å 
+        BuyShop, //êµ¬ë§¤
+        SellShop,   // íŒë§¤ 
 
     }
     public class ShopPresenter : MonoBehaviour, IScreen
@@ -25,11 +25,11 @@ namespace UI.Shop
         private ShopView shopView;
         private InventoryGridSlotsPr inventoryGridSlotsPr;
 
-        // ÇÁ·ÎÆÛÆ¼
+        // í”„ë¡œí¼í‹°
         public IUIController UIController { get ; set; }
 
         public string name;
-        [ContextMenu("Ä¸ÃÄ")]
+        [ContextMenu("ìº¡ì³")]
         public void CaptureTest()
         {
             ScreenCapture.CaptureScreenshot(name);
@@ -41,9 +41,9 @@ namespace UI.Shop
             shopView.Cashing();
             shopView.Init();
 
-            // ÀÎº¥Åä¸® ½½·Ôµé ºä »ı¼º 
+            // ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ë“¤ ë·° ìƒì„± 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(shopView.ParentElement);
-            // ½½·Ô »ı¼º 
+            // ìŠ¬ë¡¯ ìƒì„± 
             inventoryGridSlotsPr.Init();
         }
 
@@ -55,7 +55,7 @@ namespace UI.Shop
             }
         }
         /// <summary>
-        /// »óÁ¡ ¾ÆÀÌÅÛ ¼¼ÆÃ  
+        /// ìƒì  ì•„ì´í…œ ì„¸íŒ…  
         /// </summary>
         private void SetShopItem()
         {
@@ -65,7 +65,7 @@ namespace UI.Shop
             foreach(var _data in _allDataList)
             {
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
-                // ´õºíÅ¬¸¯½Ã ±¸¸Å ÀÌº¥Æ® Ãß°¡ 
+                // ë”ë¸”í´ë¦­ì‹œ êµ¬ë§¤ ì´ë²¤íŠ¸ ì¶”ê°€ 
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
                 {
                     x.AddDoubleClicker(() => ShopManager.Instance.BuyItem(_data));
@@ -76,18 +76,18 @@ namespace UI.Shop
         }
 
         /// <summary>
-        /// ÇöÀç ÀÎº¥Åä¸® ¾ÆÀÌÅÛ ¼¼ÆÃ 
+        /// í˜„ì¬ ì¸ë²¤í† ë¦¬ ì•„ì´í…œ ì„¸íŒ… 
         /// </summary>
         private void SetInvenItem()
         {
             inventoryGridSlotsPr.ClearSlotDatas();
             
-            // ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¼³Á¤ 
+            // ì¸ë²¤í† ë¦¬ ë°ì´í„° ì„¤ì • 
             List<ItemData> _itemList = InventoryManager.Instance.GetWeaponAndConsumptionList();
             foreach (var _data in _itemList)
             {
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
-                // ´õºíÅ¬¸¯½Ã ÆÇ¸Å ÀÌº¥Æ® Ãß°¡ 
+                // ë”ë¸”í´ë¦­ì‹œ íŒë§¤ ì´ë²¤íŠ¸ ì¶”ê°€ 
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
                 {
                     x.AddDoubleClicker(() => ShopManager.Instance.SellItem(_data));
@@ -95,19 +95,19 @@ namespace UI.Shop
             }
         }
 
-        [ContextMenu("±¸¸Å")]
+        [ContextMenu("êµ¬ë§¤")]
         public void TestBuyShop()
         {
             ActivetShop(ShopType.BuyShop);
         }
-        [ContextMenu("ÆÇ¸Å")]
+        [ContextMenu("íŒë§¤")]
         public void TestSellShop()
         {
             ActivetShop(ShopType.SellShop);
         }
 
         /// <summary>
-        /// »óÁ¡ È°¼ºÈ­ 
+        /// ìƒì  í™œì„±í™” 
         /// </summary>
         /// <param name="_shopType"></param>
         public void ActivetShop(ShopType _shopType)
