@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Weapon
 {
-    public class Weapon_Magic : BaseWeapon
+    public class Weapon_Staff : BaseWeapon
     {
     }
 }
