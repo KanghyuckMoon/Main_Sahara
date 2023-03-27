@@ -20,6 +20,8 @@ public class SunSpawner : MonoBehaviour
         private string objAddress;
         [SerializeField] 
         private string spawnEffectAddress;
+        [SerializeField] 
+        private string sunspawnEffectAddress;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -33,6 +35,7 @@ public class SunSpawner : MonoBehaviour
         public void Spawn()
 		{
 			EffectManager.Instance.SetEffectDefault(spawnEffectAddress, spawnPosition.position, Quaternion.identity);
+			EffectManager.Instance.SetEffectDefault(sunspawnEffectAddress, transform.position, Quaternion.identity);
             GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
             ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
             objectClassCycle.TargetObject = obj;
