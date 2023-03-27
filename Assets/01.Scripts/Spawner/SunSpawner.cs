@@ -1,7 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utill.Addressable;
+using Utill.Pattern;
 using Pool;
+using Streaming;
+using Effect;
 
 public class SunSpawner : MonoBehaviour
 {
@@ -13,18 +18,21 @@ public class SunSpawner : MonoBehaviour
         private Transform spawnPosition;
         [SerializeField]
         private string objAddress;
-        
-        private void OnTriggerEnter(Collision col)
+        [SerializeField] 
+        private string spawnEffectAddress;
+
+        private void OnTriggerEnter(Collider other)
         {
-            if(col.gameObject.CompareTag("Player"))
-            {
-                Spawn();
-                Pool();
-            }
+	        if(other.gameObject.CompareTag("Player"))
+	        {
+		        Spawn();
+		        Pool();
+	        }
         }
 
-		public void Spawn()
+        public void Spawn()
 		{
+			EffectManager.Instance.SetEffectDefault(spawnEffectAddress, spawnPosition.position, Quaternion.identity);
             GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
             ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
             objectClassCycle.TargetObject = obj;
@@ -42,6 +50,7 @@ public class SunSpawner : MonoBehaviour
 		
 		private void Pool()
 		{
-            ObjectPoolManager.Instance.RegisterObject(objAddress, gameObject)  ;
+            ObjectPoolManager.Instance.RegisterObject(objAddress, gameObject);
+            gameObject.SetActive(false);
 		}
 }
