@@ -26,7 +26,7 @@ namespace UI.Dialogue
         private static string nameCode, dialogueCode;
         private static int index;
         private static bool isDialogue; // 대화중
-
+        
         private Action _endCallback = null; // 대화 끝났을 떄 호출
 
         // 프로퍼티 
@@ -167,6 +167,7 @@ namespace UI.Dialogue
             index = 0; 
             string _name = _nameText.Replace("\r","");
             Logging.Log(_name + "클릭");
+            isDialogue = false; 
             SetTexts("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
             this.dialogueView.ResetSelectButtons(); // 버튼 삭제 
         }

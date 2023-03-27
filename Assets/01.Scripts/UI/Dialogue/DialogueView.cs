@@ -53,9 +53,9 @@ namespace UI.Dialogue
         }
         public void SetDialogueText(string _str)
         {
-            // ������ �ִ��� õõ�� ������� 
-            // �ؽ�Ʈ �ٲ�� 
-            // �ؽ�Ʈ �޿� ������   
+            // 이전에 있던거 천천히 사라지고 
+            // 텍스트 바뀌고 
+            // 텍스트 쭈욱 나오게   
             GetLabel((int)Labels.dialogue_label).text = _str; 
         }
 
@@ -65,14 +65,14 @@ namespace UI.Dialogue
         }
         public  void SetDialogueTextA(string _str)
         {
-            // ������ �ִ��� õõ�� ������� 
-            // �ؽ�Ʈ �ٲ�� 
-            // �ؽ�Ʈ �޿� ������   
+            // 이전에 있던거 천천히 사라지고 
+            // 텍스트 바뀌고 
+            // 텍스트 쭈욱 나오게   
             dialogue.text = _str;
         }
 
         /// <summary>
-        /// ���� ��ư Ȱ��ȭ(��Ÿ����) 
+        /// 선택 버튼 활성화(나타내기) 
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_callback"></param>
@@ -94,7 +94,7 @@ namespace UI.Dialogue
         }
 
         /// <summary>
-        /// ��� ���� ��ư �ʱ�ȭ(��Ȱ��ȭ, �ݹ� ��� ��� ) 
+        /// 모든 선택 버튼 초기화(비활성화, 콜백 등록 취소 ) 
         /// </summary>
         public void ResetSelectButtons()
         {

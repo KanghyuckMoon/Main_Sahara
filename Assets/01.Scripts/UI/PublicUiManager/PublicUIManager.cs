@@ -10,7 +10,7 @@ namespace UI.PublicManager
 {
 
     /// <summary>
-    /// UI°ü·ÃÀÌ ¾Æ´Ñ ¿ÜºÎ¿¡¼­ UI¿¡ Á¢±ÙÇÏ±â À§ÇØ »ç¿ëÇÏ´Â Manager 
+    /// UIê´€ë ¨ì´ ì•„ë‹Œ ì™¸ë¶€ì—ì„œ UIì— ì ‘ê·¼í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” Manager 
     /// </summary>
     public class PublicUIManager : MonoSingleton<PublicUIManager>
     {
@@ -33,7 +33,7 @@ namespace UI.PublicManager
         }
 
         /// <summary>
-        /// Ã³À½ ´ëÈ­ ÅØ½ºÆ® ¼³Á¤
+        /// ì²˜ìŒ ëŒ€í™” í…ìŠ¤íŠ¸ ì„¤ì •
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_dialogue"></param>
