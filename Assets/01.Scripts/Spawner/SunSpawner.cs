@@ -7,6 +7,7 @@ using Utill.Pattern;
 using Pool;
 using Streaming;
 using Effect;
+using Module;
 
 public class SunSpawner : MonoBehaviour
 {
@@ -23,6 +24,12 @@ public class SunSpawner : MonoBehaviour
         [SerializeField] 
         private string sunspawnEffectAddress;
 
+        [SerializeField, Header("KnockBack")] 
+        private Vector3 knockBackDir = Vector3.up;
+
+        [SerializeField] 
+        private float knockBackForce = 10f;
+        
         private void OnTriggerEnter(Collider other)
         {
 	        if(other.gameObject.CompareTag("Player"))
@@ -48,6 +55,9 @@ public class SunSpawner : MonoBehaviour
             _objectSceneChecker.ObjectClassCycle = objectClassCycle;
             objectClassCycle.AddObjectClass(_objectSceneChecker);
             obj.transform.position = spawnPosition.position;
+            var _module = obj.GetComponent<AbMainModule>();
+            _module.knockBackVector = knockBackDir;
+            _module.knockBackPower = knockBackForce;
             obj.SetActive(true);
 		}
 		
