@@ -9,7 +9,7 @@ using Utill.Pattern;
 
 namespace Effect
 {
-    public interface ISkinEffect {public void Setting(SkinnedMeshRenderer _skinnedMeshRenderer, Transform _modelRoot); }
+    public interface ISkinEffect {public void Setting(SkinnedMeshRenderer _skinnedMeshRenderer, Transform _modelRoot, Vector3 correctionAngle,  Vector3 correctionPos); }
 
 
     /// <summary>
@@ -91,7 +91,7 @@ namespace Effect
             effect.gameObject.SetActive(true);
         }
 
-        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root, Scene _scene)
+        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root, Vector3 _correctionAngle,Vector3 _correctionPos,  Scene _scene)
         {
             if (!_isInit)
             {
@@ -104,12 +104,12 @@ namespace Effect
 			{
                 SceneManager.MoveGameObjectToScene(effect, _scene);
 			}
-            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root);
+            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root, _correctionAngle, _correctionPos);
             effect.transform.position = _obj.position;
             effect.transform.SetParent(null);
             effect.gameObject.SetActive(true);
         }
-        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root)
+        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root, Vector3 _correctionAngle,Vector3 _correctionPos)
         {
             if (!_isInit)
             {
@@ -117,7 +117,7 @@ namespace Effect
             }
 
             GameObject effect = ObjectPoolManager.Instance.GetObject(_adress);
-            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root);
+            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root, _correctionAngle, _correctionPos);
             effect.transform.position = _obj.position;
             effect.transform.SetParent(null);
             effect.gameObject.SetActive(true);

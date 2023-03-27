@@ -27,6 +27,11 @@ namespace Module
         [SerializeField]
         private string deadExplosionEffectKey = "NULL";
 
+        [SerializeField] 
+        private Vector3 correctionAngle;
+        [SerializeField] 
+        private Vector3 correctionPos;
+        
         [SerializeField]
         private SkinnedMeshRenderer skinnedMeshRenderer;
 
@@ -86,7 +91,7 @@ namespace Module
             yield return new WaitForSeconds(0.1f);
             animator.speed = 0;
             EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
-            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, transform, rootTransform, gameObject.scene);
+            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, transform, rootTransform, correctionAngle, correctionPos, gameObject.scene);
             //Item Drop
             for (int i = 0; i < dropItemListSO.dropCount; ++i)
             {
