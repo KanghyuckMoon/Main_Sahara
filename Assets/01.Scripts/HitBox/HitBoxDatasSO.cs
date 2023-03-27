@@ -132,6 +132,7 @@ namespace HitBox
 		public Vector3 swingEffectSize = Vector3.one;
 		public float hitStunDelay;
 		public float attackStunDelay;
+		public bool swingEffectChildization = false;
 		public string swingEffect = "NULL";
 		public string hitEffect = "NULL";
 		
@@ -157,6 +158,7 @@ namespace HitBox
 			_newHitBox.swingEffectRotation = _hitBoxData.swingEffectRotation;
 			_newHitBox.swingEffectSize = _hitBoxData.swingEffectSize;
 			_newHitBox.swingEffect = _hitBoxData.swingEffect;
+			_newHitBox.swingEffectChildization = _hitBoxData.swingEffectChildization;
 			_newHitBox.hitEffect = _hitBoxData.hitEffect;
 			_newHitBox.buffList = _hitBoxData.buffList;
 
@@ -181,6 +183,7 @@ namespace HitBox
 			swingEffectRotation = _hitBoxData.swingEffectRotation;
 			swingEffectSize = _hitBoxData.swingEffectSize;
 			swingEffect = _hitBoxData.swingEffect;
+			swingEffectChildization = _hitBoxData.swingEffectChildization;
 			hitEffect = _hitBoxData.hitEffect;
 			
 			buffList = _hitBoxData.buffList;

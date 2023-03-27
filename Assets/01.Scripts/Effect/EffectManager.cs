@@ -13,7 +13,7 @@ namespace Effect
 
 
     /// <summary>
-    /// ÀÌÆåÆ® »ı¼º ¸Å´ÏÀú
+    /// ì´í™íŠ¸ ìƒì„± ë§¤ë‹ˆì €
     /// </summary>
     public class EffectManager : MonoSingleton<EffectManager>
     {
@@ -35,7 +35,7 @@ namespace Effect
         }
 
         /// <summary>
-        /// ÃÊ±âÈ­
+        /// ì´ˆê¸°í™”
         /// </summary>
         private void Init()
         {
@@ -47,7 +47,7 @@ namespace Effect
         }
 
         /// <summary>
-        /// ÀÌÆåÆ® ¼³Ä¡
+        /// ì´í™íŠ¸ ì„¤ì¹˜
         /// </summary>
         /// <param name="pos"></param>
         public void SetEffectDefault(string _adress, Vector3 _pos, Quaternion _quaternion)
@@ -65,10 +65,10 @@ namespace Effect
         }
 
         /// <summary>
-        /// ÀÌÆåÆ® ¼³Ä¡
+        /// ì´í™íŠ¸ ì„¤ì¹˜
         /// </summary>
         /// <param name="pos"></param>
-        public void SetEffectDefault(string _adress, Vector3 _pos, Vector3 _eulerAngles, Vector3 _size)
+        public void SetEffectDefault(string _adress, Vector3 _pos, Vector3 _eulerAngles, Vector3 _size, Transform parent = null)
         {
             
             if (!_isInit)
@@ -80,7 +80,14 @@ namespace Effect
             effect.transform.position = _pos;
             effect.transform.eulerAngles = _eulerAngles;
             effect.transform.localScale = _size;
-            effect.transform.SetParent(null);
+            if (parent)
+            {
+                effect.transform.SetParent(parent);
+            }
+            else
+            {
+                effect.transform.SetParent(null);
+            }
             effect.gameObject.SetActive(true);
         }
 
