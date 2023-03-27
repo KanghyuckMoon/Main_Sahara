@@ -10,11 +10,11 @@ namespace UI
 {
 
     /// <summary>
-    /// ¿ùµå¸Ê ¿ÀºêÁ§Æ®°¡ ¹Ì´Ï¸Ê»óÀ¸·Î Ç¥½Ã 
+    /// ì›”ë“œë§µ ì˜¤ë¸Œì íŠ¸ê°€ ë¯¸ë‹ˆë§µìƒìœ¼ë¡œ í‘œì‹œ 
     /// </summary>
     public class FollowObjMarker : MonoBehaviour
     {
-        #region ³ªÁß¿¡ ¾îµå·¹¼­ºí·Î ½ºÇÁ¶óÀÌÆ® °¡Á®¿Ã½Ã »ç¿ë 
+        #region ë‚˜ì¤‘ì— ì–´ë“œë ˆì„œë¸”ë¡œ ìŠ¤í”„ë¼ì´íŠ¸ ê°€ì ¸ì˜¬ì‹œ ì‚¬ìš© 
         enum MarkerType
         {
             player,
@@ -34,12 +34,12 @@ namespace UI
         private VisualElement markerUI;
         private VisualElement sightUI; 
 
-        [SerializeField, Header("µ¿Àû ÀÌµ¿ È¸Àü ¿©ºÎ")]
+        [SerializeField, Header("ë™ì  ì´ë™ íšŒì „ ì—¬ë¶€")]
         private bool isUpdatePosAndRot = true;
-        [SerializeField,Header("ÇÃ·¹ÀÌ¾î ¾Õ ¹æÇâ¿¡ ºÎÃ¤²Ã¸ğ¾ç ÀÌ¹ÌÁö ")]
+        [SerializeField,Header("í”Œë ˆì´ì–´ ì• ë°©í–¥ì— ë¶€ì±„ê¼´ëª¨ì–‘ ì´ë¯¸ì§€ ")]
         private bool isPlayerMarker;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public VisualElement MarkerUI => markerUI;
         private MapView MapView => mapPresenter.MapView;
         private MapInfo MapInfo => mapPresenter.MapInfo;
@@ -75,15 +75,15 @@ namespace UI
                 UpdateSightUI(); 
         }
 
-        [ContextMenu("¸¶Ä¿ »ı¼º")]
+        [ContextMenu("ë§ˆì»¤ ìƒì„±")]
         /// <summary>
-        /// ¸ÊUI»ó¿¡¼­ ¸¶Ä¿UI »ı¼º 
+        /// ë§µUIìƒì—ì„œ ë§ˆì»¤UI ìƒì„± 
         /// </summary>
         private void CreateMarker()
         {
             if (isPlayerMarker == true)
             {
-                // »ı¼º 
+                // ìƒì„± 
                 sightUI = AddressablesManager.Instance.GetResource<VisualTreeAsset>("Sight").Instantiate();
                 MapView.MarkerParent.Add(sightUI);
                 //sightUI.style.top = -75f; 
@@ -91,29 +91,29 @@ namespace UI
             }
 
             TemplateContainer _markerContainter = markerUxml.Instantiate();
-            //markerUI = _markerContainter.contentContainer.children(); // »ı¼º 
+            //markerUI = _markerContainter.contentContainer.children(); // ìƒì„± 
 
-            markerView = new MapMarkerView(_markerContainter, sprite); //½ºÇÁ¶óÀÌÆ®, À§Ä¡ ¼³Á¤ 
+            markerView = new MapMarkerView(_markerContainter, sprite); //ìŠ¤í”„ë¼ì´íŠ¸, ìœ„ì¹˜ ì„¤ì • 
             //_mapMarkerView.Init();
-            SetMarkerPosAndRot(); // À§Ä¡ ¼³Á¤ 
+            SetMarkerPosAndRot(); // ìœ„ì¹˜ ì„¤ì • 
 
             markerUI = markerView.Marker;
-            MapView.MarkerParent.Add(markerUI); // ÀÚ½ÄÀ¸·Î Ãß°¡ 
+            MapView.MarkerParent.Add(markerUI); // ìì‹ìœ¼ë¡œ ì¶”ê°€ 
 
-            // ÇöÀç¿ÀºêÁ§Æ® À§Ä¡ -> UI
+            // í˜„ì¬ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ -> UI
 
 
         }
 
-        [ContextMenu("¸¶Ä¿ »èÁ¦")]
+        [ContextMenu("ë§ˆì»¤ ì‚­ì œ")]
         /// <summary>
-        /// ¸ÊUI»ó¿¡¼­ ¸¶Ä¿UI »èÁ¦ 
+        /// ë§µUIìƒì—ì„œ ë§ˆì»¤UI ì‚­ì œ 
         /// </summary>
         public void RemoveMarker()
         {
             if (markerUI == null)
             {
-                Debug.LogError("ÇöÀç ¸¶Ä¿UI°¡ ÃÊ±âÈ­ µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù ");
+                Debug.LogError("í˜„ì¬ ë§ˆì»¤UIê°€ ì´ˆê¸°í™” ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤ ");
                 return;
             }
             MapView.MarkerParent.Remove(markerUI);

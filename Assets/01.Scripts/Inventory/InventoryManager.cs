@@ -7,6 +7,7 @@ using System.Linq;
 using Module;
 using GameManager;
 using Pool;
+using UI.Base;
 
 namespace Inventory
 {
@@ -253,6 +254,7 @@ namespace Inventory
 					{
 						_itemDatas[i].count += _count;
 						SendEvent("QuestManager", null);
+						SendEvent("PopupUIManager", _itemDatas[i]);
 						return;
 					}
 				}
@@ -269,10 +271,12 @@ namespace Inventory
 					else
 					{
 						inventorySO.itemDataList.Add(_itemData);
+						SendEvent("PopupUIManager", _itemData);
 						break;
 					}
 
 					inventorySO.itemDataList.Add(_itemData);
+					SendEvent("PopupUIManager", _itemData);
 				}
 			}
 			else
@@ -281,9 +285,11 @@ namespace Inventory
 				{
 					ItemData _itemData = ItemData.CopyItemData(allItemDataSO.itemDataDic[_itemKey]);
 					inventorySO.itemDataList.Add(_itemData);
+					SendEvent("PopupUIManager", _itemData);
 				}
 			}
 			SendEvent("QuestManager", null);
+		//	PopupUIManager.Instance.CreatePopup<PopupGetItemPr>(PopupType.GetItem, _originItemData);
 		}
 
 		public ItemData GetItem(string _itemKey)

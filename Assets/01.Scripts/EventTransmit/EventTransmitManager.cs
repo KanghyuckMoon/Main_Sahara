@@ -6,6 +6,7 @@ using Inventory;
 using Quest;
 using Json;
 using Streaming;
+using UI.Popup;
 
 namespace EventTransmit
 {
@@ -20,6 +21,7 @@ namespace EventTransmit
 			QuestManager.Instance.QuestEventTransmit += SendEvent;
 			SaveManager.Instance.SaveEventTransmit += SendEvent;
 			StreamingManager.Instance.StreamingEventTransmit += SendEvent;
+			PopupUIManager.Instance.PopupEventTransmit += SendEvent; 
 		}
 
 		public void SendEvent(string _sender, string _recipient, object _obj)
@@ -38,6 +40,9 @@ namespace EventTransmit
 				case "StreamingManager":
 					StreamingManager.Instance.ReceiveEvent(_sender, _obj);
 					break;
+				case "PopupUIManager":
+					PopupUIManager.Instance.ReceiveEvent(_sender, _obj);
+					break; 
 			}
 		}
 

@@ -272,6 +272,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1984872577812914026}
+  - component: {fileID: 5099810022177760754}
+  - component: {fileID: -3716825958864625063}
+  - component: {fileID: 2732660766740591291}
   m_Layer: 14
   m_Name: Bermuda_Drop
   m_TagString: Untagged
@@ -302,6 +305,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
+--- !u!114 &5099810022177760754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207105142449735120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: c4caf5cf3265ee246923a9e912901ce0, type: 2}
+  rigid: {fileID: -3716825958864625063}
+  itemAddress: ExSw_01_Bermuda
+  targetObj: {fileID: 1207105142449735120}
+  isJumping: 1
+--- !u!54 &-3716825958864625063
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207105142449735120}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2732660766740591291
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207105142449735120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1531550675925955165
 GameObject:
   m_ObjectHideFlags: 0

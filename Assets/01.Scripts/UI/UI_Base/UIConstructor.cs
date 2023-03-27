@@ -7,7 +7,7 @@ using Utill.Addressable;
 namespace UI.Base
 {
     /// <summary>
-    /// T ÀÇ View ¸¦ »ı¼ºÇÏ°Ú´Ù 
+    /// T ì˜ View ë¥¼ ìƒì„±í•˜ê² ë‹¤ 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class UIConstructor<T> : ICreateUI where T : AbUI_Base, new()
@@ -15,22 +15,22 @@ namespace UI.Base
         private VisualTreeAsset uiUxml;
         private List<T> uiList = new List<T>();
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public List<T> UIList => uiList;
 
         public UIConstructor(string _address)
         {
             this.uiUxml= AddressablesManager.Instance.GetResource<VisualTreeAsset>(_address); 
-            // ¾îµå·¹¼­ºí·Î uiUxml ºÒ·¯¿À±â 
+            // ì–´ë“œë ˆì„œë¸”ë¡œ uiUxml ë¶ˆëŸ¬ì˜¤ê¸° 
         }
 
         /// <summary>
-        /// µ¿Àû UI »ı¼º ÈÄ ¹İÈ¯ 
+        /// ë™ì  UI ìƒì„± í›„ ë°˜í™˜ 
         /// </summary>
         /// <returns></returns>
         public (VisualElement,AbUI_Base) CreateUI()
         {
-            // ¹¹ µ¥ÀÌÅÍ ³Ñ°Ü¼­ »ı¼º 
+            // ë­ ë°ì´í„° ë„˜ê²¨ì„œ ìƒì„± 
             TemplateContainer buff = uiUxml.Instantiate();
             VisualElement _v = buff.contentContainer;
             T buffView = new T();

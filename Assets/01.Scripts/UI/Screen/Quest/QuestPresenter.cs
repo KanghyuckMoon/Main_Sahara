@@ -22,7 +22,7 @@ namespace UI.Quest
 
         private Dictionary<QuestState, List<QuestEntryView>> questEntryDic = new Dictionary<QuestState, List<QuestEntryView>>();
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public IUIController UIController { get; set; }
 
         private void Awake()
@@ -47,9 +47,9 @@ namespace UI.Quest
 
 
 
-            [ContextMenu("Äù½ºÆ®UI »ı¼º")]
+            [ContextMenu("í€˜ìŠ¤íŠ¸UI ìƒì„±")]
         /// <summary>
-        /// Æ¯Á¤ QuestData ¹Ş¾Æ¼­ Äù½ºÆ® »ı¼º   
+        /// íŠ¹ì • QuestData ë°›ì•„ì„œ í€˜ìŠ¤íŠ¸ ìƒì„±   
         /// </summary>
         public void ActiveQuest()
         {
@@ -64,22 +64,22 @@ namespace UI.Quest
                 QuestEntryView _qEntryView = _v.Item2 as QuestEntryView;
                 VisualElement _vQuestEntry = _v.Item1;
 
-                // ºÎ¸ğ ¼³Á¤ 
+                // ë¶€ëª¨ ì„¤ì • 
                 questView.SetQuestParent(_vQuestEntry);
 
-                // »ı¼º Äù½ºÆ®UI¿¡ ÅØ½ºÆ® ¼³Á¤ 
+                // ìƒì„± í€˜ìŠ¤íŠ¸UIì— í…ìŠ¤íŠ¸ ì„¤ì • 
                 string _nameT = TextManager.Instance.GetText(_nameKey);
                 string _detailT = TextManager.Instance.GetText(_detailKey);
                 string _stateT = Enum.GetName((typeof(QuestState)),_state);
                     ;
                 _qEntryView.SetNameAndDetailAndState(_nameT,_detailT,_stateT);
 
-                // Äù½ºÆ® Å¸ÀÔº°·Î ³ª´« Ã¤ µñ¼Å³Ê¸® Ãß°¡ 
+                // í€˜ìŠ¤íŠ¸ íƒ€ì…ë³„ë¡œ ë‚˜ëˆˆ ì±„ ë”•ì…”ë„ˆë¦¬ ì¶”ê°€ 
                 this.questView.QuestEntryDic[_state].Add(_qEntryView); 
             }
         }
         
-        [ContextMenu("ListView Å×½ºÆ®")]
+        [ContextMenu("ListView í…ŒìŠ¤íŠ¸")]
         public void TestListView()
         {
             this.questView.InitListView(); 
@@ -96,8 +96,8 @@ namespace UI.Quest
         }
 
         /*
-         * ÇöÀç  Äù½ºÆ® ¹Ş¾Æ¿Í¼­ 
-         * QuestView ÀÇ quest_list_panelÀÇ ÀÚ½ÄÀ¸·Î ¶ç¿ì±â 
+         * í˜„ì¬  í€˜ìŠ¤íŠ¸ ë°›ì•„ì™€ì„œ 
+         * QuestView ì˜ quest_list_panelì˜ ìì‹ìœ¼ë¡œ ë„ìš°ê¸° 
          *  
          */
     }

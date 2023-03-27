@@ -9,15 +9,20 @@ using UI.Base;
 using UI.Popup;
 using UI.Production; 
 using System.Linq;
+using Inventory;
 using UI.EventAlarm;
 using UnityEditor;
+using Quest;
 
 namespace UI.Popup
 {
 
+    public delegate void PopupEventTransmit(string _sender, string _recipient, object _obj);
 
     public class PopupUIManager : MonoSingleton<PopupUIManager>
     {
+        private PopupEventTransmit popupEventTransmit;
+        
         private Transform popupParent;
 
         private PopupHudPr popupHudPr;
@@ -26,6 +31,13 @@ namespace UI.Popup
         
         private List<IPopupPr> popupPrList = new List<IPopupPr>(); 
 
+        // 프로퍼티 
+        public PopupEventTransmit PopupEventTransmit
+        {
+            get => popupEventTransmit;
+            set => popupEventTransmit = value; 
+        }
+        
         public Transform PopupParent
         {
             get
@@ -69,13 +81,32 @@ namespace UI.Popup
 
             return _popupGetItemPr; 
         }
-        
+
+        public void ReceiveEvent(string _sender, object _obj)
+        {
+            if (_sender is "InventoryManager")
+            {
+                ItemData _itemData = _obj as ItemData;;
+                CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
+            }
+
+            if (_sender is "QuestManager")
+            {
+                QuestData _questData = _obj as QuestData;
+                CreatePopup<EventAlarmPr>(PopupType.EventAlarm, _questData);
+            }
+        }
+
+        private void CreateGetItemPopup(ItemData _itemData)
+        {
+            CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
+        }
         private void Init()
         {
             GameObject _parent = GameObject.FindWithTag("UIParent");
             if (_parent == null) return; 
             popupParent = _parent.transform.Find("PopupScreens");
-            SetPresenters(); 
+            SetPresenters();
 
         }
 

@@ -21,6 +21,30 @@ namespace Interaction
 			}
 		}
 
+		public string Name
+		{
+			get
+			{
+				return $"{itemDataSO.nameKey}";
+			}
+		}
+
+		public string ActionName
+		{
+			get
+			{
+				return $"{itemDataSO.nameKey}";
+			}
+		}
+		
+		public Vector3 PopUpPos
+		{
+			get
+			{
+				return transform.position + new Vector3(0, 2, 0);
+			}
+		}
+
 		[SerializeField]
 		private ItemDataSO itemDataSO = null;
 
@@ -38,6 +62,18 @@ namespace Interaction
 
 		private bool isEnabled = false;
 		private DropItem dropItem = new DropItem();
+
+        [ContextMenu("GetRigid")]
+        public void GetRigid()
+        {
+            rigid = gameObject.GetComponent<Rigidbody>();
+        }
+        
+        [ContextMenu("GetGameObj")]
+        public void GetGameObj()
+        {
+	        targetObj = gameObject;
+        }
 
 		public void Start()
 		{

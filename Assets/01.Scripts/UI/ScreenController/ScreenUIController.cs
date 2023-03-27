@@ -13,6 +13,7 @@ using UI.Save;
 using TimeManager;
 using InputSystem;
 using UI.UtilManager; 
+using UI.Option;
 
 namespace UI
 {
@@ -38,7 +39,7 @@ namespace UI
             SaveLoadUI,
             ShopUI, 
             UpgradeUI, 
-
+            OptionUI
         }
 
 
@@ -50,8 +51,9 @@ namespace UI
         private QuestPresenter questPresenter;
         private UpgradePresenter upgradePresenter;
         private ShopPresenter shopPresenter;
-        private SaveLoadPresenter saveLoadPresenter; 
-
+        private SaveLoadPresenter saveLoadPresenter;
+        private OptionPresenter _optionPresenter;
+        
         private Dictionary<ScreenType, IScreen> screenDic = new Dictionary<ScreenType, IScreen>();
         private Dictionary<UIInputData, Action> inputDic = new Dictionary<UIInputData, Action>();
         [SerializeField]
@@ -76,6 +78,7 @@ namespace UI
             screenDic.Add(ScreenType.Upgrade, upgradePresenter);
             screenDic.Add(ScreenType.Shop, shopPresenter);
             /*screenDic.Add(ScreenType.Save, saveLoadPresenter);*/
+            screenDic.Add(ScreenType.Option, _optionPresenter);
         }
 
         private void Start()
@@ -131,7 +134,7 @@ namespace UI
             /*
             saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
             */
-
+            _optionPresenter = GetComponentInChildren<OptionPresenter>(); 
             //// UIController 넣어주기 
             foreach (var _pr in screenDic)
             {
@@ -179,6 +182,12 @@ namespace UI
                 bool _isActive = saveLoadPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SaveLoadUI));
             });*/
+            inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>
+            {
+                //  활성화
+                bool _isActive = _optionPresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
+            });
         }
 
         /// <summary>

@@ -10,7 +10,8 @@ namespace UI.Production
     {
         enum Elements
         {
-            event_alarm_view, 
+            event_alarm_view,
+            image, 
         }
 
         enum Labels
@@ -56,6 +57,11 @@ namespace UI.Production
         public void SetEventDetail(string _detail)
         {
             GetLabel((int)Labels.event_detail_label).text = _detail;
+        }
+
+        public void SetImage(Texture2D _image)
+        {
+            GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_image);
         }
     }
 
