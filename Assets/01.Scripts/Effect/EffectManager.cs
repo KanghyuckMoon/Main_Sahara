@@ -105,7 +105,14 @@ namespace Effect
                 SceneManager.MoveGameObjectToScene(effect, _scene);
 			}
             effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root, _correctionAngle, _correctionPos);
-            effect.transform.position = _obj.position;
+            if(_obj != null)
+            {
+                effect.transform.position = _obj.position;
+            }
+            else
+            {
+                effect.transform.position = Vector3.zero;
+            }
             effect.transform.SetParent(null);
             effect.gameObject.SetActive(true);
         }
@@ -118,7 +125,14 @@ namespace Effect
 
             GameObject effect = ObjectPoolManager.Instance.GetObject(_adress);
             effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root, _correctionAngle, _correctionPos);
-            effect.transform.position = _obj.position;
+            if(_obj != null)
+            {
+                effect.transform.position = _obj.position;
+            }
+            else
+            {
+                effect.transform.position = Vector3.zero;
+            }
             effect.transform.SetParent(null);
             effect.gameObject.SetActive(true);
         }

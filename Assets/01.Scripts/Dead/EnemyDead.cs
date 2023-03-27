@@ -91,7 +91,7 @@ namespace Module
             yield return new WaitForSeconds(0.1f);
             animator.speed = 0;
             EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
-            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, transform, rootTransform, correctionAngle, correctionPos, gameObject.scene);
+            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, null, rootTransform, correctionAngle, correctionPos, gameObject.scene);
             //Item Drop
             for (int i = 0; i < dropItemListSO.dropCount; ++i)
             {
