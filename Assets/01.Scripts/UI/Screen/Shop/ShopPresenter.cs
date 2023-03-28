@@ -7,7 +7,8 @@ using GoogleSpreadSheet;
 using UI.Manager;
 using UI.Inventory;
 using Shop;
-using Inventory; 
+using Inventory;
+using Utill.Addressable;
 
 namespace UI.Shop
 {
@@ -24,7 +25,8 @@ namespace UI.Shop
         [SerializeField]
         private ShopView shopView;
         private InventoryGridSlotsPr inventoryGridSlotsPr;
-
+        private InvenItemUISO invenItemUISO;
+        
         // 프로퍼티
         public IUIController UIController { get ; set; }
 
@@ -36,6 +38,7 @@ namespace UI.Shop
         }
         private void OnEnable()
         {
+            invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
             this.uiDocument = GetComponent<UIDocument>();
             shopView.InitUIDocument(uiDocument);
             shopView.Cashing();
@@ -84,15 +87,24 @@ namespace UI.Shop
             
             // 인벤토리 데이터 설정 
             List<ItemData> _itemList = InventoryManager.Instance.GetWeaponAndConsumptionList();
-            foreach (var _data in _itemList)
+            if(_itemList.Count > 0)
             {
-                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
-                // 더블클릭시 판매 이벤트 추가 
-                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                foreach (var _data in _itemList)
                 {
-                    x.AddDoubleClicker(() => ShopManager.Instance.SellItem(_data));
-                });
+                    if (inventoryGridSlotsPr.ItemSlotDic[_data.itemType].CheckIndex() == false)
+                    {
+                        inventoryGridSlotsPr.CreateRow(invenItemUISO.GetItemUIType(_data.itemType));
+                    }
+                        
+                    inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
+                    // 더블클릭시 판매 이벤트 추가 
+                    inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                    {
+                        x.AddDoubleClicker(() => ShopManager.Instance.SellItem(_data));
+                    });
+                }    
             }
+            
         }
 
         [ContextMenu("구매")]

@@ -300,6 +300,16 @@ namespace UI
 
         }
 
+        [ContextMenu("커서 활성화")]
+        public void ActiveCursor()
+        {
+            ActiveCursor(true); 
+        }
+        [ContextMenu("커서 비활성화")]
+        public void InActiveCursor()
+        {
+            ActiveCursor(false);
+        }
         private void ActiveCursor(bool _isActive)
         {
             if (_isActive == true)

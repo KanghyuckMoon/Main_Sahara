@@ -503,7 +503,7 @@ namespace UI.Upgrade
 
         public bool ActiveView()
         {
-            bool _isActive = upgradeView.ActiveScreen();
+                bool _isActive = upgradeView.ActiveScreen();
             if (_isActive == true)
             {
                 //ClearAllSlots();
@@ -520,6 +520,16 @@ namespace UI.Upgrade
 
         public void ActiveView(bool _isActive)
         {
+            if (_isActive == true)
+            {
+                //ClearAllSlots();
+                this.UpgradeCtrlPr.UpdateUI();
+                //StartCoroutine(SetAllSlotPosCo());
+            }
+            else
+            {
+                LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade);
+            }
             upgradeView.ActiveScreen(_isActive);
         }
     }

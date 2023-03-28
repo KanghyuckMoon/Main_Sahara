@@ -127,7 +127,7 @@ namespace UI.Dialogue
                     case "!SMITH":
                         //UIController.GetScreen<UpgradePresenter>(ScreenType.Upgrade).ActiveView();
                         UIController.ActiveScreen(Keys.SmithUI);
-                        ActiveView(false);
+                        ActiveViewS(false);
                         return; 
                     case "!GIVE":
                         return;
