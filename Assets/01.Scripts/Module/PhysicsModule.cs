@@ -199,7 +199,7 @@ namespace Module
 
         public override void OnDrawGizmos()
         {
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(_spherePosition, 0.25f);
         }
 
@@ -207,7 +207,7 @@ namespace Module
         {
             _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
                 mainModule.transform.position.z);
-            bool _isLand = Physics.CheckSphere(_spherePosition, 0.25f, mainModule.groundLayer,
+            bool _isLand = Physics.CheckSphere(_spherePosition, 0.2f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
             
