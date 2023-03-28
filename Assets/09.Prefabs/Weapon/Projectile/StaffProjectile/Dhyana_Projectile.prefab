@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1164028467344829969}
   - component: {fileID: 1164028467344829982}
   - component: {fileID: 787515225606873435}
+  - component: {fileID: -5486148160402639064}
   m_Layer: 0
   m_Name: Dhyana_Projectile
   m_TagString: Untagged
@@ -77,6 +78,25 @@ MonoBehaviour:
   objectName: StaffProjectile
   rigidbody: {fileID: 1164028467344829982}
   affectedByGravity: 0
+  address: Dhyana_Projectile
+  hitEffectAddress: Flash20
+--- !u!114 &-5486148160402639064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164028467344829973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: ae48902fc5656a644b3324ed3779b4c8, type: 2}
+  hitboxString: Col
+  owner: {fileID: 0}
+  isTimeIndexCange: 0
+  isOnEnalbe: 0
 --- !u!1 &7706828345151788942
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108320471180231846, guid: f013a7465c9b4274bbd66d2ff9761187, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -2.5586691e+19
+      value: 147.51999
       objectReference: {fileID: 0}
     - target: {fileID: 108320471180231846, guid: f013a7465c9b4274bbd66d2ff9761187, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -233,11 +253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108320471180231846, guid: f013a7465c9b4274bbd66d2ff9761187, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 9.8
       objectReference: {fileID: 0}
     - target: {fileID: 108320471180231846, guid: f013a7465c9b4274bbd66d2ff9761187, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: -569.4
       objectReference: {fileID: 0}
     - target: {fileID: 114351253421974366, guid: f013a7465c9b4274bbd66d2ff9761187, type: 3}
       propertyPath: m_Enabled
@@ -245,7 +265,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 135840973497244662, guid: f013a7465c9b4274bbd66d2ff9761187, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135840973497244662, guid: f013a7465c9b4274bbd66d2ff9761187, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198571459502215574, guid: f013a7465c9b4274bbd66d2ff9761187, type: 3}
       propertyPath: lengthInSec

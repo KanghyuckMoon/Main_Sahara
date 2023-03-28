@@ -65,8 +65,6 @@ namespace HitBox
 			col.height = _hitBoxData.height;
 
 
-			Vector3 _pos = transform.position + (transform.forward * hitBoxData.swingEffectOffset.z) + (transform.up * hitBoxData.swingEffectOffset.y) + (transform.right * hitBoxData.swingEffectOffset.x);
-
 			if (hitBoxData.childization)
 			{
 				if(_parent is null)
@@ -85,6 +83,8 @@ namespace HitBox
 				gameObject.transform.SetParent(null);
 			}
 			gameObject.SetActive(true);
+
+			Vector3 _pos = transform.position + (transform.forward * hitBoxData.swingEffectOffset.z) + (transform.up * hitBoxData.swingEffectOffset.y) + (transform.right * hitBoxData.swingEffectOffset.x);
 
 			if (hitBoxData.swingEffect != "NULL")
 			{

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1164028467344829969}
   - component: {fileID: 1164028467344829982}
   - component: {fileID: -5357161334923141470}
+  - component: {fileID: 2060992681540737415}
   m_Layer: 0
   m_Name: Tantra_Projectile
   m_TagString: Untagged
@@ -77,6 +78,25 @@ MonoBehaviour:
   objectName: StaffProjectile
   rigidbody: {fileID: 1164028467344829982}
   affectedByGravity: 0
+  address: Tantra_Projectile
+  hitEffectAddress: Flash20
+--- !u!114 &2060992681540737415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164028467344829973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: 2013d293f2e34a74ab79071312cce91e, type: 2}
+  hitboxString: Col
+  owner: {fileID: 0}
+  isTimeIndexCange: 0
+  isOnEnalbe: 0
 --- !u!1 &7706828345151788942
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,15 +205,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4903523721451584, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.77
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4903523721451584, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4903523721451584, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4903523721451584, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -225,23 +245,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.33333334
+      value: 2.5229216e+32
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 2.5229216e+32
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 2.5229216e+32
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
+      value: 2.5229216e+32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896872521589134, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 135713622178651324, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135713622178651324, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198499798837834988, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: looping

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1164028467344829969}
   - component: {fileID: 1164028467344829982}
   - component: {fileID: 6270235697572219044}
+  - component: {fileID: 8274905552463866651}
   m_Layer: 0
   m_Name: Nervana_Projectile
   m_TagString: Untagged
@@ -77,6 +78,25 @@ MonoBehaviour:
   objectName: StaffProjectile
   rigidbody: {fileID: 1164028467344829982}
   affectedByGravity: 0
+  address: Nervana_Projectile
+  hitEffectAddress: Flash20
+--- !u!114 &8274905552463866651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164028467344829973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: db93d5098618cda4e996b33be947d9c3, type: 2}
+  hitboxString: Col
+  owner: {fileID: 0}
+  isTimeIndexCange: 0
+  isOnEnalbe: 0
 --- !u!1 &7706828345151788942
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,23 +245,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108625486811999762, guid: cb9749d31a33c734f94f33df4f9e0c43, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -1.4411519e+17
+      value: 1.077023e-38
       objectReference: {fileID: 0}
     - target: {fileID: 108625486811999762, guid: cb9749d31a33c734f94f33df4f9e0c43, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 1.077023e-38
       objectReference: {fileID: 0}
     - target: {fileID: 108625486811999762, guid: cb9749d31a33c734f94f33df4f9e0c43, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.5360196e-28
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 108625486811999762, guid: cb9749d31a33c734f94f33df4f9e0c43, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.96e-43
+      value: 1.077023e-38
+      objectReference: {fileID: 0}
+    - target: {fileID: 114512895694731992, guid: cb9749d31a33c734f94f33df4f9e0c43, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 135178183695366598, guid: cb9749d31a33c734f94f33df4f9e0c43, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135178183695366598, guid: cb9749d31a33c734f94f33df4f9e0c43, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198061838050104678, guid: cb9749d31a33c734f94f33df4f9e0c43, type: 3}
       propertyPath: lengthInSec

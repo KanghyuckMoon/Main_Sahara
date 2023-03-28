@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1164028467344829969}
   - component: {fileID: 1164028467344829982}
   - component: {fileID: -1536415691251122250}
+  - component: {fileID: -8280090358519260083}
   m_Layer: 0
   m_Name: PlatinumStaff_Projectile
   m_TagString: Untagged
@@ -77,6 +78,25 @@ MonoBehaviour:
   objectName: StaffProjectile
   rigidbody: {fileID: 1164028467344829982}
   affectedByGravity: 0
+  address: PlatinumStaff_Projectile
+  hitEffectAddress: Flash20
+--- !u!114 &-8280090358519260083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164028467344829973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: 5a4adaf6c9f85d740b16f5e0f1b8039a, type: 2}
+  hitboxString: Col
+  owner: {fileID: 0}
+  isTimeIndexCange: 0
+  isOnEnalbe: 0
 --- !u!1 &7706828345151788942
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108858597636685324, guid: d897177194c6ab1458b9a394743f3281, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: -2.6856304e-37
       objectReference: {fileID: 0}
     - target: {fileID: 108858597636685324, guid: d897177194c6ab1458b9a394743f3281, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -237,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108858597636685324, guid: d897177194c6ab1458b9a394743f3281, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.02e-43
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 114436793558689382, guid: d897177194c6ab1458b9a394743f3281, type: 3}
       propertyPath: m_Enabled
@@ -245,7 +265,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 135627091332810106, guid: d897177194c6ab1458b9a394743f3281, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135627091332810106, guid: d897177194c6ab1458b9a394743f3281, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198134207313987930, guid: d897177194c6ab1458b9a394743f3281, type: 3}
       propertyPath: lengthInSec
