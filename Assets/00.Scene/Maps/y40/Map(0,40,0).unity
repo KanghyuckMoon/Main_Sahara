@@ -240,13 +240,13 @@ MonoBehaviour:
     - cutSceneType: 2
       target1: {fileID: 0}
       target2: {fileID: 0}
-      trackTarget: {fileID: 1927908772}
-      smoothPath: {fileID: 1616985447}
+      trackTarget: {fileID: 252320951}
+      smoothPath: {fileID: 239226937}
       testTalk: {fileID: 0}
       zoomInOutDistance: 0
       questKey: 
       questState: 0
-      eventObj: {fileID: 1394382651}
+      eventObj: {fileID: 0}
       isTalk: 0
       isNotUseTrackLookAt: 0
   questKey: 
@@ -260,12 +260,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177359703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.4, y: 4054, z: -4.7}
+  m_LocalPosition: {x: -25.4, y: 4039, z: -4.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225651694
 GameObject:
@@ -301,6 +301,94 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &239226935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239226936}
+  - component: {fileID: 239226937}
+  m_Layer: 0
+  m_Name: CutSceneTrack_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239226936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239226935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 375113879}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239226937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239226935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: -37.880356, y: 4038.2651, z: -4.3473043}
+    roll: 0
+  - position: {x: -51.277786, y: 4043.1475, z: -1.5684648}
+    roll: 0
+  - position: {x: -59.529945, y: 4048.835, z: 9.406732}
+    roll: 0
+--- !u!1 &252320950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 252320951}
+  m_Layer: 0
+  m_Name: CutSceneTarget_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &252320951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252320950}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -57.4, y: 4044.3, z: 22.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1812482468}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &260972635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -314,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672434099468903774, guid: 88757ba3bb12e8644975077a2ea4ac4c, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 8672434099468903774, guid: 88757ba3bb12e8644975077a2ea4ac4c, type: 3}
       propertyPath: m_LocalScale.x
@@ -370,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88757ba3bb12e8644975077a2ea4ac4c, type: 3}
---- !u!1 &381204768
+--- !u!1 &285724527
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -378,28 +466,63 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 381204769}
+  - component: {fileID: 285724528}
   m_Layer: 0
-  m_Name: CutScene2
+  m_Name: CutSceneTarget_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &381204769
+--- !u!4 &285724528
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381204768}
+  m_GameObject: {fileID: 285724527}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.4, y: 4043.1, z: -1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1812482468}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &375113878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 375113879}
+  m_Layer: 0
+  m_Name: CutScene_Tracks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &375113879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375113878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 896421154}
+  - {fileID: 1295194410}
+  - {fileID: 239226936}
+  - {fileID: 1652377843}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &414120123
 GameObject:
@@ -532,6 +655,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80b03dd058ac0aa4193c81e63ecd38b1, type: 3}
+--- !u!1 &487501966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487501967}
+  m_Layer: 0
+  m_Name: CutSceneTarget_3_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &487501967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487501966}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.2, y: 4037.4, z: -14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1812482468}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &503224856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503224857}
+  m_Layer: 0
+  m_Name: CutSceneTarget_0_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503224857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503224856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.338433, y: 4038.265, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1812482468}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &527685553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -545,7 +730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6513972341020640087, guid: 5229523c0aa944f428d47e184224e419, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 6513972341020640087, guid: 5229523c0aa944f428d47e184224e419, type: 3}
       propertyPath: m_LocalScale.z
@@ -791,7 +976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 7c6ee3ffd649b664baa2423f5ec1c1b7, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 7c6ee3ffd649b664baa2423f5ec1c1b7, type: 3}
       propertyPath: m_LocalScale.x
@@ -1216,7 +1401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &797241966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1247,7 +1432,7 @@ MonoBehaviour:
     - cutSceneType: 2
       target1: {fileID: 0}
       target2: {fileID: 0}
-      trackTarget: {fileID: 1927908772}
+      trackTarget: {fileID: 0}
       smoothPath: {fileID: 1616985447}
       testTalk: {fileID: 0}
       zoomInOutDistance: 0
@@ -1272,7 +1457,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &817018257
 GameObject:
@@ -1345,7 +1530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2646993040352920060, guid: d76f4c6bf0dea6749811cbd530bef722, type: 3}
       propertyPath: m_RootOrder
-      value: 27
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2646993040352920060, guid: d76f4c6bf0dea6749811cbd530bef722, type: 3}
       propertyPath: m_LocalScale.x
@@ -1401,6 +1586,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d76f4c6bf0dea6749811cbd530bef722, type: 3}
+--- !u!1 &896421153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 896421154}
+  - component: {fileID: 896421155}
+  m_Layer: 0
+  m_Name: CutSceneTrack_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &896421154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896421153}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.7, y: 0, z: -4.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 375113879}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &896421155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896421153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: 3.3384333, y: 4038.2651, z: -7.957858}
+    roll: 0
+  - position: {x: 8.921208, y: 4038.2651, z: -1.434629}
+    roll: 0
+  - position: {x: 3.723137, y: 4038.2651, z: 5.0886}
+    roll: 0
+  - position: {x: -2.238274, y: 4038.2651, z: -0.46883297}
+    roll: 0
+  - position: {x: 3.338433, y: 4038.2651, z: -7.957858}
+    roll: 0
 --- !u!1001 &999891324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1494,6 +1740,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1068633138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068633139}
+  m_Layer: 0
+  m_Name: CutSceneTarget_3_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1068633139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068633138}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.8, y: 4037.4, z: -12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1812482468}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1118843153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,7 +1783,7 @@ GameObject:
   - component: {fileID: 1118843155}
   - component: {fileID: 1118843154}
   m_Layer: 0
-  m_Name: CutScene_1_UnlockBoss
+  m_Name: CutScene_1_UnlockBoss(Col_Test)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1542,13 +1819,13 @@ MonoBehaviour:
     - cutSceneType: 2
       target1: {fileID: 0}
       target2: {fileID: 0}
-      trackTarget: {fileID: 1927908772}
-      smoothPath: {fileID: 1616985447}
+      trackTarget: {fileID: 1761036466}
+      smoothPath: {fileID: 1295194411}
       testTalk: {fileID: 0}
-      zoomInOutDistance: 0
+      zoomInOutDistance: 0.1
       questKey: 
       questState: 0
-      eventObj: {fileID: 1394382651}
+      eventObj: {fileID: 0}
       isTalk: 0
       isNotUseTrackLookAt: 0
   questKey: 
@@ -1562,12 +1839,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118843153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.2, y: 4039.1, z: 9.3}
+  m_LocalPosition: {x: 18.4, y: 4039.1, z: 11.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1123874477
 GameObject:
@@ -1600,6 +1877,108 @@ Transform:
   m_Father: {fileID: 225651695}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1281685404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1281685405}
+  m_Layer: 0
+  m_Name: CutSceneTarget_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1281685405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281685404}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -159.19, y: 4040.34, z: 33.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1812482468}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1295194409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295194410}
+  - component: {fileID: 1295194411}
+  m_Layer: 0
+  m_Name: CutSceneTrack_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1295194410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295194409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 375113879}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1295194411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295194409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: 3.3384333, y: 4038.2651, z: -7.957858}
+    roll: 0
+  - position: {x: -9.128992, y: 4040.265, z: 11.671143}
+    roll: 0
+  - position: {x: 14.431129, y: 4040.765, z: 34.756485}
+    roll: 0
+  - position: {x: 49.55618, y: 4041.265, z: 6.2104015}
+    roll: 0
+  - position: {x: 9.922743, y: 4042.765, z: -51.58199}
+    roll: 0
+  - position: {x: -56.034077, y: 4044.265, z: -14.6308155}
+    roll: 0
+  - position: {x: -31.556591, y: 4056.265, z: 62.9652}
+    roll: 0
+  - position: {x: 33.988358, y: 4070.765, z: 69.93076}
+    roll: 0
+  - position: {x: 86.791176, y: 4078.265, z: 26.712013}
+    roll: 0
+  - position: {x: 85.44051, y: 4093.265, z: -56.78248}
+    roll: 0
 --- !u!1 &1364338999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,16 +2024,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutSceneDataList:
     cutSceneDataList:
-    - cutSceneType: 2
-      target1: {fileID: 0}
+    - cutSceneType: 1
+      target1: {fileID: 285724528}
       target2: {fileID: 0}
-      trackTarget: {fileID: 1927908772}
-      smoothPath: {fileID: 1616985447}
+      trackTarget: {fileID: 0}
+      smoothPath: {fileID: 0}
       testTalk: {fileID: 0}
-      zoomInOutDistance: 0
+      zoomInOutDistance: 1
       questKey: 
       questState: 0
-      eventObj: {fileID: 1394382651}
+      eventObj: {fileID: 0}
+      isTalk: 0
+      isNotUseTrackLookAt: 0
+    - cutSceneType: 6
+      target1: {fileID: 0}
+      target2: {fileID: 0}
+      trackTarget: {fileID: 0}
+      smoothPath: {fileID: 0}
+      testTalk: {fileID: 0}
+      zoomInOutDistance: 1
+      questKey: 
+      questState: 0
+      eventObj: {fileID: 0}
       isTalk: 0
       isNotUseTrackLookAt: 0
   questKey: 
@@ -1673,7 +2064,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1382522795
 PrefabInstance:
@@ -1688,7 +2079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 7c6ee3ffd649b664baa2423f5ec1c1b7, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3699875109982235527, guid: 7c6ee3ffd649b664baa2423f5ec1c1b7, type: 3}
       propertyPath: m_LocalScale.x
@@ -1761,7 +2152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4999911855925594895, guid: 157854ad31c11b94f9cc04dfe48d0a0b, type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4999911855925594895, guid: 157854ad31c11b94f9cc04dfe48d0a0b, type: 3}
       propertyPath: m_LocalScale.x
@@ -1904,7 +2295,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498267625
 GameObject:
@@ -1951,16 +2342,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutSceneDataList:
     cutSceneDataList:
-    - cutSceneType: 2
-      target1: {fileID: 0}
+    - cutSceneType: 1
+      target1: {fileID: 1068633139}
       target2: {fileID: 0}
-      trackTarget: {fileID: 1927908772}
-      smoothPath: {fileID: 1616985447}
+      trackTarget: {fileID: 0}
+      smoothPath: {fileID: 0}
       testTalk: {fileID: 0}
       zoomInOutDistance: 0
       questKey: 
       questState: 0
-      eventObj: {fileID: 1394382651}
+      eventObj: {fileID: 0}
+      isTalk: 0
+      isNotUseTrackLookAt: 0
+    - cutSceneType: 6
+      target1: {fileID: 0}
+      target2: {fileID: 0}
+      trackTarget: {fileID: 0}
+      smoothPath: {fileID: 0}
+      testTalk: {fileID: 0}
+      zoomInOutDistance: 0
+      questKey: 
+      questState: 0
+      eventObj: {fileID: 0}
       isTalk: 0
       isNotUseTrackLookAt: 0
   questKey: 
@@ -1979,7 +2382,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1524634339
 GameObject:
@@ -2029,13 +2432,13 @@ MonoBehaviour:
     - cutSceneType: 2
       target1: {fileID: 0}
       target2: {fileID: 0}
-      trackTarget: {fileID: 1927908772}
-      smoothPath: {fileID: 1616985447}
+      trackTarget: {fileID: 503224857}
+      smoothPath: {fileID: 896421155}
       testTalk: {fileID: 0}
-      zoomInOutDistance: 0
+      zoomInOutDistance: 1.5
       questKey: 
       questState: 0
-      eventObj: {fileID: 1394382651}
+      eventObj: {fileID: 0}
       isTalk: 0
       isNotUseTrackLookAt: 0
   questKey: 
@@ -2049,12 +2452,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524634339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.07, y: 4039.1, z: -1.51}
+  m_LocalPosition: {x: 3.6, y: 4040.6, z: -1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1556226577
 PrefabInstance:
@@ -2069,7 +2472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8334946714439869228, guid: faa095053e8fb2249925f1cfb7a2a31f, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8334946714439869228, guid: faa095053e8fb2249925f1cfb7a2a31f, type: 3}
       propertyPath: m_LocalScale.x
@@ -2141,7 +2544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1616985446
 Transform:
   m_ObjectHideFlags: 0
@@ -2188,6 +2591,63 @@ MonoBehaviour:
     roll: 0
   - position: {x: 0.7983093, y: 12.187744, z: 5.581122}
     roll: 0
+--- !u!1 &1652377842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1652377843}
+  - component: {fileID: 1652377844}
+  m_Layer: 0
+  m_Name: CutSceneTrack_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1652377843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652377842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 375113879}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1652377844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652377842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: -37.880356, y: 4038.2651, z: -4.3473043}
+    roll: 0
+  - position: {x: -67.30267, y: 4038.265, z: -0.06707811}
+    roll: 0
+  - position: {x: -110.02674, y: 4038.265, z: 15.379774}
+    roll: 0
 --- !u!1 &1672350719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,7 +2660,7 @@ GameObject:
   - component: {fileID: 1672350721}
   - component: {fileID: 1672350720}
   m_Layer: 0
-  m_Name: CutScene_5_TalkWithNavi
+  m_Name: CutScene_5_TalkWithNavi(ColTest)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2236,13 +2696,13 @@ MonoBehaviour:
     - cutSceneType: 2
       target1: {fileID: 0}
       target2: {fileID: 0}
-      trackTarget: {fileID: 1927908772}
-      smoothPath: {fileID: 1616985447}
+      trackTarget: {fileID: 1281685405}
+      smoothPath: {fileID: 1652377844}
       testTalk: {fileID: 0}
       zoomInOutDistance: 0
       questKey: 
       questState: 0
-      eventObj: {fileID: 1394382651}
+      eventObj: {fileID: 0}
       isTalk: 0
       isNotUseTrackLookAt: 0
   questKey: 
@@ -2256,12 +2716,82 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672350719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -45.4, y: 4039.1, z: -1.8}
+  m_LocalPosition: {x: -45.4, y: 4039.1, z: -19.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1761036465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1761036466}
+  m_Layer: 0
+  m_Name: CutSceneTarget_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1761036466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761036465}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.4, y: 4043.1, z: -1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1812482468}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1812482467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1812482468}
+  m_Layer: 0
+  m_Name: CutScene_Targets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1812482468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812482467}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 503224857}
+  - {fileID: 1914154643}
+  - {fileID: 1761036466}
+  - {fileID: 285724528}
+  - {fileID: 1068633139}
+  - {fileID: 487501967}
+  - {fileID: 252320951}
+  - {fileID: 1281685405}
+  m_Father: {fileID: 0}
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1875391988
 PrefabInstance:
@@ -2345,7 +2875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3094297391496514150, guid: 9ca94ec8ebe1eb74394e53893f81acc9, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 3094297391496514150, guid: 9ca94ec8ebe1eb74394e53893f81acc9, type: 3}
       propertyPath: m_LocalScale.x
@@ -2410,7 +2940,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5635216851260710225, guid: 2c33bc33156bb4545a348ca26365d5c8, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 5635216851260710225, guid: 2c33bc33156bb4545a348ca26365d5c8, type: 3}
       propertyPath: m_LocalScale.x
@@ -2470,6 +3000,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c33bc33156bb4545a348ca26365d5c8, type: 3}
+--- !u!1 &1914154642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1914154643}
+  m_Layer: 0
+  m_Name: CutSceneTarget_0_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1914154643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914154642}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.338433, y: 4038.265, z: -7.957858}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1812482468}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1918318391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2597,112 +3158,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1927908771
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1927908772}
-  m_Layer: 10
-  m_Name: CutScene2 Test Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1927908772
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927908771}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -46.3, y: 4041.9, z: 6.6}
-  m_LocalScale: {x: 2.5, y: 1.9782144, z: 1.9782145}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &2053828218
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2053828221}
-  - component: {fileID: 2053828220}
-  - component: {fileID: 2053828219}
-  m_Layer: 0
-  m_Name: CutSceneCol2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &2053828219
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053828218}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 15, y: 15, z: 15}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2053828220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053828218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c01afc539c9d9d4893735fb5ef112b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutSceneDataList:
-    cutSceneDataList:
-    - cutSceneType: 2
-      target1: {fileID: 0}
-      target2: {fileID: 0}
-      trackTarget: {fileID: 1927908772}
-      smoothPath: {fileID: 1616985447}
-      testTalk: {fileID: 0}
-      zoomInOutDistance: 0
-      questKey: 
-      questState: 0
-      eventObj: {fileID: 1394382651}
-      isTalk: 0
-      isNotUseTrackLookAt: 0
-  questKey: 
-  questState: 0
-  isPlayCutScene: 0
---- !u!4 &2053828221
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053828218}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.69, y: 4035.6, z: 7.37}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2145793884
 PrefabInstance:
