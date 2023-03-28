@@ -1,4 +1,4 @@
-using System.Collections;
+	using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
@@ -11,6 +11,9 @@ namespace Effect
 	{
 		[SerializeField]
 		private AnimationEffectSO animationEffectSO;
+
+		[SerializeField] 
+		private GameObject parent;
 
 		public void ChangeSO(AnimationEffectSO _animationEffectSO)//, string _colliderKey)
 		{
@@ -25,7 +28,14 @@ namespace Effect
 				foreach (EffectData _effectBoxData in _animationEffectList.effectDataList)
 				{
 					Vector3 _pos = transform.position + (transform.forward * _effectBoxData.offset.z) + (transform.up * _effectBoxData.offset.y) + (transform.right * _effectBoxData.offset.x);
-					EffectManager.Instance.SetEffectDefault(_effectBoxData.effectcAddress, _pos, _effectBoxData.rotation + transform.eulerAngles, _effectBoxData.scale);
+					if (_effectBoxData.childization)
+					{
+						EffectManager.Instance.SetEffectDefault(_effectBoxData.effectcAddress, _pos, _effectBoxData.rotation + transform.eulerAngles, _effectBoxData.scale, parent.transform);	
+					}
+					else
+					{
+						EffectManager.Instance.SetEffectDefault(_effectBoxData.effectcAddress, _pos, _effectBoxData.rotation + transform.eulerAngles, _effectBoxData.scale);
+					}
 				}
 			}
 		}

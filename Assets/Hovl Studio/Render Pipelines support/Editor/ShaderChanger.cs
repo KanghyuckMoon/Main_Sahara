@@ -13,21 +13,12 @@ namespace HovlStudio
     {
         static RPChanger()
         {
-            if (!EditorApplication.isPlayingOrWillChangePlaymode)
-            {
-                EditorApplication.update += RunOnce;
-            }
-        }
-
-        static void RunOnce()
-        {
-            if (!File.Exists("Assets/Hovl Studio/Render Pipelines support/startupCheck"))
+            if (!File.Exists("Assets/Hovl Studio/Render Pipelines support/startupCheck.asset"))
             {
                 TextAsset text = new TextAsset();
-                AssetDatabase.CreateAsset(text, "Assets/Hovl Studio/Render Pipelines support/startupCheck");
+                AssetDatabase.CreateAsset(text, "Assets/Hovl Studio/Render Pipelines support/startupCheck.asset");
                 ShowWindow();
             }
-            EditorApplication.update -= RunOnce;
         }
 
         private int pipeline;

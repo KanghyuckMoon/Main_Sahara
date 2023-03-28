@@ -43,13 +43,13 @@ namespace CondinedModule
             base.OnEnable();
         }
 
-        public void SetConsecutiveAttack(int _on)
+        public override void SetConsecutiveAttack(int _on)
         {
             bool _isOn = _on > 0;
             CanConsecutiveAttack = _isOn;
         }
         
-        public void SetActiveAnimatorRoot(int _on)
+        public override void SetActiveAnimatorRoot(int _on)
         {
             bool _isOn = _on > 0;
             Animator.applyRootMotion = _isOn;

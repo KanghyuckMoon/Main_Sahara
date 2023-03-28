@@ -138,8 +138,8 @@ namespace Module
 
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 BaseWeapon.tagName = _tagname;
-                mainModule.GetComponent<HitBoxOnAnimation>().ChangeSO(BaseWeapon.HitBoxDataSO);
-                projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSo);
+                mainModule.GetComponent<HitBoxOnAnimation>()?.ChangeSO(BaseWeapon.HitBoxDataSO);
+                projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
 
                 StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
@@ -155,6 +155,7 @@ namespace Module
                 //if(isProjectileWeapon) 
                 AttackModule.ProjectileName = BaseWeapon.WeaponDataSO.projectileObjectName;
 
+                mainModule.IsConsecutiveWeapon = BaseWeapon.isConsecutiveWeapon;
                 mainModule.IsWeaponExist = true;
                 SetBehaveAnimation();
             }
@@ -189,7 +190,7 @@ namespace Module
             int count = 0;
             foreach (var _attackClip in BaseWeapon.WeaponDataSO.attackAnimation)
             {
-                MainModule.AnimatorOverrideController["Attack" + count] = _attackClip;
+                MainModule.AnimatorOverrideController["Attack" + count.ToString()] = _attackClip;
                 count++;
             }
 

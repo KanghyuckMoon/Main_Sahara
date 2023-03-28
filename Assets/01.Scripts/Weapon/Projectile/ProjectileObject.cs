@@ -12,7 +12,7 @@ namespace Weapon
 
         public ProjectileObjectData objectData;
 
-        [SerializeField, Header("무기 이름")]
+        [SerializeField, Header("저장될 SO이름(_Position뺴고)")]
         private string objectName;
         private string positionString = "_Position";
 

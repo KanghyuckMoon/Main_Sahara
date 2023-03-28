@@ -41,7 +41,7 @@ namespace Weapon
         }
         public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
 
-        public ProjectilePositionSO ProjectilePositionSo
+        public ProjectilePositionSO ProjectilePositionSO
         {
             get
             {
@@ -51,6 +51,7 @@ namespace Weapon
         }
 
         public bool isProjectile;
+        public bool isConsecutiveWeapon;
 
         private WeaponDataSO weaponDataSO;
         private WeaponPositionSO weaponPositionSO;
@@ -58,7 +59,7 @@ namespace Weapon
         private string weaponPosStr = "_Position";
         private string weaponDataStr = "_Data";
         private string weaponColKey = "_ColKey";
-
+        
         [SerializeField]
         private HitBoxDatasSO hitBoxDataSO;
         //[SerializeField]

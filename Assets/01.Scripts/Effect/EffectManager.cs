@@ -9,11 +9,11 @@ using Utill.Pattern;
 
 namespace Effect
 {
-    public interface ISkinEffect {public void Setting(SkinnedMeshRenderer _skinnedMeshRenderer, Transform _modelRoot); }
+    public interface ISkinEffect {public void Setting(SkinnedMeshRenderer _skinnedMeshRenderer, Transform _modelRoot, Vector3 correctionAngle,  Vector3 correctionPos); }
 
 
     /// <summary>
-    /// ¿Ã∆Â∆Æ ª˝º∫ ∏≈¥œ¿˙
+    /// Ïù¥ÌéôÌä∏ ÏÉùÏÑ± Îß§ÎãàÏ†Ä
     /// </summary>
     public class EffectManager : MonoSingleton<EffectManager>
     {
@@ -35,7 +35,7 @@ namespace Effect
         }
 
         /// <summary>
-        /// √ ±‚»≠
+        /// Ï¥àÍ∏∞Ìôî
         /// </summary>
         private void Init()
         {
@@ -47,7 +47,7 @@ namespace Effect
         }
 
         /// <summary>
-        /// ¿Ã∆Â∆Æ º≥ƒ°
+        /// Ïù¥ÌéôÌä∏ ÏÑ§Ïπò
         /// </summary>
         /// <param name="pos"></param>
         public void SetEffectDefault(string _adress, Vector3 _pos, Quaternion _quaternion)
@@ -65,10 +65,10 @@ namespace Effect
         }
 
         /// <summary>
-        /// ¿Ã∆Â∆Æ º≥ƒ°
+        /// Ïù¥ÌéôÌä∏ ÏÑ§Ïπò
         /// </summary>
         /// <param name="pos"></param>
-        public void SetEffectDefault(string _adress, Vector3 _pos, Vector3 _eulerAngles, Vector3 _size)
+        public void SetEffectDefault(string _adress, Vector3 _pos, Vector3 _eulerAngles, Vector3 _size, Transform parent = null)
         {
             
             if (!_isInit)
@@ -80,11 +80,18 @@ namespace Effect
             effect.transform.position = _pos;
             effect.transform.eulerAngles = _eulerAngles;
             effect.transform.localScale = _size;
-            effect.transform.SetParent(null);
+            if (parent)
+            {
+                effect.transform.SetParent(parent);
+            }
+            else
+            {
+                effect.transform.SetParent(null);
+            }
             effect.gameObject.SetActive(true);
         }
 
-        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root, Scene _scene)
+        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root, Vector3 _correctionAngle,Vector3 _correctionPos,  Scene _scene)
         {
             if (!_isInit)
             {
@@ -97,12 +104,19 @@ namespace Effect
 			{
                 SceneManager.MoveGameObjectToScene(effect, _scene);
 			}
-            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root);
-            effect.transform.position = _obj.position;
+            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root, _correctionAngle, _correctionPos);
+            if(_obj != null)
+            {
+                effect.transform.position = _obj.position;
+            }
+            else
+            {
+                effect.transform.position = Vector3.zero;
+            }
             effect.transform.SetParent(null);
             effect.gameObject.SetActive(true);
         }
-        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root)
+        public void SetEffectSkin(string _adress, SkinnedMeshRenderer _skinnedMeshRenderer, Transform _obj, Transform _root, Vector3 _correctionAngle,Vector3 _correctionPos)
         {
             if (!_isInit)
             {
@@ -110,8 +124,15 @@ namespace Effect
             }
 
             GameObject effect = ObjectPoolManager.Instance.GetObject(_adress);
-            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root);
-            effect.transform.position = _obj.position;
+            effect.GetComponent<ISkinEffect>().Setting(_skinnedMeshRenderer, _root, _correctionAngle, _correctionPos);
+            if(_obj != null)
+            {
+                effect.transform.position = _obj.position;
+            }
+            else
+            {
+                effect.transform.position = Vector3.zero;
+            }
             effect.transform.SetParent(null);
             effect.gameObject.SetActive(true);
         }

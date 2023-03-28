@@ -56,6 +56,8 @@ namespace Module
         private BuffModule buffModule;
         private StateModule stateModule;
 
+        private Vector3 _spherePosition;
+
         private string buffIconString = "_Icon";
         private string buffEffectString = "_Effect";
 
@@ -194,13 +196,22 @@ namespace Module
             //Debug.DrawLine(rayPos, rayPos + new Vector3(0, 100, 0), Color.red);
             Debug.DrawRay(rayPos, Vector3.down, Color.red);
         }
+
+        public override void OnDrawGizmos()
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(_spherePosition, 0.25f);
+        }
+
         private void GroundCheack()
         {
-            Vector3 _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y + mainModule.groundOffset,
+            _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
                 mainModule.transform.position.z);
-            bool _isLand = Physics.CheckSphere(_spherePosition, 0.25f, mainModule.groundLayer,
+            bool _isLand = Physics.CheckSphere(_spherePosition, 0.2f, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
+            
+            
             if (!mainModule.isGround && _isLand)
             {
                 FallDamage();
@@ -209,8 +220,7 @@ namespace Module
 
                 mainModule.KnockBackVector = Vector3.zero;
                 //StatModule.
-
-
+                
                 mainModule.StartCoroutine(LandingDelay());
             }
 

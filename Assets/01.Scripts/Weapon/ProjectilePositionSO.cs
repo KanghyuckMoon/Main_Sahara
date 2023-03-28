@@ -87,6 +87,8 @@ namespace Weapon
 
             _data.speed = _projectileObjectData.speed;
 
+            _data.projectileAddress = _projectileObjectData.projectileAddress;
+
             return _data;
         }
 
@@ -100,6 +102,8 @@ namespace Weapon
             weaponHand = _projectileObjectData.weaponHand;
 
             speed = _projectileObjectData.speed;
+
+            projectileAddress = _projectileObjectData.projectileAddress;
         }
     }
 }
