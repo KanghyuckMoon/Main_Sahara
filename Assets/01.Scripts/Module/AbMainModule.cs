@@ -305,6 +305,18 @@ namespace Module
                 isDash = value;
             }
         }
+
+        public bool IsConsecutiveWeapon
+        {
+            get
+            {
+                return isConsecutiveWeapon;
+            }
+            set
+            {
+                isConsecutiveWeapon = value;
+            }
+        }
         public float GravityScale
         {
             get
@@ -532,6 +544,8 @@ namespace Module
         private bool canConsecutiveAttack;
         [SerializeField, Header("대쉬?")]
         private bool isDash;
+        [SerializeField, Header("연속공격이 가능한 무기인가?")]
+        private bool isConsecutiveWeapon;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
@@ -611,6 +625,7 @@ namespace Module
         private List<Observer> observers = new List<Observer>();
 
         public virtual void SetConsecutiveAttack(int _on) { }
+        public virtual void SetActiveAnimatorRoot(int _on) { }
 
         private void Start()
         {
