@@ -26,7 +26,7 @@ namespace Module
         private CameraModule cameraModule;
         private WeaponModule weaponModule;
 
-        private float delay = 1;
+        private float delay = 0.1f;
         private bool canSpwon;
 
         private List<GameObject> projectileObjects = new List<GameObject>();
@@ -64,7 +64,7 @@ namespace Module
                 return;
 
             //if (stateModule.CheckState(State.ATTACK)) return;
-            Delay();
+            StartCoroutine(Delay());
 
             ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(_projectileName);
 
@@ -93,7 +93,7 @@ namespace Module
         {
             //if (stateModule.CheckState(State.ATTACK)) return;
             if (!weaponModule.isProjectileWeapon) return;
-            if (canSpwon) return;
+            //if (canSpwon) return;
             if (PositionSO is null)
                 return;
         
@@ -134,7 +134,7 @@ namespace Module
         IEnumerator Delay()
         {
             canSpwon = true;
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForEndOfFrame();
             canSpwon = false;
         }
     }
