@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -126,12 +127,18 @@ namespace UI.Upgrade
 
         [SerializeField]
         private bool isComplete = false; // 대장장이 UI 생성이 완료 되었는가 ( 안됐으면 조작 불가 )
-        private void LateUpdate()
+
+        private void Update()
         {
             if (isComplete == true)
             {
                 ElementCtrlComponent.Update();
             }
+        }
+
+        private void LateUpdate()
+        {
+
             if (isConnection == true)
             {
                 LineCreateManager.Instance.UpdateLinesPos(ScreenType.Upgrade,

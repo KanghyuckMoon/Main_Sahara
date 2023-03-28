@@ -51,6 +51,11 @@ namespace UI.Upgrade
             //Move();
             RealMove();
             Zoom();
+
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                this.target.transform.position = realTargetV; 
+            }
         }
 
         private Vector2 startPos, nextPos, movePos;
@@ -155,8 +160,8 @@ namespace UI.Upgrade
             Vector3 mapPos = target.transform.position;
 
             float distX, distY; // 움직일 거리 
-            distX = _value.x /* / target.transform.scale.x*/;
-            distY = _value.y /* /  target.transform.scale.y*/;
+            distX = _value.x  / target.transform.scale.x;
+            distY = _value.y  /  target.transform.scale.y;
 
             float _targetX, _targetY; // 현재 포지션 + 움직이 거리]
             //  float _limitX = Mathf.Clamp(target.contentRect.width * target.transform.scale.x   - Screen.width,0,float.MaxValue); // 화면 크기 보다 대장장이 창이 크면 조작 가능  
@@ -167,7 +172,7 @@ namespace UI.Upgrade
             _targetY = Mathf.Clamp(distY + mapPos.y, -_limitY * 0.5f, _limitY * 0.5f);
 
             //   this.target.transform.position = new Vector3(_targetX, _targetY, 0);
-            realTargetV = new Vector3(distX + realTargetV.x, distY + realTargetV.y, 0);
+            realTargetV = new Vector2(distX + realTargetV.x, distY + realTargetV.y);
             // this.target.transform.position = new Vector3(distX + mapPos.x, distY + mapPos.y, 0);
         }
 
@@ -178,7 +183,16 @@ namespace UI.Upgrade
         /// </summary>
         private void RealMove()
         {
-            this.target.transform.position = Vector2.Lerp(target.transform.position, realTargetV, Time.deltaTime * 15f * target.transform.scale.x);
+            Debug.Log("@@CurPos" + target.transform.position);
+            Debug.Log("@@TargetPos" + realTargetV);
+            
+            Debug.Log("@@CurScale" + target.transform.scale);
+            
+            Debug.Log("@@CurOrigin" + target.style.transformOrigin);
+            this.target.transform.position = Vector2.Lerp(target.transform.position, realTargetV, 
+                Time.deltaTime * 1000f * target.transform.scale.x);
+            /*this.target.style.left = realTargetV.x; 
+            this.target.style.bottom = realTargetV.y;*/ 
         }
 
         private void CheckLimit()
