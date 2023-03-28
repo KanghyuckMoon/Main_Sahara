@@ -148,7 +148,7 @@ namespace UI.Upgrade
 
         #region Init
 
-        private float slotDist = 300f; // 슬롯 간의 거리 
+        private float slotDist = 250f; // 슬롯 간의 거리 
 
         private void InitDic()
         {
@@ -174,10 +174,27 @@ namespace UI.Upgrade
             _fourList.Add(new Vector2(slotDist, 0));
             _fourList.Add(new Vector2(slotDist * 2, 0));
 
+            List<Vector2> _fiveList = new List<Vector2>();
+            _fiveList.Add(new Vector2(-slotDist * 2, 0));
+            _fiveList.Add(new Vector2(-slotDist, 0));
+            _fiveList.Add(new Vector2(0, 0));
+            _fiveList.Add(new Vector2(slotDist, 0));
+            _fiveList.Add(new Vector2(slotDist * 2, 0));
+            
+            List<Vector2> _sixList = new List<Vector2>();
+            _sixList.Add(new Vector2(-slotDist * 3, 0));
+            _sixList.Add(new Vector2(-slotDist * 2, 0));
+            _sixList.Add(new Vector2(-slotDist, 0));
+            _sixList.Add(new Vector2(slotDist, 0));
+            _sixList.Add(new Vector2(slotDist * 2, 0));
+            _sixList.Add(new Vector2(slotDist * 3, 0));
+            
             this.slotPosDIc.Add(1, _oneList);
             this.slotPosDIc.Add(2, _twoList);
             this.slotPosDIc.Add(3, _threeList);
             this.slotPosDIc.Add(4, _fourList);
+            this.slotPosDIc.Add(5, _fiveList);
+            this.slotPosDIc.Add(6, _sixList);
         }
 
         #endregion
@@ -227,7 +244,7 @@ namespace UI.Upgrade
             CreateRow(); // 처음줄 생성 
             int _count = itemDataQueue.Count();
             int _index = 0;
-
+    
             while (itemDataQueue.Count > 0)
             {
                 if (_index >= _count) // 한 줄 생성 끝 다음 줄 시작 
@@ -278,7 +295,7 @@ namespace UI.Upgrade
                     // 무기만 생성 
                     int _idx = 0; // 몇 번째 아이템인지 ( 트리 중에 )  같은 줄 내에서 
 
-                    var _weaponDList = _dataList.Where((x) => x.itemType == ItemType.Weapon).ToList();
+                    var _weaponDList = _dataList.Where((x) => x.itemType == ItemType.Weapon).Where((x) => x.isSlot == true).ToList();
                     if (_weaponDList.Count != 0)
                     {
                         // 연결점 생성 위한 추가 
@@ -309,7 +326,7 @@ namespace UI.Upgrade
         [ContextMenu("고고")]
         private IEnumerator SetAllSlotPos()
         {
-            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.05f); 
+            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.01f); 
 
             int _idx = 1;
             allItemList[0].style.left = midX - allItemList[0].resolvedStyle.width / 2;
@@ -434,7 +451,9 @@ namespace UI.Upgrade
             // 필요 재료들 표시 
             int _idx = 0;
             var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key)
-                .Where((x) => x.itemType != ItemType.Weapon).ToList();
+                .Where((x) => x.itemType != ItemType.Weapon && x.isSlot == true).ToList();
+            ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key)
+                .Where((x) => x.isSlot == true ).ToList();
             foreach (var _data in _list)
             {
                 UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter();

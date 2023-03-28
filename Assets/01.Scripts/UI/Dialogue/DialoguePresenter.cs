@@ -209,6 +209,7 @@ namespace UI.Dialogue
                         isTexting = false;
 //                        SetTextInstant(targetText);
                         yield return null;
+                        yield return new WaitForSeconds(0.03f);
                     }
                     else
                     {
@@ -295,6 +296,7 @@ namespace UI.Dialogue
             {
                 _endCallback?.Invoke();
                 _endCallback = null; 
+                StopAllCoroutines();
             }
         }
 
