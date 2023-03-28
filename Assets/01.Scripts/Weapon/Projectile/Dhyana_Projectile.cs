@@ -23,7 +23,9 @@ namespace Weapon
             rigidbody.useGravity = affectedByGravity;
             transform.SetParent(null);
             //rigidbody.AddForce(Vector3.up * 10, ForceMode.Impulse);
-            rigidbody.AddForce(CalculateRotation(_vector3).normalized * objectData.speed, ForceMode.Impulse);
+            Vector3 _calcVector = CalculateRotation(_vector3).normalized;
+            transform.LookAt(transform.position + _calcVector);
+            rigidbody.AddForce(_calcVector * objectData.speed, ForceMode.Impulse);
         }
     }
 }
