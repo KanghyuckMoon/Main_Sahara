@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7a72ef76a000d42b0076c2b4dfb5ea, type: 3}
-  m_Name: xa_Nm_AnimationEffectSO
+  m_Name: Bw_02_Wudu_AnimationEffectSO
   m_EditorClassIdentifier: 
   effectDataListDic:
     m_keys:
     - LandEffect1
     - StartDoubJump
+    - BoomSandVFX
+    - SwordTrailEffect
     m_values:
     - effectDataList:
       - effectcAddress: LandSandHitEffect
@@ -23,10 +25,26 @@ MonoBehaviour:
         offset: {x: 0, y: 0, z: 0}
         rotation: {x: -0, y: 180, z: -0}
         scale: {x: 1, y: 1, z: 1}
+        childization: 0
     - effectDataList:
       - effectcAddress: LandSandHitEffect
         index: 0
         offset: {x: 0, y: 0, z: 0}
         rotation: {x: -0, y: 180, z: -0}
         scale: {x: 1, y: 1, z: 1}
+        childization: 0
+    - effectDataList:
+      - effectcAddress: BoomSandVFX
+        index: 0
+        offset: {x: 0, y: -1.63, z: 0.996}
+        rotation: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        childization: 0
+    - effectDataList:
+      - effectcAddress: SwordTrailEffect
+        index: 0
+        offset: {x: 0.403, y: 0.529, z: -0.54}
+        rotation: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        childization: 1
   removeEffectKey: 

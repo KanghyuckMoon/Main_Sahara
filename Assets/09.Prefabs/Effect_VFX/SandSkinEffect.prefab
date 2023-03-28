@@ -32,7 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +45,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7483329370907442948}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: f315063951642d64fb52c16b733aecb3, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 5ed232910d6de9942a271b9c2717a3e1, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -57,7 +57,7 @@ VisualEffect:
       - m_Value: 1
         m_Name: SandSize
         m_Overridden: 1
-      - m_Value: 0.01
+      - m_Value: 0.02
         m_Name: DotsSize
         m_Overridden: 1
     m_Vector2f:
@@ -70,13 +70,13 @@ VisualEffect:
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: SandScale
         m_Overridden: 1
-      - m_Value: {x: -0.000008537737, y: 269.99985, z: 269.99994}
+      - m_Value: {x: -0, y: 167.05, z: -0}
         m_Name: Transform_angles
         m_Overridden: 1
-      - m_Value: {x: -0.43, y: 0.952999, z: -0.37531066}
+      - m_Value: {x: -3.202, y: 0.533, z: 0}
         m_Name: Transform_position
         m_Overridden: 1
-      - m_Value: {x: 1, y: 0.99999994, z: 0.99999994}
+      - m_Value: {x: 1, y: 1, z: 1}
         m_Name: Transform_scale
         m_Overridden: 1
       - m_Value: {x: 0, y: -0.01, z: 0}
@@ -100,6 +100,12 @@ VisualEffect:
       - m_Value: {x: 1, y: 1, z: 1}
         m_Name: ParticleTransform_scale
         m_Overridden: 1
+      - m_Value: {x: 0, y: 1.3, z: 0}
+        m_Name: correctionPos
+        m_Overridden: 1
+      - m_Value: {x: 184, y: 90.8, z: 6.9}
+        m_Name: correctionAngle
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -122,6 +128,9 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: {fileID: 0}
         m_Name: Skin
+        m_Overridden: 1
+      - m_Value: {fileID: 11700000, guid: 91310eb204d1e704aa8ee8b9b9f16cf6, type: 2}
+        m_Name: New Texture3D
         m_Overridden: 1
     m_Bool:
       m_Array: []

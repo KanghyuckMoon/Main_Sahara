@@ -19,11 +19,13 @@ namespace ItemEffect
 		public string skinMeshRendererProperty;
 		private MyVFXTransformBinder myTransformBinder;
 
-		public void Setting(SkinnedMeshRenderer _skinnedMeshRenderer, Transform _modelRoot)
+		public void Setting(SkinnedMeshRenderer _skinnedMeshRenderer, Transform _modelRoot, Vector3 correctionAngle,  Vector3 correctionPos)
 		{
 			myTransformBinder ??= gameObject.GetComponent<MyVFXTransformBinder>();
 			myTransformBinder.Target = _modelRoot;
 			visualEffect.SetSkinnedMeshRenderer(skinMeshRendererProperty, _skinnedMeshRenderer);
+			visualEffect.SetVector3("correctionAngle", correctionAngle);
+			visualEffect.SetVector3("correctionPos", correctionPos);
 		}
 
 		public void OnEnable()

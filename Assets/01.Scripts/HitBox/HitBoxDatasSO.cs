@@ -132,11 +132,16 @@ namespace HitBox
 		public Vector3 swingEffectSize = Vector3.one;
 		public float hitStunDelay;
 		public float attackStunDelay;
+		public bool swingEffectChildization = false;
 		public string swingEffect = "NULL";
 		public string hitEffect = "NULL";
 		
 		//버프, 디버프
 		public List<BuffData> buffList = new List<BuffData>();
+		
+		//데미지 
+		public float physicsAttackWeight = 1f;
+		public float magicalAttackWeight = 1f;
 
 		public static HitBoxData CopyNew(HitBoxData _hitBoxData)
 		{
@@ -157,8 +162,12 @@ namespace HitBox
 			_newHitBox.swingEffectRotation = _hitBoxData.swingEffectRotation;
 			_newHitBox.swingEffectSize = _hitBoxData.swingEffectSize;
 			_newHitBox.swingEffect = _hitBoxData.swingEffect;
+			_newHitBox.swingEffectChildization = _hitBoxData.swingEffectChildization;
 			_newHitBox.hitEffect = _hitBoxData.hitEffect;
 			_newHitBox.buffList = _hitBoxData.buffList;
+			
+			_newHitBox.physicsAttackWeight = _hitBoxData.physicsAttackWeight;
+			_newHitBox.magicalAttackWeight = _hitBoxData.magicalAttackWeight;
 
 			return _newHitBox;
 		}
@@ -181,9 +190,13 @@ namespace HitBox
 			swingEffectRotation = _hitBoxData.swingEffectRotation;
 			swingEffectSize = _hitBoxData.swingEffectSize;
 			swingEffect = _hitBoxData.swingEffect;
+			swingEffectChildization = _hitBoxData.swingEffectChildization;
 			hitEffect = _hitBoxData.hitEffect;
 			
 			buffList = _hitBoxData.buffList;
+			
+			physicsAttackWeight = _hitBoxData.physicsAttackWeight;
+			magicalAttackWeight = _hitBoxData.magicalAttackWeight;
 		}
 	}
 
