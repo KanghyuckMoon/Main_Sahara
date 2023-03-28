@@ -14,6 +14,9 @@ namespace HitBox
 		[SerializeField]
 		private HitBoxDatasSO hitBoxDataSO;
 
+		[SerializeField] 
+		private Transform waeponHandle;
+			
 		private void Start()
 		{
 			index = StaticHitBoxIndex.GetHitBoxIndex();
@@ -34,7 +37,14 @@ namespace HitBox
 				foreach (HitBoxData hitBoxData in hitBoxDataList.hitBoxDataList)
 				{
 					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
-					hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname);
+					if (waeponHandle == null)
+					{
+						hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, null);
+					}
+					else
+					{
+						hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, waeponHandle.gameObject);
+					}
 
 				}
 			}
@@ -49,6 +59,7 @@ namespace HitBox
 
 		private List<CapsuleColEditor> boxColEditorList = new List<CapsuleColEditor>();
 
+		[Header("DEBUGOPTION")]
 		public string hitBoxName = "";
 
 		[ContextMenu("AddEvent")]

@@ -76,6 +76,7 @@ namespace Effect
 		public Vector3 offset = Vector3.zero;
 		public Vector3 rotation = Vector3.zero;
 		public Vector3 scale = Vector3.one;
+		public bool childization = false;
 
 		public void Copy(EffectData _effectData)
 		{
@@ -83,6 +84,7 @@ namespace Effect
 			offset = _effectData.offset;
 			rotation = _effectData.rotation;
 			scale = _effectData.scale;
+			childization = _effectData.childization;
 		}
 		public static EffectData CopyNew(EffectData _effectData)
 		{
@@ -91,6 +93,7 @@ namespace Effect
 			_neweffectData.offset = _effectData.offset;
 			_neweffectData.rotation = _effectData.rotation;
 			_neweffectData.scale = _effectData.scale;
+			_neweffectData.childization = _effectData.childization;
 			return _neweffectData;
 		}
 	}

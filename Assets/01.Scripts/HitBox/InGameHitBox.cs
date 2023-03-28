@@ -49,7 +49,7 @@ namespace HitBox
 		private ulong index;
 		private bool isContactDir;
 
-		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null)
+		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null, GameObject _swingEffectParent = null)
 		{
 			index = _index;
 			gameObject.tag = _tag;
@@ -60,8 +60,6 @@ namespace HitBox
 			transform.position = _owner.transform.position;
 			transform.eulerAngles = _hitBoxData.rotation + _owner.transform.eulerAngles;
 			transform.localScale = Vector3.one;
-			//transform.rotation *= ;
-			//transform.rotation = _owner.transform.rotation * Quaternion.LookRotation(_hitBoxData.rotation, Vector3.up);
 			col.center = _hitBoxData.offset;
 			col.radius = _hitBoxData.radius;
 			col.height = _hitBoxData.height;
@@ -90,7 +88,15 @@ namespace HitBox
 
 			if (hitBoxData.swingEffect != "NULL")
 			{
-				EffectManager.Instance.SetEffectDefault(hitBoxData.swingEffect, _pos, _hitBoxData.swingEffectRotation + transform.eulerAngles, _hitBoxData.swingEffectSize);
+				if (hitBoxData.swingEffectChildization)
+				{
+					EffectManager.Instance.SetEffectDefault(hitBoxData.swingEffect, _pos, _hitBoxData.swingEffectRotation + transform.eulerAngles, _hitBoxData.swingEffectSize, _swingEffectParent?.transform);
+				}
+				else
+				{
+					EffectManager.Instance.SetEffectDefault(hitBoxData.swingEffect, _pos, _hitBoxData.swingEffectRotation + transform.eulerAngles, _hitBoxData.swingEffectSize);
+
+				}
 			}
 
 			if(hitBoxData.deleteDelay > -0.5f)
