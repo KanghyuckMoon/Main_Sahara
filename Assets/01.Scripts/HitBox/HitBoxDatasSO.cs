@@ -138,6 +138,10 @@ namespace HitBox
 		
 		//버프, 디버프
 		public List<BuffData> buffList = new List<BuffData>();
+		
+		//데미지 
+		public float physicsAttackWeight = 1f;
+		public float magicalAttackWeight = 1f;
 
 		public static HitBoxData CopyNew(HitBoxData _hitBoxData)
 		{
@@ -161,6 +165,9 @@ namespace HitBox
 			_newHitBox.swingEffectChildization = _hitBoxData.swingEffectChildization;
 			_newHitBox.hitEffect = _hitBoxData.hitEffect;
 			_newHitBox.buffList = _hitBoxData.buffList;
+			
+			_newHitBox.physicsAttackWeight = _hitBoxData.physicsAttackWeight;
+			_newHitBox.magicalAttackWeight = _hitBoxData.magicalAttackWeight;
 
 			return _newHitBox;
 		}
@@ -187,6 +194,9 @@ namespace HitBox
 			hitEffect = _hitBoxData.hitEffect;
 			
 			buffList = _hitBoxData.buffList;
+			
+			physicsAttackWeight = _hitBoxData.physicsAttackWeight;
+			magicalAttackWeight = _hitBoxData.magicalAttackWeight;
 		}
 	}
 
