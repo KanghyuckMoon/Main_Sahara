@@ -49,7 +49,7 @@ namespace CondinedModule
             CanConsecutiveAttack = _isOn;
         }
         
-        public void SetActiveAnimatorRoot(int _on)
+        public override void SetActiveAnimatorRoot(int _on)
         {
             bool _isOn = _on > 0;
             Animator.applyRootMotion = _isOn;
