@@ -41,7 +41,7 @@ namespace Weapon
         }
         public HitBoxDatasSO HitBoxDataSO => hitBoxDataSO;
 
-        public ProjectilePositionSO ProjectilePositionSo
+        public ProjectilePositionSO ProjectilePositionSO
         {
             get
             {
