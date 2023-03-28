@@ -43,7 +43,7 @@ namespace CondinedModule
             base.OnEnable();
         }
 
-        public void SetConsecutiveAttack(int _on)
+        public override void SetConsecutiveAttack(int _on)
         {
             bool _isOn = _on > 0;
             CanConsecutiveAttack = _isOn;
