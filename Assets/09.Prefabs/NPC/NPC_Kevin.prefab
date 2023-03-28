@@ -222,6 +222,8 @@ MonoBehaviour:
   isCanHit: 0
   isStaticTime: 0
   canConsecutiveAttack: 0
+  isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -264,6 +266,8 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: 
   deadExplosionEffectKey: 
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 0}
   rootTransform: {fileID: 0}
   animator: {fileID: 3261138510958885533}
@@ -280,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataSOPath: NPCData_TesSO
+  dataSOPath: NPCDataSO
 --- !u!114 &3869049802107594003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!114 &3389580017717113069
 MonoBehaviour:
@@ -322,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  parent: {fileID: 0}
 --- !u!1 &3261138512133315418
 GameObject:
   m_ObjectHideFlags: 0
