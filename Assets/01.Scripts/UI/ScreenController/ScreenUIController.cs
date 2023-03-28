@@ -17,6 +17,21 @@ using UI.Option;
 
 namespace UI
 {
+    /*public enum Keys
+    {
+        QuestUI, 
+        InventoryUI, 
+        MapUI, 
+        SaveLoadUI,
+        ShopUI, 
+        UpgradeUI, 
+        OptionUI,
+            
+        // 사용자 입력 X 
+        BuyUI = 100, 
+        SellUI, 
+        SmithUI, 
+    }*/
     public class UIInputData
     {
         //public string keyStr; 
@@ -31,23 +46,9 @@ namespace UI
     }
     public class ScreenUIController : MonoBehaviour, IUIController
     {
-        enum Keys
-        {
-            QuestUI, 
-            InventoryUI, 
-            MapUI, 
-            SaveLoadUI,
-            ShopUI, 
-            UpgradeUI, 
-            OptionUI
-        }
-
-
-
         private InventoryPresenter inventoryPresenter;
         private MapPresenter mapPresenter;
         private DialoguePresenter dialoguePresenter;
-        //private EventAlarmPresenter eventAlarmPresenter;
         private QuestPresenter questPresenter;
         private UpgradePresenter upgradePresenter;
         private ShopPresenter shopPresenter;
@@ -55,7 +56,10 @@ namespace UI
         private OptionPresenter _optionPresenter;
         
         private Dictionary<ScreenType, IScreen> screenDic = new Dictionary<ScreenType, IScreen>();
-        private Dictionary<UIInputData, Action> inputDic = new Dictionary<UIInputData, Action>();
+        private Dictionary<UIInputData, Action> inputDic = new Dictionary<UIInputData, Action>(); // 사용자 키 입력으로 스크린 활성화
+        private Dictionary<Keys, Action> notInputDic = new Dictionary<Keys, Action>(); // 대화같은 곳에서 스크린 활성화 
+
+        private (Keys,IScreen) curActiveScreen; 
         [SerializeField]
         private bool isUIInput = true;
         // 프로퍼티 
@@ -69,6 +73,7 @@ namespace UI
         private void Awake()
         {
             InitScreenPresenters();
+            SetNotInputEvent(); 
         }
 
         private void Start()
@@ -112,12 +117,20 @@ namespace UI
                 _screen.ActiveView(_isActive);
             }
         }
+
+        public void ActiveScreen(Keys _keyType)
+        {
+            if (notInputDic.TryGetValue(_keyType, out Action _action))
+            {
+                _action?.Invoke();
+            }
+        }
+        
         private void InitScreenPresenters()
         {
             inventoryPresenter = GetComponentInChildren<InventoryPresenter>();
             mapPresenter = GetComponentInChildren<MapPresenter>();
             dialoguePresenter = GetComponentInChildren<DialoguePresenter>();
-            //eventAlarmPresenter = GetComponentInChildren<EventAlarmPresenter>();
             questPresenter = GetComponentInChildren<QuestPresenter>();
             upgradePresenter = GetComponentInChildren<UpgradePresenter>();
             shopPresenter = GetComponentInChildren<ShopPresenter>();
@@ -141,6 +154,31 @@ namespace UI
             {
                 _pr.Value.Init(this);
             }
+            
+        }
+
+        private void SetNotInputEvent()
+        {
+            notInputDic.Clear();
+            
+            notInputDic.Add(Keys.BuyUI, () => 
+            {
+                bool _isActive = shopPresenter.ActivetShop(ShopType.BuyShop);
+                SetUIAndCursor(_isActive, Get(Keys.BuyUI));
+                curActiveScreen = (Keys.BuyUI,shopPresenter); 
+            });
+            notInputDic.Add(Keys.SellUI, () => 
+            {
+                bool _isActive = shopPresenter.ActivetShop(ShopType.SellShop);
+                SetUIAndCursor(_isActive, Get(Keys.SellUI));
+                curActiveScreen = (Keys.SellUI,shopPresenter); 
+            });
+            notInputDic.Add(Keys.SmithUI, () => 
+            {
+                bool _isActive = upgradePresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.SmithUI));
+                curActiveScreen = (Keys.SmithUI,upgradePresenter); 
+            });
         }
 
         private void SetInputEvent()
@@ -176,6 +214,7 @@ namespace UI
                 //  활성화
                 bool _isActive = shopPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.InventoryUI));
+                
             });
             /*inputDic.Add(new UIInputData(Get(Keys.SaveLoadUI), true), () =>
             {
@@ -209,16 +248,6 @@ namespace UI
             SetKeyAble(_keyCode, _isActive);
         }
 
-        /// <summary>
-        /// 스크린 활성화시 세팅 
-        /// </summary>
-        //private void SetActiveUI(bool _isActive, KeyCode _keyCode)
-        //{
-        //    ActiveCursor(_isActive);
-        //    SetTime(_isActive);
-        //    SetKeyAble(_keyCode);
-        //}
-
         private void UIInput()
         {
             if (isUIInput == false) return;
@@ -230,50 +259,14 @@ namespace UI
                 }
             }
 
-
-            //if (Input.GetKeyDown(KeyCode.I))
-            //{
-            //    // 인벤토리 활성화 
-            //    ActiveCursor(inventoryPresenter.ActiveView());
-            //}
-            //if (Input.GetKeyDown(KeyCode.M))
-            //{
-            //    // 맵 활성화
-            //    mapPresenter.ActiveView();
-            //}
-            //if (Input.GetKeyDown(KeyCode.Q))
-            //{
-            //    // 퀘스트 활성화
-            //    ActiveCursor(questPresenter.ActiveView());
-            //}
-            //// 임시
-            //if (Input.GetKeyDown(KeyCode.U))
-            //{
-            //    //  활성화
-            //    ActiveCursor(upgradePresenter.ActiveView());
-            //}
-            //if (Input.GetKeyDown(KeyCode.O))
-            //{
-            //    //  활성화
-            //    ActiveCursor(shopPresenter.ActiveView());
-            //}
-
+            if (curActiveScreen.Item2 != null && Input.GetKeyDown(KeyCode.Escape))
+            {
+                SetUIAndCursor(false, Get(curActiveScreen.Item1));
+                curActiveScreen.Item2.ActiveView(false);
+                curActiveScreen.Item2 = null; 
+            }
         }
-
-        [SerializeField]
-        private float testV = 0.1f; 
-        [ContextMenu("시간 정지 테스트")]
-        public void TestSetTime()
-        {
-            StaticTime.UITime = testV; 
-        //    SetTime(true); 
-        }
-        [ContextMenu("시간 정지해제 테스트")]
-        public void TestSetTime2()
-        {
-            StaticTime.UITime = 1f; 
-          //  SetTime(false);
-        }
+        
         /// <summary>
         /// 시간 정지 
         /// </summary>

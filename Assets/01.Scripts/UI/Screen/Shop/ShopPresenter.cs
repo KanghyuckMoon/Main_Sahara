@@ -110,7 +110,7 @@ namespace UI.Shop
         /// 상점 활성화 
         /// </summary>
         /// <param name="_shopType"></param>
-        public void ActivetShop(ShopType _shopType)
+        public bool ActivetShop(ShopType _shopType)
         {
             string _name = "";
             bool _isLeft = true; 
@@ -133,7 +133,9 @@ namespace UI.Shop
             }
             this.shopView.SetShopName(_name);
             this.shopView.SetPanelDir(_isLeft); 
-            this.shopView.ActiveScreen(true); 
+            this.shopView.ActiveScreen(true);
+
+            return true; 
         }
 
         public bool ActiveView()

@@ -25,7 +25,17 @@ namespace Module.Shop
 
 		public ShopModule(AbMainModule _mainModule, string _shopAddress) : base(_mainModule)
 		{
-			shopSO = AddressablesManager.Instance.GetResource<ShopSO>(_shopAddress);
+		}
+
+		public ShopModule() : base()
+		{
+			
+		}
+
+		public override void Init(AbMainModule _mainModule, params string[] _parameters)
+		{
+			base.Init(_mainModule, _parameters);
+			shopSO = AddressablesManager.Instance.GetResource<ShopSO>(_parameters[0]);
 		}
 
 		public void Register()

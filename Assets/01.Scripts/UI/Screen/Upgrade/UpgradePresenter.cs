@@ -22,27 +22,27 @@ namespace UI.Upgrade
 
         [SerializeField] private UpgradeView upgradeView;
 
-        private UpgradePickPresenter upgradePickPresenter; // ½½·Ô ¼±ÅÃ½Ã ³ªÅ¸³¯ ¾÷µå·¹ÀÌµå ÆĞ³Î 
-        private UpgradeCtrlPresenter ctrlPresenter; // ÁÂ¿ì ¹öÆ° , »ó´Ü ¶óº§ Á¶ÀÛ Pr 
-        private UpgradeSlotPresenter _curSlotPr; // ÇöÀç ¼±ÅÃÇÑ ½½·Ô
-        private ElementCtrlComponent elementCtrlComponent; // ¿òÁ÷ÀÓ È®´ë Ãà¼Ò
+        private UpgradePickPresenter upgradePickPresenter; // ìŠ¬ë¡¯ ì„ íƒì‹œ ë‚˜íƒ€ë‚  ì—…ë“œë ˆì´ë“œ íŒ¨ë„ 
+        private UpgradeCtrlPresenter ctrlPresenter; // ì¢Œìš° ë²„íŠ¼ , ìƒë‹¨ ë¼ë²¨ ì¡°ì‘ Pr 
+        private UpgradeSlotPresenter _curSlotPr; // í˜„ì¬ ì„ íƒí•œ ìŠ¬ë¡¯
+        private ElementCtrlComponent elementCtrlComponent; // ì›€ì§ì„ í™•ëŒ€ ì¶•ì†Œ
 
-        private List<VisualElement> rowList = new List<VisualElement>(); // ÁÙ ¸®½ºÆ® 
-        private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // ¸ğµç ½½·Ô ¸®½ºÆ® 
+        private List<VisualElement> rowList = new List<VisualElement>(); // ì¤„ ë¦¬ìŠ¤íŠ¸ 
+        private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // ëª¨ë“  ìŠ¬ë¡¯ ë¦¬ìŠ¤íŠ¸ 
 
-        private Dictionary<int, List<Vector2>> slotPosDIc = new Dictionary<int, List<Vector2>>(); // Àç·á ¼ö¿¡ µû¸¥ À§Ä¡ µñ¼Å³Ê¸® 
-        private Queue<UpgradeSlotData> itemDataQueue = new Queue<UpgradeSlotData>(); // »ı¼ºÇÒ ¾ÆÀÌÅÛ ÀúÀå Å¥ 
-        private List<UpgradeSlotData> allItemDataList = new List<UpgradeSlotData>(); // ÇöÀç Æ®¸®ÀÇ ¸ğµç µ¥ÀÌÅÍ ¸®½ºÆ®
-        private List<VisualElement> allItemList = new List<VisualElement>(); // ÇöÀç Æ®¸®ÀÇ ¸ğµç ¾ÆÀÌÅÛ ¸®½ºÆ® 
+        private Dictionary<int, List<Vector2>> slotPosDIc = new Dictionary<int, List<Vector2>>(); // ì¬ë£Œ ìˆ˜ì— ë”°ë¥¸ ìœ„ì¹˜ ë”•ì…”ë„ˆë¦¬ 
+        private Queue<UpgradeSlotData> itemDataQueue = new Queue<UpgradeSlotData>(); // ìƒì„±í•  ì•„ì´í…œ ì €ì¥ í 
+        private List<UpgradeSlotData> allItemDataList = new List<UpgradeSlotData>(); // í˜„ì¬ íŠ¸ë¦¬ì˜ ëª¨ë“  ë°ì´í„° ë¦¬ìŠ¤íŠ¸
+        private List<VisualElement> allItemList = new List<VisualElement>(); // í˜„ì¬ íŠ¸ë¦¬ì˜ ëª¨ë“  ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ 
 
         private Dictionary<VisualElement, List<VisualElement>> parentSlotDic =
             new Dictionary<VisualElement, List<VisualElement>>();
 
-        private float midX; // Áß½É ÁÂÇ¥ 
-        private float midY; // Áß½É ÁÂÇ¥ 
+        private float midX; // ì¤‘ì‹¬ ì¢Œí‘œ 
+        private float midY; // ì¤‘ì‹¬ ì¢Œí‘œ 
         private bool isFirstSlot = true;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public IUIController UIController { get; set; }
         private VisualElement CurRow => rowList[rowList.Count - 1];
 
@@ -65,7 +65,7 @@ namespace UI.Upgrade
             {
                 if (ctrlPresenter == null)
                 {
-                    Logging.Log("@@@@@@@@@@@µî·Ï");
+                    Logging.Log("@@@@@@@@@@@ë“±ë¡");
                     ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
                 }
 
@@ -82,8 +82,8 @@ namespace UI.Upgrade
 
         IEnumerator SetAllSlotPosCo()
         {
-            // UIToolkitÀº ·¹ÀÌ¾Æ¿ô ±¸Ãà ½Ã°£ÀÌ ¼Ò¿äµÇ±â ¶§¹®¿¡
-            // ´Ù¸¥ elementÀÇ worldbound¸¦ Á¦´ë·Î °¡Á®¿À±â À§ÇØ¼­´Â ±¸ÃàµÉ ½Ã°£ÀÌ Áö³­ÈÄ °¡Á®¿Í¾ßÇÔ 
+            // UIToolkitì€ ë ˆì´ì•„ì›ƒ êµ¬ì¶• ì‹œê°„ì´ ì†Œìš”ë˜ê¸° ë•Œë¬¸ì—
+            // ë‹¤ë¥¸ elementì˜ worldboundë¥¼ ì œëŒ€ë¡œ ê°€ì ¸ì˜¤ê¸° ìœ„í•´ì„œëŠ” êµ¬ì¶•ë  ì‹œê°„ì´ ì§€ë‚œí›„ ê°€ì ¸ì™€ì•¼í•¨ 
             elementCtrlComponent.IsInput = false;
             yield return new WaitForSecondsRealtime(0.05f);
             StartCoroutine(SetAllSlotPos());
@@ -100,7 +100,7 @@ namespace UI.Upgrade
             upgradeView.Cashing();
             upgradeView.Init();
 
-            // ºó°ø°£ Å¬¸¯ÇÏ¸é ¾÷±×·¹ÀÌµå UI ¾ø¾îÁöµµ·Ï 
+            // ë¹ˆê³µê°„ í´ë¦­í•˜ë©´ ì—…ê·¸ë ˆì´ë“œ UI ì—†ì–´ì§€ë„ë¡ 
             //upgradeView.Parent.RegisterCallback<ClickEvent>((x) =>
             //{
             //    upgradePickPresenter.ActiveView(false);
@@ -111,7 +111,7 @@ namespace UI.Upgrade
             upgradePickPresenter.SetButtonEvent(() =>
             {
                 ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key);
-                Logging.Log("¾÷±×·¹ÀÌµå Å¬¸¯");
+                Logging.Log("ì—…ê·¸ë ˆì´ë“œ í´ë¦­");
             });
 
             rowList.Clear();
@@ -120,12 +120,12 @@ namespace UI.Upgrade
 
             InitDic();
 
-            Logging.Log("@@@@@@@@@@@µî·Ï");
+            Logging.Log("@@@@@@@@@@@ë“±ë¡");
             ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
         }
 
         [SerializeField]
-        private bool isComplete = false; // ´ëÀåÀåÀÌ UI »ı¼ºÀÌ ¿Ï·á µÇ¾ú´Â°¡ ( ¾ÈµÆÀ¸¸é Á¶ÀÛ ºÒ°¡ )
+        private bool isComplete = false; // ëŒ€ì¥ì¥ì´ UI ìƒì„±ì´ ì™„ë£Œ ë˜ì—ˆëŠ”ê°€ ( ì•ˆëìœ¼ë©´ ì¡°ì‘ ë¶ˆê°€ )
         private void LateUpdate()
         {
             if (isComplete == true)
@@ -138,7 +138,7 @@ namespace UI.Upgrade
                     upgradeView.MoveScreen.transform.position);
                 LineCreateManager.Instance.UpdateLinesScale(ScreenType.Upgrade, upgradeView.MoveScreen.transform.scale);
             }
-            // Å×½ºÆ® 
+            // í…ŒìŠ¤íŠ¸ 
             if(Input.GetKeyDown(KeyCode.X))
             {
                 CreateItemTree(testItemDataSO);
@@ -148,7 +148,7 @@ namespace UI.Upgrade
 
         #region Init
 
-        private float slotDist = 300f; // ½½·Ô °£ÀÇ °Å¸® 
+        private float slotDist = 300f; // ìŠ¬ë¡¯ ê°„ì˜ ê±°ë¦¬ 
 
         private void InitDic()
         {
@@ -184,25 +184,25 @@ namespace UI.Upgrade
 
         [SerializeField] private ItemDataSO testItemDataSO;
 
-        [ContextMenu("Å×½ºÆ®")]
+        [ContextMenu("í…ŒìŠ¤íŠ¸")]
         public void Test()
         {
             CreateItemTree(testItemDataSO);
         }
 
-        [ContextMenu("¾ÆÀÌÅÛ Æ®¸® »ı¼º")]
+        [ContextMenu("ì•„ì´í…œ íŠ¸ë¦¬ ìƒì„±")]
         /// <summary>
-        ///  ¾ÆÀÌÅÛ Æ®¸® UI »ı¼º ¹× µ¥ÀÌÅÍ ³Ö±â 
+        ///  ì•„ì´í…œ íŠ¸ë¦¬ UI ìƒì„± ë° ë°ì´í„° ë„£ê¸° 
         /// </summary>
         public void CreateItemTree(ItemDataSO _itemDataSO)
         {
-            Logging.Log("¾ÆÀÌÅÛ Æ®¸® »ı¼º ½ÃÀÛ");
-            // ½ÇÇàÁßÀÎ Æ®À© Á¾·á 
+            Logging.Log("ì•„ì´í…œ íŠ¸ë¦¬ ìƒì„± ì‹œì‘");
+            // ì‹¤í–‰ì¤‘ì¸ íŠ¸ìœˆ ì¢…ë£Œ 
             elementCtrlComponent.StopTween(); 
             StopAllCoroutines();    
-            // ¿¬°áÁ¡ ÀÕ´Ù¸é »èÁ¦ 
+            // ì—°ê²°ì  ì‡ë‹¤ë©´ ì‚­ì œ 
             LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade);
-            // ÃÖÁ¾ÅÛ UI »ı¼º
+            // ìµœì¢…í…œ UI ìƒì„±
             ClearAllSlots();
            //
            this.ElementCtrlComponent.ResetPosAndZoom();
@@ -211,28 +211,28 @@ namespace UI.Upgrade
             ItemData _itemData = ItemData.CopyItemDataSO(_itemDataSO);
             itemDataQueue.Enqueue(new UpgradeSlotData(null, _itemData, 0, 1));
 
-            CreateTree(); // Àç·á ÅÛ Æ®¸® »ı¼º 
+            CreateTree(); // ì¬ë£Œ í…œ íŠ¸ë¦¬ ìƒì„± 
             StartCoroutine(SetAllSlotPosCo());
         }
 
         /// <summary>
-        /// Àç·á ½½·Ôµé »ı¼º  
+        /// ì¬ë£Œ ìŠ¬ë¡¯ë“¤ ìƒì„±  
         /// </summary>
         /// <param name="_itemUpgradeDataSO"></param>
         private void CreateTree()
         {
-            List<UpgradeSlotData> _slotDataList = new List<UpgradeSlotData>(); // Àç·á ½½·Ô µ¥ÀÌÅÍ ¸®½ºÆ® (¿¬°áÁ¡ »ı¼º½Ã ÇÊ¿ä)
-            List<ItemData> _list = new List<ItemData>(); // ÇÑ ¹«±â¿¡¼­ ÇÊ¿äÇÑ Àç·á¹«±âµé 
+            List<UpgradeSlotData> _slotDataList = new List<UpgradeSlotData>(); // ì¬ë£Œ ìŠ¬ë¡¯ ë°ì´í„° ë¦¬ìŠ¤íŠ¸ (ì—°ê²°ì  ìƒì„±ì‹œ í•„ìš”)
+            List<ItemData> _list = new List<ItemData>(); // í•œ ë¬´ê¸°ì—ì„œ í•„ìš”í•œ ì¬ë£Œë¬´ê¸°ë“¤ 
 
-            CreateRow(); // Ã³À½ÁÙ »ı¼º 
+            CreateRow(); // ì²˜ìŒì¤„ ìƒì„± 
             int _count = itemDataQueue.Count();
             int _index = 0;
 
             while (itemDataQueue.Count > 0)
             {
-                if (_index >= _count) // ÇÑ ÁÙ »ı¼º ³¡ ´ÙÀ½ ÁÙ ½ÃÀÛ 
+                if (_index >= _count) // í•œ ì¤„ ìƒì„± ë ë‹¤ìŒ ì¤„ ì‹œì‘ 
                 {
-                    CreateRow(); // ÁÙ »ı¼º(ºóÄ­) 
+                    CreateRow(); // ì¤„ ìƒì„±(ë¹ˆì¹¸) 
                     //CreateConnection(_slotDataList);
                     _count = itemDataQueue.Count;
                     _index = 0;
@@ -240,15 +240,15 @@ namespace UI.Upgrade
                     CreateRow();
                 }
 
-                UpgradeSlotData _slotData = itemDataQueue.Dequeue(); // Å¥¿¡¼­ µ¥ÀÌÅÍ ²¨³»¼­ 
+                UpgradeSlotData _slotData = itemDataQueue.Dequeue(); // íì—ì„œ ë°ì´í„° êº¼ë‚´ì„œ 
                 ItemData _itemData = _slotData.itemData;
-                VisualElement _parent = CreateSlot(_itemData); // ½½·Ô »ı¼º
+                VisualElement _parent = CreateSlot(_itemData); // ìŠ¬ë¡¯ ìƒì„±
                 _parent.style.opacity = 0f;
                 allItemList.Add(_parent);
 
 
-                //// À§Ä¡ ¼³Á¤ 
-                if (isFirstSlot == true) // ÃÖÁ¾ ¾ÆÀÌÅÛÀÌ¸é °¡¿îµ¥ °íÁ¤ »ı¼º 
+                //// ìœ„ì¹˜ ì„¤ì • 
+                if (isFirstSlot == true) // ìµœì¢… ì•„ì´í…œì´ë©´ ê°€ìš´ë° ê³ ì • ìƒì„± 
                 {
                     _parent.style.left = midX - _parent.resolvedStyle.width;
                     isFirstSlot = false;
@@ -264,24 +264,24 @@ namespace UI.Upgrade
                                          slotPosDIc[_slotData.maxIndex].ElementAt(_slotData.index).x;
                 }
 
-                // ¿¬°áÁ¡ »ı¼º À§ÇØ ºÎ¸ğ ÀÚ½Ä °ü°è ¼³Á¤ 
+                // ì—°ê²°ì  ìƒì„± ìœ„í•´ ë¶€ëª¨ ìì‹ ê´€ê³„ ì„¤ì • 
                 if (_slotData.parentSlot != null)
                 {
                     this.parentSlotDic[_slotData.parentSlot].Add(_parent);
                 }
                 
                 ItemUpgradeDataSO _childItemData = ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_itemData.key);
-                if (_childItemData != null) // Àç·áÅÛÀÌ Á¸ÀçÇÑ´Ù¸é Å¥¿¡ Ãß°¡ 
+                if (_childItemData != null) // ì¬ë£Œí…œì´ ì¡´ì¬í•œë‹¤ë©´ íì— ì¶”ê°€ 
                 {
                     var _dataList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key);
                     
-                    // ¹«±â¸¸ »ı¼º 
-                    int _idx = 0; // ¸î ¹øÂ° ¾ÆÀÌÅÛÀÎÁö ( Æ®¸® Áß¿¡ )  °°Àº ÁÙ ³»¿¡¼­ 
+                    // ë¬´ê¸°ë§Œ ìƒì„± 
+                    int _idx = 0; // ëª‡ ë²ˆì§¸ ì•„ì´í…œì¸ì§€ ( íŠ¸ë¦¬ ì¤‘ì— )  ê°™ì€ ì¤„ ë‚´ì—ì„œ 
 
                     var _weaponDList = _dataList.Where((x) => x.itemType == ItemType.Weapon).ToList();
                     if (_weaponDList.Count != 0)
                     {
-                        // ¿¬°áÁ¡ »ı¼º À§ÇÑ Ãß°¡ 
+                        // ì—°ê²°ì  ìƒì„± ìœ„í•œ ì¶”ê°€ 
                         this.parentSlotDic.Add(_parent, new List<VisualElement>());
                     }
 
@@ -291,7 +291,7 @@ namespace UI.Upgrade
                         itemDataQueue.Enqueue(_slotData);
                         allItemDataList.Add(_slotData);
 
-                        _slotDataList.Add(_slotData); // ¿¬°áÁ¡ »ı¼º½Ã ÇÊ¿ä 
+                        _slotDataList.Add(_slotData); // ì—°ê²°ì  ìƒì„±ì‹œ í•„ìš” 
                         ++_idx;
                     });
                 }
@@ -301,12 +301,12 @@ namespace UI.Upgrade
         }
 
         [SerializeField]
-        private bool isActive = false; // Æ÷Áö¼Ç ¼³Á¤½Ã È°¼ºÈ­ ¿©ºÎ 
+        private bool isActive = false; // í¬ì§€ì…˜ ì„¤ì •ì‹œ í™œì„±í™” ì—¬ë¶€ 
         [SerializeField]
-        private bool isConnection = false; // ¿¬°áÁ¡ »ı¼º ¿©ºÎ 
+        private bool isConnection = false; // ì—°ê²°ì  ìƒì„± ì—¬ë¶€ 
 
         private int a = 0; 
-        [ContextMenu("°í°í")]
+        [ContextMenu("ê³ ê³ ")]
         private IEnumerator SetAllSlotPos()
         {
             WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.05f); 
@@ -317,11 +317,11 @@ namespace UI.Upgrade
 
             foreach (var _v in allItemDataList)
             {
-                Debug.Log("¼øÈ¸ ½ÃÀÛ");
+                Debug.Log("ìˆœíšŒ ì‹œì‘");
 
                 float _moveX = slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
                 
-                //float _op = _v.parentSlot.worldBound.x - _v.parentSlot.resolvedStyle.left; //  slotÀÌ relativeÀÌ±â ¶§¹®¿¡ left == 0 ÀÎµ¥ world bound´Â 200 ÀÏ ¼ö ÀÖ´Ù. 
+                //float _op = _v.parentSlot.worldBound.x - _v.parentSlot.resolvedStyle.left; //  slotì´ relativeì´ê¸° ë•Œë¬¸ì— left == 0 ì¸ë° world boundëŠ” 200 ì¼ ìˆ˜ ìˆë‹¤. 
                 //if (isConnection == false)
                 //{
                 allItemList[_idx].style.left =
@@ -330,13 +330,13 @@ namespace UI.Upgrade
                 //}
 
                 //yield return new WaitForSeconds(0.05f); 
-                // opacity ¼³Á¤
+                // opacity ì„¤ì •
                 //DOTween.To(() =>0f, x => allItemList[_idx].style.opacity = x, _op, 0.5f).SetDelay(0.5f); 
                 allItemList[_idx].style.opacity = isConnection ? 1 : 0;
                 
                 if (isConnection == true)
                 {
-                    Debug.Log("»ı¼º ½ÃÀÛ");
+                    Debug.Log("ìƒì„± ì‹œì‘");
 
                     if (allItemList[_idx].worldBound.y + allItemList[_idx].resolvedStyle.height + 100 >
                         upgradeView.MoveScreen.resolvedStyle.height)
@@ -344,7 +344,7 @@ namespace UI.Upgrade
                         elementCtrlComponent.TweenMove(new Vector2(0,-200));
                         }
                     yield return _w;
-                    Debug.Log("½½·Ô À§Ä¡ ¼³Á¤");
+                    Debug.Log("ìŠ¬ë¡¯ ìœ„ì¹˜ ì„¤ì •");
                     float _slotL = allItemList[_idx].style.left.value.value;
                     float _slotB = allItemList[_idx].worldBound.x;
                     float _r1 = _slotB - _slotL;
@@ -352,7 +352,7 @@ namespace UI.Upgrade
                     float _targetMoveX =  _r2; 
                     allItemList[_idx].style.left = _targetMoveX;
                     yield return _w;
-                    Debug.Log("¼± »ı¼º");
+                    Debug.Log("ì„  ìƒì„±");
                     CreateConnection(allItemList[_idx]);
                     yield return _w;
                 }
@@ -370,7 +370,7 @@ namespace UI.Upgrade
             isActive = true;
         }
 
-        [ContextMenu("»èÁ¦")]
+        [ContextMenu("ì‚­ì œ")]
         private void ClearAllSlots()
         {
             isFirstSlot = true;
@@ -406,32 +406,32 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// ½½·Ô Å¬¸¯½Ã ¾÷±×·¹ÀÌµå UI Ç¥½Ã 
+        /// ìŠ¬ë¡¯ í´ë¦­ì‹œ ì—…ê·¸ë ˆì´ë“œ UI í‘œì‹œ 
         /// </summary>
         private void ActiveUpgradePn(UpgradeSlotPresenter _upgradePr)
         {
-            Debug.Log("Å¬¸¯");
+            Debug.Log("í´ë¦­");
 
-            upgradePickPresenter.ClearSlots(); // ÀÖ´ø°Å ÃÊ±âÈ­ ÇØÁÖ°í 
-            InActiveAllMark(); // ¸ğµç ¼±ÅÃ ¸¶Å© ºñÈ°¼ºÈ­ 
+            upgradePickPresenter.ClearSlots(); // ìˆë˜ê±° ì´ˆê¸°í™” í•´ì£¼ê³  
+            InActiveAllMark(); // ëª¨ë“  ì„ íƒ ë§ˆí¬ ë¹„í™œì„±í™” 
             _upgradePr.ActiveMark(true);
 
             ItemUpgradeDataSO _childItemData =
                 ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_upgradePr.ItemData.key); //
-            if (_childItemData == null) // Àç·áÅÛÀÌ ¾øÀ¸¸é 
+            if (_childItemData == null) // ì¬ë£Œí…œì´ ì—†ìœ¼ë©´ 
             {
                 upgradePickPresenter.ActiveView(false);
                 return;
             }
 
-            // À§Ä¡ ¼³Á¤(ÇØ¾ß ÇØ) 
+            // ìœ„ì¹˜ ì„¤ì •(í•´ì•¼ í•´) 
             Rect _r3 = _upgradePr.Element1.worldBound;
             _upgradePr.Element1.Add(upgradePickPresenter.Parent);
             //upgradePickPresenter.SetPos(new Vector2(_r3.width / 2, _r3.y));
             upgradePickPresenter.SetPos(upgradeView.MoveScreen.resolvedStyle.scale.value.x);
 
 
-            // ÇÊ¿ä Àç·áµé Ç¥½Ã 
+            // í•„ìš” ì¬ë£Œë“¤ í‘œì‹œ 
             int _idx = 0;
             var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key)
                 .Where((x) => x.itemType != ItemType.Weapon).ToList();
@@ -446,7 +446,7 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// ¼±ÅÃ½Ã È°¼ºÈ­ ¸¶Å© ¸ğµÎºñÈ°¼ºÈ­ÇÏ±â 
+        /// ì„ íƒì‹œ í™œì„±í™” ë§ˆí¬ ëª¨ë‘ë¹„í™œì„±í™”í•˜ê¸° 
         /// </summary>  
         private void InActiveAllMark()
         {
@@ -455,10 +455,10 @@ namespace UI.Upgrade
 
         private void CreateConnection(VisualElement _targeSlot /*List<UpgradeSlotData> _slotList*/)
         {
-            Debug.Log("¿¬°áÁ¡ »ı¼º");
+            Debug.Log("ì—°ê²°ì  ìƒì„±");
             List<Vector2> _pointList = new List<Vector2>();
             Vector2 _startPoint, _midPoint, _midPoint2, _targetPoint;
-            //CreateRow(); // ÁÙ »ı¼º 
+            //CreateRow(); // ì¤„ ìƒì„± 
             foreach (var _slot in this.parentSlotDic)
             {
                 foreach (var _slot2 in _slot.Value)
@@ -472,7 +472,7 @@ namespace UI.Upgrade
                         float _slot2X = MoveScreenV.x + _slot2.worldBound.x + _slot2.resolvedStyle.width / 2;
                         float _slot2Y = -MoveScreenV.y +_slot2.worldBound.y;
 
-                        _startPoint = new Vector2(_slotX - midX, _slotY - midY); // ºÎ¸ğ À§Ä¡ 
+                        _startPoint = new Vector2(_slotX - midX, _slotY - midY); // ë¶€ëª¨ ìœ„ì¹˜ 
                         _midPoint = new Vector2(_slotX - midX, _slotY + (_slot2Y - _slotY) / 2 - midY);
                         _midPoint2 = new Vector2(_slot2X - midX, _slotY + (_slot2Y - _slotY) / 2 - midY);
                         _targetPoint = new Vector2(_slot2X - midX, _slot2Y - midY);
@@ -491,7 +491,7 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// ÁÙ »ı¼º 
+        /// ì¤„ ìƒì„± 
         /// </summary>
         private void CreateRow()
         {

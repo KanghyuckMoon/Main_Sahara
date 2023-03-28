@@ -12,6 +12,7 @@ using UI.Base;
 using UI.Manager;
 using UI.Shop;
 using System;
+using UI.Upgrade;
 
 namespace UI.Dialogue
 {
@@ -87,7 +88,7 @@ namespace UI.Dialogue
             Logging.Log($"{nameCode}_{index}");
             Logging.Log($"{dialogueCode}_{index}"); 
             Logging.Log($"{fullText}{_nameText}");  
-
+            
             if (_nameText[0] is '!')
             {
                 switch (_nameText)
@@ -113,13 +114,21 @@ namespace UI.Dialogue
                         ActiveSelect(_nameText, fullText); 
                         return;
                     case "!SHOP":
-                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // 구매창 활성화 
+//                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // 구매창 활성화 
+                        UIController.ActiveScreen(Keys.BuyUI); // 구매창 활성화 
+                        
                         ActiveViewS(false);
                         return;
                     case "!SELL":
-                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop); // 판매 창 활성화 
+                        //UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop); // 판매 창 활성화 
+                        UIController.ActiveScreen(Keys.SellUI);
                         ActiveViewS(false);
                         return;
+                    case "!SMITH":
+                        //UIController.GetScreen<UpgradePresenter>(ScreenType.Upgrade).ActiveView();
+                        UIController.ActiveScreen(Keys.SmithUI);
+                        ActiveView(false);
+                        return; 
                     case "!GIVE":
                         return;
                     case "!GIVES":

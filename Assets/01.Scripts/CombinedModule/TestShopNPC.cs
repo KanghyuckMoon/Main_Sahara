@@ -15,25 +15,36 @@ namespace CondinedModule
 
         private void Awake()
         {
-			//StopOrNot = 1;
-			//canMove = true;
+	        moduleComponentsDic ??= new();
+	        CharacterController = GetComponent<CharacterController>();
+	        StopOrNot = 1;
+	        CanMove = true;
 
-			moduleComponentsDic = new();
-			//characterController = GetComponentInParent<CharacterController>();
+	        moduleComponentsDic = new();
+	        CharacterController = GetComponent<CharacterController>();
+	        AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
+	        AddModuleWithPool<MoveModule>(ModuleType.Move, "MoveModule");
+	        AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
+	        AddModuleWithPool<JumpModule>(ModuleType.Jump, "JumpModule");
+	        AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
+	        AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
+	        AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
+	        AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule");
+	        AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
+	        AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
+	        AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
+	        AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
+	        AddModuleWithPool<TalkModule>(ModuleType.Talk, "TalkModule", textSOAddress);
+	        AddModuleWithPool<ShopModule>(ModuleType.Shop, "ShopModule", shopSOAddress);
 
-			//AddModule(ModuleType.Input, new InputModule(this));
-			//AddModule(ModuleType.Move, new MoveModule(this));
-			//AddModule(ModuleType.State, new StateModule(this));
-			//AddModule(ModuleType.Camera, new CameraModule(this));
-			//AddModule(ModuleType.Jump, new JumpModule(this));
-			//AddModule(ModuleType.Hp, new HpModule(this));
-			//AddModule(ModuleType.Animation, new AnimationModule(this));
-			//AddModule(ModuleType.Pysics, new PysicsModule(this));
-			//AddModule(ModuleType.UI, new UIModule(this));
+	        LockOnTarget = null;
 
-			//raycastTarget = transform.parent.Find("RayCastPoint");
-			AddModule(ModuleType.Talk, new TalkModule(this, textSOAddress));
-			AddModule(ModuleType.Shop, new ShopModule(this, shopSOAddress));
+	        Animator = GetComponent<Animator>();
+	        //visualObject ??= transform.Find("Visual")?.gameObject;
+	        animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
+	        RaycastTarget = transform.Find("RayCastPoint");
+
+	        base.OnEnable();
         }
     }
 
