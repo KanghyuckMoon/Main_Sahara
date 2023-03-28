@@ -102,11 +102,11 @@ namespace Module
 
         public void SpownAttackEffect()
         {
-            if (mainModule.Attacking)
+            if (mainModule.Attacking && !string.IsNullOrEmpty(WeaponModule.BaseWeapon.WeaponDataSO.attackEffectName))
             {
                 EffectManager.Instance.SetEffectDefault(WeaponModule.BaseWeapon.WeaponDataSO.attackEffectName, mainModule.transform.position + (new Vector3(0, 1.4f, 0) + mainModule.transform.forward), Quaternion.identity);//SetEffectDefault();
             }
-            else if (mainModule.StrongAttacking)
+            else if (mainModule.StrongAttacking && !string.IsNullOrEmpty(WeaponModule.BaseWeapon.WeaponDataSO.strongAttackEffectName))
             {
                 EffectManager.Instance.SetEffectDefault(WeaponModule.BaseWeapon.WeaponDataSO.strongAttackEffectName, mainModule.transform.position + (new Vector3(0, 1.4f, 0) + mainModule.transform.forward), Quaternion.identity);//SetEffectDefault();
 
