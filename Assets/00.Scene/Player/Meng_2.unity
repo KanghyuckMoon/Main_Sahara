@@ -1759,6 +1759,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -2256,6 +2257,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -4689,6 +4691,7 @@ MonoBehaviour:
   weaponName: TestSword
   tagName: 
   isProjectile: 1
+  isConsecutiveWeapon: 0
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
 --- !u!1 &648574198647750629
 GameObject:
@@ -4730,6 +4733,7 @@ MonoBehaviour:
   weaponName: EndSword
   tagName: 
   isProjectile: 0
+  isConsecutiveWeapon: 0
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
 --- !u!1 &669233889497992713
 GameObject:
@@ -5879,9 +5883,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2075113459589260897, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712934316686788216, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
+      propertyPath: m_Radius
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 4712934316686788219, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4712934316686788228, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
       propertyPath: zoomInCam
@@ -27394,6 +27406,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -33345,6 +33358,7 @@ MonoBehaviour:
   weaponName: Object
   tagName: 
   isProjectile: 0
+  isConsecutiveWeapon: 0
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
 --- !u!4 &5761114021138685874
 Transform:

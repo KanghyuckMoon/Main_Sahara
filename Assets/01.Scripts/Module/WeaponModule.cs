@@ -155,6 +155,7 @@ namespace Module
                 //if(isProjectileWeapon) 
                 AttackModule.ProjectileName = BaseWeapon.WeaponDataSO.projectileObjectName;
 
+                mainModule.IsConsecutiveWeapon = BaseWeapon.isConsecutiveWeapon;
                 mainModule.IsWeaponExist = true;
                 SetBehaveAnimation();
             }

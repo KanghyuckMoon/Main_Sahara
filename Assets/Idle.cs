@@ -16,6 +16,8 @@ public class Idle : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         
+        mainModule.SetActiveAnimatorRoot(0);
+        
         stateModule.RemoveState(State.ATTACK);
     }
 }
