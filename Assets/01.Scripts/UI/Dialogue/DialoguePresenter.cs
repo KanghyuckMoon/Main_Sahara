@@ -26,7 +26,8 @@ namespace UI.Dialogue
         private static bool isSelecting; // 선택화면 
         private static string nameCode, dialogueCode;
         private static int index;
-        private static bool isDialogue; // 대화중
+        [SerializeField]
+        private bool isDialogue; // 대화중
         
         private Action _endCallback = null; // 대화 끝났을 떄 호출
 
@@ -52,26 +53,34 @@ namespace UI.Dialogue
         public void TestSelect()
         {
             index = 0; 
-            SetTexts("A00000002", "T00000002");
+            StartDialogue("A00000002", "T00000002");
         }
         /// <summary>
         /// 처음 대화 시작 코드 넘겨주기 
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_dialogue"></param>    
-        public void SetTexts(string _name, string _dialogue,Action _callback = null)
+        public void StartDialogue(string _name, string _dialogue, Action _callback = null)
         {
-            if (isDialogue == true) return; 
-                Debug.Log("@@Index " + index);
+            // 처음 대화시 isDialogue를 true로 설정해준다. 
+            if (isDialogue == true) return;
+            StartText(_name, _dialogue, _callback);
+        }
+
+        /// <summary>
+        /// 새로운 코드 받아서 대화 시작 
+        /// </summary>
+        /// <param name="_name"></param>
+        /// <param name="_dialogue"></param>
+        /// <param name="_callback"></param>
+        private void StartText(string _name, string _dialogue, Action _callback = null)
+        {
             ActiveViewS(true); // 활성화 하고 
 
-            Logging.Log("이름 코드 : " + _name);
-            Logging.Log("내용 코드 : " + _dialogue);
             nameCode = _name;
             dialogueCode = _dialogue;
             _endCallback = _callback; 
 
-            Debug.Log("@@Index " + index);
             SetCodeToText();
             StartCoroutine(CheckNextDialogue()); 
         }
@@ -111,7 +120,7 @@ namespace UI.Dialogue
                         QuestManager.Instance.ChangeQuestClear(fullText);
                         return;
                     case "!CHOICE":
-                        ActiveSelect(_nameText, fullText); 
+                        ActiveSelect(_nameText, fullText);
                         return;
                     case "!SHOP":
 //                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // 구매창 활성화 
@@ -159,7 +168,6 @@ namespace UI.Dialogue
                 string dialogueText = TextManager.Instance.GetText($"{dialogueCode}_{index}"); // 선택 버튼 이름 
                 this.dialogueView.ActiveSelectButton(dialogueText, () =>
                 {
-                    index = 0; 
                     ShowSelectedDialogue(nameText); 
                 });
             }
@@ -179,12 +187,9 @@ namespace UI.Dialogue
         private void ShowSelectedDialogue(string _nameText)
         {
             index = 0; 
-            Debug.Log("@@Index " + index);
+            isTexting = true; 
             string _name = _nameText.Replace("\r","");
-            Logging.Log(_name + "클릭");
-            isDialogue = false; 
-            Debug.Log("@@Index " + index);
-            SetTexts("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
+            StartText("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
             this.dialogueView.ResetSelectButtons(); // 버튼 삭제 
         }
         /// <summary>
@@ -220,6 +225,7 @@ namespace UI.Dialogue
             }
         }
 
+        [SerializeField]
         private bool isTexting = false; // 텍스트가 출력되고 있는 중인가 
         private string fullText;
         private const string TransStr = "<alpha=#00>"; // 투명 문자 

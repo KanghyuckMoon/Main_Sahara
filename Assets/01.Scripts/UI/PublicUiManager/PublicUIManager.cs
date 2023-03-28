@@ -40,7 +40,7 @@ namespace UI.PublicManager
         /// <param name="_callback"></param>
         public void SetTexts(string _name, string _dialogue, Action _callback = null)
         {
-            ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).SetTexts(_name, _dialogue, _callback);
+            ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).StartDialogue(_name, _dialogue, _callback);
         }   
 
     }

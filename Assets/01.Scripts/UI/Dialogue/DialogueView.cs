@@ -24,7 +24,9 @@ namespace UI.Dialogue
         private static Label dialogue;
 
         public static List<Button> selectButtonList = new List<Button>();
-        private static List<(Button, Action)> activeButtonList = new List<(Button, Action)>(); 
+        private static List<(Button, Action)> activeButtonList = new List<(Button, Action)>();
+
+        private readonly string inActiveStr = "inactive_select";
         public override void Cashing()
         {
             base.Cashing();
@@ -35,7 +37,8 @@ namespace UI.Dialogue
             selectButtonList = GetVisualElement((int)Elements.select_panel).Query<Button>(className:"select_button").ToList();
             foreach(var b in selectButtonList)
             {
-                b.style.display = DisplayStyle.None; 
+                b.AddToClassList(inActiveStr);
+                //b.style.display = DisplayStyle.None; 
             }
         }
 
@@ -81,11 +84,12 @@ namespace UI.Dialogue
             for(int i=0;i < selectButtonList.Count;i++)
             {
                 Button _b = selectButtonList[i]; 
-                if (_b.style.display == DisplayStyle.None)
+                if (_b.ClassListContains(inActiveStr) == true)
                 {
                     _b.text = _name;
                     _b.RegisterCallback<ClickEvent>((x) => _callback?.Invoke());
-                    _b.style.display = DisplayStyle.Flex;
+                    //_b.style.display = DisplayStyle.Flex;
+                    _b.RemoveFromClassList(inActiveStr);
 
                     activeButtonList.Add((_b, _callback));
                     return; 
@@ -99,12 +103,13 @@ namespace UI.Dialogue
         public void ResetSelectButtons()
         {
             foreach(var _b in activeButtonList)
-            {
-                _b.Item1.style.display = DisplayStyle.None;
-                _b.Item1.UnregisterCallback<ClickEvent>((x) =>_b.Item2?.Invoke());
-            }
-        }
-        public void ActiveView()
+                                            {
+                                                //_b.Item1.style.display = DisplayStyle.None;
+                                                _b.Item1.AddToClassList(inActiveStr);
+                                                _b.Item1.UnregisterCallback<ClickEvent>((x) =>_b.Item2?.Invoke());
+                                            }
+                                        }
+                                        public void ActiveView()
         {
             ShowVisualElement(parentElement, !IsVisible());
         }
