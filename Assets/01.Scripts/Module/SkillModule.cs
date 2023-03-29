@@ -35,8 +35,8 @@ namespace Module
 
         public override void Start()
         {
-            SetSkill("E", "TestSkill_01");
-            SetSkill("R", "TestSkill_02");
+            //SetSkill("E", "TestSkill_01");
+            //SetSkill("R", "TestSkill_02");
         }
 
 

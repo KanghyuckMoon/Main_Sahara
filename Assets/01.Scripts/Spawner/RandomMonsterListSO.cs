@@ -12,6 +12,9 @@ namespace Spawner
 
         public int minSpawnCount = 0;
         public int maxSpawnCount = 1;
+        
+        public float minSpawnTime = 3f;
+        public float maxSpawnTime = 10f;
 
         public float[] randomPercentArr;
         public RandomMonsterData[] spawnMonsterDataArr;
