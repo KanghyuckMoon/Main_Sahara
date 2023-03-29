@@ -115,7 +115,7 @@ namespace Module.Talk
 			isCutScene = _bool;
 		}
 
-		public void CutSceneTalk()
+		public void CutSceneTalk(string _talkKey)
 		{
 			if (ShopModule is not null)
 			{
@@ -128,6 +128,10 @@ namespace Module.Talk
 				//없을시 기본 대화
 				RandomDefaultText();
 			}
+
+			var _talkData = talkDataSO.talkDataList.Find(x => x.talkCondition == TalkCondition.CutScene && x.talkText == _talkKey);
+			PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText);
+			isTalking = true;
 		}
 
 		private bool CanTalk()
@@ -175,6 +179,8 @@ namespace Module.Talk
 				case TalkCondition.Position:
 					break;
 				case TalkCondition.HandWork:
+					break;
+				case TalkCondition.CutScene:
 					break;
 			}
 			return false;

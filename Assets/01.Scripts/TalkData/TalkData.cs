@@ -10,6 +10,7 @@ namespace Module.Talk
 		Quest,
 		Position,
 		HandWork,
+		CutScene,
 		None,
 	}
 
@@ -22,6 +23,7 @@ namespace Module.Talk
 
 		//CutScene
 		public string cutSceneKey = null;
+		public string talkKey;
 		public bool isUseCutScene = false;
 
 		//Condition Check
