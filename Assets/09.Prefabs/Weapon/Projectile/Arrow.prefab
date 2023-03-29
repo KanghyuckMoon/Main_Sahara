@@ -173,12 +173,13 @@ MonoBehaviour:
     position: {x: -0.47, y: 0.14, z: 0.027}
     rotation: {x: -0.019643148, y: 0.026176363, z: -0.79941344, w: 0.5998893}
     weaponHand: 1
-    InitialDirection: {x: 0, y: 0, z: 100}
-    speed: 70
+    InitialDirection: {x: 0, y: 2, z: 100}
+    speed: 160
     projectileAddress: Arrow
   objectName: Arrow
   model: {fileID: 562597006615724945}
   rigidbody: {fileID: 2349952884697511367}
+  usingGravity: 0
 --- !u!54 &2349952884697511367
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -187,14 +188,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2706845762480296673}
   serializedVersion: 2
-  m_Mass: 0.4
-  m_Drag: 0
+  m_Mass: 0.1
+  m_Drag: 0.2
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 2
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1531303075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ TrailRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 72740154f0e4b624e8801ab500a91a5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -254,7 +255,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -263,7 +264,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.23239517
+        value: 0.22084427
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -271,7 +272,7 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
+        time: 0.6151123
         value: 0
         inSlope: 0
         outSlope: 0

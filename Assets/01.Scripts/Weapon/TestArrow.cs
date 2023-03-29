@@ -12,8 +12,11 @@ namespace Weapon
         private Transform model;
         public Rigidbody rigidbody;
 
+        public bool usingGravity;
+
         private Quaternion quaternion;
         private bool isFly = false;
+        
 
         //public void SetPosition()
         //{
@@ -30,7 +33,7 @@ namespace Weapon
 
         public void MovingFunc(Vector3 _vector3)
         {
-            //rigidbody.useGravity = true;
+            rigidbody.useGravity = usingGravity;
 
             //transform.rotation = Quaternion.Euler(objectData.InitialDirection);
 

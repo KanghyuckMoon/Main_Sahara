@@ -23,6 +23,9 @@ public class Hit : StateMachineBehaviour
     //    mainModule.StrongAttacking = false;
         mainModule.IsHit = false;
         animator.SetBool("Hit", false);
+        
+        animator.GetComponent<ProjectileGenerator>().MoveProjectile();
+        
 
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
