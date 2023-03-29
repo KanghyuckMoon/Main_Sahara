@@ -132,7 +132,9 @@ namespace Module
                     }
                     else
                     {
+                        StatData _stat = other.GetComponent<InGameHitBox>().Owner.GetComponent<StatData>();
                         HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
+                        _stat.ChangeMana(_stat.ManaRegen + _statData.ChangeMana(_stat.ManaRegen));
                     }
                 }
             }
