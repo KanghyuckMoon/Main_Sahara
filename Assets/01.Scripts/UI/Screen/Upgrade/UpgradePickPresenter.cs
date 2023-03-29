@@ -43,11 +43,7 @@ namespace UI.Upgrade
             upgradeSlotList.Add(_v);
             upgradePickView.SetParent(_v.Parent);
         }
-
-        public void SetAbsoluteParent(UpgradeSlotPresenter _v)
-        {
-            upgradePickView.SetParent(_v.Parent);
-        }
+        
         public void SetPos(Vector2 _v)
         {
             //parent.style.translate = new StyleTranslate(new Translate(_v.x,_v.y));
@@ -56,16 +52,7 @@ namespace UI.Upgrade
             parent.transform.position = _v; 
             //parent.style.left = Parent.worldBound.width / 2 +_v.x;
         }
-        public void SetPos(float _f)
-        {
-            //parent.style.translate = new StyleTranslate(new Translate(_v.x,_v.y));
-            //parent.style.left = _v.x; 
-            //parent.style.top = _v.y;
-        //    parent.style.left = (100) / _f;
-            //parent.style.left = 100;
-            //parent.transform.position = _v; 
 
-        }
         /// <summary>
         /// 슬롯 리스트 초기화 
         /// </summary>
