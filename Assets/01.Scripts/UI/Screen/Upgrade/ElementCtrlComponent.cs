@@ -183,12 +183,6 @@ namespace UI.Upgrade
         /// </summary>
         private void RealMove()
         {
-            Debug.Log("@@CurPos" + target.transform.position);
-            Debug.Log("@@TargetPos" + realTargetV);
-            
-            Debug.Log("@@CurScale" + target.transform.scale);
-            
-            Debug.Log("@@CurOrigin" + target.style.transformOrigin);
             this.target.transform.position = Vector2.Lerp(target.transform.position, realTargetV, 
                 Time.deltaTime * 1000f * target.transform.scale.x);
             /*this.target.style.left = realTargetV.x; 

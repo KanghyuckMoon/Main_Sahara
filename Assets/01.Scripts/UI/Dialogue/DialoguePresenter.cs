@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,7 +12,8 @@ using UI.Base;
 using UI.Manager;
 using UI.Shop;
 using System;
-using UI.Upgrade;
+    using UI.EventManage;
+    using UI.Upgrade;
 
 namespace UI.Dialogue
 {
@@ -23,9 +24,9 @@ namespace UI.Dialogue
         [SerializeField]
         private DialogueView dialogueView;
 
-        private static bool isSelecting; // 선택화면 
-        private static string nameCode, dialogueCode;
-        private static int index;
+        private  bool isSelecting; // 선택화면 
+        private  string nameCode, dialogueCode;
+        private  int index;
         [SerializeField]
         private bool isDialogue; // 대화중
         
@@ -38,7 +39,14 @@ namespace UI.Dialogue
         {
             dialogueView.Cashing();
             dialogueView.Init(); 
+            EventManager.Instance.StartListening(EventsType.SetCanDialogue,(x) => isDialogue = (bool)x);
         }
+
+        private void OnDisable()
+        {
+            EventManager.Instance.StopListening(EventsType.SetCanDialogue,(x) => isDialogue = (bool)x);
+        }
+
         private void Awake()
         {
             uiDocument = GetComponent<UIDocument>();
@@ -76,7 +84,8 @@ namespace UI.Dialogue
         private void StartText(string _name, string _dialogue, Action _callback = null)
         {
             ActiveViewS(true); // 활성화 하고 
-
+    
+            StopAllCoroutines();
             nameCode = _name;
             dialogueCode = _dialogue;
             _endCallback = _callback; 
@@ -121,22 +130,28 @@ namespace UI.Dialogue
                         return;
                     case "!CHOICE":
                         ActiveSelect(_nameText, fullText);
+                        //StopCoroutine(StartCoroutine(SetText())); // 대화 체크 코루틴 종료 
                         return;
                     case "!SHOP":
 //                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // 구매창 활성화 
                         UIController.ActiveScreen(Keys.BuyUI); // 구매창 활성화 
-                        
+                        index = 0; 
                         ActiveViewS(false);
+                        isDialogue = true; 
                         return;
                     case "!SELL":
                         //UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop); // 판매 창 활성화 
                         UIController.ActiveScreen(Keys.SellUI);
+                        index = 0; 
                         ActiveViewS(false);
+                        isDialogue = true; 
                         return;
                     case "!SMITH":
                         //UIController.GetScreen<UpgradePresenter>(ScreenType.Upgrade).ActiveView();
                         UIController.ActiveScreen(Keys.SmithUI);
+                        index = 0; 
                         ActiveViewS(false);
+                        isDialogue = true; 
                         return; 
                     case "!GIVE":
                         return;
@@ -160,6 +175,8 @@ namespace UI.Dialogue
         {
             int _count = int.Parse(_dialogueText);
             isSelecting = true;
+            // 커서 활성화 
+            UIManager.Instance.ActiveCursor(true);
             for (int i = 0; i < _count; i++)
             {
                 
@@ -191,6 +208,8 @@ namespace UI.Dialogue
             string _name = _nameText.Replace("\r","");
             StartText("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
             this.dialogueView.ResetSelectButtons(); // 버튼 삭제 
+            UIManager.Instance.ActiveCursor(false);// 커서 비활성화 
+
         }
         /// <summary>
         /// 대화 끝 다음 대화 넘어가는 거 체크 
@@ -206,10 +225,9 @@ namespace UI.Dialogue
                 {
                     if (isTexting == true) // 텍스트가 진행중이었다면 
                     {
-                        isTexting = false;
+                        isTexting = false;  
 //                        SetTextInstant(targetText);
                         yield return null;
-                        yield return new WaitForSeconds(0.03f);
                     }
                     else
                     {
@@ -290,7 +308,7 @@ namespace UI.Dialogue
         {
             isDialogue = _isActive;
             dialogueView.ActiveViewS(_isActive);
-            UIManager.Instance.ActiveCursor(_isActive); 
+            //UIManager.Instance.ActiveCursor(_isActive); 
 
             if (_isActive == false)
             {

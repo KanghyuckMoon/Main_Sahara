@@ -14,6 +14,9 @@ using TimeManager;
 using InputSystem;
 using UI.UtilManager; 
 using UI.Option;
+using UI.EventManage;
+using UI.Manager;
+
 
 namespace UI
 {
@@ -85,6 +88,8 @@ namespace UI
         private void Update()
         {
             UIInput();
+            Debug.Log("커서 잠금 상태 : "  + Cursor.lockState);
+            Debug.Log("커서 보이는 상태 : "+Cursor.visible);
         }
 
         /// <summary>
@@ -235,7 +240,7 @@ namespace UI
         /// </summary>
         private void SetUIAndCursor(bool _isActive, string _keyCode)
         {
-            ActiveCursor(_isActive);
+            UIManager.Instance.ActiveCursor(_isActive);
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
         }
@@ -264,6 +269,7 @@ namespace UI
                 SetUIAndCursor(false, Get(curActiveScreen.Item1));
                 curActiveScreen.Item2.ActiveView(false);
                 curActiveScreen.Item2 = null; 
+                EventManager.Instance.TriggerEvent(EventsType.SetCanDialogue,false);
             }
         }
         
@@ -297,29 +303,6 @@ namespace UI
                 }
                 _v.Key.isCan = _isActive? false : true; // 스크린 비활성화면 모두 키입력 가능하도록  
             }
-
-        }
-
-        [ContextMenu("커서 활성화")]
-        public void ActiveCursor()
-        {
-            ActiveCursor(true); 
-        }
-        [ContextMenu("커서 비활성화")]
-        public void InActiveCursor()
-        {
-            ActiveCursor(false);
-        }
-        private void ActiveCursor(bool _isActive)
-        {
-            if (_isActive == true)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                return;
-            }
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
 
         }
 
