@@ -1556,12 +1556,17 @@ MonoBehaviour:
   isCharging: 0
   isCanHit: 0
   isStaticTime: 0
+  canConsecutiveAttack: 0
+  isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -19.8
   groundOffset: -0.12
+  attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
   hitDelay: 0
   lockOn: 0
@@ -1577,7 +1582,7 @@ MonoBehaviour:
   rightFeet: {fileID: 0}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
-  aiSOAddress: TestEnemySO
+  aiSOAddress: mg_Km_AISO
   smoothPath: {fileID: 0}
 --- !u!114 &2648207059958673375
 MonoBehaviour:
@@ -1595,6 +1600,8 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: SandSkinEffect
   deadExplosionEffectKey: SandExplosionImpacts
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 3699875110483129543}
   rootTransform: {fileID: 3699875109738140290}
   animator: {fileID: 3699875109982235525}
@@ -1612,6 +1619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!114 &-7492230939507027689
 MonoBehaviour:
@@ -1653,6 +1661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  parent: {fileID: 0}
 --- !u!114 &3711253622792320532
 MonoBehaviour:
   m_ObjectHideFlags: 0
