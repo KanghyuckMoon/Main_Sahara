@@ -95,7 +95,7 @@ namespace Module
                 _speed = _targetSpeed + _lockOnspeed;
             }
 
-            animationBlend = mainModule.isGround ? animationBlend : 0;
+            //animationBlend = mainModule.isGround ? animationBlend : 0;
             animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed,  mainModule.PersonalDeltaTime * 5);
             if (animationBlend < 0.01f) animationBlend = 0f;
             #endregion
@@ -142,6 +142,8 @@ namespace Module
                 _knockBackVector = Vector3.zero;
             }
             
+            mainModule.ObjDirection = _moveVector3;
+            
             if (mainModule.IsSlope)
             {
                 if (_knockBackPower > 0f)
@@ -150,6 +152,7 @@ namespace Module
                 }
                 else
                 {
+                    
                     mainModule.CharacterController.Move((_moveVector3 + new Vector3(0, _gravity, 0)) *  mainModule.PersonalDeltaTime);
                 }
             }
