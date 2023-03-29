@@ -61,6 +61,8 @@ namespace Module
         private string buffIconString = "_Icon";
         private string buffEffectString = "_Effect";
 
+        private Coroutine knockBackCoroutine;
+
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
@@ -117,7 +119,11 @@ namespace Module
                     _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.1f);
                     mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.1f);
 
-                    mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
+                    if (knockBackCoroutine != null)
+                    {
+                        mainModule.StopCoroutine(knockBackCoroutine);
+                    }
+                    knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
 
                     
@@ -154,9 +160,11 @@ namespace Module
             }
             Vector3 _shakeDir = Quaternion.Euler(0, -45, 0) * _dir;
 
+            float _power = _inGameHitBox.KnockbackPower() / 10f;
+            
             mainModule.Model.DOKill();
             mainModule.Model.localPosition = Vector3.zero;
-            mainModule.Model.DOShakePosition(0.22f, _shakeDir * 0.5f, 20);
+            mainModule.Model.DOShakePosition(0.22f, _shakeDir * _power, 10);
             yield return new WaitForSeconds(0.22f);
             mainModule.Model.DOKill();
             mainModule.Model.localPosition = Vector3.zero;
@@ -164,6 +172,7 @@ namespace Module
             mainModule.attackedTime = 0f;
             mainModule.knockBackPower =  _inGameHitBox.KnockbackPower();
             mainModule.KnockBackVector = _dir;
+            knockBackCoroutine = null;
         }
         public override void FixedUpdate()
         {

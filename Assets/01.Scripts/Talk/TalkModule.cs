@@ -93,7 +93,7 @@ namespace Module.Talk
 
 		public void Talk()
 		{
-			if(CanTalk())
+			if(!isTalking)
 			{
 				Logging.Log("대화 가능");
 				if (ShopModule is not null)
@@ -107,6 +107,7 @@ namespace Module.Talk
 					//없을시 기본 대화
 					RandomDefaultText();
 				}
+				isTalking = true;
 			}
 		}
 
@@ -115,7 +116,7 @@ namespace Module.Talk
 			isCutScene = _bool;
 		}
 
-		public void CutSceneTalk()
+		public void CutSceneTalk(string _talkKey)
 		{
 			if (ShopModule is not null)
 			{
@@ -128,6 +129,10 @@ namespace Module.Talk
 				//없을시 기본 대화
 				RandomDefaultText();
 			}
+
+			var _talkData = talkDataSO.talkDataList.Find(x => x.talkCondition == TalkCondition.CutScene && x.talkText == _talkKey);
+			PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText);
+			isTalking = true;
 		}
 
 		private bool CanTalk()
@@ -147,7 +152,7 @@ namespace Module.Talk
 				TalkData _talkData = talkDataSO.talkDataList[i];
 				if (ConditionCheck(_talkData))
 				{
-					PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText);
+					PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText, EndTalk);
 					isTalking = true;
 
 					if (_talkData.isUseCutScene)
@@ -175,6 +180,8 @@ namespace Module.Talk
 				case TalkCondition.Position:
 					break;
 				case TalkCondition.HandWork:
+					break;
+				case TalkCondition.CutScene:
 					break;
 			}
 			return false;

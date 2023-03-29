@@ -47,6 +47,9 @@ namespace AI
 		StrongAttack,
 		RageOff,
 		DirectRotate,
+		SetAroundOrigin,
+		SetAroundPlayer,
+		AroundMove,
 		//StringAction
 		EquipWeapon = 20,
 		//FloatAction

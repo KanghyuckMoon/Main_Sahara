@@ -51,7 +51,7 @@ using Module.Talk;
 
                 TalkDataSO _asset = null;
                 _asset = allTalkDataSO.talkDataSOList.Find(x => x.key == _key);
-                //ÀÌ¹Ì ÀÖ´ÂÁö
+                //ì´ë¯¸ ìˆëŠ”ì§€
                 if (_asset == null)
                 {
                     _asset = ScriptableObject.CreateInstance<TalkDataSO>();

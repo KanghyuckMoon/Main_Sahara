@@ -15,6 +15,7 @@ namespace UI.Production
             image,
             active_mark,
             frame,
+            item
         }
     
         enum Labels
@@ -24,7 +25,7 @@ namespace UI.Production
 
         private bool isStackable; 
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
         public VisualElement ActiveMark => GetVisualElement((int)Elements.active_mark);
         public VisualElement Image => GetVisualElement((int)Elements.image);
@@ -41,15 +42,15 @@ namespace UI.Production
         }
 
         /// <summary>
-        /// Å¬¸¯½Ã ÀÌº¥Æ® Ãß°¡  
+        /// í´ë¦­ì‹œ ì´ë²¤íŠ¸ ì¶”ê°€  
         /// </summary>
         /// <param name="_callback"></param>
         public void AddClickEvent(Action _callback)
         {
-            AddElementEvent<ClickEvent>((int)Elements.image, _callback);
-            //parentElement.RegisterCallback<MouseOverEvent>((e) => Debug.Log("¤¢"));
+            AddElementEvent<ClickEvent>((int)Elements.item, _callback);
+            //parentElement.RegisterCallback<MouseOverEvent>((e) => Debug.Log("ã„²"));
         }
-        // === UI ¼³Á¤ °ü·Ã === //
+        // === UI ì„¤ì • ê´€ë ¨ === //
         public void SetSpriteAndText(Texture2D _sprite, string _count)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);
@@ -57,7 +58,7 @@ namespace UI.Production
         }
 
         /// <summary>
-        /// ¼±ÅÃ½Ã ±ôºı±ôºı 
+        /// ì„ íƒì‹œ ê¹œë¹¡ê¹œë¹¡ 
         /// </summary>
         public void ActiveSelect()
         {

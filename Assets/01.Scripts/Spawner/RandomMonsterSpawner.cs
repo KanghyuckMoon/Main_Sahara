@@ -7,6 +7,7 @@ using Pool;
 using Streaming;
 using Utill.Random;
 using Module;
+using Effect;
 
 namespace Spawner
 {
@@ -34,11 +35,6 @@ namespace Spawner
 		[SerializeField]
 		private LayerMask spawnLayerMask;
 
-		[SerializeField]
-		private float minSpawnTime = 1f;
-		[SerializeField]
-		private float maxSpawnTime = 3f;
-
 		private float spawnTimer = 1f;
 
 		public float radius = 1f;
@@ -47,6 +43,9 @@ namespace Spawner
 
 		private List<EnemyDead> enemyDeadList = new List<EnemyDead>();
 		private Vector3 spawnPos = Vector3.zero;
+		
+		[SerializeField]
+		private string spawnEffectAddress = "LandSandHitEffect";
 		
         private void OnDisable()
         {
@@ -76,14 +75,17 @@ namespace Spawner
             }
 			if((transform.position - Player.position).sqrMagnitude <= radius * radius)
             {
-				if (spawnTimer > 0f)
+				if(isMonsterNone)
                 {
-					spawnTimer -= Time.deltaTime;
-				}
-				else if(isMonsterNone)
-                {
-					spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
-					RandomAndChoiceSpawn(randomMonsterListSO);
+	                if (spawnTimer > 0f)
+	                {
+		                spawnTimer -= Time.deltaTime;
+	                }
+	                else
+	                {
+		                spawnTimer = Random.Range(randomMonsterListSO.minSpawnTime, randomMonsterListSO.maxSpawnTime);
+		                RandomAndChoiceSpawn(randomMonsterListSO);   
+	                }
 				}
             }
         }
@@ -124,7 +126,13 @@ namespace Spawner
 			_enemyDead.AddObserver(this);
 			enemyDeadList.Add(_enemyDead);
 			yield return StartCoroutine(GetRandomPos());
-			obj.transform.position = spawnPos;
+			
+			obj.transform.position = spawnPos + new Vector3(0,-3,0);
+            var _module = obj.GetComponent<AbMainModule>();
+            _module.knockBackVector = Vector3.up;
+            _module.knockBackPower = 15;
+			EffectManager.Instance.SetEffectDefault(spawnEffectAddress, spawnPos, Quaternion.identity);
+			
 			obj.SetActive(true);
 			isMonsterNone = false;
 		}
@@ -144,7 +152,7 @@ namespace Spawner
 				if (Physics.Raycast(rayPos, Vector3.down, out raycastHit, 150f, spawnLayerMask))
                 {
 					_result = rayPos;
-					_result.y = raycastHit.point.y + 3f;
+					_result.y = raycastHit.point.y;
 					break;
                 }
 

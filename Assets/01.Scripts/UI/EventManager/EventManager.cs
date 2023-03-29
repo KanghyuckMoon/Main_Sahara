@@ -13,6 +13,7 @@ namespace UI.EventManage
         UpdateMapScale, 
         UpdateMapLine,
         ClearMapLine,
+        SetCanDialogue, 
         ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>

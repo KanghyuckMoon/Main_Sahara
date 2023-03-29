@@ -14,6 +14,7 @@ using Module;
 using Module.Talk;
 using CondinedModule;
 using EventObject;
+using TimeManager;
 
 namespace CutScene
 {
@@ -77,6 +78,7 @@ namespace CutScene
         
         //Talk
         private TalkModule talkModule;
+        private string talkKey;
 
         //ZoonInOut
         private float zoomInOutDistance;
@@ -105,7 +107,7 @@ namespace CutScene
             timelineAsset = AddressablesManager.Instance.GetResource<TimelineAsset>(_address);
 
             SettingParameterCutSceneData(_cutSceneData);
-
+            StaticTime.EntierTime = 0f;
 
             if (index == 0)
 			{
@@ -197,7 +199,7 @@ namespace CutScene
             if (_cutSceneData.isTalk)
             {
                 _cutSceneData.talkModule = _cutSceneData.testTalk.GetModuleComponent<TalkModule>(ModuleType.Talk);
-                CutSceneManager.Instance.SetTalkModule(_cutSceneData.talkModule);
+                CutSceneManager.Instance.SetTalkModule(_cutSceneData.talkModule, _cutSceneData.talkKey);
                 talkModule.SetCutScene(true);
             }
             else
@@ -221,7 +223,7 @@ namespace CutScene
         }
         public void NextCutScene()
         {
-            //Äù½ºÆ® Á¶°ÇÀÌ ´Þ·ÁÀÖÀ¸¸é Äù½ºÆ® Å¬¸®¾î
+            //í€˜ìŠ¤íŠ¸ ì¡°ê±´ì´ ë‹¬ë ¤ìžˆìœ¼ë©´ í€˜ìŠ¤íŠ¸ í´ë¦¬ì–´
             if(cutSceneDataList.cutSceneDataList[index].questKey != null)
 			{
 				switch (cutSceneDataList.cutSceneDataList[index].questState)
@@ -249,6 +251,7 @@ namespace CutScene
                 if (cutSceneDataList is null)
                 {
                     ResetCam();
+                    StaticTime.EntierTime = 1f;
                     return;
                 }
                 if (cutSceneDataList.cutSceneDataList.Count > index + 1)
@@ -261,6 +264,7 @@ namespace CutScene
                 {
                     ResetCam();
                     TalkModuleCutSceneOff();
+                    StaticTime.EntierTime = 1f;
                     return;
                 }
             }
@@ -377,9 +381,10 @@ namespace CutScene
 
         //Talk
 
-        public void SetTalkModule(TalkModule _talkModule)
+        public void SetTalkModule(TalkModule _talkModule, string _talkKey)
         {
             talkModule = _talkModule;
+            talkKey = _talkKey;
         }
 
         public void StartTalk()
@@ -388,7 +393,7 @@ namespace CutScene
             {
                 return;
             }
-            talkModule.CutSceneTalk();
+            talkModule.CutSceneTalk(talkKey);
         }
 
         public void TalkModuleCutSceneOff()
@@ -437,7 +442,8 @@ namespace CutScene
         //Talk
         public TestTalkNPC testTalk;
         public TalkModule talkModule;
-
+        public string talkKey;
+        
         //ZoomInOut
         public float zoomInOutDistance;
 
@@ -451,6 +457,8 @@ namespace CutScene
         //Condition
         public bool isTalk;
         public bool isNotUseTrackLookAt;
+        
+        
 
     }
 }

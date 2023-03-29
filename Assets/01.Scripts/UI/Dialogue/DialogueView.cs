@@ -24,7 +24,9 @@ namespace UI.Dialogue
         private static Label dialogue;
 
         public static List<Button> selectButtonList = new List<Button>();
-        private static List<(Button, Action)> activeButtonList = new List<(Button, Action)>(); 
+        private static List<(Button, Action)> activeButtonList = new List<(Button, Action)>();
+
+        private readonly string inActiveStr = "inactive_select";
         public override void Cashing()
         {
             base.Cashing();
@@ -35,7 +37,8 @@ namespace UI.Dialogue
             selectButtonList = GetVisualElement((int)Elements.select_panel).Query<Button>(className:"select_button").ToList();
             foreach(var b in selectButtonList)
             {
-                b.style.display = DisplayStyle.None; 
+                b.AddToClassList(inActiveStr);
+                //b.style.display = DisplayStyle.None; 
             }
         }
 
@@ -53,9 +56,9 @@ namespace UI.Dialogue
         }
         public void SetDialogueText(string _str)
         {
-            // ÀÌÀü¿¡ ÀÖ´ø°Å ÃµÃµÈ÷ »ç¶óÁö°í 
-            // ÅØ½ºÆ® ¹Ù²î°í 
-            // ÅØ½ºÆ® ÂŞ¿í ³ª¿À°Ô   
+            // ì´ì „ì— ìˆë˜ê±° ì²œì²œíˆ ì‚¬ë¼ì§€ê³  
+            // í…ìŠ¤íŠ¸ ë°”ë€Œê³  
+            // í…ìŠ¤íŠ¸ ì­ˆìš± ë‚˜ì˜¤ê²Œ   
             GetLabel((int)Labels.dialogue_label).text = _str; 
         }
 
@@ -65,14 +68,14 @@ namespace UI.Dialogue
         }
         public  void SetDialogueTextA(string _str)
         {
-            // ÀÌÀü¿¡ ÀÖ´ø°Å ÃµÃµÈ÷ »ç¶óÁö°í 
-            // ÅØ½ºÆ® ¹Ù²î°í 
-            // ÅØ½ºÆ® ÂŞ¿í ³ª¿À°Ô   
+            // ì´ì „ì— ìˆë˜ê±° ì²œì²œíˆ ì‚¬ë¼ì§€ê³  
+            // í…ìŠ¤íŠ¸ ë°”ë€Œê³  
+            // í…ìŠ¤íŠ¸ ì­ˆìš± ë‚˜ì˜¤ê²Œ   
             dialogue.text = _str;
         }
 
         /// <summary>
-        /// ¼±ÅÃ ¹öÆ° È°¼ºÈ­(³ªÅ¸³»±â) 
+        /// ì„ íƒ ë²„íŠ¼ í™œì„±í™”(ë‚˜íƒ€ë‚´ê¸°) 
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_callback"></param>
@@ -81,11 +84,12 @@ namespace UI.Dialogue
             for(int i=0;i < selectButtonList.Count;i++)
             {
                 Button _b = selectButtonList[i]; 
-                if (_b.style.display == DisplayStyle.None)
+                if (_b.ClassListContains(inActiveStr) == true)
                 {
                     _b.text = _name;
                     _b.RegisterCallback<ClickEvent>((x) => _callback?.Invoke());
-                    _b.style.display = DisplayStyle.Flex;
+                    //_b.style.display = DisplayStyle.Flex;
+                    _b.RemoveFromClassList(inActiveStr);
 
                     activeButtonList.Add((_b, _callback));
                     return; 
@@ -94,17 +98,18 @@ namespace UI.Dialogue
         }
 
         /// <summary>
-        /// ¸ğµç ¼±ÅÃ ¹öÆ° ÃÊ±âÈ­(ºñÈ°¼ºÈ­, Äİ¹é µî·Ï Ãë¼Ò ) 
+        /// ëª¨ë“  ì„ íƒ ë²„íŠ¼ ì´ˆê¸°í™”(ë¹„í™œì„±í™”, ì½œë°± ë“±ë¡ ì·¨ì†Œ ) 
         /// </summary>
         public void ResetSelectButtons()
         {
             foreach(var _b in activeButtonList)
-            {
-                _b.Item1.style.display = DisplayStyle.None;
-                _b.Item1.UnregisterCallback<ClickEvent>((x) =>_b.Item2?.Invoke());
-            }
-        }
-        public void ActiveView()
+                                            {
+                                                //_b.Item1.style.display = DisplayStyle.None;
+                                                _b.Item1.AddToClassList(inActiveStr);
+                                                _b.Item1.UnregisterCallback<ClickEvent>((x) =>_b.Item2?.Invoke());
+                                            }
+                                        }
+                                        public void ActiveView()
         {
             ShowVisualElement(parentElement, !IsVisible());
         }
