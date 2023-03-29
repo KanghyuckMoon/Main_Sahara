@@ -247,6 +247,9 @@ namespace AI
 				NodeAction.Nothing => Nothing,
 				NodeAction.FixiedMove => FixiedMove,
 				NodeAction.LockOnPlayer => LockOnPlayer,
+				NodeAction.AroundMove => AroundMove,
+				NodeAction.SetAroundOrigin => SetAroundOrigin,
+				NodeAction.SetAroundPlayer => SetAroundPlayer,
 				_ => null
 			};
 		}
