@@ -43,7 +43,7 @@ namespace ForTheTest
         [SerializeField]
         private float cameraX = 0f;
         [SerializeField]
-        private float cameraY = 0f;
+        public float cameraY = 0f;
 
         // if we are switching sides
         private bool doCameraSideToggle = false;

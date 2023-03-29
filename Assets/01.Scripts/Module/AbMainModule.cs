@@ -63,6 +63,18 @@ namespace Module
                 objDir = value;
             }
         }
+
+        public Vector3 ObjDirection
+        {
+            get
+            {
+                return objDirection;
+            }
+            set
+            {
+                objDirection = value;
+            }
+        }
         public Quaternion ObjRotation
         {
             get
@@ -493,8 +505,10 @@ namespace Module
 
         [SerializeField, Header("캐릭터 컨트롤러")] 
         private CharacterController characterController;
-        [SerializeField, Header("캐릭터가 갈 방향")] 
+        [SerializeField, Header("(입력된)캐릭터가 갈 방향")]
         private Vector2 objDir;
+        [SerializeField, Header("(입력된)캐릭터가 갈 방향")] 
+        private Vector3 objDirection;
         [SerializeField, Header("카메라의 회전")] 
         private Quaternion objRotation;
         [SerializeField, Header("카메라 앞방향")]
