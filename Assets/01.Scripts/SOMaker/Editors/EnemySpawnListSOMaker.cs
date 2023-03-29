@@ -46,6 +46,8 @@ public class EnemySpawnListSOMaker : MonoBehaviour
             string[] _randomMonsterMinCount = column[4].Split(',');
             string[] _randomMonsterMaxCount = column[5].Split(',');
             string[] _randomMonsterEnemyAddress = column[6].Split(',');
+            string _minSpawnTime = column[7];
+            string _maxSpawnTime = column[8];
 
             RandomMonsterListSO _asset = null;
             _asset = allRandomMonsterListSO.randomMonsterSpawnerSOList.Find(x => x.key == _key);
@@ -80,6 +82,8 @@ public class EnemySpawnListSOMaker : MonoBehaviour
             _asset.maxSpawnCount = int.Parse(_maxCount);
             _asset.randomPercentArr = _randomPercentArr;
             _asset.spawnMonsterDataArr = _randomMonsterDataArr;
+            _asset.minSpawnTime = float.Parse(_minSpawnTime);
+            _asset.maxSpawnTime = float.Parse(_maxSpawnTime);
 
             AssetDatabase.SaveAssets();
 

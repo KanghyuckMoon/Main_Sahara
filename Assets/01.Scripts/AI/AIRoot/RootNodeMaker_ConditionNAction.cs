@@ -585,7 +585,7 @@ namespace AI
 						isGetAroundPos = false;
 					}
 					Vector3 vec = Vector3.zero;
-					vec = aiModule.Player.position - Position;
+					vec = aroundPos - Position;
 					vec.y = 0;
 					vec = vec.normalized;
 					Vector2 _inputdir = new Vector2(vec.x, vec.z);
@@ -596,22 +596,75 @@ namespace AI
 				}
 				else
 				{
-					int _count = 3;
-					while (_count-- > 0)
+					RaycastHit _raycastHit;
+					Vector3 _aroundFindPos = new Vector3(aiModule.OriginPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.OriginPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
+					if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.GroundMask))
 					{
-						RaycastHit _raycastHit;
-						Vector3 _aroundFindPos = new Vector3(aiModule.OriginPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.OriginPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
-						if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.GroundMask))
-						{
-							aroundPos = _raycastHit.point;
-							break;
-						}
+						aroundPos = _raycastHit.point;
+						isGetAroundPos = true;
+					}
+				}
+			}
+		}
+
+		private void AroundMove()
+		{
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
+			{
+				if (isGetAroundPos)
+				{
+					Vector2 _aroundPosXZ = new Vector2(aroundPos.x, aroundPos.z);
+					Vector2 _transformPosXZ = new Vector2(Position.x, Position.z);
+					if (Vector2.SqrMagnitude(_aroundPosXZ - _transformPosXZ) < 0.2f)
+					{
+						isGetAroundPos = false;
+						return;
 					}
 
+					Vector3 vec = Vector3.zero;
+					vec = aroundPos - Position;
+					vec.y = 0;
+					vec = vec.normalized;
+					Vector2 _inputdir = new Vector2(vec.x, vec.z);
+					aiModule.Input = _inputdir;
+					aiModule.AIModuleState = AIModule.AIState.Walk;
+					aiModule.MainModule.IsSprint = false;
+					aiModule.MainModule.ObjDir = aiModule.Input;
+				}
+				else
+				{
+					MoveReset();
+				}
+			}
+		}
+
+		private void SetAroundOrigin()
+		{
+			if (!isGetAroundPos)
+			{
+				RaycastHit _raycastHit;
+				Vector3 _aroundFindPos = new Vector3(aiModule.OriginPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.OriginPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
+				if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.GroundMask))
+				{
+					aroundPos = _raycastHit.point;
 					isGetAroundPos = true;
 				}
 			}
 		}
+		private void SetAroundPlayer()
+		{
+			if (!isGetAroundPos)
+			{
+				RaycastHit _raycastHit;
+				Vector3 _aroundFindPos = new Vector3(aiModule.LastFindPlayerPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.LastFindPlayerPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
+				if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.GroundMask))
+				{
+					aroundPos = _raycastHit.point;
+					isGetAroundPos = true;
+				}
+			}
+		}
+		
 		private void AroundLastFindPlayerPos()
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
@@ -625,7 +678,7 @@ namespace AI
 						isGetAroundPos = false;
 					}
 					Vector3 vec = Vector3.zero;
-					vec = aiModule.Player.position - Position;
+					vec = aroundPos - Position;
 					vec.y = 0;
 					vec = vec.normalized;
 					Vector2 _inputdir = new Vector2(vec.x, vec.z);
@@ -636,19 +689,13 @@ namespace AI
 				}
 				else
 				{
-					int _count = 3;
-					while (_count-- > 0)
+					RaycastHit _raycastHit;
+					Vector3 _aroundFindPos = new Vector3(aiModule.LastFindPlayerPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.LastFindPlayerPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
+					if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.GroundMask))
 					{
-						RaycastHit _raycastHit;
-						Vector3 _aroundFindPos = new Vector3(aiModule.LastFindPlayerPos.x + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius) , Position.y + 20, aiModule.LastFindPlayerPos.z + Random.Range(-aiSO.AroundRadius, aiSO.AroundRadius));
-						if (Physics.Raycast(_aroundFindPos, Vector3.down, out _raycastHit, aiSO.GroundMask))
-						{
-							aroundPos = _raycastHit.point;
-							break;
-						}
+						aroundPos = _raycastHit.point;
+						isGetAroundPos = true;
 					}
-
-					isGetAroundPos = true;
 				}
 			}
 		}
