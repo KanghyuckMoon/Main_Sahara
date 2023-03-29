@@ -449,11 +449,14 @@ namespace UI.Upgrade
             }
 
             // 위치 설정(해야 해) 
-            Rect _r3 = _upgradePr.Element1.worldBound;
-            _upgradePr.Element1.Add(upgradePickPresenter.Parent);
+            Rect _slotRect = _upgradePr.Element1.worldBound;
+            Rect _screenRect = upgradeView.MoveScreen.worldBound;
+            float _slotX = _upgradePr.Element1.resolvedStyle.width;
+            //_upgradePr.Element1.Add(upgradePickPresenter.Parent);
             //upgradePickPresenter.SetPos(new Vector2(_r3.width / 2, _r3.y));
-            upgradePickPresenter.SetPos(upgradeView.MoveScreen.resolvedStyle.scale.value.x);
-
+            //_upgradePr.UpgradeSlotView.ParentElement.
+            //upgradePickPresenter.SetPos(upgradeView.MoveScreen.resolvedStyle.scale.value.x);
+            upgradePickPresenter.SetPos(new Vector2(_slotX + -_screenRect.x + _slotRect.x, -_screenRect.y + _slotRect.y) );
 
             // 필요 재료들 표시 
             int _idx = 0;

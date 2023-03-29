@@ -4,7 +4,7 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/UpgradeScreen.uss?fileID=7433441132597879392&amp;guid=1ee34cea76d74de4eb37c92abf751a82&amp;type=3#UpgradeScreen" />
     <ui:Instance template="UpgradeInRow" name="UpgradeInRow" style="display: none;" />
-    <ui:VisualElement name="upgrade_screen" class="screen" style="background-color: rgba(0, 0, 0, 0.91); background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/CraftUI/ItemCraftBackground.png?fileID=2800000&amp;guid=746cf0a6bd476544aa056940c6f60eff&amp;type=3#ItemCraftBackground&apos;);">
+    <ui:VisualElement name="upgrade_screen" class="screen" style="background-color: rgba(0, 0, 0, 0.91); background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/CraftUI/ItemCraftBackground.png?fileID=2800000&amp;guid=746cf0a6bd476544aa056940c6f60eff&amp;type=3#ItemCraftBackground&apos;); top: -2px; right: 1px; left: -1px; bottom: 2px;">
         <ui:VisualElement name="scale_pivot" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; transition-duration: 0.3s;">
             <ui:VisualElement name="move_screen" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; background-image: none; background-color: rgba(0, 0, 0, 0); transition-property: scale, transform-origin; transition-duration: 0s, 0s;">
                 <ui:VisualElement name="item" class="item" style="display: none;" />
@@ -93,7 +93,7 @@
                 <ui:Button display-tooltip-when-elided="true" name="right_button" class="move_button" style="background-image: url(&apos;project://database/Assets/UIToolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=0c59483ae80942c49a8ed8c34f22783d&amp;type=3#arrow-right@2x&apos;); visibility: hidden;" />
             </ui:VisualElement>
             <ui:VisualElement picking-mode="Ignore" class="panel" style="justify-content: flex-end; padding-bottom: 20px;">
-                <ui:VisualElement name="label_parent" picking-mode="Ignore" style="flex-direction: row; width: 100%; justify-content: center; height: 100px;">
+                <ui:VisualElement name="label_parent" picking-mode="Ignore" style="flex-direction: row; width: 100%; justify-content: center; height: 100px; background-color: rgba(0, 0, 0, 0.46);">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="left_label" picking-mode="Ignore" class="font_base common_label" />
                     <ui:Label text="T" display-tooltip-when-elided="true" name="mid_label" picking-mode="Ignore" class="font_base selected_label" />
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="right_label" picking-mode="Ignore" class="common_label font_base" />

@@ -53,7 +53,8 @@ namespace UI.Upgrade
             //parent.style.translate = new StyleTranslate(new Translate(_v.x,_v.y));
             //parent.style.left = _v.x; 
             //parent.style.top = _v.y;
-            parent.style.left = Parent.worldBound.width / 2 +_v.x; 
+            parent.transform.position = _v; 
+            //parent.style.left = Parent.worldBound.width / 2 +_v.x;
         }
         public void SetPos(float _f)
         {
@@ -61,7 +62,9 @@ namespace UI.Upgrade
             //parent.style.left = _v.x; 
             //parent.style.top = _v.y;
         //    parent.style.left = (100) / _f;
-            parent.style.left = 100;
+            //parent.style.left = 100;
+            //parent.transform.position = _v; 
+
         }
         /// <summary>
         /// 슬롯 리스트 초기화 
