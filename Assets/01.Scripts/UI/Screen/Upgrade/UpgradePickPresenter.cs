@@ -8,7 +8,7 @@ using System.Linq;
 namespace UI.Upgrade
 {
     /// <summary>
-    /// ¾÷±×·¹ÀÌµå Ã¢¿¡¼­ ½½·Ô Å¬¸¯½Ã È°¼ºÈ­µÉ ÆĞ³Î    
+    /// ì—…ê·¸ë ˆì´ë“œ ì°½ì—ì„œ ìŠ¬ë¡¯ í´ë¦­ì‹œ í™œì„±í™”ë  íŒ¨ë„    
     /// </summary>
     public class UpgradePickPresenter
     {
@@ -17,7 +17,7 @@ namespace UI.Upgrade
         private VisualElement parent;
         private List<UpgradeSlotPresenter> upgradeSlotList = new List<UpgradeSlotPresenter>();
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public VisualElement Parent => parent;
         public UpgradePickPresenter(VisualElement _v)
         {
@@ -30,7 +30,7 @@ namespace UI.Upgrade
         }
 
         /// <summary>
-        /// ÇÕ¼ºÇÏ±â ¹öÆ° ÀÌº¥Æ® Ãß°¡ 
+        /// í•©ì„±í•˜ê¸° ë²„íŠ¼ ì´ë²¤íŠ¸ ì¶”ê°€ 
         /// </summary>
         /// <param name="_callback"></param>
         public void SetButtonEvent(Action _callback)
@@ -64,7 +64,7 @@ namespace UI.Upgrade
             parent.style.left = 100;
         }
         /// <summary>
-        /// ½½·Ô ¸®½ºÆ® ÃÊ±âÈ­ 
+        /// ìŠ¬ë¡¯ ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™” 
         /// </summary>
         public void ClearSlots()
         {
@@ -87,12 +87,12 @@ namespace UI.Upgrade
 
 
         /// <summary>
-        /// ÇÕ¼º °¡´É ¿©ºÎ Ã¼Å© 
+        /// í•©ì„± ê°€ëŠ¥ ì—¬ë¶€ ì²´í¬ 
         /// </summary>
         private void CheckUpgrade()
         {
-            // ¸ğµç Àç·á°¡ ÀÖ´Ù¸é ÇÕ¼º°¡´É 
-            bool _isCan = upgradeSlotList.Where((x) => x.IsEnough).Count() == upgradeSlotList.Count; //ÇÕ¼º °¡´É ¿©ºÎ 
+            // ëª¨ë“  ì¬ë£Œê°€ ìˆë‹¤ë©´ í•©ì„±ê°€ëŠ¥ 
+            bool _isCan = upgradeSlotList.Where((x) => x.IsEnough).Count() == upgradeSlotList.Count; //í•©ì„± ê°€ëŠ¥ ì—¬ë¶€ 
             upgradePickView.ActiveUpgradeButton(_isCan);
         }
 

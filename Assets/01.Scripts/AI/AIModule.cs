@@ -222,15 +222,17 @@ namespace Module
 		public override void Init(AbMainModule _mainModule, params string[] _parameters)
 		{
 			base.Init(_mainModule, _parameters);
-			if ((_mainModule as IEnemy).SmoothPath is not null)
+			if ((_mainModule is IEnemy))
 			{
-				smoothPath = (_mainModule as IEnemy).SmoothPath;
+				if ((_mainModule as IEnemy).SmoothPath is not null)
+				{
+					smoothPath = (_mainModule as IEnemy).SmoothPath;
+				}
+				originPos = _mainModule.transform.position;
+				rootNodeMaker ??= new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
+				rootNodeMaker.isSetAISO = false;
+				rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
 			}
-			originPos = _mainModule.transform.position;
-			rootNodeMaker ??= new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
-			rootNodeMaker.isSetAISO = false;
-			rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
-			
 		}
 
 		public override void Start()
@@ -251,6 +253,11 @@ namespace Module
 				return;
 			}
 
+			if (rootNodeMaker == null)
+			{
+				return;
+			}
+			
 			if (!rootNodeMaker.isSetAISO)
             {
 				return;

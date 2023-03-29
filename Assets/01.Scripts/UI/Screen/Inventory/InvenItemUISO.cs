@@ -21,27 +21,27 @@ namespace UI.Inventory
     }
 
     /// <summary>
-    /// ÀÎº¥Åä¸®ÀÇ ¾ÆÀÌÅÛUI enumÅ¸ÀÔ°ú ¾ÆÀÌÅÛ µ¥ÀÌÅÍ enum Å¸ÀÔÀ» ¿¬°á ½ÃÄÑÁÖ´Â Å¬·¡½º
+    /// ì¸ë²¤í† ë¦¬ì˜ ì•„ì´í…œUI enumíƒ€ì…ê³¼ ì•„ì´í…œ ë°ì´í„° enum íƒ€ì…ì„ ì—°ê²° ì‹œì¼œì£¼ëŠ” í´ë˜ìŠ¤
     /// </summary>
     [CreateAssetMenu(menuName = "SO/UI/InvenItemSO")]
     public class InvenItemUISO : ScriptableObject
     {
 
-        [SerializeField, Header("ÀÚµ¿À¸·Î List Ã¤¿ï°Å³Ä(enum ¹®ÀÚ °°¾Æ¾ßÇÔ)")]  
+        [SerializeField, Header("ìë™ìœ¼ë¡œ List ì±„ìš¸ê±°ëƒ(enum ë¬¸ì ê°™ì•„ì•¼í•¨)")]  
         private bool isAuto = false; 
         public List<InvenType> invenItemTypeList = new List<InvenType>();
 
         private void OnValidate()
         {
             if (isAuto == false) return; 
-            // ¾ÆÀÌÅÛ µ¥ÀÌÅÍ Å¸ÀÔ¿¡ µû¶ó ¸®½ºÆ® »ı¼º 
+            // ì•„ì´í…œ ë°ì´í„° íƒ€ì…ì— ë”°ë¼ ë¦¬ìŠ¤íŠ¸ ìƒì„± 
             invenItemTypeList.Clear(); 
             foreach (var _dType in Enum.GetValues(typeof(ItemType)))
             {
                 if ((ItemType)_dType == ItemType.None) return; 
                 foreach(var _uiType in Enum.GetValues(typeof(InventoryGridSlotsView.InvenPanelElements)))
                 {
-                    // °°Àº °Å Ã£¾Æ¼­ ¸ÂÀ¸¸é ¸®½ºÆ® Ãß°¡ 
+                    // ê°™ì€ ê±° ì°¾ì•„ì„œ ë§ìœ¼ë©´ ë¦¬ìŠ¤íŠ¸ ì¶”ê°€ 
                     if(Enum.GetName(_dType.GetType(), _dType).ToLower() ==
                     Enum.GetName(_uiType.GetType(), _uiType).Replace("_panel", ""))
                     {

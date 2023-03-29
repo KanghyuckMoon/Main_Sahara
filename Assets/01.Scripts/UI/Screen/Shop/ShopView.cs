@@ -35,7 +35,7 @@ namespace UI.Shop
         }
 
         /// <summary>
-        /// »óÁ¡ ÀÌ¸§ ¼³Á¤ 
+        /// ìƒì  ì´ë¦„ ì„¤ì • 
         /// </summary>
         /// <param name="_name"></param>
         public void SetShopName(string _name)
@@ -44,9 +44,9 @@ namespace UI.Shop
         }
 
         /// <summary>
-        /// »óÁ¡Ã¢°ú »óÁ¡ ÁÖÀÎ Ç¥½Ã ¼ø¼­ ¼³Á¤ 
+        /// ìƒì ì°½ê³¼ ìƒì  ì£¼ì¸ í‘œì‹œ ìˆœì„œ ì„¤ì • 
         /// </summary>
-        /// <param name="_isInvenLeft">ÀÎº¥Åä¸®Ã¢ÀÌ ¿ŞÂÊ</param>
+        /// <param name="_isInvenLeft">ì¸ë²¤í† ë¦¬ì°½ì´ ì™¼ìª½</param>
         public void SetPanelDir(bool _isInvenLeft)
         {
             GetVisualElement((int)Elements.content).style.flexDirection = _isInvenLeft ? FlexDirection.Row : FlexDirection.RowReverse; 

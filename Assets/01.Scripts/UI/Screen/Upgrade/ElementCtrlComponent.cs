@@ -51,6 +51,11 @@ namespace UI.Upgrade
             //Move();
             RealMove();
             Zoom();
+
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                this.target.transform.position = realTargetV; 
+            }
         }
 
         private Vector2 startPos, nextPos, movePos;
@@ -127,7 +132,7 @@ namespace UI.Upgrade
             target.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(
                 new Length(50f, LengthUnit.Percent),
                 new Length(50f, LengthUnit.Percent)));
-            target.transform.scale = Vector2.one;
+            target.parent.transform.scale = Vector2.one;
         }
 
         public void StopTween()
@@ -155,19 +160,19 @@ namespace UI.Upgrade
             Vector3 mapPos = target.transform.position;
 
             float distX, distY; // 움직일 거리 
-            distX = _value.x /* / target.transform.scale.x*/;
-            distY = _value.y /* /  target.transform.scale.y*/;
+            distX = _value.x  / target.parent.transform.scale.x;
+            distY = _value.y  /  target.parent.transform.scale.y;
 
             float _targetX, _targetY; // 현재 포지션 + 움직이 거리]
             //  float _limitX = Mathf.Clamp(target.contentRect.width * target.transform.scale.x   - Screen.width,0,float.MaxValue); // 화면 크기 보다 대장장이 창이 크면 조작 가능  
             // float _limitY = Mathf.Clamp(target.contentRect.height * target.transform.scale.y - Screen.height,0,float.MaxValue); 
-            float _limitX = target.contentRect.width * target.transform.scale.x; // 화면 크기 보다 대장장이 창이 크면 조작 가능  
-            float _limitY = target.contentRect.height * target.transform.scale.y;
+            float _limitX = target.contentRect.width * target.parent.transform.scale.x; // 화면 크기 보다 대장장이 창이 크면 조작 가능  
+            float _limitY = target.contentRect.height * target.parent.transform.scale.y;
             _targetX = Mathf.Clamp(distX + mapPos.x, -_limitX * 0.5f, _limitX * 0.5f);
             _targetY = Mathf.Clamp(distY + mapPos.y, -_limitY * 0.5f, _limitY * 0.5f);
 
             //   this.target.transform.position = new Vector3(_targetX, _targetY, 0);
-            realTargetV = new Vector3(distX + realTargetV.x, distY + realTargetV.y, 0);
+            realTargetV = new Vector2(distX + realTargetV.x, distY + realTargetV.y);
             // this.target.transform.position = new Vector3(distX + mapPos.x, distY + mapPos.y, 0);
         }
 
@@ -178,13 +183,16 @@ namespace UI.Upgrade
         /// </summary>
         private void RealMove()
         {
-            this.target.transform.position = Vector2.Lerp(target.transform.position, realTargetV, Time.deltaTime * 15f * target.transform.scale.x);
+            this.target.transform.position = Vector2.Lerp(target.transform.position, realTargetV, 
+                Time.deltaTime * 1000f * target.transform.scale.x);
+            /*this.target.style.left = realTargetV.x; 
+            this.target.style.bottom = realTargetV.y;*/ 
         }
 
         private void CheckLimit()
         {
-            float _limitX = target.contentRect.width * target.transform.scale.x; // 화면 크기 보다 대장장이 창이 크면 조작 가능  
-            float _limitY = target.contentRect.height * target.transform.scale.y;
+            float _limitX = target.contentRect.width * target.parent.transform.scale.x; // 화면 크기 보다 대장장이 창이 크면 조작 가능  
+            float _limitY = target.contentRect.height * target.parent.transform.scale.y;
 
             float _targetX = Mathf.Clamp(TargetV.x, -_limitX, _limitX);
             float _targetY = Mathf.Clamp(TargetV.y, -_limitY, _limitY* 0.5f);
@@ -215,7 +223,7 @@ namespace UI.Upgrade
 
         public void Zoom()
         {
-            Vector3 mapScale = target.transform.scale;
+            Vector3 mapScale = target.parent.transform.scale;
 
             /// 확대 축소 
 
@@ -223,12 +231,12 @@ namespace UI.Upgrade
             float scaleX, scaleY;
             scaleX = Mathf.Clamp(mapScale.x + (zoomValue * mapScale.x) * zoomSpeed, minZoomValue, maxZoomValue);
             scaleY = Mathf.Clamp(mapScale.y + (zoomValue * mapScale.y) * zoomSpeed, minZoomValue, maxZoomValue);
-            target.transform.scale = new Vector3(scaleX, scaleY, mapScale.z);
+            target.parent.transform.scale = new Vector3(scaleX, scaleY, mapScale.z);
 
             // 피벗 설정
-            target.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(
+            /*target.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(
                 new Length((target.contentRect.width * 0.5f - target.transform.position.x), LengthUnit.Pixel),
-                new Length((target.contentRect.height * 0.5f - target.transform.position.y), LengthUnit.Pixel)));
+                new Length((target.contentRect.height * 0.5f - target.transform.position.y), LengthUnit.Pixel)));*/
         }
     }
 }

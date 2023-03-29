@@ -7,14 +7,15 @@ using GoogleSpreadSheet;
 using UI.Manager;
 using UI.Inventory;
 using Shop;
-using Inventory; 
+using Inventory;
+using Utill.Addressable;
 
 namespace UI.Shop
 {
     public enum ShopType
     {
-        BuyShop, //±∏∏≈
-        SellShop,   // ∆«∏≈ 
+        BuyShop, //Íµ¨Îß§
+        SellShop,   // ÌåêÎß§ 
 
     }
     public class ShopPresenter : MonoBehaviour, IScreen
@@ -24,26 +25,28 @@ namespace UI.Shop
         [SerializeField]
         private ShopView shopView;
         private InventoryGridSlotsPr inventoryGridSlotsPr;
-
-        // «¡∑Œ∆€∆º
+        private InvenItemUISO invenItemUISO;
+        
+        // ÌîÑÎ°úÌçºÌã∞
         public IUIController UIController { get ; set; }
 
         public string name;
-        [ContextMenu("ƒ∏√ƒ")]
+        [ContextMenu("Ï∫°Ï≥ê")]
         public void CaptureTest()
         {
             ScreenCapture.CaptureScreenshot(name);
         }
         private void OnEnable()
         {
+            invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
             this.uiDocument = GetComponent<UIDocument>();
             shopView.InitUIDocument(uiDocument);
             shopView.Cashing();
             shopView.Init();
 
-            // ¿Œ∫•≈‰∏Æ ΩΩ∑‘µÈ ∫‰ ª˝º∫ 
+            // Ïù∏Î≤§ÌÜ†Î¶¨ Ïä¨Î°ØÎì§ Î∑∞ ÏÉùÏÑ± 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(shopView.ParentElement);
-            // ΩΩ∑‘ ª˝º∫ 
+            // Ïä¨Î°Ø ÏÉùÏÑ± 
             inventoryGridSlotsPr.Init();
         }
 
@@ -55,7 +58,7 @@ namespace UI.Shop
             }
         }
         /// <summary>
-        /// ªÛ¡° æ∆¿Ã≈€ ºº∆√  
+        /// ÏÉÅÏ†ê ÏïÑÏù¥ÌÖú ÏÑ∏ÌåÖ  
         /// </summary>
         private void SetShopItem()
         {
@@ -65,7 +68,7 @@ namespace UI.Shop
             foreach(var _data in _allDataList)
             {
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
-                // ¥ı∫Ì≈¨∏ØΩ√ ±∏∏≈ ¿Ã∫•∆Æ √ﬂ∞° 
+                // ÎçîÎ∏îÌÅ¥Î¶≠Ïãú Íµ¨Îß§ Ïù¥Î≤§Ìä∏ Ï∂îÍ∞Ä 
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
                 {
                     x.AddDoubleClicker(() => ShopManager.Instance.BuyItem(_data));
@@ -76,41 +79,50 @@ namespace UI.Shop
         }
 
         /// <summary>
-        /// «ˆ¿Á ¿Œ∫•≈‰∏Æ æ∆¿Ã≈€ ºº∆√ 
+        /// ÌòÑÏû¨ Ïù∏Î≤§ÌÜ†Î¶¨ ÏïÑÏù¥ÌÖú ÏÑ∏ÌåÖ 
         /// </summary>
         private void SetInvenItem()
         {
             inventoryGridSlotsPr.ClearSlotDatas();
             
-            // ¿Œ∫•≈‰∏Æ µ•¿Ã≈Õ º≥¡§ 
+            // Ïù∏Î≤§ÌÜ†Î¶¨ Îç∞Ïù¥ÌÑ∞ ÏÑ§Ï†ï 
             List<ItemData> _itemList = InventoryManager.Instance.GetWeaponAndConsumptionList();
-            foreach (var _data in _itemList)
+            if(_itemList.Count > 0)
             {
-                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
-                // ¥ı∫Ì≈¨∏ØΩ√ ∆«∏≈ ¿Ã∫•∆Æ √ﬂ∞° 
-                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                foreach (var _data in _itemList)
                 {
-                    x.AddDoubleClicker(() => ShopManager.Instance.SellItem(_data));
-                });
+                    if (inventoryGridSlotsPr.ItemSlotDic[_data.itemType].CheckIndex() == false)
+                    {
+                        inventoryGridSlotsPr.CreateRow(invenItemUISO.GetItemUIType(_data.itemType));
+                    }
+                        
+                    inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
+                    // ÎçîÎ∏îÌÅ¥Î¶≠Ïãú ÌåêÎß§ Ïù¥Î≤§Ìä∏ Ï∂îÍ∞Ä 
+                    inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                    {
+                        x.AddDoubleClicker(() => ShopManager.Instance.SellItem(_data));
+                    });
+                }    
             }
+            
         }
 
-        [ContextMenu("±∏∏≈")]
+        [ContextMenu("Íµ¨Îß§")]
         public void TestBuyShop()
         {
             ActivetShop(ShopType.BuyShop);
         }
-        [ContextMenu("∆«∏≈")]
+        [ContextMenu("ÌåêÎß§")]
         public void TestSellShop()
         {
             ActivetShop(ShopType.SellShop);
         }
 
         /// <summary>
-        /// ªÛ¡° »∞º∫»≠ 
+        /// ÏÉÅÏ†ê ÌôúÏÑ±Ìôî 
         /// </summary>
         /// <param name="_shopType"></param>
-        public void ActivetShop(ShopType _shopType)
+        public bool ActivetShop(ShopType _shopType)
         {
             string _name = "";
             bool _isLeft = true; 
@@ -133,7 +145,9 @@ namespace UI.Shop
             }
             this.shopView.SetShopName(_name);
             this.shopView.SetPanelDir(_isLeft); 
-            this.shopView.ActiveScreen(true); 
+            this.shopView.ActiveScreen(true);
+
+            return true; 
         }
 
         public bool ActiveView()
