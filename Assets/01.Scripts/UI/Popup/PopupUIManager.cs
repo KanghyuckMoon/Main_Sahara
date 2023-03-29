@@ -67,9 +67,16 @@ namespace UI.Popup
                 isInit = true; 
             }
             T _popupGetItemPr = new T();
-            
-            popupPrList.First(x => x.PopupType == _popupType).SetParent(_popupGetItemPr.Parent);
-            if (_time > 0f)
+
+            try
+            {
+                popupPrList.First(x => x.PopupType == _popupType).SetParent(_popupGetItemPr.Parent);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Sequence contains no matching element : " + e.Message);
+            }
+             if (_time > 0f)
             {
                 StartCoroutine(_popupGetItemPr.TimerCo(_time));
             }

@@ -16,6 +16,9 @@ namespace UI.Manager
         private TextKeySO textKeySO;
         private EntityPresenter playerHud;
 
+        // 기능들 
+        private CursorModule cursorModule; 
+        
         private IUIController screenUIController = null;
 
         private int width, height;
@@ -60,7 +63,9 @@ namespace UI.Manager
             textKeySO ??= AddressablesManager.Instance.GetResource<TextKeySO>("TextKeySO");
             // 설정
             width = Screen.width;
-            height = Screen.height; 
+            height = Screen.height;
+
+            cursorModule = new CursorModule();
         }
     
         /// <summary>
@@ -92,16 +97,9 @@ namespace UI.Manager
 
         public void ActiveCursor(bool _isActive)
         {
-            if (_isActive == true)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                return;
-            }
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-
+            this.cursorModule.ActiveCursor(_isActive);
         }
+
     }
 
 }

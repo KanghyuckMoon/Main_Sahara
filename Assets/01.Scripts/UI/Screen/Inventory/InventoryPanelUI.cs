@@ -69,6 +69,10 @@ namespace UI.Inventory
         /// </summary>
         public void SetItemDataUI(ItemData _itemData)
         {
+            if (index > slotItemViewList.Count)
+            {
+                
+            }
             SlotItemPresenter _slotView = slotItemViewList[index];
             _slotView.SetItemData(_itemData); 
             ++index;
@@ -91,6 +95,11 @@ namespace UI.Inventory
         {
             SlotItemPresenter _slotView = equipItemViewList[_index];
             _slotView.SetItemData(_itemData);
+        }
+
+        public bool CheckIndex()
+        {
+            return index<slotItemViewList.Count; 
         }
 
     }

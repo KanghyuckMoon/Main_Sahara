@@ -20,12 +20,12 @@ namespace UI.Production
         {
             image,
             item,
-            frame
+            //frame
         }
         enum Labels
         {
             text
-        }
+        }   
 
         private bool isStackable; // 셀수 있냐 
         private Manipulator curManipulator;
