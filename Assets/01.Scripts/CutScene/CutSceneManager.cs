@@ -14,6 +14,7 @@ using Module;
 using Module.Talk;
 using CondinedModule;
 using EventObject;
+using TimeManager;
 
 namespace CutScene
 {
@@ -106,7 +107,7 @@ namespace CutScene
             timelineAsset = AddressablesManager.Instance.GetResource<TimelineAsset>(_address);
 
             SettingParameterCutSceneData(_cutSceneData);
-
+            StaticTime.EntierTime = 0f;
 
             if (index == 0)
 			{
@@ -250,6 +251,7 @@ namespace CutScene
                 if (cutSceneDataList is null)
                 {
                     ResetCam();
+                    StaticTime.EntierTime = 1f;
                     return;
                 }
                 if (cutSceneDataList.cutSceneDataList.Count > index + 1)
@@ -262,6 +264,7 @@ namespace CutScene
                 {
                     ResetCam();
                     TalkModuleCutSceneOff();
+                    StaticTime.EntierTime = 1f;
                     return;
                 }
             }
