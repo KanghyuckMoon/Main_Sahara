@@ -32,6 +32,8 @@ namespace Module
 		}
         private int swordLayerIndex;
 
+        private MoveModule moveModule;
+        
         public AnimationModule(AbMainModule _mainModule)
         {
 
@@ -58,6 +60,11 @@ namespace Module
             (StaticTime.Instance as IObserble).AddObserver(this);
         }
 
+        public override void Start()
+        {
+            moveModule = mainModule.GetModuleComponent<MoveModule>(ModuleType.Move);
+        }
+
         public override void FixedUpdate()
         {
             //animator.SetFloat("MoveSpeed", mainModule.moveSpeed);
@@ -66,8 +73,8 @@ namespace Module
             Animator.SetBool("JumpBuf", mainModule.IsJumpBuf);
             Animator.SetBool("WeaponExist", mainModule.IsWeaponExist);
 
-            Animator.SetFloat("MoveX", mainModule.ObjDir.x);
-            Animator.SetFloat("MoveY", mainModule.ObjDir.y);
+            Animator.SetFloat("MoveX", mainModule.ObjDir.x * moveModule.AnimationBlend);
+            Animator.SetFloat("MoveY", mainModule.ObjDir.y * moveModule.AnimationBlend);
             Animator.SetBool("Charge", mainModule.IsCharging);
 
             //Debug.LogError(mainModule.ObjRotation.eulerAngles.x);
