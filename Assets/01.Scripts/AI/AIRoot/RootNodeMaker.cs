@@ -141,16 +141,16 @@ namespace AI
 			Gizmos.color = aiSO.gizmoColor_fer;
 			Vector3 rightSusDir = AngleToDir(aiModule.MainModule.transform.eulerAngles.y + aiSO.SuspicionAngle * 0.5f);
 			Vector3 leftSusDir = AngleToDir(aiModule.MainModule.transform.eulerAngles.y - aiSO.SuspicionAngle * 0.5f);
-			Gizmos.DrawLine(drawPos, drawPos + (rightSusDir * aiSO.SuspicionRadius));
-			Gizmos.DrawLine(drawPos, drawPos + (leftSusDir * aiSO.SuspicionRadius));
-			Gizmos.DrawWireSphere(Position, aiSO.SuspicionAngle);
+			Gizmos.DrawLine(drawPos, drawPos + (rightSusDir * aiSO.SuspicionAngle));
+			Gizmos.DrawLine(drawPos, drawPos + (leftSusDir * aiSO.SuspicionAngle));
+			Gizmos.DrawWireSphere(Position, aiSO.SuspicionRadius);
 
 			Gizmos.color = aiSO.gizmoColor_attack;
 			Vector3 rightAttackDir = AngleToDir(aiModule.MainModule.transform.eulerAngles.y + aiSO.AttackAngle * 0.5f);
 			Vector3 leftAttackDir = AngleToDir(aiModule.MainModule.transform.eulerAngles.y - aiSO.AttackAngle * 0.5f);
-			Gizmos.DrawLine(drawPos, drawPos + (rightAttackDir * aiSO.AttackRadius));
-			Gizmos.DrawLine(drawPos, drawPos + (leftAttackDir * aiSO.AttackRadius));
-			Gizmos.DrawWireSphere(Position, aiSO.AttackAngle);
+			Gizmos.DrawLine(drawPos, drawPos + (rightAttackDir * aiSO.AttackAngle));
+			Gizmos.DrawLine(drawPos, drawPos + (leftAttackDir * aiSO.AttackAngle));
+			Gizmos.DrawWireSphere(Position, aiSO.AttackRadius);
 
 			Debug.DrawRay(jumpCheckVector, Vector3.down * 1000, Color.yellow);
 
