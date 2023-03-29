@@ -93,7 +93,7 @@ namespace Module.Talk
 
 		public void Talk()
 		{
-			if(CanTalk())
+			if(true)
 			{
 				Logging.Log("대화 가능");
 				if (ShopModule is not null)

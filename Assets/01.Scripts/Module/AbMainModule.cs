@@ -63,6 +63,18 @@ namespace Module
                 objDir = value;
             }
         }
+
+        public Vector3 ObjDirection
+        {
+            get
+            {
+                return objDirection;
+            }
+            set
+            {
+                objDirection = value;
+            }
+        }
         public Quaternion ObjRotation
         {
             get
@@ -305,6 +317,18 @@ namespace Module
                 isDash = value;
             }
         }
+
+        public bool IsConsecutiveWeapon
+        {
+            get
+            {
+                return isConsecutiveWeapon;
+            }
+            set
+            {
+                isConsecutiveWeapon = value;
+            }
+        }
         public float GravityScale
         {
             get
@@ -481,8 +505,10 @@ namespace Module
 
         [SerializeField, Header("캐릭터 컨트롤러")] 
         private CharacterController characterController;
-        [SerializeField, Header("캐릭터가 갈 방향")] 
+        [SerializeField, Header("(입력된)캐릭터가 갈 방향")]
         private Vector2 objDir;
+        [SerializeField, Header("(입력된)캐릭터가 갈 방향")] 
+        private Vector3 objDirection;
         [SerializeField, Header("카메라의 회전")] 
         private Quaternion objRotation;
         [SerializeField, Header("카메라 앞방향")]
@@ -532,6 +558,8 @@ namespace Module
         private bool canConsecutiveAttack;
         [SerializeField, Header("대쉬?")]
         private bool isDash;
+        [SerializeField, Header("연속공격이 가능한 무기인가?")]
+        private bool isConsecutiveWeapon;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
@@ -611,6 +639,7 @@ namespace Module
         private List<Observer> observers = new List<Observer>();
 
         public virtual void SetConsecutiveAttack(int _on) { }
+        public virtual void SetActiveAnimatorRoot(int _on) { }
 
         private void Start()
         {

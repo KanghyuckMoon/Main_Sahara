@@ -155,6 +155,7 @@ namespace Module
                 //if(isProjectileWeapon) 
                 AttackModule.ProjectileName = BaseWeapon.WeaponDataSO.projectileObjectName;
 
+                mainModule.IsConsecutiveWeapon = BaseWeapon.isConsecutiveWeapon;
                 mainModule.IsWeaponExist = true;
                 SetBehaveAnimation();
             }
@@ -164,7 +165,7 @@ namespace Module
             //_baseWeapon.weaponHand
             foreach(WeaponSpownObject _hand in WeaponRight)
             {
-                if (_hand.weaponHand == _baseWeapon.weaponHand)
+                    if (_hand.weaponHand == _baseWeapon.weaponHand)
                     return _hand.transform;
             }
 

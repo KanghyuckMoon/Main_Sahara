@@ -24,14 +24,12 @@ namespace Module
 
 		private void InputAttack()
 		{
-			if (mainModule.CanConsecutiveAttack)
+			if (mainModule.CanConsecutiveAttack && mainModule.IsConsecutiveWeapon)
 				if (Input.GetMouseButton(0))
 					mainModule.Animator.SetBool("ConsecutiveAttack", true);
 			
 			if (mainModule.IsWeaponExist)
 			{
-				
-				
 				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) &&
 				    !StateModule.CheckState(State.SKILL))
 				{
@@ -40,7 +38,7 @@ namespace Module
 					if (Input.GetMouseButtonDown(0))
 					{
 						mainModule.Attacking = true;
-						StateModule.AddState(State.ATTACK);
+						//StateModule.AddState(State.ATTACK);
 						StateModule.AddState(State.CHARGE);
 
 						//AttackModule.SpownCurrentArrow();
@@ -50,7 +48,7 @@ namespace Module
 					if (Input.GetMouseButtonDown(1))
 					{
 						mainModule.StrongAttacking = true;
-						StateModule.AddState(State.ATTACK);
+						//StateModule.AddState(State.ATTACK);
 						//StateModule.AddState(State.CHARGE);
 
 						//AttackModule.SpownCurrentArrow();
@@ -72,7 +70,7 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (!StateModule.CheckState(State.ATTACK, State.SKILL) && mainModule.CanMove)
+			if (!StateModule.CheckState(State.SKILL) && mainModule.CanMove)
 			{
 				float _inputX = Input.GetAxis("Horizontal");
 				float _inputY = Input.GetAxis("Vertical");

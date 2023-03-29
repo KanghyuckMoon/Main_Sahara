@@ -34,12 +34,12 @@ namespace UI.Upgrade
 
         public void ActiveUpgradeButton(bool _isActive)
         {
-            // ¹öÆ° Å¬¸¯ ÇÒ ¼ö ÀÖ´ÂÁö ¼³Á¤  
+            // ë²„íŠ¼ í´ë¦­ í•  ìˆ˜ ìˆëŠ”ì§€ ì„¤ì •  
             GetButton((int)Buttons.compose_button).pickingMode = _isActive ? PickingMode.Position : PickingMode.Ignore;
             GetButton((int)Buttons.compose_button).style.opacity = _isActive ? 1f : 0.7f; 
         }
         /// <summary>
-        /// ÇÕ¼ºÇÏ±â ¹öÆ°¿¡ ÀÌº¥Æ® Ãß°¡
+        /// í•©ì„±í•˜ê¸° ë²„íŠ¼ì— ì´ë²¤íŠ¸ ì¶”ê°€
         /// </summary>
         /// <param name="_callback"></param>
         public void AddComposeButtonEvent(Action _callback)
