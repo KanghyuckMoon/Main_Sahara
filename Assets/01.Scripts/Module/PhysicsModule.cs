@@ -158,9 +158,11 @@ namespace Module
             }
             Vector3 _shakeDir = Quaternion.Euler(0, -45, 0) * _dir;
 
+            float _power = _inGameHitBox.KnockbackPower() / 10f;
+            
             mainModule.Model.DOKill();
             mainModule.Model.localPosition = Vector3.zero;
-            mainModule.Model.DOShakePosition(0.22f, _shakeDir * 0.5f, 20);
+            mainModule.Model.DOShakePosition(0.22f, _shakeDir * _power, 10);
             yield return new WaitForSeconds(0.22f);
             mainModule.Model.DOKill();
             mainModule.Model.localPosition = Vector3.zero;

@@ -15,7 +15,7 @@ namespace HitBox
 			}
 		}
 
-		public Vector3 HitBoxPos
+		public Vector3 HitBoxPos	
 		{
 			get
 			{
@@ -48,6 +48,7 @@ namespace HitBox
 		private GameObject owner;
 		private ulong index;
 		private bool isContactDir;
+		private Quaternion rotation;
 
 		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null, GameObject _swingEffectParent = null)
 		{
@@ -63,6 +64,7 @@ namespace HitBox
 			col.center = _hitBoxData.offset;
 			col.radius = _hitBoxData.radius;
 			col.height = _hitBoxData.height;
+			rotation = _owner.transform.rotation;
 
 
 			if (hitBoxData.childization)
@@ -117,7 +119,7 @@ namespace HitBox
 
 		public Quaternion KnockbackDir()
 		{
-			Quaternion _quaternion = transform.rotation* Quaternion.Euler(hitBoxData.knockbackDir);
+			Quaternion _quaternion = rotation * Quaternion.Euler(hitBoxData.knockbackDir);
 			return _quaternion.normalized;
 		}
 
