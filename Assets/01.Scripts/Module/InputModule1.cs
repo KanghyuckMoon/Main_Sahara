@@ -72,7 +72,7 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (!StateModule.CheckState(State.ATTACK, State.SKILL) && mainModule.CanMove)
+			if (!StateModule.CheckState(State.ATTACK) && mainModule.CanMove)
 			{
 				float _inputX = Input.GetAxis("Horizontal");
 				float _inputY = Input.GetAxis("Vertical");
@@ -82,6 +82,10 @@ namespace Module
 				mainModule.ObjDir = _inputdir;
 
 				StateModule.AddState(State.MOVING);
+			}
+			else if (!StateModule.CheckState(State.SKILL))
+			{
+				
 			}
 			else
 			{
