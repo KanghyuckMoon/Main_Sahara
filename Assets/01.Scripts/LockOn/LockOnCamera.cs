@@ -33,8 +33,6 @@ namespace LockOn
         public Transform target;    // 얘 public으로 바꿈!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private bool isTarget;
 
-        private StateModule stateModule;
-
         //private Camera 
 
         public void AddLockOnObject(Transform _lockOnObj)
@@ -53,13 +51,11 @@ namespace LockOn
         public void Start()
         {
             currentCamera = playerCam;
-            stateModule = playerModule.GetModuleComponent<StateModule>(ModuleType.State);
         }
 
         public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.T) &&
-                !stateModule.CheckState(State.CHARGE))
+		{
+			if (Input.GetKeyDown(KeyCode.T))
 			{
                 SetLockOn();
             }
@@ -77,8 +73,6 @@ namespace LockOn
 
                 playerCam.gameObject.SetActive(true);
                 groupCam.gameObject.SetActive(false);
-
-                //thirdPersonCameraController.cameraY = player.eulerAngles.y;    
                 currentCamera = playerCam;
 
                 playerModule.LockOn = false;

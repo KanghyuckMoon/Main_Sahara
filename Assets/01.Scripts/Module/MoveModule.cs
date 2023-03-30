@@ -8,13 +8,6 @@ namespace Module
 {
     public class MoveModule : AbBaseModule
     {
-        public float AnimationBlend
-        {
-            get
-            {
-                return animationBlend;
-            }
-        }
         private StateModule StateModule
         {
             get

@@ -118,7 +118,7 @@ namespace UI
         /// <summary>
         /// 현재 스크린이 활성화면 비활성화 , 비활성화면 활성화 
         /// </summary>
-        public bool ActiveScreen()
+        public virtual bool ActiveScreen()
         {
             Debug.Log("ActiveScreen");
             float _targetV = !IsVisible() ? 1f : 0;
