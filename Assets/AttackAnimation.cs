@@ -36,6 +36,9 @@ public class AttackAnimation : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
+        //mainModule.SetActiveAnimatorRoot(0);
+        stateModule.RemoveState(State.ATTACK);
+        
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
         //mainModule.CanConsecutiveAttack = false;

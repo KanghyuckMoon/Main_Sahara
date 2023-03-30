@@ -72,7 +72,7 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (!StateModule.CheckState(State.ATTACK) && mainModule.CanMove)
+			if (mainModule.CanMove)
 			{
 				float _inputX = Input.GetAxis("Horizontal");
 				float _inputY = Input.GetAxis("Vertical");
