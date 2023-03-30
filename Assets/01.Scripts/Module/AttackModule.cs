@@ -85,6 +85,7 @@ namespace Module
             }
             else
             {
+                Debug.LogError("None WeaponModule Or NotIsProjectileWeapon", mainModule.gameObject);
                 ProjectileObject = null;
             }
             return ProjectileObject;
