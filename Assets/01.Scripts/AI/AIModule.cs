@@ -285,7 +285,25 @@ namespace Module
 
 		public override void OnDisable()
 		{
+			isInit = false;
+			rootNodeMaker = null;
+			smoothPath = null;
+			uiModule = null;
+			player = null;
+			_rootNode = null;
 			base.OnDisable();
+			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
+		}
+
+		public override void OnDestroy()
+		{
+			isInit = false;
+			rootNodeMaker = null;
+			smoothPath = null;
+			uiModule = null;
+			player = null;
+			_rootNode = null;
+			base.OnDestroy();
 			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
 		}
 
