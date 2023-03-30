@@ -8,6 +8,7 @@ using UnityEngine.Animations;
 public class Hit : StateMachineBehaviour
 {
     private AbMainModule mainModule;
+    private StateModule stateModule;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -19,13 +20,17 @@ public class Hit : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
+        stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
     //    mainModule.Attacking = false;
     //    mainModule.StrongAttacking = false;
         mainModule.IsHit = false;
         animator.SetBool("Hit", false);
         
-        animator.GetComponent<ProjectileGenerator>().MoveProjectile();
+        animator.SetBool("ConsecutiveAttack", false);
         
+        animator.GetComponent<ProjectileGenerator>().MoveProjectile();
+        stateModule.RemoveState(State.ATTACK);
+        stateModule.RemoveState(State.SKILL);
 
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;

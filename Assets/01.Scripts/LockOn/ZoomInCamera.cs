@@ -76,7 +76,7 @@ namespace LockOn
                 ThirdPersonCameraController _thirdPersonCameraController =
                     lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>();
 
-                if (_thirdPersonCameraController.isActiveAndEnabled)
+                if (_thirdPersonCameraController.enabled)
                     thirdPersonCameraController.cameraY =
                         lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>().cameraY;
                 else

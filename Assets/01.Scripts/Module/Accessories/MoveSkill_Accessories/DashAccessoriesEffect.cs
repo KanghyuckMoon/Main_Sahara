@@ -35,7 +35,7 @@ namespace PassiveItem
         {
             if (!mainModule.Animator.GetBool("Dash"))
             {
-                if (mainModule.IsDash)
+                if (mainModule.IsDash && !mainModule.Animator.GetBool("ConsecutiveAttack"))
                 {
                     stateModule.AddState(State.SKILL);
                     mainModule.Animator.SetBool("Dash", true);
