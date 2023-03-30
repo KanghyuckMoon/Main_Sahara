@@ -72,7 +72,7 @@ namespace Streaming
 		private const int chunkSize = 100;
 		
 		/// <summary>
-		/// ÀÚ½ÅÀÇ ÇöÀç À§Ä¡¿¡ µû¶ó ¸ñÇ¥ÇÏ´Â ¾À µ¥ÀÌÅÍ¸¦ º¯°æÇÔ
+		/// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		/// </summary>
 		public void UpdateSceneData()
 		{
@@ -96,7 +96,7 @@ namespace Streaming
 			targetSceneData = _sceneData;
 			targetSceneData.AddObjectData(objectData);
 
-			objectClassCycle.TargetObject.name = $"{objectData.address} {targetSceneData.SceneName}";
+			//objectClassCycle.TargetObject.name = $"{objectData.address} {targetSceneData.SceneName}";
 
 			if (!targetSceneData.IsLoad)
 			{
@@ -112,7 +112,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ÇöÀç ¿ÀºêÁ§Æ®µ¥ÀÌÅÍ¸¦ ÀúÀåÇÔ
+		/// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		/// </summary>
 		public void SaveObjectData()
 		{
@@ -127,7 +127,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ÇöÀç ¿ÀºêÁ§Æ® µ¥ÀÌÅÍÀÇ »óÅÂ¸¦ »ç¿ëÁßÀ¸·Î µ¹¸²
+		/// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		/// </summary>
 		public void Use()
 		{
@@ -135,7 +135,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// ÇöÀç ¿ÀºêÁ§Æ® µ¥ÀÌÅÍÀÇ »óÅÂ¸¦ »ç¿ëÇÏÁö ¾ÊÀ½À¸·Î µ¹¸²
+		/// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		/// </summary>
 		public void UnUse()
 		{
@@ -143,7 +143,7 @@ namespace Streaming
 		}
 
 		/// <summary>
-		/// À§Ä¡¿¡ µû¶ó ¾À ÀÌ¸§À¸·Î ¹Ù²Þ
+		/// ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½
 		/// </summary>
 		/// <returns></returns>
 		private string PositionToSceneName()
@@ -182,7 +182,7 @@ namespace Streaming
 			int _currentChunkCoordY = Mathf.RoundToInt(objectClassCycle.transform.position.y / chunkSize);
 			int _currentChunkCoordZ = Mathf.RoundToInt(objectClassCycle.transform.position.z / chunkSize);
 
-			if (originChunkCoordX != _currentChunkCoordX || originChunkCoordY != _currentChunkCoordY || originChunkCoordZ != _currentChunkCoordZ) //Ã»Å©¸¦ ¹þ¾î³µ´ÂÁö ÀÌµ¿ Ã¼Å© Á¶°Ç
+			if (originChunkCoordX != _currentChunkCoordX || originChunkCoordY != _currentChunkCoordY || originChunkCoordZ != _currentChunkCoordZ) //Ã»Å©ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ Ã¼Å© ï¿½ï¿½ï¿½ï¿½
 			{
 				originChunkCoordX = _currentChunkCoordX;
 				originChunkCoordY = _currentChunkCoordY;
