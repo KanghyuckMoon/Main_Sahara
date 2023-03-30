@@ -93,7 +93,7 @@ namespace Module.Talk
 
 		public void Talk()
 		{
-			if(!isTalking)
+			if(true)
 			{
 				Logging.Log("대화 가능");
 				if (ShopModule is not null)
@@ -107,7 +107,6 @@ namespace Module.Talk
 					//없을시 기본 대화
 					RandomDefaultText();
 				}
-				isTalking = true;
 			}
 		}
 
@@ -152,7 +151,7 @@ namespace Module.Talk
 				TalkData _talkData = talkDataSO.talkDataList[i];
 				if (ConditionCheck(_talkData))
 				{
-					PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText, EndTalk);
+					PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText);
 					isTalking = true;
 
 					if (_talkData.isUseCutScene)

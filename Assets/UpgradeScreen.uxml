@@ -34,50 +34,50 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="upgrade_pick" picking-mode="Ignore" style="width: auto; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-direction: column; position: absolute; background-color: rgba(0, 0, 0, 0.94); flex-grow: 1; transform-origin: left; top: 0; left: 0; display: flex;">
-            <ui:VisualElement style="display: flex;">
-                <ui:VisualElement name="slot_parent" style="flex-direction: row; align-items: center; padding-left: 15px;">
-                    <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; opacity: 0.99;">
-                        <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
-                            <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
-                                <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
-                                <ui:Label text="5/5" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+                <ui:VisualElement name="upgrade_pick" picking-mode="Ignore" class="upgrade_pick">
+                    <ui:VisualElement style="display: flex;">
+                        <ui:VisualElement name="slot_parent" style="flex-direction: row; align-items: center; padding-left: 15px;">
+                            <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; opacity: 0.99;">
+                                <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
+                                    <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
+                                        <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
+                                        <ui:Label text="5/5" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="active_mark" style="width: 100%; height: 100%; transition-property: scale; position: absolute;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none;">
+                                <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
+                                    <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
+                                        <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
+                                        <ui:Label text="5/5" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="active_mark" style="width: 100%; height: 100%; transition-property: scale; position: absolute;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement name="active_mark" style="width: 100%; height: 100%; transition-property: scale; position: absolute;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none;">
-                        <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
-                            <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
-                                <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
-                                <ui:Label text="5/5" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+                    <ui:Button text="합성하기" display-tooltip-when-elided="true" name="compose_button" class="upgrade_button font_base" style="margin-left: 10px; margin-right: 10px; margin-top: 10px; font-size: 20px; color: rgb(248, 248, 248); -unity-font-style: bold; width: auto; min-width: 100px;" />
+                    <ui:VisualElement name="absolute_parent" style="position: absolute;">
+                        <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; position: absolute;">
+                            <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
+                                <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
+                                    <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
+                                    <ui:Label text="5/5" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
+                            <ui:VisualElement name="active_mark" style="width: 100%; height: 100%; transition-property: scale; position: absolute;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="active_mark" style="width: 100%; height: 100%; transition-property: scale; position: absolute;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:Button text="합성하기" display-tooltip-when-elided="true" name="compose_button" class="upgrade_button font_base" style="margin-left: 10px; margin-right: 10px; margin-top: 10px; font-size: 20px; color: rgb(248, 248, 248); -unity-font-style: bold; width: auto; min-width: 100px;" />
-            <ui:VisualElement name="absolute_parent" style="position: absolute;">
-                <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; position: absolute;">
-                    <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
-                        <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
-                            <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
-                            <ui:Label text="5/5" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+                        <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; position: absolute;">
+                            <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
+                                <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
+                                    <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
+                                    <ui:Label text="5/5" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="active_mark" style="width: 100%; height: 100%; transition-property: scale; position: absolute;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="active_mark" style="width: 100%; height: 100%; transition-property: scale; position: absolute;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; position: absolute;">
-                    <ui:VisualElement name="frame" style="width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47);">
-                        <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
-                            <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
-                            <ui:Label text="5/5" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement name="active_mark" style="width: 100%; height: 100%; transition-property: scale; position: absolute;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
@@ -93,7 +93,7 @@
                 <ui:Button display-tooltip-when-elided="true" name="right_button" class="move_button" style="background-image: url(&apos;project://database/Assets/UIToolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=0c59483ae80942c49a8ed8c34f22783d&amp;type=3#arrow-right@2x&apos;); visibility: hidden;" />
             </ui:VisualElement>
             <ui:VisualElement picking-mode="Ignore" class="panel" style="justify-content: flex-end; padding-bottom: 20px;">
-                <ui:VisualElement name="label_parent" picking-mode="Ignore" style="flex-direction: row; width: 100%; justify-content: center; height: 100px;">
+                <ui:VisualElement name="label_parent" picking-mode="Ignore" style="flex-direction: row; width: 100%; justify-content: center; height: 100px; background-color: rgba(0, 0, 0, 0.46);">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="left_label" picking-mode="Ignore" class="font_base common_label" />
                     <ui:Label text="T" display-tooltip-when-elided="true" name="mid_label" picking-mode="Ignore" class="font_base selected_label" />
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="right_label" picking-mode="Ignore" class="common_label font_base" />

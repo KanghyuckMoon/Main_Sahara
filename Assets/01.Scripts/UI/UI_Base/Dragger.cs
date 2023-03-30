@@ -23,7 +23,7 @@ namespace UI.Base
             this.newTarget = _target; 
             this.DownCallback = _downCallback;
         }
-
+    
         protected override void RegisterCallbacksOnTarget()
         {
             target.RegisterCallback<MouseDownEvent>(OnMouseDown);
