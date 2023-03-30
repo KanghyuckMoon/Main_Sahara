@@ -13,7 +13,7 @@ namespace UI.UtilManager
 
         public void AnimateText(Label _targetLabel, string _fullText)
         {
-            StopAllCoroutines();
+            //StopAllCoroutines();
             StartCoroutine(AnimateTextCo(_targetLabel,_fullText)); 
         }
         
