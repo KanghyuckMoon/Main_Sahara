@@ -86,6 +86,7 @@ namespace UI.Dialogue
             ActiveViewS(true); // 활성화 하고 
     
             StopAllCoroutines();
+            index = 0; 
             nameCode = _name;
             dialogueCode = _dialogue;
             _endCallback = _callback; 
@@ -153,6 +154,10 @@ namespace UI.Dialogue
                         ActiveViewS(false);
                         isDialogue = true; 
                         return; 
+                    case "!Move":
+                        string _name = fullText.Replace("\r","");
+                        StartText(_name, _name.Replace("T","A"));
+                        return; 
                     case "!GIVE":
                         return;
                     case "!GIVES":
@@ -203,7 +208,6 @@ namespace UI.Dialogue
         /// <param name="_nameText"></param>
         private void ShowSelectedDialogue(string _nameText)
         {
-            index = 0; 
             isTexting = true; 
             string _name = _nameText.Replace("\r","");
             StartText("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
