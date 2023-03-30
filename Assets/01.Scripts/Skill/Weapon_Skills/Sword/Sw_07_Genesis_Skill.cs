@@ -13,8 +13,12 @@ namespace Skill
         
         //[SerializeField] private buv
 
+        [SerializeField]
+        private int usingMana;
+
         public void Skills(AbMainModule _mainModule)
         {
+            UseMana(_mainModule, -usingMana);
             PlaySkillAnimation(_mainModule, animationClip);
         }
     }

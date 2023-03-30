@@ -230,6 +230,7 @@ namespace Data
 			MaxHp = playerdata.hp;
 			CurrentHp = playerdata.hp;
 			MaxMana = playerdata.mp;
+            CurrentMana = playerdata.mp;
 			Jump = playerdata.jumpScale;
             PhysicalResistance = playerdata.physicalResistance;
             MagicResistance = playerdata.magicResistance;
@@ -240,14 +241,16 @@ namespace Data
             ManaRegen = playerdata.manaRegen;
 			WalkSpeed = playerdata.walkingSpeed;
 			RunSpeed = playerdata.runSpeed;
-			//try
-			//{
-			//}
-			//catch
-			//{
+
+            ManaChange = 0;
+            //try
+            //{
+            //}
+            //catch
+            //{
             //    AddressablesManager.Instance.GetResourceAsync<CreatureDataSO>(dataSOPath, AsyncSetPlayerData);
             //}
-		}
+        }
         private void AsyncSetPlayerData(CreatureDataSO _creatureDataSO)
         {
             playerdata = _creatureDataSO;
