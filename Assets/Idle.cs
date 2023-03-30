@@ -20,5 +20,6 @@ public class Idle : StateMachineBehaviour
         mainModule.CanMove = true;
         
         stateModule.RemoveState(State.ATTACK);
+        stateModule.RemoveState(State.SKILL);
     }
 }
