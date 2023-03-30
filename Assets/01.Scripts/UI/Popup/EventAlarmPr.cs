@@ -28,6 +28,7 @@ namespace UI.Popup
 
         public void ActiveTween()
         {
+            eventAlarmView.EventAlarmParent.RemoveFromClassList("inactive_alarm");
             eventAlarmView.EventAlarmParent.AddToClassList("active_alarm");
         }
 
