@@ -10,6 +10,7 @@ using Utill.Pattern;
 using GoogleSpreadSheet;
 using System.Linq;
 using UI.UtilManager;
+using UnityEditor.Build;
 
 namespace UI.Quest
 {
@@ -78,7 +79,13 @@ namespace UI.Quest
         public override void ActiveScreen(bool _isActive)
         {
             base.ActiveScreen(_isActive);
-            _questEntryList.Clear(); 
+            InitListView();
+        }
+
+        public override bool ActiveScreen()
+        {
+            InitListView(); 
+            return base.ActiveScreen(); 
         }
 
         /// <summary>
@@ -109,13 +116,16 @@ namespace UI.Quest
         public void InitListView()
         {
             Debug.Log("AAA");
+            ListView _listView = GetListView((int)ListViews.quest_listview);
+
             _questDataList = QuestManager.Instance.GetActiveOrClearQuest();
+            _questEntryList.Clear(); 
+            _listView.Clear();
             // 테스트
             foreach (var v in _questDataList)
             {
                 Debug.Log(v.NameKey);
             }
-            ListView _listView = GetListView((int)ListViews.quest_listview);
             
             // 생성
             _listView.makeItem = () =>

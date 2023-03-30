@@ -259,6 +259,7 @@ namespace UI
                     StartPresenters();
                     this.statData.AddObserver(this);
                     this.uiModule.AddObserver(this);
+                    UpdateUI(); 
                 }
                 yield return null;
             }
