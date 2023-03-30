@@ -6,7 +6,6 @@ using FischlWorks;
 using UpdateManager;
 using Utill.Pattern;
 using Data;
-using PlasticGui.Configuration;
 using Pool;
 using TimeManager;
 using System;
