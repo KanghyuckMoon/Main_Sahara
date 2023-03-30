@@ -23,7 +23,6 @@ namespace CutScene
 			}
 		}
 
-        [SerializeField]
 		private string key;
 
         [SerializeField]
