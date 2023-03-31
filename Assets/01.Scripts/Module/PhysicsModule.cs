@@ -164,7 +164,7 @@ namespace Module
             
             mainModule.Model.DOKill();
             mainModule.Model.localPosition = Vector3.zero;
-            mainModule.Model.DOShakePosition(0.22f, _shakeDir * _power, 10);
+            mainModule.Model.DOShakePosition(0.22f, _shakeDir * _power, 20);
             yield return new WaitForSeconds(0.22f);
             mainModule.Model.DOKill();
             mainModule.Model.localPosition = Vector3.zero;
