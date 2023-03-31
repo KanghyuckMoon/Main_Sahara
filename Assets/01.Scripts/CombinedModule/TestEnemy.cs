@@ -48,7 +48,7 @@ namespace CondinedModule
             AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
             AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
             AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
-            AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule");
+            AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule","HudUI");
             AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
             AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
             AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
