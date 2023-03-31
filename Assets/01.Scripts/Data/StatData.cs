@@ -230,6 +230,7 @@ namespace Data
 			MaxHp = playerdata.hp;
 			CurrentHp = playerdata.hp;
 			MaxMana = playerdata.mp;
+            CurrentMana = playerdata.mp;
 			Jump = playerdata.jumpScale;
             PhysicalResistance = playerdata.physicalResistance;
             MagicResistance = playerdata.magicResistance;
