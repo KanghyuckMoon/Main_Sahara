@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,18 @@ namespace UI.UtilManager
 {
     public class UIUtilManager : MonoSingleton<UIUtilManager>
     {
-        private const string TransStr = "<alpha=#00>"; // ≈ı∏Ì πÆ¿⁄ 
+        private const string TransStr = "<alpha=#00>"; // Ìà¨Î™Ö Î¨∏Ïûê 
 
         public void AnimateText(Label _targetLabel, string _fullText)
         {
+            //StopAllCoroutines();
             StartCoroutine(AnimateTextCo(_targetLabel,_fullText)); 
         }
         
         private IEnumerator AnimateTextCo(Label _targetLabel, string _fullText)
         {
+            _targetLabel.text = String.Empty;
+            ;
             string _targetText;
             WaitForSeconds _w = new WaitForSeconds(0.03f); 
             for (int i = 0; i <= _fullText.Length; i++)

@@ -14,7 +14,7 @@ namespace UI.Upgrade
     {
         private VisualElement target;
         private bool isCtrl;
-        private float xMoveValue, yMoveValue, moveSpeed = 600f, zoomValue, zoomSpeed = 10f;
+        private float xMoveValue, yMoveValue, moveSpeed = 600f, zoomValue, zoomSpeed = 20f;
         private float minZoomValue = 1f, maxZoomValue = 2f;
 
         private bool isInput = true;
@@ -184,7 +184,7 @@ namespace UI.Upgrade
         private void RealMove()
         {
             this.target.transform.position = Vector2.Lerp(target.transform.position, realTargetV, 
-                Time.deltaTime * 1000f * target.transform.scale.x);
+                Time.deltaTime * 20f * target.transform.scale.x);
             /*this.target.style.left = realTargetV.x; 
             this.target.style.bottom = realTargetV.y;*/ 
         }

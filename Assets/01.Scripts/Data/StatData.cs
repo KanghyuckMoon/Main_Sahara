@@ -5,7 +5,6 @@ using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
 using ForTheTest;
-using PlasticGui.Configuration;
 
 namespace Data
 {
