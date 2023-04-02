@@ -33,13 +33,13 @@ namespace Shop
 		{
 			if (_itemData.count == 0)
 			{
-				Logging.Log("´õ ÀÌ»ó ¾ÆÀÌÅÛÀ» ±¸¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù");
+				Logging.Log("ë” ì´ìƒ ì•„ì´í…œì„ êµ¬ë§¤í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
 				return;
 			}
 
 			if (_itemData.price > InventoryManager.Instance.GetMoney())
 			{
-				Logging.Log("µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù");
+				Logging.Log("ëˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤");
 				return;
 			}
 
@@ -56,13 +56,13 @@ namespace Shop
 			ItemData _itemData = GetItemIndex(index);
 			if (_itemData.count == 0)
 			{
-				Logging.Log("´õ ÀÌ»ó ¾ÆÀÌÅÛÀ» ±¸¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù");
+				Logging.Log("ë” ì´ìƒ ì•„ì´í…œì„ êµ¬ë§¤í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
 				return;
 			}
 
 			if (_itemData.price > InventoryManager.Instance.GetMoney())
 			{
-				Logging.Log("µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù");
+				Logging.Log("ëˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤");
 				return;
 			}
 

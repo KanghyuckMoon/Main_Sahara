@@ -49,7 +49,7 @@ namespace UI.Quest
         private List<QuestData> _questDataList = new List<QuestData>();
         private List<(QuestData,VisualElement)> _questEntryList = new List<(QuestData,VisualElement)>(); 
 
-        // ÇÁ·ÎÆÛÆ¼
+        // í”„ë¡œí¼í‹°
         public Dictionary<QuestState, List<QuestEntryView>> QuestEntryDic => questEntryDic;
 
         public override void Cashing()
@@ -82,20 +82,20 @@ namespace UI.Quest
         }
 
         /// <summary>
-        /// Äù½ºÆ® ÀÌ¸§, ¼³¸í ³ªÅ¸³»±â 
+        /// í€˜ìŠ¤íŠ¸ ì´ë¦„, ì„¤ëª… ë‚˜íƒ€ë‚´ê¸° 
         /// </summary>
         /// <param name="_title"></param>
         /// <param name="_detail"></param>
         public void SetTitleAndDetail(string _title,string _detail)
         {
             GetLabel((int)Labels.quest_name_label).text = _title;
-            // ¾Ö´Ï¸ŞÀÌ¼Ç ¤¡¤¡ 
+            // ì• ë‹ˆë©”ì´ì…˜ ã„±ã„± 
         //    GetLabel((int)Labels.quest_detail_label).text = _detail;
             UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_detail_label), _detail);
         }
 
         /// <summary>
-        /// Äù½ºÆ®UI ºÎ¸ğ ¼³Á¤ 
+        /// í€˜ìŠ¤íŠ¸UI ë¶€ëª¨ ì„¤ì • 
         /// </summary>
         /// <param name="_v"></param>
         public void SetQuestParent(VisualElement _v)
@@ -104,20 +104,20 @@ namespace UI.Quest
         }
 
         /// <summary>
-        /// ¸®½ºÆ®ºä ÃÊ±âÈ­(»ı¼º, ¹ÙÀÎµù)
+        /// ë¦¬ìŠ¤íŠ¸ë·° ì´ˆê¸°í™”(ìƒì„±, ë°”ì¸ë”©)
         /// </summary>
         public void InitListView()
         {
             Debug.Log("AAA");
             _questDataList = QuestManager.Instance.GetActiveOrClearQuest();
-            // Å×½ºÆ®
+            // í…ŒìŠ¤íŠ¸
             foreach (var v in _questDataList)
             {
                 Debug.Log(v.NameKey);
             }
             ListView _listView = GetListView((int)ListViews.quest_listview);
             
-            // »ı¼º
+            // ìƒì„±
             _listView.makeItem = () =>
             {
                 (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(QuestEntryView));
@@ -127,7 +127,7 @@ namespace UI.Quest
                 return _v.Item1;
             };
 
-            // °ª ¹ÙÀÎµù 
+            // ê°’ ë°”ì¸ë”© 
             _listView.bindItem = (_item, _index) =>
             {
                 string _name = TextManager.Instance.GetText(_questDataList[_index].NameKey);
@@ -156,13 +156,13 @@ namespace UI.Quest
         }
 
         /// <summary>
-        /// ¹öÆ° ÀÌº¥Æ® Ãß°¡ 
+        /// ë²„íŠ¼ ì´ë²¤íŠ¸ ì¶”ê°€ 
         /// </summary>
         private void AddEvents()
         {
             AddRadioBtnChangedEvent((int)RadioButtons.main_button, (x) => 
             {
-                // ¸ŞÀÎ¸¸ È°¼ºÈ­
+                // ë©”ì¸ë§Œ í™œì„±í™”
                 //DiactiveAllQuest(); 
                 List<VisualElement> _list = _questEntryList.Where((x) => x.Item1.QuestCategory == QuestCategory.Main).Select((x) => x.Item2).ToList();
                 foreach(var _v in _list)
@@ -175,7 +175,7 @@ namespace UI.Quest
             
             AddRadioBtnChangedEvent((int)RadioButtons.sub_button, (x) =>
             {
-                // ¼­ºê¸¸ È°¼ºÈ­ 
+                // ì„œë¸Œë§Œ í™œì„±í™” 
                 //DiactiveAllQuest();
                 List<VisualElement> _list = _questEntryList.Where((x) => x.Item1.QuestCategory == QuestCategory.Sub).Select((x) => x.Item2).ToList();
                 foreach (var _v in _list)
@@ -198,12 +198,12 @@ namespace UI.Quest
         }
   
         /// <summary>
-        /// QuestState¿Í °°Àº Äù½ºÆ®¸¸ È°¼ºÈ­ 
+        /// QuestStateì™€ ê°™ì€ í€˜ìŠ¤íŠ¸ë§Œ í™œì„±í™” 
         /// </summary>
         /// <param name="_questState"></param>
         public void ActiveQuestByState(QuestState _questState)
         {
-            // ¿©±â¼­ QuestState°¡ All ÀÌ¸é ÀüºÎ ´Ù È°¼ºÈ­ 
+            // ì—¬ê¸°ì„œ QuestStateê°€ All ì´ë©´ ì „ë¶€ ë‹¤ í™œì„±í™” 
             foreach (QuestState _qState in Enum.GetValues(typeof(QuestState)))
             {
                 if (_qState == _questState) continue;

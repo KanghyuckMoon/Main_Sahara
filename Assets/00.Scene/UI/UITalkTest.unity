@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  parent: {fileID: 0}
 --- !u!114 &221254249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!114 &221254250
 MonoBehaviour:
@@ -514,6 +516,8 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: 
   deadExplosionEffectKey: 
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 0}
   rootTransform: {fileID: 0}
   animator: {fileID: 221254256}
@@ -534,6 +538,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -556,6 +561,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -1952,6 +1958,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1104550529
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247685367826422861, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 586633618700060407, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_Name
+      value: xa_Nm
+      objectReference: {fileID: 0}
+    - target: {fileID: 586633618700060407, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
 --- !u!1 &1129830710
 GameObject:
   m_ObjectHideFlags: 0
@@ -2277,6 +2344,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -2299,6 +2367,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -2362,6 +2431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!1 &1331024310
 GameObject:
@@ -2836,6 +2906,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -2858,6 +2929,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -5203,6 +5275,7 @@ MonoBehaviour:
   weaponName: TestSword
   tagName: 
   isProjectile: 1
+  isConsecutiveWeapon: 0
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
 --- !u!114 &643803814426520290
 MonoBehaviour:
@@ -5257,6 +5330,7 @@ MonoBehaviour:
   weaponName: EndSword
   tagName: 
   isProjectile: 0
+  isConsecutiveWeapon: 0
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
 --- !u!1 &669233889497992713
 GameObject:
@@ -23636,6 +23710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!1 &2067304886107136626
 GameObject:
@@ -24024,6 +24099,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -24046,6 +24122,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -25480,6 +25557,8 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: SandSkinEffect
   deadExplosionEffectKey: SandExplosionImpacts
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 3699875108863892377}
   rootTransform: {fileID: 3699875110283640284}
   animator: {fileID: 3699875109437129947}
@@ -26701,6 +26780,8 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: 
   deadExplosionEffectKey: 
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 0}
   rootTransform: {fileID: 0}
   animator: {fileID: 4614640098373365867}
@@ -27209,6 +27290,7 @@ MonoBehaviour:
   zoomInCam: {fileID: 4632501979422857789}
   lockOnCamera: {fileID: 360111645}
   moveDelay: 6
+  cinemachineVirtualCamera: {fileID: 0}
 --- !u!114 &3496711465450148385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28520,6 +28602,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -28542,6 +28625,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -31552,6 +31636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  parent: {fileID: 0}
 --- !u!137 &4430685967997199617
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -33202,6 +33287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  parent: {fileID: 0}
 --- !u!1 &4799328102785995108
 GameObject:
   m_ObjectHideFlags: 0
@@ -34807,6 +34893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!1 &5611657743536727784
 GameObject:
@@ -35067,6 +35154,7 @@ MonoBehaviour:
   weaponName: Object
   tagName: 
   isProjectile: 0
+  isConsecutiveWeapon: 0
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
 --- !u!4 &5761114021138685874
 Transform:
@@ -35109,6 +35197,7 @@ MonoBehaviour:
   objectName: Arrow
   model: {fileID: 0}
   rigidbody: {fileID: 2349952884566930639}
+  usingGravity: 0
 --- !u!1 &5769939926528265897
 GameObject:
   m_ObjectHideFlags: 0
@@ -35534,6 +35623,8 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: 
   deadExplosionEffectKey: 
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 0}
   rootTransform: {fileID: 0}
   animator: {fileID: 4572704548847276458}
@@ -39239,6 +39330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!4 &7161391000436752529
 Transform:
@@ -40370,6 +40462,7 @@ MonoBehaviour:
   objectName: Arrow
   model: {fileID: 0}
   rigidbody: {fileID: 363683622176407056}
+  usingGravity: 0
 --- !u!1 &7696057096249810609
 GameObject:
   m_ObjectHideFlags: 0
@@ -41288,6 +41381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  parent: {fileID: 0}
 --- !u!137 &7845380001231278580
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -44483,6 +44577,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -44504,6 +44599,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0

@@ -4,6 +4,7 @@ using Buff;
 using DG.Tweening.Plugins;
 using UnityEngine;
 using Module;
+using Data;
 
 namespace Skill
 {
@@ -22,6 +23,14 @@ namespace Skill
             //_mainModule.Animator.Play(animationName);
 
             _mainModule.Animator.SetBool(animationName, true);
+        }
+        
+        protected void UseMana(AbMainModule _mainModule, int _mana)
+        {
+            StatData _statData = _mainModule.GetComponent<StatData>();
+
+            _statData.ChargeMana(_mana);
+            //_mainModule.GetComponent<StatData>().ChangeMana(_mana);
         }
 
         protected void GetBuff(AbMainModule _mainModule)
