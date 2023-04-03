@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Pool;
+using UnityEngine.Events;
 
 namespace Effect
 {
@@ -18,19 +19,26 @@ namespace Effect
 
         private Coroutine coroutine;
 
+        [SerializeField]
+        private UnityEvent startAction;
+
 
         private void OnEnable()
         {
-            if (isInvokeDisable)
-			{
-                if (coroutine is not null)
-				{
-                    StopCoroutine(coroutine);
-                    coroutine = null;
-				}
+            if (gameObject.activeSelf)
+            {
+                startAction?.Invoke();
+                if (isInvokeDisable)
+                {
+                    if (coroutine is not null)
+                    {
+                        StopCoroutine(coroutine);
+                        coroutine = null;
+                    }
 
-                coroutine = StartCoroutine(SetActiveFalse());
-			}
+                    coroutine = StartCoroutine(SetActiveFalse());
+                }   
+            }
         }
 
 		private void OnDisable()

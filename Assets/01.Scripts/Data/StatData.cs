@@ -5,7 +5,6 @@ using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
 using ForTheTest;
-using PlasticGui.Configuration;
 
 namespace Data
 {
@@ -230,6 +229,7 @@ namespace Data
 			MaxHp = playerdata.hp;
 			CurrentHp = playerdata.hp;
 			MaxMana = playerdata.mp;
+            CurrentMana = playerdata.mp;
 			Jump = playerdata.jumpScale;
             PhysicalResistance = playerdata.physicalResistance;
             MagicResistance = playerdata.magicResistance;

@@ -20,6 +20,7 @@ namespace UI.Upgrade
             compose_button, 
         }
 
+        private const string inActiveStr = "upgrade_pick_inactive";
         public override void Cashing()
         {
             //base.Cashing();
@@ -50,6 +51,19 @@ namespace UI.Upgrade
         public void SetParent(VisualElement _v)
         {
             GetVisualElement((int)Elements.slot_parent).Add(_v); 
+        }
+
+        public override void ActiveScreen(bool _isActive)
+        {
+            base.ActiveScreen(_isActive);
+            /*if (_isActive == true)
+            {
+                parentElement.AddToClassList(inActiveStr);
+            }
+            else
+            {
+                parentElement.RemoveFromClassList(inActiveStr);
+            }*/
         }
 
         public void SetAbsoluteParent(VisualElement _v)
