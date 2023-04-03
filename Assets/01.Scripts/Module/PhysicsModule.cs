@@ -116,8 +116,8 @@ namespace Module
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
 
-                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.1f);
-                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.1f);
+                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.6f);
+                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.5f);
 
                     if (knockBackCoroutine != null)
                     {
@@ -129,8 +129,8 @@ namespace Module
                     
                     SetDeBuff(_inGameHitBox.HitBoxData.buffList);
                     
-                    mainModule.SettingTime.SetTime(0.15f, 0.1f);
-                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(0.2f, 0.1f);
+                    //mainModule.SettingTime.SetTime(0.15f, 0.1f);
+                    //_inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(0.2f, 0.1f);
                     if (_statData != null)
                     {
                         HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
