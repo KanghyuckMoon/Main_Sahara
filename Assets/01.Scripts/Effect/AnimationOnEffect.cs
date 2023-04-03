@@ -38,6 +38,10 @@ namespace Effect
 					}
 				}
 			}
+			else
+			{
+				Debug.LogError($"Not Effect Str{_str}");
+			}
 		}
 	}
 }
