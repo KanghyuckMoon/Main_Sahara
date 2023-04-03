@@ -823,6 +823,11 @@ namespace AI
 		{
 		}
 
+		private void InstantDiscovery()
+		{
+			aiModule.AIModuleHostileState = AIModule.AIHostileState.Discovery;
+		}
+
 		//string Action
 		private void EquipWeapon(string _str)
 		{

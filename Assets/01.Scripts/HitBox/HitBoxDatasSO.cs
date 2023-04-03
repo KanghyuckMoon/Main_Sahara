@@ -16,6 +16,26 @@ namespace HitBox
 		public StringListHitBoxData hitBoxDataDic = new StringListHitBoxData();
 		public List<BuffData> setAllHitBoxBuffList = new List<BuffData>();
 		
+		public List<string> debugList = new List<string>();
+		public string debugString;
+		
+		[ContextMenu("ResetDic")]
+		public void ResetDic()
+		{
+			hitBoxDataDic.Clear();
+			foreach (var _obj in debugList)
+			{
+				HitBoxDataList _hitDataList = new HitBoxDataList();
+				hitBoxDataDic.Add(_obj, _hitDataList);
+			}
+		}
+		[ContextMenu("AddEmptyDic")]
+		public void AddEmptyDic()
+		{
+			HitBoxDataList _hitDataList = new HitBoxDataList();
+			hitBoxDataDic.Add(debugString, _hitDataList);
+		}
+		
 		public HitBoxDataList GetHitboxList(string str)
 		{
 			if (hitBoxDataDic.TryGetValue(str, out var value))
