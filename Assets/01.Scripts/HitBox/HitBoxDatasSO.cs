@@ -230,3 +230,41 @@ namespace HitBox
 	}
 
 }
+
+public interface IAction
+{
+	public void Invoke();
+}
+
+public class HitBoxAction
+{
+	public class ActionChild<T> : IAction
+	{
+		public Action<T> action;
+		public T parameter;
+		
+		public void Invoke()
+		{
+			action?.Invoke(parameter);
+		}
+		
+	}
+	
+	public void SetCondition<T>(Action<T> _action, T _paremeter)
+	{
+		ActionChild<T> _actionCondition = new ActionChild<T>();
+		_actionCondition.action = _action;
+		_actionCondition.parameter = _paremeter;
+		action.Add(_actionCondition);
+	}
+
+	public void Invoke()
+	{
+		foreach (IAction _action in action)
+		{
+			_action.Invoke();
+		}
+	}
+
+	public List<IAction> action;
+}

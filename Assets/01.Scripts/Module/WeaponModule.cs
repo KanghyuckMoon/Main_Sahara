@@ -154,12 +154,13 @@ namespace Module
 
                 isProjectileWeapon = BaseWeapon.isProjectile;
 
-                //if(isProjectileWeapon) 
                 AttackModule.ProjectileName = BaseWeapon.WeaponDataSO.projectileObjectName;
 
                 mainModule.IsConsecutiveWeapon = BaseWeapon.isConsecutiveWeapon;
                 mainModule.IsWeaponExist = true;
                 SetBehaveAnimation();
+
+                Animator.SetTrigger("ChangeWeapon");
             }
         }
         private Transform WhichHandToHold(BaseWeapon _baseWeapon)

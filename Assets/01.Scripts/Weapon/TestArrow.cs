@@ -42,7 +42,7 @@ namespace Weapon
             transform.SetParent(null);
             Vector3 _rot = (CalculateRotation(_vector3).normalized * objectData.speed);// + new Vector3(0, 1, 0);
             rigidbody.AddForce(_rot, ForceMode.Impulse);
-            //model.LookAt(_rot + Vector3.forward);
+            model.LookAt(_rot + Vector3.forward);
 
             //rigidbody.MovePosition(Vector3.up * 10);
         }

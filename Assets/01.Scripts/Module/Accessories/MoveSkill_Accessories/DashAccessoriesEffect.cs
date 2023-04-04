@@ -54,7 +54,7 @@ namespace PassiveItem
                     /*Vector3 euler = mainModule.transform.eulerAngles;
                     Vector3 direction = new Vector3(Mathf.Sin(euler.y * Mathf.Deg2Rad), 0, Mathf.Cos(euler.y * Mathf.Deg2Rad)).normalized;*/
 
-                    Vector3 _dir = (mainModule.ObjDirection.normalized * 36f * TimeManager.StaticTime.PlayerDeltaTime);
+                    Vector3 _dir = (mainModule.ObjDirection.normalized * 24f * TimeManager.StaticTime.PlayerDeltaTime);
                     
                     characterController.Move(_dir);
                     mainModule.IsDash = false;
