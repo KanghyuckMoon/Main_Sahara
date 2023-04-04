@@ -6,7 +6,7 @@ using Module;
 using Data;
 
 /// <summary>
-/// IUIOwner¿¡ ÀÇÇØ Ä³½Ì ÃÊ±âÈ­ UI¾÷µ¥ÀÌÆ® °ÍÀ» ´Ù¸¥ Å¬·¡½º¿¡ °ü¸® ¹Þ¾Æ¶ó 
+/// IUIOwnerì— ì˜í•´ ìºì‹± ì´ˆê¸°í™” UIì—…ë°ì´íŠ¸ ê²ƒì„ ë‹¤ë¥¸ í´ëž˜ìŠ¤ì— ê´€ë¦¬ ë°›ì•„ë¼ 
 /// </summary>
 namespace UI
 {
