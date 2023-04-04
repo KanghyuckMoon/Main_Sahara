@@ -25,8 +25,9 @@ namespace UI.Upgrade
 
         private UpgradePickPresenter upgradePickPresenter; // 슬롯 선택시 나타날 업드레이드 패널 
         private UpgradeCtrlPresenter ctrlPresenter; // 좌우 버튼 , 상단 라벨 조작 Pr 
-        private UpgradeSlotPresenter _curSlotPr; // 현재 선택한 슬롯
+        private UpgradeSlotPresenter curSlotPr; // 현재 선택한 슬롯
         private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소
+        private UpgradeReadyPr upgradeReadyPr; 
 
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
         private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // 모든 슬롯 리스트 
@@ -111,7 +112,7 @@ namespace UI.Upgrade
             upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
             upgradePickPresenter.SetButtonEvent(() =>
             {
-                ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key);
+                ItemUpgradeManager.Instance.Upgrade(curSlotPr.ItemData.key);
                 Logging.Log("업그레이드 클릭");
             });
 
@@ -123,6 +124,8 @@ namespace UI.Upgrade
 
             Logging.Log("@@@@@@@@@@@등록");
             ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
+
+            upgradeReadyPr = new UpgradeReadyPr(upgradeView.Parent); 
         }
 
         [SerializeField]
@@ -138,18 +141,11 @@ namespace UI.Upgrade
 
         private void LateUpdate()
         {
-
             if (isConnection == true)
             {
                 LineCreateManager.Instance.UpdateLinesPos(ScreenType.Upgrade,
                     upgradeView.MoveScreen.transform.position);
                 LineCreateManager.Instance.UpdateLinesScale(ScreenType.Upgrade, upgradeView.MoveScreen.parent.transform.scale);
-            }
-            // 테스트 
-            if(Input.GetKeyDown(KeyCode.X))
-            {
-                CreateItemTree(testItemDataSO);
-   
             }
         }
 
@@ -161,7 +157,8 @@ namespace UI.Upgrade
         {
             midX = Screen.width / 2;
             midY = Screen.height / 2;
-
+            //midX = 624; 
+            
             List<Vector2> _oneList = new List<Vector2>();
             _oneList.Add(Vector2.zero);
 
@@ -333,7 +330,7 @@ namespace UI.Upgrade
         [ContextMenu("고고")]
         private IEnumerator SetAllSlotPos()
         {
-            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.01f); 
+            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.2f); 
 
             int _idx = 1;
             allItemList[0].style.left = midX - allItemList[0].resolvedStyle.width / 2;
@@ -415,8 +412,8 @@ namespace UI.Upgrade
             _slotPr.AddClickEvent(
                 () =>
                 {
-                    ActiveUpgradePn(_slotPr);
-                    _curSlotPr = _slotPr;
+                    ActiveNeedItems(_slotPr);
+                    curSlotPr = _slotPr;
                 }
             );
 
@@ -429,6 +426,30 @@ namespace UI.Upgrade
             return _slotPr.Element1;
         }
 
+        /// <summary>
+        /// 슬롯 클릭시 좌측 상단에 필요 아이템 활성화
+        /// </summary>
+        private void ActiveNeedItems(UpgradeSlotPresenter _upgradePr)
+        {
+            Debug.Log("클릭");
+            // 파티클 
+            InActiveAllMark(); // 모든 선택 마크 비활성화 
+            _upgradePr.ActiveMark(true);
+
+            ItemUpgradeDataSO _childItemData =
+                ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_upgradePr.ItemData.key); //
+            if (_childItemData == null) // 재료템이 없으면 
+            {
+                upgradeReadyPr.ClearSlots();
+                return;
+            }
+
+            // 필요 재료들 표시 
+            var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key);
+            upgradeReadyPr.ClearSlots();
+            upgradeReadyPr.ActiveNeedItems(_list);
+        }
+        
         /// <summary>
         /// 슬롯 클릭시 업그레이드 UI 표시 
         /// </summary>
@@ -460,8 +481,7 @@ namespace UI.Upgrade
             int _idx = 0;
             var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key)
                 .Where((x) => x.itemType != ItemType.Weapon && x.isSlot == true).ToList();
-            ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key)
-                .Where((x) => x.isSlot == true ).ToList();
+
             foreach (var _data in _list)
             {
                 UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter();

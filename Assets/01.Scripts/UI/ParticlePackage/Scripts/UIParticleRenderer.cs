@@ -11,7 +11,7 @@ namespace Coffee.UIExtensions
     [RequireComponent(typeof(RectTransform))]
     [RequireComponent(typeof(CanvasRenderer))]
     [AddComponentMenu("")]
-    internal class UIParticleRenderer : MaskableGraphic
+    public class UIParticleRenderer : MaskableGraphic
     {
         private static readonly CombineInstance[] s_CombineInstances = new CombineInstance[] { new CombineInstance() };
         private static readonly List<Material> s_Materials = new List<Material>(2);
