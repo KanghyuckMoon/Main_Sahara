@@ -143,7 +143,7 @@ namespace Module
                             HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
                             _totalMana = _statData.ManaRegen + _statData.ChangeMana(_statData.ManaRegen);
                         
-                            _manaCount = (_totalMana / 4) + 1;
+                            _manaCount = (_totalMana / 10);
 
                             for (int i = 0; i < _manaCount; ++i)
                             {
@@ -157,7 +157,7 @@ namespace Module
                             HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
                             _totalMana = _stat.ManaRegen + _statData.ChangeMana(_stat.ManaRegen);
                         
-                            _manaCount = (_totalMana / 4) + 1;
+                            _manaCount = (_totalMana / 10);
                         
                             for (int i = 0; i < _manaCount; ++i)
                             {
