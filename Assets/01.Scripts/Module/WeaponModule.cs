@@ -167,8 +167,8 @@ namespace Module
             //_baseWeapon.weaponHand
             foreach(WeaponSpownObject _hand in WeaponRight)
             {
-                    if (_hand.weaponHand == _baseWeapon.weaponHand)
-                    return _hand.transform;
+                if (_hand.weaponHand == _baseWeapon.weaponHand)
+                return _hand.transform;
             }
 
             return null;
