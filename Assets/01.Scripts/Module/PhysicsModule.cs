@@ -126,8 +126,9 @@ namespace Module
                     knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
 
-                    
                     SetDeBuff(_inGameHitBox.HitBoxData.buffList);
+
+                    //_inGameHitBox.HitBoxData.hitBoxAction?.Invoke();
                     
                     //mainModule.SettingTime.SetTime(0.15f, 0.1f);
                     //_inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(0.2f, 0.1f);
