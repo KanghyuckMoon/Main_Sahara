@@ -14,7 +14,7 @@ public class Hit : StateMachineBehaviour
     {
         //mainModule ??= animator.GetComponent<AbMainModule>();
         
-        //mainModule.IsHit = false;
+        mainModule.IsHit = false;
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
