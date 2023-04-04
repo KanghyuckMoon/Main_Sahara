@@ -7,8 +7,8 @@ using UI.Production;
 
 namespace UI
 {
-    // ¸ğµç Presenter¸¶´Ù UIDocument ¹Ş¾Æ¿À´À³Ä 
-    // PresenterController ¿¡¼­¸¸ UIDocument ¹Ş¾Æ¿Í¼­ ³Ñ°ÜÁÖ´À³Ä 
+    // ëª¨ë“  Presenterë§ˆë‹¤ UIDocument ë°›ì•„ì˜¤ëŠëƒ 
+    // PresenterController ì—ì„œë§Œ UIDocument ë°›ì•„ì™€ì„œ ë„˜ê²¨ì£¼ëŠëƒ 
 
     [Serializable]
     public class BuffView : AbUI_Base
