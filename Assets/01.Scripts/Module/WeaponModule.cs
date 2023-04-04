@@ -5,6 +5,7 @@ using Pool;
 using Weapon;
 using HitBox;
 using System;
+using Effect;
 
 namespace Module
 {
@@ -140,6 +141,7 @@ namespace Module
                 BaseWeapon.tagName = _tagname;
                 mainModule.GetComponent<HitBoxOnAnimation>()?.ChangeSO(BaseWeapon.HitBoxDataSO);
                 projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
+                mainModule.GetComponent<AnimationOnEffect>().ChangeSO(BaseWeapon.AnimationEffectSO);
 
                 StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
