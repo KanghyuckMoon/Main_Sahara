@@ -75,7 +75,8 @@ namespace UI.Upgrade
             }
         }
 
-        private Vector2 MoveScreenV => upgradeView.MoveScreen.transform.position; 
+        private Vector2 MoveScreenV => upgradeView.MoveScreen.transform.position;
+        private Vector2 MoveScreenBound => new Vector2(upgradeView.MoveScreen.worldBound.x, upgradeView.MoveScreen.worldBound.y); 
         private void Start()
         {
             elementCtrlComponent = new ElementCtrlComponent(upgradeView.MoveScreen);
@@ -157,7 +158,7 @@ namespace UI.Upgrade
         {
             midX = Screen.width / 2;
             midY = Screen.height / 2;
-            //midX = 624; 
+            midX = 624; 
             
             List<Vector2> _oneList = new List<Vector2>();
             _oneList.Add(Vector2.zero);
@@ -330,7 +331,7 @@ namespace UI.Upgrade
         [ContextMenu("고고")]
         private IEnumerator SetAllSlotPos()
         {
-            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.2f); 
+            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.01f); 
 
             int _idx = 1;
             allItemList[0].style.left = midX - allItemList[0].resolvedStyle.width / 2;
@@ -448,6 +449,8 @@ namespace UI.Upgrade
             var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key);
             upgradeReadyPr.ClearSlots();
             upgradeReadyPr.ActiveNeedItems(_list);
+            upgradeReadyPr.SetCurSelectedItem(_upgradePr.ItemData);
+            upgradeReadyPr.CheckCanUpgrade();
         }
         
         /// <summary>
@@ -514,9 +517,9 @@ namespace UI.Upgrade
                     {
                         _pointList.Clear();
 
-                        float _slotX =  MoveScreenV.x + _slot.Key.worldBound.x + _slot.Key.resolvedStyle.width / 2;
+                        float _slotX =  -MoveScreenBound.x/2 + MoveScreenV.x + _slot.Key.worldBound.x + _slot.Key.resolvedStyle.width / 2;
                         float _slotY = -MoveScreenV.y +_slot.Key.worldBound.y + _slot.Key.resolvedStyle.height;
-                        float _slot2X = MoveScreenV.x + _slot2.worldBound.x + _slot2.resolvedStyle.width / 2;
+                        float _slot2X = -MoveScreenBound.x/2 + MoveScreenV.x + _slot2.worldBound.x + _slot2.resolvedStyle.width / 2;
                         float _slot2Y = -MoveScreenV.y +_slot2.worldBound.y;
 
                         _startPoint = new Vector2(_slotX - midX, _slotY - midY); // 부모 위치 
@@ -560,6 +563,7 @@ namespace UI.Upgrade
             else
             {
                 LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade);
+                upgradeReadyPr.ClearSlots();
             }
 
             return _isActive;

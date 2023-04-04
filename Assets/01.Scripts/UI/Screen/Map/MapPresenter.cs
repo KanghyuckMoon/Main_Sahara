@@ -76,6 +76,10 @@ namespace UI
             //}
         }
 
+        public void ActiveScreen(bool _isActive)
+        {
+            mapView.ActiveScreen(_isActive);
+        }
         public bool ActiveView()
         {
             //mapView.ShowMap();
