@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3902522210045935348}
   - component: {fileID: 110145584401428817}
   - component: {fileID: 2766238878783489435}
-  - component: {fileID: -5766016914001232680}
   - component: {fileID: 8253608202383765432}
   - component: {fileID: 2343850415339300319}
   m_Layer: 14
@@ -32,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 31.829994, y: 3.9000037, z: -29.333912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 608358159667323786}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -86,23 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-5766016914001232680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4423480322061788238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: bc0a897225d7e1c4f84fe6e39a2cdd11, type: 2}
-  rigid: {fileID: 8253608202383765432}
-  itemAddress: Sw_04_Excalibur
-  targetObj: {fileID: 4423480322061788238}
-  isJumping: 1
 --- !u!54 &8253608202383765432
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,3 +115,67 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4809499, y: 0.22645271, z: 7.198728}
   m_Center: {x: -0.004540801, y: 0.00000087171816, z: 2.69454}
+--- !u!1 &5975435043502937384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 608358159667323786}
+  - component: {fileID: 6480007473186591478}
+  - component: {fileID: 6867521782009322748}
+  m_Layer: 13
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &608358159667323786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975435043502937384}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 2.42}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3902522210045935348}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &6480007473186591478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975435043502937384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: bc0a897225d7e1c4f84fe6e39a2cdd11, type: 2}
+  rigid: {fileID: 8253608202383765432}
+  itemAddress: Sw_04_Excalibur
+  targetObj: {fileID: 4423480322061788238}
+  isJumping: 1
+--- !u!136 &6867521782009322748
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975435043502937384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.42
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
