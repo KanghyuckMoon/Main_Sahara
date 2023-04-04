@@ -15,6 +15,7 @@ namespace Effect
 		public string removeEffectKey = null;
 
 		public List<string> debugList = new List<string>();
+		public string debugString;
 
 		[ContextMenu("ResetDic")]
 		public void ResetDic()
@@ -25,6 +26,12 @@ namespace Effect
 				EffectDataList _effectDataList = new EffectDataList();
 				effectDataListDic.Add(_obj, _effectDataList);
 			}
+		}
+		[ContextMenu("AddEmptyDic")]
+		public void AddEmptyDic()
+		{
+			EffectDataList _effectDataList = new EffectDataList();
+			effectDataListDic.Add(debugString, _effectDataList);
 		}
 		
 		public void UploadEffectData(string _key, EffectData _effectData)
