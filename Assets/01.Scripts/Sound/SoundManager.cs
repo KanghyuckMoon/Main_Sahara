@@ -8,7 +8,7 @@ using Utill.Addressable;
 namespace Sound
 {
 	/// <summary>
-	/// È¿°úÀ½ ¹× ¹è°æÀ½¾ÇÀ» Àç»ıÇÏ´Â ¸Å´ÏÀú
+	/// íš¨ê³¼ìŒ ë° ë°°ê²½ìŒì•…ì„ ì¬ìƒí•˜ëŠ” ë§¤ë‹ˆì €
 	/// </summary>
 	public class SoundManager : MonoSingleton<SoundManager>
 	{
@@ -31,11 +31,11 @@ namespace Sound
 		private Coroutine fadeCoroutine_Environment;
 		private bool isPlayingTrack1 = false;
 		private bool isPlayingTrack1_Environment = false;
-		private bool _isInit = false; //»ç¿îµå ¸Å´ÏÀú ÃÊ±âÈ­ ¿©ºÎ
+		private bool _isInit = false; //ì‚¬ìš´ë“œ ë§¤ë‹ˆì € ì´ˆê¸°í™” ì—¬ë¶€
 
 
 		/// <summary>
-		/// È¿°úÀ½ Ãâ·Â ÇÔ¼ö
+		/// íš¨ê³¼ìŒ ì¶œë ¥ í•¨ìˆ˜
 		/// </summary>
 		/// <param name="audioName"></param>
 		public void PlayEFF(string audioName)
@@ -45,14 +45,14 @@ namespace Sound
 				Init();
 			}
 
-			//EffSO¿¡¼­ È¿°úÀ½À» °¡Á®¿Â´Ù
+			//EffSOì—ì„œ íš¨ê³¼ìŒì„ ê°€ì ¸ì˜¨ë‹¤
 			AudioEffData clip = _effSO.GetEFFClip(audioName);
 			_effAudioSource.volume = clip.volume;
 			_effAudioSource.PlayOneShot(clip.audioClip);
 		}
 
 		/// <summary>
-		/// ¹è°æÀ½¾Ç Àç»ı
+		/// ë°°ê²½ìŒì•… ì¬ìƒ
 		/// </summary>
 		/// <param name="audioBGMType"></param>
 		public void PlayBGM(AudioBGMType audioBGMType)
@@ -73,7 +73,7 @@ namespace Sound
 		}
 
 		/// <summary>
-		/// ¹è°æÀ½¾Ç Àç»ı
+		/// ë°°ê²½ìŒì•… ì¬ìƒ
 		/// </summary>
 		/// <param name="audioBGMType"></param>
 		public void PlayEnvironment(AudioEnvironmentType _audioEnvironmentType)
@@ -109,7 +109,7 @@ namespace Sound
 		}
 
 		/// <summary>
-		/// ÃÊ±âÈ­
+		/// ì´ˆê¸°í™”
 		/// </summary>
 		private void Init()
 		{
@@ -133,12 +133,12 @@ namespace Sound
 		}
 
 		/// <summary>
-		/// ¹è°æ À½¾Ç °¡Á®¿À±â
+		/// ë°°ê²½ ìŒì•… ê°€ì ¸ì˜¤ê¸°
 		/// </summary>
 		private void GetBGMAudioSource()
 		{
 
-			//»õ·Î¿î ¿Àµğ¿À ¼Ò½º ¸¸µé±â
+			//ìƒˆë¡œìš´ ì˜¤ë””ì˜¤ ì†ŒìŠ¤ ë§Œë“¤ê¸°
 			GameObject obj = new GameObject("BGM");
 			obj.transform.SetParent(transform);
 			AudioSource audioSource = obj.AddComponent<AudioSource>();
@@ -160,7 +160,7 @@ namespace Sound
 
 			int count = (int)AudioBGMType.Count;
 
-			//ºê±İµé ¹Ì¸® ¼¼ÆÃ
+			//ë¸Œê¸ˆë“¤ ë¯¸ë¦¬ ì„¸íŒ…
 			for (int i = 1; i < count; ++i)
 			{
 				string key = System.Enum.GetName(typeof(AudioBGMType), i);
@@ -171,12 +171,12 @@ namespace Sound
 
 
 		/// <summary>
-		/// ÀÚ¿¬À½ °¡Á®¿À±â
+		/// ìì—°ìŒ ê°€ì ¸ì˜¤ê¸°
 		/// </summary>
 		private void GetEnvironmentAudioSource()
 		{
 
-			//»õ·Î¿î ¿Àµğ¿À ¼Ò½º ¸¸µé±â
+			//ìƒˆë¡œìš´ ì˜¤ë””ì˜¤ ì†ŒìŠ¤ ë§Œë“¤ê¸°
 			GameObject obj = new GameObject("Environment");
 			obj.transform.SetParent(transform);
 			AudioSource audioSource = obj.AddComponent<AudioSource>();
@@ -198,7 +198,7 @@ namespace Sound
 
 			int count = (int)AudioEnvironmentType.Count;
 
-			//ºê±İµé ¹Ì¸® ¼¼ÆÃ
+			//ë¸Œê¸ˆë“¤ ë¯¸ë¦¬ ì„¸íŒ…
 			for (int i = 1; i < count; ++i)
 			{
 				string key = System.Enum.GetName(typeof(AudioEnvironmentType), i);
@@ -208,11 +208,11 @@ namespace Sound
 		}
 
 		/// <summary>
-		/// ÀÌÆåÆ® ¿Àµğ¿À ¼Ò½ºµé »ı¼º
+		/// ì´í™íŠ¸ ì˜¤ë””ì˜¤ ì†ŒìŠ¤ë“¤ ìƒì„±
 		/// </summary>
 		private void GenerateEFFAudioSource()
 		{
-			//»õ·Î¿î ¿Àµğ¿À ¼Ò½º ¸¸µé±â
+			//ìƒˆë¡œìš´ ì˜¤ë””ì˜¤ ì†ŒìŠ¤ ë§Œë“¤ê¸°
 			GameObject obj = new GameObject("EFF");
 			obj.transform.SetParent(transform);
 			AudioSource audioSource = obj.AddComponent<AudioSource>();

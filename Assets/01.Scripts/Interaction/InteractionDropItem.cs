@@ -33,7 +33,7 @@ namespace Interaction
 		{
 			get
 			{
-				return $"{itemDataSO.nameKey}";
+				return "O00000033";
 			}
 		}
 		

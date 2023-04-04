@@ -12,7 +12,7 @@ namespace UI
     [Serializable]
     public class BuffPresenter : IUIFollower,Observer
     {
-        // ?�스?�터 참조 변??
+        // ?�스?�터 참조 변??
         [SerializeField]
         private BuffView buffView;
         // private BuffData buffData; 
@@ -20,11 +20,11 @@ namespace UI
         private StatData statData;
         private BuffModule buffData;
 
-        // ?�재 ?�성??중인 버프UI 
+        // ?�재 ?�성??중인 버프UI 
         private List<BuffEntryPresenter> curBuffViewList = new List<BuffEntryPresenter>();
 
         //private List<Buff>
-        // ?�로?�티 
+        // ?�로?�티 
         public UIDocument RootUIDocument { get; set; }
 
         public void Awake()
@@ -46,20 +46,20 @@ namespace UI
         }
 
         public void Receive()
-        {
+        {   
             UpdateUI();
         }
 
         /// <summary>
-        /// 버프 ?�이??추�????�데?�트 ( ?�성)
+        /// 버프 ?�이??추�????�데?�트 ( ?�성)
         /// </summary>
         public void UpdateUI()
         {
             bool _isHave = false; 
-            // 버프 모듈???�성??중인 버프 ?�면??
+            // 버프 모듈???�성??중인 버프 ?�면??
             foreach(var _buff in buffData.buffList)
             {
-                // ?�재 ?�성?�중??버프UI?� 비교?�기 
+                // ?�재 ?�성?�중??버프UI?� 비교?�기 
                 foreach(var _curBuff in curBuffViewList)
                 {
                     if(_buff == _curBuff.BuffData)
@@ -68,7 +68,7 @@ namespace UI
                     }
                 }
                 
-                if(_isHave == false) // ?�로??것이?�면 
+                if(_isHave == false) // ?�로??것이?�면 
                 {
                     CreateBuffIcon(_buff); 
                 }
@@ -76,14 +76,14 @@ namespace UI
         }
 
         /// <summary>
-        /// 버프 ?�간 ?�데?�트
+        /// 버프 ?�간 ?�데?�트
         /// </summary>
         public void UpdateBuffTime()
         {
             if (curBuffViewList.Count <= 0) return; 
             foreach(var _buffView in curBuffViewList)
             {
-                // ?�간???�났?�면 
+                // ?�간???�났?�면 
                 if (_buffView.UpdateUI() == false)
                 {
                     curBuffViewList.Remove(_buffView);
@@ -95,7 +95,7 @@ namespace UI
 
         public VisualElement CreateBuffIcon(AbBuffEffect _buffData)
         {
-            // �??�이???�겨???�성 
+            // �??�이???�겨???�성 
             BuffEntryPresenter buffEntryPresenter = new BuffEntryPresenter();
             buffEntryPresenter.SetBuffData(_buffData); 
             buffEntryPresenter.SetParent(buffView.ParentElement);
@@ -103,7 +103,7 @@ namespace UI
 
             return buffEntryPresenter.Parent;
 
-            // buffView.쿨�????�작 
+            // buffView.쿨�????�작 
         }
 
        

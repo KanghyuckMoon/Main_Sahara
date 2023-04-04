@@ -55,7 +55,6 @@ namespace Interaction
 		/// <returns></returns>
 		private void GetNearObject()
 		{
-			GameObject obj = null;
 			float minimumDistance = float.MaxValue;
 			Collider[] targets = Physics.OverlapSphere(Player.position, _radius, _targetLayerMask);
 			foreach (Collider col in targets)
