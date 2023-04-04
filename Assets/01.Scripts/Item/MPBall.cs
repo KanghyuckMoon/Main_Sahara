@@ -34,7 +34,7 @@ public class MPBall : MonoBehaviour
 		float startAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
 		float startAngle2 = Random.Range(0f, 360f) * Mathf.Deg2Rad;
 		transform.rotation = Quaternion.AngleAxis(startAngle, Vector3.forward);
-		Vector3 spreadPos = startPos + new Vector3(Mathf.Cos(startAngle), Mathf.Sin(startAngle), Mathf.Cos(startAngle2));
+		Vector3 spreadPos = startPos + (new Vector3(Mathf.Cos(startAngle), Mathf.Sin(startAngle), Mathf.Cos(startAngle2)) * 3f);
 		//spreadPos.z = startPos.z;
 
 		float delay = Random.Range(0.5f, 0.7f);

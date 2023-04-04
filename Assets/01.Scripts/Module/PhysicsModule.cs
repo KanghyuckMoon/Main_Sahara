@@ -143,12 +143,12 @@ namespace Module
                             HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
                             _totalMana = _statData.ManaRegen + _statData.ChangeMana(_statData.ManaRegen);
                         
-                            _manaCount = (_totalMana / 7) + 1;
+                            _manaCount = (_totalMana / 4) + 1;
 
                             for (int i = 0; i < _manaCount; ++i)
                             {
                                 MPBall mpBall = ObjectPoolManager.Instance.GetObject("MPBall").GetComponent<MPBall>();
-                                mpBall.SetMPBall(_closerPoint, _statData.ChargeMana, _totalMana / _manaCount, mainModule.gameObject);
+                                mpBall.SetMPBall(_closerPoint, _statData.ChargeMana, _totalMana / _manaCount, _inGameHitBox.Owner);
                             }
                         }
                         else
@@ -157,12 +157,12 @@ namespace Module
                             HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
                             _totalMana = _stat.ManaRegen + _statData.ChangeMana(_stat.ManaRegen);
                         
-                            _manaCount = (_totalMana / 7) + 1;
+                            _manaCount = (_totalMana / 4) + 1;
                         
                             for (int i = 0; i < _manaCount; ++i)
                             {
                                 MPBall mpBall = ObjectPoolManager.Instance.GetObject("MPBall").GetComponent<MPBall>();
-                                mpBall.SetMPBall(_closerPoint, _stat.ChargeMana, _totalMana / _manaCount, mainModule.gameObject);
+                                mpBall.SetMPBall(_closerPoint, _stat.ChargeMana, _totalMana / _manaCount, _inGameHitBox.Owner);
                             }
                         }
                     }
