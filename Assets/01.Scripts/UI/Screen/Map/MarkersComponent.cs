@@ -8,7 +8,7 @@ namespace UI
 {
     [Serializable]
     /// <summary>
-    /// ¸¶Ä¿µé °ü¸® 
+    /// ë§ˆì»¤ë“¤ ê´€ë¦¬ 
     /// </summary>
     public class MarkersComponent
     {
@@ -19,9 +19,9 @@ namespace UI
         private List<VisualElement> markerList = new List<VisualElement>();
 
         /// <summary>
-        /// ¸¶Ä¿ »ı¼º 
+        /// ë§ˆì»¤ ìƒì„± 
         /// </summary>
-        public void CreateMarker(Vector2 _pos, VisualElement _parent) // À§Ä¡, ºÎ¸ğ ¿ä¼Ò 
+        public void CreateMarker(Vector2 _pos, VisualElement _parent, Sprite _marker) // ìœ„ì¹˜, ë¶€ëª¨ ìš”ì†Œ 
         {
             TemplateContainer marker = markerUxml.Instantiate();
             marker.style.position = Position.Absolute;
@@ -32,8 +32,12 @@ namespace UI
             float _w = marker.ElementAt(0).style.width.value.value;
             float _h = marker.ElementAt(0).style.height.value.value;
 
+            width = (int)_marker.bounds.size.x;
+            height = (int)_marker.bounds.size.y;
+            
             marker.ElementAt(0).style.width = new StyleLength(width);
             marker.ElementAt(0).style.height = new StyleLength(height);
+            marker.ElementAt(0).style.backgroundImage = new StyleBackground(_marker);
 
             //Debug.Log("RECT" + _w + " ," + _h);
             _pos += new Vector2(-width / 2, -height / 2);
@@ -42,7 +46,7 @@ namespace UI
         }
 
         /// <summary>
-        /// ÀüÃ¼ ¸¶Ä¿ È°¼ºÈ­ ºñÈ°¼ºÈ­ 
+        /// ì „ì²´ ë§ˆì»¤ í™œì„±í™” ë¹„í™œì„±í™” 
         /// </summary>
         /// <param name="_isActive"></param>
         public void ActiveMarkers(bool _isActive)
