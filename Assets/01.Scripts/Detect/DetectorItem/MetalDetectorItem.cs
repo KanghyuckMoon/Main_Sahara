@@ -14,6 +14,9 @@ namespace Detect
         [SerializeField] 
         private string closeDetectEff;
 
+        [SerializeField] 
+        private float closeRadius = 10f;
+        
         private float currentTimer = 0f;
         private float maxTimer = 0f;
 
@@ -21,7 +24,7 @@ namespace Detect
         {
             base.Detect();
 
-            if (radius / 4 > minDistance)
+            if (closeRadius > minDistance)
             {
                 LinearColor linearColor = default;
                 linearColor.red = 1f;
