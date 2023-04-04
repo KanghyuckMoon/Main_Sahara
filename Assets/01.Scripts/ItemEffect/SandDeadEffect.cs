@@ -37,7 +37,7 @@ namespace ItemEffect
 
 		private IEnumerator Disable()
 		{
-			yield return new WaitForSeconds(5f);
+			yield return new WaitForSeconds(15f);
 			ObjectPoolManager.Instance.RegisterObject(addressName, gameObject);
 			gameObject.SetActive(false);
 		}

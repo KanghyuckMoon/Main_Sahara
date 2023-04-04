@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2261392711118701851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2353195017414963148}
+  - component: {fileID: 249014573323975559}
+  - component: {fileID: 6637564157326185575}
+  m_Layer: 13
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2353195017414963148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261392711118701851}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6258241905256500852}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &249014573323975559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261392711118701851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: 33e27c2efe1ee1d4ebe57a6e16fb2bab, type: 2}
+  rigid: {fileID: -9100981736367349842}
+  itemAddress: Bw_02_Ramadan
+  targetObj: {fileID: 2672348186548887873}
+  isJumping: 1
+--- !u!136 &6637564157326185575
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261392711118701851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2672348186548887873
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +76,6 @@ GameObject:
   - component: {fileID: 619482611484305776}
   - component: {fileID: 790524757133501681}
   - component: {fileID: 556965026}
-  - component: {fileID: 2498739963802946809}
   - component: {fileID: -9100981736367349842}
   - component: {fileID: -4564326233785989213}
   m_Layer: 14
@@ -33,7 +96,8 @@ Transform:
   m_LocalPosition: {x: 36.873848, y: 3.5054607, z: -42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2353195017414963148}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 90}
@@ -100,23 +164,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.441088, y: 0.70696723, z: 6.485346}
   m_Center: {x: -0.40525344, y: -0.000000014901161, z: 0.4015683}
---- !u!114 &2498739963802946809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2672348186548887873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 33e27c2efe1ee1d4ebe57a6e16fb2bab, type: 2}
-  rigid: {fileID: -9100981736367349842}
-  itemAddress: Bw_02_Ramadan
-  targetObj: {fileID: 2672348186548887873}
-  isJumping: 1
 --- !u!54 &-9100981736367349842
 Rigidbody:
   m_ObjectHideFlags: 0

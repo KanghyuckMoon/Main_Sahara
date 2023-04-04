@@ -34,7 +34,8 @@ namespace UI
 
         [SerializeField, Header("False면 머리 위에 Hud 뜨도록")]
         private bool isPlayerHud;
-
+        
+        
         private VisualElement hudElement;
         private PresenterFollower presenterFollower;
 
@@ -147,7 +148,9 @@ namespace UI
             targetRenderer = null;
             presenterFollower = null;
             isPlayerHud = false;
-            statData = null; 
+            statData = null;
+            uiModule = null;
+            buffModule = null; 
         }
         [ContextMenu("테스트")]
         public void UpdateUI()
@@ -180,6 +183,7 @@ namespace UI
         private void ContructPresenters()
         {
             _presenterList.Clear();
+            _dataPresenterDic.Clear();
 
             _presenterList.Add(hpPresenter);
             _presenterList.Add(mpPresenter);
@@ -244,9 +248,14 @@ namespace UI
 
         IEnumerator Init()
         {
-            if(statData != null && buffModule != null)
+            if(statData != null && uiModule != null)
             {
                 StartPresenters();
+            }
+
+            while (transform.parent == null)
+            {
+                yield return null;
             }
             while (transform.parent != null && statData == null)
             {
@@ -260,7 +269,6 @@ namespace UI
                     this.statData.AddObserver(this);
                     this.uiModule.AddObserver(this);
                 }
-                yield return null;
             }
         }
         //IEnumerator Init()

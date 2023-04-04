@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &654053404387665518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2480691396955368118}
+  - component: {fileID: 4373926266143954221}
+  - component: {fileID: 2024790468694636763}
+  m_Layer: 13
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2480691396955368118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654053404387665518}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6730609051974518208}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &4373926266143954221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654053404387665518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: 43ea30813fad2984bae72cfb8d0b0481, type: 2}
+  rigid: {fileID: 9157003168245328100}
+  itemAddress: Bw_02_RasuluLlah
+  targetObj: {fileID: 6709645119482155770}
+  isJumping: 1
+--- !u!136 &2024790468694636763
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654053404387665518}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6709645119482155770
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +76,6 @@ GameObject:
   - component: {fileID: 8525963453441891451}
   - component: {fileID: 5465669944200200865}
   - component: {fileID: 1912594167}
-  - component: {fileID: -7628635083612293564}
   - component: {fileID: 9157003168245328100}
   - component: {fileID: -3272972571145606575}
   m_Layer: 14
@@ -33,7 +96,8 @@ Transform:
   m_LocalPosition: {x: 36.901207, y: 3.2391307, z: -43.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2480691396955368118}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -100,23 +164,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.6865544, y: 0.7069673, z: 1.952712}
   m_Center: {x: 0, y: 0.00000008940699, z: 0}
---- !u!114 &-7628635083612293564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6709645119482155770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 43ea30813fad2984bae72cfb8d0b0481, type: 2}
-  rigid: {fileID: 9157003168245328100}
-  itemAddress: Bw_02_RasuluLlah
-  targetObj: {fileID: 6709645119482155770}
-  isJumping: 1
 --- !u!54 &9157003168245328100
 Rigidbody:
   m_ObjectHideFlags: 0

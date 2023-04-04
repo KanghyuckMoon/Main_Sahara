@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3460634873103082840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 655212236583103839}
+  - component: {fileID: 4840629139214658070}
+  - component: {fileID: 1957799380609301126}
+  m_Layer: 13
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &655212236583103839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460634873103082840}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6181912398022281666}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &4840629139214658070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460634873103082840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: bb26b80f9870d4543804f81602c399b5, type: 2}
+  rigid: {fileID: 8541860166002395398}
+  itemAddress: Bw_03_Zakat
+  targetObj: {fileID: 5586381869344187901}
+  isJumping: 1
+--- !u!136 &1957799380609301126
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460634873103082840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5586381869344187901
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +76,6 @@ GameObject:
   - component: {fileID: 6629634272637836557}
   - component: {fileID: 2565159348040433323}
   - component: {fileID: 72785184}
-  - component: {fileID: -8704143045201061776}
   - component: {fileID: 8541860166002395398}
   - component: {fileID: 7041383259630702888}
   m_Layer: 14
@@ -33,7 +96,8 @@ Transform:
   m_LocalPosition: {x: 36.901207, y: 3.2391307, z: -37.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 655212236583103839}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
@@ -100,23 +164,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.6865573, y: 0.7069678, z: 1.9527122}
   m_Center: {x: 1.2705494e-21, y: 0.00000008940699, z: 2.1316285e-14}
---- !u!114 &-8704143045201061776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5586381869344187901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: bb26b80f9870d4543804f81602c399b5, type: 2}
-  rigid: {fileID: 8541860166002395398}
-  itemAddress: Bw_03_Zakat
-  targetObj: {fileID: 5586381869344187901}
-  isJumping: 1
 --- !u!54 &8541860166002395398
 Rigidbody:
   m_ObjectHideFlags: 0
