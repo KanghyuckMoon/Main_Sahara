@@ -13,6 +13,7 @@ public class Skill : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
+        mainModule.SetActiveAnimatorRoot(1);
         //stateModule.AddState(State.ATTACK);
         //mainModule.SetActiveAnimatorRoot(1);
     }
@@ -22,6 +23,8 @@ public class Skill : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+        
+        mainModule.SetActiveAnimatorRoot(0);
         
         stateModule.RemoveState(State.SKILL);
         
