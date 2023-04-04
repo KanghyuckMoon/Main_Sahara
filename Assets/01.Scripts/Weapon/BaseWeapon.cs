@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
 using HitBox;
+using Effect;
 
 namespace Weapon
 {
@@ -50,6 +51,8 @@ namespace Weapon
             }
         }
 
+        public AnimationEffectSO AnimationEffectSO => animationEffectSO;
+
         public bool isProjectile;
         public bool isConsecutiveWeapon;
 
@@ -62,6 +65,9 @@ namespace Weapon
         
         [SerializeField]
         private HitBoxDatasSO hitBoxDataSO;
+
+        [SerializeField] 
+        private AnimationEffectSO animationEffectSO;
         //[SerializeField]
         //private ProjectilePositionSO projectilePositionSO;
 
