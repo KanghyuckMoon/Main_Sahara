@@ -65,6 +65,15 @@ namespace UI.MapLiner
          //   GameObject _poolObj = AddressablesManager.Instance.GetResource<GameObject>("MapLiner");
          //   ObjectPoolManager.Instance.RegisterObject(lineAddress, _poolObj);
         }
+
+        public void ActvieParent(ScreenType _screenType,bool _isActive)
+        {
+            
+            if (linerParentDic.TryGetValue(_screenType, out LineParent _lineParent))
+            {
+                _lineParent.parent.gameObject.SetActive(_isActive);
+            }
+        }
         private void AddLineToDic(ScreenType _screenType, MapLiner _liner)
         {
             if(linerDic.ContainsKey(_screenType) == false)
@@ -99,14 +108,14 @@ namespace UI.MapLiner
 
         public void UpdateLinesPos(ScreenType _screenType,Vector2 _pos)
         {
-            /*if (linerDic.ContainsKey(_screenType) == false) return;
+            if (linerDic.ContainsKey(_screenType) == false) return;
             foreach(var _line in linerDic[_screenType])
             {
                 _line.UpdatePos(_pos);
-            }*/
+            }
 
-            if (linerParentDic.ContainsKey(_screenType) == false) return;
-            linerParentDic[_screenType].moveAnchor.anchoredPosition =  new Vector2(_pos.x  ,_pos.y);
+//            if (linerParentDic.ContainsKey(_screenType) == false) return;
+//            linerParentDic[_screenType].moveAnchor.anchoredPosition =  new Vector2(_pos.x  ,_pos.y);
             
         }
 
@@ -139,7 +148,7 @@ namespace UI.MapLiner
             if(linerParentDic.ContainsKey(ScreenType.Upgrade) == true)
             {
                 float _curH = linerParentDic[ScreenType.Upgrade].parent.sizeDelta.y; 
-                linerParentDic[ScreenType.Upgrade].parent.sizeDelta = new Vector2(Screen.width * 0.65f,_curH);
+                linerParentDic[ScreenType.Upgrade].parent.sizeDelta = new Vector2(Screen.width * 1f,_curH);
             }   
         }
     }

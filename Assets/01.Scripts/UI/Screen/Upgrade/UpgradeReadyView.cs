@@ -26,8 +26,9 @@ namespace UI.Upgrade
             upgrade_button
         }
 
-        private const string activeStr = ""; 
+        private const string inactiveStr = "inactive";
 
+        public Button UpgradeButton => GetButton((int)Buttons.upgrade_button);
         public override void Cashing()
         {
             //base.Cashing();
@@ -53,12 +54,12 @@ namespace UI.Upgrade
         
         public void ActiveUpgradeButton(bool _isActive)
         {
-            if (_isActive == true)
+            if (_isActive == false)
             {
-                GetButton((int)Buttons.upgrade_button).AddToClassList(activeStr);
+                GetButton((int)Buttons.upgrade_button).AddToClassList(inactiveStr);
                 return; 
             }
-            GetButton((int)Buttons.upgrade_button).RemoveFromClassList(activeStr);
+            GetButton((int)Buttons.upgrade_button).RemoveFromClassList(inactiveStr);
         }
         
         /// <summary>

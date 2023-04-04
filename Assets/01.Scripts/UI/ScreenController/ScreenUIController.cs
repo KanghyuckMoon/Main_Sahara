@@ -6,7 +6,7 @@ using UI.Dialogue;
 using UI.Quest;
 using UI.Inventory;
 using UI.Base;
-using UI.Upgrade;
+using UI.Upgrade;   
 using UI.Shop;
 using System;
 using UI.Save;
@@ -16,6 +16,7 @@ using UI.UtilManager;
 using UI.Option;
 using UI.EventManage;
 using UI.Manager;
+using UI.MapLiner;
 
 
 namespace UI
@@ -213,6 +214,9 @@ namespace UI
                 //  È°¼ºÈ­
                 bool _isActive = upgradePresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.UpgradeUI));
+                LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+                UIManager.Instance.ActiveHud(! _isActive);
+                mapPresenter.ActiveScreen(!_isActive);
             });
             inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
             {

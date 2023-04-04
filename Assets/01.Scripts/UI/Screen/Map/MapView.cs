@@ -18,14 +18,14 @@ namespace UI
         private MapType mapType = MapType.MiniMap;
         [SerializeField]
         private Vector2 mapSize = new Vector2(8000, 8000);
-        private VisualElement map; // ¸Ê ÀÌ¹ÌÁö element
-        private VisualElement centerMarker; // °¡¿îµ¥ ¸¶Å© 
-        private VisualElement markerParent; // ¸¶Ä¿ ºÎ¸ğ ¿ä¼Ò 
-        private VisualElement minimapMask;// ¹Ì´Ï¸Ê ¸¶½ºÅ© ¿ä¼Ò 
+        private VisualElement map; // ë§µ ì´ë¯¸ì§€ element
+        private VisualElement centerMarker; // ê°€ìš´ë° ë§ˆí¬ 
+        private VisualElement markerParent; // ë§ˆì»¤ ë¶€ëª¨ ìš”ì†Œ 
+        private VisualElement minimapMask;// ë¯¸ë‹ˆë§µ ë§ˆìŠ¤í¬ ìš”ì†Œ 
 
         int width, height; 
         
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         public VisualElement Map => map;
         public ITransform MapTrm => map.transform; 
         public Rect MapRect => map.contentRect;
@@ -92,7 +92,7 @@ namespace UI
         }
 
         /// <summary>
-        /// ÀüÃ¼¸Ê È°¼ºÈ­½Ã true, ¹Ì´Ï¸Ê È°¼ºÈ­½Ã false 
+        /// ì „ì²´ë§µ í™œì„±í™”ì‹œ true, ë¯¸ë‹ˆë§µ í™œì„±í™”ì‹œ false 
         /// </summary>
         /// <returns></returns>
         public bool ShowMap()
@@ -145,20 +145,20 @@ namespace UI
         }
         private void ShowFullMap()
         {
-            // ÀüÃ¼¸Ê UI È°¼ºÈ­ÇÏ°í 
+            // ì „ì²´ë§µ UI í™œì„±í™”í•˜ê³  
             ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), true);
-            // ÀÔ·Â Çã¿ëÇÏ°í 
+            // ì…ë ¥ í—ˆìš©í•˜ê³  
 
-            // ÆĞ³Î ¼³Á¤
+            // íŒ¨ë„ ì„¤ì •
             VisualElement _panel = GetVisualElement((int)Elements.map_panel);
             _panel.RemoveFromClassList("minimap_panel");
             _panel.AddToClassList("map_panel");
 
-            // ¸Ê »çÀÌÁî ¼³Á¤ 
+            // ë§µ ì‚¬ì´ì¦ˆ ì„¤ì • 
             //map.RemoveFromClassList("minimap");
             //map.AddToClassList("map");
 
-            // ¹Ì´Ï¸Ê ¸¶½ºÅ© ²ô°í 
+            // ë¯¸ë‹ˆë§µ ë§ˆìŠ¤í¬ ë„ê³  
             VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
             ShowVisualElement(_minimapMask, false);
 
@@ -167,18 +167,18 @@ namespace UI
 
         private void ShowMiniMap()
         {
-            // ÀüÃ¼¸Ê UI ºñÈ°¼ºÈ­ÇÏ°í 
+            // ì „ì²´ë§µ UI ë¹„í™œì„±í™”í•˜ê³  
 
-            // ÀÔ·Â Â÷´ÜÇÏ°í 
+            // ì…ë ¥ ì°¨ë‹¨í•˜ê³  
 
-            // ÆĞ³Î ¼³Á¤
+            // íŒ¨ë„ ì„¤ì •
 
 
-            // ¸Ê »çÀÌÁî ¼³Á¤ 
+            // ë§µ ì‚¬ì´ì¦ˆ ì„¤ì • 
             //map.RemoveFromClassList("map");  
             //map.AddToClassList("minimap");    
 
-            // ÃÊ±âÈ­ 
+            // ì´ˆê¸°í™” 
             map.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(new Length(50, LengthUnit.Percent), new Length(50, LengthUnit.Percent)));
             MapTrm.scale = Vector3.one;
             MapTrm.position = Vector3.zero;
@@ -189,7 +189,7 @@ namespace UI
                 _marker.transform.scale = Vector2.one;
             }
             SetMapPanel(_isMinimap: true);
-            // ¸¶½ºÅ© Å°°í
+            // ë§ˆìŠ¤í¬ í‚¤ê³ 
             //SetMask(true); 
             //SetMask(true); 
         }
@@ -201,14 +201,14 @@ namespace UI
             ShowVisualElement(_panel, false);
             if (_isMinimap == true)
             {
-                // ÀüÃ¼¸Ê UI ºñÈ°¼ºÈ­ÇÏ°í 
+                // ì „ì²´ë§µ UI ë¹„í™œì„±í™”í•˜ê³  
                 ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), !_isMinimap);
                 _panel.RemoveFromClassList("map_panel");
                 _panel.AddToClassList("minimap_panel");
                 return;
             }
 
-            // ÀüÃ¼¸Ê UI È°¼ºÈ­ÇÏ°í 
+            // ì „ì²´ë§µ UI í™œì„±í™”í•˜ê³  
             ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), _isMinimap);
             _panel.AddToClassList("map_panel");
             _panel.RemoveFromClassList("minimap_panel");

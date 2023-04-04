@@ -1,9 +1,12 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Inventory; 
+using GoogleSpreadSheet;
+using Utill.Addressable;
+using Inventory; 
+using System.Linq; 
 
 namespace UI.Upgrade
 {
@@ -32,6 +35,7 @@ namespace UI.Upgrade
         public void SetCurSelectedItem(ItemData _curItemData)
         {
             this.curSelectedData = _curItemData; 
+            upgradeReadyView.SetItemLabel(TextManager.Instance.GetText(_curItemData.nameKey));
         }
         
         /// <summary>
@@ -67,12 +71,20 @@ namespace UI.Upgrade
         {
             // 슬롯 삭제 
             upgradeReadyView.ClearNeedItem();
+            upgradeReadyView.SetItemLabel("");
             needItemDataList.Clear();
         }
-
-        public void CheckCanUpgrade()
+        
+        /// <summary>
+        /// 합성 가능 여부 체크 
+        /// </summary>
+        public bool CheckCanUpgrade()
         {
-            
+            // 모든 재료가 있다면 합성가능 
+            bool _isCan = needItemDataList.Count(x => x.IsEnough) == needItemDataList.Count; //합성 가능 여부 
+            upgradeReadyView.ActiveUpgradeButton(_isCan);
+            upgradeReadyView.UpgradeButton.pickingMode = _isCan ? PickingMode.Position : PickingMode.Ignore; 
+            return _isCan; 
         }
     }
     
