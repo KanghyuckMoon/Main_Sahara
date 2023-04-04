@@ -226,7 +226,7 @@ namespace UI
                 
             });
             /*inputDic.Add(new UIInputData(Get(Keys.SaveLoadUI), true), () =>
-            {
+            {Marker
                 //  È°¼ºÈ­
                 bool _isActive = saveLoadPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SaveLoadUI));
