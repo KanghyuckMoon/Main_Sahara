@@ -22,7 +22,7 @@ namespace UI
 {
     /*public enum Keys
     {
-        QuestUI, 
+        QuestUI,    
         InventoryUI, 
         MapUI, 
         SaveLoadUI,

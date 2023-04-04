@@ -25,7 +25,7 @@ namespace UI.Upgrade
 
         private UpgradePickPresenter upgradePickPresenter; // 슬롯 선택시 나타날 업드레이드 패널 
         private UpgradeCtrlPresenter ctrlPresenter; // 좌우 버튼 , 상단 라벨 조작 Pr 
-        private UpgradeSlotPresenter _curSlotPr; // 현재 선택한 슬롯
+        private UpgradeSlotPresenter curSlotPr; // 현재 선택한 슬롯
         private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소
 
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
@@ -111,7 +111,7 @@ namespace UI.Upgrade
             upgradePickPresenter = new UpgradePickPresenter(upgradeView.UpgradePickParent);
             upgradePickPresenter.SetButtonEvent(() =>
             {
-                ItemUpgradeManager.Instance.Upgrade(_curSlotPr.ItemData.key);
+                ItemUpgradeManager.Instance.Upgrade(curSlotPr.ItemData.key);
                 Logging.Log("업그레이드 클릭");
             });
 
@@ -138,18 +138,11 @@ namespace UI.Upgrade
 
         private void LateUpdate()
         {
-
             if (isConnection == true)
             {
                 LineCreateManager.Instance.UpdateLinesPos(ScreenType.Upgrade,
                     upgradeView.MoveScreen.transform.position);
                 LineCreateManager.Instance.UpdateLinesScale(ScreenType.Upgrade, upgradeView.MoveScreen.parent.transform.scale);
-            }
-            // 테스트 
-            if(Input.GetKeyDown(KeyCode.X))
-            {
-                CreateItemTree(testItemDataSO);
-   
             }
         }
 
@@ -416,7 +409,7 @@ namespace UI.Upgrade
                 () =>
                 {
                     ActiveUpgradePn(_slotPr);
-                    _curSlotPr = _slotPr;
+                    curSlotPr = _slotPr;
                 }
             );
 
@@ -460,8 +453,7 @@ namespace UI.Upgrade
             int _idx = 0;
             var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key)
                 .Where((x) => x.itemType != ItemType.Weapon && x.isSlot == true).ToList();
-            ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key)
-                .Where((x) => x.isSlot == true ).ToList();
+
             foreach (var _data in _list)
             {
                 UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter();

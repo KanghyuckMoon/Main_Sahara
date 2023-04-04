@@ -44,7 +44,7 @@ namespace Inventory
 				ItemData _itemData = _itemUpgradeDataSO.needItemDataList[i];
 				if (!InventoryManager.Instance.ItemCheck(_itemData.key, _itemData.count))
 				{
-					Logging.Log("Àç·á ºÎÁ·");
+					Logging.Log("ì¬ë£Œ ë¶€ì¡±");
 					return;
 				}
 			}
@@ -55,7 +55,7 @@ namespace Inventory
 				InventoryManager.Instance.ItemReduce(_itemData.key, _itemData.count);
 			}
 			InventoryManager.Instance.AddItem(_itemUpgradeDataSO.key, _itemUpgradeDataSO.count);
-			Logging.Log("¾ÆÀÌÅÛ Á¦ÀÛ");
+			Logging.Log("ì•„ì´í…œ ì œì‘");
 		}
 
 		public List<ItemData> UpgradeItemSlotList(string _key)

@@ -14,9 +14,11 @@ namespace UI.Upgrade
             slot_parent,
             upgrade_pick,
             select_active_panel,
-            move_screen
+            move_screen,
+            
         }
- 
+
+
         public VisualElement Parent => parentElement; 
         public VisualElement UpgradePickParent => GetVisualElement((int)Elements.upgrade_pick);
         public VisualElement SelectParent => GetVisualElement((int)Elements.select_active_panel); // 클릭시 사방으로 재료 뜨는 거 
@@ -42,6 +44,7 @@ namespace UI.Upgrade
             GetVisualElement((int)Elements.slot_parent).Add(_v); 
         }
 
+
         /// <summary>
         /// 화면 클리어 
         /// </summary>
@@ -61,6 +64,8 @@ namespace UI.Upgrade
                 _v.RemoveFromHierarchy(); 
             }
         }
+        
+        
 
         
     }

@@ -57,7 +57,7 @@ namespace UI.MapLiner
         {
            // panel.transform.position = new Vector2(_pos.x * x, _pos.y * y); 
             panel.anchoredPosition =  new Vector2(_pos.x  *x ,_pos.y* y);
-        }
+        } 
         public void UpdateScale(Vector2 _scale)
         {
             //panel.sizeDelta = mapInfo.UIMapSize;

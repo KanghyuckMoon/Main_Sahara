@@ -16,7 +16,7 @@ namespace UI
     {
         private MapView mapView;
 
-        // ÀÎ½ºÆåÅÍ ÂüÁ¶ 
+        // ì¸ìŠ¤í™í„° ì°¸ì¡° 
         [SerializeField]
         private MarkersComponent markersComponent;
 
@@ -29,14 +29,14 @@ namespace UI
         [SerializeField]
         private float minZoomValue;
 
-        // ÇÁ¶óÀÌºø 
+        // í”„ë¼ì´ë¹— 
         private MapLiner.MapLiner mapLiner; 
 
         private float zoomValue;
         private float xMoveValue;
         private float yMoveValue;
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // í”„ë¡œí¼í‹° 
         private Vector2 MoveDir => new Vector2(xMoveValue, yMoveValue).normalized;
         public MarkersComponent MarkersComponent => markersComponent;
 
@@ -49,11 +49,11 @@ namespace UI
 
         public void UpdateUI()
         {
-            // ÀüÃ¼¸ÊÀÏ ¶§¸¸ ÀÔ·ÂÀ¸·Î ÀÌµ¿ È®´ë 
+            // ì „ì²´ë§µì¼ ë•Œë§Œ ì…ë ¥ìœ¼ë¡œ ì´ë™ í™•ëŒ€ 
             KeyInput();
-            // ÀÌµ¿ 
+            // ì´ë™ 
             MoveMap();
-            // È®´ë Ãà¼Ò 
+            // í™•ëŒ€ ì¶•ì†Œ 
             ZoomMap();
             //mapView.MapRect.width 
             LineCreateManager.Instance.UpdateLinesPos(ScreenType.Map, (Vector2)mapView.Map.transform.position); 
@@ -61,7 +61,7 @@ namespace UI
           
             //EventManager.Instance.TriggerEvent(EventsType.UpdateMapPos, (Vector2)mapView.Map.transform.position);
            // EventManager.Instance.TriggerEvent(EventsType.UpdateMapScale, (Vector2)mapView.Map.transform.scale);
-            // ¸¶Ä¿ »ı¼º
+            // ë§ˆì»¤ ìƒì„±
             if (Input.GetKeyDown(KeyCode.G))
             {
                 markersComponent.CreateMarker(new Vector2(-mapView.Map.transform.position.x, -mapView.Map.transform.position.y), mapView.MarkerParent);
@@ -71,7 +71,7 @@ namespace UI
         private void KeyInput()
         {
             
-            // ¿òÁ÷ÀÓ 
+            // ì›€ì§ì„ 
             if (InputManager.Instance.CheckKey("MapMoveF_Down"))
             {
                 yMoveValue = 1f;
@@ -89,7 +89,7 @@ namespace UI
                 xMoveValue = 1f;
             }
 
-            // Å° ¶ÃÀ»¶§ ÃÊ±âÈ­ 
+            // í‚¤ ë—ì„ë•Œ ì´ˆê¸°í™” 
             if (InputManager.Instance.CheckKey("MapMoveF_Up") || InputManager.Instance.CheckKey("MapMoveB_Up"))
             {
                 yMoveValue = 0f;
@@ -99,16 +99,16 @@ namespace UI
                 xMoveValue = 0f;
             }
 
-            // È®´ë Ãà¼Ò 
+            // í™•ëŒ€ ì¶•ì†Œ 
             zoomValue = Input.GetAxis("Mouse ScrollWheel");
         }
 
         /// <summary>
-        /// ¸Ê ÀÌµ¿
+        /// ë§µ ì´ë™
         /// </summary>
         private void MoveMap()
         {
-            // ÀÌµ¿ 
+            // ì´ë™ 
             Vector3 mapPos = mapView.Map.transform.position;
             //Vector2 mapPos = new Vector2(mapView.Map.style.left.value.value, mapView.Map.style.top.value.value);
 
@@ -120,7 +120,7 @@ namespace UI
             mapY = Mathf.Clamp(mapPos.y + MoveDir.y * (moveSpeed / mapView.MapTrm.scale.y) * Time.deltaTime,
                                                 //  -mapView.MapRect.height - height,height * 0.5f);
                                                 -(mapView.MapRect.height /** mapScale.y*/) * 0.5f, (mapView.MapRect.height /** mapScale.y*/) * 0.5f);
-            // ¿Ö ½ºÄÉÀÏ ¾È °öÇØ¾ß ÇÏ´Â°ÅÁö? 
+            // ì™œ ìŠ¤ì¼€ì¼ ì•ˆ ê³±í•´ì•¼ í•˜ëŠ”ê±°ì§€? 
 
             //mapView.Map.style.left = mapX;
             //mapView.Map.style.top = mapY; 
@@ -129,45 +129,45 @@ namespace UI
         }
 
         /// <summary>
-        /// ¸Ê È®´ë Ãà¼Ò 
+        /// ë§µ í™•ëŒ€ ì¶•ì†Œ 
         /// </summary>
         private void ZoomMap()
         {
             Vector3 mapScale = mapView.MapTrm.scale;
 
-            /// È®´ë Ãà¼Ò 
+            /// í™•ëŒ€ ì¶•ì†Œ 
 
-            // ¸Ê È®´ë Ãà¼Ò 
+            // ë§µ í™•ëŒ€ ì¶•ì†Œ 
             float scaleX, scaleY;
             scaleX = Mathf.Clamp(mapScale.x + (zoomValue * mapScale.x) * zoomSpeed, minZoomValue, maxZoomValue);
             scaleY = Mathf.Clamp(mapScale.y + (zoomValue * mapScale.y) * zoomSpeed, minZoomValue, maxZoomValue);
             mapView.MapTrm.scale = new Vector3(scaleX, scaleY, mapScale.z);
 
-            // ¸¶Ä¿µé È®´ë Ãà¼Ò 
+            // ë§ˆì»¤ë“¤ í™•ëŒ€ ì¶•ì†Œ 
             // mapView.MarkerParent.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
             var _markers = mapView.MarkerParent.Children();
             foreach (var _marker in _markers)
             {
                 _marker.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
             }
-            // ¸¶Ä¿µé ÇÇ¹ş ¼³Á¤ 
+            // ë§ˆì»¤ë“¤ í”¼ë²— ì„¤ì • 
             //mapView.MarkerParent.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(
             //   new Length((mapView.MapRect.width * 0.5f - mapView.MapTrm.position.x), LengthUnit.Pixel),
             //   new Length((mapView.MapRect.height * 0.5f - mapView.MapTrm.position.y), LengthUnit.Pixel)));
 
-            // ÇÇ¹ş ¼³Á¤
+            // í”¼ë²— ì„¤ì •
             mapView.Map.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(
                 new Length((mapView.MapRect.width * 0.5f - mapView.MapTrm.position.x), LengthUnit.Pixel),
                 new Length((mapView.MapRect.height * 0.5f - mapView.MapTrm.position.y), LengthUnit.Pixel)));
 
-            // Áß½ÉÁ¡ µû¶ó°¡µµ·Ï 
+            // ì¤‘ì‹¬ì  ë”°ë¼ê°€ë„ë¡ 
             //float diffX = mapView.CenterMark.worldBound.x - mapView.Map.worldBound.x;
             //float diffY = mapView.CenterMark.worldBound.y - mapView.Map.worldBound.y;
             //mapView
         }
 
         /// <summary>
-        /// ¹ßÀÚ±¹ È°¼ºÈ­ 
+        /// ë°œìêµ­ í™œì„±í™” 
         /// </summary>
         public void ActivePath()
         {
