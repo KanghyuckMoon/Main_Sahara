@@ -115,8 +115,15 @@ namespace Module
                 Ray _ray = new Ray(cameraModule.CurrentCamera.transform.position, cameraModule.CurrentCamera.transform.forward);
                 RaycastHit _raycastHit;
 
-                _vec = cameraModule.CurrentCamera.transform.position + cameraModule.CurrentCamera.transform.forward * 40f;
-                
+                if (Physics.Raycast(_ray, out _raycastHit, 80, targetLayerMask))
+                {
+                    _vec = _raycastHit.point;
+                    Debug.Log("맞음!" + _raycastHit.transform.name);
+                }
+                else
+                {
+                    _vec = cameraModule.CurrentCamera.transform.position + cameraModule.CurrentCamera.transform.forward * 100f;
+                }
             }
             else
             {

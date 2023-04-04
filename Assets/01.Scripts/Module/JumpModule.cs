@@ -35,11 +35,14 @@ namespace Module
         private float jumpDelay;
         private float calculatedTime;
         private float currentDelay;
+        private float jumpingDelay;
 
         private bool isJumotrue;
 
         private float antiFallTime;
         private float calculatedFallTime;
+
+        private bool onJump;
 
         public JumpModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -61,13 +64,24 @@ namespace Module
 
         public override void FixedUpdate()
         {
-            Jump();
+            JumpCheack();
             Weight();
         }
 
         public override void Update()
         {
+            Delay();
+        }
 
+        void Delay()
+        {
+            if (onJump)
+            {
+                if (currentDelay <= 0)
+                    Jump();
+                else
+                    currentDelay -= mainModule.PersonalDeltaTime;
+            }
         }
 
         void Weight()
@@ -76,7 +90,7 @@ namespace Module
                 gravityWeight = mainModule.Gravity;
         }
 
-        void Jump()
+        void JumpCheack()
         {
             if (mainModule.isGround)
             {
@@ -88,10 +102,10 @@ namespace Module
                 if (mainModule.Gravity < 0) mainModule.Gravity = -2;
 
                 if (mainModule.IsJump && calculatedTime <= 0.0f)
-          {
+                {
                     Animator.SetBool("Jump", true);
 
-                    Jumping(0.2f);
+                    Jumping(0f);
                 }
 
                 if (calculatedTime > 0.0f)
@@ -118,13 +132,14 @@ namespace Module
 
         public void Jumping(float _delay)
         {
-            //Debug.LogError("점ㅊ프프프프프");
-            //isJumotrue = true;
+            currentDelay = _delay;
+            onJump = true;
+        }
 
-            //if(currentDelay < )
-
+        private void Jump()
+        {
+            onJump = false;
             mainModule.Gravity = Mathf.Sqrt(JumpHeight * -2f * _GravityScale);
-            //mainModule.characterController.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
 
         public override void OnDisable()

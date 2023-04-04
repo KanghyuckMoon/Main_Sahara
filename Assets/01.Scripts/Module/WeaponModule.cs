@@ -5,6 +5,7 @@ using Pool;
 using Weapon;
 using HitBox;
 using System;
+using Effect;
 
 namespace Module
 {
@@ -124,7 +125,6 @@ namespace Module
             if (weapon != null && weapon != "")
             {
                 GameObject _weapon = ObjectPoolManager.Instance.GetObject(weapon);
-                _weapon.SetActive(true);
 
                 string tagname = mainModule.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
                 _weapon.tag = tagname;
@@ -140,6 +140,7 @@ namespace Module
                 BaseWeapon.tagName = _tagname;
                 mainModule.GetComponent<HitBoxOnAnimation>()?.ChangeSO(BaseWeapon.HitBoxDataSO);
                 projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
+                mainModule.GetComponent<AnimationOnEffect>().ChangeSO(BaseWeapon.AnimationEffectSO);
 
                 StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
@@ -157,6 +158,7 @@ namespace Module
 
                 mainModule.IsConsecutiveWeapon = BaseWeapon.isConsecutiveWeapon;
                 mainModule.IsWeaponExist = true;
+                _weapon.SetActive(true);
                 SetBehaveAnimation();
             }
         }
