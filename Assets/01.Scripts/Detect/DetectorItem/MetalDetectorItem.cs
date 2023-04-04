@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Effect;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using Utill.Pattern;
@@ -12,8 +13,11 @@ namespace Detect
         [SerializeField] 
         private Light pointLight;
         [SerializeField] 
-        private string closeDetectEff;
-
+        private string closeDetectEffect;
+        
+        [SerializeField] 
+        private Transform targetEffectTrm;
+        
         [SerializeField] 
         private float closeRadius = 10f;
         
@@ -51,7 +55,7 @@ namespace Detect
             {
                 currentTimer = 0f;
                 //Sound Play
-                SoundManager.Instance.PlayEFF(closeDetectEff);
+                EffectManager.Instance.SetEffectDefault(closeDetectEffect, targetEffectTrm.position, Vector3.zero, Vector3.one, targetEffectTrm);
             }
             else
             {
