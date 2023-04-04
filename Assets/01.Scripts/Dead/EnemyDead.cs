@@ -103,11 +103,11 @@ namespace Module
                 ItemDrop(dropItemListSO.dropItemKeyArr[_index]); 
             }
             yield return new WaitForSeconds(0.2f);
-            abMainModule.Model.gameObject.SetActive(false);
+            abMainModule.VisualObject.gameObject.SetActive(false);
             yield return new WaitForSeconds(3f);
             Send();
             animator.speed = 1;
-            abMainModule.Model.gameObject.SetActive(true);
+            abMainModule.VisualObject.gameObject.SetActive(true);
             ObjectPoolManager.Instance.RegisterObject(enemyKey, gameObject);
             gameObject.SetActive(false);
         }

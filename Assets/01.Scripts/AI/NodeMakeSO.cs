@@ -50,6 +50,7 @@ namespace AI
 		SetAroundOrigin,
 		SetAroundPlayer,
 		AroundMove,
+		InstantDiscovery,
 		//StringAction
 		EquipWeapon = 20,
 		//FloatAction

@@ -102,7 +102,7 @@ namespace Module
             mainModule.IsHit = true;
             //animationModule.animator.
             AnimationModule.animator.SetBool("Hit", true);
-            //AnimationModule.animator.Play("Hit");
+            AnimationModule.animator.Play("Hit");
         }
 
         private void Dead()

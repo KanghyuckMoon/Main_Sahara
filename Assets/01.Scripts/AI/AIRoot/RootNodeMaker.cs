@@ -250,6 +250,7 @@ namespace AI
 				NodeAction.AroundMove => AroundMove,
 				NodeAction.SetAroundOrigin => SetAroundOrigin,
 				NodeAction.SetAroundPlayer => SetAroundPlayer,
+				NodeAction.InstantDiscovery => InstantDiscovery,
 				_ => null
 			};
 		}

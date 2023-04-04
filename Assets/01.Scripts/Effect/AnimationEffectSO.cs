@@ -14,6 +14,19 @@ namespace Effect
 
 		public string removeEffectKey = null;
 
+		public List<string> debugList = new List<string>();
+
+		[ContextMenu("ResetDic")]
+		public void ResetDic()
+		{
+			effectDataListDic.Clear();
+			foreach (var _obj in debugList)
+			{
+				EffectDataList _effectDataList = new EffectDataList();
+				effectDataListDic.Add(_obj, _effectDataList);
+			}
+		}
+		
 		public void UploadEffectData(string _key, EffectData _effectData)
 		{
 			if (_key is null)
