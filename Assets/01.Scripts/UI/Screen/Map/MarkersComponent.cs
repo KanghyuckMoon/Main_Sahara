@@ -32,8 +32,8 @@ namespace UI
             float _w = marker.ElementAt(0).style.width.value.value;
             float _h = marker.ElementAt(0).style.height.value.value;
 
-            width = (int)_marker.bounds.size.x;
-            height = (int)_marker.bounds.size.y;
+            width = (int)(_marker.bounds.size.x * 400);
+            height = (int)(_marker.bounds.size.y * 400);
             
             marker.ElementAt(0).style.width = new StyleLength(width);
             marker.ElementAt(0).style.height = new StyleLength(height);

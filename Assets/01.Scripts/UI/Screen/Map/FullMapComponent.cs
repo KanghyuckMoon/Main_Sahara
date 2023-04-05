@@ -168,11 +168,11 @@ namespace UI
 
             // 마커들 확대 축소 
             // mapView.MarkerParent.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
-            var _markers = mapView.MarkerParent.Children();
-            foreach (var _marker in _markers)
-            {
-                _marker.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
-            }
+            //var _markers = mapView.MarkerParent.Children();
+            //foreach (var _marker in _markers)
+            //{
+            //    _marker.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
+            //}
             // 마커들 피벗 설정 
             //mapView.MarkerParent.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(
             //   new Length((mapView.MapRect.width * 0.5f - mapView.MapTrm.position.x), LengthUnit.Pixel),
