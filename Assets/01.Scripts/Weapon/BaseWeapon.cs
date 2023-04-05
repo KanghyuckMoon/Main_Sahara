@@ -46,7 +46,7 @@ namespace Weapon
         {
             get
             {
-                projectilePositionSo ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(weaponDataSO.projectileObjectName + weaponPosStr);
+                projectilePositionSo ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(WeaponDataSO.projectileObjectName + weaponPosStr);
                 return projectilePositionSo;
             }
         }
