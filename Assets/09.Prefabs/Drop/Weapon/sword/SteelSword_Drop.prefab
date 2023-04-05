@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3138397703178521315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8180383867761778170}
+  - component: {fileID: 85150697019644495}
+  - component: {fileID: 6739274307112601857}
+  m_Layer: 13
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8180383867761778170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138397703178521315}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 1.51}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4009571806342801764}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &85150697019644495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138397703178521315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: 39de47727ae24804aa2e558c3c9c794b, type: 2}
+  rigid: {fileID: 7058656343132584937}
+  itemAddress: Sw_02_SteelSword
+  targetObj: {fileID: 4390742442086478814}
+  isJumping: 1
+--- !u!136 &6739274307112601857
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138397703178521315}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.42
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4390742442086478814
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +75,6 @@ GameObject:
   - component: {fileID: 4009571806342801764}
   - component: {fileID: 3104768313845441}
   - component: {fileID: 2877783174730224139}
-  - component: {fileID: 1898450174804443213}
   - component: {fileID: 7058656343132584937}
   - component: {fileID: -8071514982983948806}
   m_Layer: 14
@@ -32,7 +95,8 @@ Transform:
   m_LocalPosition: {x: 34.590004, y: 3.9000037, z: -29.333912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8180383867761778170}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -86,23 +150,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1898450174804443213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4390742442086478814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 39de47727ae24804aa2e558c3c9c794b, type: 2}
-  rigid: {fileID: 7058656343132584937}
-  itemAddress: Sw_02_SteelSword
-  targetObj: {fileID: 4390742442086478814}
-  isJumping: 1
 --- !u!54 &7058656343132584937
 Rigidbody:
   m_ObjectHideFlags: 0

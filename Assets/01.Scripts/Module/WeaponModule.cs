@@ -125,7 +125,6 @@ namespace Module
             if (weapon != null && weapon != "")
             {
                 GameObject _weapon = ObjectPoolManager.Instance.GetObject(weapon);
-                _weapon.SetActive(true);
 
                 string tagname = mainModule.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
                 _weapon.tag = tagname;
@@ -159,6 +158,7 @@ namespace Module
 
                 mainModule.IsConsecutiveWeapon = BaseWeapon.isConsecutiveWeapon;
                 mainModule.IsWeaponExist = true;
+                _weapon.SetActive(true);
                 SetBehaveAnimation();
             }
         }

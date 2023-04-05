@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 945671834489736329}
   - component: {fileID: 4228994470962873132}
   - component: {fileID: 2113489330898319334}
-  - component: {fileID: -2092636814494589633}
   - component: {fileID: 8299287791250779403}
   - component: {fileID: 3363955880947841825}
   m_Layer: 14
@@ -32,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 38.218895, y: 1.9148932, z: -29.568897}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8407011224772251332}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -87,23 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-2092636814494589633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456098491935626803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 9638244c566598845b47ee6b91337620, type: 2}
-  rigid: {fileID: 8299287791250779403}
-  itemAddress: St_04_Samsara
-  targetObj: {fileID: 456098491935626803}
-  isJumping: 1
 --- !u!54 &8299287791250779403
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,3 +116,67 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.37893492, y: 0.3430148, z: 3.5700312}
   m_Center: {x: 0.00000039488077, y: 0, z: 0}
+--- !u!1 &3182321336901551371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8407011224772251332}
+  - component: {fileID: 5191657518495759510}
+  - component: {fileID: 58273521544698374}
+  m_Layer: 13
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8407011224772251332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3182321336901551371}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 945671834489736329}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &5191657518495759510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3182321336901551371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: 9638244c566598845b47ee6b91337620, type: 2}
+  rigid: {fileID: 8299287791250779403}
+  itemAddress: St_04_Samsara
+  targetObj: {fileID: 456098491935626803}
+  isJumping: 1
+--- !u!136 &58273521544698374
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3182321336901551371}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.42
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
