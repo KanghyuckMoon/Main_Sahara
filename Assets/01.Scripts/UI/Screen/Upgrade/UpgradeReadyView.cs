@@ -13,7 +13,8 @@ namespace UI.Upgrade
         {
             need_item_parent,
             weapon_need, 
-            etc_need
+            etc_need,
+            select_image
 
         }
         enum Labels
@@ -42,6 +43,11 @@ namespace UI.Upgrade
             base.Init();
         }
 
+        public void SetImage(Texture2D _image)
+        {
+            GetVisualElement((int)Elements.select_image).style.backgroundImage = _image; 
+        }
+        
         /// <summary>
         /// 현재 선택한 라벨 설정
         /// </summary>

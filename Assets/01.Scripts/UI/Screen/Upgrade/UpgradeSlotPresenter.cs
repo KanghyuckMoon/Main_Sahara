@@ -18,6 +18,7 @@ namespace UI.Upgrade
         private VisualElement element1; 
         private ItemData itemData;
 
+        private const string inactiveStr = "upgrade_slot_inactive"; 
         // 프로퍼티 
         public UpgradeSlotView UpgradeSlotView => upgradeSlotView;
         public VisualElement Parent => parent;
@@ -38,14 +39,25 @@ namespace UI.Upgrade
                 return HaveItemData.count >= ItemData.count; // 재료 충분한지 
             }
         }
-        public UpgradeSlotPresenter()
+        public UpgradeSlotPresenter(bool _isAnimation = false)
         {
             var _production = UIConstructorManager.Instance.GetProductionUI(typeof(UpgradeSlotView));
             this.upgradeSlotView = _production.Item2 as UpgradeSlotView;
             this.parent = _production.Item1;
             element1 = parent.ElementAt(0);
+
+            if (_isAnimation == true)
+            {
+                element1.RemoveFromClassList(inactiveStr);
+            }
+                element1.RemoveFromClassList(inactiveStr);
         }
 
+        public IEnumerator Animate()
+        {
+            yield return new WaitForSeconds(0.01f); 
+            element1.RemoveFromClassList(inactiveStr);
+        }
         public void UpdateUI()
         {
 
