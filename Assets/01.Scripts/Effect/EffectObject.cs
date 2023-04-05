@@ -62,6 +62,12 @@ namespace Effect
             ObjectPoolManager.Instance.RegisterObject(address, gameObject);
         }
 
+        public void Pool()
+        {
+            gameObject.SetActive(false);
+            ReParent();
+        }
+
     }
 
 }

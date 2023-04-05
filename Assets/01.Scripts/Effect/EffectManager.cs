@@ -63,6 +63,21 @@ namespace Effect
 			effect.transform.SetParent(null);
 			effect.gameObject.SetActive(true);
         }
+        
+        public EffectObject SetAndGetEffectDefault(string _adress, Vector3 _pos, Quaternion _quaternion)
+        {
+            if (!_isInit)
+            {
+                Init();
+            }
+
+            GameObject effect = ObjectPoolManager.Instance.GetObject(_adress);
+            effect.transform.position = _pos;
+            effect.transform.rotation = _quaternion;
+            effect.transform.SetParent(null);
+            effect.gameObject.SetActive(true);
+            return effect.GetComponent<EffectObject>();
+        }
 
         /// <summary>
         /// 이펙트 설치
