@@ -36,6 +36,7 @@ namespace UI.Upgrade
         {
             this.curSelectedData = _curItemData; 
             upgradeReadyView.SetItemLabel(TextManager.Instance.GetText(_curItemData.nameKey));
+            upgradeReadyView.SetImage(AddressablesManager.Instance.GetResource<Texture2D>(_curItemData.spriteKey));
         }
         
         /// <summary>
@@ -46,13 +47,13 @@ namespace UI.Upgrade
         {
             foreach (var _data in _itemDataList)
             {
-                UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter();
+                UpgradeSlotPresenter _newUpgradePr = new UpgradeSlotPresenter(true);
                 // 슬롯 애니메이션 
                 _newUpgradePr.SetItemDataHave(_data);
                 needItemDataList.Add(_newUpgradePr);
 
                 // 슬롯 하나 활성화 
-                if (_data.itemType == ItemType.Weapon)
+                if (_data.itemType == ItemType.Weapon)  
                 {
                     this.upgradeReadyView.SetParentWeaponNeed(_newUpgradePr.Parent.ElementAt(0));
                 }
@@ -73,6 +74,7 @@ namespace UI.Upgrade
             upgradeReadyView.ClearNeedItem();
             upgradeReadyView.SetItemLabel("");
             needItemDataList.Clear();
+            upgradeReadyView.SetImage(null);
         }
         
         /// <summary>

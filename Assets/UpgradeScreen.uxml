@@ -36,7 +36,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="upgrade_pick" picking-mode="Ignore" style="width: auto; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-direction: column; position: absolute; background-color: rgba(0, 0, 0, 0.94); flex-grow: 1; transform-origin: left; top: 0; left: 0; display: flex;">
+        <ui:VisualElement name="upgrade_pick" picking-mode="Ignore" style="width: auto; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-direction: column; position: absolute; background-color: rgba(0, 0, 0, 0.94); flex-grow: 1; transform-origin: left; top: 0; left: 0; display: none;">
             <ui:VisualElement style="display: flex;">
                 <ui:VisualElement name="slot_parent" style="flex-direction: row; align-items: center; padding-left: 15px;">
                     <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; opacity: 0.99;">
@@ -103,14 +103,17 @@
         <ui:VisualElement name="left_panel" class="panel">
             <ui:VisualElement name="top_panel" class="panel" style="padding-top: 40px; padding-left: 10px; padding-right: 10px;">
                 <ui:VisualElement name="need_item_parent" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 0; width: 100%; height: 100%;">
-                    <ui:VisualElement name="weapon_need" class="need_parent" style="flex-direction: row; justify-content: space-around; margin-bottom: 20px;" />
+                    <ui:VisualElement name="weapon_need" class="need_parent" style="flex-direction: row-reverse; justify-content: space-around; margin-bottom: 20px;" />
                     <ui:VisualElement name="etc_need" class="need_parent" style="flex-direction: row; justify-content: space-around;" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="mid_panel" class="panel" style="flex-basis: 50%;" />
+            <ui:VisualElement name="mid_panel" class="panel" style="flex-basis: 50%;">
+                <ui:VisualElement name="select_image" style="width: 100%; height: 100%; padding-left: 100px; padding-right: 100px; padding-top: 100px; padding-bottom: 100px; -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="w" style="position: absolute; height: -324px; top: 324px; width: -304px; left: 304px;" />
+            </ui:VisualElement>
             <ui:VisualElement name="bot_panel" class="panel" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; justify-content: center;">
-                <ui:Label text="Label" display-tooltip-when-elided="true" name="select_item_label" class="font_base" style="font-size: 30px; color: rgb(224, 224, 224); -unity-text-align: upper-center; background-color: rgba(0, 0, 0, 0.96); background-image: none;" />
-                <ui:Button text="합성" display-tooltip-when-elided="true" name="upgrade_button" class="font_base upgrade_btn" />
+                <ui:Label display-tooltip-when-elided="true" name="select_item_label" class="font_base" style="font-size: 30px; color: rgb(224, 224, 224); -unity-text-align: upper-center; background-color: rgb(0, 0, 0); background-image: none; -unity-background-image-tint-color: rgb(0, 0, 0);" />
+                <ui:Button text="합성" display-tooltip-when-elided="true" name="upgrade_button" class="font_base upgrade_btn" style="background-color: rgb(19, 19, 19); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
