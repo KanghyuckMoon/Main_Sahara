@@ -6,7 +6,7 @@ using UI.Dialogue;
 using UI.Quest;
 using UI.Inventory;
 using UI.Base;
-using UI.Upgrade;
+using UI.Upgrade;   
 using UI.Shop;
 using System;
 using UI.Save;
@@ -16,13 +16,14 @@ using UI.UtilManager;
 using UI.Option;
 using UI.EventManage;
 using UI.Manager;
+using UI.MapLiner;
 
 
 namespace UI
 {
     /*public enum Keys
     {
-        QuestUI, 
+        QuestUI,    
         InventoryUI, 
         MapUI, 
         SaveLoadUI,
@@ -182,10 +183,19 @@ namespace UI
             {
                 bool _isActive = upgradePresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SmithUI));
-                curActiveScreen = (Keys.SmithUI,upgradePresenter); 
+                curActiveScreen = (Keys.SmithUI,upgradePresenter);
+
+                ActiveUpgrade(_isActive); 
             });
         }
 
+        private void ActiveUpgrade(bool _isActive)
+        {
+            LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+            UIManager.Instance.ActiveHud(! _isActive);
+            mapPresenter.Active(! _isActive);
+        }
+        
         private void SetInputEvent()
         {
             inputDic.Clear();
@@ -213,6 +223,10 @@ namespace UI
                 //  활성화
                 bool _isActive = upgradePresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.UpgradeUI));
+                LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+                UIManager.Instance.ActiveHud(! _isActive);
+                mapPresenter.Active(! _isActive);
+                
             });
             inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
             {
@@ -222,7 +236,7 @@ namespace UI
                 
             });
             /*inputDic.Add(new UIInputData(Get(Keys.SaveLoadUI), true), () =>
-            {
+            {Marker
                 //  활성화
                 bool _isActive = saveLoadPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SaveLoadUI));
@@ -270,6 +284,11 @@ namespace UI
                 curActiveScreen.Item2.ActiveView(false);
                 curActiveScreen.Item2 = null; 
                 EventManager.Instance.TriggerEvent(EventsType.SetCanDialogue,false);
+
+                if (curActiveScreen.Item1 == Keys.UpgradeUI)
+                {
+                    ActiveUpgrade(false);
+                }
             }
         }
         

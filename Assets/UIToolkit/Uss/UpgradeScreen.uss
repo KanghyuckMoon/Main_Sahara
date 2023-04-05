@@ -111,3 +111,54 @@
     border-bottom-width: 0;
     scale: 1.05 1.05;
 }
+
+.need_parent {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.upgrade_btn {
+    padding-bottom: 5px;
+    margin-top: 10px;
+    -unity-text-align: middle-center;
+    padding-top: 5px;
+    font-size: 25px;
+    color: rgba(238, 238, 238, 255);
+    -unity-font-style: normal;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+}
+
+.upgrade_slot_inactive {
+    opacity: 0;
+    scale: 0.1 0.1;
+}
+
+.upgrade_slot {
+    align-items: center;
+    justify-content: center;
+    padding-left: 1.5px;
+    padding-right: 1.5px;
+    padding-top: 1.5px;
+    padding-bottom: 1.5px;
+    background-color: rgba(0, 0, 0, 0.98);
+    margin-right: 15px;
+    transition-property: opacity, scale;
+    transition-duration: 0.3s, 0.3s;
+    transition-timing-function: ease, ease-out-back;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    transition-delay: 0.1s, 0s;
+    flex-shrink: 0;
+}
