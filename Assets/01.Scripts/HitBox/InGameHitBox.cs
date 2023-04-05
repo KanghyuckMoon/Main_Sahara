@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Effect;
+using Unity.Plastic.Antlr3.Runtime.Misc;
 
 namespace HitBox
 {
@@ -42,9 +44,18 @@ namespace HitBox
 				return hitBoxData;
 			}
 		}
+		private HitBoxInAction HitBoxInAction
+		{
+			get
+			{
+				hitBoxInAction ??= GetComponent<HitBoxInAction>();
+				return hitBoxInAction;
+			}
+		}
 
 		private CapsuleCollider col;
 		private HitBoxData hitBoxData;
+		private HitBoxInAction hitBoxInAction;
 		private GameObject owner;
 		private ulong index;
 		private bool isContactDir;

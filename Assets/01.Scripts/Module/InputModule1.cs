@@ -30,8 +30,6 @@ namespace Module
 			
 			if (mainModule.IsWeaponExist)
 			{
-				
-				
 				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) &&
 				    !StateModule.CheckState(State.SKILL))
 				{

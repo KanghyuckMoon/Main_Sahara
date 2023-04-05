@@ -44,9 +44,18 @@ namespace Module
             }
         }
 
+        public HitBoxAction HitBoxAction
+        {
+            get
+            {
+                hitBoxAction ??= new HitBoxAction();
+                return hitBoxAction;
+            }
+        }
 
         private WeaponModule weaponModule;
         private GameObject projectileObject;
+        private HitBoxAction hitBoxAction;
 
         private string projectileName;
 
