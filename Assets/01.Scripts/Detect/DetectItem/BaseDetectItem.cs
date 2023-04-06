@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using DG.Tweening;
+using Effect;
 
 namespace Detect
 {
@@ -29,9 +30,21 @@ namespace Detect
         
         [SerializeField] 
         protected Transform targetTransform;
+        
+        [SerializeField] 
+        protected Transform targetModel;
+        
+        [SerializeField] 
+        protected Transform targetEffectTrm;
+        
+        [SerializeField] 
+        protected string effectAddress;
 
         [SerializeField] 
         protected float heightUpTime = 2f;
+            
+        [SerializeField] 
+        protected float shakeStrength = 0.5f;
 
         protected bool isGetOut = false;
         
@@ -43,7 +56,13 @@ namespace Detect
             }
             isGetOut = true;
             Vector3 _movePos = targetHeightTransform.transform.position;
-            targetTransform.DOMove(_movePos, heightUpTime);
+            var _effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
+            targetTransform.DOMove(_movePos,  heightUpTime);
+            targetModel.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
+            {
+                _effectObj.Pool();
+                gameObject.SetActive(false);
+            });
         }
     }   
 }

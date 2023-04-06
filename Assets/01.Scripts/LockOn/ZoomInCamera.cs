@@ -6,11 +6,14 @@ using Module;
 using Cinemachine;
 using ForTheTest;
 using DG.Tweening;
+using Data;
 
 namespace LockOn
 {
     public class ZoomInCamera : MonoBehaviour
     {
+        [SerializeField] private ZoomInDataSO zoomInDataSO;
+        
         public GameObject zoomInCam;
 
         public LockOnCamera lockOnCamera;
@@ -61,13 +64,12 @@ namespace LockOn
         {
             int _weight = _isOn > 0 ? -10 : 10;
             bool _on = _isOn > 0 ? true : false;
+            
+            mainModule.LockOn = _on;
 
             lockOnCamera.currentCamera.gameObject.SetActive(!_on);
 
             zoomInCam.SetActive(_on);
-
-            mainModule.LockOn = _on;
-
             if (_on)
             {
                 //zoomInCam.transform.position = originPos + transform.position;
@@ -99,16 +101,26 @@ namespace LockOn
             }
         }
 
-        public void CameraZoomIn(float _duration, string _strengh)
+        public void CameraZoomIn(string _key)//, string _strengh)
         {
-            CinemachineVirtualCamera _currentCamera = lockOnCamera.currentCamera;
+            //Debug.LogError("줌임줌인줌인");
 
-            float _originSize = _currentCamera.m_Lens.FieldOfView;
-            float _targetSize = float.Parse(_strengh) * _originSize;
+            //lockOnCamera.currentCamera;
+            
+            //if()
+            
+            float _originSize = 32;
+            float _targetSize = zoomInDataSO.ZoomInData[_key].value * _originSize;
 
             DOTween.To(
-                () => _originSize, (x2) => _currentCamera.m_Lens.FieldOfView = x2, _targetSize, 0.3f
-            ).SetLoops(1, LoopType.Yoyo);
+                () => _originSize, (x2) => lockOnCamera.currentCamera.m_Lens.FieldOfView = x2, _targetSize, zoomInDataSO.ZoomInData[_key].duration_Zoom
+            ).OnComplete(() =>
+            {
+
+                DOTween.To(
+                    () => _targetSize, (x2) => lockOnCamera.currentCamera.m_Lens.FieldOfView = x2, _originSize, zoomInDataSO.ZoomInData[_key].duration_Back
+                );
+            });
         }
     }
 }

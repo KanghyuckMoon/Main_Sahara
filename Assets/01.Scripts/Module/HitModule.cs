@@ -100,9 +100,10 @@ namespace Module
         {
             //animationModule.animator.St 
             mainModule.IsHit = true;
+            AnimationModule.animator.Play("Hit");
             //animationModule.animator.
             AnimationModule.animator.SetBool("Hit", true);
-            AnimationModule.animator.Play("Hit");
+            
         }
 
         private void Dead()

@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.SeralizableDictionary;
 using System.Linq;
 using Buff;
+using Unity.Plastic.Antlr3.Runtime.Misc;
 
 namespace HitBox
 {
@@ -159,6 +161,9 @@ namespace HitBox
 		//버프, 디버프
 		public List<BuffData> buffList = new List<BuffData>();
 		
+		//액션
+		public Action<GameObject> hitBoxAction;
+		
 		//데미지 
 		public float physicsAttackWeight = 1f;
 		public float magicalAttackWeight = 1f;
@@ -185,6 +190,8 @@ namespace HitBox
 			_newHitBox.swingEffectChildization = _hitBoxData.swingEffectChildization;
 			_newHitBox.hitEffect = _hitBoxData.hitEffect;
 			_newHitBox.buffList = _hitBoxData.buffList;
+
+			_newHitBox.hitBoxAction = _hitBoxData.hitBoxAction;
 			
 			_newHitBox.physicsAttackWeight = _hitBoxData.physicsAttackWeight;
 			_newHitBox.magicalAttackWeight = _hitBoxData.magicalAttackWeight;
@@ -214,10 +221,50 @@ namespace HitBox
 			hitEffect = _hitBoxData.hitEffect;
 			
 			buffList = _hitBoxData.buffList;
+
+			hitBoxAction = _hitBoxData.hitBoxAction;
 			
 			physicsAttackWeight = _hitBoxData.physicsAttackWeight;
 			magicalAttackWeight = _hitBoxData.magicalAttackWeight;
 		}
 	}
 
+}
+
+public interface IAction
+{
+	public void Invoke();
+}
+
+public class HitBoxAction
+{
+	public class ActionChild<T> : IAction
+	{
+		public Action<T> action;
+		public T parameter;
+		
+		public void Invoke()
+		{
+			action?.Invoke(parameter);
+		}
+		
+	}
+	
+	public void SetCondition<T>(Action<T> _action, T _paremeter)
+	{
+		ActionChild<T> _actionCondition = new ActionChild<T>();
+		_actionCondition.action = _action;
+		_actionCondition.parameter = _paremeter;
+		action.Add(_actionCondition);
+	}
+
+	public void Invoke()
+	{
+		foreach (IAction _action in action)
+		{
+			_action.Invoke();
+		}
+	}
+
+	public List<IAction> action;
 }

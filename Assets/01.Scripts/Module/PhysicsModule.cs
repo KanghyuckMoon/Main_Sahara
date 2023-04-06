@@ -122,6 +122,8 @@ namespace Module
                     _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.6f);
                     mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.5f);
 
+                    //_inGameHitBox.GetComponent<HitBoxInAction>().HitBoxAction?.Invoke();
+
                     if (knockBackCoroutine != null)
                     {
                         mainModule.StopCoroutine(knockBackCoroutine);
@@ -129,8 +131,9 @@ namespace Module
                     knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
                     _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
 
-                    
                     SetDeBuff(_inGameHitBox.HitBoxData.buffList);
+                    
+                    //_inGameHitBox.HitBoxData.hitBoxAction?.Invoke();
                     
                     //mainModule.SettingTime.SetTime(0.15f, 0.1f);
                     //_inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(0.2f, 0.1f);
@@ -140,6 +143,8 @@ namespace Module
                         int _manaCount = 0;
                         if (_statData != null)
                         {
+                            _inGameHitBox.Owner.GetComponent<BodyRotation>()?.SetChromaticAberration(0.3f);
+                            
                             HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
                             _totalMana = _statData.ManaRegen + _statData.ChangeMana(_statData.ManaRegen);
                         
@@ -164,6 +169,22 @@ namespace Module
                                 MPBall mpBall = ObjectPoolManager.Instance.GetObject("MPBall").GetComponent<MPBall>();
                                 mpBall.SetMPBall(_closerPoint, _stat.ChargeMana, _totalMana / _manaCount, _inGameHitBox.Owner);
                             }
+                        }
+                    }
+
+                    else
+                    {
+                        int _totalMana = 0;
+                        if (_statData != null)
+                        {
+                            HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
+                            _totalMana = _statData.ManaRegen + _statData.ChangeMana(_statData.ManaRegen);
+                        }
+                        else
+                        {
+                            StatData _stat = other.GetComponent<InGameHitBox>().Owner.GetComponent<StatData>();
+                            HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
+                            _totalMana = _stat.ManaRegen + _statData.ChangeMana(_stat.ManaRegen);
                         }
                     }
                 }
