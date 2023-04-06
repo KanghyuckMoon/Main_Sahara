@@ -185,15 +185,24 @@ namespace UI
                 SetUIAndCursor(_isActive, Get(Keys.SmithUI));
                 curActiveScreen = (Keys.SmithUI,upgradePresenter);
 
-                ActiveUpgrade(_isActive); 
+                ActiveUpgrade(_isActive);
             });
         }
 
+        private void SetIsDialogue(bool _isActive)
+        {
+            if (_isActive == false)
+            {
+                dialoguePresenter.IsDialogue = false;
+            }
+        }
         private void ActiveUpgrade(bool _isActive)
         {
             LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
             UIManager.Instance.ActiveHud(! _isActive);
             mapPresenter.Active(! _isActive);
+
+
         }
         
         private void SetInputEvent()
@@ -285,9 +294,10 @@ namespace UI
                 curActiveScreen.Item2 = null; 
                 EventManager.Instance.TriggerEvent(EventsType.SetCanDialogue,false);
 
-                if (curActiveScreen.Item1 == Keys.UpgradeUI)
+                 if (curActiveScreen.Item1 == Keys.SmithUI)
                 {
                     ActiveUpgrade(false);
+                    SetIsDialogue(false);
                 }
             }
         }
