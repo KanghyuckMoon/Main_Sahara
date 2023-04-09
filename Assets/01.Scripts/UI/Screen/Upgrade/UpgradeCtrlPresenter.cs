@@ -6,6 +6,7 @@ using Utill.Addressable;
 using System;
 using Inventory;
 using GoogleSpreadSheet; 
+using UI.Base;
 
 namespace UI.Upgrade
 {

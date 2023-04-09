@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using System;
 using GoogleSpreadSheet;
 using UI.Manager; 
+using UI.Base;
 
 namespace UI
 {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using DG.Tweening;
 using System;
+using UI.Base;
 
 namespace UI.Loading
 {

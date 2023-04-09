@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements; 
 using UI.UtilManager;
 using Inventory; 
+using UI.Base;
 
 namespace UI.Upgrade
 {

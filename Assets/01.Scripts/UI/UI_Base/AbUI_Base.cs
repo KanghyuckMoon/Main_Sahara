@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using System.Linq;
 using DG.Tweening; 
 
-namespace UI    
+namespace UI.Base
 {
     public enum PosType
     {
