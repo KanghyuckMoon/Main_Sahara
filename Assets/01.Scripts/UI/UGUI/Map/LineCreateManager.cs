@@ -14,12 +14,14 @@ namespace UI.MapLiner
         public LineParent(RectTransform _parent)
         {
             this.parent = _parent;
-            this.sizeAnchor = parent.Find("SizeAnchor").GetComponent<RectTransform>();
+            this.ctrlPanel = parent.Find("CtrlPanel").GetComponent<RectTransform>(); 
+            this.sizeAnchor = ctrlPanel.Find("SizeAnchor").GetComponent<RectTransform>();
             this.moveAnchor = sizeAnchor.Find("MoveAnchor").GetComponent<RectTransform>();
         }
         public RectTransform parent; // 최상위 부모 ( 처음 스크린 사이즈 초기화 ) 
-        public RectTransform sizeAnchor; // 부모 밑의 오브젝트( 확대 축소 사이즈 조정시 이 앵커를 기준으로 )
-        public RectTransform moveAnchor; // 부모 밑의 오브젝트( 위치 조정시 이 앵커를 기준으로 )
+        public RectTransform ctrlPanel; // 조작할 패널 
+        public RectTransform sizeAnchor; // 조작할 패널 밑의 오브젝트( 확대 축소 사이즈 조정시 이 앵커를 기준으로 )
+        public RectTransform moveAnchor; // 조작할 패널 밑의 오브젝트( 위치 조정시 이 앵커를 기준으로 )
     }
     public class LineCreateManager : MonoSingleton<LineCreateManager>
     {
