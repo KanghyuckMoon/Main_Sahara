@@ -330,7 +330,7 @@ namespace UI.Dialogue
                 StopAllCoroutines();
             }
         }
-
+        
         public bool TestBool;
 
 
