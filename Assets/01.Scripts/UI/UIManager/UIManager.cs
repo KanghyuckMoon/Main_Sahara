@@ -7,7 +7,7 @@ using UI.Base;
 
 namespace UI.Manager
 {
-    public class UIManager : MonoSingleton<UIManager>
+    public class UIManager : MonoSingleton<UIManager>, IUIManager
     {
         private GameObject markerUI;
         private GameObject playerHudUI;
@@ -23,11 +23,11 @@ namespace UI.Manager
 
         private int width, height;
 
-        public int Width => width;
-        public int Height => height; 
-        // private ScreenUI
-
+        private List<IUIManaged> uiManagedList = new List<IUIManaged>(); 
+        private List<IUIManaged> uiIgnoredList = new List<IUIManaged>(); 
         // 프로퍼티 
+        public List<IUIManaged> UIManagedList { get => uiManagedList; }
+        public List<IUIManaged> UIIgnoredList { get => uiIgnoredList; }
         public TextKeySO TextKeySO
         {
             get
@@ -99,6 +99,7 @@ namespace UI.Manager
         {
             this.cursorModule.ActiveCursor(_isActive);
         }
+
 
     }
 
