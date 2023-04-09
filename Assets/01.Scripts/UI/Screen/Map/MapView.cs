@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System;
 using Utill.Measurement; 
+using UI.Base;
+
 namespace UI
 {
     public enum MapType

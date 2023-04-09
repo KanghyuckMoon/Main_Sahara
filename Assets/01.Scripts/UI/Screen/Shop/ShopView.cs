@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UIElements; 
+using UI.Base;
 
 namespace UI.Shop
 {
