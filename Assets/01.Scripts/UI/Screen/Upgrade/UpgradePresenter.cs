@@ -143,7 +143,8 @@ namespace UI.Upgrade
             {
                 LineCreateManager.Instance.UpdateLinesPos(ScreenType.Upgrade,
                     upgradeView.MoveScreen.transform.position);
-                LineCreateManager.Instance.UpdateLinesScale(ScreenType.Upgrade, upgradeView.MoveScreen.parent.transform.scale);
+                LineCreateManager.Instance.UpdateLinesScale(ScreenType.Upgrade, 
+                    upgradeView.MoveScreen.parent.transform.scale);
             }
             // 테스트 
             if(Input.GetKeyDown(KeyCode.X))
