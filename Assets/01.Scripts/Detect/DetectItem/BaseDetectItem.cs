@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -47,7 +48,15 @@ namespace Detect
         protected float shakeStrength = 0.5f;
 
         protected bool isGetOut = false;
+
+        private Vector3 upPos;
         
+        private void Start()
+        {
+            upPos = targetModel.position;
+            targetModel.position = targetHeightTransform.position;
+        }
+
         public virtual void GetOut()
         {
             if (isGetOut)
@@ -55,10 +64,10 @@ namespace Detect
                 return;
             }
             isGetOut = true;
-            Vector3 _movePos = targetHeightTransform.transform.position;
+            Vector3 _movePos = upPos;
             var _effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
-            targetTransform.DOMove(_movePos,  heightUpTime);
-            targetModel.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
+            targetModel.DOMove(_movePos,  heightUpTime);
+            targetTransform.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
             {
                 _effectObj.Pool();
                 gameObject.SetActive(false);
