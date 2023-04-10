@@ -9,10 +9,10 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Pool
 {
     
-    public abstract class SpecificPoolManager<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class SpecificPoolManager<T> : MonoSingleton<SpecificPoolManager<T>> where T : MonoBehaviour
     {
         private Queue<T> gameObjectQueue = new Queue<T>();
-
+        private const string key = "HitBox";
         public void Clear()
 		{
             gameObjectQueue.Clear();
@@ -23,7 +23,7 @@ namespace Pool
             return gameObjectQueue.Count;
 		}
 
-        public T GetObject(string key)
+        public T GetObject()
 		{
             if (gameObjectQueue.Count > 0)
             {
@@ -31,7 +31,7 @@ namespace Pool
             }
             else
             {
-                CreateObject(key);
+                CreateObject();
                 return gameObjectQueue.Dequeue();
             }
         }
@@ -41,7 +41,7 @@ namespace Pool
             gameObjectQueue.Enqueue(_obj);
         }
 
-        private void CreateObject(string key, int count = 1)
+        private void CreateObject(int count = 1)
         {
             GameObject prefeb = PrefebManager.Instance.GetPrefebDic<GameObject>(key);
             for (int i = 0; i < count; ++i)

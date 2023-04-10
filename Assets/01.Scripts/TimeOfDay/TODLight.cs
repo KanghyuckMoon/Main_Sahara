@@ -17,11 +17,11 @@ namespace TimeOfDay
         public float orbitSpeed = 1.0f;
         public Light sun;
         public Light moon;
-        public Volume skyVolume;
+        //public Volume skyVolume;
         public AnimationCurve starsCurve;
 
         private bool isNight;
-        private PhysicallyBasedSky sky;
+        //private PhysicallyBasedSky sky;
         
         [SerializeField]
         private TODSO todSO;
@@ -35,7 +35,7 @@ namespace TimeOfDay
         void Start()
         {
             todSO ??= AddressablesManager.Instance.GetResource<TODSO>("T_TODSO");
-            skyVolume.profile.TryGet<PhysicallyBasedSky>(out sky);
+            //skyVolume.profile.TryGet<PhysicallyBasedSky>(out sky);
             sunLensFlare = sun.GetComponent<LensFlareComponentSRP>();
             moonLensFlare = moon.GetComponent<LensFlareComponentSRP>();
         }
@@ -43,6 +43,11 @@ namespace TimeOfDay
         // Update is called once per frame
         void Update()
         {
+            if (todSO is null)
+            {
+                return;
+            }
+            
             if(todSO.isUpdateTime)
             {
                 timeOfDay += Time.deltaTime * orbitSpeed;
@@ -58,6 +63,11 @@ namespace TimeOfDay
         
         void OnValidate()
         {
+            if (todSO is null)
+            {
+                return;
+            }
+            
             if(todSO.isUpdateTime)
             {
                 timeOfDay += Time.deltaTime * orbitSpeed;
@@ -80,10 +90,10 @@ namespace TimeOfDay
             sun.transform.rotation = Quaternion.Euler(sunRotation, -150.0f, 0);
             moon.transform.rotation = Quaternion.Euler(moonRotaion, -150.0f, 0);
 
-            if (sky is not null)
-			{
-                sky.spaceEmissionMultiplier.value = starsCurve.Evaluate(alpha);
-			}
+            //if (sky is not null)
+			//{
+            //    sky.spaceEmissionMultiplier.value = starsCurve.Evaluate(alpha);
+			//}
             
             CheckNightDayTransition();
         }
