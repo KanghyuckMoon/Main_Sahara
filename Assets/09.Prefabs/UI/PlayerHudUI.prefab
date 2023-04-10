@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5055300169248036735}
   - component: {fileID: 5055300169248036732}
-  - component: {fileID: 5055300169248036733}
-  - component: {fileID: -87370734410970730}
+  - component: {fileID: 4501624995753391709}
   m_Layer: 0
   m_Name: PlayerHudUI
   m_TagString: Untagged
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 883718274205f19479a757f43a94dcbc, type: 3}
   m_SortingOrder: 0
---- !u!114 &5055300169248036733
+--- !u!114 &4501624995753391709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,14 +58,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5055300169248036734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a98eebb3eb29084a9f2c475d0a9b13c, type: 3}
+  m_Script: {fileID: 11500000, guid: 57bf291a97b3e4c499abc3f444f34b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   a: 0
   b: 0
   target: {fileID: 0}
   targetRenderer: {fileID: 0}
-  uiDocument: {fileID: 5055300169248036732}
+  uiDocument: {fileID: 0}
   hpPresenter:
     _testHp: 0
     _hpView:
@@ -81,18 +80,6 @@ MonoBehaviour:
     buffView:
       parentElementName: buff_view
   isPlayerHud: 1
---- !u!114 &-87370734410970730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5055300169248036734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6435da6feebde646b0ad4db84c66eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiDocument: {fileID: 0}
-  quickSlotView:
-    parentElementName: quickslot_view
+  quickSlotPresenter:
+    quickSlotView:
+      parentElementName: quickslot_view
