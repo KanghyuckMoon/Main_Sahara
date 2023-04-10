@@ -7,7 +7,7 @@ using UI.Base;
 
 namespace UI.Manager
 {
-    public class UIManager : MonoSingleton<UIManager>, IUIManager
+    public class UIManager : MonoSingleton<UIManager>
     {
         private GameObject markerUI;
         private GameObject playerHudUI;
@@ -19,15 +19,11 @@ namespace UI.Manager
         // 기능들 
         private CursorModule cursorModule; 
         
-        private IUIController screenUIController = null;
+        //private IUIController screenUIController = null;
 
         private int width, height;
 
-        private List<IUIManaged> uiManagedList = new List<IUIManaged>(); 
-        private List<IUIManaged> uiIgnoredList = new List<IUIManaged>(); 
-        // 프로퍼티 
-        public List<IUIManaged> UIManagedList { get => uiManagedList; }
-        public List<IUIManaged> UIIgnoredList { get => uiIgnoredList; }
+
         public TextKeySO TextKeySO
         {
             get
@@ -73,7 +69,7 @@ namespace UI.Manager
         /// </summary>
         public void Init()
         {
-            screenUIController = null; 
+            //screenUIController = null; 
             player = null; 
         }
         public void ActiveHud(bool _isActive)

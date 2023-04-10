@@ -6,6 +6,8 @@ using Module;
 using Utill.Measurement;
 using Data;
 using System;
+using UI.ActiveManager;
+using UI.Base;
 
 namespace UI
 {
@@ -14,7 +16,7 @@ namespace UI
         statData, 
         buffData,
     }
-    public class EntityPresenter : MonoBehaviour, IUIOwner, Observer
+    public class EntityPresenter : MonoBehaviour, IUIOwner, Observer, IUIManaged
     {
         // 디버그용
         public float a, b;
@@ -75,21 +77,19 @@ namespace UI
 
         private void OnEnable()
         {
-            uiDocument ??= GetComponent<UIDocument>();
-            hudElement = uiDocument.rootVisualElement.ElementAt(0);
-          //  hudElement.style.display = DisplayStyle.None;
-            ContructPresenters();
-            AwakePresenters();
-            StartCoroutine(Init());
-
+            Init(); 
+            (UIActiveManager.Instance as IUIManager).Add(this);
         }
+        
 
         private void OnDisable()
         {
             Clear(); 
+            (UIActiveManager.Instance as IUIManager).Remove(this);
         }
         private void Update()
         {
+            if (RootUIDocument.enabled == false) return; 
             if (Target == null || targetRenderer == null) return;
 
             //if(Input.GetKeyDown(KeyCode.Tab))
@@ -151,6 +151,16 @@ namespace UI
             statData = null;
             uiModule = null;
             buffModule = null; 
+        }
+
+        private void Init()
+        {
+            uiDocument ??= GetComponent<UIDocument>();
+            hudElement = uiDocument.rootVisualElement.ElementAt(0);
+            //  hudElement.style.display = DisplayStyle.None;
+            ContructPresenters();
+            AwakePresenters();
+            StartCoroutine(InitCo());
         }
         [ContextMenu("테스트")]
         public void UpdateUI()
@@ -246,7 +256,7 @@ namespace UI
         }
 
 
-        IEnumerator Init()
+        IEnumerator InitCo()
         {
             if(statData != null && uiModule != null)
             {
@@ -288,6 +298,18 @@ namespace UI
         {
             UpdateUI();
             UpdateUIActive();
+        }
+
+        public void Execute()
+        {
+            RootUIDocument.enabled = false; 
+            gameObject.SetActive(false);
+        }
+
+        public void Undo()
+        {
+            RootUIDocument.enabled = true; 
+            gameObject.SetActive(true);
         }
     }
 
