@@ -6,12 +6,15 @@ using Module;
 public class Jump_Start : StateMachineBehaviour
 {
     private AbMainModule mainModule;
+    private JumpModule jumpModule;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
+        jumpModule ??= mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
         
+        //jumpModule.Jump();
         //mainModule.SetActiveAnimatorRoot(1);
     }
 
@@ -25,8 +28,11 @@ public class Jump_Start : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
+        jumpModule ??= mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
+
         
-        mainModule.SetActiveAnimatorRoot(0);
+        
+        //mainModule.SetActiveAnimatorRoot(0);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

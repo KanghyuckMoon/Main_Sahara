@@ -7,6 +7,8 @@ namespace CondinedModule
 {
     public class Player : AbMainModule
     {
+        private JumpModule jumpModule;
+        
         public void OnEnable()
         {
             StopOrNot = 1;
@@ -53,6 +55,12 @@ namespace CondinedModule
         {
             bool _isOn = _on > 0;
             Animator.applyRootMotion = _isOn;
+        }
+
+        public void Jump()
+        {
+            jumpModule ??= GetModuleComponent<JumpModule>(ModuleType.Jump);
+            jumpModule.Jump();
         }
 
         private void OnDestroy()

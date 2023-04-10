@@ -70,7 +70,7 @@ namespace Module
 
         public override void Update()
         {
-            Delay();
+            //Delay();
         }
 
         void Delay()
@@ -105,7 +105,7 @@ namespace Module
                 {
                     Animator.SetBool("Jump", true);
 
-                    Jumping(0f);
+                    //Jumping(0.07f);
                 }
 
                 if (calculatedTime > 0.0f)
@@ -136,10 +136,10 @@ namespace Module
             onJump = true;
         }
 
-        private void Jump()
+        public void Jump()
         {
             onJump = false;
-            mainModule.Gravity = Mathf.Sqrt(JumpHeight * -2f * _GravityScale);
+            mainModule.Gravity = Mathf.Sqrt(JumpHeight * -2.2f * _GravityScale);
         }
 
         public override void OnDisable()
