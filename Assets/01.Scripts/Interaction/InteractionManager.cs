@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UI.Popup;
 using UI.Base;
-using System.Linq; 
+using System.Linq;
+using UI.ActiveManager;
 
 namespace Interaction
 {
-	public class InteractionManager : MonoBehaviour
+	public class InteractionManager : MonoBehaviour, IUIManaged
 	{
 		private Transform Player
 		{
@@ -47,6 +49,11 @@ namespace Interaction
 			GetNearObject();
 			//UpdateUI();
 			InputInteraction();
+		}
+
+		private void LateUpdate()
+		{
+			SetInteractionData(); 
 		}
 
 		/// <summary>
@@ -118,17 +125,13 @@ namespace Interaction
 		/// </summary>
 		private void InputInteraction()
 		{
-			if (_interactionObj != null && activePopup != null)
-			{
-				
-				uiData.targetVec = _interactionObj.PopUpPos;
-				activePopup.SetData(uiData);
-			}
+
 			if (_interactionObj != null && activePopup == null)
 			{
 				uiData = new InteractionUIData { targetVec = _interactionObj.PopUpPos, textKey = _interactionObj.Name };
 				activePopup = PopupUIManager.Instance.CreatePopup<InteractionPresenter>(PopupType.Interaction,
 					uiData,-1f);
+				(UIActiveManager.Instance as IUIManager).Add(this);
 			}
 			if (_interactionObj == null && activePopup != null)
 			{
@@ -141,6 +144,16 @@ namespace Interaction
 				{
 					_interactionObj.Interaction();
 				}
+			}
+		}
+
+		private void SetInteractionData()
+		{
+			if (_interactionObj != null && activePopup != null)
+			{
+				
+				uiData.targetVec = _interactionObj.PopUpPos;
+				activePopup.SetData(uiData);
 			}
 		}
 
@@ -160,6 +173,16 @@ namespace Interaction
 				return;
 			}
 			Gizmos.DrawWireSphere(_player.position, _radius);
+		}
+
+		public void Execute()
+		{
+			activePopup.InActiveTween();
+		}
+
+		public void Undo()
+		{
+			activePopup.ActiveTween();
 		}
 	}
 }

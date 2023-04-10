@@ -105,6 +105,11 @@ namespace UI
 
             // buffView.쿨�????�작 
         }
+        
+        public void ActiveScreen(bool _isActive)
+        {
+            buffView.ActiveScreen(_isActive);
+        }
 
        
     }

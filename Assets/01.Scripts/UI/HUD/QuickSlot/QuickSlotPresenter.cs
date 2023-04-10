@@ -9,18 +9,26 @@ using UI.EventManage;
 
 namespace UI
 {
-    public class QuickSlotPresenter : MonoBehaviour
+    [System.Serializable]
+    public class QuickSlotPresenter : IUIFollower
     {
-        [SerializeField]
-        private UIDocument uiDocument;
+ //       [SerializeField]
+//        private UIDocument uiDocument;
 
         [SerializeField]
         private QuickSlotView quickSlotView;
 
-        private void OnEnable()
+        // 프로퍼티 
+        public UIDocument RootUIDocument { get; set ; }
+       
+        public void OnDisable()
         {
-            uiDocument = GetComponent<UIDocument>();
-            quickSlotView.InitUIDocument(uiDocument);
+            EventManager.Instance.StopListening(EventsType.UpdateQuickSlot, UpdateUI);
+        }
+        
+        public void Awake()
+        {
+            quickSlotView.InitUIDocument(RootUIDocument);
             quickSlotView.Cashing();
             quickSlotView.Init();
 
@@ -29,10 +37,10 @@ namespace UI
             UpdateUI(); 
         }
 
-        private void OnDisable()
+        public void Start(object _data)
         {
-            EventManager.Instance.StopListening(EventsType.UpdateQuickSlot, UpdateUI);
         }
+
         public void UpdateUI()
         {
             for (int i = 0; i < quickSlotView.SlotList.Count; i++)
@@ -42,6 +50,11 @@ namespace UI
             quickSlotView.ArrowSlot.SetItemData(InventoryManager.Instance.GetArrow());
 
             quickSlotView.UpdateActiveEffect(); 
+        }
+
+        public void ActiveScreen(bool _isActive)
+        {
+            quickSlotView.ActiveScreen(_isActive);
         }
     }
 
