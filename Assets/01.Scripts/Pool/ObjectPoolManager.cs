@@ -14,7 +14,7 @@ namespace Pool
         public void Clear()
 		{
             gameObjectQueueDic.Clear();
-            PoolParentManager.Instance.Clear();
+            //PoolParentManager.Instance.Clear();
         }
 
         public int GetAllCount()
@@ -54,7 +54,7 @@ namespace Pool
             if (gameObjectQueueDic.TryGetValue(key, out queue) && queue.Count > 0)
             {
                 GameObject obj = queue.Dequeue();
-                PoolParentManager.Instance.SetUseParent(key, obj);
+                //PoolParentManager.Instance.SetUseParent(key, obj);
                 if (_action is not null)
                 {
                     _action(obj);
@@ -72,7 +72,7 @@ namespace Pool
             if (gameObjectQueueDic.TryGetValue(key, out queue) && queue.Count > 0)
             {
                 GameObject obj = queue.Dequeue();
-                PoolParentManager.Instance.SetUseParent(key, obj);
+                //PoolParentManager.Instance.SetUseParent(key, obj);
                 if (_action != null)
                 {
                     _action(obj, _parameter);
@@ -96,7 +96,7 @@ namespace Pool
                 queue = MakeQueueRegister(key);
                 queue.Enqueue(gameObject);
             }
-            PoolParentManager.Instance.SetPoolParent(key, gameObject);
+            //PoolParentManager.Instance.SetPoolParent(key, gameObject);
         }
 
         public void RegisterObjectAsync(string key, GameObject gameObject)
@@ -104,7 +104,7 @@ namespace Pool
             Queue<GameObject> queue;
             if (gameObjectQueueDic.TryGetValue(key, out queue))
             {
-                PoolParentManager.Instance.SetPoolParent(key, gameObject);
+                //PoolParentManager.Instance.SetPoolParent(key, gameObject);
                 queue.Enqueue(gameObject);
             }
             else
@@ -113,7 +113,7 @@ namespace Pool
                 handle.Completed += (x) => 
                 {
                     queue = gameObjectQueueDic[key];
-                    PoolParentManager.Instance.SetPoolParent(key, gameObject);
+                    //PoolParentManager.Instance.SetPoolParent(key, gameObject);
                     queue.Enqueue(gameObject);
                 };
             }
@@ -174,7 +174,7 @@ namespace Pool
                 PrefebManager.Instance.AddPrefeb(key, _x.Result);
                 var q = MakeQueueGet(key, _x.Result);
                 GameObject obj = q.Dequeue();
-                PoolParentManager.Instance.SetUseParent(key, obj);
+                //PoolParentManager.Instance.SetUseParent(key, obj);
                 _action?.Invoke(obj);
             };
         }
@@ -186,7 +186,7 @@ namespace Pool
                 PrefebManager.Instance.AddPrefeb(key, _x.Result);
                 var q = MakeQueueGet(key, _x.Result);
                 GameObject obj = q.Dequeue();
-                PoolParentManager.Instance.SetUseParent(key, obj);
+                //PoolParentManager.Instance.SetUseParent(key, obj);
                 _action.Invoke(obj, _parameter);
             };
         }
