@@ -24,7 +24,7 @@ namespace UI
         private Transform target;
         [SerializeField]
         private Renderer targetRenderer;
-        [SerializeField]
+        [SerializeField]    
         private UIDocument uiDocument;
 
         [SerializeField]
@@ -75,7 +75,7 @@ namespace UI
             }
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             StartCoroutine(LateUpdateCo()); 
             Init(); 
@@ -83,7 +83,7 @@ namespace UI
         }
         
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             Clear(); 
             (UIActiveManager.Instance as IUIManager).Remove(this);
@@ -156,12 +156,12 @@ namespace UI
         /// <summary>
         /// 변수 초기화 
         /// </summary>
-        private void Clear()
+        protected virtual  void Clear()
         {
             target = null;
             targetRenderer = null;
             presenterFollower = null;
-            isPlayerHud = false;
+            //isPlayerHud = false;
             statData = null;
             uiModule = null;
             buffModule = null; 
@@ -204,7 +204,7 @@ namespace UI
         /// <summary>
         /// Presenter 생성
         /// </summary>
-        private void ContructPresenters()
+        protected virtual void ContructPresenters()
         {
             _presenterList.Clear();
             _dataPresenterDic.Clear();
@@ -314,16 +314,24 @@ namespace UI
             UpdateUIActive();
         }
 
-        public void Execute()
+        public virtual void Execute()
         {
-            RootUIDocument.enabled = false; 
-            gameObject.SetActive(false);
+            hpPresenter.ActiveScreen(false);
+            mpPresenter.ActiveScreen(false);
+            buffPresenter.ActiveScreen(false);
+            
+            //RootUIDocument.enabled = false; 
+            //gameObject.SetActive(false);
         }
 
-        public void Undo()
+        public virtual void Undo()
         {
-            RootUIDocument.enabled = true; 
-            gameObject.SetActive(true);
+            hpPresenter.ActiveScreen(true);
+            mpPresenter.ActiveScreen(true);
+            buffPresenter.ActiveScreen(true);
+
+//            RootUIDocument.enabled = true; 
+            //gameObject.SetActive(true);
         }
     }
 
