@@ -43,7 +43,8 @@ namespace UI.MapLiner
                     if (_obj == null) return null; 
                     canvas = _obj.transform;
                     InitLinerParent();
-                    InitLinerParentSize(); 
+                    InitLinerParentSize();
+                    InActiveAll(); 
                 }
                 return canvas; 
             }
@@ -152,6 +153,14 @@ namespace UI.MapLiner
                 float _curH = linerParentDic[ScreenType.Upgrade].parent.sizeDelta.y; 
                 linerParentDic[ScreenType.Upgrade].parent.sizeDelta = new Vector2(Screen.width * 1f,_curH);
             }   
+        }
+
+        private void InActiveAll()
+        {
+            foreach (var _line in linerParentDic.Values)
+            {
+                _line.parent.gameObject.SetActive(false);
+            }
         }
     }
 }

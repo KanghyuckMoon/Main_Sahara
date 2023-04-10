@@ -17,7 +17,7 @@ using UI.Option;
 using UI.EventManage;
 using UI.Manager;
 using UI.MapLiner;
-
+using UI.ActiveManager;
 
 namespace UI
 {
@@ -199,9 +199,10 @@ namespace UI
         private void ActiveUpgrade(bool _isActive)
         {
             LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
-            UIManager.Instance.ActiveHud(! _isActive);
+            //UIManager.Instance.ActiveHud(! _isActive);
             mapPresenter.Active(! _isActive);
 
+            (UIActiveManager.Instance as IUIManager).Execute(_isActive);
 
         }
         
