@@ -22,10 +22,13 @@ namespace TimeOfDay
 
         private bool isNight;
         private PhysicallyBasedSky sky;
-
+        
+        [SerializeField]
         private TODSO todSO;
 
+        [SerializeField]
         private LensFlareComponentSRP sunLensFlare;
+        [SerializeField]
         private LensFlareComponentSRP moonLensFlare;
 
         // Start is called before the first frame update
@@ -39,6 +42,21 @@ namespace TimeOfDay
 
         // Update is called once per frame
         void Update()
+        {
+            if(todSO.isUpdateTime)
+            {
+                timeOfDay += Time.deltaTime * orbitSpeed;
+                timeOfDay %= 24;
+                UpdateTime();
+            }
+
+            if(todSO.isOnlyNight)
+			{
+                isNight = true;
+			}
+        }
+        
+        void OnValidate()
         {
             if(todSO.isUpdateTime)
             {
