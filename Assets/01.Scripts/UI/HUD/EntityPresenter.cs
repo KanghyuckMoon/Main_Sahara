@@ -61,15 +61,15 @@ namespace UI
                 {
                     //target = GetComponentInParent<Transform>();
                     target = transform.parent;
-                    Logging.Log("타겟 찾는중..");
+                    //Logging.Log("타겟 찾는중..");
                     if (target != null)
                     {
-                        Logging.Log("타겟렌더러 찾는중..");
+                        //Logging.Log("타겟렌더러 찾는중..");
                         targetRenderer = target?.GetComponentInChildren<Renderer>();
                     }
                     else return null;
                 }
-                Logging.Log("타겟 반환");
+                //Logging.Log("타겟 반환");
                 return target;
 
             }
@@ -77,6 +77,7 @@ namespace UI
 
         private void OnEnable()
         {
+            StartCoroutine(LateUpdateCo()); 
             Init(); 
             (UIActiveManager.Instance as IUIManager).Add(this);
         }
@@ -113,9 +114,24 @@ namespace UI
             {
                 buffPresenter.Update(); 
             }
+
+            //StartCoroutine(LateUpdateCo());
         }
         
         private void LateUpdate()
+        {
+            Debug.Log("Late");
+            FollowPr(); 
+        }
+
+        private IEnumerator LateUpdateCo()
+        {
+                yield return new WaitForEndOfFrame(); 
+                Debug.Log("LateLate");
+                FollowPr(); 
+        }
+
+        private void FollowPr()
         {
             if (presenterFollower != null)
             {
@@ -126,9 +142,7 @@ namespace UI
                 }
                 //Debug.Log("따라가는중");
             }
-
         }
-
         [ContextMenu("버프 테스트")]
         public void Test()
         {
