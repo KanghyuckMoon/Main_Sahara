@@ -50,11 +50,17 @@ namespace Detect
         protected bool isGetOut = false;
 
         private Vector3 upPos;
+
+#if  UNITY_EDITOR
+
+        public LayerMask debug_LayerMask;
+        
+#endif
         
         private void Start()
         {
             upPos = targetModel.position;
-            targetModel.position = targetHeightTransform.position;
+            targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
         }
 
         public virtual void GetOut()
@@ -73,5 +79,25 @@ namespace Detect
                 gameObject.SetActive(false);
             });
         }
+        
+        #if UNITY_EDITOR
+
+        [ContextMenu("SetHeight")]
+        public void SetHeight()
+        {
+            RaycastHit _hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out _hit,50,  debug_LayerMask))
+            {
+                transform.position = _hit.point;
+            }
+        }
+        
+        [ContextMenu("SetEffectPosIsThisPos")]
+        public void SetEffectPosIsThisPos()
+        {
+            targetEffectTrm.position = transform.position;
+        }
+        
+        #endif
     }   
 }
