@@ -56,7 +56,7 @@ namespace Module {
         public override void Update()
         {
             if (Input.GetKeyDown(KeyCode.J))
-                OnEquipItem("Helmat");
+                OnEquipItem("Goggles");
         }
 
         /*
