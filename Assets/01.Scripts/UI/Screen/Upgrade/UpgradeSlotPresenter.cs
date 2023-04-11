@@ -19,6 +19,7 @@ namespace UI.Upgrade
         private ItemData itemData;
 
         private const string inactiveStr = "upgrade_slot_inactive"; 
+        private const string activeStr = "upgrade_slot_active"; 
         // 프로퍼티 
         public UpgradeSlotView UpgradeSlotView => upgradeSlotView;
         public VisualElement Parent => parent;
@@ -48,9 +49,10 @@ namespace UI.Upgrade
 
             if (_isAnimation == true)
             {
-                element1.RemoveFromClassList(inactiveStr);
+                element1.RemoveFromClassList(activeStr);
+                element1.AddToClassList(inactiveStr);
             }
-                element1.RemoveFromClassList(inactiveStr);
+            //element1.RemoveFromClassList(inactiveStr);
         }
 
         public IEnumerator Animate()
@@ -114,6 +116,17 @@ namespace UI.Upgrade
         }
         public void ActiveMark(bool _isActive)
         {
+            // 크기 확대 
+            if (_isActive == true)
+            {
+                element1.RemoveFromClassList(activeStr);
+                this.element1.AddToClassList("select_slot ");
+            }
+            else
+            {
+                element1.AddToClassList(activeStr);
+                this.element1.RemoveFromClassList("select_slot");
+            }
             this.upgradeSlotView.ActiveMark.style.display = _isActive ? DisplayStyle.Flex : DisplayStyle.None;
         }
         /// <summary>
