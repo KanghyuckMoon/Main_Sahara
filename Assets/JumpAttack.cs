@@ -10,13 +10,6 @@ public class JumpAttack : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //mainModule ??= animator.GetComponent<AbMainModule>();
-        //stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-
-        //mainModule.Attacking = false;
-        //mainModule.StrongAttacking = false;
-        //mainModule.CanConsecutiveAttack = false;
-        
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         
@@ -36,11 +29,5 @@ public class JumpAttack : StateMachineBehaviour
         
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
-        //mainModule.CanConsecutiveAttack = false;
-
-        //animator.SetBool("ConsecutiveAttack", false);
-
-        //stateModule.RemoveState(State.ATTACK);
-        //Debug.Log("aflahfaiufhaliuhlaiuehgaliuehlaueghlawiueghliueghlawueghlahuegl");
     }
 }

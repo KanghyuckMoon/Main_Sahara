@@ -43,7 +43,6 @@ namespace Module
             set
 			{
                 animator = value;
-
             }
 		}
         private Animator animator;
@@ -186,8 +185,7 @@ namespace Module
 
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
-
-
+        
         // ReSharper disable Unity.PerformanceAnalysis
         private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
