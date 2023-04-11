@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Module;
+using ForTheTest;
 
 namespace CondinedModule
 {
     public class Player : AbMainModule
     {
+        [SerializeField] private ThirdPersonCameraController camera;
+        
         private JumpModule jumpModule;
+        private StateModule stateModule;
         
         public void OnEnable()
         {
@@ -42,6 +46,8 @@ namespace CondinedModule
             animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
             LockOnTarget = null;
 
+            //SetInput(true);
+
             base.OnEnable();
         }
 
@@ -61,6 +67,28 @@ namespace CondinedModule
         {
             jumpModule ??= GetModuleComponent<JumpModule>(ModuleType.Jump);
             jumpModule.Jump();
+        }
+
+        [ContextMenu("UIOn")]
+        public void SetCam()
+        {
+            SetInput(true);
+        }
+        
+        [ContextMenu("UIoff")]
+        public void SetCama()
+        {
+            SetInput(false);
+        }
+        
+        public void SetInput(bool _isOn)
+        {
+            stateModule ??= GetModuleComponent<StateModule>(ModuleType.State);
+            if (_isOn)
+                stateModule.AddState(State.UI);
+            else stateModule.RemoveState(State.UI);
+
+            camera.isUIOn = _isOn;
         }
 
         private void OnDestroy()
