@@ -12,6 +12,7 @@ using System;
 using UI.Save;
 using TimeManager;
 using InputSystem;
+using Inventory;
 using UI.UtilManager; 
 using UI.Option;
 using UI.EventManage;
@@ -203,7 +204,8 @@ namespace UI
             mapPresenter.Active(! _isActive);
 
             (UIActiveManager.Instance as IUIManager).Execute(_isActive);
-
+            
+            InventoryManager.Instance.gameObject.SetActive(!_isActive);
         }
         
         private void SetInputEvent()

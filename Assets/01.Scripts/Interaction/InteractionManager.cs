@@ -177,12 +177,18 @@ namespace Interaction
 
 		public void Execute()
 		{
-			activePopup.InActiveTween();
+			if (activePopup is not null)
+			{
+				activePopup.InActiveTween();
+			}
 		}
 
 		public void Undo()
 		{
-			activePopup.ActiveTween();
+			if (activePopup is not null)
+			{
+				activePopup.ActiveTween();
+			}
 		}
 	}
 }
