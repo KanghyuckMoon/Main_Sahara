@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Effect;
+using Pool;
 using Unity.Plastic.Antlr3.Runtime.Misc;
 
 namespace HitBox
@@ -143,7 +144,8 @@ namespace HitBox
 			yield return new WaitForSeconds(hitBoxData.deleteDelay);
 			transform.SetParent(null);
 			gameObject.SetActive(false);
-			Pool.ObjectPoolManager.Instance.RegisterObject("HitBox", gameObject);
+			HitBoxPoolManager.Instance.RegisterObject(this);
+			//Pool.ObjectPoolManager.Instance.RegisterObject("HitBox", gameObject);
 		}
 
 #if UNITY_EDITOR

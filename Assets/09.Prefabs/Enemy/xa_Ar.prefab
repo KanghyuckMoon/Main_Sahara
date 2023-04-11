@@ -722,6 +722,8 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: SandSkinEffect
   deadExplosionEffectKey: SandExplosionImpacts
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 2896724838227967430}
   rootTransform: {fileID: 1188562414633903232}
   animator: {fileID: 8973063471208674670}
@@ -739,6 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 110fdfc56f3682d4bb0cba914eda3ef0, type: 2}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!114 &8973063471208674666
 MonoBehaviour:
@@ -753,6 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: 407f55717fc1a014fb97ba076fbca867, type: 2}
+  parent: {fileID: 0}
 --- !u!114 &8973063471208674665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,6 +813,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 8973063471208674678}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -829,6 +834,9 @@ MonoBehaviour:
   isCharging: 0
   isCanHit: 0
   isStaticTime: 0
+  canConsecutiveAttack: 0
+  isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -842,7 +850,7 @@ MonoBehaviour:
   lockOn: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 132096
   maxSlope: 0
   raycastTarget: {fileID: 0}
   visualObject: {fileID: 7262876599511926900}

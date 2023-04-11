@@ -36,14 +36,15 @@ namespace HitBox
 				string tagname = gameObject.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
 				foreach (HitBoxData hitBoxData in hitBoxDataList.hitBoxDataList)
 				{
-					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
+					InGameHitBox hitbox = HitBoxPoolManager.Instance.GetObject();
 					if (waeponHandle == null)
 					{
-						hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, null);
+						
+						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, null);
 					}
 					else
 					{
-						hitbox.GetComponent<InGameHitBox>().SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, waeponHandle.gameObject);
+						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, waeponHandle.gameObject);
 					}
 
 				}

@@ -204,7 +204,7 @@ namespace Streaming
 		public void UnLoadSceneNoneCheck()
 		{
 		    EventQueueManager.Instance.AddAction(SceneDataManager.Instance.GetSceneData(SceneName).UnLoad);
-		    EventQueueManager.Instance.AddAction(LODMaker.UnLoad);
+		    //EventQueueManager.Instance.AddAction(LODMaker.UnLoad);
 				
 			AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
 		}
@@ -214,7 +214,7 @@ namespace Streaming
 			if (obj.Status == AsyncOperationStatus.Succeeded)
 			{
 				EventQueueManager.Instance.AddAction(SceneDataManager.Instance.GetSceneData(SceneName).Load);
-				EventQueueManager.Instance.AddAction(LODMaker.Load);
+				//EventQueueManager.Instance.AddAction(LODMaker.Load);
 			}
 		}
 

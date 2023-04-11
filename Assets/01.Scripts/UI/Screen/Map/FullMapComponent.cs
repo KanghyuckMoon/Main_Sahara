@@ -8,6 +8,9 @@ using UI.EventManage;
 using UI.MapLiner;
 using InputSystem;
 using UI.Base; 
+using Utill.Pattern;
+using Utill.Addressable;
+using Pool;
 
 namespace UI
 {
@@ -36,6 +39,8 @@ namespace UI
         private float xMoveValue;
         private float yMoveValue;
 
+        private Sprite selectMarker;
+
         // 프로퍼티 
         private Vector2 MoveDir => new Vector2(xMoveValue, yMoveValue).normalized;
         public MarkersComponent MarkersComponent => markersComponent;
@@ -62,9 +67,27 @@ namespace UI
             //EventManager.Instance.TriggerEvent(EventsType.UpdateMapPos, (Vector2)mapView.Map.transform.position);
            // EventManager.Instance.TriggerEvent(EventsType.UpdateMapScale, (Vector2)mapView.Map.transform.scale);
             // 마커 생성
+
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                selectMarker = AddressablesManager.Instance.GetResource<Sprite>("Marker1");
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                selectMarker = AddressablesManager.Instance.GetResource<Sprite>("Marker2");
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                selectMarker = AddressablesManager.Instance.GetResource<Sprite>("Marker3");
+            }
+            
             if (Input.GetKeyDown(KeyCode.G))
             {
-                markersComponent.CreateMarker(new Vector2(-mapView.Map.transform.position.x, -mapView.Map.transform.position.y), mapView.MarkerParent);
+                if (selectMarker is null)
+                {
+                    return;
+                }
+                markersComponent.CreateMarker(new Vector2(-mapView.Map.transform.position.x, -mapView.Map.transform.position.y), mapView.MarkerParent, selectMarker);
             }
         }
 
@@ -145,11 +168,11 @@ namespace UI
 
             // 마커들 확대 축소 
             // mapView.MarkerParent.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
-            var _markers = mapView.MarkerParent.Children();
-            foreach (var _marker in _markers)
-            {
-                _marker.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
-            }
+            //var _markers = mapView.MarkerParent.Children();
+            //foreach (var _marker in _markers)
+            //{
+            //    _marker.transform.scale = new Vector2(1 / scaleX, 1 / scaleY);
+            //}
             // 마커들 피벗 설정 
             //mapView.MarkerParent.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(
             //   new Length((mapView.MapRect.width * 0.5f - mapView.MapTrm.position.x), LengthUnit.Pixel),
