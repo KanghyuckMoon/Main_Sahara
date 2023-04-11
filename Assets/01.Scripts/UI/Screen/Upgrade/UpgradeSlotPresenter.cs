@@ -8,6 +8,7 @@ using Inventory;
 using Utill.Addressable;
 using Utill.Pattern;
 using System; 
+using Utill.Coroutine;
 
 namespace UI.Upgrade
 {
@@ -51,6 +52,7 @@ namespace UI.Upgrade
             {
                 element1.RemoveFromClassList(activeStr);
                 element1.AddToClassList(inactiveStr);
+                StaticCoroutineManager.Instance.InstanceDoCoroutine(Animate());
             }
             //element1.RemoveFromClassList(inactiveStr);
         }
@@ -106,6 +108,7 @@ namespace UI.Upgrade
             }
         }
 
+        private const string selectStr = "select_slot "; 
         /// <summary>
         ///  충분하면 이미지 불투명도 100%
         /// </summary>
@@ -120,12 +123,12 @@ namespace UI.Upgrade
             if (_isActive == true)
             {
                 element1.RemoveFromClassList(activeStr);
-                this.element1.AddToClassList("select_slot ");
+                this.element1.AddToClassList(selectStr);
             }
             else
             {
                 element1.AddToClassList(activeStr);
-                this.element1.RemoveFromClassList("select_slot");
+                this.element1.RemoveFromClassList(selectStr);
             }
             this.upgradeSlotView.ActiveMark.style.display = _isActive ? DisplayStyle.Flex : DisplayStyle.None;
         }

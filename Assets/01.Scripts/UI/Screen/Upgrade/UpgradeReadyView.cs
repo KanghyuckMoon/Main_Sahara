@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using UI.UtilManager;
 using Inventory; 
 using UI.Base;
+using Unity.Plastic.Antlr3.Runtime.Misc;
 
 namespace UI.Upgrade
 {
@@ -44,6 +45,10 @@ namespace UI.Upgrade
             base.Init();
         }
 
+        public void SetUpgradeBtnCallback(Action _callback)
+        {
+            AddButtonEvent<ClickEvent>((int)Buttons.upgrade_button, () => _callback?.Invoke());
+        }
         public void SetImage(Texture2D _image)
         {
             GetVisualElement((int)Elements.select_image).style.backgroundImage = _image; 

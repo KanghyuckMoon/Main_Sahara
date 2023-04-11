@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace UI.Upgrade
 {
-    public class UpgradeReadyPr : MonoBehaviour
+    public class UpgradeReadyPr
     {
         private UpgradeReadyView upgradeReadyView;
         
@@ -26,6 +26,11 @@ namespace UI.Upgrade
             upgradeReadyView.InitUIParent(_parent);
             upgradeReadyView.Cashing();
             upgradeReadyView.Init();
+            
+            upgradeReadyView.SetUpgradeBtnCallback(() => 
+            {
+                ItemUpgradeManager.Instance.Upgrade(curSelectedData.key);
+            });
         }
 
         /// <summary>
