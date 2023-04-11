@@ -98,6 +98,13 @@ namespace Detect
             targetEffectTrm.position = transform.position;
         }
         
+        
+        [ContextMenu("SetModelPosIsThisPos")]
+        public void SetModelPosIsThisPos()
+        {
+            targetModel.position = transform.position;
+        }
+        
         #endif
     }   
 }

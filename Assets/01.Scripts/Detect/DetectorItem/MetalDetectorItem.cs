@@ -33,7 +33,7 @@ namespace Detect
                 LinearColor linearColor = default;
                 linearColor.red = 1f;
                 pointLight.color = Color.red;
-                maxTimer = 0.5f;
+                maxTimer = 0.3f;
             }
             else if (radius > minDistance)
             {
@@ -41,7 +41,11 @@ namespace Detect
                 linearColor.red = 1f;
                 linearColor.green = 1f;
                 pointLight.color = Color.yellow;
-                maxTimer = 2f;
+                
+                float _normalizedValue = (minDistance - closeRadius) / (radius - closeRadius);
+                float _timer = Mathf.Lerp(0.5f, 2f, _normalizedValue);
+                
+                maxTimer = _timer;
             }
             else
             {
