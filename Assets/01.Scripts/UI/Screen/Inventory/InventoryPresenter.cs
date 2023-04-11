@@ -5,7 +5,8 @@ using UnityEngine.UIElements;
 using System;
 using Inventory;
 using UI.EventManage;
-using UI.Base; 
+using UI.Base;
+using UnityEngine.PlayerLoop;
 
 namespace UI.Inventory
 {
@@ -41,7 +42,15 @@ namespace UI.Inventory
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.skill_button, (x) => AnimateSlot(InventoryView.Elements.skill_equip_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.armor_button, (x) => AnimateSlot(InventoryView.Elements.armor_equip_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.accessories_button, (x) => AnimateSlot(InventoryView.Elements.accessoire_equip_panel, x));
+            
+            EventManager.Instance.StartListening(EventsType.UpdateInventoryUI, UpdateUI);
         }
+
+        private void OnDisable()
+        {
+            EventManager.Instance.StopListening(EventsType.UpdateInventoryUI, UpdateUI);
+        }
+
         void Start()
         {
             UpdateUI(); 
@@ -53,7 +62,7 @@ namespace UI.Inventory
             inventoryCam.gameObject.SetActive(_isActive);
 
             EventManager.Instance.TriggerEvent(EventsType.UpdateQuickSlot);
-            
+            UpdateUI(); 
             return _isActive; 
         }
 
