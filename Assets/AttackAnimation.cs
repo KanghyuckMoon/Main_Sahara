@@ -27,6 +27,8 @@ public class AttackAnimation : StateMachineBehaviour
 
         stateModule.AddState(State.ATTACK);
         animator.SetBool("ConsecutiveAttack", false);
+        
+        animator.SetBool("IsCombo", true);
 
         //stateModule.RemoveState(State.ATTACK);
     }
@@ -41,6 +43,8 @@ public class AttackAnimation : StateMachineBehaviour
         
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
+        
+        
         //mainModule.CanConsecutiveAttack = false;
 
         //animator.SetBool("ConsecutiveAttack", false);

@@ -9,7 +9,7 @@ namespace Weapon
 {
     public class Weapon_Sword : BaseWeapon
     {
-        private void OnTriggerEnter(Collider other)
+        /*private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag(tagName))
             {
@@ -25,6 +25,6 @@ namespace Weapon
             StaticTime.EntierTime = 0.03f;
             yield return new WaitForSecondsRealtime(0.15f);
             StaticTime.EntierTime = 1;
-        }
+        }*/
     }
 }

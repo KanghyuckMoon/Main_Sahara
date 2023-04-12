@@ -11,7 +11,7 @@ namespace Module
 	{
 		public override void Update()
 		{
-			if (!StateModule.CheckState(State.DEAD))
+			if (!StateModule.CheckState(State.DEAD, State.UI))
 			{
 				InputMove();
 				InputJump();
@@ -30,7 +30,7 @@ namespace Module
 			
 			if (mainModule.IsWeaponExist)
 			{
-				if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) &&
+				if (!StateModule.CheckState(State.ATTACK, State.CHARGE) &&
 				    !StateModule.CheckState(State.SKILL))
 				{
 					//Debug.LogError("공격이다 공격이야!!!!!");
@@ -62,6 +62,7 @@ namespace Module
 					//bool _inputatk = Input.GetMouseButtonUp(0);
 					//AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward, Quaternion.identity);// + new Vector3(0, 1.6f, 0));
 
+					mainModule.Attacking = false;
 					StateModule.RemoveState(State.CHARGE);
 					//StateModule.RemoveState(State.ATTACK);
 				}

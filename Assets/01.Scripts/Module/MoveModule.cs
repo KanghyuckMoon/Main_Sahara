@@ -43,7 +43,6 @@ namespace Module
             set
 			{
                 animator = value;
-
             }
 		}
         private Animator animator;
@@ -83,7 +82,7 @@ namespace Module
             #region 속도 관련 부분
 
             float _targetSpeed = mainModule.IsSprint ? runSpeed : moveSpeed;
-            float _lockOnspeed = mainModule.LockOn ? -2 : 0;
+            float _lockOnspeed = mainModule.LockOn ? -1 : 0;
 
             float _speed;
 
@@ -186,8 +185,7 @@ namespace Module
 
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
-
-
+        
         // ReSharper disable Unity.PerformanceAnalysis
         private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
