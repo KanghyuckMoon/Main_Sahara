@@ -45,7 +45,29 @@ namespace Detect
         [SerializeField]
         private DropItemListSO dropItemListSO;
         
-        [SerializeField]
+        public List<Observer> Observers
+        {
+            get
+            {
+                return observers;
+            }
+        }
+
+        private List<Observer> observers = new List<Observer>();
+        
+        public bool IsGetOut
+        {
+            get
+            {
+                return isGetOut;
+            }
+            set
+            {
+                isGetOut = value;
+            }
+        }
+
+        private bool isGetOut = false;
         
         public void GetOut()
         {
@@ -69,6 +91,10 @@ namespace Detect
                 
                     ItemDrop(dropItemListSO.dropItemKeyArr[_index]); 
                 }
+            }
+            else
+            {
+                isGetOut = true;
             }
         }
         

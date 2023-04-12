@@ -6408,6 +6408,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worm
       objectReference: {fileID: 0}
+    - target: {fileID: 5712746735425984897, guid: 1190ed5b592c0794fa67f9669b51b496, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5712746735425984902, guid: 1190ed5b592c0794fa67f9669b51b496, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -7570,6 +7574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 0}
+  waeponHandle: {fileID: 0}
   hitBoxName: 
 --- !u!114 &1218311464
 MonoBehaviour:
@@ -7614,6 +7619,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -7636,6 +7642,7 @@ MonoBehaviour:
   isStaticTime: 0
   canConsecutiveAttack: 0
   isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0

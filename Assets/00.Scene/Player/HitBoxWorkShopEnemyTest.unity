@@ -836,6 +836,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6914c29ca17a577409bcef06f878b7be, type: 3}
+--- !u!1 &76725209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 76725211}
+  - component: {fileID: 76725210}
+  m_Layer: 0
+  m_Name: GameObject (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &76725210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76725209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c35d03bb9baef449aff7b899e8dcd95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomMonsterListSO: {fileID: 11400000, guid: 282465e168d2e4c42afbdaf37f51cce8, type: 2}
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  radius: 40
+--- !u!4 &76725211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76725209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 53
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &130713379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,71 +1779,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &519709919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 519709920}
-  - component: {fileID: 519709922}
-  - component: {fileID: 519709921}
-  m_Layer: 16
-  m_Name: Detect
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &519709920
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519709919}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.8618283, y: 0.584, z: -8.23637}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6704208319320120639}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519709921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519709919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e4c30461a50514c82b798bf9161a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectItemType: 1
-  spawnTrm: {fileID: 1538899096}
-  upPower: 20
-  xzPower: 5
-  key: xa_Nm
-  isEnemy: 1
---- !u!65 &519709922
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519709919}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &594971023 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3118421499958552680, guid: 37a5c109cf3ddfe48bd5331bcdd10d13, type: 3}
@@ -2594,37 +2578,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1156617391077415239, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
   m_PrefabInstance: {fileID: 1156617392342820358}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1538899095
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1538899096}
-  m_Layer: 16
-  m_Name: SpawnPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1538899096
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1538899095}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6704208319320120639}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583133418
 GameObject:
   m_ObjectHideFlags: 0
@@ -9624,22 +9577,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &345104727030060050
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7610246279948596239}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ L Finger0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &360756991945261743
 Transform:
   m_ObjectHideFlags: 0
@@ -9769,6 +9706,10 @@ PrefabInstance:
     - target: {fileID: 425038232435571450, guid: 7b3ea1f387384c348ad28402334578a2, type: 3}
       propertyPath: m_Name
       value: GatheringPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 425038232435571450, guid: 7b3ea1f387384c348ad28402334578a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 425038232435571452, guid: 7b3ea1f387384c348ad28402334578a2, type: 3}
       propertyPath: m_RootOrder
@@ -10533,22 +10474,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &889253198725857750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 987920418681140981}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ R Hand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &889768853823776398
 GameObject:
   m_ObjectHideFlags: 0
@@ -10565,22 +10490,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &890879749708302879
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8788802650340298067}
-  m_LocalRotation: {x: 0.0000022161066, y: -0.00000077533656, z: 0.9724142, w: -0.23326086}
-  m_LocalPosition: {x: 0.22237338, y: 0.031501234, z: -0.0000008018638}
-  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5547709586053793127}
-  m_Father: {fileID: 6766125324332294273}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.000027160191, y: 0.00026766633, z: -153.02173}
 --- !u!1 &897079897864466128
 GameObject:
   m_ObjectHideFlags: 0
@@ -10693,22 +10602,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &968124733017573649
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3554831630872396872}
-  m_LocalRotation: {x: 0.0021503163, y: 0.022502195, z: -0.07213586, w: 0.9971387}
-  m_LocalPosition: {x: -0.26998663, y: -0.0002129364, z: -0.00000021934508}
-  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5785799385392702373}
-  m_Father: {fileID: 7333900181556546163}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.51843697, y: 3.6534142, z: -8.348083}
 --- !u!1 &977330491690551859
 GameObject:
   m_ObjectHideFlags: 0
@@ -10826,24 +10719,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.18325087, y: -0.011675976, z: 0.002930373}
     m_Extent: {x: 0.119438, y: 0.15930158, z: 0.17639643}
   m_DirtyAABB: 0
---- !u!4 &987920418681140981
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889253198725857750}
-  m_LocalRotation: {x: 0.30977196, y: -0.29373172, z: 0.389397, w: 0.81616974}
-  m_LocalPosition: {x: -0.7239252, y: 0.000000038146972, z: 0.000000038146972}
-  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1052714152322103265}
-  - {fileID: 4273937990161801670}
-  - {fileID: 5016884811471539122}
-  m_Father: {fileID: 8016256301316404957}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 47.257355, y: -20.54759, z: 41.9442}
 --- !u!4 &1021808359975425206
 Transform:
   m_ObjectHideFlags: 0
@@ -10892,21 +10767,6 @@ Transform:
   m_Father: {fileID: 8557321759999449165}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1052714152322103265
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5536950282048344065}
-  m_LocalRotation: {x: -0.5890137, y: 0.36008617, z: 0.24283999, w: 0.6814907}
-  m_LocalPosition: {x: -0.08480864, y: 0.033223074, z: 0.17676865}
-  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 987920418681140981}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -77.877655, y: 77.12263, z: -26.348663}
 --- !u!114 &1058247044584635764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15495,22 +15355,6 @@ Transform:
   m_Father: {fileID: 2135845861172197785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1526981206953372412
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5016884811471539122}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ R Finger2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &1530033490318392277
 Transform:
   m_ObjectHideFlags: 0
@@ -15581,22 +15425,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000047914684, y: -0.020680934, z: 0.086467996}
     m_Extent: {x: 0.12073548, y: 0.14018092, z: 0.14039744}
   m_DirtyAABB: 0
---- !u!1 &1567628334259106104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5547709586053793127}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Tail1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!137 &1573666686358308124
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -15867,22 +15695,6 @@ Transform:
   m_Father: {fileID: 2428790851663386900}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1846728174659420684
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5594370360278675973}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Tail2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &1848862224238708048
 Transform:
   m_ObjectHideFlags: 0
@@ -15972,7 +15784,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1859641310402158028, guid: b9b5393c905036345ae2545285d03e85, type: 3}
       propertyPath: m_shaderPropertyID
-      value: 3126
+      value: 3184
       objectReference: {fileID: 0}
     - target: {fileID: 3367484246739038037, guid: b9b5393c905036345ae2545285d03e85, type: 3}
       propertyPath: m_RootOrder
@@ -16139,22 +15951,6 @@ Transform:
   m_Father: {fileID: 7639156550612689461}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1968284899713565131
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5778131352084277595}
-  m_LocalRotation: {x: 0.5408754, y: -0.10930714, z: 0.75107294, w: -0.36248475}
-  m_LocalPosition: {x: -0.12939392, y: -0.21264847, z: -0.43104866}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8016256301316404957}
-  m_Father: {fileID: 7793599223723508339}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: -13.174902, y: 66.322815, z: -137.10445}
 --- !u!4 &1969354889418576107
 Transform:
   m_ObjectHideFlags: 0
@@ -16479,24 +16275,6 @@ Transform:
   m_Father: {fileID: 4686315894013494455}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2108494507677992974
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9182485391824765862}
-  m_LocalRotation: {x: -0.30977213, y: 0.29373035, z: 0.38939956, w: 0.81616896}
-  m_LocalPosition: {x: -0.72392523, y: 0.000000038146972, z: -0.000000076293944}
-  m_LocalScale: {x: 0.99999994, y: 1, z: 1.0000001}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7610246279948596239}
-  - {fileID: 7053939775555787938}
-  - {fileID: 5486425542621444454}
-  m_Father: {fileID: 6852333534442770045}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -47.257416, y: 20.547705, z: 41.9443}
 --- !u!1 &2109290157398946916
 GameObject:
   m_ObjectHideFlags: 0
@@ -16848,22 +16626,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.33835417, y: 0.064827174, z: 0.0029446483}
     m_Extent: {x: 0.26651335, y: 0.15466347, z: 0.6313363}
   m_DirtyAABB: 0
---- !u!4 &2339899154810664307
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4600662183155978928}
-  m_LocalRotation: {x: -0.002146547, y: -0.09476481, z: -0.07025777, w: 0.99301505}
-  m_LocalPosition: {x: -0.2566168, y: -0.00020843506, z: -0.0000019073486}
-  m_LocalScale: {x: 1.0000002, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4390095517037501790}
-  m_Father: {fileID: 5785799385392702373}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.948629, y: -9.462016, z: -8.029275}
 --- !u!1 &2349241617577639153
 GameObject:
   m_ObjectHideFlags: 0
@@ -17750,22 +17512,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &2772221254720296478
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6766125324332294273}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Pelvis
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &2779741970981338573
 GameObject:
   m_ObjectHideFlags: 0
@@ -17879,6 +17625,67 @@ Transform:
   m_Father: {fileID: 5772289762864537428}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2879732551195797783
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2879732551107055048, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_Name
+      value: xa_Nm_Detect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055048, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.8618283
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.584
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.23637
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879732551107055095, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5057eecfcccd334448bee1e4d4b9f3bf, type: 3}
 --- !u!1 &2882263091915719971
 GameObject:
   m_ObjectHideFlags: 0
@@ -18024,6 +17831,10 @@ PrefabInstance:
     - target: {fileID: 2989332478976249980, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
       propertyPath: m_Name
       value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989332478976249980, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478976249981, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
       propertyPath: m_RootOrder
@@ -18311,22 +18122,6 @@ Transform:
   m_Father: {fileID: 1046302064675191269}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3160753100107736535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4390095517037501790}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Tail7
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &3185470816943764291
 GameObject:
   m_ObjectHideFlags: 0
@@ -18360,21 +18155,6 @@ Transform:
   m_Father: {fileID: 1886053645894516659}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &3197788074478504757
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7376604239503715301}
-  m_LocalRotation: {x: -0.25745368, y: 0.02461156, z: 0.116553575, w: 0.95891976}
-  m_LocalPosition: {x: -0.6059193, y: 0.28871882, z: -0.16799971}
-  m_LocalScale: {x: 1, y: 0.9999999, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7793599223723508339}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -29.96639, y: -0.8474632, z: 14.087056}
 --- !u!4 &3236491961628374505
 Transform:
   m_ObjectHideFlags: 0
@@ -18826,85 +18606,6 @@ Transform:
   m_Father: {fileID: 1444126643601443683}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &3368068601277683592
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7438415448843077749}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 5c4d7c6025ad8a24ab8985cc5ee1ceca, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 4
-  m_UpdateWhenOffscreen: 1
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -8725021476739911060, guid: ff5a620656b0ad14c8d0d4c457290ba2, type: 3}
-  m_Bones:
-  - {fileID: 7793599223723508339}
-  - {fileID: 3471690115781310242}
-  - {fileID: 5573472881942415301}
-  - {fileID: 1968284899713565131}
-  - {fileID: 8204518551214522966}
-  - {fileID: 3197788074478504757}
-  - {fileID: 6766125324332294273}
-  - {fileID: 2108494507677992974}
-  - {fileID: 7610246279948596239}
-  - {fileID: 6852333534442770045}
-  - {fileID: 5486425542621444454}
-  - {fileID: 1052714152322103265}
-  - {fileID: 4273937990161801670}
-  - {fileID: 5016884811471539122}
-  - {fileID: 8016256301316404957}
-  - {fileID: 987920418681140981}
-  - {fileID: 7053939775555787938}
-  - {fileID: 3685532026867674403}
-  - {fileID: 890879749708302879}
-  - {fileID: 5547709586053793127}
-  - {fileID: 5594370360278675973}
-  - {fileID: 7333900181556546163}
-  - {fileID: 968124733017573649}
-  - {fileID: 5785799385392702373}
-  - {fileID: 2339899154810664307}
-  - {fileID: 4390095517037501790}
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 6766125324332294273}
-  m_AABB:
-    m_Center: {x: 0.27142286, y: 0.19482607, z: -0.00000166893}
-    m_Extent: {x: 2.1210752, y: 1.4224851, z: 1.4128164}
-  m_DirtyAABB: 0
 --- !u!137 &3378067200369473494
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -19144,21 +18845,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.3001454, y: 0.009454519, z: -0.000000007450581}
     m_Extent: {x: 0.5107175, y: 0.14930645, z: 0.2486574}
   m_DirtyAABB: 0
---- !u!4 &3471690115781310242
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4757580755758786323}
-  m_LocalRotation: {x: 0.8731367, y: -0.23338008, z: 0.062352754, w: 0.4234126}
-  m_LocalPosition: {x: -0.6490174, y: -0.22546539, z: 0.26841232}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7793599223723508339}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50.21919, y: -172.02739, z: -146.32959}
 --- !u!4 &3471862204061486460
 Transform:
   m_ObjectHideFlags: 0
@@ -19234,22 +18920,6 @@ GameObject:
   - component: {fileID: 5084272398371782405}
   m_Layer: 0
   m_Name: Shirt01_main_05
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &3554831630872396872
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 968124733017573649}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Tail4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19454,22 +19124,6 @@ Transform:
   m_Father: {fileID: 5073564802243758895}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3635067670842997095
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5667501296681124353}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &3637061386814430368
 GameObject:
   m_ObjectHideFlags: 0
@@ -19503,22 +19157,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &3685532026867674403
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9171075856045608856}
-  m_LocalRotation: {x: -0.5408762, y: 0.10930662, z: 0.75107175, w: -0.36248612}
-  m_LocalPosition: {x: -0.12939395, y: -0.21265091, z: 0.43104744}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6852333534442770045}
-  m_Father: {fileID: 7793599223723508339}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 13.175015, y: -66.32303, z: -137.10425}
 --- !u!1 &3691565543632389043
 GameObject:
   m_ObjectHideFlags: 0
@@ -20595,22 +20233,6 @@ Transform:
   m_Father: {fileID: 7002144816622063073}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4227590284597680374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8204518551214522966}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ JawLowerLeft
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &4232437570140466465
 Transform:
   m_ObjectHideFlags: 0
@@ -20626,21 +20248,6 @@ Transform:
   m_Father: {fileID: 7639156550612689461}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4273937990161801670
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6507093009395511900}
-  m_LocalRotation: {x: -0.014761488, y: 0.15089451, z: -0.09872944, w: 0.98349655}
-  m_LocalPosition: {x: -0.27377388, y: -0.010965471, z: 0.067962185}
-  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 987920418681140981}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.043527517, y: 17.440985, z: -11.458318}
 --- !u!4 &4303181106886933305
 Transform:
   m_ObjectHideFlags: 0
@@ -20740,21 +20347,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4372342435663974391
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7438415448843077749}
-  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6704208319320120639}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4375542005755888634
 GameObject:
   m_ObjectHideFlags: 0
@@ -20786,21 +20378,6 @@ Transform:
   m_Father: {fileID: 266149701390025962}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4390095517037501790
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3160753100107736535}
-  m_LocalRotation: {x: 0.020252338, y: -0.1542785, z: -0.03744599, w: 0.98710984}
-  m_LocalPosition: {x: -0.26432008, y: -0.00020971298, z: -0.000010814667}
-  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2339899154810664307}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 1.4133902, y: -17.485882, z: -4.725736}
 --- !u!4 &4404224226358882270
 Transform:
   m_ObjectHideFlags: 0
@@ -21124,22 +20701,6 @@ Transform:
   m_Father: {fileID: 5310774123416396006}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4600662183155978928
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2339899154810664307}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Tail6
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &4605740116279187197
 GameObject:
   m_ObjectHideFlags: 0
@@ -21269,22 +20830,6 @@ Transform:
   m_Father: {fileID: 8506377184930305690}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4757580755758786323
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3471690115781310242}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ JawUpperLeft
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &4758300561093746200
 GameObject:
   m_ObjectHideFlags: 0
@@ -22253,21 +21798,6 @@ Transform:
   m_Father: {fileID: 732127885707924687}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &5016884811471539122
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526981206953372412}
-  m_LocalRotation: {x: 0.10791093, y: -0.075772, z: -0.09222832, w: 0.986969}
-  m_LocalPosition: {x: -0.26343316, y: -0.009144248, z: -0.10612762}
-  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 987920418681140981}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 11.480408, y: -9.958452, z: -11.680662}
 --- !u!4 &5021506805397025966
 Transform:
   m_ObjectHideFlags: 0
@@ -22559,22 +22089,6 @@ GameObject:
   - component: {fileID: 3703648366757358495}
   m_Layer: 0
   m_Name: UpperBodySkin_02
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &5172375050926598152
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5573472881942415301}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ JawUpperRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22959,22 +22473,6 @@ Transform:
   m_Father: {fileID: 4303181106886933305}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5438783388427368932
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5785799385392702373}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Tail5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &5473572905092584596
 GameObject:
   m_ObjectHideFlags: 0
@@ -23007,21 +22505,6 @@ Transform:
   m_Father: {fileID: 4750807153954613713}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &5486425542621444454
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6391603386725554788}
-  m_LocalRotation: {x: -0.10791092, y: 0.07577199, z: -0.09222834, w: 0.986969}
-  m_LocalPosition: {x: -0.26343307, y: -0.009144248, z: 0.10612762}
-  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2108494507677992974}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -11.480407, y: 9.958453, z: -11.680663}
 --- !u!4 &5493727563637209016
 Transform:
   m_ObjectHideFlags: 0
@@ -23069,22 +22552,6 @@ Transform:
   m_Father: {fileID: 4841929623401251625}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5536950282048344065
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1052714152322103265}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ R Finger0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &5537580527083123944
 GameObject:
   m_ObjectHideFlags: 0
@@ -23101,22 +22568,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5547709586053793127
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567628334259106104}
-  m_LocalRotation: {x: 0.0013323902, y: 0.024446761, z: -0.03920169, w: 0.99893135}
-  m_LocalPosition: {x: -0.28202912, y: -0.000231781, z: -0.00000017907703}
-  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5594370360278675973}
-  m_Father: {fileID: 890879749708302879}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.1526998, y: 1.9578875, z: -4.3949385}
 --- !u!137 &5560949184213023138
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -23220,21 +22671,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5573472881942415301
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5172375050926598152}
-  m_LocalRotation: {x: 0.8746527, y: -0.23021552, z: -0.053317215, w: -0.4232502}
-  m_LocalPosition: {x: -0.6490172, y: -0.22546478, z: -0.26800048}
-  m_LocalScale: {x: 1.0000001, y: 0.9999998, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7793599223723508339}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -49.901894, y: 170.9234, z: -146.27756}
 --- !u!4 &5579167597991905245
 Transform:
   m_ObjectHideFlags: 0
@@ -23267,22 +22703,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5594370360278675973
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846728174659420684}
-  m_LocalRotation: {x: 0.002016397, y: 0.03442085, z: -0.050237067, w: 0.998142}
-  m_LocalPosition: {x: -0.29198754, y: -0.0002591705, z: -0.00000014901161}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7333900181556546163}
-  m_Father: {fileID: 5547709586053793127}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.38751966, y: 3.8595262, z: -5.712123}
 --- !u!1 &5611811437989304778
 GameObject:
   m_ObjectHideFlags: 0
@@ -23317,22 +22737,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5667501296681124353
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3635067670842997095}
-  m_LocalRotation: {x: -0.09229605, y: 0.09229591, z: 0.70105696, w: 0.70105785}
-  m_LocalPosition: {x: 0, y: 0.98388684, z: -0.23690042}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6766125324332294273}
-  m_Father: {fileID: 7427046775266596523}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -15.000003, y: -0.0000017677829, z: 89.99992}
 --- !u!1 &5688532644495922089
 GameObject:
   m_ObjectHideFlags: 0
@@ -23555,38 +22959,6 @@ Transform:
   m_Father: {fileID: 6055114687263804659}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5778131352084277595
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1968284899713565131}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ R UpperArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5785799385392702373
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438783388427368932}
-  m_LocalRotation: {x: -0.00050462346, y: -0.025939232, z: -0.07409221, w: 0.99691385}
-  m_LocalPosition: {x: -0.2701924, y: -0.00020202636, z: -0.00000057220456}
-  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2339899154810664307}
-  m_Father: {fileID: 968124733017573649}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.13723108, y: -1.395906, z: -8.5417795}
 --- !u!4 &5786711699365222440
 Transform:
   m_ObjectHideFlags: 0
@@ -24550,22 +23922,6 @@ Transform:
   m_Father: {fileID: 266149701390025962}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6215514349863896965
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6704208319320120639}
-  m_Layer: 16
-  m_Name: xa_Nm (1)
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &6226290850391667436
 Transform:
   m_ObjectHideFlags: 0
@@ -24980,22 +24336,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &6391603386725554788
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5486425542621444454}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ L Finger2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!137 &6396268047575917370
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -25245,22 +24585,6 @@ Transform:
   m_Father: {fileID: 6893459076734146579}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6507093009395511900
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4273937990161801670}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ R Finger1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &6529988623353017483
 GameObject:
   m_ObjectHideFlags: 0
@@ -25326,22 +24650,6 @@ Transform:
   m_Father: {fileID: 7729775672051802182}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6578833022062344390
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7793599223723508339}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Spine
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &6584209207941821237
 Transform:
   m_ObjectHideFlags: 0
@@ -25596,24 +24904,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6704208319320120639
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6215514349863896965}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.444, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 7427046775266596523}
-  - {fileID: 4372342435663974391}
-  - {fileID: 1538899096}
-  m_Father: {fileID: 519709920}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6709539936943587440
 GameObject:
   m_ObjectHideFlags: 0
@@ -25696,23 +24986,6 @@ Transform:
   m_Father: {fileID: 4424296590720996367}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &6766125324332294273
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2772221254720296478}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.49999934, w: 0.50000066}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7793599223723508339}
-  - {fileID: 890879749708302879}
-  m_Father: {fileID: 5667501296681124353}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 89.99992, z: 0}
 --- !u!4 &6767654781102164533
 Transform:
   m_ObjectHideFlags: 0
@@ -25812,22 +25085,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6852333534442770045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9013099743482329899}
-  m_LocalRotation: {x: 0.000000007553739, y: -0.0000000035114034, z: 0.6225596, w: 0.7825724}
-  m_LocalPosition: {x: -0.7873734, y: 0.000000076293944, z: 0.000000076293944}
-  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2108494507677992974}
-  m_Father: {fileID: 3685532026867674403}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.0000057593315, y: 0.0000021758751, z: 77.00649}
 --- !u!1 &6861016351350779460
 GameObject:
   m_ObjectHideFlags: 0
@@ -26182,21 +25439,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0057836194, y: -0.07230762, z: 0}
     m_Extent: {x: 0.010127846, y: 0.027645499, z: 0.01874921}
   m_DirtyAABB: 0
---- !u!4 &7053939775555787938
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7746500368323065139}
-  m_LocalRotation: {x: 0.014761495, y: -0.15089454, z: -0.098729424, w: 0.98349655}
-  m_LocalPosition: {x: -0.27377388, y: -0.010965462, z: -0.06796211}
-  m_LocalScale: {x: 1.0000001, y: 0.9999999, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2108494507677992974}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -0.043525808, y: -17.44098, z: -11.458316}
 --- !u!4 &7055158893634630588
 Transform:
   m_ObjectHideFlags: 0
@@ -26213,38 +25455,6 @@ Transform:
   m_Father: {fileID: 7729775672051802182}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7062383130174806575
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7427046775266596523}
-  m_Layer: 16
-  m_Name: root
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &7067146233387303128
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8016256301316404957}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ R Forearm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &7073977534067824826
 Transform:
   m_ObjectHideFlags: 0
@@ -26595,22 +25805,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7333900181556546163
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8717441964775298554}
-  m_LocalRotation: {x: 0.0020260331, y: 0.043000292, z: -0.041510135, w: 0.9982103}
-  m_LocalPosition: {x: -0.32701465, y: -0.0002141571, z: -0.00000012636184}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 968124733017573649}
-  m_Father: {fileID: 5594370360278675973}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.41742823, y: 5.4672093, z: -4.800287}
 --- !u!137 &7348291007184975162
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -26710,22 +25904,6 @@ Transform:
   m_Father: {fileID: 6211647228527909785}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7376604239503715301
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3197788074478504757}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ JawLowerRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &7382119292729557828
 Transform:
   m_ObjectHideFlags: 0
@@ -26792,39 +25970,6 @@ Transform:
   m_Father: {fileID: 7995816619115746611}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &7427046775266596523
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7062383130174806575}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5667501296681124353}
-  m_Father: {fileID: 6704208319320120639}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.000007629394, y: 0, z: 0}
---- !u!1 &7438415448843077749
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4372342435663974391}
-  - component: {fileID: 3368068601277683592}
-  m_Layer: 18
-  m_Name: SK_CrustaspikanLarvae
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &7477647069533448888
 Transform:
   m_ObjectHideFlags: 0
@@ -28346,21 +27491,6 @@ MonoBehaviour:
   m_DistantDisable: 0
   m_ReferenceObject: {fileID: 0}
   m_DistanceToObject: 20
---- !u!4 &7610246279948596239
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345104727030060050}
-  m_LocalRotation: {x: 0.5890137, y: -0.36008617, z: 0.24283998, w: 0.6814908}
-  m_LocalPosition: {x: -0.08480866, y: 0.033223074, z: -0.1767686}
-  m_LocalScale: {x: 1.0000001, y: 0.9999999, z: 0.99999994}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2108494507677992974}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 77.877625, y: -77.122635, z: -26.348671}
 --- !u!1 &7617782487838621554
 GameObject:
   m_ObjectHideFlags: 0
@@ -28761,22 +27891,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &7746500368323065139
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7053939775555787938}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ L Finger1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &7771659972869297071
 GameObject:
   m_ObjectHideFlags: 0
@@ -28813,27 +27927,6 @@ Transform:
   m_Father: {fileID: 8886484568003385721}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &7793599223723508339
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6578833022062344390}
-  m_LocalRotation: {x: -0.0000021309288, y: 0.0000009646768, z: -0.13092096, w: 0.99139285}
-  m_LocalPosition: {x: -0.23778065, y: -0.00043914793, z: 0.00000033036514}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8204518551214522966}
-  - {fileID: 3197788074478504757}
-  - {fileID: 3471690115781310242}
-  - {fileID: 5573472881942415301}
-  - {fileID: 3685532026867674403}
-  - {fileID: 1968284899713565131}
-  m_Father: {fileID: 6766125324332294273}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.00022761217, y: 0.00014156145, z: -15.045627}
 --- !u!1 &7804455634736934043
 GameObject:
   m_ObjectHideFlags: 0
@@ -29295,22 +28388,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8016256301316404957
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7067146233387303128}
-  m_LocalRotation: {x: 0.000000021599197, y: 0.000000026703685, z: 0.62256426, w: 0.7825687}
-  m_LocalPosition: {x: -0.78737336, y: 0.000000076293944, z: 0}
-  m_LocalScale: {x: 1.0000001, y: 0.9999999, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 987920418681140981}
-  m_Father: {fileID: 1968284899713565131}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.00000409548, y: 0.0000025598392, z: 77.00703}
 --- !u!1 &8016481645573916074
 GameObject:
   m_ObjectHideFlags: 0
@@ -29487,21 +28564,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8204518551214522966
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4227590284597680374}
-  m_LocalRotation: {x: 0.25591728, y: -0.03381556, z: 0.11904308, w: 0.9587448}
-  m_LocalPosition: {x: -0.6059193, y: 0.28871834, z: 0.16755073}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7793599223723508339}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 29.918638, y: -0.25851396, z: 14.086802}
 --- !u!1 &8241618387763434880
 GameObject:
   m_ObjectHideFlags: 0
@@ -30487,22 +29549,6 @@ Transform:
   m_Father: {fileID: 1287492339201563191}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8717441964775298554
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7333900181556546163}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Tail3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &8750999876693048194
 GameObject:
   m_ObjectHideFlags: 0
@@ -30562,22 +29608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cb474ddb18524419bad766dbba6e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8788802650340298067
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 890879749708302879}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ Tail
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &8802364760406807602
 Transform:
   m_ObjectHideFlags: 0
@@ -30992,22 +30022,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &9013099743482329899
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6852333534442770045}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ L Forearm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &9021419769510239349
 Transform:
   m_ObjectHideFlags: 0
@@ -31120,22 +30134,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &9171075856045608856
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3685532026867674403}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ L UpperArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!137 &9178317265654575349
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -31190,22 +30188,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.060112797, y: -0.09786589, z: 0}
     m_Extent: {x: 0.0034572482, y: 0.0037595332, z: 0.045112167}
   m_DirtyAABB: 0
---- !u!1 &9182485391824765862
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2108494507677992974}
-  m_Layer: 16
-  m_Name: CrustaspikanLarvae_ L Hand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!137 &9219633443954584022
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
