@@ -103,6 +103,17 @@ namespace Interaction
 			ObjectPoolManager.Instance.RegisterObject(itemAddress, targetObj);
 			targetObj.SetActive(false);
 		}
+		
+		#if UNITY_EDITOR
+
+		[ContextMenu("Setting")]
+		public void Setting()
+		{
+			rigid = gameObject.GetComponentInParent<Rigidbody>();
+			targetObj = transform.root.gameObject;
+		}
+
+#endif
 	}
 
 }
