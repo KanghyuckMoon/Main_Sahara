@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class JumpAttack : StateMachineBehaviour
 {
     private AbMainModule mainModule;
     private StateModule stateModule;
+    private float gravity;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -16,7 +18,14 @@ public class JumpAttack : StateMachineBehaviour
         stateModule.AddState(State.ATTACK);
         animator.SetBool("ConsecutiveAttack", false);
 
+        gravity = mainModule.GravityScale;
+
         //stateModule.RemoveState(State.ATTACK);
+    }
+
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        mainModule.GravityScale = Mathf.Lerp(0, gravity, mainModule.PersonalDeltaTime * 20f);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -29,5 +38,7 @@ public class JumpAttack : StateMachineBehaviour
         
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
+
+        mainModule.GravityScale = gravity;
     }
 }
