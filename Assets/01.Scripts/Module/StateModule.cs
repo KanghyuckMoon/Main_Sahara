@@ -13,6 +13,7 @@ namespace Module
         SKILL,
         HIT,
         DEAD,
+        UI,
         NONE
     }
 

@@ -47,10 +47,32 @@ namespace Detect
         [SerializeField] 
         protected float shakeStrength = 0.5f;
 
-        protected bool isGetOut = false;
-
         private Vector3 upPos;
 
+        public List<Observer> Observers
+        {
+            get
+            {
+                return observers;
+            }
+        }
+
+        private List<Observer> observers = new List<Observer>();
+        
+        public bool IsGetOut
+        {
+            get
+            {
+                return isGetOut;
+            }
+            set
+            {
+                isGetOut = value;
+            }
+        }
+
+        protected bool isGetOut = false;
+        
 #if  UNITY_EDITOR
 
         public LayerMask debug_LayerMask;
@@ -77,6 +99,7 @@ namespace Detect
             {
                 _effectObj.Pool();
                 gameObject.SetActive(false);
+                isGetOut = true;
             });
         }
         

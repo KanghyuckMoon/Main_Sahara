@@ -8,6 +8,7 @@ using Module;
 using GameManager;
 using Pool;
 using UI.Base;
+using TimeManager;
 
 namespace Inventory
 {
@@ -108,6 +109,11 @@ namespace Inventory
 				player = null;
 				weaponModule = null;
 				itemModule = null;
+				return;
+			}
+
+			if (StaticTime.UITime < 1f)
+			{
 				return;
 			}
 

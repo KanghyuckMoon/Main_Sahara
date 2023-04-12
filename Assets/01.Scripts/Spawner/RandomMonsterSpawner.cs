@@ -112,6 +112,8 @@ namespace Spawner
 		public IEnumerator Spawn(RandomMonsterData _randomMonsterData)
 		{
 			yield return new WaitForSeconds(Random.Range(0.1f, 0.3f));
+			yield return StartCoroutine(GetRandomPos());
+			Vector3 _spawnPos = spawnPos;
 			GameObject obj = ObjectPoolManager.Instance.GetObject(_randomMonsterData.enemyAddress);
 			ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
 			objectClassCycle.TargetObject = obj;
@@ -126,11 +128,10 @@ namespace Spawner
 			EnemyDead _enemyDead = obj.GetComponent<EnemyDead>();
 			_enemyDead.AddObserver(this);
 			enemyDeadList.Add(_enemyDead);
-			yield return StartCoroutine(GetRandomPos());
-			Vector3 _spawnPos = spawnPos;
 			
-			obj.transform.position = _spawnPos + new Vector3(0,-3,0);
+			obj.transform.position = _spawnPos + new Vector3(0,-2,0);
             var _module = obj.GetComponent<AbMainModule>();
+            _module.attackedTime = 0f;
             _module.knockBackVector = Vector3.up;
             _module.knockBackPower = 15;
 			EffectManager.Instance.SetEffectDefault(spawnEffectAddress, _spawnPos, Quaternion.identity);

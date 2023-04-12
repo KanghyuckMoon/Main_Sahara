@@ -20,6 +20,8 @@ namespace Module
     {
         public SaveData saveData;
 
+        private WeaponDataSO weaponDataSO;
+
         private StatData statData;
         private bool isLoad = false;
 
@@ -46,11 +48,20 @@ namespace Module
             }
         }
 
-		public void SetAttackDamage(WeaponDataSO weaponDataSO)
+		public void SetAttackDamage(WeaponDataSO _weaponDataSO)
         {
-            statData.MeleeAttack = weaponDataSO.meleeAttack + mainModule.StatData.MeleeAttack;
-            statData.RangeAttack = weaponDataSO.rangedAttack + mainModule.StatData.RangeAttack;
-            statData.MagicAttack = weaponDataSO.magicAttack + mainModule.StatData.MagicAttack;
+            if (weaponDataSO is not null)
+            {
+                statData.MeleeAttack -= weaponDataSO.meleeAttack;
+                statData.MagicAttack -= weaponDataSO.magicAttack;
+                statData.RangeAttack -= weaponDataSO.rangedAttack;
+            }
+
+            statData.MeleeAttack = _weaponDataSO.meleeAttack + mainModule.StatData.MeleeAttack;
+            statData.RangeAttack = _weaponDataSO.rangedAttack + mainModule.StatData.RangeAttack;
+            statData.MagicAttack = _weaponDataSO.magicAttack + mainModule.StatData.MagicAttack;
+            
+            weaponDataSO = _weaponDataSO;
             //statData.Att = weaponDataSO.meleeAttack + weaponDataSO.rangedAttack + playerdata.meleeAttack + playerdata.rangedAttack;
             //apAttack = weaponDataSO.magicAttack + playerdata.magicAttack;
         }
