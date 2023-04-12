@@ -75,7 +75,7 @@ namespace Module {
             return retMeshObjs.ToArray();
         }*/
 
-        private void OnEquipItem(string _itemString)
+        public void OnEquipItem(string _itemString)
         {
             //   여기서 가지고 와야함
             GameObject _item = AddressablesManager.Instance.GetResource<GameObject>(_itemString);

@@ -46,6 +46,26 @@ namespace Inventory
 				}
 			}
 		}
+		
+		
+		public EquipmentModule PlayerEquipmentModule
+		{
+			get
+			{
+				if (Player is null)
+				{
+					return null;
+				}
+				else
+				{
+					if (equipmentModule is null)
+					{
+						equipmentModule = Player?.GetComponentInChildren<AbMainModule>()?.GetModuleComponent<EquipmentModule>(ModuleType.Equipment);
+					}
+					return equipmentModule;
+				}
+			}
+		}
 		public ItemModule PlayerItemModule
 		{
 			get
@@ -78,6 +98,7 @@ namespace Inventory
 
 		private Transform player;
 		private WeaponModule weaponModule;
+		private EquipmentModule equipmentModule;
 		private ItemModule itemModule;
 
 		private AllItemDataSO allItemDataSO;
@@ -452,7 +473,7 @@ namespace Inventory
 			inventorySO.equipments[index] = _itemData;
 
 			//장비스탯 처리
-
+			PlayerEquipmentModule.OnEquipItem(_itemData.prefebkey);
 			return;
 		}
 		public void RemoveEquipment(int _index)
