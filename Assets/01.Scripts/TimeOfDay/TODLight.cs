@@ -84,7 +84,7 @@ namespace TimeOfDay
         void UpdateTime()
 		{
             float alpha = timeOfDay / 24.0f;
-            float sunRotation = Mathf.Lerp(-90, 270, alpha);
+            float sunRotation = starsCurve.Evaluate(alpha);// Mathf.Lerp(-90, 270, alpha);
             float moonRotaion = sunRotation - 180;
 
             sun.transform.rotation = Quaternion.Euler(sunRotation, -150.0f, 0);

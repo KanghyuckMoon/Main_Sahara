@@ -7,6 +7,7 @@ using Inventory;
 using UI.Production;
 using UI.ConstructorManager;
 using System;
+using UI.Base;
 
 namespace UI.Inventory
 {

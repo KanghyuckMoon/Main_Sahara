@@ -56,24 +56,9 @@ namespace UI
             _hpView.SetBarUI(_hp);
         }
 
-        public void Test1()
+        public void ActiveScreen(bool _isActive)
         {
-            _hpView.SetBarUI(_testHp);
-
-        }
-
-        public void Test2()
-        {
-       //     _hpView.ActiveScreen(); 
-        _hpView.Test(_testHp);
-
-        }
-
-        public void Test3()
-        {
-                 _hpView.ActiveScreen(); 
-            //_hpView.Test(_testHp);
-
+            _hpView.ActiveScreen(_isActive);
         }
 
 

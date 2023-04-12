@@ -30,7 +30,7 @@ namespace UI.Save
             saveLoadView.Init(); 
         }
 
-        [ContextMenu("�׽�Ʈ")]
+        [ContextMenu("테스트")]
         public void UpdateUI()
         {
             ClearSaveEntries(); 
@@ -42,7 +42,7 @@ namespace UI.Save
                 _entry.SetStrData(_v.imagePath, _v.date);
                 _entry.AddClickEvent(() =>
                 {
-                    Debug.Log("Ŭ��");
+                    Debug.Log("클릭");
                     Load(_v.date); 
                 });
                 saveLoadView.SetParent(_entry.Parent);

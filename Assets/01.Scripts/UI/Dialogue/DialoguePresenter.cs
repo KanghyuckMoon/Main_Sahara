@@ -35,6 +35,12 @@ namespace UI.Dialogue
         // 프로퍼티 
         public IUIController UIController { get; set; }
 
+        public bool IsDialogue
+        {
+            get => isDialogue;
+            set => isDialogue = value; 
+        }
+            
         private void OnEnable()
         {
             dialogueView.Cashing();
@@ -89,7 +95,10 @@ namespace UI.Dialogue
             index = 0; 
             nameCode = _name;
             dialogueCode = _dialogue;
-            _endCallback = _callback; 
+            if (_callback != null)
+            {
+                _endCallback = _callback;
+            }
 
             SetCodeToText();
             StartCoroutine(CheckNextDialogue()); 
@@ -321,7 +330,7 @@ namespace UI.Dialogue
                 StopAllCoroutines();
             }
         }
-
+        
         public bool TestBool;
 
 

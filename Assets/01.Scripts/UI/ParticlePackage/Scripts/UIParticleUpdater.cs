@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Coffee.UIExtensions
 {
-    internal static class UIParticleUpdater
+    public static class UIParticleUpdater
     {
         static readonly List<UIParticle> s_ActiveParticles = new List<UIParticle>();
         static readonly List<UIParticleAttractor> s_ActiveAttractors = new List<UIParticleAttractor>();
@@ -119,7 +119,7 @@ namespace Coffee.UIExtensions
             }
         }
 
-        internal static UIParticle GetPrimary(int groupId)
+        public static UIParticle GetPrimary(int groupId)
         {
             UIParticle primary = null;
             for (var i = 0; i < s_ActiveParticles.Count; i++)
