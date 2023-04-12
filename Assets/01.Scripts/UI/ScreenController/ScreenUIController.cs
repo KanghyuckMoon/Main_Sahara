@@ -6,17 +6,19 @@ using UI.Dialogue;
 using UI.Quest;
 using UI.Inventory;
 using UI.Base;
-using UI.Upgrade;
+using UI.Upgrade;   
 using UI.Shop;
 using System;
 using UI.Save;
 using TimeManager;
 using InputSystem;
+using Inventory;
 using UI.UtilManager; 
 using UI.Option;
 using UI.EventManage;
 using UI.Manager;
-
+using UI.MapLiner;
+using UI.ActiveManager;
 
 namespace UI
 {
@@ -182,10 +184,30 @@ namespace UI
             {
                 bool _isActive = upgradePresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SmithUI));
-                curActiveScreen = (Keys.SmithUI,upgradePresenter); 
+                curActiveScreen = (Keys.SmithUI,upgradePresenter);
+
+                ActiveUpgrade(_isActive);
             });
         }
 
+        private void SetIsDialogue(bool _isActive)
+        {
+            if (_isActive == false)
+            {
+                dialoguePresenter.IsDialogue = false;
+            }
+        }
+        private void ActiveUpgrade(bool _isActive)
+        {
+            LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+            //UIManager.Instance.ActiveHud(! _isActive);
+            mapPresenter.Active(! _isActive);
+
+            (UIActiveManager.Instance as IUIManager).Execute(_isActive);
+            
+            InventoryManager.Instance.gameObject.SetActive(!_isActive);
+        }
+        
         private void SetInputEvent()
         {
             inputDic.Clear();
@@ -213,6 +235,10 @@ namespace UI
                 //  활성화
                 bool _isActive = upgradePresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.UpgradeUI));
+                LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+                UIManager.Instance.ActiveHud(! _isActive);
+                mapPresenter.Active(! _isActive);
+                
             });
             inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
             {
@@ -222,7 +248,7 @@ namespace UI
                 
             });
             /*inputDic.Add(new UIInputData(Get(Keys.SaveLoadUI), true), () =>
-            {
+            {Marker
                 //  활성화
                 bool _isActive = saveLoadPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SaveLoadUI));
@@ -270,6 +296,12 @@ namespace UI
                 curActiveScreen.Item2.ActiveView(false);
                 curActiveScreen.Item2 = null; 
                 EventManager.Instance.TriggerEvent(EventsType.SetCanDialogue,false);
+
+                 if (curActiveScreen.Item1 == Keys.SmithUI)
+                {
+                    ActiveUpgrade(false);
+                    SetIsDialogue(false);
+                }
             }
         }
         

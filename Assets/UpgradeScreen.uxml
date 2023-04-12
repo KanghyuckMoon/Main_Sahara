@@ -4,39 +4,41 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/UpgradeScreen.uss?fileID=7433441132597879392&amp;guid=1ee34cea76d74de4eb37c92abf751a82&amp;type=3#UpgradeScreen" />
     <ui:Instance template="UpgradeInRow" name="UpgradeInRow" style="display: none;" />
-    <ui:VisualElement name="upgrade_screen" class="screen" style="background-color: rgba(0, 0, 0, 0); background-image: none;">
-        <ui:VisualElement name="scale_pivot" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; transition-duration: 0.3s;">
-            <ui:VisualElement name="move_screen" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; background-image: none; background-color: rgba(0, 0, 0, 0); transition-property: scale, transform-origin; transition-duration: 0s, 0s;">
-                <ui:VisualElement name="item" class="item" style="display: none;" />
-                <ui:VisualElement name="slot_parent" picking-mode="Ignore" style="width: 100%; padding-left: 0; padding-right: 0; padding-top: 180px; padding-bottom: 0; overflow: visible; flex-grow: 1; position: absolute;">
-                    <ui:VisualElement name="row" style="flex-direction: row; justify-content: space-around; display: none;">
-                        <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;); -unity-background-scale-mode: scale-to-fit; display: flex; visibility: hidden;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; width: 100%; height: 100px; display: none;">
-                        <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;); -unity-background-scale-mode: scale-to-fit;" />
-                        <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;); -unity-background-scale-mode: stretch-to-fill; scale: 1 1;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="row" style="flex-direction: row; justify-content: flex-start; display: none;">
-                        <ui:Instance template="UpgradeSlot" name="UpgradeSlot" style="margin-right: 30px; left: 0; top: 0; right: 0; bottom: 0;" />
-                        <ui:Instance template="UpgradeSlot" name="UpgradeSlot" style="margin-left: 30px;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; width: 100%; height: 100px; display: none;">
-                        <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;);" />
-                        <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;);" />
-                        <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;);" />
-                        <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;); -unity-background-scale-mode: scale-to-fit;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; display: none;">
-                        <ui:Instance template="UpgradeInRow" name="UpgradeInRow" />
-                        <ui:VisualElement style="flex-direction: row; width: 1300px;">
-                            <ui:Instance template="UpgradeSlot" name="UpgradeSlot" />
-                            <ui:Instance template="UpgradeSlot" name="UpgradeSlot" />
+    <ui:VisualElement name="upgrade_screen" class="screen" style="background-color: rgba(0, 0, 0, 0); background-image: none; flex-direction: row-reverse; top: 0; right: 4px; left: -4px; bottom: 0;">
+        <ui:VisualElement name="ctrl_panel" class="ctrl_panel">
+            <ui:VisualElement name="scale_pivot" picking-mode="Ignore" style="width: 100%; height: 100%;">
+                <ui:VisualElement name="move_screen" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; background-image: none; background-color: rgba(0, 0, 0, 0); transition-property: scale, transform-origin; transition-duration: 0s, 0s;">
+                    <ui:VisualElement name="item" class="item" style="display: none;" />
+                    <ui:VisualElement name="slot_parent" picking-mode="Ignore" style="width: 100%; padding-left: 0; padding-right: 0; padding-top: 180px; padding-bottom: 0; overflow: visible; flex-grow: 1; position: absolute;">
+                        <ui:VisualElement name="row" style="flex-direction: row; justify-content: space-around; display: none;">
+                            <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;); -unity-background-scale-mode: scale-to-fit; display: flex; visibility: hidden;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; width: 100%; height: 100px; display: none;">
+                            <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                            <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;); -unity-background-scale-mode: stretch-to-fill; scale: 1 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="row" style="flex-direction: row; justify-content: flex-start; display: none;">
+                            <ui:Instance template="UpgradeSlot" name="UpgradeSlot" style="margin-right: 30px; left: 0; top: 0; right: 0; bottom: 0;" />
+                            <ui:Instance template="UpgradeSlot" name="UpgradeSlot" style="margin-left: 30px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; width: 100%; height: 100px; display: none;">
+                            <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;);" />
+                            <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;);" />
+                            <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line5%20(1).png?fileID=2800000&amp;guid=215d95c2a2537734dbf29d7fb71d1193&amp;type=3#line5 (1)&apos;);" />
+                            <ui:VisualElement style="width: 100px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/UI/Line/line3%20(1).png?fileID=2800000&amp;guid=7d8f299f21ff26341b18299f61e60850&amp;type=3#line3 (1)&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="row" style="flex-direction: row; justify-content: center; display: none;">
+                            <ui:Instance template="UpgradeInRow" name="UpgradeInRow" />
+                            <ui:VisualElement style="flex-direction: row; width: 1300px;">
+                                <ui:Instance template="UpgradeSlot" name="UpgradeSlot" />
+                                <ui:Instance template="UpgradeSlot" name="UpgradeSlot" />
+                            </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="upgrade_pick" picking-mode="Ignore" style="width: auto; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-direction: column; position: absolute; background-color: rgba(0, 0, 0, 0.94); flex-grow: 1; transform-origin: left; top: 0; left: 0; display: flex;">
+        <ui:VisualElement name="upgrade_pick" picking-mode="Ignore" style="width: auto; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-direction: column; position: absolute; background-color: rgba(0, 0, 0, 0.94); flex-grow: 1; transform-origin: left; top: 0; left: 0; display: none;">
             <ui:VisualElement style="display: flex;">
                 <ui:VisualElement name="slot_parent" style="flex-direction: row; align-items: center; padding-left: 15px;">
                     <ui:VisualElement name="upgrade_slot" class="item" style="align-items: center; justify-content: center; padding-left: 1.5px; padding-right: 1.5px; padding-top: 1.5px; padding-bottom: 1.5px; background-color: rgba(0, 0, 0, 0.98); display: none; opacity: 0.99;">
@@ -81,23 +83,39 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Label text="ITEM CRAFT" display-tooltip-when-elided="true" name="title_label" picking-mode="Ignore" class="title_label">
+        <ui:Label text="ITEM CRAFT" display-tooltip-when-elided="true" name="title_label" picking-mode="Ignore" class="title_label" style="display: none;">
             <ui:VisualElement name="select_active_panel">
                 <ui:VisualElement name="bottom_panel" picking-mode="Ignore" class="panel" />
             </ui:VisualElement>
         </ui:Label>
-        <ui:VisualElement name="button_parent" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; flex-direction: column; align-items: stretch; justify-content: space-between; padding-left: 30px; padding-right: 30px; padding-top: 20px;">
+        <ui:VisualElement name="button_parent" picking-mode="Ignore" style="position: absolute; width: 65%; height: 100%; flex-direction: column; align-items: stretch; justify-content: space-between; padding-left: 30px; padding-right: 30px; padding-top: 20px;">
             <ui:VisualElement name="top_panel" picking-mode="Ignore" class="panel" style="align-items: center;" />
             <ui:VisualElement name="mid_panel" picking-mode="Ignore" class="panel" style="flex-direction: row; align-items: center; justify-content: space-between;">
                 <ui:Button display-tooltip-when-elided="true" name="left_button" class="move_button" style="display: flex; visibility: hidden;" />
                 <ui:Button display-tooltip-when-elided="true" name="right_button" class="move_button" style="background-image: url(&apos;project://database/Assets/UIToolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=0c59483ae80942c49a8ed8c34f22783d&amp;type=3#arrow-right@2x&apos;); visibility: hidden;" />
             </ui:VisualElement>
             <ui:VisualElement picking-mode="Ignore" class="panel" style="justify-content: flex-end; padding-bottom: 20px;">
-                <ui:VisualElement name="label_parent" picking-mode="Ignore" style="flex-direction: row; width: 100%; justify-content: center; height: 100px;">
+                <ui:VisualElement name="label_parent" picking-mode="Ignore" style="flex-direction: row; width: 100%; justify-content: center; height: 100px; padding-left: 0;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="left_label" picking-mode="Ignore" class="font_base common_label" />
                     <ui:Label text="T" display-tooltip-when-elided="true" name="mid_label" picking-mode="Ignore" class="font_base selected_label" />
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="right_label" picking-mode="Ignore" class="common_label font_base" />
                 </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="left_panel" class="panel">
+            <ui:VisualElement name="top_panel" class="panel" style="padding-top: 40px; padding-left: 10px; padding-right: 10px;">
+                <ui:VisualElement name="need_item_parent" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 0; width: 100%; height: 100%;">
+                    <ui:VisualElement name="weapon_need" class="need_parent" style="flex-direction: row-reverse; justify-content: space-around; margin-bottom: 20px;" />
+                    <ui:VisualElement name="etc_need" class="need_parent" style="flex-direction: row; justify-content: space-around;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="mid_panel" class="panel" style="flex-basis: 50%;">
+                <ui:VisualElement name="select_image" style="width: 100%; height: 100%; padding-left: 100px; padding-right: 100px; padding-top: 100px; padding-bottom: 100px; -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="w" style="position: absolute; height: -324px; top: 324px; width: -304px; left: 304px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="bot_panel" class="panel" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; justify-content: center;">
+                <ui:Label display-tooltip-when-elided="true" name="select_item_label" class="font_base" style="font-size: 30px; color: rgb(224, 224, 224); -unity-text-align: upper-center; background-color: rgb(0, 0, 0); background-image: none; -unity-background-image-tint-color: rgb(0, 0, 0);" />
+                <ui:Button text="합성" display-tooltip-when-elided="true" name="upgrade_button" class="font_base upgrade_btn" style="background-color: rgb(19, 19, 19); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

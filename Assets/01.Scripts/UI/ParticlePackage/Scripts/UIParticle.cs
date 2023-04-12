@@ -30,7 +30,7 @@ namespace Coffee.UIExtensions
             Reprica,
         }
 
-        [HideInInspector][SerializeField] internal bool m_IsTrail = false;
+        [HideInInspector][SerializeField] public bool m_IsTrail = false;
 
         [Tooltip("Particle effect scale")]
         [SerializeField]
@@ -367,7 +367,7 @@ namespace Coffee.UIExtensions
             base.OnEnable();
         }
 
-        internal void ResetGroupId()
+        public void ResetGroupId()
         {
             if (m_GroupId == m_GroupMaxId)
             {

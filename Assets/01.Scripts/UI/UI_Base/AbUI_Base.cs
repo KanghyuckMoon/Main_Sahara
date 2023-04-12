@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
-using DG.Tweening; 
+using DG.Tweening;
+using UI.ActiveManager;
+using Utill.Pattern;
 
-namespace UI    
+
+namespace UI.Base
 {
     public enum PosType
     {
@@ -15,7 +18,7 @@ namespace UI
         right
     }
     [Serializable]
-    public abstract class AbUI_Base
+    public abstract class AbUI_Base : IUIManaged
     {
         protected UIDocument uiDocument; // UIDocument 
         protected VisualElement rootElement;
@@ -54,7 +57,8 @@ namespace UI
         /// </summary>
         public virtual void Init()
         {
-            //parentElement.RegisterCallback<TransitionEndEvent>((x) => EndScreenTransition(x));
+            //(UIActiveManager.Instance as IUIManager).Add(this);
+            //parentElement.RegisterCallback<TransitionEndEvent>((x) => EndScreenTransition(x));    
         }
 
         protected VisualElement GetElementByName(string _name)
@@ -123,14 +127,23 @@ namespace UI
             Debug.Log("ActiveScreen");
             float _targetV = !IsVisible() ? 1f : 0;
             isTargetActive = !IsVisible();
-            if (!IsVisible() == true)
+            
+            if (isTargetActive == true)
             {
                 parentElement.style.opacity = _targetV;
                 ShowVisualElement(parentElement, isTargetActive);
+                
+                //(UIActiveManager.Instance as IUIManager).UIIgnoredList.Add(this);
+                //(UIActiveManager.Instance as IUIManager).ExecuteAll();
                 return true;
             }
             Sequence _seq = DOTween.Sequence();
             _seq.Append(DOTween.To(() => parentElement.style.opacity.value, (x) => parentElement.style.opacity = x, _targetV, 0.125f));
+            _seq.AppendCallback(() =>
+            {
+                //(UIActiveManager.Instance as IUIManager).ClearIgnore();
+                //(UIActiveManager.Instance as IUIManager).UndoAll();
+            });
             _seq.AppendCallback(() => ShowVisualElement(parentElement, false)); 
 //            parentElement.style.opacity = _targetV;
 
@@ -359,6 +372,16 @@ namespace UI
         protected void AddTextFieldChangedEvent(int _idx, Action<string> _event)
         {
             Get<TextField>(_idx).RegisterValueChangedCallback((e) => _event?.Invoke(e.newValue));
+        }
+
+        public void Execute()
+        {
+            ActiveScreen(false);
+        }
+
+        public void Undo()
+        {
+            ActiveScreen(true);
         }
     }
 }

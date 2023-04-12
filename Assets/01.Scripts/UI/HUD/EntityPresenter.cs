@@ -6,6 +6,8 @@ using Module;
 using Utill.Measurement;
 using Data;
 using System;
+using UI.ActiveManager;
+using UI.Base;
 
 namespace UI
 {
@@ -14,7 +16,7 @@ namespace UI
         statData, 
         buffData,
     }
-    public class EntityPresenter : MonoBehaviour, IUIOwner, Observer
+    public class EntityPresenter : MonoBehaviour, IUIOwner, Observer, IUIManaged
     {
         // 디버그용
         public float a, b;
@@ -22,7 +24,7 @@ namespace UI
         private Transform target;
         [SerializeField]
         private Renderer targetRenderer;
-        [SerializeField]
+        [SerializeField]    
         private UIDocument uiDocument;
 
         [SerializeField]
@@ -59,37 +61,36 @@ namespace UI
                 {
                     //target = GetComponentInParent<Transform>();
                     target = transform.parent;
-                    Logging.Log("타겟 찾는중..");
+                    //Logging.Log("타겟 찾는중..");
                     if (target != null)
                     {
-                        Logging.Log("타겟렌더러 찾는중..");
+                        //Logging.Log("타겟렌더러 찾는중..");
                         targetRenderer = target?.GetComponentInChildren<Renderer>();
                     }
                     else return null;
                 }
-                Logging.Log("타겟 반환");
+                //Logging.Log("타겟 반환");
                 return target;
 
             }
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
-            uiDocument ??= GetComponent<UIDocument>();
-            hudElement = uiDocument.rootVisualElement.ElementAt(0);
-          //  hudElement.style.display = DisplayStyle.None;
-            ContructPresenters();
-            AwakePresenters();
-            StartCoroutine(Init());
-
+            StartCoroutine(LateUpdateCo()); 
+            Init(); 
+            (UIActiveManager.Instance as IUIManager).Add(this);
         }
+        
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             Clear(); 
+            (UIActiveManager.Instance as IUIManager).Remove(this);
         }
         private void Update()
         {
+            if (RootUIDocument.enabled == false) return; 
             if (Target == null || targetRenderer == null) return;
 
             //if(Input.GetKeyDown(KeyCode.Tab))
@@ -113,9 +114,24 @@ namespace UI
             {
                 buffPresenter.Update(); 
             }
+
+            //StartCoroutine(LateUpdateCo());
         }
         
         private void LateUpdate()
+        {
+            Debug.Log("Late");
+            FollowPr(); 
+        }
+
+        private IEnumerator LateUpdateCo()
+        {
+                yield return new WaitForEndOfFrame(); 
+                Debug.Log("LateLate");
+                FollowPr(); 
+        }
+
+        private void FollowPr()
         {
             if (presenterFollower != null)
             {
@@ -126,9 +142,7 @@ namespace UI
                 }
                 //Debug.Log("따라가는중");
             }
-
         }
-
         [ContextMenu("버프 테스트")]
         public void Test()
         {
@@ -142,15 +156,25 @@ namespace UI
         /// <summary>
         /// 변수 초기화 
         /// </summary>
-        private void Clear()
+        protected virtual  void Clear()
         {
             target = null;
             targetRenderer = null;
             presenterFollower = null;
-            isPlayerHud = false;
+            //isPlayerHud = false;
             statData = null;
             uiModule = null;
             buffModule = null; 
+        }
+
+        private void Init()
+        {
+            uiDocument ??= GetComponent<UIDocument>();
+            hudElement = uiDocument.rootVisualElement.ElementAt(0);
+            //  hudElement.style.display = DisplayStyle.None;
+            ContructPresenters();
+            AwakePresenters();
+            StartCoroutine(InitCo());
         }
         [ContextMenu("테스트")]
         public void UpdateUI()
@@ -180,7 +204,7 @@ namespace UI
         /// <summary>
         /// Presenter 생성
         /// </summary>
-        private void ContructPresenters()
+        protected virtual void ContructPresenters()
         {
             _presenterList.Clear();
             _dataPresenterDic.Clear();
@@ -246,7 +270,7 @@ namespace UI
         }
 
 
-        IEnumerator Init()
+        IEnumerator InitCo()
         {
             if(statData != null && uiModule != null)
             {
@@ -288,6 +312,26 @@ namespace UI
         {
             UpdateUI();
             UpdateUIActive();
+        }
+
+        public virtual void Execute()
+        {
+            hpPresenter.ActiveScreen(false);
+            mpPresenter.ActiveScreen(false);
+            buffPresenter.ActiveScreen(false);
+            
+            //RootUIDocument.enabled = false; 
+            //gameObject.SetActive(false);
+        }
+
+        public virtual void Undo()
+        {
+            hpPresenter.ActiveScreen(true);
+            mpPresenter.ActiveScreen(true);
+            buffPresenter.ActiveScreen(true);
+
+//            RootUIDocument.enabled = true; 
+            //gameObject.SetActive(true);
         }
     }
 
