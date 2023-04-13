@@ -7,6 +7,9 @@ namespace Detect
 {
     public class BaseDigItem : MonoBehaviour
     {
+        [SerializeField] 
+        private Transform detectTrm;
+
         [SerializeField]
         protected float radius = 5f;
         [SerializeField] 
@@ -22,10 +25,10 @@ namespace Detect
         {
             GameObject obj = null;
             float minimumDistance = float.MaxValue;
-            Collider[] targets = Physics.OverlapSphere(transform.position, radius,targetLayerMask);
+            Collider[] targets = Physics.OverlapSphere(detectTrm.position, radius,targetLayerMask);
             foreach (Collider col in targets)
             {
-                Vector3 dir = col.transform.position - transform.position;
+                Vector3 dir = col.transform.position - detectTrm.position;
                 if (dir.sqrMagnitude < minimumDistance)
                 {
                     var component = col.gameObject.GetComponent<IDetectItem>();

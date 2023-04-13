@@ -5,6 +5,7 @@ using Inventory;
 using Module;
 using Utill.Random;
 using Pool;
+using Effect;
 
 namespace Detect
 {
@@ -53,6 +54,9 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
 
         [SerializeField] 
         private bool isEnemy;
+        
+        [SerializeField] 
+        private string effectAddress;
 
         public List<Observer> Observers
         {
@@ -90,6 +94,7 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
             {
                 _dropObj.GetComponentInChildren<Rigidbody>().AddForce(_vec, ForceMode.Impulse);   
             }
+            EffectManager.Instance.SetEffectDefault(effectAddress, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             isGetOut = true;
         }
