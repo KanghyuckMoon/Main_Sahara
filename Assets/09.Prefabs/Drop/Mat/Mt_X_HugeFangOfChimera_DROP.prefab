@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 282263668}
   - component: {fileID: 282263670}
-  - component: {fileID: 282263669}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,29 +40,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282263667}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &282263669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282263667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: c768e8a2222b84d4486e43cae9a27225, type: 2}
-  rigid: {fileID: 2016112809706732069}
-  itemAddress: Mt_X_HugeFangOfChimera
-  targetObj: {fileID: 2437400427037660839}
-  isJumping: 1
 --- !u!1 &2437400427037660839
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +57,7 @@ GameObject:
   - component: {fileID: 2872748197873770440}
   - component: {fileID: 5591032781437739914}
   - component: {fileID: 2016112809706732069}
+  - component: {fileID: 859675950}
   m_Layer: 14
   m_Name: Mt_X_HugeFangOfChimera_DROP
   m_TagString: Untagged
@@ -132,6 +115,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &859675950
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2437400427037660839}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8889190533055167234
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +140,7 @@ GameObject:
   - component: {fileID: 2196572146757249655}
   - component: {fileID: 6684508077319968927}
   - component: {fileID: 7353508357434199623}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -22,6 +22,20 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
             }
         }
 
+        public bool IsGetOut
+        {
+            get
+            {
+                return isGetOut;
+            }
+            set
+            {
+                isGetOut = value;
+            }
+        }
+
+        private bool isGetOut = false;
+
         [SerializeField]
         protected DetectItemType detectItemType;
 
@@ -39,6 +53,16 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
 
         [SerializeField] 
         private bool isEnemy;
+
+        public List<Observer> Observers
+        {
+            get
+            {
+                return observers;
+            }
+        }
+
+        private List<Observer> observers = new List<Observer>();
         
         public void GetOut()
         {
@@ -67,6 +91,7 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
                 _dropObj.GetComponentInChildren<Rigidbody>().AddForce(_vec, ForceMode.Impulse);   
             }
             gameObject.SetActive(false);
+            isGetOut = true;
         }
     }
 }

@@ -136,10 +136,10 @@ namespace UI
             if (presenterFollower != null)
             {
                 presenterFollower.UpdateUI();
-                if (hudElement.style.display == DisplayStyle.None)
-                {
-                    StartCoroutine(ActivePn());
-                }
+                //if (hudElement.style.display == DisplayStyle.None)
+                //{
+                //    StartCoroutine(ActivePn());
+                //}
                 //Debug.Log("따라가는중");
             }
         }
@@ -191,6 +191,7 @@ namespace UI
         private void UpdateUIActive()
         {
             hudElement.style.display = uiModule.IsRender ? DisplayStyle.Flex : DisplayStyle.None;
+            //hudElement.style.display  = DisplayStyle.None;
         }
 
         /// <summary>
@@ -198,7 +199,7 @@ namespace UI
         /// </summary>
         public void SetActive(bool _isActive)
         {
-            hudElement.style.display = _isActive == true ? DisplayStyle.Flex : DisplayStyle.None;
+            //hudElement.style.display = _isActive == true ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
         /// <summary>

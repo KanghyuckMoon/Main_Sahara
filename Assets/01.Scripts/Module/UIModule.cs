@@ -80,11 +80,12 @@ namespace Module
         }
         public override void Start()
         {
-            if (address is null)
-            {
-                IsRender = true;
-                return;
-            }
+            IsRender = false;
+            //if (address is null)
+            //{
+            //    IsRender = true;
+            //    return;
+            //}
 
             //UI 동적 생성
             //hudObject = ObjectPoolManager.Instance.GetObject(address);
