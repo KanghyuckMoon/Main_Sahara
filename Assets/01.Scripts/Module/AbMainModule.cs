@@ -405,11 +405,13 @@ namespace Module
         {
             get
             {
+                //Animator.SetBool("LockOn", LockOnTarget is not null);
                 return lockOn;
             }
             set
             {
-                lockOn = value;
+                lockOn = LockOnTarget is not null;
+                Debug.LogError(lockOn);
                 Animator.SetBool("LockOn", lockOn);
             }
         }

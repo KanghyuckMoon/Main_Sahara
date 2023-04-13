@@ -61,6 +61,11 @@ namespace Module
             {
                 _a.transform.SetParent(cameras[2].transform);
             }
+            
+            if (cameras[3].activeInHierarchy)
+            {
+                _a.transform.SetParent(cameras[3].transform);
+            }
 
             _a.transform.localPosition = position;
             _a.transform.localRotation = rotation;
