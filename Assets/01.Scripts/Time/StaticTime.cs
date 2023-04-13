@@ -56,36 +56,36 @@ namespace TimeManager
 		{
 			get
 			{
-				return playerTime;
+				return playerTime * entierTime * uiTime;
 			}
 			set
 			{
 				playerTime = value;
-				//StaticTime.Instance.GetIObserble().Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float EnemyTime
 		{
 			get
 			{
-				return enemyTime;
+				return enemyTime * entierTime * uiTime;
 			}
 			set
 			{
 				enemyTime = value;
-				//StaticTime.Instance.GetIObserble().Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float PhysicsTime
 		{
 			get
 			{
-				return physicsTime;
+				return physicsTime * entierTime * uiTime;
 			}
 			set
 			{
 				physicsTime = value;
-				//StaticTime.Instance.GetIObserble().Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 
@@ -98,7 +98,7 @@ namespace TimeManager
 			set
 			{
 				entierTime = value;
-				//StaticTime.Instance.GetIObserble().Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 		public static float UITime
@@ -110,7 +110,7 @@ namespace TimeManager
 			set
 			{
 				uiTime = value;
-				//StaticTime.Instance.GetIObserble().Send();
+				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
 

@@ -233,6 +233,9 @@ namespace Module
 				rootNodeMaker.isSetAISO = false;
 				rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
 			}
+			
+			AIModuleHostileState = AIModule.AIHostileState.Unknow;
+			MainModule.ObjDir = Vector3.zero;
 		}
 
 		public override void Start()
