@@ -83,6 +83,7 @@ namespace Detect
         {
             upPos = targetModel.position;
             targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
+            targetModel.gameObject.SetActive(false);
         }
 
         public virtual void GetOut()
@@ -91,6 +92,7 @@ namespace Detect
             {
                 return;
             }
+            targetModel.gameObject.SetActive(true);
             isGetOut = true;
             Vector3 _movePos = upPos;
             var _effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
