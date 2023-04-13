@@ -164,16 +164,12 @@ namespace UI.Inventory
         /// <summary>
         /// 장착 슬롯 캐싱 초기화 
         /// </summary>
-        private void InitEquipSlots()
+        private void InitEquipSlots()   
         {
    //         equipInvenPanel = new EquipInventoryPanelUI();
             List<VisualElement> _list = GetVisualElement((int)Elements.quick_slot_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
             for (int i = 0; i < _list.Count(); i++)
             {
-                //           equipInvenPanel.AddEquipSlotView(new SlotItemView(_list[i]));
-                // 버튼 2개에서 
-                // 하나는 자기가 꺼지면 팬러끄고 
-                // 하는ㄴ 자기가 키면 패널 키고 
                 SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
                 if(_list[i].parent.name == "ArrowSlot")
                 {
@@ -183,16 +179,36 @@ namespace UI.Inventory
                 {
                     _slotIPr.SetSlotType(ItemType.Weapon);
                 }
-                //  여기서
 
-                _slotIPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotIPr.ItemData, // 마우스 위에 둘시 설명창 
-                   _slotIPr.WorldPos, _slotIPr.ItemSize));
-                _slotIPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
-
-                inventoryGridSlotsPr.ItemSlotDic[ItemType.Weapon].AddEquipSlotView(_slotIPr);
+                AddEquipSlotEvt(_slotIPr, ItemType.Weapon);
             }
+            List<VisualElement> _armorList = GetVisualElement((int)Elements.armor_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
+            AddEquipSlotsEvt(_armorList, ItemType.Equipment);
+            List<VisualElement> _skillList = GetVisualElement((int)Elements.skill_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
+            AddEquipSlotsEvt(_skillList, ItemType.Skill);
+            List<VisualElement> _accesList = GetVisualElement((int)Elements.accessoire_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
+            AddEquipSlotsEvt(_accesList, ItemType.Accessories);
+            
         }
 
+        private void AddEquipSlotsEvt(List<VisualElement> _list, ItemType _itemType)
+        {
+            for (int i = 0; i < _list.Count(); i++)
+            {
+                SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
+                _slotIPr.SetSlotType(_itemType);
+
+                AddEquipSlotEvt(_slotIPr, _itemType);
+            }
+        }
+        private void AddEquipSlotEvt(SlotItemPresenter _slotPr,ItemType _itemType)
+        {
+            _slotPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
+                _slotPr.WorldPos, _slotPr.ItemSize));
+            _slotPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
+
+            inventoryGridSlotsPr.ItemSlotDic[_itemType].AddEquipSlotView(_slotPr);
+        }
         /// <summary>
         /// 인벤토리 패널 리스트에 넣기 (초기화)
         /// </summary>
@@ -243,6 +259,7 @@ namespace UI.Inventory
                    
                 // SO 데이터도 설정
                 //InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
+                // 전체 UI 업데이트 
                 _closedSlot.SetItemData(dragItemPresenter.ItemData); 
 
             }
@@ -272,6 +289,15 @@ namespace UI.Inventory
             this.slotCallbackDic.Add(ItemType.None, (x1,x2)=> { });
             this.slotCallbackDic.Add(ItemType.Weapon, (x1, x2) => InventoryManager.Instance.SetQuickSlotItem(x1, x2));
             this.slotCallbackDic.Add(ItemType.Consumption, (x1, x2) => InventoryManager.Instance.EquipArrow(x1));
+            this.slotCallbackDic.Add(ItemType.Equipment, (x1, x2) => InventoryManager.Instance.EquipEquipment(x2,x1));
+        }
+
+        /// <summary>
+        /// 장착 UI 업데이트(현재SO 에서 데이터 받고 그에 따라 업데이트하기 ) 
+        /// </summary>
+        private void UpdateEquipUI()
+        {
+            //InventoryManager.Instance.Inventory
         }
     }
 }
