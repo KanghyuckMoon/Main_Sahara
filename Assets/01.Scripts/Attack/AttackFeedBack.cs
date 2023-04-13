@@ -25,6 +25,7 @@ namespace Attack
 
         public void InvokeEvent(Vector3 closetPoint, string _effectName)
         {
+            AddEvent();
             attackFeedBackEvent?.Invoke(closetPoint, _effectName);
         }
 
@@ -41,7 +42,13 @@ namespace Attack
         private void OnEnable()
         {
             attackFeedBackEvent.AddListener((vec, s) => AttackEffect(vec, s));
-            //attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
+            attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
+        }
+
+        private void AddEvent()
+        {
+            attackFeedBackEvent.AddListener((vec, s) => AttackEffect(vec, s));
+            attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
         }
 
         private void OnDisable()
@@ -66,7 +73,7 @@ namespace Attack
         IEnumerator AttackFeedBack_TimeSlow()
         {
             StaticTime.EntierTime = 0.02f;
-            yield return new WaitForSecondsRealtime(0.22f);
+            yield return new WaitForSeconds(0.22f);
             StaticTime.EntierTime = 1;
         }
     }
