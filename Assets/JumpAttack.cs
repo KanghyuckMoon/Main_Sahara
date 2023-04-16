@@ -16,6 +16,7 @@ public class JumpAttack : StateMachineBehaviour
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         
         stateModule.AddState(State.ATTACK);
+        animator.SetBool("Hit", false);
         animator.SetBool("ConsecutiveAttack", false);
 
         gravity = mainModule.GravityScale;

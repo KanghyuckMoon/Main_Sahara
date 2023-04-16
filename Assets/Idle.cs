@@ -19,6 +19,8 @@ public class Idle : StateMachineBehaviour
         
         stateModule.RemoveState(State.ATTACK);
         stateModule.RemoveState(State.SKILL);
+        
+        //mainModule.CanConsecutiveAttack = false;
 
         animator.SetBool("IsCombo", false);
     }
