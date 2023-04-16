@@ -61,12 +61,17 @@ namespace Module
             {
                 _a.transform.SetParent(cameras[2].transform);
             }
+            
+            if (cameras[3].activeInHierarchy)
+            {
+                _a.transform.SetParent(cameras[3].transform);
+            }
 
             _a.transform.localPosition = position;
             _a.transform.localRotation = rotation;
             _a.SetActive(true);
             _a.GetComponent<ParticleSystem>().Play();
-            yield return new WaitForSecondsRealtime(_duration);
+            yield return new WaitForSeconds(_duration);
             _a.SetActive(false);
             ObjectPoolManager.Instance.RegisterObject(speedLine, _a);
             chromaticEffect.SetActive(false);

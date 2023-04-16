@@ -15,6 +15,7 @@ namespace LockOn
         [SerializeField] private ZoomInDataSO zoomInDataSO;
         
         public GameObject zoomInCam;
+        public GameObject zoomInCam_Lock;
 
         public LockOnCamera lockOnCamera;
 
@@ -35,6 +36,12 @@ namespace LockOn
 
         public CinemachineVirtualCamera cinemachineVirtualCamera;
 
+        private CinemachineComposer composer;
+        //composer
+
+        [SerializeField]
+        private Transform originTarget = null;
+
         private void Start()
         {
             mainModule = GetComponent<AbMainModule>();
@@ -42,7 +49,7 @@ namespace LockOn
             originRot = zoomInCam.transform.localRotation;
 
             thirdPersonCameraController = zoomInCam.GetComponent<ThirdPersonCameraController>();
-            cinemachineVirtualCamera = zoomInCam.GetComponent<CinemachineVirtualCamera>();
+            cinemachineVirtualCamera = zoomInCam_Lock.GetComponent<CinemachineVirtualCamera>();
             zoomInTarget = zoomInCam.transform.Find("ZoomPlayerInTarget");
         }
 
@@ -65,19 +72,16 @@ namespace LockOn
             int _weight = _isOn > 0 ? -10 : 10;
             bool _on = _isOn > 0 ? true : false;
             
-            mainModule.LockOn = _on;
-
             lockOnCamera.currentCamera.gameObject.SetActive(!_on);
+            ThirdPersonCameraController _thirdPersonCameraController =
+                lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>();
 
-            zoomInCam.SetActive(_on);
+            if (_thirdPersonCameraController.enabled)
+                zoomInCam.SetActive(_on);
+            else zoomInCam_Lock.SetActive(_on);
+            
             if (_on)
             {
-                //zoomInCam.transform.position = originPos + transform.position;
-                //zoomInCam.transform.rotation = originRot * transform.rotation;
-
-                ThirdPersonCameraController _thirdPersonCameraController =
-                    lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>();
-
                 if (_thirdPersonCameraController.enabled)
                     thirdPersonCameraController.cameraY =
                         lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>().cameraY;
@@ -87,18 +91,31 @@ namespace LockOn
                     thirdPersonCameraController.enabled = false;
                 }
 
-                mainModule.LockOnTarget = zoomInTarget;
-                //zoomInCam.transform.localPosition = new Vector3(0.6461196f, 2.805113f, -0.981263f);
-                //zoomInCam.transform.localRotation = Quaternion.Euler(new Vector3(40, 0, 0));
+                if (_thirdPersonCameraController.enabled)
+                {
+                    mainModule.LockOnTarget = zoomInTarget;
+                    originTarget = null;
+                }
+                else
+                {
+                    originTarget = mainModule.LockOnTarget;
+                    cinemachineVirtualCamera.m_LookAt = _thirdPersonCameraController.GetComponent<CinemachineVirtualCamera>().m_LookAt;
+                    //CinemachineComposer composer = cinemachineVirtualCamera.gameObject.AddComponent<CinemachineComposer>();
+
+                    //cinemachineVirtualCamera. = _thirdPersonCameraController.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineComposer>()
+                    //composer = cinemachineVirtualCamera;
+                }
             }
             else
             {
-                mainModule.LockOnTarget = null;
-                cinemachineVirtualCamera.m_LookAt = null;
+                mainModule.LockOnTarget = originTarget;
+                //cinemachineVirtualCamera.m_LookAt = null;
                 thirdPersonCameraController.enabled = true;
                 lockOnCameraController = lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>();
                 lockOnCameraController.cameraY = thirdPersonCameraController.cameraY;
             }
+
+            mainModule.LockOn = false;
         }
 
         public void CameraZoomIn(string _key)//, string _strengh)
