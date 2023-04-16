@@ -67,5 +67,21 @@ namespace Module
                 return;
             CurrentState.Remove(_state);
         }
+
+        public void RemoveTypeState(State _state)
+        {
+            if (!CurrentState.Contains(_state))
+                return;
+
+            foreach (State state in CurrentState)
+            {
+                if (state == _state)
+                {
+                    CurrentState.Remove(state);
+                    if (!CurrentState.Contains(_state))
+                        return;
+                }
+            }
+        }
     }
 }

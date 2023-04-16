@@ -41,6 +41,7 @@ namespace Module
         public CinemachineVirtualCamera follawVCam;
         public CinemachineVirtualCamera groupVCam;
         public CinemachineVirtualCamera zoomVCam;
+        public CinemachineVirtualCamera zoomVCam_Lock;
 
         public Camera MainCamera
 		{
@@ -118,6 +119,7 @@ namespace Module
             follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
             groupVCam = GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
             zoomVCam = GameObject.Find("ZoomCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
+            zoomVCam_Lock = GameObject.Find("ZoomCam_Lock").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
 
             followCamNoise = follawVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             groupCamNoise = groupVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -126,6 +128,7 @@ namespace Module
             CurrentCamera = follawVCam.gameObject;
             groupVCam.gameObject.SetActive(false);
             zoomVCam.gameObject.SetActive(false);
+            zoomVCam_Lock.gameObject.SetActive(false);
             //mainModule.objRotation = mainCam.transform.rotation;
         }
 
@@ -154,6 +157,11 @@ namespace Module
             {
 	            CurrentCamera = GroupVCam.gameObject;
                 mainModule.ObjRotation = GroupVCam.transform.rotation;
+            }else if (zoomVCam_Lock.gameObject.activeSelf)
+            {
+	            mainModule.ObjRotation = zoomVCam_Lock.transform.rotation;
+	            CurrentCamera = zoomVCam_Lock.gameObject;
+	            mainModule.ObjForword = CamPos(zoomVCam_Lock.transform.rotation);
             }
             //float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * zoomSpeed;
             //float size = nomalCom.m_Lens.OrthographicSize;

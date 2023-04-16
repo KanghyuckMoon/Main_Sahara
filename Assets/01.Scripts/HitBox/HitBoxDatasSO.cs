@@ -30,6 +30,17 @@ namespace HitBox
 				hitBoxDataDic.Add(_obj, _hitDataList);
 			}
 		}
+
+		[ContextMenu("RemoveDic")]
+		public void RemoveDic()
+		{
+			hitBoxDataDic.Remove(debugString);
+		}
+		public void RemoveDic(string str)
+		{
+			hitBoxDataDic.Remove(str);
+		}
+
 		[ContextMenu("AddEmptyDic")]
 		public void AddEmptyDic()
 		{
@@ -71,7 +82,7 @@ namespace HitBox
 				HitBoxData _hitBoxClassificationData = list.hitBoxDataList.Find(x => x.ClassificationName == hitBoxData.ClassificationName);
 				if (_hitBoxClassificationData is not null)
 				{
-					_hitBoxClassificationData = hitBoxData;
+					_hitBoxClassificationData.Copy(hitBoxData);// = hitBoxData;
 				}
 				else
 				{

@@ -31,11 +31,13 @@ namespace HitBox
 		public void OnHitBox(string _str)
 		{
 			HitBoxDataList hitBoxDataList = hitBoxDataSO.GetHitboxList(_str);
+			Debug.Log(_str);
 			if (hitBoxDataList is not null)
 			{
 				string tagname = gameObject.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
 				foreach (HitBoxData hitBoxData in hitBoxDataList.hitBoxDataList)
 				{
+					Debug.Log("In : " + _str);
 					InGameHitBox hitbox = HitBoxPoolManager.Instance.GetObject();
 					if (waeponHandle == null)
 					{
@@ -44,7 +46,7 @@ namespace HitBox
 					}
 					else
 					{
-						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, waeponHandle.gameObject);
+						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, waeponHandle.gameObject, waeponHandle.gameObject);
 					}
 
 				}

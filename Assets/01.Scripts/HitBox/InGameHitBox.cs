@@ -86,8 +86,8 @@ namespace HitBox
 				}
 				else
 				{
-					transform.position = _parent.transform.position;
-					transform.rotation = _parent.transform.rotation;
+					//transform.position = _parent.transform.position;
+					//transform.rotation = _parent.transform.rotation;
 					gameObject.transform.SetParent(_parent.transform);
 				}
 			}
