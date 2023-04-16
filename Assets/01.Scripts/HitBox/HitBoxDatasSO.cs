@@ -30,6 +30,17 @@ namespace HitBox
 				hitBoxDataDic.Add(_obj, _hitDataList);
 			}
 		}
+
+		[ContextMenu("RemoveDic")]
+		public void RemoveDic()
+		{
+			hitBoxDataDic.Remove(debugString);
+		}
+		public void RemoveDic(string str)
+		{
+			hitBoxDataDic.Remove(str);
+		}
+
 		[ContextMenu("AddEmptyDic")]
 		public void AddEmptyDic()
 		{
