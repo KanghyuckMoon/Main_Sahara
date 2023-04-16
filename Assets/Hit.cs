@@ -15,6 +15,9 @@ public class Hit : StateMachineBehaviour
         //mainModule ??= animator.GetComponent<AbMainModule>();
         
         mainModule.IsHit = false;
+        animator.SetBool("Hit", false);
+        animator.SetBool("ConsecutiveAttack", false);
+        animator.SetBool("IsCombo", false);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,13 +27,11 @@ public class Hit : StateMachineBehaviour
     //    mainModule.Attacking = false;
     //    mainModule.StrongAttacking = false;
         mainModule.IsHit = false;
-        animator.SetBool("Hit", false);
-        
-        animator.SetBool("ConsecutiveAttack", false);
         
         animator.GetComponent<ProjectileGenerator>().MoveProjectile();
-        stateModule.RemoveState(State.ATTACK);
-        stateModule.RemoveState(State.SKILL);
+        stateModule.RemoveTypeState(State.ATTACK);
+        stateModule.RemoveTypeState(State.SKILL);
+        //stateModule.Clea
 
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
