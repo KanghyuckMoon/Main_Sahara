@@ -116,6 +116,12 @@ namespace Detect
                 transform.position = _hit.point;
             }
         }
+
+        [ContextMenu("SetPosIsModelPos")]
+        public void SetPosIsModelPos()
+        {
+            transform.position = targetModel.transform.position;
+        }
         
         [ContextMenu("SetEffectPosIsThisPos")]
         public void SetEffectPosIsThisPos()

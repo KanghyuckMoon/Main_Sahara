@@ -32,12 +32,11 @@ namespace Detect
                 if (dir.sqrMagnitude < minimumDistance)
                 {
                     var component = col.gameObject.GetComponent<IDetectItem>();
-                    if (detectItemType != component.DetectItemType)
+                    if ((detectItemType & component.DetectItemType) != 0)
                     {
-                        continue;
+                        targetItem = component;
+                        minimumDistance = dir.sqrMagnitude;
                     }
-                    targetItem = component;
-                    minimumDistance = dir.sqrMagnitude;
                 }
             }
 
