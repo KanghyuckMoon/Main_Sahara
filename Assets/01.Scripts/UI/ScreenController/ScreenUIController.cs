@@ -19,8 +19,9 @@ using UI.EventManage;
 using UI.Manager;
 using UI.MapLiner;
 using UI.ActiveManager;
-
-namespace UI
+using CondinedModule;
+                                                                                                using Module;
+                                                                                                namespace UI
 {
     /*public enum Keys
     {
@@ -64,7 +65,10 @@ namespace UI
         private Dictionary<UIInputData, Action> inputDic = new Dictionary<UIInputData, Action>(); // 사용자 키 입력으로 스크린 활성화
         private Dictionary<Keys, Action> notInputDic = new Dictionary<Keys, Action>(); // 대화같은 곳에서 스크린 활성화 
 
-        private (Keys,IScreen) curActiveScreen; 
+        private (Keys,IScreen) curActiveScreen;
+
+        private Action<bool> screenCallback = null; 
+        
         [SerializeField]
         private bool isUIInput = true;
         // 프로퍼티 
@@ -78,7 +82,16 @@ namespace UI
         private void Awake()
         {
             InitScreenPresenters();
-            SetNotInputEvent(); 
+            SetNotInputEvent();
+
+            if (UIManager.Instance.Player is null)
+            {
+                screenCallback = (x) =>
+                {
+                    UIManager.Instance.Player.GetComponent<Player>().SetInput(x);
+                };    
+            }
+             
         }
 
         private void Start()
@@ -238,7 +251,7 @@ namespace UI
                 LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
                 UIManager.Instance.ActiveHud(! _isActive);
                 mapPresenter.Active(! _isActive);
-                
+                screenCallback?.Invoke(_isActive);
             });
             inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
             {

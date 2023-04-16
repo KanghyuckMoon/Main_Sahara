@@ -45,7 +45,7 @@
     flex-grow: 0;
     align-items: flex-end;
     margin-right: 3%;
-    rotate: 4deg;
+    rotate: 0;
 }
 
 .weapon_icon {
@@ -56,6 +56,9 @@
 }
 
 .bottom_right_panel {
+    flex-basis: 20%;
+    flex-grow: 0;
+    flex-direction: row-reverse;
 }
 
 .skill_background {
@@ -82,8 +85,8 @@
 }
 
 .quick_slot_hud {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 50px;
     border-left-color: rgb(154, 154, 154);
     border-right-color: rgb(154, 154, 154);
     border-top-color: rgb(154, 154, 154);
@@ -115,12 +118,12 @@
 }
 
 .quick_slot_hud_active {
-    width: 90px;
-    height: 90px;
-    border-left-color: rgb(236, 99, 99);
-    border-right-color: rgb(236, 99, 99);
-    border-top-color: rgb(236, 99, 99);
-    border-bottom-color: rgb(236, 99, 99);
+    width: 80px;
+    height: 50px;
+    border-left-color: rgb(171, 89, 89);
+    border-right-color: rgb(171, 89, 89);
+    border-top-color: rgb(171, 89, 89);
+    border-bottom-color: rgb(171, 89, 89);
     border-left-width: 2px;
     border-right-width: 2px;
     border-top-width: 2px;
@@ -135,4 +138,16 @@
     transition-duration: 0.5s;
     background-color: rgba(0, 0, 0, 0);
     scale: 1.2 1.2;
+}
+
+.skill_panel {
+}
+
+.skills_panel {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.inactive {
+    opacity: 0;
 }

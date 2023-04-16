@@ -1,6 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="HpUxml" src="project://database/Assets/UIToolkit/Uxml/HpUxml.uxml?fileID=9197481963319205126&amp;guid=6ea040c5b5130ee42976630991fb45cf&amp;type=3#HpUxml" />
-    <ui:Template name="MpUxml" src="project://database/Assets/UIToolkit/Uxml/MpUxml.uxml?fileID=9197481963319205126&amp;guid=c4f8359ec8e60de4fa57a3ac11b7efea&amp;type=3#MpUxml" />
     <ui:Template name="SkillIcon" src="project://database/Assets/UIToolkit/Uxml/SkillIcon.uxml?fileID=9197481963319205126&amp;guid=b979cae9f480f294ab990b6ba3374196&amp;type=3#SkillIcon" />
     <Style src="project://database/Assets/UIToolkit/Uss/Hud.uss?fileID=7433441132597879392&amp;guid=1841124dd9e19824ab71e01edca4d30f&amp;type=3#Hud" />
     <Style src="project://database/Assets/UIToolkit/Uss/Container.uss?fileID=7433441132597879392&amp;guid=fb415ed2a98934248b9610f643b8b73f&amp;type=3#Container" />
@@ -10,9 +9,20 @@
     <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%;">
         <ui:VisualElement name="top_panel" class="top_panel">
             <ui:VisualElement name="top_left_panel" style="flex-basis: 30%; flex-grow: 1; justify-content: flex-start; align-items: stretch;">
-                <ui:VisualElement style="height: 100px; width: 250px; justify-content: flex-start; align-items: stretch; display: flex; transform-origin: left top; scale: 1 1; rotate: 1.5deg;">
-                    <ui:Instance template="HpUxml" name="HpUxml" style="margin-bottom: 0; width: 100%; flex-grow: 0; height: 40px;" />
-                    <ui:Instance template="MpUxml" name="MpUxml" style="margin-bottom: 5px; display: flex; margin-top: 10px; flex-grow: 0; width: 100%; justify-content: center; height: 20px; bottom: 10px;" />
+                <ui:VisualElement style="height: 100px; width: 300px; justify-content: flex-start; align-items: stretch; display: flex; transform-origin: left top; scale: 1 1; rotate: 0;">
+                    <ui:Instance template="HpUxml" name="HpUxml" style="margin-bottom: 0; width: 100%; flex-grow: 0; height: 55px;" />
+                    <ui:VisualElement name="MpUxml" style="height: 30px; min-height: 0; bottom: 15px;">
+                        <Style src="project://database/Assets/UIToolkit/Uss/Slider.uss?fileID=7433441132597879392&amp;guid=4d4caa61570a49f49a00d4dbc1809e15&amp;type=3#Slider" />
+                        <ui:VisualElement name="mp_view" style="width: 100%; height: 100%;">
+                            <ui:VisualElement name="mp_frame" style="justify-content: center; align-items: center; overflow: visible; width: 100%; height: 100%;">
+                                <ui:VisualElement name="frame" class="slider_frame" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/HUD/PlayerMPDeco.png?fileID=2800000&amp;guid=76c4a9893b9e9c5468e6934a97eb18ba&amp;type=3#PlayerMPDeco&apos;); width: 103%; -unity-background-scale-mode: stretch-to-fill; height: 100%; display: none;" />
+                                <ui:VisualElement name="bar" class="bar_parent">
+                                    <ui:ProgressBar value="1" name="back_bar" high-value="1" class="mp_bar" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-bottom: 0; width: 100%; height: 100%; display: flex; align-items: stretch;" />
+                                    <ui:ProgressBar name="front_bar" value="1" high-value="1" class="front_bar mp_bar" style="display: flex; width: 100%; height: 100%; bottom: 100%;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                     <ui:VisualElement name="buff_view" class="Container" style="top: 100px; height: auto; position: absolute;" />
                 </ui:VisualElement>
             </ui:VisualElement>
@@ -23,18 +33,18 @@
         <ui:VisualElement name="bottom_panel" class="bottom_panel">
             <ui:VisualElement name="bottom_left_panel" style="flex-basis: 20%; flex-grow: 1;" />
             <ui:VisualElement name="bottom_mid_panel" class="bottom_mid_panel" style="flex-basis: 20%; flex-grow: 1;">
-                <ui:VisualElement name="skill_panel" class="skill_panel">
+                <ui:VisualElement name="skill_panel" class="skill_panel" style="display: none;">
                     <ui:Instance template="SkillIcon" name="SkillIcon" />
                     <ui:Instance template="SkillIcon" name="SkillIcon" />
                     <ui:Instance template="SkillIcon" name="SkillIcon" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="bottom_right_panel" class="bottom_right_panel" style="flex-basis: 20%; flex-grow: 1;">
+            <ui:VisualElement name="bottom_right_panel" class="bottom_right_panel">
                 <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: flex-end; flex-direction: column-reverse;">
                     <ui:VisualElement name="quickslot_view" picking-mode="Ignore" class="weapon_panel" style="flex-grow: 1; position: absolute; align-items: flex-end; flex-direction: column-reverse;">
                         <ui:VisualElement name="quick_slot" class="quick_slot_hud">
                             <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
-                                <ui:VisualElement name="frame" class="quick_slot_frame" />
+                                <ui:VisualElement name="frame" class="quick_slot_frame" style="display: flex;" />
                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                 <ui:Label text="Label" display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                             </ui:VisualElement>
@@ -81,6 +91,9 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="skills_panel">
+                    <ui:VisualElement />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
