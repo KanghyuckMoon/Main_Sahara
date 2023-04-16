@@ -82,7 +82,7 @@ namespace HitBox
 				HitBoxData _hitBoxClassificationData = list.hitBoxDataList.Find(x => x.ClassificationName == hitBoxData.ClassificationName);
 				if (_hitBoxClassificationData is not null)
 				{
-					_hitBoxClassificationData = hitBoxData;
+					_hitBoxClassificationData.Copy(hitBoxData);// = hitBoxData;
 				}
 				else
 				{

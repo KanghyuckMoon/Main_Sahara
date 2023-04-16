@@ -46,7 +46,7 @@ namespace HitBox
 					}
 					else
 					{
-						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, waeponHandle.gameObject);
+						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, waeponHandle.gameObject, waeponHandle.gameObject);
 					}
 
 				}
