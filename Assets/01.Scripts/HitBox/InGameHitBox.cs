@@ -86,7 +86,8 @@ namespace HitBox
 				}
 				else
 				{
-					//transform.position = _parent.transform.position;
+					transform.position = _parent.transform.position;
+					//transform.eulerAngles = _hitBoxData.rotation + _owner.transform.eulerAngles;
 					//transform.rotation = _parent.transform.rotation;
 					gameObject.transform.SetParent(_parent.transform);
 				}
