@@ -5,10 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TODSO", menuName = "SO/TODSO")]
 public class TODSO : ScriptableObject
 {
-	[Tooltip("³·°ú ¹ãÀÌ ½Ç½Ã°£À¸·Î º¯°æµÇ´Â°É Çã¿ëÇÕ´Ï´Ù")]
+	#region DEBUG
+	//Debug
+	[Tooltip("ë‚®ê³¼ ë°¤ì´ ì‹¤ì‹œê°„ìœ¼ë¡œ ë³€ê²½ë˜ëŠ”ê±¸ í—ˆìš©í•©ë‹ˆë‹¤")]
 	public bool isUpdateTime;
-
-	[Tooltip("¹«Á¶°Ç ¹ã ÆÇÁ¤ÀÌ ¶ß°Ô ÇÕ´Ï´Ù")]
+	[Tooltip("ë¬´ì¡°ê±´ ë°¤ íŒì •ì´ ëœ¨ê²Œ í•©ë‹ˆë‹¤")]
 	public bool isOnlyNight;
-
+	#endregion
+	
+	public bool isNight;
+	
 }
