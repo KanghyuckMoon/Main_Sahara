@@ -7,7 +7,7 @@ namespace PassiveItem
     public class ItemPassive
     {
         protected List<IPassive> passiveEffects = new List<IPassive>();
-
+        
         public ItemPassive()
         {
             
@@ -36,5 +36,14 @@ namespace PassiveItem
                 _passive.ClearPassiveEffect();
             }
         }
+
+        public virtual void Disable()
+        {
+            foreach (IPassive _passive in passiveEffects)
+            {
+                _passive.ClearPassiveEffect();
+            }
+        }
+
     }
 }
