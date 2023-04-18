@@ -13,6 +13,9 @@ namespace CondinedModule
         private JumpModule jumpModule;
         private StateModule stateModule;
         
+        
+        public List<State> currentState;
+
         public void OnEnable()
         {
             StopOrNot = 1;
@@ -47,6 +50,8 @@ namespace CondinedModule
             LockOnTarget = null;
 
             //SetInput(true);
+
+            currentState = GetModuleComponent<StateModule>(ModuleType.State).CurrentState;
 
             base.OnEnable();
         }
