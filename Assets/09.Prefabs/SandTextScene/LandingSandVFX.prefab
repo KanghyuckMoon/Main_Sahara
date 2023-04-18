@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4527952912411309947}
   - component: {fileID: 3278950845939290120}
   - component: {fileID: 7678144809635270155}
+  - component: {fileID: 4639285882801842217}
   m_Layer: 0
   m_Name: LandingSandVFX
   m_TagString: Untagged
@@ -51,7 +52,13 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: SmokeSize
+        m_Overridden: 1
+      - m_Value: 0.06
+        m_Name: Size
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -59,7 +66,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 0, z: 0}
         m_Name: Transform_angles
         m_Overridden: 1
-      - m_Value: {x: 0, y: 2.41, z: 0}
+      - m_Value: {x: 2.4253151, y: 5.69, z: 34.0372}
         m_Name: Transform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -151,4 +158,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Property:
     m_Name: Transform
-  Target: {fileID: 0}
+  Target: {fileID: 4527952912411309941}
+--- !u!114 &4639285882801842217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4527952912411309946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eaae9a820f8959498b01921422238f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  address: LandingSandVFX
+  disableDelay: 1
+  isInvokeDisable: 1
+  startAction:
+    m_PersistentCalls:
+      m_Calls: []

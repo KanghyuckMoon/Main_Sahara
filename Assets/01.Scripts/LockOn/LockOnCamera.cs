@@ -81,9 +81,8 @@ namespace LockOn
                 //thirdPersonCameraController.cameraY = player.eulerAngles.y;    
                 currentCamera = playerCam;
 
-                playerModule.LockOn = false;
                 playerModule.LockOnTarget = null;
-
+                playerModule.LockOn = false;
                 Debug.Log("t:록온 해제");
                 return;
             }
@@ -131,8 +130,8 @@ namespace LockOn
 
                     currentCamera = groupCam;
 
-                    playerModule.LockOn = true;
                     playerModule.LockOnTarget = target;
+                    playerModule.LockOn = true;
 
                     return;
                 }

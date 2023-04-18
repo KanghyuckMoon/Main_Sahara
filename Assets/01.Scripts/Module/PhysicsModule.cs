@@ -119,8 +119,8 @@ namespace Module
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
                     Vector3 _closerPoint = other.ClosestPoint(_locationHitBox.transform.position);
 
-                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.6f);
-                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.5f);
+                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.7f);
+                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.7f);
 
                     //_inGameHitBox.GetComponent<HitBoxInAction>().HitBoxAction?.Invoke();
 

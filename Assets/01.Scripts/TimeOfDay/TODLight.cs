@@ -14,6 +14,8 @@ namespace TimeOfDay
         [Range(0, 24)]
         public float timeOfDay;
 
+        public float rotation_y = -150.0f;
+
         public float orbitSpeed = 1.0f;
         public Light sun;
         public Light moon;
@@ -87,8 +89,8 @@ namespace TimeOfDay
             float sunRotation = starsCurve.Evaluate(alpha);// Mathf.Lerp(-90, 270, alpha);
             float moonRotaion = sunRotation - 180;
 
-            sun.transform.rotation = Quaternion.Euler(sunRotation, -150.0f, 0);
-            moon.transform.rotation = Quaternion.Euler(moonRotaion, -150.0f, 0);
+            sun.transform.rotation = Quaternion.Euler(sunRotation, rotation_y, 0);
+            moon.transform.rotation = Quaternion.Euler(moonRotaion, rotation_y, 0);
 
             //if (sky is not null)
 			//{

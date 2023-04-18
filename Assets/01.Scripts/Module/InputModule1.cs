@@ -66,6 +66,10 @@ namespace Module
 					StateModule.RemoveState(State.CHARGE);
 					//StateModule.RemoveState(State.ATTACK);
 				}
+				if (Input.GetMouseButtonUp(1)) // || Input.GetMouseButtonUp(1))
+				{
+					mainModule.StrongAttacking = false;
+				}
 			}
 		}
 
