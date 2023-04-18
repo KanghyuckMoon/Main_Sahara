@@ -11,10 +11,11 @@ namespace Detect
     public class SlideDetectItem : BaseDetectItem
     {
         [SerializeField] private GameObject rewardObj;
-        
+        [SerializeField] private int changeLayer;
+        private int originMask;
         protected override void Start()
         {
-            
+            originMask = targetModel.gameObject.layer;
         }
         public override void GetOut()
         {
@@ -22,7 +23,7 @@ namespace Detect
             {
                 return;
             }
-            targetModel.gameObject.SetActive(true);
+            targetModel.gameObject.layer = changeLayer;
             isGetOut = true;
             Vector3 _movePos = targetHeightTransform.position;
             var _effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
@@ -33,6 +34,7 @@ namespace Detect
                 _effectObj.Pool();
                 gameObject.SetActive(false);
                 isGetOut = true;
+                targetModel.gameObject.layer = originMask;
             });
         }
     }   
