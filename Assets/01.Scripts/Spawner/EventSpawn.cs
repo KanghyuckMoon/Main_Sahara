@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pool;
 using Utill.Pattern;
+using Effect;
 
 namespace Spawner
 {
@@ -11,24 +12,24 @@ namespace Spawner
     {
         [SerializeField]
         private string enemyAddress;
-        //[SerializeField]
-        //private ObjectDataSO objectDataSO;
+
+        [SerializeField] private string effectAddress;
+        
+        [SerializeField] private Transform spawnTrm;
+
+        [SerializeField] private bool isJumping;
         
         public void Spawn()
         {
             GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
-            //ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
-            //objectClassCycle.TargetObject = obj;
-            //ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
-            //if (_objectSceneChecker is null)
-            //{
-            //    _objectSceneChecker = new ObjectSceneChecker();
-            //}
-            //_objectSceneChecker.ObjectDataSO = objectDataSO;
-            //_objectSceneChecker.ObjectClassCycle = objectClassCycle;
-            //objectClassCycle.AddObjectClass(_objectSceneChecker);
-            obj.transform.position = transform.position;
+            EffectManager.Instance.SetEffectDefault(effectAddress, transform.position, Quaternion.identity);
+            obj.transform.position = spawnTrm.position;
             obj.SetActive(true);
+
+            if (isJumping)
+            {
+                obj.GetComponent<Rigidbody>().AddForce(Vector3.up * 3, ForceMode.Impulse);
+            }
         }
     }
 }
