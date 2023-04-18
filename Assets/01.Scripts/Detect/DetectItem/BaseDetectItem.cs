@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
 using Effect;
 
@@ -48,6 +49,9 @@ namespace Detect
         protected float shakeStrength = 0.5f;
 
         protected Vector3 upPos;
+        
+        [SerializeField]
+        protected UnityEvent getoutEvent;
 
         public List<Observer> Observers
         {
@@ -102,6 +106,7 @@ namespace Detect
                 _effectObj.Pool();
                 gameObject.SetActive(false);
                 isGetOut = true;
+                getoutEvent?.Invoke();
             });
         }
         

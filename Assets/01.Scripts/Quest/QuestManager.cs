@@ -11,12 +11,21 @@ using GameManager;
 namespace Quest
 {
 	public delegate void QuestEventTransmit(string _sender, string _recipient, object _obj);
-	public partial class QuestManager : MonoSingleton<QuestManager>, Observer
+	public partial class QuestManager : MonoSingleton<QuestManager>, Observer, IObserble
     {
         private QuestDataAllSO questDataAllSO;
 		private QuestSaveDataSO questSaveDataSO;
         public Dictionary<string, QuestData> questDataDic = new Dictionary<string, QuestData>();
 		private bool isInit = false;
+
+		public List<Observer> Observers
+		{
+			get
+			{
+				return observers;
+			}
+		}
+		private List<Observer> observers = new List<Observer>();
 
 		public QuestEventTransmit QuestEventTransmit
 		{
@@ -49,9 +58,33 @@ namespace Quest
 			isInit = true;
 		}
 
+		public void Send()
+		{
+			foreach (var _observer in Observers)
+			{
+				_observer.Receive();
+			}
+		}
+
 		public void SendEvent(string _recipient, object _obj)
 		{
 			questEventTransmit?.Invoke("QuestManager", _recipient, _obj);
+		}
+		
+		public void AddObserver(Observer _observer)
+		{
+			if (!Observers.Contains(_observer))
+			{
+				Observers.Add(_observer);
+			}
+		}
+	
+		public void RemoveObserver(Observer _observer)
+		{
+			if (Observers.Contains(_observer))
+			{
+				Observers.Remove(_observer);
+			}
 		}
 
 		public void ReceiveEvent(string _sender, object _obj)
@@ -171,6 +204,7 @@ namespace Quest
 				return;
 			}
 			_questData.QuestState = QuestState.Active;
+			Send();
 			SendEvent("PopupUIManager", _questData);
 		}
 		public void ChangeQuestClear(string _key)
@@ -185,6 +219,8 @@ namespace Quest
 			{
 				_questData.QuestState = QuestState.Achievable;
 				questSaveDataSO.ChangeQuestSaveData(_questData.QuestKey, _questData.QuestState);
+				Send();
+				SendEvent("PopupUIManager", _questData);
 			}
 			else
 			{
@@ -201,6 +237,8 @@ namespace Quest
 			_questData.QuestState = QuestState.Discoverable;
 			questSaveDataSO.ChangeQuestSaveData(_questData.QuestKey, _questData.QuestState);
 			CreateAllObject(_questData.QuestCreateObjectSOList);
+			Send();
+			SendEvent("PopupUIManager", _questData);
 		}
 
 		public void TalkQuestClear(string _key)
@@ -290,8 +328,8 @@ namespace Quest
 					CreateAllObject(questDataDic[_linkQuest].QuestCreateObjectSOList);
 				}
 			}
-
+			Send();
 			SendEvent("PopupUIManager", _questData);
 		}
-	}
+    }
 }
