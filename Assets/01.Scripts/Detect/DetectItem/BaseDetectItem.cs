@@ -47,7 +47,7 @@ namespace Detect
         [SerializeField] 
         protected float shakeStrength = 0.5f;
 
-        private Vector3 upPos;
+        protected Vector3 upPos;
 
         public List<Observer> Observers
         {
@@ -79,7 +79,7 @@ namespace Detect
         
 #endif
         
-        private void Start()
+        protected virtual void Start()
         {
             upPos = targetModel.position;
             targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);

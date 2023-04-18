@@ -10,23 +10,30 @@ namespace Detect
 {
     public class SlideDetectItem : BaseDetectItem
     {
-        public virtual void GetOut()
+        [SerializeField] private GameObject rewardObj;
+        
+        protected override void Start()
         {
-            //if (isGetOut)
-            //{
-            //    return;
-            //}
-            //targetModel.gameObject.SetActive(true);
-            //isGetOut = true;
-            //Vector3 _movePos = upPos;
-            //var _effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
-            //targetModel.DOMove(_movePos,  heightUpTime);
-            //targetTransform.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
-            //{
-            //    _effectObj.Pool();
-            //    gameObject.SetActive(false);
-            //    isGetOut = true;
-            //});
+            
+        }
+        public override void GetOut()
+        {
+            if (isGetOut)
+            {
+                return;
+            }
+            targetModel.gameObject.SetActive(true);
+            isGetOut = true;
+            Vector3 _movePos = targetHeightTransform.position;
+            var _effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
+            targetModel.DOMove(_movePos,  heightUpTime);
+            rewardObj.gameObject.SetActive(true);
+            targetTransform.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
+            {
+                _effectObj.Pool();
+                gameObject.SetActive(false);
+                isGetOut = true;
+            });
         }
     }   
 }
