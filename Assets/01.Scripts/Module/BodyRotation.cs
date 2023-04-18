@@ -37,6 +37,13 @@ namespace Module
             animator.SetLayerWeight(verticalBodyLayerIndex, _weight);
         }
 
+        public void SetCanLand(int _on)
+        {
+            bool _isOn = _on > 0 ? true : false;
+
+            animator.SetBool("CanLand", _isOn);
+        }
+
         public void SetChromaticAberration(float _duration)
         {
             StopCoroutine("ActiveAhromaticAberration");

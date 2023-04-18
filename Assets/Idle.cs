@@ -23,5 +23,6 @@ public class Idle : StateMachineBehaviour
         //mainModule.CanConsecutiveAttack = false;
 
         animator.SetBool("IsCombo", false);
+        animator.SetBool("CanLand", false);
     }
 }
