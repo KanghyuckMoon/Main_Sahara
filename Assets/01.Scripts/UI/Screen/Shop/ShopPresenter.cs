@@ -79,7 +79,7 @@ namespace UI.Shop
         }
 
         /// <summary>
-        /// 현재 인벤토리 아이템 세팅 
+        /// 현재 인벤토리 판매 아이템 세팅 
         /// </summary>
         private void SetInvenItem()
         {

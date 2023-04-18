@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
 using System;
+using GoogleSpreadSheet;
 using UI.ConstructorManager;
 using UI.Production;
 using Inventory;
@@ -27,7 +28,9 @@ namespace UI.Inventory
             skill_equip_panel, // 스킬 장착 
 
             drag_item,
-            contents
+            contents,
+            select_weapon_image,
+            accent_pattern
         }
 
         enum RadioButtonGroups
@@ -37,6 +40,13 @@ namespace UI.Inventory
         enum ScrollViews
         {
             inventory_scroll_panel
+        }
+
+        enum Labels
+        {
+            item_title_label,
+            item_detail_label,
+               
         }
 
         #endregion
@@ -54,6 +64,7 @@ namespace UI.Inventory
             base.Cashing();
             BindVisualElements(typeof(Elements));
             BindScrollViews(typeof(ScrollViews));
+            BindLabels(typeof(Labels));
             Bind<RadioButtonGroup>(typeof(RadioButtonGroups));
         }
 
@@ -68,6 +79,7 @@ namespace UI.Inventory
             // 인벤토리 슬롯들 뷰 생성 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(GetVisualElement((int)Elements.contents));
             inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item, ClickItem);
+            inventoryGridSlotsPr.AddClickEvent(ClickSlot);
             // 슬롯 생성 
             inventoryGridSlotsPr.Init();
 
@@ -82,6 +94,24 @@ namespace UI.Inventory
             // 아이템 드랍시 실행할 함수 초기화 
             InitCallbackDic();
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void MoveAccentPattern(InventoryGridSlotsView.RadioButtons _btnType)
+        {
+            //GetVisualElement((int)Elements.accent_pattern).
+        }
+
+        private void ClickSlot(ItemData _itemData)
+        {
+            GetLabel((int)Labels.item_title_label).text = TextManager.Instance.GetText(_itemData.nameKey);
+            GetLabel((int)Labels.item_detail_label).text = TextManager.Instance.GetText(_itemData.explanationKey);
+            //GetVisualElement((int)Elements.select_weapon_image)
+            // 제목 텍스트 설정
+            // 내용 텍스트 설정
+            // 무기 이미지 설정
         }
 
         public void ClearUI()

@@ -95,6 +95,7 @@ namespace UI.Inventory
 
         private void AnimateSlot(InventoryView.Elements _type, bool _isActive)
         {
+           // inventoryView.
             StartCoroutine(AnimateCo(_type, _isActive));
         }
 

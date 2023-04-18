@@ -1,5 +1,5 @@
 .inventory_select_group {
-    height: 100%;
+    height: 90%;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -57,7 +57,7 @@
     width: 120%;
     height: 120%;
     -unity-background-image-tint-color: rgba(255, 35, 0, 0);
-    background-image: url('project://database/Assets/12.Texture/Effects/SandImpact/BulletHoleRockHeight.tif?fileID=2800000&guid=c948ff4a46d9e134ab96d61acf2022ab&type=3#BulletHoleRockHeight');
+    background-image: url('project://database/Assets/14.Texture/Effects/SandImpact/BulletHoleRockHeight.tif?fileID=2800000&guid=c948ff4a46d9e134ab96d61acf2022ab&type=3#BulletHoleRockHeight');
     -unity-background-scale-mode: scale-to-fit;
     overflow: visible;
     visibility: visible;
@@ -103,8 +103,8 @@
 }
 
 .slot {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 110px;
     background-image: none;
     -unity-background-scale-mode: scale-to-fit;
     -unity-background-image-tint-color: rgba(58, 58, 58, 0.64);
@@ -161,12 +161,12 @@
 }
 
 .left_content_panel {
-    flex-basis: 45%;
+    flex-basis: 40%;
     align-items: center;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 2%;
-    padding-bottom: 3%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1.5%;
+    padding-bottom: 0;
 }
 
 .content_panel {
@@ -195,11 +195,11 @@
 
 .center_content_panel {
     flex-grow: 1;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 1%;
+    padding-right: 1%;
     justify-content: center;
-    padding-top: 8%;
-    padding-bottom: 3%;
+    padding-top: 1%;
+    padding-bottom: 1%;
     flex-basis: 20%;
 }
 
@@ -214,7 +214,7 @@
 .inventory_select {
     height: 130px;
     display: flex;
-    border-bottom-width: 5px;
+    border-bottom-width: 0;
     border-top-width: 0;
     border-left-color: rgb(255, 255, 255);
     border-right-color: rgb(255, 255, 255);
@@ -275,9 +275,9 @@
 .quick_slot_frame {
     width: 100%;
     height: 100%;
-    -unity-background-scale-mode: scale-and-crop;
+    -unity-background-scale-mode: stretch-to-fill;
     position: absolute;
-    background-image: none;
+    background-image: url('project://database/Assets/14.Texture/UI/Inventory/quickslot.png?fileID=2800000&guid=3742dad396f08fe42aae93f461d00b00&type=3#quickslot');
     background-color: rgba(0, 0, 0, 0);
 }
 
@@ -331,43 +331,43 @@
 }
 
 #consumation_button .unity-radio-button__checkmark-background {
-    background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/ExpendablesLogo.png?fileID=2800000&guid=eee1e93b85d5790448f56cae3fe6f484&type=3#ExpendablesLogo');
+    background-image: url('project://database/Assets/14.Texture/UI/Inventory/potion.png?fileID=2800000&guid=519321673b1ce574582c53b96a338cb7&type=3#potion');
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 #skill_button .unity-radio-button__checkmark-background {
-    background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/SkillLogo.png?fileID=2800000&guid=4cb1da520e93d094283deac5fe672c0b&type=3#SkillLogo');
+    background-image: url('project://database/Assets/14.Texture/UI/Make/Inventory/SkillLogo.png?fileID=2800000&guid=4cb1da520e93d094283deac5fe672c0b&type=3#SkillLogo');
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 #accessories_button .unity-radio-button__checkmark-background {
-    background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/AccessoriesLogo.png?fileID=2800000&guid=e45ecdd3665cc6649993ab76d993c0fb&type=3#AccessoriesLogo');
+    background-image: url('project://database/Assets/14.Texture/UI/Make/Inventory/AccessoriesLogo.png?fileID=2800000&guid=e45ecdd3665cc6649993ab76d993c0fb&type=3#AccessoriesLogo');
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 #material_button .unity-radio-button__checkmark-background {
-    background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/MaterialLogo.png?fileID=2800000&guid=9e03be9a47ff28b4b96daf46f2ee6955&type=3#MaterialLogo');
+    background-image: url('project://database/Assets/14.Texture/UI/Inventory/bag.png?fileID=2800000&guid=2783d46a0d53011409f07327d199df84&type=3#bag');
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 #valuable_button .unity-radio-button__checkmark-background {
-    background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/ImportantItemLogo.png?fileID=2800000&guid=bbca0e522734c534eb42b76e8ee0feb6&type=3#ImportantItemLogo');
+    background-image: url('project://database/Assets/14.Texture/UI/Inventory/soul.png?fileID=2800000&guid=00c0ada8227bedf4d8e888ed85e15ccf&type=3#soul');
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 #weapon_button .unity-radio-button__checkmark-background {
-    background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/WeaponLogo.png?fileID=2800000&guid=db693c3b16638834095e729771a14fef&type=3#WeaponLogo');
+    background-image: url('project://database/Assets/14.Texture/UI/Inventory/sword.png?fileID=2800000&guid=d5ccf01d063ca7f40bb978ecb656c1f7&type=3#sword');
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 #armor_button .unity-radio-button__checkmark-background {
-    background-image: url('project://database/Assets/12.Texture/UI/Make/Inventory/EquipmentLogo.png?fileID=2800000&guid=35719cfa7bcbf3c42a0afb95a3be040a&type=3#EquipmentLogo');
+    background-image: url('project://database/Assets/14.Texture/UI/Inventory/Armor.png?fileID=2800000&guid=9acceecdf27b16a4babae25bac0f7747&type=3#Armor');
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 .inven_button {
     transition-property: scale;
-    transition-duration: 0s;
+    transition-duration: 0.2s;
 }
 
 .inven_button .unity-radio-button__checkmark-background {
@@ -383,4 +383,21 @@
     transition-property: translate;
     transition-duration: 0.2s;
     transition-timing-function: ease-in-elastic;
+    margin-top: 25px;
+}
+
+.deco {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.lock_view {
+    width: 300px;
+    height: 200px;
+    margin-bottom: 40px;
+}
+
+.inven_button:hover {
+    scale: 1.1 1.1;
 }
