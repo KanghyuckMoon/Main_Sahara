@@ -37,5 +37,17 @@ namespace Detect
                 targetModel.gameObject.layer = originMask;
             });
         }
+        
+        #if UNITY_EDITOR
+        [ContextMenu("SetHeightRewardObj")]
+        public void SetHeightRewardObj()
+        {
+            RaycastHit _hit;
+            if (Physics.Raycast(rewardObj.transform.position, Vector3.down, out _hit,50,  debug_LayerMask))
+            {
+                rewardObj.transform.position = _hit.point;
+            }
+        }        
+        #endif
     }   
 }
