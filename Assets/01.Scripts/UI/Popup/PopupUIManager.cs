@@ -121,9 +121,9 @@ namespace UI.Popup
         private void SetPresenters()
         {
             popupPrList.Clear();
-            popupHudPr = popupParent.GetComponentInChildren<PopupHudPr>();
-            eventAlarmScreenPr = popupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
-            interactionScreenPr = popupParent.GetComponentInChildren<InteractionScreenPr>(); 
+            popupHudPr = PopupParent.GetComponentInChildren<PopupHudPr>();
+            eventAlarmScreenPr = PopupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
+            interactionScreenPr = PopupParent.GetComponentInChildren<InteractionScreenPr>(); 
 
             popupPrList.Add(popupHudPr);
             popupPrList.Add(eventAlarmScreenPr);
