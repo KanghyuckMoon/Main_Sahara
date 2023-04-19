@@ -23,7 +23,8 @@ namespace UI
         private Dictionary<int, string> animateClassDic = new Dictionary<int, string>();// 퀵슬롯 위치 인덱스에 따른 스타일 클래스 문자열 
         private Dictionary<int, VisualElement> curSlotDic = new Dictionary<int, VisualElement>();// 퀵슬롯 위치 인덱스에 따른 스타일 클래스 문자열 
         private SlotItemPresenter selectSlotPr;
-        private int curIndex, topIndex, botIndex;
+        private int targetIndex, curIndex, topIndex, botIndex;
+        private int maxIndex = 4, minIndex = 0;
         private bool isTargetTop;
 
         // 프로퍼티 
@@ -31,7 +32,7 @@ namespace UI
        
         public void OnDisable()
         {
-            EventManager.Instance.StopListening(EventsType.UpdateQuickSlot, UpdateUI);
+            EventManager.Instance.StopListening(EventsType.UpdateQuickSlot, SetQuickSlot);
         }
         
         public void Awake()
@@ -43,8 +44,9 @@ namespace UI
             // 스타일 클래스 이름 초기화 
             InitAnimateClassDic(); 
             
-            EventManager.Instance.StartListening(EventsType.UpdateQuickSlot, UpdateUI);
-    
+            EventManager.Instance.StartListening(EventsType.UpdateQuickSlot, SetQuickSlot);
+
+            InitSlotDic(); 
             UpdateUI(); 
         }
 
@@ -52,6 +54,14 @@ namespace UI
         {
         }
 
+        private void InitSlotDic()
+        {
+            curSlotDic.Clear();
+            for (int i = 0; i < quickSlotView.SlotList.Count; i++)
+            {
+                curSlotDic.Add(i, quickSlotView.SlotList[i].Parent);
+            }
+        }
         public void UpdateUI()
         {
             for (int i = 0; i < quickSlotView.SlotList.Count; i++)
@@ -67,6 +77,10 @@ namespace UI
         public void ActiveScreen(bool _isActive)
         {
             quickSlotView.ActiveScreen(_isActive);
+            if (_isActive == false)
+            {
+                UpdateUI(); 
+            }
         }
 
         private void UpdateActive()
@@ -75,6 +89,7 @@ namespace UI
 
             //selectSlotPr = _slotList[InventoryManager.Instance.GetCurrentQuickSlotIndex()];
             curIndex = InventoryManager.Instance.GetCurrentQuickSlotIndex();
+            targetIndex = InventoryManager.Instance.GetCurrentQuickSlotIndex(); 
             SetTopBotIndex(curIndex);
             
             selectSlotPr.SelectSlot(true);
@@ -99,7 +114,7 @@ namespace UI
 
         private void UpQuickslots()
         {
-            
+            curSlotDic[curIndex].AddToClassList("");
         }
 
         private void DownQuickslots()
@@ -110,13 +125,14 @@ namespace UI
         private void InitAnimateClassDic()
         {
             this.animateClassDic.Clear();
-            
-            this.animateClassDic.Add(0,"top_quickslot_temp");
-            this.animateClassDic.Add(1,"top_quickslot");
-            this.animateClassDic.Add(2,"mid_quickslot");
-            this.animateClassDic.Add(3,"bot_quickslot");
-            this.animateClassDic.Add(4,"bot_quickslot_temp");
+
+            this.animateClassDic.Add(0,"select_quickslot");
+            this.animateClassDic.Add(1,"bottom_quickslot");
+            this.animateClassDic.Add(2,"bottom_quickslot_temp");
+            this.animateClassDic.Add(3,"top_quickslot_temp");
+            this.animateClassDic.Add(4,"top_quickslot");
         }
+        
         /// <summary>
         /// hud에 나타날 상하 인덱스 설정 
         /// </summary>
@@ -126,16 +142,17 @@ namespace UI
             // 최대 슬롯인 5개보다 많으면 
             if (_idx + 1 >= 6)
             {
-                topIndex = 0; 
+                topIndex = _idx - 5; 
             }
             else
             {
                 topIndex = _idx + 1;
             }
 
-            if (_idx - 1 <= -1)
+            if (_idx - 1 <= 0)
             {
-                botIndex = 5; 
+                botIndex = _idx + 5;
+                
             }
             else
             {
@@ -145,6 +162,49 @@ namespace UI
 
         private void SetQuickSlot()
         {
+            curIndex = InventoryManager.Instance.GetCurrentQuickSlotIndex();
+            
+            RemoveStyleClass(curSlotDic[GetClampIndex(curIndex)]);
+            curSlotDic[curIndex].AddToClassList(animateClassDic[0]);
+
+            RemoveStyleClass(curSlotDic[GetClampIndex(curIndex+1)]);
+            curSlotDic[GetClampIndex(curIndex+1)].AddToClassList(animateClassDic[1]);
+            
+            RemoveStyleClass(curSlotDic[GetClampIndex(curIndex+2)]);
+            curSlotDic[GetClampIndex(curIndex+2)].AddToClassList(animateClassDic[2]);
+            
+            RemoveStyleClass(curSlotDic[GetClampIndex(curIndex+3)]);
+            curSlotDic[GetClampIndex(curIndex+3)].AddToClassList(animateClassDic[3]);
+            
+            RemoveStyleClass(curSlotDic[GetClampIndex(curIndex+4)]);
+            curSlotDic[GetClampIndex(curIndex+4)].AddToClassList(animateClassDic[4]);
+        }
+
+        private void RemoveStyleClass(VisualElement _v)
+        {
+            foreach (var _animateStr in animateClassDic.Values)
+            {
+                if (_v.ClassListContains(_animateStr))
+                {
+                    _v.RemoveFromClassList(_animateStr);
+                }
+            }
+        }
+        private int GetClampIndex(int _index)
+        {
+            int _returnV = _index; 
+            if (_index > maxIndex)
+            {
+                int _diff = _index - maxIndex -1 ;
+                _returnV = _diff; 
+            }
+            else if(_index < minIndex)
+            {
+                int _diff = Mathf.Abs(_index - minIndex);
+                _returnV = maxIndex - _diff + 1; // -1부터 max로 넘어가니 +1 
+            }
+
+            return _returnV; 
         }
     }
 
