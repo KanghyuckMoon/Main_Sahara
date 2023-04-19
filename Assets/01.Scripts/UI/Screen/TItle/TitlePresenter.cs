@@ -27,10 +27,10 @@ namespace UI
             titleView.AddButtonEventToDic(TitleView.Buttons.start_button,
                 () =>
                 {
-                    SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
+                    SceneManager.LoadScene("StartCutScene", LoadSceneMode.Single);
                 });
            
-            titleView.AddButtonEventToDic(TitleView.Buttons.end_button, () => Debug.Log("Á¾·á"));
+            titleView.AddButtonEventToDic(TitleView.Buttons.end_button, () => Debug.Log("ï¿½ï¿½ï¿½ï¿½"));
 
         }
 

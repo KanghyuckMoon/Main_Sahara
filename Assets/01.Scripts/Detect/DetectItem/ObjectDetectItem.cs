@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Inventory;
 using Utill.Random;
 using Pool;
@@ -73,6 +74,11 @@ namespace Detect
 
         private bool isGetOut = false;
         
+        
+        [SerializeField]
+        protected UnityEvent getoutEvent;
+
+        
         public void GetOut()
         {
             if (count > 0)
@@ -100,6 +106,7 @@ namespace Detect
             else
             {
                 isGetOut = true;
+                getoutEvent?.Invoke();
             }
         }
         

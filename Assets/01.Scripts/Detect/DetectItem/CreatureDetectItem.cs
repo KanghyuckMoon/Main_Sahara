@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Inventory;
 using Module;
 using Utill.Random;
@@ -57,6 +58,10 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
         
         [SerializeField] 
         private string effectAddress;
+        
+        [SerializeField]
+        protected UnityEvent getoutEvent;
+
 
         public List<Observer> Observers
         {
@@ -97,6 +102,7 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
             EffectManager.Instance.SetEffectDefault(effectAddress, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             isGetOut = true;
+            getoutEvent?.Invoke();
         }
     }
 }
