@@ -74,6 +74,7 @@ namespace UI.Popup
             }
             catch (Exception e)
             {
+                SetPresenters();
                 Debug.LogError("Sequence contains no matching element : " + e.Message);
             }
              if (_time > 0f)
