@@ -39,16 +39,10 @@ namespace Attack
         //    }
         //}
 
-        private void OnEnable()
-        {
-            attackFeedBackEvent.AddListener((vec, s) => AttackEffect(vec, s));
-            attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
-        }
-
         private void AddEvent()
         {
             attackFeedBackEvent.AddListener((vec, s) => AttackEffect(vec, s));
-            attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
+            //attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
         }
 
         private void OnDisable()

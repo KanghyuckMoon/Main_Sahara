@@ -93,6 +93,8 @@ namespace Module
             var velocity = mainModule.CharacterController.velocity;
             float currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
 
+            _targetSpeed *= mainModule.StopOrNot;
+            
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset) // && mainModule.objDir != Vector2.up)
             {

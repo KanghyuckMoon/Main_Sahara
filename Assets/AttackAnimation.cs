@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Module;
 using Attack;
+using CondinedModule;
 using Weapon;
 using UnityEngine.Animations;
 
@@ -13,43 +14,23 @@ public class AttackAnimation : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //mainModule ??= animator.GetComponent<AbMainModule>();
-        //stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-
-        //mainModule.Attacking = false;
-        //mainModule.StrongAttacking = false;
-        //mainModule.CanConsecutiveAttack = false;
-        
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-        
-        mainModule.SetActiveAnimatorRoot(1);
+        mainModule.StopOrNot = 0;
 
         stateModule.AddState(State.ATTACK);
-        animator.SetBool("ConsecutiveAttack", false);
-        
-        animator.SetBool("IsCombo", true);
 
-        //stateModule.RemoveState(State.ATTACK);
+        animator.SetBool("IsCombo", true);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-
-        //mainModule.SetActiveAnimatorRoot(0);
+        
         stateModule.RemoveState(State.ATTACK);
         
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
-        
-        
-        //mainModule.CanConsecutiveAttack = false;
-
-        //animator.SetBool("ConsecutiveAttack", false);
-
-        //stateModule.RemoveState(State.ATTACK);
-        //Debug.Log("aflahfaiufhaliuhlaiuehgaliuehlaueghlawiueghliueghlawueghlahuegl");
     }
 }

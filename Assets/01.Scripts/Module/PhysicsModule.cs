@@ -119,8 +119,8 @@ namespace Module
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
                     Vector3 _closerPoint = other.ClosestPoint(_locationHitBox.transform.position);
 
-                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.7f);
-                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.7f);
+                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0f);
+                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0f);
 
                     //_inGameHitBox.GetComponent<HitBoxInAction>().HitBoxAction?.Invoke();
 
@@ -129,7 +129,11 @@ namespace Module
                         mainModule.StopCoroutine(knockBackCoroutine);
                     }
                     knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
-                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
+                    
+                    foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
+                    {
+                        _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _s);
+                    }
 
                     SetDeBuff(_inGameHitBox.HitBoxData.buffList);
                     

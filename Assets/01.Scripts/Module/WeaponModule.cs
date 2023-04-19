@@ -176,7 +176,10 @@ namespace Module
         }
         private void SetAnimation(string animationName)
         {
+            mainModule.CurrentAnimationLayer = animationName;
+            
             if (animationIndex != int.MaxValue)
+                
                 Animator.SetLayerWeight(animationIndex, 0);
 
             animationIndex = int.MaxValue;
