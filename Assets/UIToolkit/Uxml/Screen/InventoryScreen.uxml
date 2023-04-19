@@ -1,7 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="InventoryQuickSlot" src="project://database/Assets/UIToolkit/Uxml/Screen/Inventory/InventoryQuickSlot.uxml?fileID=9197481963319205126&amp;guid=1d5019c0460568840b51a4bb60585cc6&amp;type=3#InventoryQuickSlot" />
     <ui:Template name="ItemDescription" src="project://database/Assets/ItemDescription.uxml?fileID=9197481963319205126&amp;guid=208a55c32d354ad4b9366b2b9508dbaa&amp;type=3#ItemDescription" />
-    <ui:Template name="EquipSlot" src="project://database/Assets/UIToolkit/Uxml/EquipSlot.uxml?fileID=9197481963319205126&amp;guid=c6ae20412e35b304590cbcad76cf4a99&amp;type=3#EquipSlot" />
     <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <ui:VisualElement name="inventory_screen_" style="width: 100%; height: 100%; background-color: rgb(24, 24, 24); position: absolute; display: none;">
@@ -120,7 +119,7 @@
                                 <ui:RadioButton label="Radio Button" name="valuable_button" class="inven_button" />
                             </ui:RadioButtonGroup>
                             <ui:VisualElement name="bot_line" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/title%20line-2.png?fileID=2800000&amp;guid=e6efea9071cff4245befa43863dbfdb7&amp;type=3#title line-2&apos;); height: 30px; -unity-background-scale-mode: scale-and-crop;" />
-                            <ui:VisualElement picking-mode="Ignore" name="accent_pattern" style="position: absolute; width: 100%; height: 100%;">
+                            <ui:VisualElement picking-mode="Ignore" name="accent_pattern" style="position: absolute; width: 100%; height: 100%; transition-property: left; transition-duration: 0.2s; top: 0; left: -2px; translate: 25px 0;">
                                 <ui:VisualElement name="top_pattern" picking-mode="Ignore" style="width: 70px; height: 55px; position: absolute; bottom: 80%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;);" />
                                 <ui:VisualElement picking-mode="Ignore" style="height: 100%; width: 100%;" />
                                 <ui:VisualElement name="bot_pattern" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;); width: 70px; height: 55px; -unity-background-scale-mode: scale-and-crop; rotate: 180deg; position: absolute; top: 100%;" />
@@ -154,7 +153,7 @@
                         <ui:VisualElement name="character__selected" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/InventoryModel.renderTexture?fileID=8400000&amp;guid=409d5825e55d3d94c810734ebf531cc2&amp;type=2#InventoryModel&apos;); -unity-background-scale-mode: scale-to-fit; flex-basis: 70%;">
                             <ui:VisualElement name="frame" style="position: absolute; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Inventory%20slot-2.png?fileID=-859574884&amp;guid=a3516d4c125a5534f860cc2513d4bf6a&amp;type=3#Inventory slot-2_0&apos;); -unity-background-scale-mode: stretch-to-fill;" />
                             <ui:VisualElement style="width: 100%; height: 100%; align-items: center; justify-content: center;">
-                                <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/InventoryModel.renderTexture?fileID=8400000&amp;guid=409d5825e55d3d94c810734ebf531cc2&amp;type=2#InventoryModel&apos;);" />
+                                <ui:VisualElement name="select_weapon_image" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/InventoryModel.renderTexture?fileID=8400000&amp;guid=409d5825e55d3d94c810734ebf531cc2&amp;type=2#InventoryModel&apos;);" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="item_description_panel" style="flex-grow: 1; margin-top: 20px;">
@@ -236,9 +235,9 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="right_content_panel" class="right_content_panel" style="display: flex; flex-basis: 20%; padding-top: 50px; align-items: flex-end; flex-direction: row-reverse;">
+                <ui:VisualElement name="right_content_panel" class="right_content_panel" style="display: flex; flex-basis: 20%; padding-top: 50px; align-items: flex-end; flex-direction: row-reverse; margin-left: 10px;">
                     <ui:VisualElement name="VisualElement" style="flex-basis: 50%; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Inventory/InventoryBackgroundDeco.png?fileID=2800000&amp;guid=0a5116f621323444e933b9f7e697eb7d&amp;type=3#InventoryBackgroundDeco&apos;); -unity-background-image-tint-color: rgb(50, 50, 50); display: none;" />
-                    <ui:VisualElement name="quick_slot_panel" style="padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 30%; left: 0; display: none; height: 100%;">
+                    <ui:VisualElement name="quick_slot_panel" style="padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 35%; left: 0; display: none; height: 100%;">
                         <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end; width: 100%; justify-content: flex-start;">
                             <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
                             <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
@@ -248,22 +247,22 @@
                             <ui:Instance template="InventoryQuickSlot" name="ArrowSlot" class="quick_slot_transition" style="bottom: 30px;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="accessoire_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%; display: none;">
+                    <ui:VisualElement name="accessoire_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 30%; display: none;">
                         <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
                             <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
                             <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
                             <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="armor_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%; display: flex;">
+                    <ui:VisualElement name="armor_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 35%; display: flex;">
                         <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
-                            <ui:Instance template="EquipSlot" name="EquipSlot" class="quick_slot_transition" />
-                            <ui:Instance template="EquipSlot" name="EquipSlot" class="quick_slot_transition" />
-                            <ui:Instance template="EquipSlot" name="EquipSlot" class="quick_slot_transition" />
-                            <ui:Instance template="EquipSlot" name="EquipSlot" class="quick_slot_transition" />
+                            <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
+                            <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
+                            <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
+                            <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="skill_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 50%; display: none;">
+                    <ui:VisualElement name="skill_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 35%; display: none;">
                         <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
                             <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
                             <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />

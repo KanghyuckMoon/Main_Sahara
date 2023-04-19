@@ -20,8 +20,9 @@ using UI.Manager;
 using UI.MapLiner;
 using UI.ActiveManager;
 using CondinedModule;
-                                                                                                using Module;
-                                                                                                namespace UI
+using Module;
+                                                                                                
+namespace UI
 {
     /*public enum Keys
     {
@@ -229,6 +230,9 @@ using CondinedModule;
             {
                 // 인벤토리 활성화 
                 bool _isActive = inventoryPresenter.ActiveView();
+                UIManager.Instance.ActiveHud(!_isActive);
+                LineCreateManager.Instance.ActvieParent(ScreenType.Inventory, _isActive);
+
                 SetUIAndCursor(_isActive, Get(Keys.InventoryUI)); 
             });
             inputDic.Add(new UIInputData(Get(Keys.MapUI), true), () =>
@@ -280,6 +284,7 @@ using CondinedModule;
         private void SetUIAndCursor(bool _isActive, string _keyCode)
         {
             UIManager.Instance.ActiveCursor(_isActive);
+            // UIManager.Instance.
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
         }

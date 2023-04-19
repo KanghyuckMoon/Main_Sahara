@@ -199,7 +199,7 @@ namespace UI
         /// </summary>
         public void SetActive(bool _isActive)
         {
-            //hudElement.style.display = _isActive == true ? DisplayStyle.Flex : DisplayStyle.None;
+            hudElement.style.display = _isActive == true ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
         /// <summary>

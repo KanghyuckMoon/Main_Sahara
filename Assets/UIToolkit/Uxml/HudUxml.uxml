@@ -9,9 +9,9 @@
     <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%;">
         <ui:VisualElement name="top_panel" class="top_panel">
             <ui:VisualElement name="top_left_panel" style="flex-basis: 30%; flex-grow: 1; justify-content: flex-start; align-items: stretch;">
-                <ui:VisualElement style="height: 100px; width: 300px; justify-content: flex-start; align-items: stretch; display: flex; transform-origin: left top; scale: 1 1; rotate: 0;">
-                    <ui:Instance template="HpUxml" name="HpUxml" style="margin-bottom: 0; width: 100%; flex-grow: 0; height: 55px;" />
-                    <ui:VisualElement name="MpUxml" style="height: 30px; min-height: 0; bottom: 15px;">
+                <ui:VisualElement style="height: 120px; width: 400px; justify-content: flex-start; align-items: stretch; display: flex; transform-origin: left top; scale: 1 1; rotate: 0;">
+                    <ui:Instance template="HpUxml" name="HpUxml" style="margin-bottom: 0; width: 100%; flex-grow: 0; height: 60px;" />
+                    <ui:VisualElement name="MpUxml" style="height: 50px; min-height: 0; bottom: 15px;">
                         <Style src="project://database/Assets/UIToolkit/Uss/Slider.uss?fileID=7433441132597879392&amp;guid=4d4caa61570a49f49a00d4dbc1809e15&amp;type=3#Slider" />
                         <ui:VisualElement name="mp_view" style="width: 100%; height: 100%;">
                             <ui:VisualElement name="mp_frame" style="justify-content: center; align-items: center; overflow: visible; width: 100%; height: 100%;">
@@ -40,8 +40,20 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="bottom_right_panel" class="bottom_right_panel">
-                <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: flex-end; flex-direction: column-reverse;">
-                    <ui:VisualElement name="quickslot_view" picking-mode="Ignore" class="weapon_panel" style="flex-grow: 1; position: absolute; align-items: flex-end; flex-direction: column-reverse;">
+                <ui:VisualElement name="quickslot_view" style="width: 100%; height: 100%; flex-direction: row-reverse; top: 70px;">
+                    <ui:VisualElement name="deco_parent" style="height: 100%; width: 100px; align-items: center; justify-content: center;">
+                        <ui:VisualElement name="quickslot_deco" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/HUD/Now/Quit_Slot_Line.png?fileID=-557861592&amp;guid=aa0f3ec6a49a35a4cbc894936be2cac1&amp;type=3#Quit_Slot_Line_0&apos;); width: 100px; height: 250px; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgba(255, 255, 255, 0.94);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="quick_slot_parent" style="flex-direction: row-reverse;">
+                        <ui:VisualElement name="quickslot_image_top_temp" class="quickslot_image top_quickslot_temp" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/HUD/Now/Quit_Slot_Sowrd.png?fileID=1785675141&amp;guid=8529e09325f70f34cafc4088b6ccd54d&amp;type=3#Quit_Slot_Sowrd_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="quickslot_image_top" class="quickslot_image top_quickslot" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/HUD/Now/Quit_Slot_Sowrd.png?fileID=1785675141&amp;guid=8529e09325f70f34cafc4088b6ccd54d&amp;type=3#Quit_Slot_Sowrd_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="quickslot_image_mid" class="quickslot_image select_quickslot" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/HUD/Now/Quit_Slot_Sowrd.png?fileID=1785675141&amp;guid=8529e09325f70f34cafc4088b6ccd54d&amp;type=3#Quit_Slot_Sowrd_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="quickslot_image_bot" class="quickslot_image bottom_quickslot" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/HUD/Now/Quit_Slot_Sowrd.png?fileID=1785675141&amp;guid=8529e09325f70f34cafc4088b6ccd54d&amp;type=3#Quit_Slot_Sowrd_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="quickslot_image_bot_temp" class="quickslot_image bottom_quickslot_temp" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/HUD/Now/Quit_Slot_Sowrd.png?fileID=1785675141&amp;guid=8529e09325f70f34cafc4088b6ccd54d&amp;type=3#Quit_Slot_Sowrd_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: flex-end; flex-direction: column-reverse; display: none;">
+                    <ui:VisualElement name="quickslot_view_" picking-mode="Ignore" class="weapon_panel" style="flex-grow: 1; position: relative; align-items: flex-end; flex-direction: column-reverse;">
                         <ui:VisualElement name="quick_slot" class="quick_slot_hud">
                             <ui:VisualElement name="item" class="quick_slot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
                                 <ui:VisualElement name="frame" class="quick_slot_frame" style="display: flex;" />

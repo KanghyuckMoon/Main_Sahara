@@ -21,6 +21,7 @@ namespace UI.Inventory
         [SerializeField]
         private InventoryView inventoryView;
 
+        private AccentItemCompo accentItemCompo; 
      //   private 
 
         // 프로퍼티 
@@ -31,18 +32,31 @@ namespace UI.Inventory
             uiDocument ??= GetComponent<UIDocument>(); 
 
             inventoryView.InitUIDocument(uiDocument);
+            accentItemCompo = new AccentItemCompo(); 
+            accentItemCompo.Init();             
         }
         private void OnEnable()
         {
             inventoryView.Cashing();
             inventoryView.Init();
+            inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
 
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, (x) => AnimateSlot(InventoryView.Elements.quick_slot_panel, x));
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.consumation_button, (x) => AnimateSlot(InventoryView.Elements.quick_slot_panel, x));
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.skill_button, (x) => AnimateSlot(InventoryView.Elements.skill_equip_panel, x));
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.armor_button, (x) => AnimateSlot(InventoryView.Elements.armor_equip_panel, x));
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.accessories_button, (x) => AnimateSlot(InventoryView.Elements.accessoire_equip_panel, x));
-            
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, 
+                (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.weapon_button,InventoryView.Elements.quick_slot_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.consumation_button, 
+                (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.consumation_button,InventoryView.Elements.quick_slot_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.skill_button, 
+                (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.skill_button,InventoryView.Elements.skill_equip_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.armor_button, 
+                (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.armor_button,InventoryView.Elements.armor_equip_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.accessories_button, 
+                (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.accessories_button,InventoryView.Elements.accessoire_equip_panel, x));
+       
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.material_button, 
+                (x) => AccentPattern(InventoryGridSlotsView.RadioButtons.material_button,x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.valuable_button, 
+                (x) => AccentPattern(InventoryGridSlotsView.RadioButtons.valuable_button,x));
+
             EventManager.Instance.StartListening(EventsType.UpdateInventoryUI, UpdateUI);
         }
 
@@ -70,7 +84,12 @@ namespace UI.Inventory
         {
             inventoryCam.gameObject.SetActive(_isActive); // 인벤토리 활성화시에만 카메라 활성화 
             inventoryView.ActiveScreen(_isActive);
-        }
+            if(_isActive == false)
+            {
+                accentItemCompo.InactiveAllModels();
+                inventoryView.SetItemText(null); 
+            }
+        }   
 
         public void UpdateUI()
         {
@@ -93,9 +112,20 @@ namespace UI.Inventory
 
         }
 
+        private void ChangeCategory(InventoryGridSlotsView.RadioButtons _rType,InventoryView.Elements _eType, bool _isActive)
+        {
+            AccentPattern(_rType,_isActive);
+            AnimateSlot(_eType,_isActive);
+        }
+        private void AccentPattern(InventoryGridSlotsView.RadioButtons _type, bool _isActive)
+        {
+            if (_isActive == false) return; 
+            inventoryView.MoveAccentPattern(_type);
+
+        }
+        
         private void AnimateSlot(InventoryView.Elements _type, bool _isActive)
         {
-           // inventoryView.
             StartCoroutine(AnimateCo(_type, _isActive));
         }
 

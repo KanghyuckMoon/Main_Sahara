@@ -144,6 +144,7 @@ namespace UI.MapLiner
             linerParentDic.Clear();
             linerParentDic.Add(ScreenType.Upgrade,new LineParent(Canvas.Find("Upgrade").GetComponent<RectTransform>()));
             linerParentDic.Add(ScreenType.Map,new LineParent(Canvas.Find("Map").GetComponent<RectTransform>()));
+            linerParentDic.Add(ScreenType.Inventory,new LineParent(Canvas.Find("Inventory").GetComponent<RectTransform>()));
         }
 
         private void InitLinerParentSize()

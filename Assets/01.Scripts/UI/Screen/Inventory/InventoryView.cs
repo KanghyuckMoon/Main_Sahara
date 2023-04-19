@@ -10,6 +10,7 @@ using UI.Production;
 using Inventory;
 using Utill.Addressable;
 using UI.Base;
+using UI.UtilManager;
 
 namespace UI.Inventory
 {
@@ -58,6 +59,7 @@ namespace UI.Inventory
         private InventoryGridSlotsPr inventoryGridSlotsPr;
         private Dictionary<ItemType, Action<ItemData, int>> slotCallbackDic = new Dictionary<ItemType, Action<ItemData, int>>();
         // 프로퍼티
+        public InventoryGridSlotsPr GridPr => inventoryGridSlotsPr; 
         private VisualElement DragItem => GetVisualElement((int)Elements.drag_item);
         public override void Cashing()
         {
@@ -79,7 +81,7 @@ namespace UI.Inventory
             // 인벤토리 슬롯들 뷰 생성 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(GetVisualElement((int)Elements.contents));
             inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item, ClickItem);
-            inventoryGridSlotsPr.AddClickEvent(ClickSlot);
+            inventoryGridSlotsPr.AddClickEvent(SetItemText);
             // 슬롯 생성 
             inventoryGridSlotsPr.Init();
 
@@ -97,20 +99,60 @@ namespace UI.Inventory
         }
 
         /// <summary>
-        /// 
+        ///  카테고리 강조 패턴 위치 설정 
         /// </summary>
         public void MoveAccentPattern(InventoryGridSlotsView.RadioButtons _btnType)
         {
+            if(categoryLength == 0) InitBtnPos();
+
+            VisualElement _v = inventoryGridSlotsPr.GridView.GetRBtn(_btnType);
+            Rect _rect = _v.worldBound;
+            float _posX = _rect.x + _v.resolvedStyle.width / 2;
+            float _moveV = categoryLength * (int)_btnType; 
+            GetVisualElement((int)Elements.accent_pattern).style.left = _moveV; 
             //GetVisualElement((int)Elements.accent_pattern).
         }
 
-        private void ClickSlot(ItemData _itemData)
+        private float categoryLength = 0f; 
+        private void InitBtnPos()
         {
-            GetLabel((int)Labels.item_title_label).text = TextManager.Instance.GetText(_itemData.nameKey);
-            GetLabel((int)Labels.item_detail_label).text = TextManager.Instance.GetText(_itemData.explanationKey);
-            //GetVisualElement((int)Elements.select_weapon_image)
+            Rect _firstSlot =
+                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.weapon_button).worldBound;
+            Rect _lastSlot =
+                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.valuable_button).worldBound;
+
+            categoryLength = (_lastSlot.x - _firstSlot.x + 50) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
+        }
+
+        public void AddSlotClickEvent(Action<ItemData> _callback)
+        {
+            inventoryGridSlotsPr.AddClickEvent((x) =>
+            {
+                _callback?.Invoke(x);
+                SetItemText(x);
+            });
+
+        }
+        /// <summary>
+        /// 아이템 이름, 설명 텍스트 띄우기 
+        /// </summary>
+        /// <param name="_itemData"></param>
+        public void SetItemText(ItemData _itemData)
+        {
+            if (_itemData == null)
+            {
+                GetLabel((int)Labels.item_title_label).text = String.Empty; 
+                GetLabel((int)Labels.item_detail_label).text = String.Empty;
+                return; 
+            }
+
+            string _nameStr =TextManager.Instance.GetText(_itemData.nameKey);
+            string _detailStr = TextManager.Instance.GetText(_itemData.explanationKey);
+            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.item_title_label), _nameStr);
+            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.item_detail_label), _detailStr);
+            //GetVisualEleme    nt((int)Elements.select_weapon_image)
             // 제목 텍스트 설정
-            // 내용 텍스트 설정
+            // 내용 텍스트 설정+
             // 무기 이미지 설정
         }
 
@@ -120,7 +162,8 @@ namespace UI.Inventory
 
         public void AddButtonEvt(InventoryGridSlotsView.RadioButtons _btnType, Action<bool> _callback)
         {
-            switch (_btnType)
+            inventoryGridSlotsPr.AddButtonEvent(_btnType, (x)=> _callback?.Invoke(x));
+            /*switch (_btnType)
             {
                 case InventoryGridSlotsView.RadioButtons.weapon_button:
                     inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
@@ -137,7 +180,7 @@ namespace UI.Inventory
                 case InventoryGridSlotsView.RadioButtons.accessories_button:
                     inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
                     break;
-            }
+            }*/
 
         }
         /// <summary>

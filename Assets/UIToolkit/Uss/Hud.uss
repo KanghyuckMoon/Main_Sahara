@@ -59,6 +59,7 @@
     flex-basis: 20%;
     flex-grow: 0;
     flex-direction: row-reverse;
+    align-items: stretch;
 }
 
 .skill_background {
@@ -149,5 +150,43 @@
 }
 
 .inactive {
+    opacity: 0;
+}
+
+.quickslot_image {
+    opacity: 0.7;
+    position: absolute;
+    width: 130px;
+    height: 60px;
+    transition-property: translate, scale, top;
+    transition-duration: 0.2s, 0.2s, 0.2s;
+}
+
+.top_quickslot {
+    top: 25%;
+}
+
+.bottom_quickslot {
+    top: 60%;
+}
+
+.select_quickslot {
+    top: 43%;
+    opacity: 1;
+    scale: 1.3 1.3;
+    translate: -40px 0;
+}
+
+.top_quickslot_temp {
+    top: 15%;
+    translate: 10px 0;
+    scale: 0.8 0.8;
+    opacity: 0;
+}
+
+.bottom_quickslot_temp {
+    top: 70%;
+    translate: 10px 0;
+    scale: 0.8 0.8;
     opacity: 0;
 }

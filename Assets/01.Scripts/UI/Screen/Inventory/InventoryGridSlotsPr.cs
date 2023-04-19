@@ -40,7 +40,8 @@ namespace UI.Inventory
         public int Col => col;
         public int Row => row;
         public ItemDescriptionPresenter DescriptionPr => descriptionPresenter;
-
+        public InventoryGridSlotsView GridView => inventoryGridSlotsView; 
+        
         public InventoryGridSlotsPr(VisualElement _parent)
         {
             this.inventoryGridSlotsView = new InventoryGridSlotsView();
