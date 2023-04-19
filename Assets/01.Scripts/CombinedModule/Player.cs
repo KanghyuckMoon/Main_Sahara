@@ -84,8 +84,8 @@ namespace CondinedModule
 
             else
             {
-                //Debug.LogError("에러에러ㅔ러");
-                Animator.SetLayerWeight(animationIndex, 0);
+                Debug.LogError("에러에러ㅔ러");
+                Animator.SetLayerWeight(animationIndex, _on);
             }
         }
 

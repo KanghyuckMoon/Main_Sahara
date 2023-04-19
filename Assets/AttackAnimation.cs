@@ -18,6 +18,8 @@ public class AttackAnimation : StateMachineBehaviour
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         mainModule.StopOrNot = 0;
 
+        mainModule.SetConsecutiveAttack(0);
+
         stateModule.AddState(State.ATTACK);
 
         animator.SetBool("IsCombo", true);
