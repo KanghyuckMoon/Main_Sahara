@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,9 +61,17 @@ namespace Quest
 
 		public void Send()
 		{
-			foreach (var _observer in Observers)
+			for (int i = 0; i < Observers.Count;)
 			{
-				_observer.Receive();
+				try
+				{
+					Observers[i].Receive();
+					++i;
+				}
+				catch (Exception e)
+				{
+					Observers.RemoveAt(i);
+				}
 			}
 		}
 

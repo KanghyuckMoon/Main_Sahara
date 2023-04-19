@@ -21,27 +21,20 @@ namespace Quest
 
         private void CheckQuestState()
         {
-            try
+            switch (QuestManager.Instance.questDataDic[questKey].QuestState)
             {
-                switch (QuestManager.Instance.questDataDic[questKey].QuestState)
-                {
-                    default:
-                    case QuestState.Disable:
-                        QuestManager.Instance.AddObserver(this);
-                        gameObject.SetActive(false);
-                        break;
-                    case QuestState.Discoverable:
-                    case QuestState.Active:
-                    case QuestState.Achievable:
-                    case QuestState.Clear:
-                        QuestManager.Instance.RemoveObserver(this);
-                        gameObject.SetActive(true);
-                        break;
-                }
-            }
-            catch (Exception e)
-            {
-                QuestManager.Instance.RemoveObserver(this);
+                default:
+                case QuestState.Disable:
+                    QuestManager.Instance.AddObserver(this);
+                    gameObject.SetActive(false);
+                    break;
+                case QuestState.Discoverable:
+                case QuestState.Active:
+                case QuestState.Achievable:
+                case QuestState.Clear:
+                    QuestManager.Instance.RemoveObserver(this);
+                    gameObject.SetActive(true);
+                    break;
             }
         }
 
