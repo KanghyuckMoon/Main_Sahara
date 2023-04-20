@@ -100,7 +100,7 @@ namespace UI
             //RotateMap();
             if (PlayerMarker != null)
             {
-                PlayerMarker.SetMarkerPosAndRot(-mapView.MinimapMask.style.rotate.value.angle.value);
+                PlayerMarker.SetMarkerPosAndRot(-mapView.MinimapMaskParent.style.rotate.value.angle.value);
             }
         }
 
@@ -112,10 +112,10 @@ namespace UI
         private void RotateMap()
         {
             if (CamTrm == null) return; 
-            prevMapAngle = mapView.MinimapMask.style.rotate.value.angle.value;
+            prevMapAngle = mapView.MinimapMaskParent.style.rotate.value.angle.value;
 
-            mapView.MinimapMask.style.rotate = new Rotate(new Angle(-CamTrm.eulerAngles.y));
-            angleDiff = mapView.MinimapMask.style.rotate.value.angle.value - prevMapAngle;
+            mapView.MinimapMaskParent.style.rotate = new Rotate(new Angle(-CamTrm.eulerAngles.y));
+            angleDiff = mapView.MinimapMaskParent.style.rotate.value.angle.value - prevMapAngle;
             var _markers = mapView.MarkerParent.Children();
             foreach (var m in _markers)
             {
@@ -125,7 +125,7 @@ namespace UI
 
             if(PlayerMarker != null)
             {
-                PlayerMarker.SetMarkerPosAndRot(-mapView.MinimapMask.style.rotate.value.angle.value);
+                PlayerMarker.SetMarkerPosAndRot(-mapView.MinimapMaskParent.style.rotate.value.angle.value);
             }
         //    mapView.Sight.style.
         }

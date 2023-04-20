@@ -1,9 +1,9 @@
 .top_panel {
     flex-basis: 20%;
     flex-direction: row;
-    margin-left: 1%;
+    margin-left: 0.5%;
     margin-right: 1%;
-    margin-top: 1%;
+    margin-top: 0.5%;
 }
 
 .mid_panel {
@@ -45,7 +45,7 @@
     flex-grow: 0;
     align-items: flex-end;
     margin-right: 3%;
-    rotate: 4deg;
+    rotate: 0;
 }
 
 .weapon_icon {
@@ -56,6 +56,10 @@
 }
 
 .bottom_right_panel {
+    flex-basis: 20%;
+    flex-grow: 0;
+    flex-direction: row-reverse;
+    align-items: stretch;
 }
 
 .skill_background {
@@ -82,8 +86,8 @@
 }
 
 .quick_slot_hud {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 50px;
     border-left-color: rgb(154, 154, 154);
     border-right-color: rgb(154, 154, 154);
     border-top-color: rgb(154, 154, 154);
@@ -115,12 +119,12 @@
 }
 
 .quick_slot_hud_active {
-    width: 90px;
-    height: 90px;
-    border-left-color: rgba(236, 99, 99, 255);
-    border-right-color: rgba(236, 99, 99, 255);
-    border-top-color: rgba(236, 99, 99, 255);
-    border-bottom-color: rgba(236, 99, 99, 255);
+    width: 80px;
+    height: 50px;
+    border-left-color: rgb(171, 89, 89);
+    border-right-color: rgb(171, 89, 89);
+    border-top-color: rgb(171, 89, 89);
+    border-bottom-color: rgb(171, 89, 89);
     border-left-width: 2px;
     border-right-width: 2px;
     border-top-width: 2px;
@@ -135,4 +139,54 @@
     transition-duration: 0.5s;
     background-color: rgba(0, 0, 0, 0);
     scale: 1.2 1.2;
+}
+
+.skill_panel {
+}
+
+.skills_panel {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.inactive {
+    opacity: 0;
+}
+
+.quickslot_image {
+    opacity: 0.7;
+    position: absolute;
+    width: 130px;
+    height: 60px;
+    transition-property: translate, scale, top;
+    transition-duration: 0.2s, 0.2s, 0.2s;
+}
+
+.top_quickslot {
+    top: 25%;
+}
+
+.bottom_quickslot {
+    top: 60%;
+}
+
+.select_quickslot {
+    top: 43%;
+    opacity: 1;
+    scale: 1.3 1.3;
+    translate: -40px 0;
+}
+
+.top_quickslot_temp {
+    top: 15%;
+    translate: 10px 0;
+    scale: 0.8 0.8;
+    opacity: 0;
+}
+
+.bottom_quickslot_temp {
+    top: 70%;
+    translate: 10px 0;
+    scale: 0.8 0.8;
+    opacity: 0;
 }

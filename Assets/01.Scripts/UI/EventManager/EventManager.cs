@@ -14,6 +14,7 @@ namespace UI.EventManage
         UpdateMapLine,
         ClearMapLine,
         SetCanDialogue, 
+        UpdateInventoryUI,
         ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>

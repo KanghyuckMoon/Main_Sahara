@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
 using System;
+using GoogleSpreadSheet;
 using UI.ConstructorManager;
 using UI.Production;
 using Inventory;
 using Utill.Addressable;
 using UI.Base;
+using UI.UtilManager;
 
 namespace UI.Inventory
 {
@@ -27,7 +29,9 @@ namespace UI.Inventory
             skill_equip_panel, // 스킬 장착 
 
             drag_item,
-            contents
+            contents,
+            select_weapon_image,
+            accent_pattern
         }
 
         enum RadioButtonGroups
@@ -39,6 +43,13 @@ namespace UI.Inventory
             inventory_scroll_panel
         }
 
+        enum Labels
+        {
+            item_title_label,
+            item_detail_label,
+               
+        }
+
         #endregion
 
         private InvenItemUISO invenItemUISO;
@@ -47,13 +58,20 @@ namespace UI.Inventory
 
         private InventoryGridSlotsPr inventoryGridSlotsPr;
         private Dictionary<ItemType, Action<ItemData, int>> slotCallbackDic = new Dictionary<ItemType, Action<ItemData, int>>();
+        private Action<ItemData> callback = null; 
+        
         // 프로퍼티
+        public InventoryGridSlotsPr GridPr => inventoryGridSlotsPr;
+        public VisualElement SelectImage => GetVisualElement((int)Elements.select_weapon_image); 
         private VisualElement DragItem => GetVisualElement((int)Elements.drag_item);
+        
+        
         public override void Cashing()
         {
             base.Cashing();
             BindVisualElements(typeof(Elements));
             BindScrollViews(typeof(ScrollViews));
+            BindLabels(typeof(Labels));
             Bind<RadioButtonGroup>(typeof(RadioButtonGroups));
         }
 
@@ -67,7 +85,14 @@ namespace UI.Inventory
 
             // 인벤토리 슬롯들 뷰 생성 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(GetVisualElement((int)Elements.contents));
-            inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item, ClickItem);
+            inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item, 
+            (x) =>
+            {
+                ClickItem(x);
+                SetItemText(x.ItemData);
+                callback?.Invoke(x.ItemData);
+            });
+            //inventoryGridSlotsPr.AddClickEvent(SetItemText);
             // 슬롯 생성 
             inventoryGridSlotsPr.Init();
 
@@ -84,13 +109,67 @@ namespace UI.Inventory
 
         }
 
+        /// <summary>
+        ///  카테고리 강조 패턴 위치 설정 
+        /// </summary>
+        public void MoveAccentPattern(InventoryGridSlotsView.RadioButtons _btnType)
+        {
+            if(categoryLength == 0) InitBtnPos();
+
+            VisualElement _v = inventoryGridSlotsPr.GridView.GetRBtn(_btnType);
+            Rect _rect = _v.worldBound;
+            float _posX = _rect.x + _v.resolvedStyle.width / 2;
+            float _moveV = categoryLength * (int)_btnType; 
+            GetVisualElement((int)Elements.accent_pattern).style.left = _moveV; 
+            //GetVisualElement((int)Elements.accent_pattern).
+        }
+
+        private float categoryLength = 0f; 
+        private void InitBtnPos()
+        {
+            Rect _firstSlot =
+                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.weapon_button).worldBound;
+            Rect _lastSlot =
+                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.valuable_button).worldBound;
+
+            categoryLength = (_lastSlot.x - _firstSlot.x + 50) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
+        }
+
+        public void AddSlotClickEvent(Action<ItemData> _callback)
+        {
+            callback = _callback; 
+        }
+        /// <summary>
+        /// 아이템 이름, 설명 텍스트 띄우기 
+        /// </summary>
+        /// <param name="_itemData"></param>
+        public void SetItemText(ItemData _itemData)
+        {
+            if (_itemData == null)
+            {
+                GetLabel((int)Labels.item_title_label).text = String.Empty; 
+                GetLabel((int)Labels.item_detail_label).text = String.Empty;
+                return; 
+            }
+
+            string _nameStr =TextManager.Instance.GetText(_itemData.nameKey);
+            string _detailStr = TextManager.Instance.GetText(_itemData.explanationKey);
+            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.item_title_label), _nameStr);
+            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.item_detail_label), _detailStr);
+            //GetVisualEleme    nt((int)Elements.select_weapon_image)
+            // 제목 텍스트 설정
+            // 내용 텍스트 설정+
+            // 무기 이미지 설정
+        }
+
         public void ClearUI()
         {
         }
 
         public void AddButtonEvt(InventoryGridSlotsView.RadioButtons _btnType, Action<bool> _callback)
         {
-            switch (_btnType)
+            inventoryGridSlotsPr.AddButtonEvent(_btnType, (x)=> _callback?.Invoke(x));
+            /*switch (_btnType)
             {
                 case InventoryGridSlotsView.RadioButtons.weapon_button:
                     inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
@@ -107,7 +186,7 @@ namespace UI.Inventory
                 case InventoryGridSlotsView.RadioButtons.accessories_button:
                     inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
                     break;
-            }
+            }*/
 
         }
         /// <summary>
@@ -164,16 +243,12 @@ namespace UI.Inventory
         /// <summary>
         /// 장착 슬롯 캐싱 초기화 
         /// </summary>
-        private void InitEquipSlots()
+        private void InitEquipSlots()   
         {
    //         equipInvenPanel = new EquipInventoryPanelUI();
             List<VisualElement> _list = GetVisualElement((int)Elements.quick_slot_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
             for (int i = 0; i < _list.Count(); i++)
             {
-                //           equipInvenPanel.AddEquipSlotView(new SlotItemView(_list[i]));
-                // 버튼 2개에서 
-                // 하나는 자기가 꺼지면 팬러끄고 
-                // 하는ㄴ 자기가 키면 패널 키고 
                 SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
                 if(_list[i].parent.name == "ArrowSlot")
                 {
@@ -183,16 +258,36 @@ namespace UI.Inventory
                 {
                     _slotIPr.SetSlotType(ItemType.Weapon);
                 }
-                //  여기서
 
-                _slotIPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotIPr.ItemData, // 마우스 위에 둘시 설명창 
-                   _slotIPr.WorldPos, _slotIPr.ItemSize));
-                _slotIPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
-
-                inventoryGridSlotsPr.ItemSlotDic[ItemType.Weapon].AddEquipSlotView(_slotIPr);
+                AddEquipSlotEvt(_slotIPr, ItemType.Weapon);
             }
+            List<VisualElement> _armorList = GetVisualElement((int)Elements.armor_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
+            AddEquipSlotsEvt(_armorList, ItemType.Equipment);
+            List<VisualElement> _skillList = GetVisualElement((int)Elements.skill_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
+            AddEquipSlotsEvt(_skillList, ItemType.Skill);
+            List<VisualElement> _accesList = GetVisualElement((int)Elements.accessoire_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
+            AddEquipSlotsEvt(_accesList, ItemType.Accessories);
+            
         }
 
+        private void AddEquipSlotsEvt(List<VisualElement> _list, ItemType _itemType)
+        {
+            for (int i = 0; i < _list.Count(); i++)
+            {
+                SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
+                _slotIPr.SetSlotType(_itemType);
+
+                AddEquipSlotEvt(_slotIPr, _itemType);
+            }
+        }
+        private void AddEquipSlotEvt(SlotItemPresenter _slotPr,ItemType _itemType)
+        {
+            _slotPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
+                _slotPr.WorldPos, _slotPr.ItemSize));
+            _slotPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
+
+            inventoryGridSlotsPr.ItemSlotDic[_itemType].AddEquipSlotView(_slotPr);
+        }
         /// <summary>
         /// 인벤토리 패널 리스트에 넣기 (초기화)
         /// </summary>
@@ -243,6 +338,7 @@ namespace UI.Inventory
                    
                 // SO 데이터도 설정
                 //InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
+                // 전체 UI 업데이트 
                 _closedSlot.SetItemData(dragItemPresenter.ItemData); 
 
             }
@@ -272,6 +368,15 @@ namespace UI.Inventory
             this.slotCallbackDic.Add(ItemType.None, (x1,x2)=> { });
             this.slotCallbackDic.Add(ItemType.Weapon, (x1, x2) => InventoryManager.Instance.SetQuickSlotItem(x1, x2));
             this.slotCallbackDic.Add(ItemType.Consumption, (x1, x2) => InventoryManager.Instance.EquipArrow(x1));
+            this.slotCallbackDic.Add(ItemType.Equipment, (x1, x2) => InventoryManager.Instance.EquipEquipment(x2,x1));
+        }
+
+        /// <summary>
+        /// 장착 UI 업데이트(현재SO 에서 데이터 받고 그에 따라 업데이트하기 ) 
+        /// </summary>
+        private void UpdateEquipUI()
+        {
+            //InventoryManager.Instance.Inventory
         }
     }
 }

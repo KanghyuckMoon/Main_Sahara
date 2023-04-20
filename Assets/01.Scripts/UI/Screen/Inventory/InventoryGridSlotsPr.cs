@@ -23,16 +23,25 @@ namespace UI.Inventory
         // 드래거 관련 데이터 
         private bool isDragger;
         private VisualElement target;
-        private Action<SlotItemPresenter> callback;
+        private Action<SlotItemPresenter> startDragCallback;
 
-        private int col=4, row = 4;
+        // 클릭 관련 데이터 
+        private bool isClicker;
+        private Action<ItemData> clickCallback; 
+        
+        private int col = 4, row = 4;
 
         // 프로퍼티 
         public Dictionary<ItemType, InventoryPanelUI> ItemSlotDic => itemSlotDic;
-        public InventoryPanelUI CurInvenPanel => ItemSlotDic[invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType)];
+
+        public InventoryPanelUI CurInvenPanel =>
+            ItemSlotDic[invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType)];
+
         public int Col => col;
         public int Row => row;
         public ItemDescriptionPresenter DescriptionPr => descriptionPresenter;
+        public InventoryGridSlotsView GridView => inventoryGridSlotsView; 
+        
         public InventoryGridSlotsPr(VisualElement _parent)
         {
             this.inventoryGridSlotsView = new InventoryGridSlotsView();
@@ -59,18 +68,20 @@ namespace UI.Inventory
         {
             inventoryGridSlotsView.AddButtonEvent(_type, _callback);
         }
+
         public void SetData()
         {
 
         }
+
         /// <summary>
         /// 각 패널의 슬롯 아이템 데이터 초기화 
         /// </summary>
         public void ClearSlotDatas()
         {
-            foreach(var _panel in itemSlotDic)
+            foreach (var _panel in itemSlotDic)
             {
-                _panel.Value.ClearDatas(); 
+                _panel.Value.ClearDatas();
             }
         }
 
@@ -79,16 +90,17 @@ namespace UI.Inventory
         /// </summary>
         private void InitActivePanel()
         {
-            foreach(var _slot in ItemSlotDic)
+            foreach (var _slot in ItemSlotDic)
             {
-                if(InventoryGridSlotsView.InvenPanelElements.weapon_panel == invenItemUISO.GetItemUIType(_slot.Key))
+                if (InventoryGridSlotsView.InvenPanelElements.weapon_panel == invenItemUISO.GetItemUIType(_slot.Key))
                 {
                     _slot.Value.Parent.style.display = DisplayStyle.Flex;
                     continue;
                 }
-                 _slot.Value.Parent.style.display = DisplayStyle.None;
+
+                _slot.Value.Parent.style.display = DisplayStyle.None;
             }
-         
+
         }
 
         /// <summary>
@@ -100,14 +112,16 @@ namespace UI.Inventory
             foreach (var _v in Enum.GetValues(typeof(InventoryGridSlotsView.InvenPanelElements)))
             {
                 InventoryGridSlotsView.InvenPanelElements _panelType = (InventoryGridSlotsView.InvenPanelElements)_v;
-                
-                itemSlotDic.Add(invenItemUISO.GetItemType(_panelType), new InventoryPanelUI(inventoryGridSlotsView.GetPanel(_panelType)));
+
+                itemSlotDic.Add(invenItemUISO.GetItemType(_panelType),
+                    new InventoryPanelUI(inventoryGridSlotsView.GetPanel(_panelType)));
                 for (int j = 0; j < row; j++)
                 {
                     CreateRow((InventoryGridSlotsView.InvenPanelElements)_v);
                 }
             }
-            InitActivePanel(); 
+
+            InitActivePanel();
         }
 
         /// <summary>
@@ -123,11 +137,13 @@ namespace UI.Inventory
                 SlotItemPresenter _slotPr = new SlotItemPresenter();
 
                 // 슬롯 이벤트 등록 
-                if(isDragger == true)
-                    _slotPr.AddDragger(target, () => callback?.Invoke(_slotPr)); // 드래거 이벤트 
-
+                if (isDragger == true)
+                        _slotPr.AddDragger(target, () => startDragCallback?.Invoke(_slotPr)); // 드래거 이벤트 
+                if(isClicker == true)
+                    _slotPr.AddClickEvent(() => clickCallback?.Invoke(_slotPr.ItemData));
+                 
                 _slotPr.AddHoverEvent(() => descriptionPresenter.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
-                   _slotPr.WorldPos, _slotPr.ItemSize));
+                    _slotPr.WorldPos, _slotPr.ItemSize));
                 _slotPr.AddOutEvent(() => descriptionPresenter.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
 
                 itemSlotDic[_iType].AddSlotView(_slotPr); // 패널에 슬롯 뷰 추가 
@@ -144,10 +160,16 @@ namespace UI.Inventory
         public void AddDragger(VisualElement _target, Action<SlotItemPresenter> _callback)
         {
             this.target = _target;
-            this.callback = _callback;
+            this.startDragCallback = _callback;
             this.isDragger = true;
         }
 
-    }
+        public void AddClickEvent(Action<ItemData> _callback)
+        {
+            this.isClicker = true;
+            this.clickCallback = _callback; 
+        }
+
+}
 }
 
