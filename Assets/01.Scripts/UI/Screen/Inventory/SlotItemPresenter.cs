@@ -24,7 +24,7 @@ namespace UI.Inventory
         // 프로퍼티 
         public ItemType SlotType => slotType; 
         public int Index => index;
-        public SlotItemView SlotItemView => slotItemView;
+        public SlotItemView SlotItemView => slotItemView;   
         public VisualElement Parent
         {
             get

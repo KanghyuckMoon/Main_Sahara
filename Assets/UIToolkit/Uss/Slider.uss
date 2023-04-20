@@ -1,3 +1,16 @@
+#back_bar.mp_bar #unity-progress-bar {
+    display: flex;
+    background-color: rgb(86, 125, 152);
+    justify-content: space-around;
+    visibility: visible;
+    height: 100%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    min-height: 0;
+}
+
 .unity-progress-bar .unity-progress-bar__progress {
     display: flex;
     background-color: rgb(135, 135, 135);
@@ -51,14 +64,15 @@
 
 #front_bar.hp_bar.unity-progress-bar .unity-progress-bar__progress {
     display: flex;
-    background-color: rgb(242, 47, 46);
+    background-color: rgba(173, 93, 71, 0);
     visibility: visible;
     height: 100%;
-    background-image: none;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-image: url('project://database/Assets/14.Texture/UI/HUD/Now/HP_Border_bar_Led.png?fileID=-2546508&guid=93c4893bf02d6eb45aa7ac55f5493e39&type=3#HP_Border_bar_Led_0');
+    -unity-background-scale-mode: stretch-to-fill;
 }
 
 .skill_image {
@@ -70,14 +84,16 @@
 
 #back_bar.hp_bar.unity-progress-bar .unity-progress-bar__progress {
     display: flex;
-    background-color: rgb(125, 110, 112);
+    background-color: rgba(63, 32, 32, 0);
     justify-content: space-around;
     visibility: visible;
     height: 100%;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-image: url('project://database/Assets/14.Texture/UI/HUD/Now/HP_Border_bar_Led.png?fileID=-2546508&guid=93c4893bf02d6eb45aa7ac55f5493e39&type=3#HP_Border_bar_Led_0');
+    -unity-background-image-tint-color: rgb(111, 111, 111);
 }
 
 .mp_bar {
@@ -85,26 +101,32 @@
 
 #front_bar.mp_bar.unity-progress-bar .unity-progress-bar__progress {
     display: flex;
-    background-color: rgb(46, 162, 242);
+    background-color: rgba(73, 107, 130, 0);
     justify-content: space-around;
     visibility: visible;
     height: 100%;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    min-height: 0;
+    background-image: url('project://database/Assets/14.Texture/UI/HUD/Now/HP_Border_bar_blue.png?fileID=-1618829072&guid=5325300858d3aa244ade1824f7929aeb&type=3#HP_Border_bar_blue_0');
+    -unity-background-scale-mode: stretch-to-fill;
 }
 
 #back_bar.mp_bar.unity-progress-bar .unity-progress-bar__progress {
     display: flex;
-    background-color: rgb(75, 75, 87);
+    background-color: rgba(43, 50, 58, 0);
     justify-content: space-around;
     visibility: visible;
     height: 100%;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    min-height: 0;
+    background-image: url('project://database/Assets/14.Texture/UI/HUD/Now/HP_Border_bar_blue.png?fileID=-1618829072&guid=5325300858d3aa244ade1824f7929aeb&type=3#HP_Border_bar_blue_0');
+    -unity-background-image-tint-color: rgb(123, 123, 123);
 }
 
 .slider_frame {
@@ -131,4 +153,62 @@
     padding-bottom: 2%;
     padding-left: 3%;
     padding-right: 3%;
+}
+
+#front_bar.mp_bar #unity-progress-bar {
+    display: flex;
+    background-color: rgba(86, 125, 152, 0);
+    justify-content: space-around;
+    visibility: visible;
+    height: 100%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    min-height: 0;
+}
+
+#back_bar.mp_bar #unity-progress-bar {
+    display: flex;
+    background-color: rgba(86, 125, 152, 0);
+    justify-content: space-around;
+    visibility: visible;
+    height: 100%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    min-height: 0;
+}
+
+#front_bar.hp_bar #unity-progress-bar {
+    display: flex;
+    visibility: visible;
+    min-height: 0;
+    max-height: 300px;
+}
+
+#back_bar.hp_bar #unity-progress-bar {
+    min-height: 0;
+    max-height: 300px;
+}
+
+.bar_border {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    background-image: url('project://database/Assets/14.Texture/UI/HUD/Now/HP_Border_bar.png?fileID=2800000&guid=004b4e12d625f1440bfc1787bdeec08b&type=3#HP_Border_bar');
+    display: flex;
+    bottom: 200%;
+    min-height: 100%;
+}
+
+.bar_background {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    background-image: url('project://database/Assets/14.Texture/UI/HUD/Now/HP-Color_bar.png?fileID=-658986514&guid=4de62e01e8f00ee4d996d5d1059dba57&type=3#HP-Color_bar_0');
+    display: flex;
+    bottom: 0;
+    min-height: 100%;
 }

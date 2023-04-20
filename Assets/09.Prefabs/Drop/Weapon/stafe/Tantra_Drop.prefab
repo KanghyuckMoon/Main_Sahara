@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1291806449593129174}
-  - component: {fileID: 2000008078035014173}
   - component: {fileID: 7349724470747142966}
   m_Layer: 13
   m_Name: Interaction
@@ -33,23 +32,6 @@ Transform:
   m_Father: {fileID: 4106577195129142324}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &2000008078035014173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253161391721703653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 598f2bd8c73a1e942afb338c85495731, type: 2}
-  rigid: {fileID: 142296517751344165}
-  itemAddress: St_04_Tantra
-  targetObj: {fileID: 3726357739968145038}
-  isJumping: 1
 --- !u!136 &7349724470747142966
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -73,10 +55,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4106577195129142324}
-  - component: {fileID: 1104126994404832145}
-  - component: {fileID: 2933623394307639131}
   - component: {fileID: 142296517751344165}
   - component: {fileID: 8298442317529537241}
+  - component: {fileID: 8145912074810335952}
   m_Layer: 14
   m_Name: Tantra_Drop
   m_TagString: Untagged
@@ -97,60 +78,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1291806449593129174}
+  - {fileID: 5600842600153710402}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &1104126994404832145
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3726357739968145038}
-  m_Mesh: {fileID: -6527112190105385453, guid: 1b0203e46a5d53f46b34f22798cb19a3, type: 3}
---- !u!23 &2933623394307639131
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3726357739968145038}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 5646986e83bbc784281dbb8b23fbc2dd, type: 2}
-  - {fileID: 2100000, guid: e5ef16966ba2c274b972f56f7f722a13, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &142296517751344165
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -180,3 +111,83 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.37893492, y: 0.3430148, z: 3.5700312}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8145912074810335952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726357739968145038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: cc3dec84be3649d469f03a63c053dc49, type: 2}
+  count: 1
+  rigid: {fileID: 142296517751344165}
+  itemAddress: St_04_Tantra
+  targetObj: {fileID: 3726357739968145038}
+  isJumping: 1
+--- !u!1001 &6636658414636615069
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4106577195129142324}
+    m_Modifications:
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043602120159704537, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+      propertyPath: m_Name
+      value: Tantra
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+--- !u!4 &5600842600153710402 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1270038193203100383, guid: bcd011527d1713340a75e50c8177fcb3, type: 3}
+  m_PrefabInstance: {fileID: 6636658414636615069}
+  m_PrefabAsset: {fileID: 0}

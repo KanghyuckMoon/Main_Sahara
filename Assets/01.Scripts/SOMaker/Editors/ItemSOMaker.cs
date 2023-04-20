@@ -13,7 +13,6 @@ using Module;
 public class ItemSOMaker : MonoBehaviour
 {
     public AllItemDataSO allItemDataSO;
-    public AllItemDataSO allDropItemDataSO;
     public AllItemUpgradeDataSO allItemUpgradeDataSO;
     public AllDropItemListSO allDropItemListSO;
 
@@ -28,10 +27,6 @@ public class ItemSOMaker : MonoBehaviour
         UnityWebRequest wwwItemSO = UnityWebRequest.Get(URL.ITEMSO);
         yield return wwwItemSO.SendWebRequest();
         SetSOItem(wwwItemSO.downloadHandler.text);
-
-        UnityWebRequest wwwDropItemSO = UnityWebRequest.Get(URL.DROPITEMSO);
-        yield return wwwDropItemSO.SendWebRequest();
-        SetSODropItem(wwwDropItemSO.downloadHandler.text);
 
         UnityWebRequest wwwUpgradeItemSO = UnityWebRequest.Get(URL.UPGRADEITEMSO);
         yield return wwwUpgradeItemSO.SendWebRequest();
@@ -67,6 +62,8 @@ public class ItemSOMaker : MonoBehaviour
             string _accessoriesItemType = column[13];
             string _equipmentType = column[14];
             string _isSlot = column[15];
+            string _iconKey = column[16];
+            string _modelKey = column[17];
 
             ItemDataSO _asset = null;
             _asset = allItemDataSO.itemDataSOList.Find(x => x.key == _key);
@@ -100,6 +97,8 @@ public class ItemSOMaker : MonoBehaviour
             _asset.accessoriesItemType = (AccessoriesItemType)Enum.Parse(typeof(AccessoriesItemType), _accessoriesItemType);
             _asset.equipmentType = (EquipmentType)Enum.Parse(typeof(EquipmentType), _equipmentType);
             _asset.isSlot = Convert.ToBoolean(_isSlot);
+            _asset.iconKey = _iconKey;
+            _asset.modelkey = _modelKey;
 
             allItemDataSO.ItemDataGenerate();
 
@@ -107,49 +106,6 @@ public class ItemSOMaker : MonoBehaviour
 
             EditorUtility.FocusProjectWindow();
             
-            UnityEditor.EditorUtility.SetDirty(_asset);
-
-            Selection.activeObject = _asset;
-        }
-    }
-
-    private void SetSODropItem(string tsv)
-    {
-        string[] row = tsv.Split('\n');
-        int rowSize = row.Length;
-
-        for (int i = 1; i < rowSize; i++)
-        {
-            string[] column = row[i].Split('\t');
-
-            string _key = column[0];
-            string _count = column[1];
-
-            ItemDataSO _asset = null;
-            _asset = allDropItemDataSO.itemDataSOList.Find(x => x.key == _key);
-            //�̹� �ִ���
-            if (_asset == null)
-            {
-                _asset = ScriptableObject.CreateInstance<ItemDataSO>();
-
-                AssetDatabase.CreateAsset(_asset, $"Assets/02.ScriptableObject/DropItemSO/{_key}_DROPSO.asset");
-                AssetDatabase.SaveAssets();
-
-                EditorUtility.FocusProjectWindow();
-
-                Selection.activeObject = _asset;
-
-                allDropItemDataSO.itemDataSOList.Add(_asset);
-            }
-            _asset.Copy(allItemDataSO.itemDataSOList.Find(x => x.key == _key));
-            _asset.key = _key;
-            _asset.count = int.Parse(_count);
-
-            allDropItemDataSO.ItemDataGenerate();
-
-            AssetDatabase.SaveAssets();
-
-            EditorUtility.FocusProjectWindow();
             UnityEditor.EditorUtility.SetDirty(_asset);
 
             Selection.activeObject = _asset;

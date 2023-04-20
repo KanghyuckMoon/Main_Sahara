@@ -35,7 +35,7 @@ namespace Detect
                 gameObject.SetActive(false);
                 isGetOut = true;
                 targetModel.gameObject.layer = originMask;
-                getoutEvent?.Invoke();
+                getoutEventAfter?.Invoke();
             });
         }
         

@@ -9,7 +9,7 @@ namespace UI.Upgrade
     [CreateAssetMenu(menuName = "SO/UI/FinalItemDataListSO")]
     public class FinalItemDataListSO : ScriptableObject
     {
-        [Header("´ëÀåÀåÀÌUI¿¡ Ç¥½ÃµÉ ÃÖÁ¾ ¾ÆÀÌÅÛ ¸®½ºÆ®")]
+        [Header("ëŒ€ì¥ì¥ì´UIì— í‘œì‹œë  ìµœì¢… ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸")]
         public List<ItemDataSO> itemList = new List<ItemDataSO>(); 
     }
 }

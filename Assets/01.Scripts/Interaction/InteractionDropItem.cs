@@ -48,6 +48,8 @@ namespace Interaction
 		[SerializeField]
 		private ItemDataSO itemDataSO = null;
 
+		[SerializeField] private int count;
+
 		[SerializeField]
 		private Rigidbody rigid = null;
 
@@ -61,7 +63,6 @@ namespace Interaction
 		private bool isJumping = false;
 
 		private bool isEnabled = false;
-		private DropItem dropItem = new DropItem();
 
         [ContextMenu("GetRigid")]
         public void GetRigid()
@@ -99,7 +100,7 @@ namespace Interaction
 		public void Interaction()
 		{
 			isEnabled = false;
-			dropItem.GetItem(itemDataSO);
+			InventoryManager.Instance.AddItem(itemDataSO.key, count);
 			ObjectPoolManager.Instance.RegisterObject(itemAddress, targetObj);
 			targetObj.SetActive(false);
 		}

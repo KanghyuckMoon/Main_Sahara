@@ -36,6 +36,16 @@ namespace CutScene
             }
         }
 
+        public void CutSceneStart()
+        {
+            if (Condition())
+            {
+                CutSceneManager.Instance.SetCutScene(cutSceneDataList);
+                CutSceneManager.Instance.PlayCutScene();
+                isPlayCutScene = true;   
+            }
+        }
+
         private bool Condition()
         {
             if (questKey is null || questKey is "")

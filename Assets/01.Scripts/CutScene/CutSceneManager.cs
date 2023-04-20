@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Timeline;
 using Utill.Pattern;
 using UnityEngine.Playables;
@@ -148,7 +149,7 @@ namespace CutScene
 
             if (_cutSceneData.eventObj != null)
             {
-                _cutSceneData.eventObj.GetComponent<IEventObj>()?.PlayEvent();
+                _cutSceneData.eventObj?.Invoke();
             }
         }
         private void SettingParameterCutSceneData(CutSceneData _cutSceneData)
@@ -452,7 +453,7 @@ namespace CutScene
         public QuestState questState;
 
         //Event
-        public GameObject eventObj;
+        public UnityEvent eventObj;
 
         //Condition
         public bool isTalk;
