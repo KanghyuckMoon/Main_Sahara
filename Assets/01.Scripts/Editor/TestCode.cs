@@ -58,4 +58,14 @@ public class TestCode : MonoBehaviour
             AssetDatabase.RenameAsset(path, $"{obj.name}_Model");
         }
     }
+    
+    [MenuItem("TempTool/Name_Icon")]
+    public static void Name_Icon()
+    {
+        foreach (var obj in Selection.objects)
+        {
+            var path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
+            AssetDatabase.RenameAsset(path, $"{obj.name.Replace("_Sprite", "_Icon")}");
+        }
+    }
 }
