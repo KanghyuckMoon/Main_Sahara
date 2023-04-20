@@ -15,7 +15,6 @@ namespace CondinedModule
         private JumpModule jumpModule;
         private StateModule stateModule;
         
-        
         public List<State> currentState;
 
         public void OnEnable()

@@ -31,7 +31,6 @@ namespace PassiveItem
                 {
                     Jumping();
                     
-
                     isLand = false;
                 }
             }

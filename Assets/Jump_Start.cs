@@ -6,25 +6,27 @@ using Module;
 public class Jump_Start : StateMachineBehaviour
 {
     private AbMainModule mainModule;
-    private JumpModule jumpModule;
 
     private bool isJump;
+    private float delay;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
-        jumpModule ??= mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
-
+        delay = 0.1f;
         isJump = false;
     }
 
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(isJump) return;
 
         if (!mainModule.isGround)
         {
+            delay -= Time.deltaTime;
+
+            if (delay >= 0) return;
             animator.SetBool("CanLand", true);
             isJump = true;
         }

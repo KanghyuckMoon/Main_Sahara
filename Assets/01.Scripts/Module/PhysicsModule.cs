@@ -122,10 +122,10 @@ namespace Module
                     var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
                     if(_settingTime is not null)
                     {
-                        _settingTime.SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.7f);
+                        _settingTime.SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.1f);
                     }
                     
-                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.7f);
+                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.1f);
 
                     //_inGameHitBox.GetComponent<HitBoxInAction>().HitBoxAction?.Invoke();
 
@@ -281,12 +281,12 @@ namespace Module
             {
                 FallDamage();
 
-                StateModule.RemoveState(State.JUMP);
+                //StateModule.RemoveState(State.JUMP);
 
                 mainModule.KnockBackVector = Vector3.zero;
                 //StatModule.
                 
-                mainModule.StartCoroutine(LandingDelay());
+                //mainModule.StartCoroutine(LandingDelay());
             }
 
             mainModule.isGround = _isLand && mainModule.IsSlope;

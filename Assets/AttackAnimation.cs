@@ -16,14 +16,13 @@ public class AttackAnimation : StateMachineBehaviour
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+        animator.SetBool("IsCombo", true);
         mainModule.StopOrNot = 0;
 
         mainModule.SetConsecutiveAttack(0);
         mainModule.SetActiveAnimatorRoot(1);
 
         stateModule.AddState(State.ATTACK);
-
-        animator.SetBool("IsCombo", true);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
