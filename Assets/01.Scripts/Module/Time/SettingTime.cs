@@ -24,7 +24,7 @@ namespace Module
                 durationTime -= Time.deltaTime;
             }
 
-            if(durationTime<0 && isRunning)
+            if(durationTime < 0 && isRunning)
             {
                 ResetTime();
             }

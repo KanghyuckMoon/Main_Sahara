@@ -42,7 +42,10 @@ namespace HitBox
                         _settingTime.SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.7f);
                     }
 
-                    _attackFeedBack.InvokeEvent(other.ClosestPoint(transform.position), _inGameHitBox.HitBoxData.hitEffect);
+                    foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
+                    {
+                        _attackFeedBack.InvokeEvent(other.ClosestPoint(transform.position), _s);
+                    }
 
                     if (other.CompareTag("Player_Weapon") || other.CompareTag("PlayerSkill"))
                     {
