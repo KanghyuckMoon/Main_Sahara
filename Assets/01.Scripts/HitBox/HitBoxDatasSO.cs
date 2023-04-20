@@ -166,7 +166,7 @@ namespace HitBox
 		public float attackStunDelay;
 		public bool swingEffectChildization = false;
 		public string swingEffect = "NULL";
-		public string hitEffect = "NULL";
+		public string[] hitEffect;
 		
 		//버프, 디버프
 		public List<BuffData> buffList = new List<BuffData>();

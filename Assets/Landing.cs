@@ -12,6 +12,9 @@ public class Landing : StateMachineBehaviour
     {
         _mainModule ??= animator.GetComponent<AbMainModule>();
         _mainModule.StopOrNot = 0;
+
+        animator.SetBool("CanLand", false);
+        //_mainModule.MoveSpeed = 0;
         //_mainModule.canMove = false;
     }
 

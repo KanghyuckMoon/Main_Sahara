@@ -36,8 +36,10 @@ namespace HitBox
 
                     rigid.AddForce(_dir * _power, ForceMode.Impulse);
                     
-                    _attackFeedBack.InvokeEvent(_closerPoint, _inGameHitBox.HitBoxData.hitEffect);
-
+                    foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
+                    {
+                        _attackFeedBack.InvokeEvent(_closerPoint, _s);
+                    }
                 }
         }
     }   
