@@ -14,11 +14,13 @@ namespace Inventory
 		public string nameKey; //이름 키
 		public string explanationKey; //설명 키
 		public string spriteKey; //스프라이트 키
+		public string spriteInventoryKey; //스프라이트 인벤토리 키
 		public bool stackble;
 		public int stackMax = 64;
 		public ItemType itemType;
 		public ConsumptionType consumptionType; // 소모품 타입
 		public string prefebkey;
+		public string modelkey;
 		public string animationLayer;
 		public string dropItemPrefebKey;
 

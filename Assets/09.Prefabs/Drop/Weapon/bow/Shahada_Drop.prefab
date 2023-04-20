@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1495955741269738556}
-  - component: {fileID: 7653280745518844496}
   - component: {fileID: 802121212263052930}
   m_Layer: 13
   m_Name: Interaction
@@ -33,23 +32,6 @@ Transform:
   m_Father: {fileID: 7533355882353788437}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &7653280745518844496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6378656517981951048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 642186ba98734e748b90dff90c127d6e, type: 2}
-  rigid: {fileID: 8036998232912868031}
-  itemAddress: Bw_03_Shahada
-  targetObj: {fileID: 7561900741655171375}
-  isJumping: 1
 --- !u!136 &802121212263052930
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -73,11 +55,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7533355882353788437}
-  - component: {fileID: 4881471612780126126}
-  - component: {fileID: 9094390372961960308}
   - component: {fileID: 1414568365}
   - component: {fileID: 8036998232912868031}
-  - component: {fileID: -5170976798528198419}
+  - component: {fileID: 1093022414996500691}
   m_Layer: 14
   m_Name: Shahada_Drop
   m_TagString: Untagged
@@ -98,59 +78,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1495955741269738556}
+  - {fileID: 1455215003}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &4881471612780126126
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7561900741655171375}
-  m_Mesh: {fileID: 9186633843763367028, guid: 046cff34ea84e0d4f93d89063eb4d463, type: 3}
---- !u!23 &9094390372961960308
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7561900741655171375}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: e42ec961ccc15ca4aac7b7921c38327d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1414568365
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -180,16 +111,83 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &-5170976798528198419
-BoxCollider:
+--- !u!114 &1093022414996500691
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7561900741655171375}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: 6fa878031c9723d42a4f7fef22e87717, type: 2}
+  count: 1
+  rigid: {fileID: 8036998232912868031}
+  itemAddress: Bw_03_Shahada
+  targetObj: {fileID: 7561900741655171375}
+  isJumping: 1
+--- !u!1001 &7165741050506609931
+PrefabInstance:
+  m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Size: {x: 5.6865544, y: 0.7069673, z: 1.952712}
-  m_Center: {x: 0, y: 0.00000008940699, z: 0}
+  m_Modification:
+    m_TransformParent: {fileID: 7533355882353788437}
+    m_Modifications:
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165741051873678483, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+      propertyPath: m_Name
+      value: Shahada
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+--- !u!4 &1455215003 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7165741051873678480, guid: 9f3e0808564b7fb4f94bcd3b749adfd2, type: 3}
+  m_PrefabInstance: {fileID: 7165741050506609931}
+  m_PrefabAsset: {fileID: 0}
