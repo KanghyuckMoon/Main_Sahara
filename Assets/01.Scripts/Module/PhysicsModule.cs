@@ -134,7 +134,11 @@ namespace Module
                         mainModule.StopCoroutine(knockBackCoroutine);
                     }
                     knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
-                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
+                    
+                    foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
+                    {
+                        _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _s);
+                    }
 
                     SetDeBuff(_inGameHitBox.HitBoxData.buffList);
                     
