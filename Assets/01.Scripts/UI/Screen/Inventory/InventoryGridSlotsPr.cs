@@ -23,7 +23,7 @@ namespace UI.Inventory
         // 드래거 관련 데이터 
         private bool isDragger;
         private VisualElement target;
-        private Action<SlotItemPresenter> dragCallback;
+        private Action<SlotItemPresenter> startDragCallback;
 
         // 클릭 관련 데이터 
         private bool isClicker;
@@ -138,7 +138,7 @@ namespace UI.Inventory
 
                 // 슬롯 이벤트 등록 
                 if (isDragger == true)
-                        _slotPr.AddDragger(target, () => dragCallback?.Invoke(_slotPr)); // 드래거 이벤트 
+                        _slotPr.AddDragger(target, () => startDragCallback?.Invoke(_slotPr)); // 드래거 이벤트 
                 if(isClicker == true)
                     _slotPr.AddClickEvent(() => clickCallback?.Invoke(_slotPr.ItemData));
                  
@@ -160,7 +160,7 @@ namespace UI.Inventory
         public void AddDragger(VisualElement _target, Action<SlotItemPresenter> _callback)
         {
             this.target = _target;
-            this.dragCallback = _callback;
+            this.startDragCallback = _callback;
             this.isDragger = true;
         }
 

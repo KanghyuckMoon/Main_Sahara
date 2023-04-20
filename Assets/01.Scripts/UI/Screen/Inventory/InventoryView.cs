@@ -58,6 +58,8 @@ namespace UI.Inventory
 
         private InventoryGridSlotsPr inventoryGridSlotsPr;
         private Dictionary<ItemType, Action<ItemData, int>> slotCallbackDic = new Dictionary<ItemType, Action<ItemData, int>>();
+        private Action<ItemData> callback = null; 
+        
         // 프로퍼티
         public InventoryGridSlotsPr GridPr => inventoryGridSlotsPr; 
         private VisualElement DragItem => GetVisualElement((int)Elements.drag_item);
@@ -80,8 +82,14 @@ namespace UI.Inventory
 
             // 인벤토리 슬롯들 뷰 생성 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(GetVisualElement((int)Elements.contents));
-            inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item, ClickItem);
-            inventoryGridSlotsPr.AddClickEvent(SetItemText);
+            inventoryGridSlotsPr.AddDragger(dragItemPresenter.Item, 
+            (x) =>
+            {
+                ClickItem(x);
+                SetItemText(x.ItemData);
+                callback?.Invoke(x.ItemData);
+            });
+            //inventoryGridSlotsPr.AddClickEvent(SetItemText);
             // 슬롯 생성 
             inventoryGridSlotsPr.Init();
 
@@ -126,12 +134,7 @@ namespace UI.Inventory
 
         public void AddSlotClickEvent(Action<ItemData> _callback)
         {
-            inventoryGridSlotsPr.AddClickEvent((x) =>
-            {
-                _callback?.Invoke(x);
-                SetItemText(x);
-            });
-
+            callback = _callback; 
         }
         /// <summary>
         /// 아이템 이름, 설명 텍스트 띄우기 

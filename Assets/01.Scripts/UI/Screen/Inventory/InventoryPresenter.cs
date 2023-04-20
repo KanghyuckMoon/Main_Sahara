@@ -30,16 +30,18 @@ namespace UI.Inventory
         private void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>(); 
+            inventoryCam = GameObject.FindWithTag("InventoryCam").GetComponent<Camera>(); 
 
             inventoryView.InitUIDocument(uiDocument);
             accentItemCompo = new AccentItemCompo(); 
-            accentItemCompo.Init();             
+            accentItemCompo.Init(inventoryCam.transform);             
+            inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
         }
         private void OnEnable()
         {
             inventoryView.Cashing();
             inventoryView.Init();
-            inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
+            //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
 
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.weapon_button,InventoryView.Elements.quick_slot_panel, x));

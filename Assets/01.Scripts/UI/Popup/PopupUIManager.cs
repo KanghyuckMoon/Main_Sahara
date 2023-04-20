@@ -63,8 +63,8 @@ namespace UI.Popup
         {
             if (isInit == false)    
             {
-                Init();
                 isInit = true; 
+                Init();
             }
             T _popupGetItemPr = new T();
 
@@ -111,7 +111,11 @@ namespace UI.Popup
         private void Init()
         {
             GameObject _parent = GameObject.FindWithTag("UIParent");
-            if (_parent == null) return; 
+            if (_parent == null)
+            {
+                isInit = false;
+                return;
+            } 
             popupParent = _parent.transform.Find("PopupScreens");
             SetPresenters();
 

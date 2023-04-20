@@ -80,6 +80,28 @@ namespace UI
             get => isUIInput;
             set => isUIInput = value;
         }
+
+        private Player player; 
+        private Player Player
+        {
+            get
+            {
+                if (player is null)
+                {
+                    this.player = UIManager.Instance.Player.GetComponent<Player>();
+                    if (player is not null)
+                    {
+                        return player; 
+                    }
+
+                    return null;
+                }
+
+                return player; 
+
+            }
+        }
+        
         private void Awake()
         {
             InitScreenPresenters();
@@ -229,8 +251,9 @@ namespace UI
             inputDic.Add(new UIInputData(Get(Keys.InventoryUI), true), () =>
             {
                 // 인벤토리 활성화 
-                bool _isActive = inventoryPresenter.ActiveView();
+                bool _isActive = inventoryPresenter.ActiveView();   
                 UIManager.Instance.ActiveHud(!_isActive);
+                mapPresenter.Active(! _isActive);
                 LineCreateManager.Instance.ActvieParent(ScreenType.Inventory, _isActive);
 
                 SetUIAndCursor(_isActive, Get(Keys.InventoryUI)); 
@@ -284,6 +307,10 @@ namespace UI
         private void SetUIAndCursor(bool _isActive, string _keyCode)
         {
             UIManager.Instance.ActiveCursor(_isActive);
+            if (Player is not null)
+            {
+                Player.SetInput(_isActive);
+            }
             // UIManager.Instance.
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
