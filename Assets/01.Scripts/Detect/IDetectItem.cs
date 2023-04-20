@@ -18,6 +18,7 @@ namespace Detect
         FishigOnly = 1 << 5,
         NetOnly = 1 << 6,
         MagicOnly = 1 << 7,
+        Slide = 1 << 8,
         All = ~0,
     }
     

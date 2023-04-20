@@ -89,7 +89,29 @@ namespace Module
         public override void OnDisable()
         {
             base.OnDisable();
+            
+            foreach(ItemPassive _itemPassive in passiveItem.Values)
+            {
+                _itemPassive?.Disable();
+            }
+            passiveItem.Clear();
             ClassPoolManager.Instance.RegisterObject<ItemModule>("ItemModule", this);
+        }
+        
+        protected T GetItemWithPool<T>(string _itemAddress, params string[] _parameters) where T : ItemPassive, new()
+        {
+            T _module = ClassPoolManager.Instance.GetClass<T>(_itemAddress);
+            if (_module is null)
+            {
+                _module = new T();
+            }
+
+            if (typeof(T) is ItemPassive_Module)
+            {
+                (_module as ItemPassive_Module).Init(mainModule);
+            }
+
+            return _module;
         }
     }
 }
