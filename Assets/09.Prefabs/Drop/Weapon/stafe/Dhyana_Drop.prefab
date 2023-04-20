@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9059282784750900682}
-  - component: {fileID: 5338685462887045743}
-  - component: {fileID: 7922435846676704933}
   - component: {fileID: -2572155791386105585}
   - component: {fileID: 6162890606934467429}
+  - component: {fileID: 7415991792344171402}
   m_Layer: 14
   m_Name: Dhyana_Drop
   m_TagString: Untagged
@@ -33,60 +32,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6362202900665984488}
+  - {fileID: 6602059506562437754}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &5338685462887045743
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571151760663760752}
-  m_Mesh: {fileID: -6558347715830034149, guid: 8efb5bbf406c4634894d5a1f190ac477, type: 3}
---- !u!23 &7922435846676704933
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571151760663760752}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ba4281dd2e42594409141b39c676b7d3, type: 2}
-  - {fileID: 2100000, guid: e5ef16966ba2c274b972f56f7f722a13, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &-2572155791386105585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116,6 +65,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3335463, y: 0.16442178, z: 3.3923953}
   m_Center: {x: 0, y: 0.00000039115557, z: 0}
+--- !u!114 &7415991792344171402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8571151760663760752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: bf56158c84b088a47a7d48f421604068, type: 2}
+  count: 1
+  rigid: {fileID: -2572155791386105585}
+  itemAddress: St_03_Dhyana
+  targetObj: {fileID: 8571151760663760752}
+  isJumping: 1
 --- !u!1 &8697446002493702917
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6362202900665984488}
-  - component: {fileID: 1132913123820986338}
   - component: {fileID: 5935486836423238354}
   m_Layer: 13
   m_Name: Interaction
@@ -149,23 +115,6 @@ Transform:
   m_Father: {fileID: 9059282784750900682}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1132913123820986338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8697446002493702917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 5e70d359d2b0d4e45aaa71ae32771dde, type: 2}
-  rigid: {fileID: -2572155791386105585}
-  itemAddress: St_03_Dhyana
-  targetObj: {fileID: 8571151760663760752}
-  isJumping: 1
 --- !u!136 &5935486836423238354
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -180,3 +129,65 @@ CapsuleCollider:
   m_Height: 5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &8245277517004394302
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 9059282784750900682}
+    m_Modifications:
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546393315485483220, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+      propertyPath: m_Name
+      value: Dhyana
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+--- !u!4 &6602059506562437754 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3022520163924368708, guid: ade031b8ce80faf469dcf05fe73c1f63, type: 3}
+  m_PrefabInstance: {fileID: 8245277517004394302}
+  m_PrefabAsset: {fileID: 0}

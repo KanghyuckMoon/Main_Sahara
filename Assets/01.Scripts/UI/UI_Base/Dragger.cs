@@ -27,7 +27,6 @@ namespace UI.Base
         protected override void RegisterCallbacksOnTarget()
         {
             target.RegisterCallback<MouseDownEvent>(OnMouseDown);
-
         }
 
         protected override void UnregisterCallbacksFromTarget()

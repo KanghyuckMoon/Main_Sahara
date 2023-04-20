@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8180383867761778170}
-  - component: {fileID: 85150697019644495}
   - component: {fileID: 6739274307112601857}
   m_Layer: 13
   m_Name: Interaction
@@ -33,23 +32,6 @@ Transform:
   m_Father: {fileID: 4009571806342801764}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &85150697019644495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138397703178521315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 39de47727ae24804aa2e558c3c9c794b, type: 2}
-  rigid: {fileID: 7058656343132584937}
-  itemAddress: Sw_02_SteelSword
-  targetObj: {fileID: 4390742442086478814}
-  isJumping: 1
 --- !u!136 &6739274307112601857
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -73,10 +55,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4009571806342801764}
-  - component: {fileID: 3104768313845441}
-  - component: {fileID: 2877783174730224139}
   - component: {fileID: 7058656343132584937}
   - component: {fileID: -8071514982983948806}
+  - component: {fileID: 8160833684075584196}
   m_Layer: 14
   m_Name: SteelSword_Drop
   m_TagString: Untagged
@@ -97,59 +78,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8180383867761778170}
+  - {fileID: 7276999269864788038}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &3104768313845441
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4390742442086478814}
-  m_Mesh: {fileID: -1599264963178282080, guid: e293d06ca4deebb43b4f706f0869e0b5, type: 3}
---- !u!23 &2877783174730224139
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4390742442086478814}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 4752c6326f1d7c24b9f33ce50c99e38e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &7058656343132584937
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,3 +111,83 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.32335392, y: 0.22645223, z: 7.198729}
   m_Center: {x: 0.0000003874302, y: 0.00000092014693, z: 2.314582}
+--- !u!114 &8160833684075584196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390742442086478814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: 2b4ebc0f2822db84d92e0226ca420e28, type: 2}
+  count: 1
+  rigid: {fileID: 7058656343132584937}
+  itemAddress: Sw_02_SteelSword
+  targetObj: {fileID: 4390742442086478814}
+  isJumping: 1
+--- !u!1001 &1624274786279944893
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4009571806342801764}
+    m_Modifications:
+    - target: {fileID: 3240649118761226124, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_Name
+      value: SteelSword
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+--- !u!4 &7276999269864788038 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8248216308769334011, guid: f09a0eab67e09c14e929f9f4052a85f0, type: 3}
+  m_PrefabInstance: {fileID: 1624274786279944893}
+  m_PrefabAsset: {fileID: 0}

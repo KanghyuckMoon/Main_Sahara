@@ -9,6 +9,7 @@ using GameManager;
 using Pool;
 using UI.Base;
 using TimeManager;
+using UI.EventManage;
 
 namespace Inventory
 {
@@ -194,6 +195,7 @@ namespace Inventory
 		{
 			var value = GetQuickSlotItemKey();
 			PlayerWeaponModule?.ChangeWeapon(value.Item1, value.Item2);
+			EventManager.Instance.TriggerEvent(EventsType.UpdateQuickSlot);
 		}
 
 		public List<ItemData> GetWeaponAndConsumptionList()

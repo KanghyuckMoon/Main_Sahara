@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1236462844}
-  - component: {fileID: 1236462846}
   - component: {fileID: 1236462845}
   m_Layer: 13
   m_Name: Interaction
@@ -33,23 +32,6 @@ Transform:
   m_Father: {fileID: 7077451141006451243}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1236462846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1236462843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: c1bc2822e8cc1fd4b8e303c940dcd4a5, type: 2}
-  rigid: {fileID: -6527717729226208488}
-  itemAddress: Sw_05_Helena
-  targetObj: {fileID: 7598690757728221329}
-  isJumping: 1
 --- !u!136 &1236462845
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -73,10 +55,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7077451141006451243}
-  - component: {fileID: 6167666245644610958}
-  - component: {fileID: 8246940342973143364}
   - component: {fileID: -6527717729226208488}
   - component: {fileID: -794968627560183511}
+  - component: {fileID: 8821542649217867440}
   m_Layer: 14
   m_Name: Helena_Drop
   m_TagString: Untagged
@@ -97,59 +78,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1236462844}
+  - {fileID: 5188574447045531620}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &6167666245644610958
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7598690757728221329}
-  m_Mesh: {fileID: 4154864533425439726, guid: 7b670b9472b31754eb578f5aea2eb2fd, type: 3}
---- !u!23 &8246940342973143364
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7598690757728221329}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: dadac32daf002a848a23eeb8d5d1c40a, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &-6527717729226208488
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,3 +111,83 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.68058634, y: 0.38718417, z: 6.5352616}
   m_Center: {x: 0, y: -0.000000856817, z: 2.0915766}
+--- !u!114 &8821542649217867440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598690757728221329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: ac9de0fbb1fd686458158507e8708a53, type: 2}
+  count: 1
+  rigid: {fileID: -6527717729226208488}
+  itemAddress: Sw_05_Helena
+  targetObj: {fileID: 7598690757728221329}
+  isJumping: 1
+--- !u!1001 &8381557114036184118
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7077451141006451243}
+    m_Modifications:
+    - target: {fileID: 2194420629483711494, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_Name
+      value: Helena
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+--- !u!4 &5188574447045531620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4346186058893308882, guid: e788d2f7d8325e546a4175f73d0307ba, type: 3}
+  m_PrefabInstance: {fileID: 8381557114036184118}
+  m_PrefabAsset: {fileID: 0}

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 930303020013445065}
-  - component: {fileID: 6495758697847972065}
   - component: {fileID: 7422382429084558272}
   m_Layer: 13
   m_Name: Interaction
@@ -33,23 +32,6 @@ Transform:
   m_Father: {fileID: 4121256106896114548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &6495758697847972065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073611853549710447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 06428607e3e91db43b428ce6587e6e6f, type: 2}
-  rigid: {fileID: -9096822842085189318}
-  itemAddress: St_05_Nervana
-  targetObj: {fileID: 3637347418380671438}
-  isJumping: 1
 --- !u!136 &7422382429084558272
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -73,10 +55,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4121256106896114548}
-  - component: {fileID: 1053419057769663697}
-  - component: {fileID: 2988851131237283867}
   - component: {fileID: -9096822842085189318}
   - component: {fileID: 3572890463592460586}
+  - component: {fileID: 201463139407402237}
   m_Layer: 14
   m_Name: Nervana_Drop
   m_TagString: Untagged
@@ -97,59 +78,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 930303020013445065}
+  - {fileID: 2951131097357761473}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
---- !u!33 &1053419057769663697
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3637347418380671438}
-  m_Mesh: {fileID: -2740240785116990932, guid: 2fbef4879907c484483be884e51dd487, type: 3}
---- !u!23 &2988851131237283867
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3637347418380671438}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 3fe8f955170a39e42a7fe26a732e058a, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &-9096822842085189318
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,3 +111,83 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6897103, y: 0.6124985, z: 3.5389876}
   m_Center: {x: -0.004626437, y: 0.022276668, z: -1.4970042}
+--- !u!114 &201463139407402237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3637347418380671438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: 2b3784b2f5c62ee44990dc05ccea873e, type: 2}
+  count: 1
+  rigid: {fileID: -9096822842085189318}
+  itemAddress: St_05_Nervana
+  targetObj: {fileID: 3637347418380671438}
+  isJumping: 1
+--- !u!1001 &3818255579045339309
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4121256106896114548}
+    m_Modifications:
+    - target: {fileID: 1723113095255372957, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_Name
+      value: Nervana
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+--- !u!4 &2951131097357761473 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2020336265051282284, guid: 9ae65f9962b42304aa6eed1d9546d7d5, type: 3}
+  m_PrefabInstance: {fileID: 3818255579045339309}
+  m_PrefabAsset: {fileID: 0}

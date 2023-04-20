@@ -63,8 +63,8 @@ namespace UI.Popup
         {
             if (isInit == false)    
             {
-                Init();
                 isInit = true; 
+                Init();
             }
             T _popupGetItemPr = new T();
 
@@ -74,6 +74,7 @@ namespace UI.Popup
             }
             catch (Exception e)
             {
+                SetPresenters();
                 Debug.LogError("Sequence contains no matching element : " + e.Message);
             }
              if (_time > 0f)
@@ -111,7 +112,11 @@ namespace UI.Popup
         private void Init()
         {
             GameObject _parent = GameObject.FindWithTag("UIParent");
-            if (_parent == null) return; 
+            if (_parent == null)
+            {
+                isInit = false;
+                return;
+            } 
             popupParent = _parent.transform.Find("PopupScreens");
             SetPresenters();
 
@@ -120,9 +125,9 @@ namespace UI.Popup
         private void SetPresenters()
         {
             popupPrList.Clear();
-            popupHudPr = popupParent.GetComponentInChildren<PopupHudPr>();
-            eventAlarmScreenPr = popupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
-            interactionScreenPr = popupParent.GetComponentInChildren<InteractionScreenPr>(); 
+            popupHudPr = PopupParent.GetComponentInChildren<PopupHudPr>();
+            eventAlarmScreenPr = PopupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
+            interactionScreenPr = PopupParent.GetComponentInChildren<InteractionScreenPr>(); 
 
             popupPrList.Add(popupHudPr);
             popupPrList.Add(eventAlarmScreenPr);

@@ -6,6 +6,6 @@ namespace Detect
 {
     public class MetalDetectItem : BaseDetectItem
     {
-        
-    }   
+                
+    }
 }

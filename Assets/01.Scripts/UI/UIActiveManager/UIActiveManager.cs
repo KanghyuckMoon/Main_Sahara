@@ -21,7 +21,10 @@ namespace UI.ActiveManager
         {
             UIManagedList.Clear();
             UIIgnoredList.Clear();
+
         }
+
+
     }
     
 }

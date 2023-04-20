@@ -6,11 +6,12 @@ using Inventory;
 using GoogleSpreadSheet;
 using Utill.Addressable;
 using Inventory; 
-using System.Linq; 
+using System.Linq;
+using UI.EventManage;
 
 namespace UI.Upgrade
 {
-    public class UpgradeReadyPr : MonoBehaviour
+    public class UpgradeReadyPr
     {
         private UpgradeReadyView upgradeReadyView;
         
@@ -26,6 +27,12 @@ namespace UI.Upgrade
             upgradeReadyView.InitUIParent(_parent);
             upgradeReadyView.Cashing();
             upgradeReadyView.Init();
+            
+            upgradeReadyView.SetUpgradeBtnCallback(() => 
+            {
+                ItemUpgradeManager.Instance.Upgrade(curSelectedData.key);
+                EventManager.Instance.TriggerEvent(EventsType.UpdateInventoryUI);
+            });
         }
 
         /// <summary>

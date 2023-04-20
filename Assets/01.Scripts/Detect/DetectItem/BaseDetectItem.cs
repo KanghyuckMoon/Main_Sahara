@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 using Effect;
+using UnityEngine.Serialization;
 
 namespace Detect
 {
@@ -49,10 +50,16 @@ namespace Detect
         protected float shakeStrength = 0.5f;
 
         protected Vector3 upPos;
-        
-        [SerializeField]
-        protected UnityEvent getoutEvent;
 
+        [SerializeField]
+        protected UnityEvent getoutEventBefore;
+        
+        [FormerlySerializedAs("getoutEvent")] [SerializeField]
+        protected UnityEvent getoutEventAfter;
+
+        [SerializeField]
+        protected bool isInitFalse = true;
+        
         public List<Observer> Observers
         {
             get
@@ -87,7 +94,10 @@ namespace Detect
         {
             upPos = targetModel.position;
             targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
-            targetModel.gameObject.SetActive(false);
+            if (isInitFalse)
+            {
+                targetModel.gameObject.SetActive(false);
+            }
         }
 
         public virtual void GetOut()
@@ -96,6 +106,7 @@ namespace Detect
             {
                 return;
             }
+            getoutEventBefore?.Invoke();
             targetModel.gameObject.SetActive(true);
             isGetOut = true;
             Vector3 _movePos = upPos;
@@ -106,7 +117,7 @@ namespace Detect
                 _effectObj.Pool();
                 gameObject.SetActive(false);
                 isGetOut = true;
-                getoutEvent?.Invoke();
+                getoutEventAfter?.Invoke();
             });
         }
         

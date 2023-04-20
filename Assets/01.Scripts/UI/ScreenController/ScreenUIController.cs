@@ -1,4 +1,4 @@
-using System.Collections;
+                                                                                                using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UI.Dialogue;
@@ -19,7 +19,9 @@ using UI.EventManage;
 using UI.Manager;
 using UI.MapLiner;
 using UI.ActiveManager;
-
+using CondinedModule;
+using Module;
+                                                                                                
 namespace UI
 {
     /*public enum Keys
@@ -64,7 +66,10 @@ namespace UI
         private Dictionary<UIInputData, Action> inputDic = new Dictionary<UIInputData, Action>(); // 사용자 키 입력으로 스크린 활성화
         private Dictionary<Keys, Action> notInputDic = new Dictionary<Keys, Action>(); // 대화같은 곳에서 스크린 활성화 
 
-        private (Keys,IScreen) curActiveScreen; 
+        private (Keys,IScreen) curActiveScreen;
+
+        private Action<bool> screenCallback = null; 
+        
         [SerializeField]
         private bool isUIInput = true;
         // 프로퍼티 
@@ -75,10 +80,41 @@ namespace UI
             get => isUIInput;
             set => isUIInput = value;
         }
+
+        private Player player; 
+        private Player Player
+        {
+            get
+            {
+                if (player is null)
+                {
+                    this.player = UIManager.Instance.Player.GetComponent<Player>();
+                    if (player is not null)
+                    {
+                        return player; 
+                    }
+
+                    return null;
+                }
+
+                return player; 
+
+            }
+        }
+        
         private void Awake()
         {
             InitScreenPresenters();
-            SetNotInputEvent(); 
+            SetNotInputEvent();
+
+            if (UIManager.Instance.Player is null)
+            {
+                screenCallback = (x) =>
+                {
+                    UIManager.Instance.Player.GetComponent<Player>().SetInput(x);
+                };    
+            }
+             
         }
 
         private void Start()
@@ -215,7 +251,11 @@ namespace UI
             inputDic.Add(new UIInputData(Get(Keys.InventoryUI), true), () =>
             {
                 // 인벤토리 활성화 
-                bool _isActive = inventoryPresenter.ActiveView();
+                bool _isActive = inventoryPresenter.ActiveView();   
+                UIManager.Instance.ActiveHud(!_isActive);
+                mapPresenter.Active(! _isActive);
+                LineCreateManager.Instance.ActvieParent(ScreenType.Inventory, _isActive);
+
                 SetUIAndCursor(_isActive, Get(Keys.InventoryUI)); 
             });
             inputDic.Add(new UIInputData(Get(Keys.MapUI), true), () =>
@@ -228,6 +268,7 @@ namespace UI
             {
                 // 퀘스트 활성화
                 bool _isActive = questPresenter.ActiveView();
+                LineCreateManager.Instance.ActvieParent(ScreenType.Quest, _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
             });
             inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
@@ -238,7 +279,7 @@ namespace UI
                 LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
                 UIManager.Instance.ActiveHud(! _isActive);
                 mapPresenter.Active(! _isActive);
-                
+                screenCallback?.Invoke(_isActive);
             });
             inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
             {
@@ -267,6 +308,11 @@ namespace UI
         private void SetUIAndCursor(bool _isActive, string _keyCode)
         {
             UIManager.Instance.ActiveCursor(_isActive);
+            if (Player is not null)
+            {
+                Player.SetInput(_isActive);
+            }
+            // UIManager.Instance.
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
         }

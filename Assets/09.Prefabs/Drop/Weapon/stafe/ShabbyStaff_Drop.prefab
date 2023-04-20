@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5827893640855664603}
-  - component: {fileID: 7444184062735595646}
-  - component: {fileID: 4660093938360274100}
   - component: {fileID: -475117444053185815}
   - component: {fileID: 4374796565597301537}
+  - component: {fileID: 3691038536729557974}
   m_Layer: 14
   m_Name: ShabbyStaff_Drop
   m_TagString: Untagged
@@ -33,60 +32,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1201038458022465229}
+  - {fileID: 3722103377695117312}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &7444184062735595646
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6605380764886756705}
-  m_Mesh: {fileID: -1444909868921906229, guid: de8679d78c68a4840940dd8e95670dc2, type: 3}
---- !u!23 &4660093938360274100
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6605380764886756705}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 5646986e83bbc784281dbb8b23fbc2dd, type: 2}
-  - {fileID: 2100000, guid: e5ef16966ba2c274b972f56f7f722a13, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &-475117444053185815
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116,6 +65,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.41729507, y: 0.17616923, z: 3.68621}
   m_Center: {x: -0.0000001937151, y: 0.0051758974, z: 0}
+--- !u!114 &3691038536729557974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6605380764886756705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: e88a100c8f495b14787c76fd73d7c7d4, type: 2}
+  count: 1
+  rigid: {fileID: -475117444053185815}
+  itemAddress: St_00_ShabbyStaff
+  targetObj: {fileID: 6605380764886756705}
+  isJumping: 1
 --- !u!1 &7383491849964551946
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1201038458022465229}
-  - component: {fileID: 7051754298439677618}
   - component: {fileID: 8514495517906476513}
   m_Layer: 13
   m_Name: Interaction
@@ -149,23 +115,6 @@ Transform:
   m_Father: {fileID: 5827893640855664603}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &7051754298439677618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7383491849964551946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 6f87d6fbe9ec8e64fbf614b062ac7db5, type: 2}
-  rigid: {fileID: -475117444053185815}
-  itemAddress: St_00_ShabbyStaff
-  targetObj: {fileID: 6605380764886756705}
-  isJumping: 1
 --- !u!136 &8514495517906476513
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -180,3 +129,65 @@ CapsuleCollider:
   m_Height: 5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &2632650190997798295
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5827893640855664603}
+    m_Modifications:
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809609938400813771, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+      propertyPath: m_Name
+      value: ShabbyStaff
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+--- !u!4 &3722103377695117312 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1670444221649464727, guid: 60000c678fd02354e88bd4bb3d3b285d, type: 3}
+  m_PrefabInstance: {fileID: 2632650190997798295}
+  m_PrefabAsset: {fileID: 0}

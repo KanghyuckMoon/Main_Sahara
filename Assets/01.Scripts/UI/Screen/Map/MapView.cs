@@ -23,7 +23,7 @@ namespace UI
         private VisualElement map; // 맵 이미지 element
         private VisualElement centerMarker; // 가운데 마크 
         private VisualElement markerParent; // 마커 부모 요소 
-        private VisualElement minimapMask;// 미니맵 마스크 요소 
+        private VisualElement minimapMaskParent;// 미니맵 마스크 요소 
 
         int width, height; 
         
@@ -34,9 +34,9 @@ namespace UI
         public VisualElement CenterMark => centerMarker;
         public MapType CurMapType => mapType;
         public VisualElement MarkerParent => markerParent;
-        public VisualElement MinimapMask => minimapMask;
-        public float MinimapMaskW => minimapMask.contentRect.width;
-        public float MinimapMaskH => minimapMask.contentRect.height;
+        public VisualElement MinimapMaskParent => minimapMaskParent;
+        public float MinimapMaskW => minimapMaskParent.contentRect.width;
+        public float MinimapMaskH => minimapMaskParent.contentRect.height;
 
         enum Elements
         {
@@ -45,6 +45,7 @@ namespace UI
             map,
             center_marker,
             minimap_mask,
+            mask_parent,
             markers,
          //   paths
         }
@@ -62,7 +63,7 @@ namespace UI
             map = GetVisualElement((int)Elements.map);
             centerMarker = GetVisualElement((int)Elements.center_marker);
             markerParent = GetVisualElement((int)Elements.markers);
-            minimapMask = GetVisualElement((int)Elements.minimap_mask); 
+            minimapMaskParent = GetVisualElement((int)Elements.mask_parent); 
         }
 
         public override void Init()
@@ -127,10 +128,11 @@ namespace UI
       
         public void SetMask(bool _isActive)
         {
+            VisualElement _minimapMaskParent = GetVisualElement((int)Elements.mask_parent);
             VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
             _minimapMask.Add(map);
 
-            ShowVisualElement(_minimapMask, _isActive);
+            ShowVisualElement(_minimapMaskParent, _isActive);
             ShowVisualElement(GetVisualElement((int)Elements.map_panel), true); 
         }
 
@@ -161,8 +163,8 @@ namespace UI
             //map.AddToClassList("map");
 
             // 미니맵 마스크 끄고 
-            VisualElement _minimapMask = GetVisualElement((int)Elements.minimap_mask);
-            ShowVisualElement(_minimapMask, false);
+            VisualElement _minimapMaskParent = GetVisualElement((int)Elements.mask_parent);
+            ShowVisualElement(_minimapMaskParent, false);
 
             _panel.Add(map);
         }

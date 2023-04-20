@@ -65,6 +65,13 @@ namespace UI.Inventory
             SendEvent();
         }
 
+        /// <summary>
+        /// RadioButton  가져오기 
+        /// </summary>
+        public VisualElement GetRBtn(RadioButtons _type)
+        {
+            return GetRadioButton((int)_type);
+        }
         public void SendEvent()
         {
             RadioButton _btn = GetRadioButton((int)RadioButtons.armor_button);
