@@ -12,6 +12,9 @@ public class Landing : StateMachineBehaviour
     {
         _mainModule ??= animator.GetComponent<AbMainModule>();
         _mainModule.StopOrNot = 0;
+
+        animator.SetBool("CanLand", false);
+        //_mainModule.MoveSpeed = 0;
         //_mainModule.canMove = false;
     }
 
@@ -29,6 +32,7 @@ public class Landing : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _mainModule.StopOrNot = 1;
+        _mainModule.CanConsecutiveAttack = false;
         //_mainModule.canMove = true;
     }
 }

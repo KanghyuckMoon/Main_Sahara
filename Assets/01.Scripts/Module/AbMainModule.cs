@@ -244,7 +244,8 @@ namespace Module
             set
             {
                 attacking = value;
-                Animator.SetBool("Attack", attacking);
+                if (attacking)
+                    Animator.SetTrigger("Attack");
             }
         }
         public bool StrongAttacking
@@ -405,11 +406,13 @@ namespace Module
         {
             get
             {
+                //Animator.SetBool("LockOn", LockOnTarget is not null);
                 return lockOn;
             }
             set
             {
-                lockOn = value;
+                lockOn = LockOnTarget is not null;
+                Debug.LogError(lockOn);
                 Animator.SetBool("LockOn", lockOn);
             }
         }
@@ -492,6 +495,19 @@ namespace Module
                 return back;
             }
         }
+
+        public string CurrentAnimationLayer
+        {
+            get
+            {
+                return currentAnimationLayer;
+            }
+            set
+            {
+                currentAnimationLayer = value;
+            }
+        }
+        
         #endregion
 
         #region 변수
@@ -612,6 +628,7 @@ namespace Module
         private SettingTime settingTime;
 
         private float personalTime;
+        //public float addSpeed
 
         [Space]
         [SerializeField, Header("양쪽 발")]
@@ -624,6 +641,8 @@ namespace Module
 
         [Space]
         public AnimatorOverrideController animatorOverrideController;
+
+        private string currentAnimationLayer;
         #endregion
 
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
@@ -639,6 +658,9 @@ namespace Module
 
         public virtual void SetConsecutiveAttack(int _on) { }
         public virtual void SetActiveAnimatorRoot(int _on) { }
+
+        public virtual void SetAnimationLayerOn(int _on, float _duration){
+    }
 
         private void Start()
         {

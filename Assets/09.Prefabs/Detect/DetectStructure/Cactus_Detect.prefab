@@ -45,14 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectItemType: 1
+  detectItemType: 4
   targetHeightTransform: {fileID: 3986170064907515312}
   targetTransform: {fileID: 3986170063810854284}
   targetModel: {fileID: 47875380640386008}
   targetEffectTrm: {fileID: 3986170064227119226}
   effectAddress: SandUpEffect
-  heightUpTime: 5
+  heightUpTime: 1
   shakeStrength: 0.5
+  debug_LayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &3986170063462448101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90,7 +93,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3986170063810854285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 159.64, y: 4039.07, z: -184.16881}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -225,22 +228,94 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4031007824643837735, guid: 7b390bb28fbc6734bbedd15ddac7f91b, type: 3}
   m_PrefabInstance: {fileID: 3988801848616797439}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &660538555745324063 stripped
+--- !u!1 &856183980066525538 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4499560523181820128, guid: 7b390bb28fbc6734bbedd15ddac7f91b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4376044110772376989, guid: 7b390bb28fbc6734bbedd15ddac7f91b, type: 3}
   m_PrefabInstance: {fileID: 3988801848616797439}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &3988801848616797434
-MeshCollider:
+--- !u!114 &953410530009061256
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660538555745324063}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 856183980066525538}
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2658800326358589857, guid: 415747561ae35804c9fd7963a19dd9f3, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: a5215399b230a1d4ea04584b284941a7, type: 2}
+  hitboxString: Niddle
+  owner: {fileID: 856183980066525538}
+  isTimeIndexCange: 1
+  isOnEnalbe: 1
+--- !u!114 &2871576017660131965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856183980066525538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19a74fc9734c134b83fce078bfefbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTagName: Player_Weapon
+--- !u!114 &3539815082465825436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856183980066525538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246a01631240ca34bac9816ae29f6a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2871576017660131965}
+        m_TargetAssemblyTypeName: HitBox.HitToMana, Module
+        m_MethodName: AddMana
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6899483473261092097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856183980066525538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataSOPath: Cactus_DataSO
+--- !u!54 &885882785957502738
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856183980066525538}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

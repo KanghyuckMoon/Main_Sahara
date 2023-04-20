@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using Utill.Addressable;
 using DG.Tweening;
+using Utill.Pattern;
 
 namespace TimeOfDay
 {
@@ -14,13 +15,15 @@ namespace TimeOfDay
         [Range(0, 24)]
         public float timeOfDay;
 
+        public float rotation_y = -150.0f;
+
         public float orbitSpeed = 1.0f;
         public Light sun;
         public Light moon;
         //public Volume skyVolume;
         public AnimationCurve starsCurve;
 
-        private bool isNight;
+        public bool isNight;
         //private PhysicallyBasedSky sky;
         
         [SerializeField]
@@ -58,7 +61,8 @@ namespace TimeOfDay
             if(todSO.isOnlyNight)
 			{
                 isNight = true;
-			}
+                todSO.isNight = true;
+            }
         }
         
         void OnValidate()
@@ -78,6 +82,7 @@ namespace TimeOfDay
             if(todSO.isOnlyNight)
 			{
                 isNight = true;
+                todSO.isNight = true;
 			}
         }
 
@@ -87,8 +92,8 @@ namespace TimeOfDay
             float sunRotation = starsCurve.Evaluate(alpha);// Mathf.Lerp(-90, 270, alpha);
             float moonRotaion = sunRotation - 180;
 
-            sun.transform.rotation = Quaternion.Euler(sunRotation, -150.0f, 0);
-            moon.transform.rotation = Quaternion.Euler(moonRotaion, -150.0f, 0);
+            sun.transform.rotation = Quaternion.Euler(sunRotation, rotation_y, 0);
+            moon.transform.rotation = Quaternion.Euler(moonRotaion, rotation_y, 0);
 
             //if (sky is not null)
 			//{
@@ -119,6 +124,7 @@ namespace TimeOfDay
 		private void StartDay()
 		{
             isNight = false;
+            todSO.isNight = false;
             sun.shadows = LightShadows.Soft;
             moon.shadows = LightShadows.None;
             sunLensFlare.enabled = true;
@@ -128,6 +134,7 @@ namespace TimeOfDay
         private void StartNight()
         {
             isNight = true;
+            todSO.isNight = true;
             sun.shadows = LightShadows.Soft;
             moon.shadows = LightShadows.None;
             sunLensFlare.enabled = false;

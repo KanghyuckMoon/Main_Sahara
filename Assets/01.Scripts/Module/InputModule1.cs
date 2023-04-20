@@ -24,48 +24,47 @@ namespace Module
 
 		private void InputAttack()
 		{
-			if (mainModule.CanConsecutiveAttack && mainModule.IsConsecutiveWeapon)
-				if (Input.GetMouseButton(0))
-					mainModule.Animator.SetBool("ConsecutiveAttack", true);
-			
 			if (mainModule.IsWeaponExist)
 			{
-				if (!StateModule.CheckState(State.ATTACK, State.CHARGE) &&
-				    !StateModule.CheckState(State.SKILL))
+				if (mainModule.CanConsecutiveAttack && mainModule.IsConsecutiveWeapon)
+					if (Input.GetMouseButton(0))
+						mainModule.Animator.SetTrigger("ConsecutiveAttack");
+				
+				if (Input.GetMouseButtonUp(0))
 				{
-					//Debug.LogError("공격이다 공격이야!!!!!");
-
+					mainModule.Attacking = false;
+					StateModule.RemoveState(State.CHARGE);
+				}
+					
+				if (Input.GetMouseButtonUp(1))
+				{
+					mainModule.StrongAttacking = false;
+				}
+				
+				if (!StateModule.CheckState(State.ATTACK, State.CHARGE, State.SKILL))
+				{
 					if (Input.GetMouseButtonDown(0))
 					{
-						mainModule.Attacking = true;
+						mainModule.SetAnimationLayerOn(0,0);
+						
 						StateModule.AddState(State.ATTACK);
 						StateModule.AddState(State.CHARGE);
 
-						//AttackModule.SpownCurrentArrow();
 						AttackModule.SpownAttackEffect();
+						mainModule.Attacking = true;
 					}
 
 					if (Input.GetMouseButtonDown(1))
 					{
-						mainModule.StrongAttacking = true;
+						mainModule.SetAnimationLayerOn(0, 0);
 						StateModule.AddState(State.ATTACK);
-						//StateModule.AddState(State.CHARGE);
-
-						//AttackModule.SpownCurrentArrow();
+						
 						AttackModule.SpownAttackEffect();
+						mainModule.StrongAttacking = true;
 					}
 				}
 
 				mainModule.IsCharging = Input.GetMouseButton(0);
-				if (Input.GetMouseButtonUp(0)) // || Input.GetMouseButtonUp(1))
-				{
-					//bool _inputatk = Input.GetMouseButtonUp(0);
-					//AttackModule.ProjectileObject?.GetComponent<IProjectile>().MovingFunc(mainModule.transform.forward, Quaternion.identity);// + new Vector3(0, 1.6f, 0));
-
-					mainModule.Attacking = false;
-					StateModule.RemoveState(State.CHARGE);
-					//StateModule.RemoveState(State.ATTACK);
-				}
 			}
 		}
 

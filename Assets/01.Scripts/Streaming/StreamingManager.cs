@@ -229,6 +229,7 @@ namespace Streaming
 				originChunkCoordY = _currentChunkCoordY;
 				originChunkCoordZ = _currentChunkCoordZ;
 
+				Physics.RebuildBroadphaseRegions(new Bounds(new Vector3(_currentChunkCoordX, _currentChunkCoordY, _currentChunkCoordZ) * 100,Vector3.one * 200), 5);
 				StartCoroutine(UpdateChunk());
 				streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}

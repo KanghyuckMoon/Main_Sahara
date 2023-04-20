@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Inventory;
 using Utill.Random;
 using Pool;
+using Effect;
 
 namespace Detect
 {
@@ -44,6 +46,9 @@ namespace Detect
         
         [SerializeField]
         private DropItemListSO dropItemListSO;
+
+        [SerializeField] 
+        private string effectAddress;
         
         public List<Observer> Observers
         {
@@ -69,6 +74,11 @@ namespace Detect
 
         private bool isGetOut = false;
         
+        
+        [SerializeField]
+        protected UnityEvent getoutEvent;
+
+        
         public void GetOut()
         {
             if (count > 0)
@@ -89,12 +99,14 @@ namespace Detect
 
                     //Vector3 _spawnPos = Vector3.Lerp(other.ClosestPoint(transform.position), other.transform.position, 0.9f);
                 
+                    EffectManager.Instance.SetEffectDefault(effectAddress, transform.position, Quaternion.identity);
                     ItemDrop(dropItemListSO.dropItemKeyArr[_index]); 
                 }
             }
             else
             {
                 isGetOut = true;
+                getoutEvent?.Invoke();
             }
         }
         

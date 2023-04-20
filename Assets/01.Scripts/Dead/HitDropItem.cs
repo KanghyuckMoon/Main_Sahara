@@ -22,8 +22,11 @@ public class HitDropItem : MonoBehaviour
         {
             InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
             AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
-            _attackFeedBack.InvokeEvent(other.ClosestPoint(transform.position), _inGameHitBox.HitBoxData.hitEffect);
-
+            
+            foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
+            {
+                _attackFeedBack.InvokeEvent(other.ClosestPoint(transform.position), _s);
+            }
             
             int _random = UnityEngine.Random.Range(1, dropItemListSO.dropCount);
             for (int i = 0; i < _random; ++i)

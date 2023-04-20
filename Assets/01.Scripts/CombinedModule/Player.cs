@@ -4,6 +4,8 @@ using UnityEngine;
 using Module;
 using ForTheTest;
 
+using DG.Tweening;
+
 namespace CondinedModule
 {
     public class Player : AbMainModule
@@ -13,6 +15,9 @@ namespace CondinedModule
         private JumpModule jumpModule;
         private StateModule stateModule;
         
+        
+        public List<State> currentState;
+
         public void OnEnable()
         {
             StopOrNot = 1;
@@ -48,6 +53,8 @@ namespace CondinedModule
 
             //SetInput(true);
 
+            currentState = GetModuleComponent<StateModule>(ModuleType.State).CurrentState;
+
             base.OnEnable();
         }
 
@@ -61,6 +68,25 @@ namespace CondinedModule
         {
             bool _isOn = _on > 0;
             Animator.applyRootMotion = _isOn;
+        }
+
+        public override void SetAnimationLayerOn(int _on, float _duration)
+        {
+            int animationIndex = Animator.GetLayerIndex(CurrentAnimationLayer);
+
+            if (_duration is > 0 and < 1)
+            {
+                float _a = Animator.GetLayerWeight(animationIndex);
+
+                DOTween.To(
+                    () => _a, (x) => Animator.SetLayerWeight(animationIndex, x), _on, _duration);
+            }
+
+            else
+            {
+                //Debug.LogError("에러에러ㅔ러");
+                Animator.SetLayerWeight(animationIndex, _on);
+            }
         }
 
         public void Jump()
