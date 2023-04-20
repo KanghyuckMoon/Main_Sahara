@@ -54,7 +54,7 @@ namespace Inventory
 		public string nameKey; //이름 키
 		public string explanationKey; //설명 키
 		public string spriteKey; //스프라이트 키
-		public string spriteInventoryKey; //스프라이트 키 인벤토리 키
+		public string iconKey; //스프라이트 키 인벤토리 키
 		public bool stackble; //겹치기 가능 여부
 		public int stackMax = 64; // 최대 겹치기 량
 		public ItemType itemType; // 아이템 타입
@@ -84,7 +84,7 @@ namespace Inventory
 			_newItemData.nameKey = _itemData.nameKey;
 			_newItemData.explanationKey = _itemData.explanationKey;
 			_newItemData.spriteKey = _itemData.spriteKey;
-			_newItemData.spriteInventoryKey = _itemData.spriteInventoryKey;
+			_newItemData.iconKey = _itemData.iconKey;
 			_newItemData.stackble = _itemData.stackble;
 			_newItemData.stackMax = _itemData.stackMax;
 			_newItemData.itemType = _itemData.itemType;
@@ -109,7 +109,7 @@ namespace Inventory
 			_newItemData.nameKey = _itemDataSO.nameKey;
 			_newItemData.explanationKey = _itemDataSO.explanationKey;
 			_newItemData.spriteKey = _itemDataSO.spriteKey;
-			_newItemData.spriteInventoryKey = _itemDataSO.spriteInventoryKey;
+			_newItemData.iconKey = _itemDataSO.iconKey;
 			_newItemData.stackble = _itemDataSO.stackble;
 			_newItemData.stackMax = _itemDataSO.stackMax;
 			_newItemData.itemType = _itemDataSO.itemType;

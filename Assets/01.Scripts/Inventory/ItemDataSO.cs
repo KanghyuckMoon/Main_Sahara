@@ -14,7 +14,7 @@ namespace Inventory
 		public string nameKey; //이름 키
 		public string explanationKey; //설명 키
 		public string spriteKey; //스프라이트 키
-		public string spriteInventoryKey; //스프라이트 인벤토리 키
+		public string iconKey; //스프라이트 인벤토리 키
 		public bool stackble;
 		public int stackMax = 64;
 		public ItemType itemType;
@@ -43,11 +43,13 @@ namespace Inventory
 			nameKey = _itemDataSO.nameKey;
 			explanationKey = _itemDataSO.explanationKey;
 			spriteKey = _itemDataSO.spriteKey;
+			iconKey = _itemDataSO.iconKey;
 			stackble = _itemDataSO.stackble;
 			stackMax = _itemDataSO.stackMax;
 			itemType = _itemDataSO.itemType;
 			consumptionType = _itemDataSO.consumptionType;
 			prefebkey = _itemDataSO.prefebkey;
+			modelkey = _itemDataSO.modelkey;
 			animationLayer = _itemDataSO.animationLayer;
 			dropItemPrefebKey = _itemDataSO.dropItemPrefebKey;
 			accessoriesItemType = _itemDataSO.accessoriesItemType;
