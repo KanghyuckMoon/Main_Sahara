@@ -14,7 +14,8 @@ namespace UI.Inventory
         private AllItemDataSO allItemDataSO;
 
         private Dictionary<string,GameObject> modelDic = new Dictionary<string,GameObject>();
-
+        private GameObject curActiveModel = null; 
+        
         private bool isInit = false; 
         
         public void Init(Transform _invenCam)
@@ -23,8 +24,8 @@ namespace UI.Inventory
             //modelList.Clear();
             inventoryCam = _invenCam; 
             allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
-
-            return; 
+            
+            return;   
             // 생성 
             if (isInit == false)
             {                 
@@ -53,11 +54,24 @@ namespace UI.Inventory
             }
 
         }
-        
+
+        public void Update()
+        {
+        }
+        public void RotateModel(Vector3 _rotV)
+        {
+            if (curActiveModel is null) return;
+
+            curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.y, Vector3.up);
+           // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
+            
+        }
 
         public void ActiveModel(string _key)
         {
-            this.modelDic[_key].SetActive(true); 
+            curActiveModel = this.modelDic[_key];
+            curActiveModel.SetActive(true); 
+            
         }
 
         /// <summary>
@@ -69,6 +83,7 @@ namespace UI.Inventory
             {
                 _model.Value.SetActive(false);                
             }
+            curActiveModel = null; 
         }
         //   모든 아이템 저장 리스트 
         // SO 받고 생성 init 

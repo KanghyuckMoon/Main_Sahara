@@ -36,13 +36,15 @@ namespace UI.Inventory
             accentItemCompo = new AccentItemCompo(); 
             accentItemCompo.Init(inventoryCam.transform);             
             inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
+            
         }
         private void OnEnable()
         {
             inventoryView.Cashing();
             inventoryView.Init();
             //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
-
+            inventoryView.SelectImage.AddManipulator(new DraggerRot());
+            
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.weapon_button,InventoryView.Elements.quick_slot_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.consumation_button, 

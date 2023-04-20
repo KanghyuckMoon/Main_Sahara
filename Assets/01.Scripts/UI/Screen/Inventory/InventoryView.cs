@@ -61,8 +61,11 @@ namespace UI.Inventory
         private Action<ItemData> callback = null; 
         
         // 프로퍼티
-        public InventoryGridSlotsPr GridPr => inventoryGridSlotsPr; 
+        public InventoryGridSlotsPr GridPr => inventoryGridSlotsPr;
+        public VisualElement SelectImage => GetVisualElement((int)Elements.select_weapon_image); 
         private VisualElement DragItem => GetVisualElement((int)Elements.drag_item);
+        
+        
         public override void Cashing()
         {
             base.Cashing();
