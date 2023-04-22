@@ -22,10 +22,16 @@ namespace Module.Talk
 		public TalkCondition talkCondition;
 
 		//CutScene
+		[Header("CutScene")]
 		public string cutSceneKey = null;
 		public string talkKey;
 		public bool isUseCutScene = false;
 
+		//
+		[Header("SmoothPath")]
+		public bool isUseSmoothPath;
+		public int smoothPathIndex = 0;
+		
 		//Condition Check
 		public string questKey;
 		public QuestState questState;

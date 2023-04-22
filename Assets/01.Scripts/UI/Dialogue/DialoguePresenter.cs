@@ -109,7 +109,7 @@ namespace UI.Dialogue
         /// </summary>
         private void SetCodeToText()
         {
-            string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}");
+            string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}").Replace("\r", "");
             Debug.Log("NameCode " + nameCode);
             Debug.Log("Index " + index);
             fullText = TextManager.Instance.GetText($"{dialogueCode}_{index}");

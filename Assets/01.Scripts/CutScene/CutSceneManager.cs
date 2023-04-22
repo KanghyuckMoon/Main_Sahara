@@ -16,6 +16,7 @@ using Module.Talk;
 using CondinedModule;
 using EventObject;
 using TimeManager;
+using UnityEngine.Serialization;
 
 namespace CutScene
 {
@@ -199,7 +200,7 @@ namespace CutScene
             }
             if (_cutSceneData.isTalk)
             {
-                _cutSceneData.talkModule = _cutSceneData.testTalk.GetModuleComponent<TalkModule>(ModuleType.Talk);
+                _cutSceneData.talkModule = _cutSceneData.talk.GetModuleComponent<TalkModule>(ModuleType.Talk);
                 CutSceneManager.Instance.SetTalkModule(_cutSceneData.talkModule, _cutSceneData.talkKey);
                 talkModule.SetCutScene(true);
             }
@@ -403,7 +404,7 @@ namespace CutScene
 			{
                 if(_obj.isTalk)
                 {
-                    _obj?.testTalk?.GetModuleComponent<TalkModule>(ModuleType.Talk)?.SetCutScene(false);
+                    _obj?.talk?.GetModuleComponent<TalkModule>(ModuleType.Talk)?.SetCutScene(false);
 				}
 			}
         }
@@ -413,7 +414,7 @@ namespace CutScene
             {
                 if(_obj.isTalk)
                 {
-                    _obj?.testTalk?.GetModuleComponent<TalkModule>(ModuleType.Talk)?.SetCutScene(true);
+                    _obj?.talk?.GetModuleComponent<TalkModule>(ModuleType.Talk)?.SetCutScene(true);
                 }
             }
         }
@@ -441,7 +442,7 @@ namespace CutScene
         public CinemachineSmoothPath smoothPath;
 
         //Talk
-        public TestTalkNPC testTalk;
+        [FormerlySerializedAs("testTalk")] public TalkNPC talk;
         public TalkModule talkModule;
         public string talkKey;
         
