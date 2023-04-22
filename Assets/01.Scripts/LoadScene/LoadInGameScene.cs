@@ -61,7 +61,7 @@ namespace LoadScene
 			{
                 yield return null;
 			}
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(5);
 
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);

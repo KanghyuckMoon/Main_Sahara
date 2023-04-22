@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using Utill.Addressable;
@@ -800,7 +801,8 @@ namespace AI
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
-				Vector3 vec = aiModule.SmoothPath.EvaluateTangent(aiModule.SmoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
+				CinemachineSmoothPath _smoothPath = aiModule.PathHarver.GetPath(0);
+				Vector3 vec = _smoothPath.EvaluateTangent(_smoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
 
 				Vector2 _inputdir = new Vector2(vec.x, vec.z);
 				aiModule.Input = _inputdir;

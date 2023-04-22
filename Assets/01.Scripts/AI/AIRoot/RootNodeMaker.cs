@@ -95,6 +95,8 @@ namespace AI
 					return TestWorm();
 				case "TestTrack":
 					return TestTrack();
+				case "NPC":
+					return NPC();
 			}
 		}
 
@@ -108,6 +110,7 @@ namespace AI
 		private partial INode TestWorm();
 		private partial INode TestTalkNPC();
 		private partial INode TestTrack();
+		private partial INode NPC();
 
 		public void Dead()
 		{
