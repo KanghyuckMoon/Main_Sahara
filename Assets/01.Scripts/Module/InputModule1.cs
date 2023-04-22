@@ -97,13 +97,15 @@ namespace Module
 			{
 				if (mainModule.StopOrNot >= 1 && !StateModule.CheckState(State.SKILL))
 				{
-					bool _inputup = InputManager.Instance.CheckKey("Jump");// Input.GetKey(KeyCode.Space);
+					bool _inputup = InputManager.Instance.CheckKey("Jump"); // Input.GetKey(KeyCode.Space);
+					if (_inputup)
+					{
+						mainModule.SetAnimationLayerOn(0, 0);
+						StateModule.AddState(State.JUMP);
+					}
 
 					mainModule.IsJump = _inputup;
 					mainModule.IsJumpBuf = _inputup;
-
-					if (_inputup)
-						StateModule.AddState(State.JUMP);
 				}
 			}
 		}

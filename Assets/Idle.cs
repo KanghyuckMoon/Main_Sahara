@@ -24,6 +24,7 @@ public class Idle : StateMachineBehaviour
         
         mainModule.CanMove = true;
         
+        
         _half = 0.65f;//stateInfo.length - (stateInfo.length / 9);
         current = 0;
 
@@ -45,15 +46,12 @@ public class Idle : StateMachineBehaviour
         else
         {
             isUp = false;
-            //animator
             mainModule.SetAnimationLayerOn(1, 0);
             mainModule.SetConsecutiveAttack(0);
             mainModule.StopOrNot = 1;
             animator.SetBool("IsCombo", false);
             stateModule.RemoveState(State.ATTACK);
             stateModule.RemoveState(State.SKILL);
-            //Debug.LogError("IDEL: 상태상태상태");
-            //animator.SetBool("CanLand", false);
         }
     }
 }
