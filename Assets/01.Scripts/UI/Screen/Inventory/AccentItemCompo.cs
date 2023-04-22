@@ -25,7 +25,7 @@ namespace UI.Inventory
             inventoryCam = _invenCam; 
             allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
             
-            return;   
+          //  return;   
             // 생성 
             if (isInit == false)
             {                 
@@ -33,23 +33,23 @@ namespace UI.Inventory
                 foreach (var _itemData in allItemDataSO.itemDataSOList)
                 {
                     GameObject _prefab = new GameObject();
-                    if (_itemData.prefebkey == String.Empty)
+                    if (_itemData.modelkey == String.Empty)
                     {
                         continue;
                     }
                     try
                     {
                         Debug.LogError("@@@@@@" + _itemData.prefebkey);
-                        _prefab = AddressablesManager.Instance.GetResource<GameObject>(_itemData.prefebkey);
+                        _prefab = AddressablesManager.Instance.GetResource<GameObject>(_itemData.modelkey);
                     }
                     catch (Exception e)
                     {
-                        Debug.LogError("@@@@@@" + _itemData.prefebkey);
+                        Debug.LogError("@@@@@@" + _itemData.modelkey);
                     }
                     GameObject _instance = GameObject.Instantiate(_prefab, inventoryCam);
-                    _instance.name = _itemData.prefebkey;
+                    _instance.name = _itemData.modelkey;
                     _instance.transform.position = new Vector3(0, -0.218f, 2.75f);
-                    modelDic.Add(_itemData.prefebkey,_instance);
+                    modelDic.Add(_itemData.modelkey,_instance);
                 }
             }
 
