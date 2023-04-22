@@ -61,7 +61,10 @@ namespace LoadScene
 			{
                 yield return null;
 			}
-            yield return new WaitForSecondsRealtime(5);
+            while (!AddressablesManager.Instance.IsLoadEnd)
+            {
+                yield return null;
+            }
 
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);
@@ -89,20 +92,25 @@ namespace LoadScene
             op4.allowSceneActivation = true;
             op5.allowSceneActivation = true;
 
-            if (SaveManager.Instance.IsContinue)
+            //if (SaveManager.Instance.IsContinue)
+            //{
+            //    while (!SaveManager.Instance.isLoadSuccess)
+            //    {
+            //        try
+            //        {
+            //            SaveManager.Instance.Load(SaveManager.Instance.TestDate);
+            //        }
+            //        catch
+            //        {
+            //        }
+            //        yield return new WaitForSecondsRealtime(1f);
+            //    }
+			//}
+			
+            while (!AddressablesManager.Instance.IsLoadEnd)
             {
-                while (!SaveManager.Instance.isLoadSuccess)
-                {
-                    try
-                    {
-                        SaveManager.Instance.Load(SaveManager.Instance.TestDate);
-                    }
-                    catch
-                    {
-                    }
-                    yield return new WaitForSecondsRealtime(1f);
-                }
-			}
+                yield return null;
+            }
 
             var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
             Time.timeScale = 1;

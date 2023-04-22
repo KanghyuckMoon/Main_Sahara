@@ -28,6 +28,20 @@ namespace Utill.Addressable
 		public Queue<LoadSceneData> loadMessageQueue = new Queue<LoadSceneData>();
 		public Queue<string> unLoadMessageQueue = new Queue<string>();
 
+		public bool IsLoadEnd
+		{
+			get
+			{
+				if (loadMessageQueue.Count > 0)
+				{
+					return false;
+				}
+
+				return true;
+			}
+		}
+
+
 		public void LodedSceneClear()
 		{
 			loadedScene.Clear();
@@ -167,12 +181,8 @@ namespace Utill.Addressable
 						};
 						_handle.Completed += _loadSceneData.action;
 					}
-					yield return null;
 				}
-				else
-                {
-					yield return null;
-				}
+				yield return null;
 			}
 		}
 		

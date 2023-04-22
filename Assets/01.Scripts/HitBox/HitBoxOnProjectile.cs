@@ -105,8 +105,7 @@ namespace HitBox
 				string tagname = gameObject.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
 				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
 				{
-					GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
-					InGameHitBox _ingameHitBox = hitbox.GetComponent<InGameHitBox>();
+					InGameHitBox _ingameHitBox = HitBoxPoolManager.Instance.GetObject();
 					_ingameHitBox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject);
 
 					if (isTimeIndexCange)

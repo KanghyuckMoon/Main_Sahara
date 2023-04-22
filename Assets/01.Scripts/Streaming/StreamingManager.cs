@@ -62,7 +62,7 @@ namespace Streaming
 					return debugViewer;
 				}
 
-				viewer ??= GameObject.FindGameObjectWithTag("Player")?.transform;
+				viewer ??= PlayerObj.Player?.transform;
 
 				return viewer;
 			}
@@ -229,9 +229,9 @@ namespace Streaming
 				originChunkCoordY = _currentChunkCoordY;
 				originChunkCoordZ = _currentChunkCoordZ;
 
-				Physics.RebuildBroadphaseRegions(new Bounds(new Vector3(_currentChunkCoordX, _currentChunkCoordY, _currentChunkCoordZ) * 100,Vector3.one * 200), 5);
+				//Physics.RebuildBroadphaseRegions(new Bounds(new Vector3(_currentChunkCoordX, _currentChunkCoordY, _currentChunkCoordZ) * 100,Vector3.one * 200), 5);
 				StartCoroutine(UpdateChunk());
-				streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
+				//streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 
@@ -246,14 +246,26 @@ namespace Streaming
 		private IEnumerator UpdateChunk()
 		{
 			SetSceneDic();
-
-			SceneStreamingJob _sceneStreamingJob = new SceneStreamingJob()
+			
+			foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
 			{
-				originChunkCoordX = this.originChunkCoordX,
-				originChunkCoordY = this.originChunkCoordY,
-				originChunkCoordZ = this.originChunkCoordZ
-			};
-			JobHandle _jobHandle = _sceneStreamingJob.Schedule();
+				Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+				if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
+				{
+					StreamingManager.Instance.LoadSubScene(_sceneObj.Key);	
+				}
+				else
+				{
+					StreamingManager.Instance.UnLoadSubSceneNoneCheck(_sceneObj.Key);	
+				}
+			}
+			//SceneStreamingJob _sceneStreamingJob = new SceneStreamingJob()
+			//{
+			//	originChunkCoordX = this.originChunkCoordX,
+			//	originChunkCoordY = this.originChunkCoordY,
+			//	originChunkCoordZ = this.originChunkCoordZ
+			//};
+			//JobHandle _jobHandle = _sceneStreamingJob.Schedule();
 			
 			yield return null;
 
