@@ -45,7 +45,11 @@ namespace UI.Inventory
             //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
             inventoryView.SelectImage.AddManipulator(new DraggerRot(
                 () => Debug.Log("s"),
-                ()=> accentItemCompo.RotateModel(Input.GetAxis("Mouse X") * Vector3.up * 1000 * Time.deltaTime),
+                () =>
+                {
+                    accentItemCompo.RotateModelHorizon(Input.GetAxis("Mouse X") * Vector3.up * 1000 * Time.deltaTime);
+                    accentItemCompo.RotateModelVertical(Input.GetAxis("Mouse Y") * Vector3.right * 500 * Time.deltaTime);
+                },
                 () => Debug.Log("³¡")));
             
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, 

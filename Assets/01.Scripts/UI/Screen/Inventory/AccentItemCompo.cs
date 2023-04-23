@@ -61,14 +61,29 @@ namespace UI.Inventory
         public void Update()
         {
         }
-        public void RotateModel(Vector3 _rotV)
+        public void RotateModelHorizon(Vector3 _rotV)
         {
             if (curActiveModel is null) return;
 
             Debug.Log("클릭중");
-            curActiveModel.transform.rotation =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up);
+            //Quaternion xQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up); 
+            //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
+            //Quaternion _resultQut = xQut * yQut;  
+            curActiveModel.transform.eulerAngles += _rotV;
            // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
-            
+        }
+        
+        public void RotateModelVertical(Vector3 _rotV)
+        {
+            if (curActiveModel is null) return;
+
+            Debug.Log("클릭중");
+            //Quaternion xQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up); 
+            //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
+            //Quaternion _resultQut = xQut * yQut;  
+            //curActiveModel.transform.rotation *= yQut;
+            curActiveModel.transform.eulerAngles += _rotV;
+            // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
         }
 
         public void ActiveModel(string _key)
