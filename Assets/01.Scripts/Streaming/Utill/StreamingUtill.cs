@@ -61,7 +61,11 @@ namespace Streaming
 			{
                 if(SceneManager.GetSceneAt(i).name == _sceneName)
 				{
-                    return true;
+					if(SceneManager.GetSceneAt(i).isLoaded)
+					{
+						return true;
+					}
+					return false;
 				}
             }
             return false;

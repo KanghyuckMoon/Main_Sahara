@@ -93,25 +93,17 @@ namespace Streaming
 			get
 			{
 				SetSceneDic();
-				foreach (var _sceneObj in chunkDictionary)
+				Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+				SubSceneObj _subSceneObj = chunkDictionary[_currentPos];
+				if (_subSceneObj.IsActiveScene())
 				{
-					Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
-					if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
-					{
-						if (sceneActiveCheckDic.TryGetValue(_sceneObj.Value.SceneName, out var _bool))
-						{
-							if(!_bool.value)
-							{
-								return false;
-							}
-						}
-						else
-						{
-							return false;
-						}
-					}
+					return true;
 				}
-				return true;
+				else
+				{
+					_subSceneObj.LoadScene();
+					return false;
+				}
 			}
 		}
 
@@ -162,7 +154,7 @@ namespace Streaming
 			{
 				isSceneSetting = false;
 				originChunkCoordX = 0;
-				originChunkCoordY = 4000;
+				originChunkCoordY = 40;
 				originChunkCoordZ = 0;
 				viewerPosition = defaultPosition;
 				subSceneReference = null;
@@ -176,7 +168,7 @@ namespace Streaming
 		{
 			isSceneSetting = false;
 			originChunkCoordX = 0;
-			originChunkCoordY = 4000;
+			originChunkCoordY = 40;
 			originChunkCoordZ = 0;
 			viewerPosition = defaultPosition;
 			InitSubScene();
