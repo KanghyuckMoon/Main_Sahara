@@ -113,7 +113,6 @@
                                 <ui:RadioButton label="Radio Button" name="weapon_button" value="true" class="inven_button" style="display: flex;" />
                                 <ui:RadioButton label="Radio Button" name="armor_button" class="inven_button" />
                                 <ui:RadioButton label="Radio Button" name="consumation_button" class="inven_button" />
-                                <ui:RadioButton label="Radio Button" name="skill_button" class="inven_button" />
                                 <ui:RadioButton label="Radio Button" name="accessories_button" class="inven_button" />
                                 <ui:RadioButton label="Radio Button" name="material_button" class="inven_button" />
                                 <ui:RadioButton label="Radio Button" name="valuable_button" class="inven_button" />
@@ -262,28 +261,12 @@
                             <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="skill_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 35%; display: none;">
-                        <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
-                            <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
-                            <ui:Instance template="InventoryQuickSlot" name="InventoryQuickSlot" class="quick_slot_transition" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
                     <ui:VisualElement style="height: 100%; flex-grow: 1; padding-right: 10px; padding-left: 10px; align-items: center; justify-content: flex-end;">
-                        <ui:VisualElement name="lock_parent" class="lock_view">
+                        <ui:VisualElement name="lock_parent" class="lock_view" style="height: 576px;">
                             <ui:VisualElement name="lock_background" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Lock%20background%20shadow.png?fileID=-519771521&amp;guid=12d6a28d7282d9d47b1a9d451a215ce3&amp;type=3#Lock background shadow_0&apos;);" />
                             <ui:VisualElement name="lock_chain" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Lock.png?fileID=2800000&amp;guid=80d20d36da45f7e46af28e0207c7de9f&amp;type=3#Lock&apos;); -unity-background-scale-mode: scale-and-crop;" />
                             <ui:VisualElement name="lock_icon" />
                             <ui:VisualElement name="lock_chain" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Lock.png?fileID=2800000&amp;guid=80d20d36da45f7e46af28e0207c7de9f&amp;type=3#Lock&apos;); -unity-background-scale-mode: scale-and-crop;" />
-                        </ui:VisualElement>
-                        <ui:VisualElement name="lock_parent" class="lock_view">
-                            <ui:VisualElement name="lock_background" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Lock%20background%20shadow.png?fileID=-519771521&amp;guid=12d6a28d7282d9d47b1a9d451a215ce3&amp;type=3#Lock background shadow_0&apos;);" />
-                            <ui:VisualElement name="lock_chain" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Lock.png?fileID=2800000&amp;guid=80d20d36da45f7e46af28e0207c7de9f&amp;type=3#Lock&apos;); -unity-background-scale-mode: scale-and-crop;" />
-                            <ui:VisualElement name="lock_icon" />
-                        </ui:VisualElement>
-                        <ui:VisualElement name="lock_parent" class="lock_view">
-                            <ui:VisualElement name="lock_background" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Lock%20background%20shadow.png?fileID=-519771521&amp;guid=12d6a28d7282d9d47b1a9d451a215ce3&amp;type=3#Lock background shadow_0&apos;);" />
-                            <ui:VisualElement name="lock_chain" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Lock.png?fileID=2800000&amp;guid=80d20d36da45f7e46af28e0207c7de9f&amp;type=3#Lock&apos;); -unity-background-scale-mode: scale-and-crop;" />
-                            <ui:VisualElement name="lock_icon" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
