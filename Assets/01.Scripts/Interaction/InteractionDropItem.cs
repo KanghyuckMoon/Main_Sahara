@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Pool;
 using Utill.Pattern;
 using Inventory;
@@ -64,6 +65,8 @@ namespace Interaction
 
 		private bool isEnabled = false;
 
+		[SerializeField] protected UnityEvent getEvent;
+
         [ContextMenu("GetRigid")]
         public void GetRigid()
         {
@@ -103,6 +106,7 @@ namespace Interaction
 			InventoryManager.Instance.AddItem(itemDataSO.key, count);
 			ObjectPoolManager.Instance.RegisterObject(itemAddress, targetObj);
 			targetObj.SetActive(false);
+			getEvent?.Invoke();
 		}
 		
 		#if UNITY_EDITOR

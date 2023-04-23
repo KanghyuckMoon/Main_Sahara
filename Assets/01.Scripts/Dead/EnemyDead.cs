@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Utill.Pattern;
 using Pool;
@@ -43,6 +44,9 @@ namespace Module
 
         [SerializeField]
         private DropItemListSO dropItemListSO;
+        
+        [SerializeField]
+        private UnityEvent deadEvent;
 
         private AbMainModule abMainModule;
 
@@ -110,6 +114,7 @@ namespace Module
             abMainModule.VisualObject.gameObject.SetActive(true);
             ObjectPoolManager.Instance.RegisterObject(enemyKey, gameObject);
             gameObject.SetActive(false);
+            deadEvent?.Invoke();
         }
 
         private void ItemDrop(string _key)
