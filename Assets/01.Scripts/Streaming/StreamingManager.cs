@@ -92,14 +92,18 @@ namespace Streaming
 		{
 			get
 			{
+				SetSceneDic();
 				foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
 				{
 					Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
 					if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
 					{
-						if (!CheckCurrentlyActhive(_sceneObj.Value.SceneName))
+						if (sceneActiveCheckDic.TryGetValue(_sceneObj.Value.SceneName, out var _bool))
 						{
-							return false;
+							if(!_bool.value)
+							{
+								return false;
+							}
 						}
 					}
 				}
