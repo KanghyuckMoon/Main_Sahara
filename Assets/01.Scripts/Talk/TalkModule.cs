@@ -60,6 +60,18 @@ namespace Module.Talk
 			}
 		}
 
+		public bool IsCanTalk
+		{
+			get
+			{
+				return isCanTalk;
+			}
+			set
+			{
+				isCanTalk = value;
+			}
+		}
+
 		private Transform player = null;
 		private TalkDataSO talkDataSO = null;
 		private bool isFirst = false;
@@ -70,6 +82,8 @@ namespace Module.Talk
 		private TalkData priorTalkData = null;
 		
 		private ITalkWithCutScene talkWithCutScene;
+
+		private bool isCanTalk = true; 
 
 		public TalkModule(AbMainModule _mainModule, string _talkSOAddress) : base(_mainModule)
 		{
@@ -87,6 +101,10 @@ namespace Module.Talk
 
 		public void Talk()
 		{
+			if (!isCanTalk)
+			{
+				return;
+			}
 			if(!isTalking)
 			{
 				Logging.Log("대화 가능");

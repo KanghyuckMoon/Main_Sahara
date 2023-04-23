@@ -62,6 +62,12 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
         [SerializeField]
         protected UnityEvent getoutEvent;
 
+        [SerializeField] 
+        protected bool isUseAlreadyCreature;
+
+        
+        [SerializeField] 
+        protected GameObject creature;
 
         public List<Observer> Observers
         {
@@ -81,7 +87,15 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
         
         private void ItemDrop()
         {
-            GameObject _dropObj = ObjectPoolManager.Instance.GetObject(key);
+            GameObject _dropObj = null;
+            if (isUseAlreadyCreature)
+            {
+                _dropObj = creature;
+            }
+            else
+            {
+                _dropObj = ObjectPoolManager.Instance.GetObject(key);
+            }
             _dropObj.transform.position = spawnTrm.position;
             _dropObj.SetActive(true);
             float _powerRight = Random.Range(-1f, 1f) * xzPower;
