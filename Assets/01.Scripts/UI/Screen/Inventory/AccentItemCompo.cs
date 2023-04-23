@@ -22,7 +22,7 @@ namespace UI.Inventory
         {
             // 초기화
             //modelList.Clear();
-            inventoryCam = _invenCam; 
+            inventoryCam = _invenCam.Find("ModelParent"); 
             allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
             
           //  return;   
@@ -32,23 +32,26 @@ namespace UI.Inventory
                 isInit = true; 
                 foreach (var _itemData in allItemDataSO.itemDataSOList)
                 {
-                    GameObject _prefab = new GameObject();
-                    if (_itemData.modelkey == String.Empty)
+                    GameObject _prefab;
+                    string _modelKey = _itemData.modelkey.Replace("\r", ""); 
+                    if (_modelKey == String.Empty)
                     {
                         continue;
                     }
                     try
                     {
-                        Debug.LogError("@@@@@@" + _itemData.prefebkey);
-                        _prefab = AddressablesManager.Instance.GetResource<GameObject>(_itemData.modelkey);
+                        _prefab = AddressablesManager.Instance.GetResource<GameObject>(_modelKey);
                     }
                     catch (Exception e)
                     {
-                        Debug.LogError("@@@@@@" + _itemData.modelkey);
+                            Debug.LogError(e.Message+ "@@@@@@ " + _modelKey);
+                        continue; 
                     }
+                    
+                    
                     GameObject _instance = GameObject.Instantiate(_prefab, inventoryCam);
                     _instance.name = _itemData.modelkey;
-                    _instance.transform.position = new Vector3(0, -0.218f, 2.75f);
+                    _instance.transform.localPosition = new Vector3(0, -0.218f, 2.75f);
                     modelDic.Add(_itemData.modelkey,_instance);
                 }
             }
@@ -62,13 +65,15 @@ namespace UI.Inventory
         {
             if (curActiveModel is null) return;
 
-            curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.y, Vector3.up);
+            Debug.Log("클릭중");
+            curActiveModel.transform.rotation =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up);
            // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
             
         }
 
         public void ActiveModel(string _key)
         {
+            InactiveAllModels();
             curActiveModel = this.modelDic[_key];
             curActiveModel.SetActive(true); 
             
