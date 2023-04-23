@@ -8,7 +8,9 @@ using Utill.Addressable;
 using UpdateManager;
 using Json;
 using Pool;
+using Streaming;
 using UI.Manager;
+using TimeManager;
 
 namespace LoadScene
 {
@@ -30,7 +32,8 @@ namespace LoadScene
 
         private IEnumerator LoadingScene()
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
+            StaticTime.EnemyTime = 0f;
             while (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("InGame"))
 			{
                 yield return new WaitForSecondsRealtime(1f);
@@ -56,15 +59,21 @@ namespace LoadScene
             //var uop = SceneManager.UnloadSceneAsync("LoadingScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 
             //op2.allowSceneActivation = true;
-            StaticCoroutineManager.Instance.InstanceDoCoroutine(Streaming.StreamingManager.Instance.LoadReadyScene());
+            Streaming.StreamingManager.Instance.IsSetting = false;
+            Streaming.StreamingManager.Instance.LoadReadyScene();
+            
+            //Time.timeScale = 1;
+            yield return new WaitForSeconds(5f);
+            //Time.timeScale = 0;
+            
             while (!Streaming.StreamingManager.Instance.IsSetting)
-			{
-                yield return null;
-			}
-            while (!AddressablesManager.Instance.IsLoadEnd)
             {
                 yield return null;
             }
+            
+            //Time.timeScale = 1;
+            yield return new WaitForSeconds(5f);
+            //Time.timeScale = 0;
 
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);
@@ -106,13 +115,13 @@ namespace LoadScene
             //        yield return new WaitForSecondsRealtime(1f);
             //    }
 			//}
-			
-            while (!AddressablesManager.Instance.IsLoadEnd)
+            while (!StreamingManager.Instance.IsLoadEnd)
             {
+                Debug.Log("Loading");
                 yield return null;
             }
-
             var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            StaticTime.EnemyTime = 1f;
             Time.timeScale = 1;
         }
     }

@@ -88,6 +88,25 @@ namespace Streaming
 			}
 		}
 
+		public bool IsLoadEnd
+		{
+			get
+			{
+				foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
+				{
+					Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+					if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
+					{
+						if (!CheckCurrentlyActhive(_sceneObj.Value.SceneName))
+						{
+							return false;
+						}
+					}
+				}
+				return true;
+			}
+		}
+
 		private StreamingEventTransmit streamingEventTransmit = default;
 
 		//[SerializeField]
@@ -135,7 +154,7 @@ namespace Streaming
 			{
 				isSceneSetting = false;
 				originChunkCoordX = 0;
-				originChunkCoordY = 0;
+				originChunkCoordY = 4000;
 				originChunkCoordZ = 0;
 				viewerPosition = defaultPosition;
 				subSceneReference = null;
@@ -145,26 +164,15 @@ namespace Streaming
 			}
 		}
 
-		public IEnumerator LoadReadyScene()
+		public void LoadReadyScene()
 		{
-			while(true)
-			{
-				if (SubSceneReference is not null)
-				{
-					break;
-				}
-				yield return null;
-			}
+			isSceneSetting = false;
 			originChunkCoordX = 0;
-			originChunkCoordY = 0;
+			originChunkCoordY = 4000;
 			originChunkCoordZ = 0;
 			viewerPosition = defaultPosition;
 			InitSubScene();
 			InitChunk();
-			while (AddressablesManager.Instance.loadMessageQueue.Count > 0)
-            {
-				yield return null;
-            }
 			isSceneSetting = true;
 		}
 
@@ -247,25 +255,25 @@ namespace Streaming
 		{
 			SetSceneDic();
 			
-			foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
-			{
-				Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
-				if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
-				{
-					StreamingManager.Instance.LoadSubScene(_sceneObj.Key);	
-				}
-				else
-				{
-					StreamingManager.Instance.UnLoadSubSceneNoneCheck(_sceneObj.Key);	
-				}
-			}
-			//SceneStreamingJob _sceneStreamingJob = new SceneStreamingJob()
+			//foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
 			//{
-			//	originChunkCoordX = this.originChunkCoordX,
-			//	originChunkCoordY = this.originChunkCoordY,
-			//	originChunkCoordZ = this.originChunkCoordZ
-			//};
-			//JobHandle _jobHandle = _sceneStreamingJob.Schedule();
+			//	Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+			//	if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
+			//	{
+			//		StreamingManager.Instance.LoadSubScene(_sceneObj.Key);	
+			//	}
+			//	else
+			//	{
+			//		StreamingManager.Instance.UnLoadSubSceneNoneCheck(_sceneObj.Key);	
+			//	}
+			//}
+			SceneStreamingJob _sceneStreamingJob = new SceneStreamingJob()
+			{
+				originChunkCoordX = this.originChunkCoordX,
+				originChunkCoordY = this.originChunkCoordY,
+				originChunkCoordZ = this.originChunkCoordZ
+			};
+			JobHandle _jobHandle = _sceneStreamingJob.Schedule();
 			
 			yield return null;
 

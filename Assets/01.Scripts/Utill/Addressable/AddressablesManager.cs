@@ -27,12 +27,13 @@ namespace Utill.Addressable
 		private Dictionary<string, AsyncOperationHandle<SceneInstance>> sceneInstanceDic = new Dictionary<string, AsyncOperationHandle<SceneInstance>>();
 		public Queue<LoadSceneData> loadMessageQueue = new Queue<LoadSceneData>();
 		public Queue<string> unLoadMessageQueue = new Queue<string>();
+		public int notCompleteCount;
 
 		public bool IsLoadEnd
 		{
 			get
 			{
-				if (loadMessageQueue.Count > 0)
+				if (loadMessageQueue.Count > 0 && notCompleteCount > 0)
 				{
 					return false;
 				}
@@ -151,17 +152,6 @@ namespace Utill.Addressable
 			loadSceneData.action = _action;
 
 			loadMessageQueue.Enqueue(loadSceneData);
-			//if (!loadedScene.Contains(_name))
-			//{
-			//	loadedScene.Add(_name);
-			//	var _handle = Addressables.LoadSceneAsync(_name, _loadSceneMode);
-			//	_handle.Completed += (x) =>
-			//	{
-			//		sceneInstanceDic.Add(_name, _handle);
-			//	};
-			//	_handle.Completed += _action;
-			//}
-
 		}
 
 		public IEnumerator LoadSceneQueue()
@@ -173,13 +163,15 @@ namespace Utill.Addressable
 					LoadSceneData _loadSceneData = loadMessageQueue.Dequeue();
 					if (!loadedScene.Contains(_loadSceneData.name))
 					{
+						notCompleteCount++;
 						loadedScene.Add(_loadSceneData.name);
 						var _handle = Addressables.LoadSceneAsync(_loadSceneData.name, _loadSceneData.loadSceneMode);
 						_handle.Completed += (x) =>
 						{
+							notCompleteCount--;
 							sceneInstanceDic.Add(_loadSceneData.name, _handle);
+							_loadSceneData.action?.Invoke(x);
 						};
-						_handle.Completed += _loadSceneData.action;
 					}
 				}
 				yield return null;
