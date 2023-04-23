@@ -105,6 +105,10 @@ namespace Streaming
 								return false;
 							}
 						}
+						else
+						{
+							return false;
+						}
 					}
 				}
 				return true;
