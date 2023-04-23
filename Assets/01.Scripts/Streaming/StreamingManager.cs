@@ -93,7 +93,7 @@ namespace Streaming
 			get
 			{
 				SetSceneDic();
-				foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
+				foreach (var _sceneObj in chunkDictionary)
 				{
 					Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
 					if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
@@ -330,15 +330,16 @@ namespace Streaming
 			}
             for (int i = 0; i < SceneManager.sceneCount; ++i)
 			{
-				string _name = SceneManager.GetSceneAt(i).name;
+				Scene _scene = SceneManager.GetSceneAt(i);
+				string _name = _scene.name;
 				if (sceneActiveCheckDic.TryGetValue(_name, out var _bool))
                 {
-					sceneActiveCheckDic[_name].value = true;
+					sceneActiveCheckDic[_name].value = _scene.isLoaded;
 				}
 				else
                 {
 					BoolStruct _boolStruct = new BoolStruct();
-					_boolStruct.value = true;
+					_boolStruct.value = _scene.isLoaded;
 					sceneActiveCheckDic.Add(SceneManager.GetSceneAt(i).name, _boolStruct);
                 }
 			}
