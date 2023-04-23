@@ -91,6 +91,7 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
             if (isUseAlreadyCreature)
             {
                 _dropObj = creature;
+                _dropObj.SetActive(true);
             }
             else
             {
