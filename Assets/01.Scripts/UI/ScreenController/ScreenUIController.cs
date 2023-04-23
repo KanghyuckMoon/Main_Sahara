@@ -126,8 +126,6 @@ namespace UI
         private void Update()
         {
             UIInput();
-            Debug.Log("커서 잠금 상태 : "  + Cursor.lockState);
-            Debug.Log("커서 보이는 상태 : "+Cursor.visible);
         }
 
         /// <summary>
@@ -144,7 +142,7 @@ namespace UI
                 return (T)_screen;
             }
             Debug.LogError("screenDic을 확인해");
-            return (T)_screen;
+                return (T)_screen;
         }
 
         /// <summary>

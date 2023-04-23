@@ -25,15 +25,15 @@ public class DraggerRot : MouseManipulator
     protected override void RegisterCallbacksOnTarget()
     {
         target.RegisterCallback<MouseDownEvent>(OnMouseDown);
-        target.RegisterCallback<MouseOverEvent>(OnMouseStay);
-        target.RegisterCallback<MouseUpEvent>(OnMouseUp);
+        target.RegisterCallback<MouseMoveEvent>(OnMouseStay);
+        target.RegisterCallback<MouseLeaveEvent>(OnMouseUp);
     }
 
     protected override void UnregisterCallbacksFromTarget()
     {
         target.RegisterCallback<MouseDownEvent>(OnMouseDown);
-        target.RegisterCallback<MouseOverEvent>(OnMouseStay);
-        target.RegisterCallback<MouseUpEvent>(OnMouseUp);
+        target.RegisterCallback<MouseMoveEvent>(OnMouseStay);
+        target.RegisterCallback<MouseLeaveEvent>(OnMouseUp);
     }
 
     protected void OnMouseDown(MouseDownEvent e)
@@ -41,26 +41,33 @@ public class DraggerRot : MouseManipulator
         // 좌클릭으로 헀는지 조건 체크
         if (CanStartManipulation(e))
         {
+            _isDragging = true; 
             StartCallback?.Invoke();
             e.StopPropagation(); //이벤트 전파중지
         }
     }
     
-    protected void OnMouseStay(MouseOverEvent e)
+    protected void OnMouseStay(MouseMoveEvent e)
     {
         // 좌클릭으로 헀는지 조건 체크
-        if (CanStartManipulation(e))
+        if (CanStartManipulation(e) && _isDragging)
         {
             DragCallback?.Invoke();
             e.StopPropagation(); //이벤트 전파중지
+            // 키 업시 
+            if (Input.GetMouseButtonUp(0))
+            {
+                _isDragging = false; 
+            }
         }
     }
     
-    protected void OnMouseUp(MouseUpEvent e)
+    protected void OnMouseUp(MouseLeaveEvent e)
     {
         // 좌클릭으로 헀는지 조건 체크
         if (CanStartManipulation(e))
         {
+            //_isDragging = false; 
             EndCallback?.Invoke();
             e.StopPropagation(); //이벤트 전파중지
         }

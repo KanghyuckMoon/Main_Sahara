@@ -35,7 +35,7 @@ namespace UI.Inventory
             inventoryView.InitUIDocument(uiDocument);
             accentItemCompo = new AccentItemCompo(); 
             accentItemCompo.Init(inventoryCam.transform);             
-            inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
+            inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.modelkey));
             
         }
         private void OnEnable()
@@ -43,7 +43,10 @@ namespace UI.Inventory
             inventoryView.Cashing();
             inventoryView.Init();
             //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
-            inventoryView.SelectImage.AddManipulator(new DraggerRot());
+            inventoryView.SelectImage.AddManipulator(new DraggerRot(
+                () => Debug.Log("s"),
+                ()=> accentItemCompo.RotateModel(Input.GetAxis("Mouse X") * Vector3.up * 1000 * Time.deltaTime),
+                () => Debug.Log("끝")));
             
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.weapon_button,InventoryView.Elements.quick_slot_panel, x));
@@ -116,9 +119,14 @@ namespace UI.Inventory
 
         }
 
-        private void ChangeCategory(InventoryGridSlotsView.RadioButtons _rType,InventoryView.Elements _eType, bool _isActive)
-        {
-            AccentPattern(_rType,_isActive);
+            private void ChangeCategory(InventoryGridSlotsView.RadioButtons _rType,InventoryView.Elements _eType, bool _isActive)
+            {
+                if (_rType is InventoryGridSlotsView.RadioButtons.consumation_button &&
+                    _rType is InventoryGridSlotsView.RadioButtons.weapon_button)
+                {
+                    // 소비, 무기 버튼에서는 
+                }
+                AccentPattern(_rType,_isActive);
             AnimateSlot(_eType,_isActive);
         }
         private void AccentPattern(InventoryGridSlotsView.RadioButtons _type, bool _isActive)
