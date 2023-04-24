@@ -239,7 +239,12 @@ namespace Inventory
 
 		public List<ItemData> GetAllItem()
 		{
-			return inventorySO.itemDataList;
+			if (!isInit)
+			{
+				Init();
+				isInit = true;
+			}
+				return inventorySO.itemDataList;
 		}
 
 		public int GetMoney()

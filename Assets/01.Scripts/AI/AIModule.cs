@@ -160,6 +160,30 @@ namespace Module
 			}
 		}
 
+		public int PathIndex
+		{
+			get
+			{
+				return pathIndex;
+			}
+			set
+			{
+				pathIndex = value;
+			}
+		}
+
+		public bool IsUsePath
+		{
+			get
+			{
+				return isUsePath;
+			}
+			set
+			{
+				isUsePath = value;
+			}
+		}
+
 		public Vector3 OriginPos
 		{
 			get
@@ -208,6 +232,8 @@ namespace Module
 			}
 		}
 		
+		
+		
 		private Transform player;
 		protected INode _rootNode;
 		private bool isInit = false;
@@ -221,6 +247,8 @@ namespace Module
 		private bool isFirstAttack = true;
 		private bool isHostilities = true;
 		private PathHarver pathHarver;
+		private int pathIndex = 0;
+		private bool isUsePath = false;
 		private Vector3 originPos = Vector3.zero;
 		private Vector3 lastFindPlayerPos = Vector3.zero;
 		private TalkModule talkModule;
@@ -336,7 +364,18 @@ namespace Module
 
 		public void SetSmoothPath(int index)
 		{
-			
+			isUsePath = true;
+			pathIndex = index;
+			CanTalk(false);
+		}
+
+		public void CanTalk(bool isCan)
+		{
+			if (talkModule is null)
+			{
+				return;
+			}
+			talkModule.IsCanTalk = isCan;
 		}
 	}
 }

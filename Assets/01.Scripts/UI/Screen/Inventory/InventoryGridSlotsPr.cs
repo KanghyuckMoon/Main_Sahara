@@ -37,6 +37,8 @@ namespace UI.Inventory
         public InventoryPanelUI CurInvenPanel =>
             ItemSlotDic[invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType)];
 
+        public ItemType CurItemType => invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType);
+        
         public int Col => col;
         public int Row => row;
         public ItemDescriptionPresenter DescriptionPr => descriptionPresenter;
@@ -57,13 +59,17 @@ namespace UI.Inventory
             // SO 불러오기 
             invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
 
-        }
+        }   
 
         public void Init()
         {
             CreateAllSlots();
         }
 
+        public InventoryPanelUI GetInvenPanel(ItemType _itemType)
+        {
+            return ItemSlotDic[_itemType];
+        }
         public void AddButtonEvent(InventoryGridSlotsView.RadioButtons _type, Action<bool> _callback)
         {
             inventoryGridSlotsView.AddButtonEvent(_type, _callback);

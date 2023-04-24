@@ -6,16 +6,21 @@ using UI.Popup;
 using UI.Base;
 using System.Linq;
 using UI.ActiveManager;
+using Utill.Pattern;
 
 namespace Interaction
 {
-	public class InteractionManager : MonoBehaviour, IUIManaged
+	public class InteractionManager : MonoSingleton<InteractionManager>, IUIManaged
 	{
 		private Transform Player
 		{
 			get
 			{
-				_player ??= GameObject.FindGameObjectWithTag("Player").transform;
+				if (_player is null)
+				{
+					_player = PlayerObj.Player?.transform;
+
+				}
 				return _player;
 			}
 		}
@@ -46,6 +51,10 @@ namespace Interaction
 
 		private void Update()
 		{
+			if (Player is null)
+			{
+				return;
+			}
 			GetNearObject();
 			//UpdateUI();
 			InputInteraction();

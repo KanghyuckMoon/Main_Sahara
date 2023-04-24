@@ -242,7 +242,7 @@ namespace Streaming
 			{
 				objectList.Add(_objectData.key, _obj);
 			}
-			ResetLODObject();
+			//ResetLODObject();
 		}
 
 		private void ObjectSettingData(GameObject _obj, ObjectData _objectData)

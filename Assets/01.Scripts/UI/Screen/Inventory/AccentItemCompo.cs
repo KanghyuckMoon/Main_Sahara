@@ -8,12 +8,25 @@ using Utill.Addressable;
 
 namespace UI.Inventory
 {
+    public struct St_Transform
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+
+        public St_Transform(Transform _trm)
+        {
+            position = _trm.position;
+            rotation = _trm.rotation; 
+        }
+    }
     public class AccentItemCompo
     {
         private Transform inventoryCam; 
         private AllItemDataSO allItemDataSO;
 
         private Dictionary<string,GameObject> modelDic = new Dictionary<string,GameObject>();
+        // 초기화시 사용할 모델 위치, 회전 정보 
+        private Dictionary<string, St_Transform> modelTrmDic = new Dictionary<string, St_Transform>(); 
         private GameObject curActiveModel = null; 
         
         private bool isInit = false; 
@@ -22,34 +35,38 @@ namespace UI.Inventory
         {
             // 초기화
             //modelList.Clear();
-            inventoryCam = _invenCam; 
+            inventoryCam = _invenCam.Find("ModelParent"); 
             allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
             
-            return;   
+          //  return;   
             // 생성 
             if (isInit == false)
             {                 
                 isInit = true; 
                 foreach (var _itemData in allItemDataSO.itemDataSOList)
                 {
-                    GameObject _prefab = new GameObject();
-                    if (_itemData.prefebkey == String.Empty)
+                    GameObject _prefab;
+                    string _modelKey = _itemData.modelkey.Replace("\r", ""); 
+                    if (_modelKey == String.Empty)
                     {
                         continue;
                     }
                     try
                     {
-                        Debug.LogError("@@@@@@" + _itemData.prefebkey);
-                        _prefab = AddressablesManager.Instance.GetResource<GameObject>(_itemData.prefebkey);
+                        _prefab = AddressablesManager.Instance.GetResource<GameObject>(_modelKey);
                     }
                     catch (Exception e)
                     {
-                        Debug.LogError("@@@@@@" + _itemData.prefebkey);
+                            Debug.LogError(e.Message+ "@@@@@@ " + _modelKey);
+                        continue; 
                     }
+                    
+                    
                     GameObject _instance = GameObject.Instantiate(_prefab, inventoryCam);
-                    _instance.name = _itemData.prefebkey;
-                    _instance.transform.position = new Vector3(0, -0.218f, 2.75f);
-                    modelDic.Add(_itemData.prefebkey,_instance);
+                    _instance.name = _itemData.modelkey;
+                    _instance.transform.localPosition = new Vector3(0, -0.218f, 2.75f);
+                    modelDic.Add(_itemData.modelkey,_instance);
+                    modelTrmDic.Add(_itemData.modelkey, new St_Transform(_instance.transform));
                 }
             }
 
@@ -58,17 +75,34 @@ namespace UI.Inventory
         public void Update()
         {
         }
-        public void RotateModel(Vector3 _rotV)
+        public void RotateModelHorizon(Vector3 _rotV)
         {
             if (curActiveModel is null) return;
 
-            curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.y, Vector3.up);
+            Debug.Log("클릭중");
+            //Quaternion xQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up); 
+            //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
+            //Quaternion _resultQut = xQut * yQut;  
+            curActiveModel.transform.localEulerAngles += _rotV;
            // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
-            
+        }
+        
+        public void RotateModelVertical(Vector3 _rotV)
+        {
+            if (curActiveModel is null) return;
+
+            Debug.Log("클릭중");
+            //Quaternion xQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up); 
+            //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
+            //Quaternion _resultQut = xQut * yQut;  
+            //curActiveModel.transform.rotation *= yQut;
+            curActiveModel.transform.localEulerAngles += _rotV;
+            // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
         }
 
         public void ActiveModel(string _key)
         {
+            InactiveAllModels();
             curActiveModel = this.modelDic[_key];
             curActiveModel.SetActive(true); 
             
@@ -81,8 +115,12 @@ namespace UI.Inventory
         {
             foreach (var _model in modelDic)
             {
-                _model.Value.SetActive(false);                
+                _model.Value.SetActive(false);
+                // 위치 회전 초기화 
+                _model.Value.transform.position = modelTrmDic[_model.Key].position;
+                _model.Value.transform.rotation = modelTrmDic[_model.Key].rotation;
             }
+            
             curActiveModel = null; 
         }
         //   모든 아이템 저장 리스트 

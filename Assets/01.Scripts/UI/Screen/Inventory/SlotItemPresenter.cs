@@ -8,7 +8,7 @@ using GoogleSpreadSheet;
 using Utill.Addressable;
 using UI.ConstructorManager;
 using System;
-using UI.Base; 
+using UI.Base;
 
 namespace UI.Inventory
 {
@@ -17,26 +17,29 @@ namespace UI.Inventory
         private SlotItemView slotItemView;
         private VisualElement parent;
         private ItemData itemData;
-        private ItemType slotType = ItemType.None;  
+        private ItemType slotType = ItemType.None;
 
         private int index;
 
         // 프로퍼티 
-        public ItemType SlotType => slotType; 
+        public ItemType SlotType => slotType;
         public int Index => index;
-        public SlotItemView SlotItemView => slotItemView;   
+        public SlotItemView SlotItemView => slotItemView;
+
         public VisualElement Parent
         {
             get
             {
-                if(parent == null)
+                if (parent == null)
                 {
-                    parent = slotItemView.ParentElement; 
+                    parent = slotItemView.ParentElement;
                 }
+
                 return parent;
             }
         }
-        public VisualElement Item => slotItemView.Item; 
+
+        public VisualElement Item => slotItemView.Item;
         public ItemData ItemData => itemData;
         public Vector2 WorldPos => slotItemView.SlotWorldBound.position;
         public Vector2 ItemSize => new Vector2(slotItemView.SlotWorldBound.width, slotItemView.SlotWorldBound.height);
@@ -91,27 +94,29 @@ namespace UI.Inventory
 
         public void SetSlotType(ItemType _type)
         {
-            this.slotType = _type; 
+            this.slotType = _type;
         }
+
         public void ClearData()
         {
             this.itemData = null;
-            this.slotItemView.ClearUI(); 
+            this.slotItemView.ClearUI();
         }
-        public void SetItemData(ItemData _itemData)
+
+        public void SetItemData(ItemData _itemData, bool _isIcon = false)
         {
             this.itemData = _itemData;
             slotItemView.IsStackable = _itemData.IsStackble;
-            if(_itemData.spriteKey != "")
-            {
-                slotItemView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey),
-                                                          _itemData.count);
-            }
+            if (_itemData.spriteKey == "") return;
+            string _imgAdress = _isIcon is false ? _itemData.spriteKey : _itemData.iconKey;
+
+            slotItemView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_imgAdress),
+                    _itemData.count);
         }
 
         public void RemoveView()
         {
-            slotItemView.RemoveView(); 
+            slotItemView.RemoveView();
         }
 
         /// <summary>
@@ -124,7 +129,7 @@ namespace UI.Inventory
 
         public void AddDoubleClicker(Action _callback)
         {
-            this.slotItemView.RemoveCurManipulator(); 
+            this.slotItemView.RemoveCurManipulator();
             this.slotItemView.AddManipulator(new DoubleClicker(_callback));
         }
 
@@ -137,7 +142,7 @@ namespace UI.Inventory
         {
             slotItemView.AddManipulator(new Dragger(_target, startCallback));
         }
-        
+
         /// <summary>
         /// 드롭퍼 기능추가
         /// </summary>
@@ -168,5 +173,4 @@ namespace UI.Inventory
             this.slotItemView.AddOutEvent(_callback);
         }
     }
-
 }

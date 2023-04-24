@@ -19,6 +19,8 @@ namespace UI.UtilManager
         
         private IEnumerator AnimateTextCo(Label _targetLabel, string _fullText)
         {
+            if (_fullText == null) yield break;
+            
             _targetLabel.text = String.Empty;
             ;
             string _targetText;

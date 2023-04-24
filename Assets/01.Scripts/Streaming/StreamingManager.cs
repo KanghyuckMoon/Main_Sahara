@@ -62,7 +62,7 @@ namespace Streaming
 					return debugViewer;
 				}
 
-				viewer ??= GameObject.FindGameObjectWithTag("Player")?.transform;
+				viewer ??= PlayerObj.Player?.transform;
 
 				return viewer;
 			}
@@ -85,6 +85,25 @@ namespace Streaming
 			set
 			{
 				streamingEventTransmit = value;
+			}
+		}
+
+		public bool IsLoadEnd
+		{
+			get
+			{
+				SetSceneDic();
+				Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+				SubSceneObj _subSceneObj = chunkDictionary[_currentPos];
+				if (_subSceneObj.IsActiveScene())
+				{
+					return true;
+				}
+				else
+				{
+					_subSceneObj.LoadScene();
+					return false;
+				}
 			}
 		}
 
@@ -135,7 +154,7 @@ namespace Streaming
 			{
 				isSceneSetting = false;
 				originChunkCoordX = 0;
-				originChunkCoordY = 0;
+				originChunkCoordY = 40;
 				originChunkCoordZ = 0;
 				viewerPosition = defaultPosition;
 				subSceneReference = null;
@@ -145,26 +164,15 @@ namespace Streaming
 			}
 		}
 
-		public IEnumerator LoadReadyScene()
+		public void LoadReadyScene()
 		{
-			while(true)
-			{
-				if (SubSceneReference is not null)
-				{
-					break;
-				}
-				yield return null;
-			}
+			isSceneSetting = false;
 			originChunkCoordX = 0;
-			originChunkCoordY = 0;
+			originChunkCoordY = 40;
 			originChunkCoordZ = 0;
 			viewerPosition = defaultPosition;
 			InitSubScene();
 			InitChunk();
-			while (AddressablesManager.Instance.loadMessageQueue.Count > 0)
-            {
-				yield return null;
-            }
 			isSceneSetting = true;
 		}
 
@@ -229,9 +237,9 @@ namespace Streaming
 				originChunkCoordY = _currentChunkCoordY;
 				originChunkCoordZ = _currentChunkCoordZ;
 
-				Physics.RebuildBroadphaseRegions(new Bounds(new Vector3(_currentChunkCoordX, _currentChunkCoordY, _currentChunkCoordZ) * 100,Vector3.one * 200), 5);
+				//Physics.RebuildBroadphaseRegions(new Bounds(new Vector3(_currentChunkCoordX, _currentChunkCoordY, _currentChunkCoordZ) * 100,Vector3.one * 200), 5);
 				StartCoroutine(UpdateChunk());
-				streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
+				//streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 
@@ -246,7 +254,19 @@ namespace Streaming
 		private IEnumerator UpdateChunk()
 		{
 			SetSceneDic();
-
+			
+			//foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
+			//{
+			//	Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+			//	if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
+			//	{
+			//		StreamingManager.Instance.LoadSubScene(_sceneObj.Key);	
+			//	}
+			//	else
+			//	{
+			//		StreamingManager.Instance.UnLoadSubSceneNoneCheck(_sceneObj.Key);	
+			//	}
+			//}
 			SceneStreamingJob _sceneStreamingJob = new SceneStreamingJob()
 			{
 				originChunkCoordX = this.originChunkCoordX,
@@ -306,15 +326,16 @@ namespace Streaming
 			}
             for (int i = 0; i < SceneManager.sceneCount; ++i)
 			{
-				string _name = SceneManager.GetSceneAt(i).name;
+				Scene _scene = SceneManager.GetSceneAt(i);
+				string _name = _scene.name;
 				if (sceneActiveCheckDic.TryGetValue(_name, out var _bool))
                 {
-					sceneActiveCheckDic[_name].value = true;
+					sceneActiveCheckDic[_name].value = _scene.isLoaded;
 				}
 				else
                 {
 					BoolStruct _boolStruct = new BoolStruct();
-					_boolStruct.value = true;
+					_boolStruct.value = _scene.isLoaded;
 					sceneActiveCheckDic.Add(SceneManager.GetSceneAt(i).name, _boolStruct);
                 }
 			}

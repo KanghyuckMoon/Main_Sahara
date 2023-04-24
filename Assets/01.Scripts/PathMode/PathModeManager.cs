@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
-using UI; 
+using UI;
 
 namespace PathMode
 {
@@ -14,9 +14,8 @@ namespace PathMode
             {
                 if (player is null)
                 {
-                    player = GameObject.FindGameObjectWithTag("Player")?.transform;
+                    player = PlayerObj.Player?.transform;
                 }
-
                 return player;
             }
             set
@@ -36,6 +35,10 @@ namespace PathMode
 
         private void Update()
         {
+            if (Player is null)
+            {
+                return;
+            }
             Vector3 _lastPos = lastPos;
             _lastPos.y = 0;
 
