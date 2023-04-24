@@ -148,9 +148,9 @@ namespace CutScene
                 }
             }
 
-            if (_cutSceneData.eventObj != null)
+            if (_cutSceneData.beforeEventObj != null)
             {
-                _cutSceneData.eventObj?.Invoke();
+                _cutSceneData.beforeEventObj?.Invoke();
             }
         }
         private void SettingParameterCutSceneData(CutSceneData _cutSceneData)
@@ -225,6 +225,11 @@ namespace CutScene
         }
         public void NextCutScene()
         {
+            if (cutSceneDataList.cutSceneDataList[index].afterEventObj != null)
+            {
+                cutSceneDataList.cutSceneDataList[index].afterEventObj?.Invoke();
+            }
+            
             //퀘스트 조건이 달려있으면 퀘스트 클리어
             if(cutSceneDataList.cutSceneDataList[index].questKey != null)
 			{
@@ -454,7 +459,8 @@ namespace CutScene
         public QuestState questState;
 
         //Event
-        public UnityEvent eventObj;
+        [FormerlySerializedAs("eventObj")] public UnityEvent beforeEventObj;
+        public UnityEvent afterEventObj;
 
         //Condition
         public bool isTalk;

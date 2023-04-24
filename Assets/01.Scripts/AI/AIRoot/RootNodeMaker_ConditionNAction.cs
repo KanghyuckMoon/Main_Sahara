@@ -816,7 +816,7 @@ namespace AI
 				Vector3 _lastPoint = _smoothPath.m_Waypoints[_smoothPath.m_Waypoints.Length - 1].position;
 				float _distance = Vector3.Distance(Position, _lastPoint);
 				
-				if (_distance < 1f)
+				if (_distance < 2f)
 				{
 					aiModule.IsUsePath = false;
 					aiModule.CanTalk(true);
