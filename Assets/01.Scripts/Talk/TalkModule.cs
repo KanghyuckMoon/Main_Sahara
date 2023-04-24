@@ -154,6 +154,8 @@ namespace Module.Talk
 				TalkData _talkData = talkDataSO.talkDataList[i];
 				if (ConditionCheck(_talkData))
 				{
+					priorTalkData = _talkData;
+					
 					PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText, EndTalk);
 					isTalking = true;
 
@@ -162,7 +164,6 @@ namespace Module.Talk
 						TalkWithCutScene.PlayCutScene(_talkData.cutSceneKey);
 					}
 
-					priorTalkData = _talkData;
 					
 					return true;
 				}
