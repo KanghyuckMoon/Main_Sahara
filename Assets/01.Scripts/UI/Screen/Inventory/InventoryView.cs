@@ -26,7 +26,7 @@ namespace UI.Inventory
             quick_slot_panel = 0, // 퀵슬롯
             armor_equip_panel, // 장비 장착
             accessoire_equip_panel, // 장신구 장착
-            skill_equip_panel, // 스킬 장착 
+            //skill_equip_panel, // 스킬 장착 
 
             drag_item,
             contents,
@@ -218,6 +218,7 @@ namespace UI.Inventory
             // row 초과인데 데이터 없으면 삭제 
 
             // 슬롯에 순서대로 
+            if (_itemData.itemType is ItemType.Skill) return; 
             InventoryPanelUI _ui = inventoryGridSlotsPr.ItemSlotDic[_itemData.itemType];
             if (_ui.slotItemViewList.Count <= _ui.index)
             {
@@ -264,8 +265,8 @@ namespace UI.Inventory
             }
             List<VisualElement> _armorList = GetVisualElement((int)Elements.armor_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
             AddEquipSlotsEvt(_armorList, ItemType.Equipment);
-            List<VisualElement> _skillList = GetVisualElement((int)Elements.skill_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
-            AddEquipSlotsEvt(_skillList, ItemType.Skill);
+           // List<VisualElement> _skillList = GetVisualElement((int)Elements.skill_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
+            //AddEquipSlotsEvt(_skillList, ItemType.Skill);
             List<VisualElement> _accesList = GetVisualElement((int)Elements.accessoire_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
             AddEquipSlotsEvt(_accesList, ItemType.Accessories);
 

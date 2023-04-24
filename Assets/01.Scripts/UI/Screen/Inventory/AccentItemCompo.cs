@@ -8,12 +8,25 @@ using Utill.Addressable;
 
 namespace UI.Inventory
 {
+    public struct St_Transform
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+
+        public St_Transform(Transform _trm)
+        {
+            position = _trm.position;
+            rotation = _trm.rotation; 
+        }
+    }
     public class AccentItemCompo
     {
         private Transform inventoryCam; 
         private AllItemDataSO allItemDataSO;
 
         private Dictionary<string,GameObject> modelDic = new Dictionary<string,GameObject>();
+        // 초기화시 사용할 모델 위치, 회전 정보 
+        private Dictionary<string, St_Transform> modelTrmDic = new Dictionary<string, St_Transform>(); 
         private GameObject curActiveModel = null; 
         
         private bool isInit = false; 
@@ -53,6 +66,7 @@ namespace UI.Inventory
                     _instance.name = _itemData.modelkey;
                     _instance.transform.localPosition = new Vector3(0, -0.218f, 2.75f);
                     modelDic.Add(_itemData.modelkey,_instance);
+                    modelTrmDic.Add(_itemData.modelkey, new St_Transform(_instance.transform));
                 }
             }
 
@@ -69,7 +83,7 @@ namespace UI.Inventory
             //Quaternion xQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up); 
             //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
             //Quaternion _resultQut = xQut * yQut;  
-            curActiveModel.transform.eulerAngles += _rotV;
+            curActiveModel.transform.localEulerAngles += _rotV;
            // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
         }
         
@@ -82,7 +96,7 @@ namespace UI.Inventory
             //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
             //Quaternion _resultQut = xQut * yQut;  
             //curActiveModel.transform.rotation *= yQut;
-            curActiveModel.transform.eulerAngles += _rotV;
+            curActiveModel.transform.localEulerAngles += _rotV;
             // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
         }
 
@@ -101,8 +115,12 @@ namespace UI.Inventory
         {
             foreach (var _model in modelDic)
             {
-                _model.Value.SetActive(false);                
+                _model.Value.SetActive(false);
+                // 위치 회전 초기화 
+                _model.Value.transform.position = modelTrmDic[_model.Key].position;
+                _model.Value.transform.rotation = modelTrmDic[_model.Key].rotation;
             }
+            
             curActiveModel = null; 
         }
         //   모든 아이템 저장 리스트 
