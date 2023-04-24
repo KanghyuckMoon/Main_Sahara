@@ -176,10 +176,13 @@ namespace Module.Talk
 			switch (_talkData.talkCondition)
 			{
 				case TalkCondition.Quest:
-					QuestData questData = QuestManager.Instance.GetQuestData(_talkData.questKey);
-					if(_talkData.questState == questData.QuestState)
+					foreach (var questCondition in _talkData.questConditionList)
 					{
-						return true;
+						QuestData questData = QuestManager.Instance.GetQuestData(questCondition.questKey);
+						if(questCondition.questState != questData.QuestState)
+						{
+							return false;
+						}
 					}
 					break;
 				case TalkCondition.Position:
@@ -189,7 +192,7 @@ namespace Module.Talk
 				case TalkCondition.CutScene:
 					break;
 			}
-			return false;
+			return true;
 		}
 
 		private void RandomDefaultText()
