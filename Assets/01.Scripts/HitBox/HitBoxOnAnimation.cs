@@ -4,6 +4,7 @@ using UnityEngine;
 using Pool;
 using Utill.Pattern;
 using System.Linq;
+using UnityEngine.Serialization;
 
 namespace HitBox
 {
@@ -16,6 +17,14 @@ namespace HitBox
 
 		[SerializeField] 
 		private Transform waeponHandle;
+		
+		public HitBoxInAction HitBoxInAction
+		{
+			set { hitBoxInAction = value;}
+			get { return hitBoxInAction; }
+		}
+		public HitBoxInAction hitBoxInAction;
+		public HitBoxAction hitBoxAction;
 			
 		private void Start()
 		{
@@ -41,14 +50,12 @@ namespace HitBox
 					InGameHitBox hitbox = HitBoxPoolManager.Instance.GetObject();
 					if (waeponHandle == null)
 					{
-						
 						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, null);
 					}
 					else
 					{
-						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, waeponHandle.gameObject, waeponHandle.gameObject);
+						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, waeponHandle.gameObject, waeponHandle.gameObject, hitBoxAction);
 					}
-
 				}
 			}
 		}
