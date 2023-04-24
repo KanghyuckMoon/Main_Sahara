@@ -33,6 +33,7 @@ namespace CutScene
         CutTargetToCutTarget = 7, 
         //RotateToPlayer = 8,
         CutTargetToTarget = 9,
+        PlayerLookAtTarget = 11,
     }
 
     public class CutSceneManager : MonoSingleton<CutSceneManager>
@@ -197,6 +198,10 @@ namespace CutScene
                     CutSceneManager.Instance.SetTarget2(_cutSceneData.target2);
                     ChangeLastCam(CamType.TargetCam2);
                     break;
+                case CutSceneType.PlayerLookAtTarget:
+                    CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    ChangeLastCam(CamType.LookAtCam);
+                    break;
             }
             if (_cutSceneData.isTalk)
             {
@@ -348,6 +353,7 @@ namespace CutScene
             target1 = _target;
             CamList.GetCam(CamType.TargetCam1).Follow = _target;
             CamList.GetCam(CamType.CutSceneZoomCam).Follow = _target;
+            CamList.GetCam(CamType.LookAtCam).LookAt = _target;
         }
         public void SetTarget2(Transform _target)
         {
