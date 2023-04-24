@@ -12,6 +12,11 @@ public class DraggerRot : MouseManipulator
     private Action DragCallback = null;
     private Action EndCallback = null;
 
+    public bool IsDragging
+    {
+        get => _isDragging;
+        set => _isDragging = value; 
+    }
     public DraggerRot(Action _startCallback = null, Action _dragCallback = null, Action _endCallback =null)
     {
         _isDragging = false;
@@ -50,7 +55,7 @@ public class DraggerRot : MouseManipulator
     protected void OnMouseStay(MouseMoveEvent e)
     {
         // 좌클릭으로 헀는지 조건 체크
-        if (CanStartManipulation(e) && _isDragging)
+        if (CanStartManipulation(e) && _isDragging is true)
         {
             DragCallback?.Invoke();
             e.StopPropagation(); //이벤트 전파중지

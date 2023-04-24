@@ -21,7 +21,9 @@ namespace UI.Inventory
         [SerializeField]
         private InventoryView inventoryView;
 
-        private AccentItemCompo accentItemCompo; 
+        private AccentItemCompo accentItemCompo;
+
+        private DraggerRot draggerRot; 
      //   private 
 
         // 프로퍼티 
@@ -42,22 +44,23 @@ namespace UI.Inventory
         {
             inventoryView.Cashing();
             inventoryView.Init();
-            //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
-            inventoryView.SelectImage.AddManipulator(new DraggerRot(
+            draggerRot = new DraggerRot(
                 () => Debug.Log("s"),
                 () =>
                 {
                     accentItemCompo.RotateModelHorizon(Input.GetAxis("Mouse X") * Vector3.up * 1000 * Time.deltaTime);
                     accentItemCompo.RotateModelVertical(Input.GetAxis("Mouse Y") * Vector3.right * 500 * Time.deltaTime);
                 },
-                () => Debug.Log("끝")));
+                () => Debug.Log("끝"));
+            //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
+            inventoryView.SelectImage.AddManipulator(draggerRot); 
             
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.weapon_button,InventoryView.Elements.quick_slot_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.consumation_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.consumation_button,InventoryView.Elements.quick_slot_panel, x));
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.skill_button, 
-                (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.skill_button,InventoryView.Elements.skill_equip_panel, x));
+          //  inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.skill_button, 
+           //     (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.skill_button,InventoryView.Elements.skill_equip_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.armor_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.armor_button,InventoryView.Elements.armor_equip_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.accessories_button, 
@@ -80,7 +83,14 @@ namespace UI.Inventory
         {
             UpdateUI(); 
         }
-        
+
+        void Update()
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                draggerRot.IsDragging = false;
+            }
+        }
         public bool ActiveView()
         {
             bool _isActive = inventoryView.ActiveScreen();

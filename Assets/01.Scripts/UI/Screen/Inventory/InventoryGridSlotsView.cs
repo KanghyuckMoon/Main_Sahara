@@ -22,7 +22,7 @@ namespace UI.Inventory
             weapon_panel,
             armor_panel,
             consumation_panel,
-            skill_panel,
+            //skill_panel,
             accessories_panel,
             material_panel,
             valuable_panel
@@ -33,7 +33,7 @@ namespace UI.Inventory
             weapon_button,
             armor_button,
             consumation_button,
-            skill_button,
+           //skill_button,
             accessories_button,
             material_button,
             valuable_button
