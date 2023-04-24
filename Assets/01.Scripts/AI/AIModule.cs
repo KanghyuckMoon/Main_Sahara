@@ -224,6 +224,7 @@ namespace Module
 		{
 			get
 			{
+				talkModule ??= mainModule.GetModuleComponent<TalkModule>(ModuleType.Talk);
 				return talkModule;
 			}
 			set
@@ -371,7 +372,7 @@ namespace Module
 
 		public void CanTalk(bool isCan)
 		{
-			if (talkModule is null)
+			if (TalkModule is null)
 			{
 				return;
 			}
