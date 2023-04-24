@@ -814,9 +814,13 @@ namespace AI
 				CinemachineSmoothPath _smoothPath = aiModule.PathHarver.GetPath(aiModule.PathIndex);
 				Vector3 vec = _smoothPath.EvaluateTangent(_smoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
 				Vector3 _lastPoint = _smoothPath.m_Waypoints[_smoothPath.m_Waypoints.Length - 1].position;
-				float _distance = Vector3.Distance(Position, _lastPoint);
+				Vector3 _pos1 = Position;
+				Vector3 _pos2 = _lastPoint;
+				_pos1.y = 0;
+				_pos2.y = 0;
+				float _distance = Vector3.Distance(_pos1, _pos2);
 				
-				if (_distance < 2f)
+				if (_distance < 6f)
 				{
 					aiModule.IsUsePath = false;
 					aiModule.CanTalk(true);
