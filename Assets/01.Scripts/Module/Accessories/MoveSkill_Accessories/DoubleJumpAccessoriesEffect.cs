@@ -34,6 +34,8 @@ namespace PassiveItem
                     isLand = false;
                 }
             }
+            
+            Debug.LogError("정ㅁ프프프므프");
             //Debug.LogError("asdadffasdfag");
 
             if (mainModule.isGround)
@@ -51,12 +53,13 @@ namespace PassiveItem
         {
 
         }
-
+    
         private void Jumping()
         {
             mainModule.Animator.SetBool("DoubleJump", true);
-            //jumpModule.Jumping(0);
             jumpModule.Jump();
+            //jumpModule.Jumping(0);
+            //jumpModule.Jump();
         }
     }
 }

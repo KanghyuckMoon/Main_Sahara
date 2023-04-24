@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Module;
 using UnityEngine;
 using HitBox;
+using Pool;
+using Utill.Addressable;
 
 namespace Skill
 {
@@ -21,6 +23,7 @@ namespace Skill
         private void Start()
         {
             hitBoxAction.SetCondition(Hit, 30, HitBoxActionType.Hit);
+            hitBoxAction.SetCondition(HitEffect, Vector2.zero, HitBoxActionType.Start);
         }
 
         public void Skills(AbMainModule _mainModule)
@@ -37,7 +40,14 @@ namespace Skill
 
         public void Hit(int _a)
         {
-            Debug.LogError("弧府弧府 弧府弧府");
+            //Debug.LogError("弧府弧府 弧府弧府");
+        }
+
+        public void HitEffect(Vector2 _vector2)
+        {
+            //GameObject obj = ObjectPoolManager.Instance.GetObject("FireEffect_1");
+            //obj.SetActive(true);
+            //obj.transform.position = transform.position;
         }
     }
 }
