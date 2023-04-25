@@ -12,6 +12,11 @@ namespace PassiveItem
         private CharacterController characterController;
 
         private int dashAnimationIndex;
+            
+        private bool dashing = false;
+
+        private float delay;
+        private float maxDelay = 0.9f;
 
         public DashAccessoriesEffect(AbMainModule _mainModule)
         {
@@ -39,11 +44,23 @@ namespace PassiveItem
                 {
                     stateModule.AddState(State.SKILL);
                     mainModule.Animator.SetBool("Dash", true);
+
+                    delay = maxDelay;
                     
                     Vector3 _dir = (mainModule.ObjDirection.normalized * 24f * TimeManager.StaticTime.PlayerDeltaTime);
+                    dashing = true;
                     
                     characterController.Move(_dir);
                     mainModule.IsDash = false;
+                }
+            }
+
+            if (dashing)
+            {
+                delay -= Time.deltaTime;
+                if (delay <= 0)
+                {
+                    dashing = false;
                 }
             }
         }

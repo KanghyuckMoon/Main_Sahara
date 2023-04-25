@@ -20,6 +20,7 @@ public class Hit : StateMachineBehaviour
         mainModule.IsHit = false;
         animator.SetBool("Hit", false);
         animator.SetBool("ConsecutiveAttack", false);
+        animator.SetBool("Dash", false);
         animator.SetBool("IsCombo", false);
     }
 
