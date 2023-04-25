@@ -16,8 +16,8 @@ namespace AI
 			(
 				IgnoreAction(Reset),
 				IfAction(CheckIsUsePath, TrackMove),
-				Action(FixiedMove)
-				//IgnoreAction(MoveReset),
+				IgnoreAction(MoveReset),
+				Action(FollowMove)
 			);
 		}
 	}

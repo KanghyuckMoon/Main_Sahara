@@ -156,65 +156,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &132139282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 132139283}
-  - component: {fileID: 132139284}
-  m_Layer: 0
-  m_Name: Path_Navi_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &132139283
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132139282}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 624912923}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &132139284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132139282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Resolution: 20
-  m_Appearance:
-    pathColor: {r: 0, g: 1, b: 0, a: 1}
-    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    width: 0.2
-  m_Looped: 0
-  m_Waypoints:
-  - position: {x: -306.60736, y: 4036.6904, z: 13.100581}
-    roll: 0
-  - position: {x: -182.2819, y: 4036.9485, z: 49.85758}
-    roll: 0
-  - position: {x: -122.64112, y: 4035.7622, z: 29.709856}
-    roll: 0
-  - position: {x: -60.903427, y: 4034.7732, z: -1.0004315}
-    roll: 0
 --- !u!1001 &337796353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -683,7 +624,6 @@ Transform:
   m_Children:
   - {fileID: 366853651}
   - {fileID: 1328795795}
-  - {fileID: 132139283}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1481,7 +1421,7 @@ MonoBehaviour:
   smoothPathArr:
   - {fileID: 366853650}
   - {fileID: 1328795796}
-  - {fileID: 132139284}
+  - {fileID: 0}
 --- !u!114 &1534274997
 MonoBehaviour:
   m_ObjectHideFlags: 0

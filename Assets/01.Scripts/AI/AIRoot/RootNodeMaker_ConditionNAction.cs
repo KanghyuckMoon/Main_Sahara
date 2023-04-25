@@ -494,6 +494,16 @@ namespace AI
 			}
 		}
 		
+		
+		private void FollowMove()
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			if ((targetPos - Position).sqrMagnitude > (aiSO.FixedRadius + 1f) * (aiSO.FixedRadius + 1f))
+			{
+				RunMove();
+			}
+		}
+		
 
 		private void CloserMove() //Make
 		{

@@ -324,6 +324,8 @@ namespace CutScene
 			{
                 CamList.GetCam(praviouslastCamType).gameObject.SetActive(false);
 			}
+
+            StopCutScene();
         }
 
         public void SetContinueCam()

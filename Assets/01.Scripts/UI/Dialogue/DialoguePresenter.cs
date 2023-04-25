@@ -163,9 +163,9 @@ namespace UI.Dialogue
                         ActiveViewS(false);
                         isDialogue = true; 
                         return; 
-                    case "!Move":
+                    case "!MOVE":
                         string _name = fullText.Replace("\r","");
-                        StartText(_name, _name.Replace("T","A"));
+                        StartText(_name.Replace("T","A"), _name);
                         return; 
                     case "!GIVE":
                         return;
