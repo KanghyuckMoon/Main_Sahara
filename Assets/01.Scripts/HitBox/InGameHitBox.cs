@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Effect;
+using PlasticGui.WorkspaceWindow;
 using Pool;
 
 namespace HitBox
@@ -44,24 +45,24 @@ namespace HitBox
 				return hitBoxData;
 			}
 		}
-		private HitBoxInAction HitBoxInAction
+		public HitBoxAction HitBoxAction
 		{
 			get
 			{
-				hitBoxInAction ??= GetComponent<HitBoxInAction>();
-				return hitBoxInAction;
+				hitBoxAction ??= GetComponent<HitBoxAction>();
+				return hitBoxAction;
 			}
 		}
 
 		private CapsuleCollider col;
 		private HitBoxData hitBoxData;
-		private HitBoxInAction hitBoxInAction;
+		private HitBoxAction hitBoxAction;
 		private GameObject owner;
 		private ulong index;
 		private bool isContactDir;
 		private Quaternion rotation;
 
-		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null, GameObject _swingEffectParent = null)
+		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null, GameObject _swingEffectParent = null, HitBoxAction _hitBoxAction = null)
 		{
 			index = _index;
 			gameObject.tag = _tag;
@@ -76,8 +77,8 @@ namespace HitBox
 			col.radius = _hitBoxData.radius;
 			col.height = _hitBoxData.height;
 			rotation = _owner.transform.rotation;
-
-
+			hitBoxAction = _hitBoxAction;
+			
 			if (hitBoxData.childization)
 			{
 				if(_parent is null)
@@ -97,8 +98,10 @@ namespace HitBox
 				gameObject.transform.SetParent(null);
 			}
 			gameObject.SetActive(true);
-
+			
 			Vector3 _pos = transform.position + (transform.forward * hitBoxData.swingEffectOffset.z) + (transform.up * hitBoxData.swingEffectOffset.y) + (transform.right * hitBoxData.swingEffectOffset.x);
+
+			hitBoxAction?.Invoke(HitBoxActionType.Start);
 
 			if (hitBoxData.swingEffect != "NULL")
 			{
@@ -205,7 +208,6 @@ namespace HitBox
 			}
 			//DrawCapsule( _pos, transform.rotation, hitBoxData.height, hitBoxData.radius, Color.green);
 		}
-
 		public void DrawCapsule(Vector3 position, Quaternion orientation, float height, float radius, Color color, bool drawFromBase = true)
 		{
 			// Clamp the radius to a half of the capsule's height
@@ -226,7 +228,6 @@ namespace HitBox
 			DrawArc(0, 180, topArcPosition, orientation, radius, color);
 			DrawArc(0, 180, topArcPosition, arcOrientation, radius, color);
 		}
-
 		public void DrawArc(float startAngle, float endAngle, Vector3 position, Quaternion orientation, float radius, Color color, bool drawChord = false, bool drawSector = false, int arcSegments = 32)
 		{
 			float arcSpan = Mathf.DeltaAngle(startAngle, endAngle);
@@ -308,7 +309,6 @@ namespace HitBox
 				Debug.DrawLine(arcEnd, arcOrigin, color);
 			}
 		}
-
 		public void DrawCylinder(Vector3 position, Quaternion orientation, float height, float radius, Color color, bool drawFromBase = true)
 		{
 			Vector3 localUp = orientation * Vector3.up;
