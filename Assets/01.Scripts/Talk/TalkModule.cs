@@ -7,21 +7,13 @@ using Module;
 using Utill.Addressable;
 using Module.Shop;
 using Shop;
-using UI.PublicManager; 
+using UI.PublicManager;
+using Pool;
 
 namespace Module.Talk
 {
 	public class TalkModule : AbBaseModule
 	{
-		public AIModule AIModule
-		{
-			get
-			{
-				aiModule ??= mainModule.GetModuleComponent<AIModule>(ModuleType.Input);
-				return aiModule;
-			}
-		}
-
 		public bool IsEndTalk
 		{
 			get
@@ -39,7 +31,7 @@ namespace Module.Talk
 		private string authorCode;
 
 		private int index = 0;
-		private AIModule aiModule;
+		private System.Action<int> pathAction;
 		private Transform Player
 		{
 			get
@@ -68,6 +60,18 @@ namespace Module.Talk
 			}
 		}
 
+		public bool IsCanTalk
+		{
+			get
+			{
+				return isCanTalk;
+			}
+			set
+			{
+				isCanTalk = value;
+			}
+		}
+
 		private Transform player = null;
 		private TalkDataSO talkDataSO = null;
 		private bool isFirst = false;
@@ -75,7 +79,11 @@ namespace Module.Talk
 		private bool isTalking = false;
 		private bool isCutScene = false;
 
+		private TalkData priorTalkData = null;
+		
 		private ITalkWithCutScene talkWithCutScene;
+
+		private bool isCanTalk = true; 
 
 		public TalkModule(AbMainModule _mainModule, string _talkSOAddress) : base(_mainModule)
 		{
@@ -93,6 +101,10 @@ namespace Module.Talk
 
 		public void Talk()
 		{
+			if (!isCanTalk)
+			{
+				return;
+			}
 			if(!isTalking)
 			{
 				Logging.Log("대화 가능");
@@ -135,16 +147,6 @@ namespace Module.Talk
 			isTalking = true;
 		}
 
-		private bool CanTalk()
-		{
-			//적대 상태인지 아닌지
-			if(!AIModule.IsHostilities && !isTalking && !isCutScene)
-			{
-				return true;
-			}
-			return false;
-		}
-
 		private bool GetText()
 		{
 			for (int i = 0; i < talkDataSO.talkDataList.Count; ++i)
@@ -160,6 +162,8 @@ namespace Module.Talk
 						TalkWithCutScene.PlayCutScene(_talkData.cutSceneKey);
 					}
 
+					priorTalkData = _talkData;
+					
 					return true;
 				}
 			}
@@ -208,7 +212,37 @@ namespace Module.Talk
 		{
 			isEndTalk = true;
 			isTalking = false;
+			if (priorTalkData.isUseSmoothPath)
+			{
+				pathAction?.Invoke(priorTalkData.smoothPathIndex);
+			}
 		}
 
+		public void AddSmoothPathAction(System.Action<int> action)
+		{
+			pathAction += action;
+		}
+
+		public override void OnDisable()
+		{
+			player = null;
+			talkDataSO = null;
+			priorTalkData = null;
+			talkWithCutScene = null;
+			pathAction = null;
+			base.OnDisable();
+			ClassPoolManager.Instance.RegisterObject<TalkModule>("TalkModule", this);
+		}
+
+		public override void OnDestroy()
+		{
+			player = null;
+			talkDataSO = null;
+			priorTalkData = null;
+			talkWithCutScene = null;
+			pathAction = null;
+			base.OnDestroy();
+			ClassPoolManager.Instance.RegisterObject<TalkModule>("TalkModule", this);
+		}
 	}
 }

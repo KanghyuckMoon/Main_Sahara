@@ -21,7 +21,9 @@ namespace UI.Inventory
         [SerializeField]
         private InventoryView inventoryView;
 
-        private AccentItemCompo accentItemCompo; 
+        private AccentItemCompo accentItemCompo;
+
+        private DraggerRot draggerRot; 
      //   private 
 
         // 프로퍼티 
@@ -35,22 +37,30 @@ namespace UI.Inventory
             inventoryView.InitUIDocument(uiDocument);
             accentItemCompo = new AccentItemCompo(); 
             accentItemCompo.Init(inventoryCam.transform);             
-            inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
+            inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.modelkey));
             
         }
         private void OnEnable()
         {
             inventoryView.Cashing();
             inventoryView.Init();
+            draggerRot = new DraggerRot(
+                () => Debug.Log("s"),
+                () =>
+                {
+                    accentItemCompo.RotateModelHorizon(Input.GetAxis("Mouse X") * Vector3.up * 1000 * Time.deltaTime);
+                    accentItemCompo.RotateModelVertical(Input.GetAxis("Mouse Y") * Vector3.right * 500 * Time.deltaTime);
+                },
+                () => Debug.Log("끝"));
             //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
-            inventoryView.SelectImage.AddManipulator(new DraggerRot());
+            inventoryView.SelectImage.AddManipulator(draggerRot); 
             
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.weapon_button,InventoryView.Elements.quick_slot_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.consumation_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.consumation_button,InventoryView.Elements.quick_slot_panel, x));
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.skill_button, 
-                (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.skill_button,InventoryView.Elements.skill_equip_panel, x));
+          //  inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.skill_button, 
+           //     (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.skill_button,InventoryView.Elements.skill_equip_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.armor_button, 
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.armor_button,InventoryView.Elements.armor_equip_panel, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.accessories_button, 
@@ -73,7 +83,14 @@ namespace UI.Inventory
         {
             UpdateUI(); 
         }
-        
+
+        void Update()
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                draggerRot.IsDragging = false;
+            }
+        }
         public bool ActiveView()
         {
             bool _isActive = inventoryView.ActiveScreen();
@@ -116,9 +133,14 @@ namespace UI.Inventory
 
         }
 
-        private void ChangeCategory(InventoryGridSlotsView.RadioButtons _rType,InventoryView.Elements _eType, bool _isActive)
-        {
-            AccentPattern(_rType,_isActive);
+            private void ChangeCategory(InventoryGridSlotsView.RadioButtons _rType,InventoryView.Elements _eType, bool _isActive)
+            {
+                if (_rType is InventoryGridSlotsView.RadioButtons.consumation_button &&
+                    _rType is InventoryGridSlotsView.RadioButtons.weapon_button)
+                {
+                    // 소비, 무기 버튼에서는 
+                }
+                AccentPattern(_rType,_isActive);
             AnimateSlot(_eType,_isActive);
         }
         private void AccentPattern(InventoryGridSlotsView.RadioButtons _type, bool _isActive)

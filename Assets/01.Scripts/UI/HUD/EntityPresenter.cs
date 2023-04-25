@@ -120,14 +120,12 @@ namespace UI
         
         private void LateUpdate()
         {
-            Debug.Log("Late");
             FollowPr(); 
         }
 
         private IEnumerator LateUpdateCo()
         {
                 yield return new WaitForEndOfFrame(); 
-                Debug.Log("LateLate");
                 FollowPr(); 
         }
 

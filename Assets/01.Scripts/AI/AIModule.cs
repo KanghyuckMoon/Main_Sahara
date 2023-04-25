@@ -6,6 +6,8 @@ using Utill.Pattern;
 using Pool;
 using static NodeUtill;
 using Cinemachine;
+using Talk;
+using Module.Talk;
 
 namespace Module
 {
@@ -16,7 +18,7 @@ namespace Module
 			get;
 		}
 
-		public CinemachineSmoothPath SmoothPath
+		public PathHarver PathHarver
 		{
 			get;
 			set;
@@ -146,15 +148,39 @@ namespace Module
 				isHostilities = value;
 			}
 		}
-		public CinemachineSmoothPath SmoothPath
+		public PathHarver PathHarver
 		{
 			get
 			{
-				return smoothPath;
+				return pathHarver;
 			}
 			set
 			{
-				smoothPath = value;
+				pathHarver = value;
+			}
+		}
+
+		public int PathIndex
+		{
+			get
+			{
+				return pathIndex;
+			}
+			set
+			{
+				pathIndex = value;
+			}
+		}
+
+		public bool IsUsePath
+		{
+			get
+			{
+				return isUsePath;
+			}
+			set
+			{
+				isUsePath = value;
 			}
 		}
 
@@ -193,6 +219,20 @@ namespace Module
 				isInit = value;
 			}
 		}
+
+		public TalkModule TalkModule
+		{
+			get
+			{
+				return talkModule;
+			}
+			set
+			{
+				talkModule = value;
+			}
+		}
+		
+		
 		
 		private Transform player;
 		protected INode _rootNode;
@@ -206,9 +246,12 @@ namespace Module
 		private float suspicionGauge = 0f;
 		private bool isFirstAttack = true;
 		private bool isHostilities = true;
-		private CinemachineSmoothPath smoothPath;
+		private PathHarver pathHarver;
+		private int pathIndex = 0;
+		private bool isUsePath = false;
 		private Vector3 originPos = Vector3.zero;
 		private Vector3 lastFindPlayerPos = Vector3.zero;
+		private TalkModule talkModule;
 
 		public AIModule() : base()
 		{
@@ -224,10 +267,17 @@ namespace Module
 			base.Init(_mainModule, _parameters);
 			if ((_mainModule is IEnemy))
 			{
-				if ((_mainModule as IEnemy).SmoothPath is not null)
+				if ((_mainModule as IEnemy).PathHarver is not null)
 				{
-					smoothPath = (_mainModule as IEnemy).SmoothPath;
+					pathHarver = (_mainModule as IEnemy).PathHarver;
+					TalkModule _talkModule = mainModule.GetModuleComponent<TalkModule>(ModuleType.Talk); 
+					if (_talkModule is not null)
+					{
+						_talkModule.AddSmoothPathAction(SetSmoothPath);
+					}
 				}
+				
+				
 				originPos = _mainModule.transform.position;
 				rootNodeMaker ??= new RootNodeMaker(this, (_mainModule as IEnemy).AIAddress);
 				rootNodeMaker.isSetAISO = false;
@@ -290,10 +340,11 @@ namespace Module
 		{
 			isInit = false;
 			rootNodeMaker = null;
-			smoothPath = null;
+			pathHarver = null;
 			uiModule = null;
 			player = null;
 			_rootNode = null;
+			talkModule = null;
 			base.OnDisable();
 			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
 		}
@@ -302,13 +353,29 @@ namespace Module
 		{
 			isInit = false;
 			rootNodeMaker = null;
-			smoothPath = null;
+			pathHarver = null;
 			uiModule = null;
 			player = null;
 			_rootNode = null;
+			talkModule = null;
 			base.OnDestroy();
 			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
 		}
 
+		public void SetSmoothPath(int index)
+		{
+			isUsePath = true;
+			pathIndex = index;
+			CanTalk(false);
+		}
+
+		public void CanTalk(bool isCan)
+		{
+			if (talkModule is null)
+			{
+				return;
+			}
+			talkModule.IsCanTalk = isCan;
+		}
 	}
 }

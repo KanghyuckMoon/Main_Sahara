@@ -5,28 +5,29 @@ using Module;
 using Module.Talk;
 using Module.Shop;
 using Cinemachine;
+using Talk;
 
 namespace CondinedModule
 {
-	public class TestTalkNPC : AbMainModule, IEnemy
+	public class TalkNPC : AbMainModule, IEnemy
 	{
 		public string aiSOAddress = "TestEnemySO";
 		public string AIAddress => aiSOAddress;
 
-		public CinemachineSmoothPath SmoothPath
+		public PathHarver PathHarver
 		{
             get
 			{
-                return smoothPath;
+                return pathHarver;
             }
             set
 			{
-                smoothPath = value;
+				pathHarver = value;
             }
 		}
 
         [SerializeField]
-        private CinemachineSmoothPath smoothPath;
+        private PathHarver pathHarver;
 
 		public string textSOAddress;
 

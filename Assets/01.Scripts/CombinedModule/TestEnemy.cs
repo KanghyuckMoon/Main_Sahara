@@ -6,6 +6,7 @@ using Module;
 using Pool;
 using Utill.Pattern;
 using Cinemachine;
+using Talk;
 
 namespace CondinedModule
 {
@@ -13,22 +14,21 @@ namespace CondinedModule
     {
         public string aiSOAddress = "TestEnemySO";
 		public string AIAddress => aiSOAddress;
-
-
-		public CinemachineSmoothPath SmoothPath
-		{
-			get
-			{
-                return smoothPath;
+        
+        public PathHarver PathHarver
+        {
+            get
+            {
+                return pathHarver;
             }
             set
-			{
-                smoothPath = value;
+            {
+                pathHarver = value;
             }
         }
 
         [SerializeField]
-        private CinemachineSmoothPath smoothPath;
+        private PathHarver pathHarver;
 
 		protected void OnEnable()
         {

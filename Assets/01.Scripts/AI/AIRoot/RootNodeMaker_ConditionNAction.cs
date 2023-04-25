@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using Utill.Addressable;
@@ -12,6 +13,7 @@ namespace AI
 {
 	public partial class RootNodeMaker
 	{
+		#region Condition
 		//Condition
 		private bool FerCloserMoveCondition() //Make
 		{
@@ -345,7 +347,16 @@ namespace AI
 			return false;
 		}
 
+		public bool CheckIsUsePath()
+		{
+			return aiModule.IsUsePath;
+		}
 
+		#endregion
+
+		
+		#region Action
+		
 		//Action
 		private void SuspicionGaugeSet() //Make
 		{
@@ -800,8 +811,17 @@ namespace AI
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
-				Vector3 vec = aiModule.SmoothPath.EvaluateTangent(aiModule.SmoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
-
+				CinemachineSmoothPath _smoothPath = aiModule.PathHarver.GetPath(aiModule.PathIndex);
+				Vector3 vec = _smoothPath.EvaluateTangent(_smoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
+				Vector3 _lastPoint = _smoothPath.m_Waypoints[_smoothPath.m_Waypoints.Length - 1].position;
+				float _distance = Vector3.Distance(Position, _lastPoint);
+				
+				if (_distance < 1f)
+				{
+					aiModule.IsUsePath = false;
+					aiModule.CanTalk(true);
+				}
+				
 				Vector2 _inputdir = new Vector2(vec.x, vec.z);
 				aiModule.Input = _inputdir;
 
@@ -828,19 +848,32 @@ namespace AI
 			aiModule.AIModuleHostileState = AIModule.AIHostileState.Discovery;
 		}
 
+		#endregion
+
+		#region string Action
+		
 		//string Action
 		private void EquipWeapon(string _str)
 		{
 			aiModule.MainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).ChangeWeapon(_str, null);
 		}
 
+		#endregion
+		
+		
+		#region float Action
+		
 		//float Action
 		private void AddRageGauge(float _add)
 		{
 			rageGauge += _add;
 		}
+		
+		#endregion
 
 
+		#region Utill
+		
 		//Utill
 		private Vector3 AngleToDir(float angle)
 		{
@@ -882,5 +915,7 @@ namespace AI
 			return (float)aiModule.MainModule.StatData.CurrentHp / aiModule.MainModule.StatData.MaxHp;
 		}
 
+		#endregion
+		
 	}
 }

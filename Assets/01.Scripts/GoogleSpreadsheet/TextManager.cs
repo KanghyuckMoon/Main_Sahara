@@ -49,6 +49,14 @@ namespace GoogleSpreadSheet
 			}
 		}
 
+		[ContextMenu("InitTextData")]
+		public void InitTextData()
+		{
+			textSO.InitTextDatas();
+			//추후 언어에 따라 다르게 설정
+			StartCoroutine(GetText());
+		}
+
 		/// <summary>
 		/// 키를 통해 텍스트를 가져옴
 		/// </summary>
@@ -81,6 +89,10 @@ namespace GoogleSpreadSheet
 			yield return wwwQUEST.SendWebRequest();
 			SetTextQUEST(wwwQUEST.downloadHandler.text);
 			isInit = true;
+			
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(textSO);
+#endif
 		}
 
 		private void SetTextOTHER(string tsv)
