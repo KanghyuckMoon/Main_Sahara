@@ -129,7 +129,9 @@ namespace Module
                 string tagname = mainModule.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
                 _weapon.tag = tagname;
 
-                SkillModule.SetWeaponSkill(_weapon.GetComponent<IWeaponSkill>());
+
+                IWeaponSkill _weaponSkill = _weapon.GetComponent<IWeaponSkill>();
+                SkillModule.SetWeaponSkill(_weaponSkill);
                 baseWeapon = _weapon.GetComponent<BaseWeapon>();
 
                 _weapon.transform.SetParent(WhichHandToHold(BaseWeapon));
@@ -138,7 +140,8 @@ namespace Module
 
                 string _tagname = mainModule.tag == "Player" ? "Enemy" : "Player";
                 BaseWeapon.tagName = _tagname;
-                mainModule.GetComponent<HitBoxOnAnimation>()?.ChangeSO(BaseWeapon.HitBoxDataSO);
+                HitBoxOnAnimation _hitBoxOnAnimation = mainModule.GetComponent<HitBoxOnAnimation>();
+                _hitBoxOnAnimation?.ChangeSO(BaseWeapon.HitBoxDataSO);
                 projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
                 mainModule.GetComponent<AnimationOnEffect>().ChangeSO(BaseWeapon.AnimationEffectSO);
 
@@ -160,6 +163,8 @@ namespace Module
                 _weapon.SetActive(true);
                 SetBehaveAnimation();
 
+                _hitBoxOnAnimation.hitBoxAction = _weaponSkill.GetHitBoxAction();
+                
                 Animator.SetTrigger("ChangeWeapon");
             }
         }

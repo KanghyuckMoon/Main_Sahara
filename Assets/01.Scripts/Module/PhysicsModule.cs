@@ -74,37 +74,6 @@ namespace Module
 
         }
 
-        /*public override void OnTriggerEnter(Collider other)
-        {
-            foreach (string _tagName in mainModule.HitCollider)
-            {
-                if (other.CompareTag(_tagName) && !mainModule.IsDead && !mainModule.IsCanHit)
-                {
-                    InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
-                    if (_inGameHitBox is null) return;
-                    if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
-                    praviousHitBoxIndex = _inGameHitBox.GetIndex();
-                    AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
-                    StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
-
-                    _inGameHitBox.Owner.GetComponent<SettingTime>().SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.1f);
-                    mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.1f);
-
-                    mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, other.ClosestPoint(_locationHitBox.transform.position)));
-                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _inGameHitBox.HitBoxData.hitEffect);
-                    if (_statData != null)
-                    {
-                        HitModule.GetHit(Mathf.RoundToInt(_statData.CalculateDamage(mainModule.StatData.PhysicalResistance, mainModule.StatData.MagicResistance));
-                        _statData.ChargeMana(mainModule.StatData.ManaRegen);
-                    }
-                    else
-                    {
-                        HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
-                    }
-                }
-            }
-        }*/
-
         public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
         {
             foreach (string _tagName in mainModule.HitCollider)
@@ -118,6 +87,8 @@ namespace Module
                     AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                     StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();
                     Vector3 _closerPoint = other.ClosestPoint(_locationHitBox.transform.position);
+
+                    _inGameHitBox.HitBoxAction.Invoke(HitBoxActionType.Hit);
 
                     var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
                     if(_settingTime is not null)
