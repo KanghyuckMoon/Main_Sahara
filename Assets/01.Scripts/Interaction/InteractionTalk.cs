@@ -53,7 +53,11 @@ namespace Interaction
 		{
 			mainModule ??= gameObject.GetComponentInParent<AbMainModule>();
 			talkModule ??= mainModule.GetModuleComponent<TalkModule>(ModuleType.Talk);
-			talkModule.Talk();
+
+			if (talkModule.IsCanTalk)
+			{
+				talkModule.Talk();
+			}
 		}
 	}
 }

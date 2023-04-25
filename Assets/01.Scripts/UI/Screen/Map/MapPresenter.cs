@@ -66,6 +66,9 @@ namespace UI
                 // �̴ϸ� ������
                 miniMapComponent.UpdateUI();
             }
+            
+            
+            mapView.JJB.style.rotate =  new StyleRotate(new Rotate((720* Random.Range(0f,1f) * Time.deltaTime+ mapView.JJB.style.rotate.value.angle.value))) ; 
             //if(Input.GetKeyDown(KeyCode.Alpha2))
             //{
             //    mapView.Test(); 

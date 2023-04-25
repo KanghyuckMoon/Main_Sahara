@@ -28,8 +28,16 @@ namespace Interaction
 		{
 			get
 			{
-				_mainCamera ??= Camera.main;
-				return _mainCamera;
+				try
+				{
+					_mainCamera ??= Camera.main;
+					return _mainCamera;
+				}
+				catch (Exception e)
+				{
+					_mainCamera ??= Camera.main;
+					return _mainCamera;
+				}
 			}
 			set
 			{

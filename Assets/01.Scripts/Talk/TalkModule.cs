@@ -136,14 +136,19 @@ namespace Module.Talk
 			}
 
 			//이벤트로 사용된 대화가 있는가?
-			if (!GetText())
-			{
-				//없을시 기본 대화
-				RandomDefaultText();
-			}
+			//if (!GetText())
+			//{
+			//	//없을시 기본 대화
+			//	RandomDefaultText();
+			//}
 
-			var _talkData = talkDataSO.talkDataList.Find(x => x.talkCondition == TalkCondition.CutScene && x.talkText == _talkKey);
-			PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText);
+			var _talkData = talkDataSO.talkDataList.Find(x => x.talkCondition == TalkCondition.CutScene && x.talkKey == _talkKey);
+			if (_talkData is null)
+			{
+				Debug.LogError("TalkData is null", mainModule);
+			}
+			priorTalkData = _talkData;
+			PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText, EndTalk);
 			isTalking = true;
 		}
 
@@ -154,6 +159,8 @@ namespace Module.Talk
 				TalkData _talkData = talkDataSO.talkDataList[i];
 				if (ConditionCheck(_talkData))
 				{
+					priorTalkData = _talkData;
+					
 					PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText, EndTalk);
 					isTalking = true;
 
@@ -162,7 +169,6 @@ namespace Module.Talk
 						TalkWithCutScene.PlayCutScene(_talkData.cutSceneKey);
 					}
 
-					priorTalkData = _talkData;
 					
 					return true;
 				}
@@ -175,20 +181,23 @@ namespace Module.Talk
 			switch (_talkData.talkCondition)
 			{
 				case TalkCondition.Quest:
-					QuestData questData = QuestManager.Instance.GetQuestData(_talkData.questKey);
-					if(_talkData.questState == questData.QuestState)
+					foreach (var questCondition in _talkData.questConditionList)
 					{
-						return true;
+						QuestData questData = QuestManager.Instance.GetQuestData(questCondition.questKey);
+						if(questCondition.questState != questData.QuestState)
+						{
+							return false;
+						}
 					}
 					break;
 				case TalkCondition.Position:
 					break;
 				case TalkCondition.HandWork:
-					break;
+					return false;
 				case TalkCondition.CutScene:
-					break;
+					return false;
 			}
-			return false;
+			return true;
 		}
 
 		private void RandomDefaultText()

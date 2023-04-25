@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -56,15 +57,23 @@ namespace UI.Popup
 
         public void SetData(object _data)
         {
-            InteractionUIData _uiData = _data as InteractionUIData;
             
             //Vector2 _uiPos 
-            Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(Parent.panel, _uiData.targetVec
-                ,new Vector2(10,10) ,cam);
-            interacftionPopupView.ParentElement.transform.position = rect.position;
+            try
+            {
+                InteractionUIData _uiData = _data as InteractionUIData;
+                
+                Rect rect = RuntimePanelUtils.CameraTransformWorldToPanelRect(Parent.panel, _uiData.targetVec
+                    ,new Vector2(10,10) ,cam);
+                interacftionPopupView.ParentElement.transform.position = rect.position;
 
-            string _detail = TextManager.Instance.GetText(_uiData.textKey);
-            interacftionPopupView.SetDetail(_detail);
+                string _detail = TextManager.Instance.GetText(_uiData.textKey);
+                interacftionPopupView.SetDetail(_detail);
+            }
+            catch (Exception e)
+            {
+                cam = Camera.current;
+            }
         }
 
     }   

@@ -20,8 +20,10 @@ namespace Module
         [SerializeField] private Quaternion rotation;
 
         [SerializeField] private string speedLine;
-        
-        //private Volume
+        public GameObject dashEffect;
+
+
+        public Volume volume;
         
         private Animator animator;
         private int verticalBodyLayerIndex;

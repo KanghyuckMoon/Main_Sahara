@@ -41,25 +41,45 @@ namespace UI
 
         private Sprite selectMarker;
 
+        private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소 
         // 프로퍼티 
         private Vector2 MoveDir => new Vector2(xMoveValue, yMoveValue).normalized;
         public MarkersComponent MarkersComponent => markersComponent;
+        
+        private ElementCtrlComponent ElementCtrlComponent
+        {
+            get
+            {
+                if (elementCtrlComponent == null)
+                {
+                    elementCtrlComponent = new ElementCtrlComponent(mapView.Map);
+                }
+
+                return elementCtrlComponent;
+            }
+        }
 
         public void Init(MapView _mapView)
         {
             this.mapView = _mapView;
             this.mapLiner = LineCreateManager.Instance.CreateLine(ScreenType.Map);
 
+            this.elementCtrlComponent = new ElementCtrlComponent(mapView.Map); 
+            elementCtrlComponent.SetZoomValue(_minV:0.5f, _maxV: 4f);
         }
 
         public void UpdateUI()
         {
+            ElementCtrlComponent.Update();
+
+            /*
             // 전체맵일 때만 입력으로 이동 확대 
             KeyInput();
             // 이동 
             MoveMap();
             // 확대 축소 
             ZoomMap();
+            */
             //mapView.MapRect.width 
             LineCreateManager.Instance.UpdateLinesPos(ScreenType.Map, (Vector2)mapView.Map.transform.position); 
             LineCreateManager.Instance.UpdateLinesScale(ScreenType.Map, (Vector2)mapView.Map.transform.scale); 

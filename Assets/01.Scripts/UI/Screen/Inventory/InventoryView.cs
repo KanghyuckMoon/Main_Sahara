@@ -133,7 +133,7 @@ namespace UI.Inventory
             Rect _lastSlot =
                 inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.valuable_button).worldBound;
 
-            categoryLength = (_lastSlot.x - _firstSlot.x + 50) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
+            categoryLength = (_lastSlot.x - _firstSlot.x + 60) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
         }
 
         public void AddSlotClickEvent(Action<ItemData> _callback)

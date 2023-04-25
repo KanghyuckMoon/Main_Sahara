@@ -23,6 +23,7 @@ namespace UI.Inventory
     {
         private Transform inventoryCam; 
         private AllItemDataSO allItemDataSO;
+        private Vector3 modelRot;
 
         private Dictionary<string,GameObject> modelDic = new Dictionary<string,GameObject>();
         // 초기화시 사용할 모델 위치, 회전 정보 
@@ -83,7 +84,7 @@ namespace UI.Inventory
             //Quaternion xQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up); 
             //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
             //Quaternion _resultQut = xQut * yQut;  
-            curActiveModel.transform.localEulerAngles += _rotV;
+            modelRot += _rotV;
            // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
         }
         
@@ -96,8 +97,14 @@ namespace UI.Inventory
             //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
             //Quaternion _resultQut = xQut * yQut;  
             //curActiveModel.transform.rotation *= yQut;
-            curActiveModel.transform.localEulerAngles += _rotV;
+            modelRot += _rotV;
+            
             // curActiveModel.transform.rotation = Quaternion.AngleAxis(_rotV.x, Vector3.right);
+        }
+
+        public void UpdateRotateModel()
+        {
+            curActiveModel.transform.localEulerAngles = modelRot;
         }
 
         public void ActiveModel(string _key)

@@ -14,6 +14,8 @@ using System.Linq;
 using DG.Tweening;
 using UI;
 using UI.MapLiner;
+using UI.Base;
+
 
 namespace UI.Upgrade
 {
