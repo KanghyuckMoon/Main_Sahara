@@ -48,8 +48,9 @@ namespace UI.Inventory
                 () => Debug.Log("s"),
                 () =>
                 {
-                    accentItemCompo.RotateModelHorizon(Input.GetAxis("Mouse X") * Vector3.up * 1000 * Time.deltaTime);
-                    accentItemCompo.RotateModelVertical(Input.GetAxis("Mouse Y") * Vector3.right * 500 * Time.deltaTime);
+                    accentItemCompo.RotateModelHorizon(-Input.GetAxis("Mouse X") * Vector3.up * 1000 * Time.deltaTime);
+                    accentItemCompo.RotateModelVertical(-Input.GetAxis("Mouse Y") * Vector3.right * 500 * Time.deltaTime);
+                    accentItemCompo.UpdateRotateModel();
                 },
                 () => Debug.Log("³¡"));
             //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));

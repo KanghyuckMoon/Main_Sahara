@@ -92,7 +92,7 @@ namespace UI.Quest
             GetLabel((int)Labels.quest_name_label).text = _title;
             // 애니메이션 ㄱㄱ 
         //    GetLabel((int)Labels.quest_detail_label).text = _detail;
-            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_detail_label), _detail);
+            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_detail_label), _detail,0.01f);
         }
 
         /// <summary>
