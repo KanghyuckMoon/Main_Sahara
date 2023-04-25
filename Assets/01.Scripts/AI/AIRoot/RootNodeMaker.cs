@@ -97,6 +97,8 @@ namespace AI
 					return TestTrack();
 				case "NPC":
 					return NPC();
+				case "Navi":
+					return Navi();
 			}
 		}
 
@@ -111,6 +113,7 @@ namespace AI
 		private partial INode TestTalkNPC();
 		private partial INode TestTrack();
 		private partial INode NPC();
+		private partial INode Navi();
 
 		public void Dead()
 		{

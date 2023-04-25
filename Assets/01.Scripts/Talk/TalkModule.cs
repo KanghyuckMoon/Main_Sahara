@@ -136,14 +136,19 @@ namespace Module.Talk
 			}
 
 			//이벤트로 사용된 대화가 있는가?
-			if (!GetText())
-			{
-				//없을시 기본 대화
-				RandomDefaultText();
-			}
+			//if (!GetText())
+			//{
+			//	//없을시 기본 대화
+			//	RandomDefaultText();
+			//}
 
-			var _talkData = talkDataSO.talkDataList.Find(x => x.talkCondition == TalkCondition.CutScene && x.talkText == _talkKey);
-			PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText);
+			var _talkData = talkDataSO.talkDataList.Find(x => x.talkCondition == TalkCondition.CutScene && x.talkKey == _talkKey);
+			if (_talkData is null)
+			{
+				Debug.LogError("TalkData is null", mainModule);
+			}
+			priorTalkData = _talkData;
+			PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText, EndTalk);
 			isTalking = true;
 		}
 
@@ -188,9 +193,9 @@ namespace Module.Talk
 				case TalkCondition.Position:
 					break;
 				case TalkCondition.HandWork:
-					break;
+					return false;
 				case TalkCondition.CutScene:
-					break;
+					return false;
 			}
 			return true;
 		}

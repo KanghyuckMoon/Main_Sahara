@@ -289,6 +289,13 @@ namespace CutScene
 			{
                 yield return null;
             }
+            
+            if (cutSceneDataList is null)
+            {
+                ResetCam();
+                StaticTime.EntierTime = 1f;
+                yield break;
+            }
             if (cutSceneDataList.cutSceneDataList.Count > index + 1)
             {
                 SetContinueCam();
@@ -297,8 +304,10 @@ namespace CutScene
             }
             else
             {
-                TalkModuleCutSceneOff();
                 ResetCam();
+                TalkModuleCutSceneOff();
+                StaticTime.EntierTime = 1f;
+                yield break;
             }
 
         }

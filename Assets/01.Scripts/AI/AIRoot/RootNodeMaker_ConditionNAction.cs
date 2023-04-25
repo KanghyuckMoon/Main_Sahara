@@ -811,8 +811,11 @@ namespace AI
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
+				
 				CinemachineSmoothPath _smoothPath = aiModule.PathHarver.GetPath(aiModule.PathIndex);
-				Vector3 vec = _smoothPath.EvaluateTangent(_smoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2));
+				float _currentPos = _smoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2);
+				Vector3 vec = _smoothPath.EvaluatePosition(_currentPos + 0.1f);
+				//Vector3 _firstPoint = _smoothPath.m_Waypoints[0].position;
 				Vector3 _lastPoint = _smoothPath.m_Waypoints[_smoothPath.m_Waypoints.Length - 1].position;
 				Vector3 _pos1 = Position;
 				Vector3 _pos2 = _lastPoint;
@@ -825,8 +828,10 @@ namespace AI
 					aiModule.IsUsePath = false;
 					aiModule.CanTalk(true);
 				}
+
+				Vector3 _dir = (vec - Position).normalized;
 				
-				Vector2 _inputdir = new Vector2(vec.x, vec.z);
+				Vector2 _inputdir = new Vector2(_dir.x, _dir.z);
 				aiModule.Input = _inputdir;
 
 				aiModule.AIModuleState = AIModule.AIState.Walk;
