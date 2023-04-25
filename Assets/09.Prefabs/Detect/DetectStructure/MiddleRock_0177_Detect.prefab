@@ -54,6 +54,13 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
+  getoutEventBefore:
+    m_PersistentCalls:
+      m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls: []
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -246,6 +253,25 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
+  getoutEventBefore:
+    m_PersistentCalls:
+      m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5633766816759199894}
+        m_TargetAssemblyTypeName: Spawner.LODObjectDataRegister, Spawner
+        m_MethodName: SetLOD
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -371,6 +397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiddleRock_0177
       objectReference: {fileID: 0}
+    - target: {fileID: 5524193256024338009, guid: 81421e3ea2a4c9a48afc63f13029ddff, type: 3}
+      propertyPath: isNotEnable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7791482552252407204, guid: 81421e3ea2a4c9a48afc63f13029ddff, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -421,6 +451,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81421e3ea2a4c9a48afc63f13029ddff, type: 3}
+--- !u!114 &5633766816759199894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5524193256024338009, guid: 81421e3ea2a4c9a48afc63f13029ddff, type: 3}
+  m_PrefabInstance: {fileID: 182054306346751695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3998fd82f3b32eb4588c2393d83a8b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7973096976617589611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7791482552252407204, guid: 81421e3ea2a4c9a48afc63f13029ddff, type: 3}

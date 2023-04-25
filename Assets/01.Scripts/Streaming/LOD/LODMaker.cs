@@ -76,7 +76,8 @@ namespace Streaming
 
 		public void Load()
 		{
-			lodGroup.enabled = false;
+			//lodGroup.enabled = false;
+			gameObject.SetActive(false);
 			//오브젝트 제거
 			foreach (var obj in objectList)
 			{
@@ -92,25 +93,35 @@ namespace Streaming
 
 		public void UnLoad()
 		{
-			lodGroup.enabled = true;
-			isUnLoadUpdate = true;
-			
-			
-				if (isUnLoadUpdate)
-				{
-					isUnLoadUpdate = false;
-					foreach (var obj in renderObjectDic)
-					{
-						if (!objectList.ContainsKey(obj.Key))
-						{
-							unloadCount++;
-							objectList.Add(obj.Key, null);
-							ObjectPoolManager.Instance.GetObjectAsyncParameter<KeyValuePair<long, ObjectData>>(obj.Value.lodAddress, UnloadObjectAsync, obj);
-						}
-					}
-				}
+			//lodGroup.enabled = true;
+			gameObject.SetActive(true);
+			//isUnLoadUpdate = true;
+			//if (isUnLoadUpdate)
+			//	{
+			//		isUnLoadUpdate = false;
+			//		
+			//	}
 				
-			StartCoroutine(IEUpdateLODObjects());
+			//StartCoroutine(IEUpdateLODObjects());
+			foreach (var obj in renderObjectDic)
+			{
+				if (!objectList.ContainsKey(obj.Key))
+				{
+					//unloadCount++;
+					objectList.Add(obj.Key, null);
+					var _gameObj = ObjectPoolManager.Instance.GetObject(obj.Value.lodAddress);
+					
+					objectList[obj.Key] = _gameObj;
+					ObjectSettingData(_gameObj, obj.Value);
+					_gameObj.SetActive(true);
+			
+					//if (unloadCount == 0)
+					//{
+					//	ResetLODObject();
+					//}
+				}
+			}
+			//ResetLODObject();
 		}
 
 		private IEnumerator IEUpdateLODObjects()

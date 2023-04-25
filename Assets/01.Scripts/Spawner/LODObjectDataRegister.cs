@@ -17,6 +17,9 @@ namespace Spawner
 		private string lodAddress;
 		[SerializeField]
 		private ObjectDataSO objectDataSO;
+		
+		[SerializeField]
+		private bool isNotEnable;
 
 #if UNITY_EDITOR
 		[ContextMenu("RandomName")]
@@ -34,32 +37,43 @@ namespace Spawner
 #endif
 
 		public void OnEnable()
-		{   //
-			//if (isSpawnDic.TryGetValue(gameObject.name, out bool _bool))
-			//{
-			//	if (_bool)
-			//	{
-			//		return;
-			//	}
-			//	else
-			//	{
-			//		_bool = true;
-			//	}
-			//}
-			//else
-			//{
-			//	isSpawnDic.Add(gameObject.name, true);
-			//	//GameObject obj = gameObject;
-			//	ObjectData _objectData = new ObjectData();
-			//	_objectData.key = ObjectData.totalKey++;
-			//	_objectData.position = transform.position;
-			//	_objectData.rotation = transform.rotation;
-			//	_objectData.scale = transform.localScale;
-			//	_objectData.lodAddress = lodAddress;
-			//	_objectData.lodType = LODType.On;
-			//	SceneData _sceneData = SceneDataManager.Instance.GetSceneData(gameObject.scene.name);
-			//	_sceneData.AddOnlyLODObjectData(_objectData);
-			//}
+		{
+			if (isNotEnable)
+			{
+				return;
+			}
+
+			SetLOD();
+		}
+
+		public void SetLOD()
+		{
+
+			if (isSpawnDic.TryGetValue(gameObject.name, out bool _bool))
+			{
+				if (_bool)
+				{
+					return;
+				}
+				else
+				{
+					_bool = true;
+				}
+			}
+			else
+			{
+				isSpawnDic.Add(gameObject.name, true);
+				//GameObject obj = gameObject;
+				ObjectData _objectData = new ObjectData();
+				_objectData.key = ObjectData.totalKey++;
+				_objectData.position = transform.position;
+				_objectData.rotation = transform.rotation;
+				_objectData.scale = transform.localScale;
+				_objectData.lodAddress = lodAddress;
+				_objectData.lodType = LODType.On;
+				SceneData _sceneData = SceneDataManager.Instance.GetSceneData(gameObject.scene.name);
+				_sceneData.AddOnlyLODObjectData(_objectData);
+			}
 		}
 	}
 }

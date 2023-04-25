@@ -116,9 +116,25 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
-  getoutEvent:
+  getoutEventBefore:
     m_PersistentCalls:
       m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7254422297727813722}
+        m_TargetAssemblyTypeName: Spawner.LODObjectDataRegister, Spawner
+        m_MethodName: SetLOD
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -345,9 +361,13 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
-  getoutEvent:
+  getoutEventBefore:
     m_PersistentCalls:
       m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls: []
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -435,6 +455,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6922259819181045203}
     m_Modifications:
+    - target: {fileID: 5097358119639231126, guid: 368642969cb814e4e93addabc1463a1f, type: 3}
+      propertyPath: isNotEnable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5525861664452785569, guid: 368642969cb814e4e93addabc1463a1f, type: 3}
       propertyPath: m_Name
       value: LowRock_288
@@ -485,6 +509,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 368642969cb814e4e93addabc1463a1f, type: 3}
+--- !u!114 &7254422297727813722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5097358119639231126, guid: 368642969cb814e4e93addabc1463a1f, type: 3}
+  m_PrefabInstance: {fileID: 2454908847256625868}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3998fd82f3b32eb4588c2393d83a8b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8326436929312099032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5880826806665635860, guid: 368642969cb814e4e93addabc1463a1f, type: 3}

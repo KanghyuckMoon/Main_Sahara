@@ -117,9 +117,13 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
-  getoutEvent:
+  getoutEventBefore:
     m_PersistentCalls:
       m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls: []
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -311,9 +315,25 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
-  getoutEvent:
+  getoutEventBefore:
     m_PersistentCalls:
       m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2552375086663824335}
+        m_TargetAssemblyTypeName: Spawner.LODObjectDataRegister, Spawner
+        m_MethodName: SetLOD
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -483,8 +503,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: LowRock_464
       objectReference: {fileID: 0}
+    - target: {fileID: 8567791810302346074, guid: 4874320a3f5d10344aab30799314d3af, type: 3}
+      propertyPath: isNotEnable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4874320a3f5d10344aab30799314d3af, type: 3}
+--- !u!114 &2552375086663824335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8567791810302346074, guid: 4874320a3f5d10344aab30799314d3af, type: 3}
+  m_PrefabInstance: {fileID: 6164639401062559893}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3998fd82f3b32eb4588c2393d83a8b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7176828988676375842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3896745279008667063, guid: 4874320a3f5d10344aab30799314d3af, type: 3}
