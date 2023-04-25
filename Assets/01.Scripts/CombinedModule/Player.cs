@@ -17,6 +17,18 @@ namespace CondinedModule
         
         public List<State> currentState;
 
+        public ThirdPersonCameraController Camera
+        {
+            get
+            {
+                if (camera is null)
+                {
+                    camera = FindObjectOfType<ThirdPersonCameraController>();
+                    if (camera is null) return null; 
+                }
+                return camera; 
+            }
+        }
         public void OnEnable()
         {
             StopOrNot = 1;
@@ -113,7 +125,7 @@ namespace CondinedModule
                 stateModule.AddState(State.UI);
             else stateModule.RemoveState(State.UI);
 
-            camera.isUIOn = _isOn;
+            Camera.isUIOn = _isOn;
         }
 
         private void OnDestroy()
