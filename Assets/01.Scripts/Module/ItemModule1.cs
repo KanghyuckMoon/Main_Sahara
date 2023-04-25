@@ -28,6 +28,12 @@ namespace Module
 					case AccessoriesItemType.Dash:
 						_itemPassive = GetItemWithPool<Dash_Accessories>("Dash_Accessories"); 
 						break;
+					case AccessoriesItemType.TimeSlow:
+						_itemPassive = GetItemWithPool<TimeSlow_Accessories>("TimeSlow_Accessories");
+						break;
+					case AccessoriesItemType.Burning:
+						_itemPassive = GetItemWithPool<Burning_Accessories>("Burning_Accessories");
+						break;
 					case AccessoriesItemType.NONE:
 						break;
 				}

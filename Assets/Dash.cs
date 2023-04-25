@@ -12,6 +12,8 @@ public class Dash : StateMachineBehaviour
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+        //mainModule.StopOrNot = 0;
+        //mainModule.SetActiveAnimatorRoot(1);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

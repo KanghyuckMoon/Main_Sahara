@@ -35,7 +35,6 @@ namespace PassiveItem
                 }
             }
             
-            Debug.LogError("정ㅁ프프프므프");
             //Debug.LogError("asdadffasdfag");
 
             if (mainModule.isGround)

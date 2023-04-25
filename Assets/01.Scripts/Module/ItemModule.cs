@@ -14,6 +14,8 @@ namespace Module
         Fire,
         DoubleJump,
         Dash,
+        TimeSlow,
+        Burning,
         NONE
     }
     public partial class ItemModule : AbBaseModule
@@ -62,6 +64,10 @@ namespace Module
         {
             SetPassiveItem(AccessoriesItemType.DoubleJump);
             SetPassiveItem(AccessoriesItemType.Dash);
+            SetPassiveItem(AccessoriesItemType.TimeSlow);
+            //SetPassiveItem(AccessoriesItemType.Burning);
+            
+            
         }
         private void ApplyPassive()
         {
@@ -106,9 +112,9 @@ namespace Module
                 _module = new T();
             }
 
-            if (typeof(T) is ItemPassive_Module)
+            if (_module is ItemPassive_Module _passiveModule)
             {
-                (_module as ItemPassive_Module).Init(mainModule);
+                _passiveModule.Init(mainModule);
             }
 
             return _module;
