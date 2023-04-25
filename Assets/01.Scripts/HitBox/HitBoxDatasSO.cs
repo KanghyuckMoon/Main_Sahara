@@ -243,7 +243,16 @@ namespace HitBox
 
 public interface IAction
 {
+	public HitBoxActionType HitBoxActionType { get; set; }
+
 	public void Invoke();
+}
+
+public enum HitBoxActionType
+{
+	Start,
+	Hit,
+	None
 }
 
 public class HitBoxAction
@@ -252,7 +261,9 @@ public class HitBoxAction
 	{
 		public Action<T> action;
 		public T parameter;
-		
+
+		public HitBoxActionType HitBoxActionType { get; set; }
+
 		public void Invoke()
 		{
 			action?.Invoke(parameter);
@@ -260,21 +271,23 @@ public class HitBoxAction
 		
 	}
 	
-	public void SetCondition<T>(Action<T> _action, T _paremeter)
+	public void SetCondition<T>(Action<T> _action, T _paremeter, HitBoxActionType _type)
 	{
 		ActionChild<T> _actionCondition = new ActionChild<T>();
 		_actionCondition.action = _action;
 		_actionCondition.parameter = _paremeter;
+		_actionCondition.HitBoxActionType = _type;
 		action.Add(_actionCondition);
 	}
 
-	public void Invoke()
+	public void Invoke(HitBoxActionType _type)
 	{
 		foreach (IAction _action in action)
 		{
-			_action.Invoke();
+			if (_action.HitBoxActionType == _type)
+				_action.Invoke();
 		}
 	}
 
-	public List<IAction> action;
+	public List<IAction> action = new List<IAction>();
 }

@@ -35,11 +35,6 @@ namespace Module
 					mainModule.Attacking = false;
 					StateModule.RemoveState(State.CHARGE);
 				}
-					
-				if (Input.GetMouseButtonUp(1))
-				{
-					mainModule.StrongAttacking = false;
-				}
 				
 				if (!StateModule.CheckState(State.ATTACK, State.CHARGE, State.SKILL))
 				{
@@ -52,15 +47,6 @@ namespace Module
 
 						AttackModule.SpownAttackEffect();
 						mainModule.Attacking = true;
-					}
-
-					if (Input.GetMouseButtonDown(1))
-					{
-						mainModule.SetAnimationLayerOn(0, 0);
-						StateModule.AddState(State.ATTACK);
-						
-						AttackModule.SpownAttackEffect();
-						mainModule.StrongAttacking = true;
 					}
 				}
 
