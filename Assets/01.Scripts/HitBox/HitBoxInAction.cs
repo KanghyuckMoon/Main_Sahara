@@ -11,6 +11,7 @@ namespace HitBox
         {
             get
             {
+                hitBoxAction ??= new HitBoxAction();
                 return hitBoxAction;
             }
         }

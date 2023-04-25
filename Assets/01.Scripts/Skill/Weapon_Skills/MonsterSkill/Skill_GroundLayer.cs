@@ -4,6 +4,7 @@ using UnityEngine;
 using Module;
 using Streaming;
 using Pool;
+using HitBox;
 
 namespace Skill
 {
@@ -20,6 +21,10 @@ namespace Skill
             Animator _animator = _mainModule.GetComponent<Animator>();
             _animator.SetLayerWeight(0, 0f);
             _animator.SetLayerWeight(1, 1f);
+        }
+        public HitBoxAction GetHitBoxAction()
+        {
+            return null;
         }
     }   
 }

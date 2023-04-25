@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Module;
 using UnityEngine;
+using HitBox;
 
 namespace Skill
 {
@@ -13,6 +14,10 @@ namespace Skill
         public void Skills(AbMainModule _mainModule)
         {
             PlaySkillAnimation(_mainModule, animationClip);
+        }
+        public HitBoxAction GetHitBoxAction()
+        {
+            return null;
         }
     }
 }

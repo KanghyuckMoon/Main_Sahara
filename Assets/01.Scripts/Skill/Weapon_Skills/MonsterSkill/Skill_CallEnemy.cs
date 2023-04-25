@@ -4,6 +4,7 @@ using UnityEngine;
 using Module;
 using Streaming;
 using Pool;
+using HitBox;
 
 namespace Skill
 {
@@ -89,6 +90,10 @@ namespace Skill
             }
 
             spawnPos = _result;
+        }
+        public HitBoxAction GetHitBoxAction()
+        {
+            return null;
         }
     }   
 }
