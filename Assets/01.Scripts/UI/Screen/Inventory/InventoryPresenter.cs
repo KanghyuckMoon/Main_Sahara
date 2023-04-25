@@ -17,7 +17,7 @@ namespace UI.Inventory
         private UIDocument uiDocument;
         [SerializeField]
         private Camera inventoryCam; 
-
+    
         [SerializeField]
         private InventoryView inventoryView;
 
