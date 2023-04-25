@@ -126,16 +126,16 @@ namespace UI.Dialogue
                         ActiveViewS(false); 
                         return;
                     case "!TACTIVE":
-                        index = 0;
-                        ActiveViewS(false);
+                        //index = 0;
+                        //ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestActive(fullText);
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
                         return;
                     case "!TCLEAR":
                         // 패널 띄우기
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
-                        index = 0;
-                        ActiveViewS(false);
+                        //index = 0;
+                        //ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestClear(fullText);
                         return;
                     case "!CHOICE":

@@ -47,13 +47,14 @@ namespace UI.Inventory
                 foreach (var _itemData in allItemDataSO.itemDataSOList)
                 {
                     GameObject _prefab;
-                    string _modelKey = _itemData.modelkey.Replace("\r", ""); 
+                    string _modelKey = _itemData.modelkey; 
                     if (_modelKey == String.Empty)
                     {
                         continue;
                     }
                     try
                     {
+                        _modelKey = _modelKey.Replace("\r", "");
                         _prefab = AddressablesManager.Instance.GetResource<GameObject>(_modelKey);
                     }
                     catch (Exception e)

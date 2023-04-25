@@ -149,6 +149,7 @@ namespace Module.Talk
 			}
 			priorTalkData = _talkData;
 			PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText, EndTalk);
+			isEndTalk = false;
 			isTalking = true;
 		}
 
