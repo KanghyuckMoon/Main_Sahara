@@ -92,7 +92,7 @@ namespace UI.Quest
             GetLabel((int)Labels.quest_name_label).text = _title;
             // 애니메이션 ㄱㄱ 
         //    GetLabel((int)Labels.quest_detail_label).text = _detail;
-            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_detail_label), _detail);
+            UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_detail_label), _detail,0.01f);
         }
 
         /// <summary>
@@ -123,9 +123,9 @@ namespace UI.Quest
             {
                 (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(QuestEntryView));
 
-                _v.Item1.userData = _v.Item2 as QuestEntryView;
+                _v.Item1.ElementAt(0).userData = _v.Item2 as QuestEntryView;
                 Debug.Log("MAKE");
-                return _v.Item1;
+                return _v.Item1.ElementAt(0);
             };
 
             // 값 바인딩 
@@ -151,7 +151,7 @@ namespace UI.Quest
 
                 SetTitleAndDetail(_name, _detail);
                 UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_state_label),  Enum.GetName(typeof(QuestState), _selected.QuestState));
-
+            
             };
 
         }

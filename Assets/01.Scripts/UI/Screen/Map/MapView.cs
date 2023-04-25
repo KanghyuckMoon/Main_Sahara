@@ -38,6 +38,7 @@ namespace UI
         public float MinimapMaskW => minimapMaskParent.contentRect.width;
         public float MinimapMaskH => minimapMaskParent.contentRect.height;
 
+        public VisualElement JJB => GetVisualElement((int)Elements.JJB);
         enum Elements
         {
             full_map_panel, 
@@ -47,19 +48,23 @@ namespace UI
             minimap_mask,
             mask_parent,
             markers,
+            marker_set_panel,
+            center_anchor, //  확대축소용 가운데 앵커 
+            JJB
          //   paths
         }
 
         enum Buttons
         {
-
+            markers_active_btn,
         }
 
         public override void Cashing()
         {
             base.Cashing();
             BindVisualElements(typeof(Elements));
-
+            BindButtons(typeof(Buttons));
+            
             map = GetVisualElement((int)Elements.map);
             centerMarker = GetVisualElement((int)Elements.center_marker);
             markerParent = GetVisualElement((int)Elements.markers);
@@ -91,7 +96,8 @@ namespace UI
         }
         private void AddButtonEvents()
         {
-
+            AddButtonEvent<ClickEvent>((int)Buttons.markers_active_btn,ActiveMarkersetPanel);
+           // AddElementEvent<ClickEvent>((int)Elements.JJB, GetVisualElement((int)Elements.JJB).AddToClassList(""))
         }
 
         /// <summary>
@@ -125,6 +131,18 @@ namespace UI
             SetMask(true); 
         }
 
+        private const string inactiveStr = "inactive_markerset"; 
+         private void ActiveMarkersetPanel()
+         {
+             VisualElement _v = GetVisualElement((int)Elements.marker_set_panel); 
+             if (_v.ClassListContains(inactiveStr) is true)
+             {
+                 _v.RemoveFromClassList(inactiveStr);
+                 return; 
+             }
+             _v.AddToClassList(inactiveStr);
+         }
+         
       
         public void SetMask(bool _isActive)
         {
@@ -166,7 +184,8 @@ namespace UI
             VisualElement _minimapMaskParent = GetVisualElement((int)Elements.mask_parent);
             ShowVisualElement(_minimapMaskParent, false);
 
-            _panel.Add(map);
+            VisualElement _centerAnchor = GetVisualElement((int)Elements.center_anchor);
+            _centerAnchor.Add(map);
         }
 
         private void ShowMiniMap()

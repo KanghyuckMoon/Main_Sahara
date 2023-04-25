@@ -5,13 +5,13 @@
         <ui:VisualElement name="Header" class="header" style="margin-left: 0; margin-right: 0; height: 10%; padding-bottom: 0; padding-top: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; flex-direction: row;">
             <ui:VisualElement style="flex-direction: row; width: 500px; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/quest_icon_background.png?fileID=2800000&amp;guid=d45837fd72eb80d4bb55d2d391abf5fa&amp;type=3#quest_icon_background&apos;); align-items: center;">
                 <ui:VisualElement style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/quest_icon.png?fileID=2800000&amp;guid=69262adbb6c99ba4099e2d5f72163bac&amp;type=3#quest_icon&apos;); height: 90%; -unity-background-scale-mode: scale-to-fit; width: 113px;" />
-                <ui:Label text="QUEST" display-tooltip-when-elided="true" class="font_base header_text" style="width: 300px; color: rgb(255, 255, 255);" />
+                <ui:Label text="QUEST" display-tooltip-when-elided="true" class="font_base header_text" style="width: 300px;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Content" class="content_panel" style="margin-top: 0.1%;">
             <ui:VisualElement name="mid_panel" class="panel center_align" style="flex-basis: 75%; display: flex;">
                 <ui:VisualElement name="quest_panel" class="quest_panel" style="flex-direction: row; justify-content: space-between; width: 100%; display: flex;">
-                    <ui:VisualElement name="left_panel" class="left_quest_panel quest_page" style="flex-basis: 50%; padding-left: 100px; padding-right: 60px; padding-bottom: 50px; padding-top: 15px;">
+                    <ui:VisualElement name="left_panel" class="left_quest_panel quest_page" style="flex-basis: 50%; padding-left: 70px; padding-right: 70px; padding-bottom: 50px; padding-top: 100px;">
                         <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%; display: none;">
                             <ui:VisualElement name="select" style="height: 100px; margin-bottom: 20px;" />
                             <ui:VisualElement name="quest_list_panel" style="display: flex; flex-basis: 600px; flex-grow: 1; padding-left: 10px; padding-right: 10px; padding-top: 20px; padding-bottom: 20px; overflow: hidden;">
@@ -40,17 +40,17 @@
                         <ui:ListView focusable="true" name="quest_listview" fixed-item-height="110" horizontal-scrolling="false" style="width: 100%; height: 100%; padding-bottom: 50px; display: flex;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="right_panel" class="left_quest_panel quest_page" style="flex-basis: 50%; padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; justify-content: center; display: flex;">
-                        <ui:VisualElement class="border_base" style="padding-left: 60px; padding-right: 100px; padding-top: 50px; padding-bottom: 50px; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/Old_book.png?fileID=2800000&amp;guid=a94c55047ce21c94c83a7ac04e8fc7b6&amp;type=3#Old_book&apos;); display: flex;">
+                        <ui:VisualElement class="border_base" style="padding-left: 70px; padding-right: 70px; padding-top: 50px; padding-bottom: 50px; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/Old_book.png?fileID=2800000&amp;guid=a94c55047ce21c94c83a7ac04e8fc7b6&amp;type=3#Old_book&apos;); display: flex;">
                             <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%; position: absolute; left: 10%; top: 7.5%; background-color: rgb(124, 121, 124); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; display: none;" />
                             <ui:VisualElement name="description_panel" class="quest_description_panel center_align" style="display: flex;">
                                 <ui:Label text="퀘스트 이름" display-tooltip-when-elided="true" name="quest_name_label" class="font_base quest_text" style="font-size: 55px; margin-bottom: 30px; border-bottom-color: rgb(255, 255, 255); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; flex-basis: 15%; -unity-font-style: bold;" />
-                                <ui:Label text="&#10;" display-tooltip-when-elided="true" name="quest_detail_label" class="font_base quest_text" style="font-size: 30px; color: rgb(255, 255, 255); flex-basis: 70%; flex-grow: 1; -unity-background-image-tint-color: rgb(124, 121, 124); white-space: normal; width: 100%;" />
+                                <ui:Label text="&#10;" display-tooltip-when-elided="true" name="quest_detail_label" class="font_base quest_text" style="font-size: 30px; flex-basis: 70%; flex-grow: 1; -unity-background-image-tint-color: rgb(124, 121, 124); white-space: normal; width: 100%; color: rgba(99, 75, 63, 0.9);" />
                                 <ui:Label text="CLEAR" display-tooltip-when-elided="true" name="quest_state_label" class="font_base quest_text" style="flex-basis: 10%; font-size: 60px; -unity-font-style: bold;" />
                                 <ui:VisualElement name="decorate_panel" class="decorate_panel" style="display: none;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement style="display: none;" />
-                        <ui:VisualElement name="topbot_pattern" class="border_base" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/mission%20window_patten.png?fileID=2800000&amp;guid=ed44b42995412994d91edc90ed20a43f&amp;type=3#mission window_patten&apos;); -unity-background-scale-mode: scale-to-fit; height: 90%; display: flex; -unity-background-image-tint-color: rgba(99, 75, 63, 255);" />
+                        <ui:VisualElement name="topbot_pattern" class="border_base" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/mission%20window_patten.png?fileID=2800000&amp;guid=ed44b42995412994d91edc90ed20a43f&amp;type=3#mission window_patten&apos;); -unity-background-scale-mode: scale-to-fit; height: 90%; display: flex; -unity-background-image-tint-color: rgb(99, 75, 63);" />
                         <ui:VisualElement name="pushpin" class="pushpin" />
                     </ui:VisualElement>
                 </ui:VisualElement>

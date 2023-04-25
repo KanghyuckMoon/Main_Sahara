@@ -77,8 +77,8 @@ using Module.Talk;
                     _talkData.talkCondition = (TalkCondition)Enum.Parse(typeof(TalkCondition), _talkCondition[j]);
                     _talkData.cutSceneKey = _cutSceneKey[j];
                     _talkData.isUseCutScene = Convert.ToBoolean(_isUseCutScene[j]);
-                    _talkData.questKey = _questKey[j];
-                    _talkData.questState = (QuestState)Enum.Parse(typeof(QuestState), _questState[j]);
+                    //_talkData.questKey = _questKey[j];
+                    //_talkData.questState = (QuestState)Enum.Parse(typeof(QuestState), _questState[j]);
 
                     _talkDataList.Add(_talkData);
                 }

@@ -33,8 +33,13 @@ namespace Module.Talk
 		public int smoothPathIndex = 0;
 		
 		//Condition Check
+		public List<QuestCondition> questConditionList = new List<QuestCondition>();
+	}
+
+	[System.Serializable]
+	public class QuestCondition
+	{
 		public string questKey;
 		public QuestState questState;
-
 	}
 }

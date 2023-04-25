@@ -260,7 +260,7 @@ namespace UI
             {
                 // ¸Ê È°¼ºÈ­
                 bool _isActive = mapPresenter.ActiveView();
-                SetUI(_isActive, Get(Keys.MapUI));
+                SetUIAndCursor(_isActive, Get(Keys.MapUI));
             });
             inputDic.Add(new UIInputData(Get(Keys.QuestUI), true), () =>
             {

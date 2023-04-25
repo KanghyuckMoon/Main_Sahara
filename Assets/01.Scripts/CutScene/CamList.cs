@@ -14,6 +14,7 @@ namespace CutScene
 		TargetCam1,
 		TargetCam2,
 		TrackCam,
+		LookAtCam,
 	}
 	public class CamList : MonoBehaviour
 	{

@@ -17,12 +17,16 @@ namespace CutScene
 
         [SerializeField] 
         private Transform targetObj;
+        [SerializeField] 
+        private Transform targetObj2;
 
         [SerializeField] 
         private TextMeshProUGUI targetText;
 
         [SerializeField] 
         private Image fadeImage;
+
+        [SerializeField] private float shakePower = 1f;
         
         private void Start()
         {
@@ -30,7 +34,8 @@ namespace CutScene
 
             foreach (var _data in movePositionList)
             {
-                _sequence.Append(targetObj.DOMove(_data.pos, 5f)).AppendCallback(() => {targetText.text = TextManager.Instance.GetText(_data.textKey); });
+                //_sequence.Append(targetObj2.DOShakePosition(4.5f, new Vector3(shakePower, shakePower, 0f)));
+                _sequence.Append(targetObj.DOMove(_data.pos, 5f)).Join(targetObj2.DOShakePosition(4.5f, new Vector3(shakePower, 0, 0f))).AppendCallback(() => {targetText.text = TextManager.Instance.GetText(_data.textKey); });
                 _sequence.Append(targetText.DOFade(1, 5f));
                 _sequence.AppendInterval(_data.delay);
                 _sequence.Append(targetText.DOFade(0, 1f));
