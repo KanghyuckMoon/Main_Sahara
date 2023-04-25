@@ -76,7 +76,7 @@ namespace Streaming
 
 		public void Load()
 		{
-			//lodGroup.enabled = false;
+			lodGroup.enabled = false;
 			//오브젝트 제거
 			foreach (var obj in objectList)
 			{
@@ -92,15 +92,10 @@ namespace Streaming
 
 		public void UnLoad()
 		{
-			//lodGroup.enabled = true;
+			lodGroup.enabled = true;
 			isUnLoadUpdate = true;
-			StartCoroutine(IEUpdateLODObjects());
-		}
-
-		private IEnumerator IEUpdateLODObjects()
-		{
-			while (true)
-			{
+			
+			
 				if (isUnLoadUpdate)
 				{
 					isUnLoadUpdate = false;
@@ -114,6 +109,14 @@ namespace Streaming
 						}
 					}
 				}
+				
+			StartCoroutine(IEUpdateLODObjects());
+		}
+
+		private IEnumerator IEUpdateLODObjects()
+		{
+			while (true)
+			{
 				yield return null;
 			}
 			yield return null;

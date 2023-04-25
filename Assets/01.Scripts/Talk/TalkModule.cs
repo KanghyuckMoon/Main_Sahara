@@ -145,7 +145,7 @@ namespace Module.Talk
 			var _talkData = talkDataSO.talkDataList.Find(x => x.talkCondition == TalkCondition.CutScene && x.talkKey == _talkKey);
 			if (_talkData is null)
 			{
-				Debug.LogError("TalkData is null", mainModule);
+				Debug.LogError("TalkData is null");
 			}
 			priorTalkData = _talkData;
 			PublicUIManager.Instance.SetTexts(_talkData.authorText, _talkData.talkText, EndTalk);

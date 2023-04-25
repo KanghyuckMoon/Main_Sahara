@@ -273,9 +273,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1824499654718421873}
-  - component: {fileID: 2952748251729185960}
   m_Layer: 0
-  m_Name: total_middle
+  m_Name: MiddleLOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,25 +299,10 @@ Transform:
   - {fileID: 9186355566049546029}
   - {fileID: 889282218136038173}
   - {fileID: 7698521852033608400}
-  - {fileID: 2836296206104251074}
   - {fileID: 5311151753359845972}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2952748251729185960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304421461311627723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3998fd82f3b32eb4588c2393d83a8b3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lodAddress: MiddleLOD
-  objectDataSO: {fileID: 0}
 --- !u!1 &1692327856664393795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,84 +1014,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1266424127084166165, guid: 5e86a0bcb1550564d80b07f6621de12d, type: 3}
---- !u!1 &2415815470291423649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2836296206104251074}
-  - component: {fileID: 6244695580190482150}
-  - component: {fileID: 5122018343151157662}
-  m_Layer: 13
-  m_Name: EventObj
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2836296206104251074
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2415815470291423649}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.847, y: 6.73, z: -0.56}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1824499654718421873}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6244695580190482150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2415815470291423649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16896aa7c220db14f86a62e94f390149, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameKey: O00000035
-  actionKey: O00000034
-  unityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6422608992010011357}
-        m_TargetAssemblyTypeName: EventObject.EventObj_Animation, EventObject
-        m_MethodName: PlayEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  isEnabled: 1
-  isOnlyOne: 1
---- !u!136 &5122018343151157662
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2415815470291423649}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 6
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3062851001908432805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,8 +1106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7698521852033608400}
-  - component: {fileID: 6422608992010011357}
-  - component: {fileID: 9076459268086183193}
   m_Layer: 0
   m_Name: Cristal
   m_TagString: Untagged
@@ -1231,43 +1135,6 @@ Transform:
   m_Father: {fileID: 1824499654718421873}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6422608992010011357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3245070789473625777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa690f50737eb148b93c789bd65ebe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInfinityPlay: 0
-  isAlreadyPlay: 0
-  animator: {fileID: 9076459268086183193}
-  animationKey: CristalBoom
---- !u!95 &9076459268086183193
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3245070789473625777}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2c3ff4a39d28a9a40a1d6a30b0ed19e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3739105714896911539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1393,7 @@ Transform:
   - {fileID: 6679878190211889720}
   - {fileID: 157896795420661341}
   m_Father: {fileID: 1824499654718421873}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5159075260516936038
 GameObject:
