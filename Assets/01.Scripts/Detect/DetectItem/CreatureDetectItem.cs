@@ -121,8 +121,8 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
             }
             _dropObj.transform.position = spawnTrm.position;
             _dropObj.SetActive(true);
-            float _powerRight = Random.Range(-1f, 1f) * xzPower;
-            float _powerForward = Random.Range(-1f, 1f) * xzPower;
+            float _powerRight = Random.Range(-0.2f, 0.2f) * xzPower;
+            float _powerForward = Random.Range(-0.2f, 0.2f) * xzPower;
             Vector3 _vec = Vector3.up * upPower + Vector3.right * _powerRight + Vector3.forward * _powerForward;
 
             if (isEnemy)

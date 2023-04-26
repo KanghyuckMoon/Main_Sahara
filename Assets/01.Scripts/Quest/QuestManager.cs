@@ -70,6 +70,10 @@ namespace Quest
 				}
 				catch (Exception e)
 				{
+					if(i >= Observers.Count)
+					{
+						break;
+					}
 					Observers.RemoveAt(i);
 				}
 			}

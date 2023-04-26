@@ -75,7 +75,7 @@ namespace Spawner
 			}
 			else
 			{
-				isSpawnDic.Add(gameObject.name, true);
+				isSpawnDic.Add(key, true);
 				//GameObject obj = gameObject;
 				ObjectData _objectData = new ObjectData();
 				_objectData.key = ObjectData.totalKey++;
