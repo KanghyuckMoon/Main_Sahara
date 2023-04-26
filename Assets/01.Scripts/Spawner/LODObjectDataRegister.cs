@@ -5,6 +5,11 @@ using Utill.Addressable;
 using Utill.Pattern;
 using Pool;
 using Streaming;
+using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+
+#endif
 
 namespace Spawner
 {
@@ -21,12 +26,20 @@ namespace Spawner
 		[SerializeField]
 		private bool isNotEnable;
 
+		[SerializeField] 
+		private string key;
+		
 #if UNITY_EDITOR
 		[ContextMenu("RandomName")]
 		public void RandomName()
 		{
 			var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-			gameObject.name = _prefeb.name + nameKey++;
+			//gameObject.name = _prefeb.name + nameKey++;
+			key = _prefeb.name + nameKey++;
+			#if UNITY_EDITOR
+			EditorSceneManager.MarkSceneDirty(gameObject.scene);
+			
+			#endif
 		}
 		[ContextMenu("SetLODName")]
 		public void SetLODName()
@@ -49,7 +62,7 @@ namespace Spawner
 		public void SetLOD()
 		{
 
-			if (isSpawnDic.TryGetValue(gameObject.name, out bool _bool))
+			if (isSpawnDic.TryGetValue(key, out bool _bool))
 			{
 				if (_bool)
 				{
