@@ -127,7 +127,7 @@ namespace Module
 						SkillModule.UseWeaponSkill();
 					}
 
-					if (Input.GetKeyDown(KeyCode.LeftControl))
+					if (Input.GetMouseButtonDown(1))
 						mainModule.IsDash = true;
 				}
 			}
@@ -135,11 +135,11 @@ namespace Module
 
 		private void InputTest()
         {
-			if(Input.GetMouseButtonDown(2))
+			/*if(Input.GetMouseButtonDown(2))
             {
 				//Debug.LogError("asdfawefaeabraergae");
 				mainModule.SettingTime.SetTime(1, 0.1f);
-            }
+            }*/
         }
 
 	}

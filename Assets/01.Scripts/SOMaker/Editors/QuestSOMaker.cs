@@ -74,6 +74,7 @@ using Module;
                 AssetDatabase.SaveAssets();
 
                 EditorUtility.FocusProjectWindow();
+                UnityEditor.EditorUtility.SetDirty(_asset);
 
                 Selection.activeObject = _asset;
             }
