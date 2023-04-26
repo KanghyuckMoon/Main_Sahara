@@ -50,7 +50,12 @@ namespace TimeOfDay
             {
                 return;
             }
-            
+
+            if (!todSO.isUpdateOn)
+            {
+                return;
+            }
+
             if(todSO.isUpdateTime)
             {
                 timeOfDay += Time.deltaTime * orbitSpeed;
@@ -139,6 +144,11 @@ namespace TimeOfDay
             moon.shadows = LightShadows.None;
             sunLensFlare.enabled = false;
             moonLensFlare.enabled = true;
+        }
+
+        public void SetUpdate(bool isUpdate)
+        {
+            todSO.isUpdateOn = isUpdate;
         }
     }
 

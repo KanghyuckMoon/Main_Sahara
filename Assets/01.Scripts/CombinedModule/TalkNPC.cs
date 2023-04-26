@@ -29,6 +29,8 @@ namespace CondinedModule
         [SerializeField]
         private PathHarver pathHarver;
 
+        [SerializeField] private NPCRegisterManager.NPCTYPE npctype;
+        
 		public string textSOAddress;
 
         protected void OnEnable()
@@ -61,6 +63,8 @@ namespace CondinedModule
             animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
             RaycastTarget = transform.Find("RayCastPoint");
 
+            NPCRegisterManager.Instance.Register(npctype, this);
+            
             base.OnEnable();
         }
     }
