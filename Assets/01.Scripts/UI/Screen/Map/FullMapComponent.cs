@@ -11,6 +11,7 @@ using UI.Base;
 using Utill.Pattern;
 using Utill.Addressable;
 using Pool;
+using UI.Map;
 
 namespace UI
 {
@@ -42,6 +43,8 @@ namespace UI
         private Sprite selectMarker;
 
         private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소 
+        private MarkerSetComp markerSetComp; 
+          
         // 프로퍼티 
         private Vector2 MoveDir => new Vector2(xMoveValue, yMoveValue).normalized;
         public MarkersComponent MarkersComponent => markersComponent;

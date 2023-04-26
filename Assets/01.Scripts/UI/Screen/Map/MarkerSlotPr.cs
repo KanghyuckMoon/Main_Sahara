@@ -5,7 +5,9 @@ using UI.Production;
 using UnityEngine.UIElements; 
 using UI.Base;
 using UI.ConstructorManager;
-using System; 
+using System;
+using UI.Map;
+using Utill.Addressable;
 
 namespace  UI
 {
@@ -13,7 +15,8 @@ namespace  UI
     {
         private SlotItemView slotItemView;
         private VisualElement parent;
-
+        private MarkerData markerData; 
+        
         public VisualElement Parent
         {
             get
@@ -31,6 +34,13 @@ namespace  UI
             (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(SlotItemView));
             this.slotItemView = _v.Item2 as SlotItemView;
             this.parent = _v.Item1;
+        }
+
+        public void SetData(MarkerData _markerData)
+        {
+            this.markerData = _markerData; 
+            var _sprite = AddressablesManager.Instance.GetResource<Texture2D>(_markerData.spriteAddress);
+            slotItemView.SetSpriteAndText(_sprite,_markerData.count);
         }
         
         public void SelectSlot(bool _isSelect)
