@@ -28,11 +28,22 @@ namespace Detect
         {
             base.Detect();
 
+            
+
             if (closeRadius > minDistance)
             {
                 LinearColor linearColor = default;
-                linearColor.red = 1f;
-                pointLight.color = Color.red;
+                if ((targetItem.DetectItemType & DetectItemType.Metal) != 0)
+                {
+                    linearColor.red = 1f;
+                    linearColor.blue = 1f;
+                    pointLight.color = Color.magenta;   
+                }
+                else if((targetItem.DetectItemType & DetectItemType.Structure) != 0)
+                {
+                    linearColor.red = 1f;
+                    pointLight.color = Color.red;
+                }
                 maxTimer = 0.3f;
             }
             else if (radius > minDistance)
