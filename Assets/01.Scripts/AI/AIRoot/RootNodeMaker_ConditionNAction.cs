@@ -522,7 +522,8 @@ namespace AI
 				vec.y = 0;
 				vec = vec.normalized;
 				Vector2 _inputdir = new Vector2(vec.x, vec.z);
-				aiModule.Input = _inputdir;
+				aiModule.Input = Vector2.Lerp(aiModule.Input, _inputdir, Time.deltaTime * aiSO.runMoveInputSpeed);
+				//aiModule.Input = _inputdir;
 
 				aiModule.AIModuleState = AIModule.AIState.Walk;
 				aiModule.MainModule.IsSprint = false;
