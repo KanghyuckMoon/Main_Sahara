@@ -15,6 +15,8 @@ namespace PassiveItem
         private int count = 1;
 
         private bool air;
+
+        private bool isPlayer;
         
         public DoubleJumpAccessoriesEffect(AbMainModule _mainModule)
         {
@@ -24,6 +26,9 @@ namespace PassiveItem
             count = 1;
             jumpModule = mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+
+            if (mainModule.name == "Player")
+                isPlayer = true;
         }
 
         public void ApplyPassiveEffect()
@@ -32,23 +37,35 @@ namespace PassiveItem
 
         public void UpdateEffect()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (isPlayer)
             {
-                if (count > 0)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    stateModule.AddState(State.JUMP);
-                    count--;
-                    Jumping();
+                    if (count > 0)
+                    {
+                        stateModule.AddState(State.JUMP);
+                        count--;
+                        Jumping();
+                    }
                 }
             }
-
+            else
+            {
+                if (mainModule.IsJump)
+                {
+                    stateModule.AddState(State.JUMP);
+                    Jumping();
+                    count--;
+                }
+            }
+            
             if (!mainModule.isGround)
             {
                 air = true;
             }
 
             if (air)
-            {   
+            {
                 if (mainModule.isGround)
                     Land();
             }
