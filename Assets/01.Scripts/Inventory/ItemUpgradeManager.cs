@@ -66,7 +66,13 @@ namespace Inventory
 			return _itemDataList;
 		}
 
-
+		public List<ItemData> UpgradeItemSlotListIgnoreIsSlot(string _key)
+		{
+			ItemUpgradeDataSO _itemUpgradeDataSO = allItemUpgradeDataSO.GetItemUpgradeDataSO(_key);
+			List<ItemData> _itemDataList = new List<ItemData>();
+			_itemDataList = _itemUpgradeDataSO.needItemDataList;//.FindAll(x => x.isSlot is true);
+			return _itemDataList;
+		}
 	}
 
 }

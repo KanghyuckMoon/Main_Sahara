@@ -105,35 +105,7 @@ namespace Interaction
 			}
 			
 		}
-
-		/// <summary>
-		/// ��ȣ�ۿ� �������� ������ UI�� ������Ʈ�Ѵ�.
-		/// </summary>
-		//private void UpdateUI()
-		//{
-		//	if (_interactionObj == null)
-		//	{
-		//		//UI�� ����
-		//		_nameFrame.gameObject.SetActive(false);
-		//		_actionFrame.gameObject.SetActive(false);
-		//		return;
-		//	}
-
-		//	//�̸� UI ����
-		//	Vector3 point = MainCamera.WorldToScreenPoint(_targetObject.transform.position);
-		//	point.y += 150;
-		//	_nameFrame.position = point;
-		//	_nameText.text = _interactionObj.Name;
-
-		//	//�׼� UI ����
-		//	_actionText.text = _interactionObj.ActionName;
-
-		//	//UI�� Ų��
-		//	_nameFrame.gameObject.SetActive(true);
-		//	_actionFrame.gameObject.SetActive(true);
-
-		//}
-
+		
 		private IPopup activePopup;
 
 		private InteractionUIData uiData; 

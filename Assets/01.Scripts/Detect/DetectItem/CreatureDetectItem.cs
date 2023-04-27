@@ -7,11 +7,21 @@ using Module;
 using Utill.Random;
 using Pool;
 using Effect;
+using UnityEngine.Serialization;
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+
+#endif
 
 namespace Detect
 {
 public class CreatureDetectItem : MonoBehaviour, IDetectItem
 {
+    private static Dictionary<string, bool> isSpawnDic = new Dictionary<string, bool>();
+    private static int nameKey;
+    [SerializeField] 
+    private string key;
+    
         public DetectItemType DetectItemType
         {
             get
@@ -50,8 +60,8 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
         [SerializeField] 
         private float xzPower = 5f;
         
-        [SerializeField] 
-        private string key;
+        [FormerlySerializedAs("key")] [SerializeField] 
+        private string objkey;
 
         [SerializeField] 
         private bool isEnemy;
@@ -79,6 +89,18 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
 
         private List<Observer> observers = new List<Observer>();
         
+        [ContextMenu("RandomName")]
+        public void RandomName()
+        {
+            var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+            //gameObject.name = _prefeb.name + nameKey++;
+            key = _prefeb.name + nameKey++;
+#if UNITY_EDITOR
+            EditorSceneManager.MarkSceneDirty(gameObject.scene);
+			
+#endif
+        }
+        
         public void GetOut()
         {
             ItemDrop(); 
@@ -95,12 +117,12 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
             }
             else
             {
-                _dropObj = ObjectPoolManager.Instance.GetObject(key);
+                _dropObj = ObjectPoolManager.Instance.GetObject(objkey);
             }
             _dropObj.transform.position = spawnTrm.position;
             _dropObj.SetActive(true);
-            float _powerRight = Random.Range(-1f, 1f) * xzPower;
-            float _powerForward = Random.Range(-1f, 1f) * xzPower;
+            float _powerRight = Random.Range(-0.2f, 0.2f) * xzPower;
+            float _powerForward = Random.Range(-0.2f, 0.2f) * xzPower;
             Vector3 _vec = Vector3.up * upPower + Vector3.right * _powerRight + Vector3.forward * _powerForward;
 
             if (isEnemy)

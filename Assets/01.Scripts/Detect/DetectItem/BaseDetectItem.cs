@@ -7,11 +7,20 @@ using UnityEngine.Events;
 using DG.Tweening;
 using Effect;
 using UnityEngine.Serialization;
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+
+#endif
 
 namespace Detect
 {
     public class BaseDetectItem : MonoBehaviour, IDetectItem
     {
+        private static Dictionary<string, bool> isSpawnDic = new Dictionary<string, bool>();
+        private static int nameKey;
+        [SerializeField] 
+        private string key;
+
         public DetectItemType DetectItemType
         {
             get
@@ -90,8 +99,30 @@ namespace Detect
         
 #endif
         
+        [ContextMenu("RandomName")]
+        public void RandomName()
+        {
+            var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+            //gameObject.name = _prefeb.name + nameKey++;
+            key = _prefeb.name + nameKey++;
+#if UNITY_EDITOR
+            EditorSceneManager.MarkSceneDirty(gameObject.scene);
+			
+#endif
+        }
         protected virtual void Start()
         {
+            if (isSpawnDic.TryGetValue(key, out bool _bool))
+            {
+                if (_bool)
+                {
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    _bool = true;
+                }
+            }
             upPos = targetModel.position;
             targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
             if (isInitFalse)

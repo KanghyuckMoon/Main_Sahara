@@ -12,8 +12,9 @@ using UI.Base;
 using UI.Manager;
 using UI.Shop;
 using System;
-    using UI.EventManage;
-    using UI.Upgrade;
+using UI.EventManage;
+using UI.Upgrade;
+using Inventory;
 
 namespace UI.Dialogue
 {
@@ -126,16 +127,16 @@ namespace UI.Dialogue
                         ActiveViewS(false); 
                         return;
                     case "!TACTIVE":
-                        index = 0;
-                        ActiveViewS(false);
+                        //index = 0;
+                        //ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestActive(fullText);
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
                         return;
                     case "!TCLEAR":
                         // 패널 띄우기
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
-                        index = 0;
-                        ActiveViewS(false);
+                        //index = 0;
+                        //ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestClear(fullText);
                         return;
                     case "!CHOICE":
@@ -168,8 +169,13 @@ namespace UI.Dialogue
                         StartText(_name.Replace("T","A"), _name);
                         return; 
                     case "!GIVE":
+                        InventoryManager.Instance.AddItem(fullText);
                         return;
                     case "!GIVES":
+                        var _text = fullText.Split(',');
+                        string _code = _text[0];
+                        int _count = int.Parse(_text[1]);
+                        InventoryManager.Instance.AddItem(_code, _count);
                         return; 
                 }
             }

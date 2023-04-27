@@ -14,7 +14,7 @@ namespace Quest
         [SerializeField]
         private string questKey;
         
-        void Awake()
+        void Start()
         {
             CheckQuestState();
         }

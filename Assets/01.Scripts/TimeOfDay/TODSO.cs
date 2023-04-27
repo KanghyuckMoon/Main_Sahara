@@ -15,4 +15,10 @@ public class TODSO : ScriptableObject
 	
 	public bool isNight;
 	
+	public bool isUpdateOn;
+
+	public void SetIsUpdateOn(bool isUpdateOn)
+	{
+		this.isUpdateOn = isUpdateOn;
+	}
 }

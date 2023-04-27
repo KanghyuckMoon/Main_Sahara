@@ -70,6 +70,7 @@ namespace UI.Inventory
         /// <param name="_v"></param>
         public SlotItemPresenter(VisualElement _v)
         {
+
             slotItemView = new SlotItemView(_v);
         }
 

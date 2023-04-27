@@ -39,6 +39,10 @@ namespace UI
         public float MinimapMaskH => minimapMaskParent.contentRect.height;
 
         public VisualElement JJB => GetVisualElement((int)Elements.JJB);
+        public VisualElement MarkerSetPanel => GetVisualElement((int)Elements.marker_set_panel);
+        public VisualElement MarkerSlotParent => GetVisualElement((int)Elements.slot_parent);
+        public VisualElement GhostIcon => GetVisualElement((int)Elements.ghost_icon);
+        
         enum Elements
         {
             full_map_panel, 
@@ -50,7 +54,9 @@ namespace UI
             markers,
             marker_set_panel,
             center_anchor, //  확대축소용 가운데 앵커 
-            JJB
+            JJB,
+            slot_parent,
+            ghost_icon
          //   paths
         }
 
