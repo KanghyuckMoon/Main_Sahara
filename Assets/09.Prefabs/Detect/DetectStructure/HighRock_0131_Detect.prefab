@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e002ffccaf7c041b9ae92636d38ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: 
   detectItemType: 256
   targetHeightTransform: {fileID: 4407200767767016266}
   targetTransform: {fileID: 4927290099146133886}
@@ -175,9 +176,13 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
-  getoutEvent:
+  getoutEventBefore:
     m_PersistentCalls:
       m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls: []
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -339,7 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectItemType: 5
+  key: 
+  detectItemType: 4
   targetHeightTransform: {fileID: 4927290098162194754}
   targetTransform: {fileID: 4927290099146133886}
   targetModel: {fileID: 6910942940048403483}
@@ -347,9 +353,25 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
-  getoutEvent:
+  getoutEventBefore:
     m_PersistentCalls:
       m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5741688379020086658}
+        m_TargetAssemblyTypeName: Spawner.LODObjectDataRegister, Spawner
+        m_MethodName: SetLOD
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -376,6 +398,10 @@ PrefabInstance:
     - target: {fileID: 924058222023075655, guid: 354db8b020a32af4da33ef2a182842bf, type: 3}
       propertyPath: m_Name
       value: HighRock_0131
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188220109840223526, guid: 354db8b020a32af4da33ef2a182842bf, type: 3}
+      propertyPath: isNotEnable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6360851133501516991, guid: 354db8b020a32af4da33ef2a182842bf, type: 3}
       propertyPath: m_RootOrder
@@ -425,8 +451,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 8837108067383324686, guid: 354db8b020a32af4da33ef2a182842bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 354db8b020a32af4da33ef2a182842bf, type: 3}
+--- !u!114 &5741688379020086658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5188220109840223526, guid: 354db8b020a32af4da33ef2a182842bf, type: 3}
+  m_PrefabInstance: {fileID: 553610269573218468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3998fd82f3b32eb4588c2393d83a8b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6910942940048403483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6360851133501516991, guid: 354db8b020a32af4da33ef2a182842bf, type: 3}

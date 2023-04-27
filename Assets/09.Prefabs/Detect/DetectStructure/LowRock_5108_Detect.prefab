@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e002ffccaf7c041b9ae92636d38ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: 
   detectItemType: 256
   targetHeightTransform: {fileID: 1305968215273730352}
   targetTransform: {fileID: 7002379377394896585}
@@ -117,6 +118,13 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
+  getoutEventBefore:
+    m_PersistentCalls:
+      m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls: []
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -216,7 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectItemType: 5
+  key: 
+  detectItemType: 4
   targetHeightTransform: {fileID: 7002379378441225973}
   targetTransform: {fileID: 7002379377394896585}
   targetModel: {fileID: 0}
@@ -224,6 +233,25 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 3
   shakeStrength: 0.5
+  getoutEventBefore:
+    m_PersistentCalls:
+      m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3771954726788183892}
+        m_TargetAssemblyTypeName: Spawner.LODObjectDataRegister, Spawner
+        m_MethodName: SetLOD
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -429,6 +457,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7002379377394896585}
     m_Modifications:
+    - target: {fileID: 4853813102714388726, guid: 5908ed5d94703e64fa189f9f49662bbc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5534326826532442411, guid: 5908ed5d94703e64fa189f9f49662bbc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5534326826532442411, guid: 5908ed5d94703e64fa189f9f49662bbc, type: 3}
+      propertyPath: isNotEnable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5785129094544879239, guid: 5908ed5d94703e64fa189f9f49662bbc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -484,3 +524,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5785129094544879239, guid: 5908ed5d94703e64fa189f9f49662bbc, type: 3}
   m_PrefabInstance: {fileID: 8688934876284528255}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3771954726788183892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5534326826532442411, guid: 5908ed5d94703e64fa189f9f49662bbc, type: 3}
+  m_PrefabInstance: {fileID: 8688934876284528255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3998fd82f3b32eb4588c2393d83a8b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
