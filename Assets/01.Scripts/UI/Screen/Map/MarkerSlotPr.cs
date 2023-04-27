@@ -5,7 +5,9 @@ using UI.Production;
 using UnityEngine.UIElements; 
 using UI.Base;
 using UI.ConstructorManager;
-using System; 
+using System;
+using UI.Map;
+using Utill.Addressable;
 
 namespace  UI
 {
@@ -13,7 +15,10 @@ namespace  UI
     {
         private SlotItemView slotItemView;
         private VisualElement parent;
+        private MarkerData markerData;
 
+        private const string selectStr = "active_select"; 
+        public MarkerData MarkerData => markerData; 
         public VisualElement Parent
         {
             get
@@ -32,16 +37,23 @@ namespace  UI
             this.slotItemView = _v.Item2 as SlotItemView;
             this.parent = _v.Item1;
         }
+
+        public void SetData(MarkerData _markerData)
+        {
+            this.markerData = _markerData; 
+            var _sprite = AddressablesManager.Instance.GetResource<Texture2D>(_markerData.spriteAddress);
+            slotItemView.SetSpriteAndText(_sprite,_markerData.count);
+        }
         
         public void SelectSlot(bool _isSelect)
         {
             if (_isSelect == true)
             {
-                Parent.AddToClassList("active_select");
+                slotItemView.Select.AddToClassList(selectStr);
             }
             else
             {
-                Parent.RemoveFromClassList("active_select");
+                slotItemView.Select.RemoveFromClassList(selectStr);
             }
         }
         
