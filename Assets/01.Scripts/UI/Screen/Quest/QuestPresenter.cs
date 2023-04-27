@@ -9,9 +9,10 @@ using UI.Production;
 using GoogleSpreadSheet;
 using Utill.SeralizableDictionary;
 using System;
-using UI.Base; 
+using UI.Base;
+    using UnityEngine.PlayerLoop;
 
-namespace UI.Quest
+    namespace UI.Quest
 {
     public class QuestPresenter : MonoBehaviour, IScreen
     {
@@ -42,12 +43,17 @@ namespace UI.Quest
 
         private void Start()
         {
+            UpdateUI(); 
+        }
+
+        [ContextMenu("업데이트")]
+        public void UpdateUI()
+        {
             questView.InitListView(); 
         }
 
 
-
-            [ContextMenu("퀘스트UI 생성")]
+        [ContextMenu("퀘스트UI 생성")]
         /// <summary>
         /// 특정 QuestData 받아서 퀘스트 생성   
         /// </summary>

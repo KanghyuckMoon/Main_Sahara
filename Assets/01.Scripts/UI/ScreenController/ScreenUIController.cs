@@ -266,6 +266,7 @@ namespace UI
             {
                 // 퀘스트 활성화
                 bool _isActive = questPresenter.ActiveView();
+                questPresenter.UpdateUI();
                 LineCreateManager.Instance.ActvieParent(ScreenType.Quest, _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
             });
