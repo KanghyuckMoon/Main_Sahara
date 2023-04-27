@@ -14,7 +14,7 @@ namespace Module
 			if (!StateModule.CheckState(State.DEAD, State.UI))
 			{
 				InputMove();
-				InputJump();
+				//InputJump();
 				InputSprint();
 				InputAttack();
 				InputSkill();
@@ -56,7 +56,7 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (mainModule.CanMove)
+			if (mainModule.CanMove && !StateModule.CheckState(State.SKILL))
 			{
 				float _inputX = Input.GetAxis("Horizontal");
 				float _inputY = Input.GetAxis("Vertical");
@@ -67,7 +67,7 @@ namespace Module
 
 				StateModule.AddState(State.MOVING);
 			}
-			else if (!StateModule.CheckState(State.SKILL))
+			else if (StateModule.CheckState(State.SKILL))
 			{
 				
 			}
@@ -87,7 +87,7 @@ namespace Module
 					if (_inputup)
 					{
 						mainModule.SetAnimationLayerOn(0, 0);
-						StateModule.AddState(State.JUMP);
+						
 					}
 
 					mainModule.IsJump = _inputup;

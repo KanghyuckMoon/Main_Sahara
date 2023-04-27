@@ -20,11 +20,14 @@ namespace PassiveItem
             HpDown();
         }
 
+        public void UpgradeEffect()
+        {
+            
+        }
+
         private void HpUp()
         {
             Debug.Log("Ã¼·Â 30%¾÷!");
-
-
         }
 
         private void HpDown()

@@ -11,5 +11,7 @@ namespace PassiveItem
         public void UpdateEffect();
 
         public void ClearPassiveEffect();
+
+        public void UpgradeEffect();
     }
 }

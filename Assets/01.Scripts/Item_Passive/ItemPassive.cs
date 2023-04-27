@@ -21,6 +21,7 @@ namespace PassiveItem
             }
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public void UpdateEffect()
         {
             foreach (IPassive _passive in passiveEffects)
@@ -34,6 +35,14 @@ namespace PassiveItem
             foreach (IPassive _passive in passiveEffects)
             {
                 _passive.ClearPassiveEffect();
+            }
+        }
+
+        public void UpgradeEffect()
+        {
+            foreach (IPassive _passive in passiveEffects)
+            {
+                _passive.UpgradeEffect();
             }
         }
 
