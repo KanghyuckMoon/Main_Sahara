@@ -50,6 +50,7 @@ MonoBehaviour:
   hitboxString: SpiderCol3
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666114742541294
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +99,7 @@ MonoBehaviour:
   hitboxString: SpiderCol2
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666114813887816
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +248,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3690666114823516569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,9 +310,15 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: SandSkinEffect
   deadExplosionEffectKey: SandExplosionImpacts
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 3690666114914965621}
   rootTransform: {fileID: 3690666116803806969}
   animator: {fileID: 3690666114823516568}
+  dropItemListSO: {fileID: 0}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-1041226649778506779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,11 +331,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17b3e6f3f28b0f46a2ec1c5aa01e78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopOrNot: 0
+  player: 0
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
+  objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
@@ -342,12 +353,21 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
+  isCanHit: 0
+  isStaticTime: 0
+  canConsecutiveAttack: 0
+  isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -19.8
   groundOffset: 0
+  attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
+  slopeVector: {x: 0, y: 0, z: 0}
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -358,7 +378,12 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 3690666114914965622}
   animator: {fileID: 0}
+  leftFeet: {fileID: 0}
+  rightFeet: {fileID: 0}
+  back: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
   aiSOAddress: TestEnemySO
+  pathHarver: {fileID: 0}
 --- !u!1 &3690666114875874389
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +557,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d140c75a26043f4097fe39b446c0d55, type: 2}
+  - {fileID: 1915598046048740290, guid: 0c52ee4bea2afca46a8d835adb7afc63, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -665,6 +690,7 @@ MonoBehaviour:
   hitboxString: SpiderCol3
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666114955588024
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +911,7 @@ MonoBehaviour:
   hitboxString: SpiderCol3
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666115164322049
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1021,6 +1049,7 @@ MonoBehaviour:
   hitboxString: SpiderCol3
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666115197285527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,7 +1255,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d140c75a26043f4097fe39b446c0d55, type: 2}
+  - {fileID: 1915598046048740290, guid: 0c52ee4bea2afca46a8d835adb7afc63, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1357,6 +1386,7 @@ MonoBehaviour:
   hitboxString: SpiderCol2
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666115376776879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,6 +1878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1906,6 +1937,7 @@ MonoBehaviour:
   hitboxString: SpiderCol2
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666115527738988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,6 +1986,7 @@ MonoBehaviour:
   hitboxString: SpiderCol
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666115551232489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,7 +2226,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d140c75a26043f4097fe39b446c0d55, type: 2}
+  - {fileID: 1915598046048740290, guid: 0c52ee4bea2afca46a8d835adb7afc63, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2371,6 +2404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2525,6 +2559,7 @@ MonoBehaviour:
   hitboxString: SpiderCol2
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666115917266551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,6 +2638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2761,7 +2797,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d140c75a26043f4097fe39b446c0d55, type: 2}
+  - {fileID: 1915598046048740290, guid: 0c52ee4bea2afca46a8d835adb7afc63, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2860,6 +2896,7 @@ MonoBehaviour:
   hitboxString: SpiderCol
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666116070834044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2904,6 +2941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -3083,6 +3121,7 @@ MonoBehaviour:
   hitboxString: SpiderCol2
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666116223707393
 GameObject:
   m_ObjectHideFlags: 0
@@ -3131,6 +3170,7 @@ MonoBehaviour:
   hitboxString: SpiderCol
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666116234177281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,6 +3215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -3229,6 +3270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -3319,6 +3361,7 @@ MonoBehaviour:
   hitboxString: SpiderCol
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666116298076876
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,6 +3406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -3504,6 +3548,7 @@ MonoBehaviour:
   hitboxString: SpiderCol
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666116375099313
 GameObject:
   m_ObjectHideFlags: 0
@@ -3888,6 +3933,7 @@ MonoBehaviour:
   hitboxString: SpiderCol3
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!1 &3690666116641077646
 GameObject:
   m_ObjectHideFlags: 0
@@ -3940,7 +3986,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d140c75a26043f4097fe39b446c0d55, type: 2}
+  - {fileID: 1915598046048740290, guid: 0c52ee4bea2afca46a8d835adb7afc63, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4067,6 +4113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -4333,6 +4380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73ef525c8d16c4c95b06993cd959f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: NULL
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024
