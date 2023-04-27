@@ -222,7 +222,7 @@ namespace Module.Talk
 		{
 			isEndTalk = true;
 			isTalking = false;
-			if (priorTalkData.isUseSmoothPath)
+			if (priorTalkData is not null && priorTalkData.isUseSmoothPath)
 			{
 				pathAction?.Invoke(priorTalkData.smoothPathIndex);
 			}
