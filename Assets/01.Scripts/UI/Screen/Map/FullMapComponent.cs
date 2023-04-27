@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -68,13 +68,16 @@ namespace UI
             this.mapLiner = LineCreateManager.Instance.CreateLine(ScreenType.Map);
 
             this.elementCtrlComponent = new ElementCtrlComponent(mapView.Map); 
-            elementCtrlComponent.SetZoomValue(_minV:0.5f, _maxV: 4f);
+            elementCtrlComponent.SetZoomValue(_minV:0.1f, _maxV: 4f);
+
+            this.markerSetComp = new MarkerSetComp(mapView.MarkerSlotParent,mapView,markersComponent); 
+            markerSetComp.UpdateMarker();
         }
 
         public void UpdateUI()
         {
             ElementCtrlComponent.Update();
-
+            markerSetComp.Update();
             /*
             // 전체맵일 때만 입력으로 이동 확대 
             KeyInput();
@@ -110,11 +113,36 @@ namespace UI
                 {
                     return;
                 }
-                markersComponent.CreateMarker(new Vector2(-mapView.Map.transform.position.x, -mapView.Map.transform.position.y), mapView.MarkerParent, selectMarker);
+                markersComponent.CreateMarker(new Vector2(-mapView.Map.transform.position.x,
+                    -mapView.Map.transform.position.y), mapView.MarkerParent, selectMarker);
             }
         }
+        /// <summary>
+        /// 발자국 활성화 
+        /// </summary>
+        public void ActivePath()
+        {
+            var _list = PathModeManager.Instance.GetPathList();
+            //EventManager.Instance.TriggerEvent(EventsType.UpdateMapLine,_list);
 
-        private void KeyInput()
+            this.mapLiner.UpdateMapLine(_list); 
+        }
+
+        public void ClearLines()
+        {
+            //EventManager.Instance.TriggerEvent(EventsType.ClearMapLine); 
+            this.mapLiner.ClearMapLine(); 
+        }
+
+
+    }
+
+}
+
+ #region  키보드 입력
+
+           /*
+           private void KeyInput()
         {
             
             // 움직임 
@@ -161,11 +189,11 @@ namespace UI
             float mapX, mapY;
             mapX = Mathf.Clamp(mapPos.x + -MoveDir.x * (moveSpeed / mapView.MapTrm.scale.x) * Time.deltaTime,
                                                 // -mapView.MapRect.width - width,width * 0.5f);
-                                                -(mapView.MapRect.width /** mapScale.x*/) * 0.5f, (mapView.MapRect.width /** mapScale.x*/) * 0.5f);
+                                                -(mapView.MapRect.width /** mapScale.x#1#) * 0.5f, (mapView.MapRect.width /** mapScale.x#1#) * 0.5f);
 
             mapY = Mathf.Clamp(mapPos.y + MoveDir.y * (moveSpeed / mapView.MapTrm.scale.y) * Time.deltaTime,
                                                 //  -mapView.MapRect.height - height,height * 0.5f);
-                                                -(mapView.MapRect.height /** mapScale.y*/) * 0.5f, (mapView.MapRect.height /** mapScale.y*/) * 0.5f);
+                                                -(mapView.MapRect.height /** mapScale.y#1#) * 0.5f, (mapView.MapRect.height /** mapScale.y#1#) * 0.5f);
             // 왜 스케일 안 곱해야 하는거지? 
 
             //mapView.Map.style.left = mapX;
@@ -211,26 +239,6 @@ namespace UI
             //float diffY = mapView.CenterMark.worldBound.y - mapView.Map.worldBound.y;
             //mapView
         }
+        */
 
-        /// <summary>
-        /// 발자국 활성화 
-        /// </summary>
-        public void ActivePath()
-        {
-            var _list = PathModeManager.Instance.GetPathList();
-            //EventManager.Instance.TriggerEvent(EventsType.UpdateMapLine,_list);
-
-            this.mapLiner.UpdateMapLine(_list); 
-        }
-
-        public void ClearLines()
-        {
-            //EventManager.Instance.TriggerEvent(EventsType.ClearMapLine); 
-            this.mapLiner.ClearMapLine(); 
-        }
-
-
-    }
-
-}
-
+        #endregion

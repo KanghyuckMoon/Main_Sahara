@@ -196,7 +196,7 @@ namespace UI.Upgrade
             _sixList.Add(new Vector2(slotDist, 0));
             _sixList.Add(new Vector2(slotDist * 2, 0));
             _sixList.Add(new Vector2(slotDist * 3, 0));
-            
+
             this.slotPosDIc.Add(1, _oneList);
             this.slotPosDIc.Add(2, _twoList);
             this.slotPosDIc.Add(3, _threeList);
@@ -289,9 +289,9 @@ namespace UI.Upgrade
                                          slotPosDIc[_slotData.maxIndex].ElementAt(_slotData.index).x;
                 }
 
-                // 연결점 생성 위해 부모 자식 관계 설정 
+                // 연결점 생성 위해 부모 자식 관계 설정                                                                                                                                                                                                                                                                                                                                                                                                                        
                 if (_slotData.parentSlot != null)
-                {
+                {   
                     this.parentSlotDic[_slotData.parentSlot].Add(_parent);
                 }
                 
@@ -449,7 +449,7 @@ namespace UI.Upgrade
             }
 
             // 필요 재료들 표시 
-            var _list = ItemUpgradeManager.Instance.UpgradeItemSlotList(_childItemData.key);
+            var _list = ItemUpgradeManager.Instance.UpgradeItemSlotListIgnoreIsSlot(_childItemData.key);
             upgradeReadyPr.ClearSlots();
             upgradeReadyPr.ActiveNeedItems(_list);
             upgradeReadyPr.SetCurSelectedItem(_upgradePr.ItemData);

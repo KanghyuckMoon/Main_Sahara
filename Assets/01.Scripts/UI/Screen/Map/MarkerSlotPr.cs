@@ -15,8 +15,10 @@ namespace  UI
     {
         private SlotItemView slotItemView;
         private VisualElement parent;
-        private MarkerData markerData; 
-        
+        private MarkerData markerData;
+
+        private const string selectStr = "active_select"; 
+        public MarkerData MarkerData => markerData; 
         public VisualElement Parent
         {
             get
@@ -47,11 +49,11 @@ namespace  UI
         {
             if (_isSelect == true)
             {
-                Parent.AddToClassList("active_select");
+                slotItemView.Select.AddToClassList(selectStr);
             }
             else
             {
-                Parent.RemoveFromClassList("active_select");
+                slotItemView.Select.RemoveFromClassList(selectStr);
             }
         }
         

@@ -20,6 +20,7 @@ namespace UI.Production
         {
             image,
             item,
+            select
             //frame
         }
         enum Labels
@@ -35,7 +36,8 @@ namespace UI.Production
         public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
         public Texture2D ItemSprite => GetVisualElement((int)Elements.image).style.backgroundImage.value.texture;
         public int ItemCount => int.Parse(GetLabel((int)Labels.text).text);
-        public Rect SlotWorldBound => Item.worldBound;   
+        public Rect SlotWorldBound => Item.worldBound;
+        public VisualElement Select => GetVisualElement((int)Elements.select);
        
         public SlotItemView()
         {

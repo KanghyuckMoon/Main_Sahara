@@ -8,7 +8,19 @@ namespace  UI.Map
     {
         [SerializeField]
         private AllMarkerDataSO _allMarkerDataSo;
+        [SerializeField]
+        private HaveMarkerDataSO haveMarkerDataSO; 
 
+        [ContextMenu("보유 마커 모든 마커들로 초기화")]
+        public void InitHaveMarker()
+        {
+            haveMarkerDataSO.markerDataList.Clear();
+            _allMarkerDataSo.markeDataSOList.ForEach((x) => 
+            {
+                haveMarkerDataSO.markerDataList.Add(new MarkerData(x));
+            }); 
+        }
+        
         [ContextMenu("AA")]
         public void TestInit()
         {

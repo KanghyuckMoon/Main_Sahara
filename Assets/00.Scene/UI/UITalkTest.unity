@@ -702,7 +702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360111644}
   m_LocalRotation: {x: 0.34202015, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: -0.47, y: 6.9139576, z: 0.7324217}
+  m_LocalPosition: {x: -2.236, y: 2.5379574, z: -0.1950785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2034,6 +2034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: 
 --- !u!1 &1331024310
 GameObject:
@@ -3335,15 +3336,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.766
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.882217
+      value: 5.506217
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.3443265
+      value: -3.2718265
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3531,7 +3532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021010491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 212.1106, y: 0, z: 8.940277}
+  m_LocalPosition: {x: 212.1106, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6143,15 +6144,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1695491043482442753, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.766
       objectReference: {fileID: 0}
     - target: {fileID: 1695491043482442753, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 0.624
       objectReference: {fileID: 0}
     - target: {fileID: 1695491043482442753, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5625
+      value: 0.635
       objectReference: {fileID: 0}
     - target: {fileID: 1695491043482442753, guid: 934cb36d7419064489c0feaa1368e042, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23467,6 +23468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: 
 --- !u!1 &2067304886107136626
 GameObject:
@@ -25253,6 +25255,9 @@ MonoBehaviour:
   rootTransform: {fileID: 3699875110283640284}
   animator: {fileID: 3699875109437129947}
   dropItemListSO: {fileID: 11400000, guid: 704d366b40b1d904d89213bdbaf051d2, type: 2}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!137 &2649781606934848900
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -26208,15 +26213,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.47
+      value: -2.236
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.9139576
+      value: 2.5379574
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.7324217
+      value: -0.1950785
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26966,6 +26971,8 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   speedLine: 
+  dashEffect: {fileID: 0}
+  volume: {fileID: 0}
 --- !u!1 &3500167389542797292
 GameObject:
   m_ObjectHideFlags: 0
@@ -33582,7 +33589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5175034412811970198, guid: ae6249313c831da44a6ee8aad0a0e748, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -200.48
+      value: -214.8
       objectReference: {fileID: 0}
     - target: {fileID: 5175034412811970198, guid: ae6249313c831da44a6ee8aad0a0e748, type: 3}
       propertyPath: m_LocalPosition.y
@@ -33590,7 +33597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5175034412811970198, guid: ae6249313c831da44a6ee8aad0a0e748, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.940277
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5175034412811970198, guid: ae6249313c831da44a6ee8aad0a0e748, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33626,7 +33633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5175034412811970199, guid: ae6249313c831da44a6ee8aad0a0e748, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae6249313c831da44a6ee8aad0a0e748, type: 3}
@@ -34454,6 +34461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: 
 --- !u!1 &5611657743536727784
 GameObject:
@@ -35190,6 +35198,9 @@ MonoBehaviour:
   rootTransform: {fileID: 0}
   animator: {fileID: 4572704548847276458}
   dropItemListSO: {fileID: 0}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5947472189153781772
 GameObject:
   m_ObjectHideFlags: 0
