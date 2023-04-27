@@ -43,6 +43,11 @@ namespace UI.PublicManager
             ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).StartDialogue(_name, _dialogue, _callback);
         }   
 
+        public void UpdateQuestUI()
+        {
+         //   ScreenUIController.GetScreen<QuestPresenter>(ScreenType.Quest).UpdateUI(); 
+        }
+
     }
 
 }
