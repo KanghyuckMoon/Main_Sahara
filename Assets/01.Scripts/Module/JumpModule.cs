@@ -8,7 +8,7 @@ namespace Module
     public class JumpModule : AbBaseModule
     {
 
-        private Animator Animator
+        protected Animator Animator
         {
             get
             {
@@ -16,7 +16,7 @@ namespace Module
                 return animator;
             }
         }
-        private float JumpHeight
+        protected float JumpHeight
         {
             get
             {
@@ -28,21 +28,21 @@ namespace Module
             }
         }
         public float gravityWeight = 0;
-        private Animator animator;
-        private float jumpHeight;
-        private float _GravityScale => mainModule.GravityScale;
+        protected Animator animator;
+        protected float jumpHeight;
+        protected float _GravityScale => mainModule.GravityScale;
 
-        private float jumpDelay;
-        private float calculatedTime;
-        private float currentDelay;
-        private float jumpingDelay;
+        protected float jumpDelay;
+        protected float calculatedTime;
+        protected float currentDelay;
+        protected float jumpingDelay;
 
-        private bool isJumotrue;
+        protected bool isJumotrue;
 
-        private float antiFallTime;
-        private float calculatedFallTime;
+        protected float antiFallTime;
+        protected float calculatedFallTime;
 
-        private bool onJump;
+        protected bool onJump;
 
         public JumpModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -90,7 +90,7 @@ namespace Module
                 gravityWeight = mainModule.Gravity;
         }
 
-        void JumpCheack()
+        protected virtual void JumpCheack()
         {
             if (mainModule.isGround)
             {
