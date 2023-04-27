@@ -222,6 +222,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5690554545346477577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,8 +750,9 @@ GameObject:
   - component: {fileID: 5712746735425984955}
   - component: {fileID: 5712746735425984954}
   - component: {fileID: 5712746735425984959}
+  - component: {fileID: 1198188289}
   m_Layer: 0
-  m_Name: Worm
+  m_Name: mc_Or
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -763,7 +765,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5712746735425984897}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.900381, y: 6.56, z: -10.665689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -837,11 +839,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17b3e6f3f28b0f46a2ec1c5aa01e78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopOrNot: 0
+  player: 0
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
+  objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
   hitCollider:
   - Player_Weapon
@@ -857,23 +861,37 @@ MonoBehaviour:
   isAttack: 0
   isWeaponExist: 0
   isHit: 0
+  isCharging: 0
+  isCanHit: 0
+  isStaticTime: 0
+  canConsecutiveAttack: 0
+  isDash: 0
+  isConsecutiveWeapon: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -19.8
-  groundOffset: 10
+  groundOffset: -9.75
+  attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
+  slopeVector: {x: 0, y: 0, z: 0}
   hitDelay: 0
   lockOn: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 132096
   maxSlope: 0
   raycastTarget: {fileID: 0}
   visualObject: {fileID: 0}
   model: {fileID: 5690554545346477576}
   animator: {fileID: 0}
-  aiSOAddress: TestWormSO
+  leftFeet: {fileID: 0}
+  rightFeet: {fileID: 0}
+  back: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
+  aiSOAddress: mc_Or_AISO
+  pathHarver: {fileID: 0}
 --- !u!143 &5712746735425984953
 CharacterController:
   m_ObjectHideFlags: 0
@@ -908,9 +926,15 @@ MonoBehaviour:
   questClearKey: NULL
   deadSkinEffectKey: SandSkinEffect
   deadExplosionEffectKey: SandExplosionImpacts
+  correctionAngle: {x: 0, y: 0, z: 0}
+  correctionPos: {x: 0, y: 0, z: 0}
   skinnedMeshRenderer: {fileID: 0}
-  rootTransform: {fileID: 0}
+  rootTransform: {fileID: 5690554545346477576}
   animator: {fileID: 5712746735425984959}
+  dropItemListSO: {fileID: 0}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5712746735425984955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataSOPath: EnemyWormData_TesSO
+  dataSOPath: mc_Or_DataSO
 --- !u!114 &5712746735425984954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,6 +982,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1198188289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712746735425984897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12cb474ddb18524419bad766dbba6e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5712746735479233225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,6 +1177,7 @@ MonoBehaviour:
   hitboxString: WormCol
   owner: {fileID: 5712746735425984897}
   isTimeIndexCange: 1
+  isOnEnalbe: 0
 --- !u!114 &5712746735669257972
 MonoBehaviour:
   m_ObjectHideFlags: 0
