@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="MarkerSlot" src="project://database/Assets/UIToolkit/Uxml/Screen/Msp/MarkerSlot.uxml?fileID=9197481963319205126&amp;guid=ff71d4417500def429512040f110b8c9&amp;type=3#MarkerSlot" />
     <ui:Template name="MapMarkerUxml" src="project://database/Assets/UIToolkit/Uxml/MapMarkerUxml.uxml?fileID=9197481963319205126&amp;guid=fad86c6cf8367ab4883fa27eb1efff3f&amp;type=3#MapMarkerUxml" />
+    <ui:Template name="MarkerSlot" src="project://database/Assets/UIToolkit/Uxml/Screen/Msp/MarkerSlot.uxml?fileID=9197481963319205126&amp;guid=ff71d4417500def429512040f110b8c9&amp;type=3#MarkerSlot" />
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/Container.uss?fileID=7433441132597879392&amp;guid=fb415ed2a98934248b9610f643b8b73f&amp;type=3#Container" />
     <Style src="project://database/Assets/UIToolkit/Uss/Screen.uss?fileID=7433441132597879392&amp;guid=5dba91076603c0e41894cfb7125df7f8&amp;type=3#Screen" />
@@ -53,8 +53,8 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="mid_panel" picking-mode="Ignore" class="mid_panel" style="align-items: center; justify-content: center; -unity-background-scale-mode: stretch-to-fill; padding-right: 30px; flex-direction: row; padding-left: 30px;">
-                    <ui:VisualElement name="left" style="flex-grow: 1; height: 100%;" />
-                    <ui:VisualElement name="mid" style="position: relative; height: 100%; flex-grow: 1;">
+                    <ui:VisualElement name="left" picking-mode="Ignore" style="flex-grow: 1; height: 100%;" />
+                    <ui:VisualElement name="mid" picking-mode="Ignore" style="position: relative; height: 100%; flex-grow: 1;">
                         <ui:VisualElement name="center_marker" class="center_marker" style="display: none;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="right" picking-mode="Ignore" style="flex-grow: 1; height: 100%; flex-direction: row-reverse;">
