@@ -46,5 +46,10 @@ namespace PassiveItem
         {
             
         }
+
+        public void UpgradeEffect()
+        {
+            
+        }
     }
 }

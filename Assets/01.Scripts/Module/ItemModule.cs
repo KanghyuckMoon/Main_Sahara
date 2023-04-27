@@ -16,6 +16,7 @@ namespace Module
         Dash,
         TimeSlow,
         Burning,
+        Shield,
         NONE
     }
     public partial class ItemModule : AbBaseModule
@@ -63,8 +64,11 @@ namespace Module
         public override void Start()
         {
             SetPassiveItem(AccessoriesItemType.DoubleJump);
+            SetPassiveItem(AccessoriesItemType.DoubleJump);
+            SetPassiveItem(AccessoriesItemType.DoubleJump);
             SetPassiveItem(AccessoriesItemType.Dash);
             SetPassiveItem(AccessoriesItemType.TimeSlow);
+            SetPassiveItem(AccessoriesItemType.Shield);
             //SetPassiveItem(AccessoriesItemType.Burning);
             
             

@@ -31,6 +31,11 @@ namespace PassiveItem
             RemoveFire();
         }
 
+        public void UpgradeEffect()
+        {
+            
+        }
+
         public void AddFire()
 		{
             //웨폰 모듈에 접근해서 파이어 오브젝트 생성 및 변수에 저장

@@ -10,6 +10,11 @@ namespace Module
     {
         public void SetPassiveItem(AccessoriesItemType _itemKey)
         {
+	        if (passiveItem.ContainsKey(_itemKey))
+	        {
+		        Debug.LogError(("sfasdafagagagaeg"));
+		        passiveItem[_itemKey].UpgradeEffect();
+	        }
             if (!passiveItem.ContainsKey(_itemKey))
             {
                 ItemPassive _itemPassive = null;
@@ -34,6 +39,9 @@ namespace Module
 					case AccessoriesItemType.Burning:
 						_itemPassive = GetItemWithPool<Burning_Accessories>("Burning_Accessories");
 						break;
+					case AccessoriesItemType.Shield:
+						_itemPassive = GetItemWithPool<Shield_Accessories>("Shield_Accessories");
+						break;
 					case AccessoriesItemType.NONE:
 						break;
 				}
@@ -42,6 +50,8 @@ namespace Module
 
                 ApplyPassive();
 			}
+            
+            
 		}
 	}
 }
