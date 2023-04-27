@@ -143,6 +143,7 @@ public class ItemSOMaker : MonoBehaviour
 
                 allItemUpgradeDataSO.itemUpgradeDataList.Add(_asset);
             }
+            _asset.needItemDataList.Clear();
             _asset.key = _key;
             _asset.count = int.Parse(_count);
             for(int j = 0; j < _needItemKey.Length; ++j)
