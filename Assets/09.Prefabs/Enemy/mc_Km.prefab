@@ -167,9 +167,10 @@ GameObject:
   - component: {fileID: 7783330879738541320}
   - component: {fileID: 7783330879738541321}
   - component: {fileID: 7783330879738541322}
-  - component: {fileID: -1041226649778506779}
+  - component: {fileID: 109468027}
+  - component: {fileID: 109468037}
   m_Layer: 0
-  m_Name: Centipede IKModel
+  m_Name: mc_Km
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainModule: {fileID: -1041226649778506779}
+  mainModule: {fileID: 0}
   attackMulti: 1
 --- !u!114 &7783330879738541321
 MonoBehaviour:
@@ -293,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataSOPath: EnemyData_TesSO
+  dataSOPath: mc_Hd_DataSO
 --- !u!114 &7783330879738541322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +320,7 @@ MonoBehaviour:
   deadEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-1041226649778506779
+--- !u!114 &109468027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -328,7 +329,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3690666114823516570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17b3e6f3f28b0f46a2ec1c5aa01e78a, type: 3}
+  m_Script: {fileID: 11500000, guid: 12cb474ddb18524419bad766dbba6e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &109468037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690666114823516570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c444670bea10d419e588f923125cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
@@ -362,7 +375,7 @@ MonoBehaviour:
   attacking: 0
   strongAttacking: 0
   gravity: 0
-  gravityScale: -19.8
+  gravityScale: -9.8
   groundOffset: 0
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -372,7 +385,7 @@ MonoBehaviour:
   lockOn: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 132096
   maxSlope: 0
   raycastTarget: {fileID: 0}
   visualObject: {fileID: 0}
@@ -382,7 +395,7 @@ MonoBehaviour:
   rightFeet: {fileID: 0}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
-  aiSOAddress: TestEnemySO
+  aiSOAddress: mc_Hd_SO
   pathHarver: {fileID: 0}
 --- !u!1 &3690666114875874389
 GameObject:

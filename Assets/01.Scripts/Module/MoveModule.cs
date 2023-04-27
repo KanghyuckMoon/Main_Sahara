@@ -15,7 +15,7 @@ namespace Module
                 return animationBlend;
             }
         }
-        private StateModule StateModule
+        protected StateModule StateModule
         {
             get
             {
@@ -24,7 +24,7 @@ namespace Module
             }
         }
 
-        private StatData StatData
+        protected StatData StatData
 		{
             get
             {
@@ -33,7 +33,7 @@ namespace Module
             }
 		}
 
-        private Animator Animator
+        protected Animator Animator
 		{
             get
             {
@@ -45,24 +45,24 @@ namespace Module
                 animator = value;
             }
 		}
-        private Animator animator;
-        private float moveSpeed => StatData.WalkSpeed;
-        private float runSpeed => StatData.RunSpeed;
-        private float rotationVelocity;
-        private float targetRotation;
-        private float rotation;
+        protected Animator animator;
+        protected float moveSpeed => StatData.WalkSpeed;
+        protected float runSpeed => StatData.RunSpeed;
+        protected float rotationVelocity;
+        protected float targetRotation;
+        protected float rotation;
 
-        private float animationBlend;
-        private float currentSpeed;
+        protected float animationBlend;
+        protected float currentSpeed;
 
-        private float speedOffset = 0.1f;
+        protected float speedOffset = 0.1f;
 
-        private float addSpeed;
+        protected float addSpeed;
 
-        private StatData statData;
-        private Vector3 currentDirection;
-        private StateModule stateModule;
-        private static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
+        protected StatData statData;
+        protected Vector3 currentDirection;
+        protected StateModule stateModule;
+        protected static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
 
         public MoveModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -77,7 +77,7 @@ namespace Module
         /// <summary>
         /// 유기체의 움직임 + 회전. 모든 움직임을 제어한다. 점프제외
         /// </summary>
-        public void Move()
+        public virtual void Move()
         {
             #region 속도 관련 부분
 
@@ -189,7 +189,7 @@ namespace Module
         }
         
         // ReSharper disable Unity.PerformanceAnalysis
-        private Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
+        protected Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
             var position = mainModule.transform.position;
             Vector3 _rayPos = new Vector3(position.x, position.y + mainModule.groundOffset,
