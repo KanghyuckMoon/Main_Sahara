@@ -17,6 +17,7 @@ namespace Module
         TimeSlow,
         Burning,
         Shield,
+        Flame,
         NONE
     }
     public partial class ItemModule : AbBaseModule
@@ -69,6 +70,7 @@ namespace Module
             SetPassiveItem(AccessoriesItemType.Dash);
             SetPassiveItem(AccessoriesItemType.TimeSlow);
             SetPassiveItem(AccessoriesItemType.Shield);
+            SetPassiveItem(AccessoriesItemType.Flame);
             //SetPassiveItem(AccessoriesItemType.Burning);
             
             

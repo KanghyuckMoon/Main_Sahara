@@ -16,7 +16,7 @@ namespace PassiveItem
 
         private bool air;
 
-        private bool isPlayer;
+        private bool isPlayer = false;
         
         public DoubleJumpAccessoriesEffect(AbMainModule _mainModule)
         {
@@ -28,7 +28,13 @@ namespace PassiveItem
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
             if (mainModule.name == "Player")
+            {
                 isPlayer = true;
+                return;
+            }
+
+            //Debug.LogError("적 임 적 임");
+            isPlayer = false;
         }
 
         public void ApplyPassiveEffect()
