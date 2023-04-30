@@ -64,6 +64,7 @@ namespace Module
         private string buffEffectString = "_Effect";
 
         private Coroutine knockBackCoroutine;
+        protected System.Action landAction;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -255,9 +256,7 @@ namespace Module
                 //StateModule.RemoveState(State.JUMP);
 
                 mainModule.KnockBackVector = Vector3.zero;
-                //StatModule.
-                
-                //mainModule.StartCoroutine(LandingDelay());
+                landAction?.Invoke();
             }
 
             mainModule.isGround = _isLand && mainModule.IsSlope;
@@ -304,6 +303,7 @@ namespace Module
             hitModule = null;
             stateModule = null;
             mainModule = null;
+            landAction = null;
             base.OnDisable();
             Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
         }
@@ -312,8 +312,14 @@ namespace Module
             hitModule = null;
             stateModule = null;
             mainModule = null;
+            landAction = null;
             base.OnDestroy();
             Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
+        }
+
+        public void AddLandAction(System.Action action)
+        {
+            landAction += action;
         }
     }
 }

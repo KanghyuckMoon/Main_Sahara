@@ -43,6 +43,8 @@ namespace Module
         protected float calculatedFallTime;
 
         protected bool onJump;
+        
+        protected System.Action jumpAction;
 
         public JumpModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -104,12 +106,13 @@ namespace Module
                 if (mainModule.IsJump && calculatedTime <= 0.0f)
                 {
                     Animator.SetBool("Jump", true);
-
+                    jumpAction?.Invoke();
                     //Jumping(0.07f);
                 }
 
                 if (calculatedTime > 0.0f)
                     calculatedTime -= mainModule.PersonalDeltaTime;
+
             }
             else
             {
@@ -146,6 +149,7 @@ namespace Module
         {
             animator = null;
             mainModule = null;
+            jumpAction = null;
             base.OnDisable();
             Pool.ClassPoolManager.Instance.RegisterObject<JumpModule>("JumpModule", this);
         }
@@ -156,6 +160,12 @@ namespace Module
             mainModule = null;
             base.OnDestroy();
             animator = null;
+            jumpAction = null;
+        }
+        
+        public void AddJumpAction(System.Action action)
+        {
+            jumpAction += action;
         }
     }
 }

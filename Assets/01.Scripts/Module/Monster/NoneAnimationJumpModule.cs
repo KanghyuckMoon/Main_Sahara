@@ -21,6 +21,7 @@ namespace Module
                 {
                     Animator.SetBool("Jump", true);
                     Jump();
+                    jumpAction?.Invoke();
                     //Jumping(0.07f);
                 }
 
