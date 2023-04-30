@@ -107,6 +107,14 @@ namespace UI
         }
 
         /// <summary>
+        ///  따라다니는 아이콘 활성화 
+        /// </summary>
+        /// <param name="_isActive"></param>
+        public void ActiveGhostIcon(bool _isActive)
+        {
+            ShowVisualElement(GetVisualElement((int)Elements.ghost_icon), _isActive);
+        }
+        /// <summary>
         /// 전체맵 활성화시 true, 미니맵 활성화시 false 
         /// </summary>
         /// <returns></returns>
@@ -173,6 +181,7 @@ namespace UI
         }
         private void ShowFullMap()
         {
+            ActiveGhostIcon(true); 
             // 전체맵 UI 활성화하고 
             ShowVisualElement(GetVisualElement((int)Elements.full_map_panel), true);
             // 입력 허용하고 
@@ -206,6 +215,8 @@ namespace UI
             // 맵 사이즈 설정 
             //map.RemoveFromClassList("map");  
             //map.AddToClassList("minimap");    
+            
+            ActiveGhostIcon(false); 
 
             // 초기화 
             map.style.transformOrigin = new StyleTransformOrigin(new TransformOrigin(new Length(50, LengthUnit.Percent), new Length(50, LengthUnit.Percent)));

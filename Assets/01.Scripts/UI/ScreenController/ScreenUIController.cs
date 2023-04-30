@@ -53,6 +53,8 @@ namespace UI
     }
     public class ScreenUIController : MonoBehaviour, IUIController
     {
+        private GameObject uiCam; 
+        
         private InventoryPresenter inventoryPresenter;
         private MapPresenter mapPresenter;
         private DialoguePresenter dialoguePresenter;
@@ -104,6 +106,7 @@ namespace UI
         
         private void Awake()
         {
+            uiCam = transform.parent.GetComponentInChildren<Camera>().gameObject; 
             InitScreenPresenters();
             SetNotInputEvent();
 
@@ -128,6 +131,10 @@ namespace UI
             UIInput();
         }
 
+        private void ActiveUICam(bool _isActive)
+        {
+            this.uiCam.SetActive(_isActive);
+        }
         /// <summary>
         /// 특정 스크린 가져오기 
         /// </summary>
@@ -260,6 +267,7 @@ namespace UI
             {
                 // 맵 활성화
                 bool _isActive = mapPresenter.ActiveView();
+                UIManager.Instance.ActiveHud(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.MapUI));
             });
             inputDic.Add(new UIInputData(Get(Keys.QuestUI), true), () =>
@@ -268,6 +276,8 @@ namespace UI
                 bool _isActive = questPresenter.ActiveView();
                 questPresenter.UpdateUI();
                 LineCreateManager.Instance.ActvieParent(ScreenType.Quest, _isActive);
+                UIManager.Instance.ActiveHud(! _isActive);
+                mapPresenter.Active(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
             });
             inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
@@ -314,6 +324,7 @@ namespace UI
             // UIManager.Instance.
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
+            ActiveUICam(_isActive); 
         }
         /// <summary>
         /// 스크린 활성화시 세팅 

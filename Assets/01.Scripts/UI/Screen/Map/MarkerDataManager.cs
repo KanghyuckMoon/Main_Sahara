@@ -30,6 +30,17 @@ namespace UI.Map
             haveMarkerSO = AddressablesManager.Instance.GetResource<HaveMarkerDataSO>("HaveMarkerDataSO");
         }
 
+        /// <summary>
+        /// 보유 아이템 초기화 (모든 아이템으로) 
+        /// </summary>
+        public void InitHaveItems()
+        {
+            haveMarkerSO.markerDataList.Clear();
+            AllMarkerDataSO.markeDataSOList.ForEach((x) => 
+            {
+                haveMarkerSO.markerDataList.Add(new MarkerData(x));
+            }); 
+        }
         public List<MarkerData> GetAllHaveMakrerList()
         {
             return haveMarkerSO.markerDataList;;
