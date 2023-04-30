@@ -45,7 +45,7 @@ namespace PassiveItem
                     flame = ObjectPoolManager.Instance.GetObject("FlameEffect");
                     flame.transform.SetParent(VARIABLE.transform);
 
-                    flame.transform.position = Vector3.zero;
+                    flame.transform.localPosition = Vector3.zero;
                     flame.SetActive(true);
                 }
             }
