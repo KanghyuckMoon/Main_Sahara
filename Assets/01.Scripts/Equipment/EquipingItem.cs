@@ -22,5 +22,14 @@ namespace EquipmentSystem
         //{
         //    setPos = transform.position;
         //}
+
+        [ContextMenu("¼³Á¤")]
+        public void SettingInfo()
+        {
+            setPos = transform.localPosition;
+            setRot = transform.localRotation;
+        }
     }
+    
+    
 }

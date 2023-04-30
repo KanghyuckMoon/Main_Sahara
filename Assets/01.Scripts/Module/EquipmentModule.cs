@@ -55,8 +55,9 @@ namespace Module {
 
         public override void Update()
         {
+            if (!mainModule.player) return;
             if (Input.GetKeyDown(KeyCode.J))
-                OnEquipItem("Goggles");
+                OnEquipItem("VikingHelmat");
         }
 
         /*
