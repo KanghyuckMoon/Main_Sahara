@@ -16,6 +16,7 @@ namespace EquipmentSystem
         public ItemType itemType;
         public Vector3 setPos;
         public Quaternion setRot;
+        public Vector3 scale;
         public ItemDataSO itemDataSO;
 
         //public void OnValidate()
@@ -28,6 +29,7 @@ namespace EquipmentSystem
         {
             setPos = transform.localPosition;
             setRot = transform.localRotation;
+            scale = transform.localScale;
         }
     }
     
