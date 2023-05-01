@@ -49,7 +49,7 @@ namespace HitBox
 		{
 			get
 			{
-				hitBoxAction ??= GetComponent<HitBoxAction>();
+				//hitBoxAction ??= GetComponent<HitBoxAction>();
 				return hitBoxAction;
 			}
 		}
