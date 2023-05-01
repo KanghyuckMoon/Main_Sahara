@@ -233,6 +233,7 @@ namespace Module
             set
             {
                 isCharging = value;
+                Animator.SetBool("Charge", isCharging);
             }
         }
         public bool Attacking

@@ -36,7 +36,9 @@ namespace Module
 					StateModule.RemoveState(State.CHARGE);
 				}
 				
-				if (!StateModule.CheckState(State.ATTACK, State.CHARGE, State.SKILL) && StateModule.CheckState(State.EQUIP))
+				mainModule.IsCharging = Input.GetMouseButton(0);
+				
+				if (!StateModule.CheckState(State.ATTACK, State.CHARGE, State.SKILL) && !StateModule.CheckState(State.EQUIP))
 				{
 					if (Input.GetMouseButtonDown(0))
 					{
@@ -49,8 +51,6 @@ namespace Module
 						mainModule.Attacking = true;
 					}
 				}
-
-				mainModule.IsCharging = Input.GetMouseButton(0);
 			}
 		}
 
