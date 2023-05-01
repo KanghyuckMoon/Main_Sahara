@@ -22,12 +22,21 @@ namespace  UI.Map
         private const string selectStr = "active_select"; 
         public MarkerSetComp(VisualElement _v,MapView _mapView,MarkersComponent _markersComponent)
         {
-            this.parent = _v;
-            this.mapView = _mapView;
+            this.parent = _v; 
+            this.mapView = _mapView; 
             this.markersComponent = _markersComponent; 
             
             mapView.GhostIcon.AddManipulator(new Dragger(mapView.GhostIcon));
-            mapView.Map.RegisterCallback<PointerDownEvent>((x)=> CreateMarker(x.localPosition));
+            mapView.Map.RegisterCallback<PointerDownEvent>((x) =>
+            {
+                if (x.button is not 0) return; 
+                CreateMarker((Vector2)x.localPosition -
+                             new Vector2(mapView.Map.resolvedStyle.width / 2, mapView.Map.resolvedStyle.height / 2));
+            });
+            mapView.Map.RegisterCallback<PointerOverEvent>((x) =>
+            {
+                FollowCursor(x.localPosition);
+            });
         }
 
         /// <summary>
@@ -35,6 +44,16 @@ namespace  UI.Map
         /// </summary>
         public void Update()
         {
+
+        }
+
+        private void FollowCursor(Vector2 _pos)
+        {
+            if (curMarkerSlotPr is not null)
+            {
+                // 마우스 따라가기 
+                mapView.GhostIcon.transform.position = _pos; 
+            }
         }
         /// <summary>
         /// 마커 생성 
@@ -88,6 +107,7 @@ namespace  UI.Map
         private void CreateMarker(Vector2 _pos)
         {
             if (curMarkerSlotPr is null) return; 
+         
             markersComponent.CreateMarker(_pos, mapView.MarkerParent, 
                 AddressablesManager.Instance.GetResource<Sprite>(curMarkerSlotPr.MarkerData.spriteAddress));
             
