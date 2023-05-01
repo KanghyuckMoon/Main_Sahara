@@ -5020,7 +5020,7 @@ Transform:
   m_LocalRotation: {x: 0.36691007, y: 0.45337698, z: -0.2742839, w: 0.764588}
   m_LocalPosition: {x: -0.224, y: 0.1814, z: -1.7701}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.041434}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5712746735669257970}
   m_RootOrder: 1
@@ -5672,6 +5672,7 @@ GameObject:
   - component: {fileID: 804731984144652089}
   - component: {fileID: 1198188298}
   - component: {fileID: 1198188299}
+  - component: {fileID: 7581709129782481993}
   m_Layer: 0
   m_Name: mc_Or
   m_TagString: Enemy
@@ -5689,7 +5690,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.900381, y: 6.56, z: -10.665689}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5690554545346477576}
   m_Father: {fileID: 0}
@@ -5725,9 +5726,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa39787cc5cee324783f874d6df3ba44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyKey: TestEnemy
+  enemyKey: mc_Or
   questClearKey: NULL
-  deadSkinEffectKey: SandSkinEffect
+  deadSkinEffectKey: 
   deadExplosionEffectKey: SandExplosionImpacts
   correctionAngle: {x: 0, y: 0, z: 0}
   correctionPos: {x: 0, y: 0, z: 0}
@@ -5775,7 +5776,7 @@ Animator:
   m_GameObject: {fileID: 5712746735425984897}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 587e6abb81c3261478113a54cbd8b587, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5892,6 +5893,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: f589f1ed57ca7ee40b90835de91d4771, type: 2}
   parent: {fileID: 5712746733937803191}
+--- !u!114 &7581709129782481993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712746735425984897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef56343958c367e418ff20342b29680e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionSO: {fileID: 11400000, guid: 0c961fc8387583849873dc7114f92981, type: 2}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &5712746735479233225
 GameObject:
   m_ObjectHideFlags: 0
@@ -5958,6 +5975,7 @@ GameObject:
   - component: {fileID: 5712746735669257974}
   - component: {fileID: 5712746735669257975}
   - component: {fileID: 5712746735669257972}
+  - component: {fileID: 2973462636785438230}
   m_Layer: 12
   m_Name: Head
   m_TagString: Enemy
@@ -6059,7 +6077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainModule: {fileID: 0}
+  mainModule: {fileID: 1198188298}
   attackMulti: 1
 --- !u!114 &5712746735669257975
 MonoBehaviour:
@@ -6091,6 +6109,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5712746735669257970}
+--- !u!114 &2973462636785438230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712746735669257981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5dac14e876e334cad42edef5add5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHand: 2
 --- !u!1 &6216759600919493368
 GameObject:
   m_ObjectHideFlags: 0
@@ -6120,7 +6151,7 @@ Transform:
   m_LocalRotation: {x: 0.5511897, y: 0.097802304, z: -0.40257838, w: 0.72426194}
   m_LocalPosition: {x: -0.3215, y: 0.1814, z: -1.7701}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.041434}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5712746735669257970}
   m_RootOrder: 2
