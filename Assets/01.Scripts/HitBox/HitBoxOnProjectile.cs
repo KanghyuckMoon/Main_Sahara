@@ -29,6 +29,22 @@ namespace HitBox
 		
 		[SerializeField] private bool isOnEnalbe = false;
 
+		private HitBoxOnAnimation hitBoxOnAnimation;
+
+		private HitBoxOnAnimation HitBoxOnAnimation
+		{
+			get
+			{
+				hitBoxOnAnimation ??= GetComponentInParent<HitBoxOnAnimation>();
+				return hitBoxOnAnimation;
+			}
+		}
+
+		private void Start()
+		{
+			hitBoxOnAnimation = GetComponentInParent<HitBoxOnAnimation>();
+		}
+
 		private void OnEnable()
 		{
 			if (isOnEnalbe)
@@ -106,7 +122,7 @@ namespace HitBox
 				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
 				{
 					InGameHitBox _ingameHitBox = HitBoxPoolManager.Instance.GetObject();
-					_ingameHitBox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject);
+					_ingameHitBox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject, null, HitBoxOnAnimation.hitBoxAction);
 
 					if (isTimeIndexCange)
 					{
