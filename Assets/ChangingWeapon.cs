@@ -14,7 +14,7 @@ public class ChangingWeapon : StateMachineBehaviour
         abMainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= abMainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
-        stateModule.AddState(State.SKILL);
+        stateModule.AddState(State.EQUIP);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -29,7 +29,7 @@ public class ChangingWeapon : StateMachineBehaviour
         abMainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= abMainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
-        stateModule.RemoveState(State.SKILL);
+        stateModule.RemoveState(State.EQUIP);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -36,6 +36,11 @@ namespace PassiveItem
             //throw new System.NotImplementedException();
         }
 
+        public void UpgradeEffect()
+        {
+            
+        }
+
         public void UpdateEffect()
         {
             if (!mainModule.Animator.GetBool("Dash"))
@@ -46,8 +51,8 @@ namespace PassiveItem
                     mainModule.Animator.SetBool("Dash", true);
 
                     delay = maxDelay;
-                    
-                    Vector3 _dir = (mainModule.ObjDirection.normalized * 24f * TimeManager.StaticTime.PlayerDeltaTime);
+
+                    Vector3 _dir = (mainModule.ObjDirection.normalized * 24f * mainModule.PersonalDeltaTime);
                     dashing = true;
                     
                     characterController.Move(_dir);

@@ -707,6 +707,7 @@ namespace Module
         }
 
         void IUpdateObj.UpdateManager_FixedUpdate()
+        
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {

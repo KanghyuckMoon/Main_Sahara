@@ -12,6 +12,8 @@ public class Dash : StateMachineBehaviour
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+        
+        stateModule.AddState(State.SKILL);
         //mainModule.StopOrNot = 0;
         //mainModule.SetActiveAnimatorRoot(1);
     }

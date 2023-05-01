@@ -14,7 +14,7 @@ namespace Module
 			if (!StateModule.CheckState(State.DEAD, State.UI))
 			{
 				InputMove();
-				InputJump();
+				//InputJump();
 				InputSprint();
 				InputAttack();
 				InputSkill();
@@ -36,7 +36,7 @@ namespace Module
 					StateModule.RemoveState(State.CHARGE);
 				}
 				
-				if (!StateModule.CheckState(State.ATTACK, State.CHARGE, State.SKILL))
+				if (!StateModule.CheckState(State.ATTACK, State.CHARGE, State.SKILL) && StateModule.CheckState(State.EQUIP))
 				{
 					if (Input.GetMouseButtonDown(0))
 					{
@@ -56,7 +56,7 @@ namespace Module
 
 		private void InputMove()
 		{
-			if (mainModule.CanMove)
+			if (mainModule.CanMove && !StateModule.CheckState(State.SKILL))
 			{
 				float _inputX = Input.GetAxis("Horizontal");
 				float _inputY = Input.GetAxis("Vertical");
@@ -67,7 +67,7 @@ namespace Module
 
 				StateModule.AddState(State.MOVING);
 			}
-			else if (!StateModule.CheckState(State.SKILL))
+			else if (StateModule.CheckState(State.SKILL))
 			{
 				
 			}
@@ -87,7 +87,7 @@ namespace Module
 					if (_inputup)
 					{
 						mainModule.SetAnimationLayerOn(0, 0);
-						StateModule.AddState(State.JUMP);
+						
 					}
 
 					mainModule.IsJump = _inputup;
@@ -105,7 +105,7 @@ namespace Module
 
         private void InputSkill()
         {
-			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) && !mainModule.IsDead)
+			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE) && !StateModule.CheckState(State.EQUIP))
 			{
 				if (!StateModule.CheckState(State.SKILL))
 				{
