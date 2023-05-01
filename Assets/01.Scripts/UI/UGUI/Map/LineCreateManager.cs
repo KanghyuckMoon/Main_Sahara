@@ -9,9 +9,9 @@ using Pool;
 
 namespace UI.MapLiner
 {
-    public record LineParent
+    public record CanvasScreen
     {
-        public LineParent(RectTransform _parent)
+        public CanvasScreen(RectTransform _parent)
         {
             this.parent = _parent;
             this.ctrlPanel = parent.Find("CtrlPanel").GetComponent<RectTransform>(); 
@@ -28,9 +28,8 @@ namespace UI.MapLiner
         private Transform canvas; 
         private MapLiner pLiner; // 라인 프리팹 
 
-        private List<MapLiner> linerList = new List<MapLiner>();
         private Dictionary<ScreenType, List<MapLiner>> linerDic = new Dictionary<ScreenType, List<MapLiner>>();
-        private Dictionary<ScreenType, LineParent> linerParentDic = new Dictionary<ScreenType, LineParent>();
+        private Dictionary<ScreenType, CanvasScreen> linerParentDic = new Dictionary<ScreenType, CanvasScreen>();
 
         private const string lineAddress = "MapLiner"; 
         public Transform Canvas
@@ -69,10 +68,9 @@ namespace UI.MapLiner
          //   ObjectPoolManager.Instance.RegisterObject(lineAddress, _poolObj);
         }
 
-        public void ActvieParent(ScreenType _screenType,bool _isActive)
+        public void ActvieScreen(ScreenType _screenType,bool _isActive)
         {
-            
-            if (linerParentDic.TryGetValue(_screenType, out LineParent _lineParent))
+            if (linerParentDic.TryGetValue(_screenType, out CanvasScreen _lineParent))
             {
                 _lineParent.parent.gameObject.SetActive(_isActive);
             }
@@ -119,10 +117,7 @@ namespace UI.MapLiner
 
 //            if (linerParentDic.ContainsKey(_screenType) == false) return;
 //            linerParentDic[_screenType].moveAnchor.anchoredPosition =  new Vector2(_pos.x  ,_pos.y);
-            
         }
-
-       
 
         public void UpdateLinesScale(ScreenType _screenType,Vector2 _scale)
         {
@@ -142,10 +137,10 @@ namespace UI.MapLiner
             if (Canvas is null) return;
 
             linerParentDic.Clear();
-            linerParentDic.Add(ScreenType.Upgrade,new LineParent(Canvas.Find("Upgrade").GetComponent<RectTransform>()));
-            linerParentDic.Add(ScreenType.Map,new LineParent(Canvas.Find("Map").GetComponent<RectTransform>()));
-            linerParentDic.Add(ScreenType.Inventory,new LineParent(Canvas.Find("Inventory").GetComponent<RectTransform>()));
-            linerParentDic.Add(ScreenType.Quest,new LineParent(Canvas.Find("Quest").GetComponent<RectTransform>()));
+            linerParentDic.Add(ScreenType.Upgrade,new CanvasScreen(Canvas.Find("Upgrade").GetComponent<RectTransform>()));
+            linerParentDic.Add(ScreenType.Map,new CanvasScreen(Canvas.Find("Map").GetComponent<RectTransform>()));
+            linerParentDic.Add(ScreenType.Inventory,new CanvasScreen(Canvas.Find("Inventory").GetComponent<RectTransform>()));
+            linerParentDic.Add(ScreenType.Quest,new CanvasScreen(Canvas.Find("Quest").GetComponent<RectTransform>()));
         }
 
         private void InitLinerParentSize()

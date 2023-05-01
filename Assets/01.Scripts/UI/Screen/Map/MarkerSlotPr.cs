@@ -18,7 +18,8 @@ namespace  UI
         private MarkerData markerData;
 
         private const string selectStr = "active_select"; 
-        public MarkerData MarkerData => markerData; 
+        public MarkerData MarkerData => markerData;
+        public Texture2D Image => slotItemView.ItemSprite;
         public VisualElement Parent
         {
             get

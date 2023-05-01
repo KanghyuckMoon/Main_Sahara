@@ -240,7 +240,7 @@ namespace UI
         }
         private void ActiveUpgrade(bool _isActive)
         {
-            LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+            LineCreateManager.Instance.ActvieScreen(ScreenType.Upgrade, _isActive);
             //UIManager.Instance.ActiveHud(! _isActive);
             mapPresenter.Active(! _isActive);
 
@@ -259,7 +259,7 @@ namespace UI
                 bool _isActive = inventoryPresenter.ActiveView();   
                 UIManager.Instance.ActiveHud(!_isActive);
                 mapPresenter.Active(! _isActive);
-                LineCreateManager.Instance.ActvieParent(ScreenType.Inventory, _isActive);
+                LineCreateManager.Instance.ActvieScreen(ScreenType.Inventory, _isActive);
 
                 SetUIAndCursor(_isActive, Get(Keys.InventoryUI)); 
             });
@@ -275,7 +275,7 @@ namespace UI
                 // 퀘스트 활성화
                 bool _isActive = questPresenter.ActiveView();
                 questPresenter.UpdateUI();
-                LineCreateManager.Instance.ActvieParent(ScreenType.Quest, _isActive);
+                LineCreateManager.Instance.ActvieScreen(ScreenType.Quest, _isActive);
                 UIManager.Instance.ActiveHud(! _isActive);
                 mapPresenter.Active(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
@@ -285,7 +285,7 @@ namespace UI
                 //  활성화
                 bool _isActive = upgradePresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.UpgradeUI));
-                LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+                LineCreateManager.Instance.ActvieScreen(ScreenType.Upgrade, _isActive);
                 UIManager.Instance.ActiveHud(! _isActive);
                 mapPresenter.Active(! _isActive);
                 screenCallback?.Invoke(_isActive);
