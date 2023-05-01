@@ -69,8 +69,8 @@ namespace Module
             SetPassiveItem(AccessoriesItemType.DoubleJump);
             SetPassiveItem(AccessoriesItemType.Dash);
             SetPassiveItem(AccessoriesItemType.TimeSlow);
-            SetPassiveItem(AccessoriesItemType.Shield);
-            SetPassiveItem(AccessoriesItemType.Flame);
+            //SetPassiveItem(AccessoriesItemType.Shield);
+            //SetPassiveItem(AccessoriesItemType.Flame);
             //SetPassiveItem(AccessoriesItemType.Burning);
             
             
