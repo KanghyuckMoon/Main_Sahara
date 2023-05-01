@@ -31,7 +31,7 @@ namespace Module
 
         private List<GameObject> projectileObjects = new List<GameObject>();
 
-        private void Start()
+        private void OnEnable()
         {
             mainModule = GetComponent<AbMainModule>();
             attackModule = mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);

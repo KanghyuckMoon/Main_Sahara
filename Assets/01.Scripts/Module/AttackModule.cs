@@ -78,15 +78,17 @@ namespace Module
                 string _name = _projectileObjectData.projectileName == "Arrow" ? WeaponModule.CurrentArrowInfo.arrowAddress : _projectileObjectData.projectileName;
                 GameObject _projectile = ObjectPoolManager.Instance.GetObject(_name);
 
-                if (_projectileObjectData.projectileName == "Arrow") WeaponModule.CurrentArrowInfo.action?.Invoke();
+                if (_projectileObjectData.projectileName == "Arrow")
+                {
+                    WeaponModule.CurrentArrowInfo.action?.Invoke();
+                }
 
                 _projectile.transform.SetParent(WhichHandToHold(_projectileObjectData.weaponHand));
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();
 
                 _projectile.SetActive(true);
-                //Debug.LogError(mainModule.name + "     :     " + mainModule.gameObject.name);
-                _projectile.transform.localPosition = _projectileObjectData.position;
                 _projectile.transform.localRotation = _projectileObjectData.rotation;
+                _projectile.transform.localPosition = _projectileObjectData.position;
 
                 _projectileObject.objectData = _projectileObjectData;
 

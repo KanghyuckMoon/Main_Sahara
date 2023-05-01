@@ -244,8 +244,11 @@ namespace Module
             set
             {
                 attacking = value;
-                if (attacking)
-                    Animator.SetTrigger("Attack");
+                //if (attacking)
+                //{
+                //    Animator.SetBool("Attack", attacking);
+                //}
+                Animator.SetBool("Attack", attacking);
             }
         }
         public bool StrongAttacking
@@ -701,7 +704,7 @@ namespace Module
                 }
                 catch(Exception e)
                 {
-                    Debug.LogError($"Error Module : {baseModule} Error : {e}", gameObject);
+                        Debug.LogError($"Error Module : {baseModule} Error : {e}", gameObject);
                 }
             }
         }

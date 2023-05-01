@@ -17,11 +17,7 @@ namespace EnemyComponent
         {
             abMainModule.GetModuleComponent<PhysicsModule>(ModuleType.Physics).AddLandAction(SetEffectLand);
             var _jumpModule = abMainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
-            if (_jumpModule is null)
-            {
-                var _noneAnimationJumpModule = abMainModule.GetModuleComponent<NoneAnimationJumpModule>(ModuleType.Jump);
-                _noneAnimationJumpModule?.AddJumpAction(SetEffectJump);
-            }
+            _jumpModule?.AddJumpAction(SetEffectJump);
         }
 
         public void SetEffectLand()
