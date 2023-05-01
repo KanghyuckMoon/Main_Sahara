@@ -17,7 +17,7 @@ using UI.UtilManager;
 using UI.Option;
 using UI.EventManage;
 using UI.Manager;
-using UI.MapLiner;
+using UI.Canvas;
 using UI.ActiveManager;
 using CondinedModule;
 using Module;

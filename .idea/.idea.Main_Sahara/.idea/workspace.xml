@@ -3,16 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="902fdac9-0734-4ea0-b144-fc43fc95368c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Main_Sahara/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Main_Sahara/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Scene/UI/UIScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scene/UI/UIScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/AllMarkerDataSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/AllMarkerDataSO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/HaveMarkerDataSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/HaveMarkerDataSO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerDataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerDataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerSetComp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerSetComp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerSlotPr.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerSlotPr.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/FullMapComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/FullMapComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Upgrade/UpgradePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Upgrade/UpgradePresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/ScreenController/ScreenUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/ScreenController/ScreenUIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/CanvasUIComp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/CanvasUIComp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/LineCreateManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/LineCreateManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UIToolkit/Uxml/FullMapScreen.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UIToolkit/Uxml/FullMapScreen.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/LinerComp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/LinerComp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/MapLiner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/MapLiner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +46,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerSlotPr.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/UI/Screen/Map/MarkerTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/UI/Test/PopupTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/UI/UGUI/Map/OverlayCanvasManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Utill/Pattern/Observer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Weapon/Projectile/Bodhisattva_Projectile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Weapon/Projectile/Dhyana_Projectile.cs" root0="FORCE_HIGHLIGHTING" />
@@ -91,6 +89,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/43/8fdf58b0/Rect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/4d/8d76ec19/Bounds.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/5d/493be53a/Coroutine.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/b0/014333b6/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/da6a1787df247a0274ec8fc4840f41df092ee13874f55f87a9db568acab1bd2/System.Reflection.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -158,10 +157,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="3824">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="3824" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -258,7 +257,7 @@
       <workItem from="1682658766516" duration="4707000" />
       <workItem from="1682861370158" duration="7496000" />
       <workItem from="1682931900960" duration="8674000" />
-      <workItem from="1682947688119" duration="2125000" />
+      <workItem from="1682947688119" duration="7220000" />
     </task>
     <servers />
   </component>
