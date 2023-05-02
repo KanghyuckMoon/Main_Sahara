@@ -87,10 +87,12 @@ namespace HitBox
 				}
 				else
 				{
-					transform.position = _parent.transform.position;
+					gameObject.transform.SetParent(_parent.transform);
+					transform.localPosition = Vector3.zero;
+					transform.localScale = Vector3.one;
+					transform.localEulerAngles = hitBoxData.rotation;
 					//transform.eulerAngles = _hitBoxData.rotation + _owner.transform.eulerAngles;
 					//transform.rotation = _parent.transform.rotation;
-					gameObject.transform.SetParent(_parent.transform);
 				}
 			}
 			else
