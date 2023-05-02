@@ -5,6 +5,7 @@ using UnityEngine;
 using Module;
 using Pool;
 using Random = UnityEngine.Random;
+using Effect;
 
 namespace EnemyComponent
 {
@@ -25,6 +26,8 @@ namespace EnemyComponent
         [SerializeField] 
         private AbMainModule mainModule;
 
+        [SerializeField] private string effectAddress;
+        
         private int equipIndex;
         private int weaponIndex;
         
@@ -47,6 +50,7 @@ namespace EnemyComponent
 
         public void DeadDropItem()
         {
+            EffectManager.Instance.SetEffectDefault(effectAddress, transform.position, Quaternion.identity);
             ItemDrop(dropEquipKey[equipIndex]);
             ItemDrop(dropWeaponKey[weaponIndex]);
         }
@@ -59,7 +63,7 @@ namespace EnemyComponent
                 return;
             }
             GameObject _dropObj = ObjectPoolManager.Instance.GetObject(_key);
-            _dropObj.transform.position = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
+            _dropObj.transform.position = new Vector3(transform.position.x, transform.position.y + 3f, transform.position.z);
             _dropObj.SetActive(true);
         }
     }
