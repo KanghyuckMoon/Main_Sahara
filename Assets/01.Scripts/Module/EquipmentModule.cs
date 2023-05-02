@@ -57,7 +57,11 @@ namespace Module {
         {
             if (!mainModule.player) return;
             if (Input.GetKeyDown(KeyCode.J))
-                OnEquipItem("RomanHelmat");
+            {
+                OnEquipItem("ShoulderGuard_4");
+                OnEquipItem("Earring_4");
+                OnEquipItem("Bracelet_4");
+            }
         }
 
         /*
@@ -85,6 +89,10 @@ namespace Module {
             switch (_equipingItem.itemType)
             {
                 case ItemType.HELMET:
+                case ItemType.EAR:
+                case ItemType.BACK:
+                case ItemType.WRIST:
+                case ItemType.SHOULDER:
                 case ItemType.NONE:
                     {
                         if (equipItem[_equipingItem.itemType] is not null)
