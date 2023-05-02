@@ -437,7 +437,7 @@ namespace UI.Upgrade
         {
             Debug.Log("클릭");
             // 파티클 
-            InActiveAllMark(); // 모든 선택 마크 비활성화 
+          //  InActiveAllMark(); // 모든 선택 마크 비활성화 
             _upgradePr.ActiveMark(true);
 
             ItemUpgradeDataSO _childItemData =
@@ -512,6 +512,8 @@ namespace UI.Upgrade
             List<Vector2> _pointList = new List<Vector2>();
             Vector2 _startPoint, _midPoint, _midPoint2, _targetPoint;
             //CreateRow(); // 줄 생성 
+            
+            // key : parent slot // value : child slot 
             foreach (var _slot in this.parentSlotDic)
             {
                 foreach (var _slot2 in _slot.Value)

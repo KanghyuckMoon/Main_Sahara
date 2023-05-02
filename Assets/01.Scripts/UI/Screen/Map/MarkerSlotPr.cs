@@ -17,7 +17,6 @@ namespace  UI
         private VisualElement parent;
         private MarkerData markerData;
 
-        private const string selectStr = "active_select"; 
         public MarkerData MarkerData => markerData;
         public Texture2D Image => slotItemView.ItemSprite;
         public VisualElement Parent
@@ -48,14 +47,7 @@ namespace  UI
         
         public void SelectSlot(bool _isSelect)
         {
-            if (_isSelect == true)
-            {
-                slotItemView.Select.AddToClassList(selectStr);
-            }
-            else
-            {
-                slotItemView.Select.RemoveFromClassList(selectStr);
-            }
+            slotItemView.SelectSlot(_isSelect);
         }
         
         /// <summary>

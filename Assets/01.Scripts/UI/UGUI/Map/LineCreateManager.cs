@@ -36,7 +36,7 @@ namespace UI.Canvas
 
             canvasUIComp = new CanvasUIComp("LinerCanvas");
             linerComp = gameObject.AddComponent<LinerComp>(); 
-            
+            linerComp.Init(canvasUIComp.Canvas);
             //   GameObject _poolObj = AddressablesManager.Instance.GetResource<GameObject>("MapLiner");
             //   ObjectPoolManager.Instance.RegisterObject(lineAddress, _poolObj);
         }

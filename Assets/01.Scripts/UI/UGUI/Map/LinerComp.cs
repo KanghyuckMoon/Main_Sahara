@@ -8,6 +8,7 @@ namespace UI.Canvas
 {
     public class LinerComp : MonoBehaviour
     {
+        private Transform targetCanvas; 
         private MapLiner pLiner; // ∂Û¿Œ «¡∏Æ∆’ 
 
         private Dictionary<ScreenType, List<MapLiner>> linerDic = new Dictionary<ScreenType, List<MapLiner>>();
@@ -28,6 +29,12 @@ namespace UI.Canvas
             }
         }
 
+        public void Init(Transform _targetCanvas)
+        {
+            this.targetCanvas = _targetCanvas; 
+            
+        }
+        
         private void AddLineToDic(ScreenType _screenType, MapLiner _liner)
         {
             if (linerDic.ContainsKey(_screenType) == false)
@@ -40,10 +47,10 @@ namespace UI.Canvas
 
         public MapLiner CreateLine(ScreenType _screenType,Transform _parent)
         {
-            MapLiner _line = Instantiate(Liner);    
+            MapLiner _line = Instantiate(Liner,targetCanvas,false);    
             if (_parent is not null)
             {
-                _line.transform.SetParent(_parent,false);
+                _line.transform.SetParent(_parent);
             }
             //    var _line = ObjectPoolManager.Instance.GetObject(lineAddress).GetComponent<MapLiner>();
             //   _line.transform.SetParent(Canvas);
