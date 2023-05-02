@@ -148,11 +148,12 @@ namespace HitBox
 		public ulong hitBoxIndex;
 		public float deleteDelay = 0.1f;
 		public bool childization = false;
+		public bool childSizeOne = false;
 		public Vector3 offset = Vector3.zero;
 		public float radius = 1f;
 		public float height = 1f;
 		public Vector3 rotation = Vector3.zero;
-
+		
 		//넉백
 		public bool isContactDirection = false; 
 		public Vector3 knockbackDir = Vector3.forward;

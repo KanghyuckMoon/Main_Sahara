@@ -51,6 +51,7 @@ namespace AI
 		SetAroundPlayer,
 		AroundMove,
 		InstantDiscovery,
+		HitReset,
 		//StringAction
 		EquipWeapon = 20,
 		//FloatAction
