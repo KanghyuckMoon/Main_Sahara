@@ -82,7 +82,7 @@ namespace UI.Upgrade
         private void CheckUpgrade()
         {
             // 모든 재료가 있다면 합성가능 
-            bool _isCan = upgradeSlotList.Where((x) => x.IsEnough).Count() == upgradeSlotList.Count; //합성 가능 여부 
+            bool _isCan = upgradeSlotList.Count(x => x.IsEnough) == upgradeSlotList.Count; //합성 가능 여부 
             upgradePickView.ActiveUpgradeButton(_isCan);
         }
 

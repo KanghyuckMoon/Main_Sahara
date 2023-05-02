@@ -1,4 +1,4 @@
-                                                                                                using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UI.Dialogue;
@@ -17,7 +17,7 @@ using UI.UtilManager;
 using UI.Option;
 using UI.EventManage;
 using UI.Manager;
-using UI.MapLiner;
+using UI.Canvas;
 using UI.ActiveManager;
 using CondinedModule;
 using Module;
@@ -53,6 +53,8 @@ namespace UI
     }
     public class ScreenUIController : MonoBehaviour, IUIController
     {
+        private GameObject uiCam; 
+        
         private InventoryPresenter inventoryPresenter;
         private MapPresenter mapPresenter;
         private DialoguePresenter dialoguePresenter;
@@ -104,6 +106,8 @@ namespace UI
         
         private void Awake()
         {
+            uiCam = transform.parent.GetComponentInChildren<Camera>().gameObject; 
+            uiCam.SetActive(false);
             InitScreenPresenters();
             SetNotInputEvent();
 
@@ -128,6 +132,10 @@ namespace UI
             UIInput();
         }
 
+        private void ActiveUICam(bool _isActive)
+        {
+            this.uiCam.SetActive(_isActive);
+        }
         /// <summary>
         /// 특정 스크린 가져오기 
         /// </summary>
@@ -233,7 +241,7 @@ namespace UI
         }
         private void ActiveUpgrade(bool _isActive)
         {
-            LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+            LineCreateManager.Instance.ActvieScreen(ScreenType.Upgrade, _isActive);
             //UIManager.Instance.ActiveHud(! _isActive);
             mapPresenter.Active(! _isActive);
 
@@ -252,7 +260,7 @@ namespace UI
                 bool _isActive = inventoryPresenter.ActiveView();   
                 UIManager.Instance.ActiveHud(!_isActive);
                 mapPresenter.Active(! _isActive);
-                LineCreateManager.Instance.ActvieParent(ScreenType.Inventory, _isActive);
+                LineCreateManager.Instance.ActvieScreen(ScreenType.Inventory, _isActive);
 
                 SetUIAndCursor(_isActive, Get(Keys.InventoryUI)); 
             });
@@ -260,6 +268,7 @@ namespace UI
             {
                 // 맵 활성화
                 bool _isActive = mapPresenter.ActiveView();
+                UIManager.Instance.ActiveHud(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.MapUI));
             });
             inputDic.Add(new UIInputData(Get(Keys.QuestUI), true), () =>
@@ -267,7 +276,9 @@ namespace UI
                 // 퀘스트 활성화
                 bool _isActive = questPresenter.ActiveView();
                 questPresenter.UpdateUI();
-                LineCreateManager.Instance.ActvieParent(ScreenType.Quest, _isActive);
+                LineCreateManager.Instance.ActvieScreen(ScreenType.Quest, _isActive);
+                UIManager.Instance.ActiveHud(! _isActive);
+                mapPresenter.Active(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
             });
             inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
@@ -275,7 +286,7 @@ namespace UI
                 //  활성화
                 bool _isActive = upgradePresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.UpgradeUI));
-                LineCreateManager.Instance.ActvieParent(ScreenType.Upgrade, _isActive);
+                LineCreateManager.Instance.ActvieScreen(ScreenType.Upgrade, _isActive);
                 UIManager.Instance.ActiveHud(! _isActive);
                 mapPresenter.Active(! _isActive);
                 screenCallback?.Invoke(_isActive);
@@ -314,6 +325,7 @@ namespace UI
             // UIManager.Instance.
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
+            ActiveUICam(_isActive); 
         }
         /// <summary>
         /// 스크린 활성화시 세팅 

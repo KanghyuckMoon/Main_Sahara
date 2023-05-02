@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Utill.Pattern;
+using UI.Base;
+
+namespace  UI.Canvas
+{
+    public class OverlayCanvasManager : MonoSingleton<OverlayCanvasManager>
+    {
+        private CanvasUIComp canvasUIComp; 
+        public override void Awake()
+        {
+            base.Awake();
+
+            canvasUIComp = new CanvasUIComp("OverlayCanvas");
+        }
+
+        public void ActvieScreen(ScreenType _screenType,bool _isActive)
+        {
+            canvasUIComp.ActvieScreen(_screenType, _isActive);
+        }
+        public void UpdateLinesScale(ScreenType _screenType,Vector2 _scale)
+        {
+            canvasUIComp.UpdateScale(_screenType,_scale);
+        }
+    }
+    
+}

@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 using System;
 using PathMode;
 using UI.EventManage;
-using UI.MapLiner;
+using UI.Canvas;
 using InputSystem;
 using UI.Base; 
 using Utill.Pattern;
@@ -34,7 +34,7 @@ namespace UI
         private float minZoomValue;
 
         // ÇÁ¶óÀÌºø 
-        private MapLiner.MapLiner mapLiner; 
+        private Canvas.MapLiner mapLiner; 
 
         private float zoomValue;
         private float xMoveValue;

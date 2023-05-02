@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
 using Utill.Addressable;
+using System.Linq; 
 
 namespace  UI.Map
 {
@@ -13,30 +14,59 @@ namespace  UI.Map
     {
         private VisualElement parent;
         private List<MarkerSlotPr> markerSlotPrList = new List<MarkerSlotPr>();
+        private List<VisualElement> markerList = new List<VisualElement>();
         private MapView mapView;
 
         // 현재 활성화 중인 슬롯 
         private MarkerSlotPr curMarkerSlotPr = null;
+        private VisualElement deleteTarget = null;
         private MarkersComponent markersComponent;
+
+        private bool isMapOver = false; // 맵 위에 커서가 있는가 
+        private bool isInputCtrl = false; // ctrl 누르고 있는 중인가 
         
         private const string selectStr = "active_select"; 
+        private const string deleteMarkerStr = "delete_select"; 
+        
+        // 프로퍼티 
+        private Sprite CurMarkerSprite =>
+            AddressablesManager.Instance.GetResource<Sprite>(curMarkerSlotPr.MarkerData.spriteAddress); 
+        private Vector2 MousePos
+        {
+            get
+            {
+                if (curMarkerSlotPr is null) return Vector2.zero;
+                return new Vector2(Input.mousePosition.x - curMarkerSlotPr.Parent.resolvedStyle.width / 2,
+                    1080 - Input.mousePosition.y - curMarkerSlotPr.Parent.resolvedStyle.height / 2);
+            }   
+        }
         public MarkerSetComp(VisualElement _v,MapView _mapView,MarkersComponent _markersComponent)
         {
+            //deleteTarget.panel.Pick();  
             this.parent = _v; 
             this.mapView = _mapView; 
             this.markersComponent = _markersComponent; 
             
             mapView.GhostIcon.AddManipulator(new Dragger(mapView.GhostIcon));
+            
             mapView.Map.RegisterCallback<PointerDownEvent>((x) =>
             {
-                if (x.button is not 0) return; 
-                CreateMarker((Vector2)x.localPosition -
-                             new Vector2(mapView.Map.resolvedStyle.width / 2, mapView.Map.resolvedStyle.height / 2));
+                if (x.button is not 0 || isInputCtrl is true) return; 
+                markerList.Add(CreateMarker((Vector2)x.localPosition -
+                                       new Vector2(mapView.Map.resolvedStyle.width / 2, mapView.Map.resolvedStyle.height / 2)));
+                // 마커 개수 0 인가 
+                bool _isZeroCount = MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
+                if (_isZeroCount is true)
+                {
+                    ActiveGhostIcon(false);
+                    curMarkerSlotPr = null; 
+                }
+                UpdateMarker(); //마커 ui 업데이트 
             });
-            mapView.Map.RegisterCallback<PointerOverEvent>((x) =>
-            {
-                FollowCursor(x.localPosition);
-            });
+            
+            mapView.MarkerSetPanel.RegisterCallback<MouseOverEvent>((x) => { mapView.ActiveGhostIcon(false);}); 
+            mapView.MarkerSetPanel.RegisterCallback<PointerOutEvent>((x) => { mapView.ActiveGhostIcon(true);}); 
+            
         }
 
         /// <summary>
@@ -44,19 +74,68 @@ namespace  UI.Map
         /// </summary>
         public void Update()
         {
+            if (curMarkerSlotPr is not null)
+            {
+                FollowCursor(MousePos);
+            }
 
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                for (int i = 0; i < markerList.Count; i++)
+                {
+                    markerList[i].RemoveFromHierarchy();
+                }
+                markerList.Clear();
+            }
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                isInputCtrl = true; 
+                if(Input.GetMouseButtonDown(0))
+                {
+                    DeleteMarker();
+                    if (deleteTarget != null)
+                    {
+                        deleteTarget.RemoveFromHierarchy();
+                        deleteTarget = null; 
+                    }
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftControl))
+            {
+                isInputCtrl = false; 
+            }
+        
         }
 
+        private void DeleteMarker()
+        {
+            IEnumerable<VisualElement> _slots =markerList.
+                Where((x) => x.worldBound.Overlaps(mapView.GhostIcon.worldBound));
+            
+            // 슬롯에 드랍 했다면
+            if (_slots.Count() != 0)
+            {
+                // 가장 가깝게 드랍한 슬롯 
+                VisualElement _closedSlot = _slots.OrderBy(x =>
+                    Vector2.Distance(x.worldBound.position, mapView.GhostIcon.worldBound.position)).First();
+                _closedSlot.ElementAt(0).AddToClassList(deleteMarkerStr);
+                deleteTarget = _closedSlot; 
+            }
+        }
         private void FollowCursor(Vector2 _pos)
         {
             if (curMarkerSlotPr is not null)
             {
                 // 마우스 따라가기 
-                mapView.GhostIcon.transform.position = _pos; 
+                mapView.GhostIcon.transform.position = _pos;
+                mapView.GhostIcon.transform.scale = mapView.Map.parent.transform.scale; 
+                Debug.Log("Folllow@@@");
             }
         }
         /// <summary>
-        /// 마커 생성 
+        /// 마커 슬롯 생성 
         /// </summary>
         public void UpdateMarker()
         {
@@ -102,14 +181,17 @@ namespace  UI.Map
             curMarkerSlotPr = _markerSlot;
             curMarkerSlotPr.SelectSlot(true); 
             mapView.GhostIcon.style.backgroundImage = AddressablesManager.Instance.GetResource<Texture2D>(_markerSlot.MarkerData.spriteAddress);
+            mapView.GhostIcon.style.width =
+                (int)(CurMarkerSprite.bounds.size.x * 400);
+            mapView.GhostIcon.style.height =
+                (int)(CurMarkerSprite.bounds.size.y * 400);
         }
 
-        private void CreateMarker(Vector2 _pos)
+        private VisualElement CreateMarker(Vector2 _pos)
         {
-            if (curMarkerSlotPr is null) return; 
+            if (curMarkerSlotPr is null) return null; 
          
-            markersComponent.CreateMarker(_pos, mapView.MarkerParent, 
-                AddressablesManager.Instance.GetResource<Sprite>(curMarkerSlotPr.MarkerData.spriteAddress));
+            return markersComponent.CreateMarker(_pos, mapView.MarkerParent,CurMarkerSprite);
             
             //MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
           //  if ()

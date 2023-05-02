@@ -8,6 +8,8 @@ using Streaming;
 using Utill.Random;
 using Module;
 using Effect;
+using TimeOfDay;
+using UnityEditor.Experimental.GraphView;
 
 namespace Spawner
 {
@@ -30,8 +32,11 @@ namespace Spawner
 
 		private Transform player;
 
+		[SerializeField] private TODSO todSO;
 		[SerializeField]
 		private RandomMonsterListSO randomMonsterListSO;
+		[SerializeField]
+		private RandomMonsterListSO randomMonsterListSONight;
 		[SerializeField]
 		private LayerMask spawnLayerMask;
 
@@ -83,8 +88,16 @@ namespace Spawner
 	                }
 	                else
 	                {
-		                spawnTimer = Random.Range(randomMonsterListSO.minSpawnTime, randomMonsterListSO.maxSpawnTime);
-		                RandomAndChoiceSpawn(randomMonsterListSO);   
+		                if (todSO.isNight)
+		                {
+			                spawnTimer = Random.Range(randomMonsterListSONight.minSpawnTime, randomMonsterListSONight.maxSpawnTime);
+			                RandomAndChoiceSpawn(randomMonsterListSONight);      
+		                }
+		                else
+		                {
+			                spawnTimer = Random.Range(randomMonsterListSO.minSpawnTime, randomMonsterListSO.maxSpawnTime);
+			                RandomAndChoiceSpawn(randomMonsterListSO);      
+		                }
 	                }
 				}
             }

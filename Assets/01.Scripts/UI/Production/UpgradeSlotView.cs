@@ -15,7 +15,8 @@ namespace UI.Production
             image,
             active_mark,
             frame,
-            item
+            item,
+            select 
         }
     
         enum Labels
@@ -24,8 +25,10 @@ namespace UI.Production
         }
 
         private bool isStackable; 
+        private const string selectStr = "active_select"; 
 
         // 프로퍼티 
+        private VisualElement Select => GetVisualElement((int)Elements.select);
         public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
         public VisualElement ActiveMark => GetVisualElement((int)Elements.active_mark);
         public VisualElement Image => GetVisualElement((int)Elements.image);
@@ -57,6 +60,18 @@ namespace UI.Production
             GetLabel((int)Labels.text).text = _count;
         }
 
+        public void SelectSlot(bool _isSelect)
+        {
+            if (_isSelect == true)
+            {
+                Select.AddToClassList(selectStr);
+            }
+            else
+            {
+                Select.RemoveFromClassList(selectStr);
+            }
+        }
+        
         /// <summary>
         /// 선택시 깜빡깜빡 
         /// </summary>

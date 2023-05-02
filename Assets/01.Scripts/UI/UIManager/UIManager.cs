@@ -9,6 +9,8 @@ namespace UI.Manager
 {
     public class UIManager : MonoSingleton<UIManager>
     {
+        private GameObject uiCam; 
+        
         private GameObject markerUI;
         private GameObject playerHudUI;
 

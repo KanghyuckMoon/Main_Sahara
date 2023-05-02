@@ -781,6 +781,11 @@ namespace AI
 			aiModule.MainModule.ObjDir = aiModule.Input;
 		}
 
+		private void HitReset()
+		{
+			aiModule.MainModule.IsHit = false;
+		}
+
 		private void Jump() //Make 
 		{
 			aiModule.AIModuleState = AIModule.AIState.Jump;
