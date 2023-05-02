@@ -10,7 +10,6 @@ namespace Weapon
         public ProjectilePositionSO projectilePosSO;
         public WeaponHand weaponHand;
 
-        public ProjectileObjectData objectData;
 
         [SerializeField, Header("저장될 SO이름(_Position뺴고)")]
         private string objectName;
@@ -20,6 +19,10 @@ namespace Weapon
         {
             projectilePosSO = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
         }
+        
+        #if UNITY_EDITOR
+        [Header("Debug")]
+        public ProjectileObjectData objectData;
 
         [ContextMenu("위치 저장")]
         public void Upload()
@@ -30,7 +33,8 @@ namespace Weapon
             projectilePosSO ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
             projectilePosSO.Upload(objectData);
         }
-
+        #endif
+        
         protected Vector3 CalculateRotation(Vector3 _vector3)
         {
             //Quaternion _qu = _qu;

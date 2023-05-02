@@ -42,8 +42,15 @@ namespace LockOn
         [SerializeField]
         private Transform originTarget = null;
 
+        [SerializeField] 
+        private bool isNotUse = false;
+
         private void Start()
         {
+            if (isNotUse)
+            {
+                return;
+            }
             mainModule = GetComponent<AbMainModule>();
             originPos = zoomInCam.transform.localPosition;
             originRot = zoomInCam.transform.localRotation;
@@ -120,6 +127,10 @@ namespace LockOn
 
         public void CameraZoomIn(string _key)//, string _strengh)
         {
+            if (isNotUse)
+            {
+                return;
+            }
             //Debug.LogError("줌임줌인줌인");
 
             //lockOnCamera.currentCamera;

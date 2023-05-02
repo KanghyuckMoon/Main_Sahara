@@ -643,7 +643,7 @@ Transform:
   m_GameObject: {fileID: 2390643769400669614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 61.46, y: 1.21, z: 83.78}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1188562414633903232}
@@ -729,6 +729,9 @@ MonoBehaviour:
   rootTransform: {fileID: 1188562414633903232}
   animator: {fileID: 8973063471208674670}
   dropItemListSO: {fileID: 11400000, guid: 5b4daa285c117ef4280d4bd4352e6bce, type: 2}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8973063471208674667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,6 +746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 110fdfc56f3682d4bb0cba914eda3ef0, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: 
 --- !u!114 &8973063471208674666
 MonoBehaviour:
@@ -862,7 +866,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   aiSOAddress: xa_Ar_AISO
-  smoothPath: {fileID: 0}
+  pathHarver: {fileID: 0}
 --- !u!1 &2436834725143454281
 GameObject:
   m_ObjectHideFlags: 0

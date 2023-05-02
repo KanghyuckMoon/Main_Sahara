@@ -35,6 +35,7 @@ public class AISO : ScriptableObject
 
 	//Move Input Delta
 	public float rotateMoveInputSpeed = 1f;
+	public float closeMoveInputSpeed = 10f;
 	public float runMoveInputSpeed = 1f;
 	
 	//start weapon

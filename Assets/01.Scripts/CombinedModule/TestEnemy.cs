@@ -57,7 +57,7 @@ namespace CondinedModule
             AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
             AddModuleWithPool<SkillModule>(ModuleType.Skill, "SkillModule");
             AddModuleWithPool<BuffModule>(ModuleType.Buff, "BuffModule");
-
+            
             RaycastTarget ??= transform.Find("RayCastPoint");
 
             //visualObject ??= transform.Find("Visual")?.gameObject;
