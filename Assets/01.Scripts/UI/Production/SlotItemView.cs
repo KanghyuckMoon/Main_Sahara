@@ -30,6 +30,7 @@ namespace UI.Production
 
         private bool isStackable; // 셀수 있냐 
         private Manipulator curManipulator;
+        private const string selectStr = "active_select"; 
 
         // 프로퍼티 
         public VisualElement Item => GetVisualElement((int)Elements.item);
@@ -111,6 +112,18 @@ namespace UI.Production
             GetLabel((int)Labels.text).text = ""; 
         }
 
+        public void SelectSlot(bool _isSelect)
+        {
+            if (_isSelect == true)
+            {
+                Select.AddToClassList(selectStr);
+            }
+            else
+            {
+                Select.RemoveFromClassList(selectStr);
+            }
+        }
+        
         public void SetSpriteAndText(Texture2D _sprite, int _count)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);

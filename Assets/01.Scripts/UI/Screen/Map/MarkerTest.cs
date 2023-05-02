@@ -17,7 +17,8 @@ namespace  UI.Map
             haveMarkerDataSO.markerDataList.Clear();
             _allMarkerDataSo.markeDataSOList.ForEach((x) => 
             {
-                haveMarkerDataSO.markerDataList.Add(new MarkerData(x));
+                haveMarkerDataSO.markerDataList.Add(x.markerData);
+                //haveMarkerDataSO.markerDataList.Add(x.markerData);
             }); 
         }
         

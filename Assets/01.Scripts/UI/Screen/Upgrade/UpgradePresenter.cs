@@ -13,7 +13,7 @@ using UI.Production;
 using System.Linq;
 using DG.Tweening;
 using UI;
-using UI.MapLiner;
+using UI.Canvas;
 using UI.Base;
 
 
@@ -29,10 +29,12 @@ namespace UI.Upgrade
         private UpgradeCtrlPresenter ctrlPresenter; // 좌우 버튼 , 상단 라벨 조작 Pr 
         private UpgradeSlotPresenter curSlotPr; // 현재 선택한 슬롯
         private ElementCtrlComponent elementCtrlComponent; // 움직임 확대 축소
-        private UpgradeReadyPr upgradeReadyPr; 
+        private UpgradeReadyPr upgradeReadyPr;
+        private UpgradeSlotLinerComp upgradeSlotLinerComp;
 
         private List<VisualElement> rowList = new List<VisualElement>(); // 줄 리스트 
         private List<UpgradeSlotPresenter> allSlotList = new List<UpgradeSlotPresenter>(); // 모든 슬롯 리스트 
+
 
         private Dictionary<int, List<Vector2>> slotPosDIc = new Dictionary<int, List<Vector2>>(); // 재료 수에 따른 위치 딕셔너리 
         private Queue<UpgradeSlotData> itemDataQueue = new Queue<UpgradeSlotData>(); // 생성할 아이템 저장 큐 
@@ -116,6 +118,7 @@ namespace UI.Upgrade
             upgradePickPresenter.SetButtonEvent(() =>
             {
                 ItemUpgradeManager.Instance.Upgrade(curSlotPr.ItemData.key);
+                upgradeSlotLinerComp.CheckCreateItem();
                 Logging.Log("업그레이드 클릭");
             });
 
@@ -128,7 +131,8 @@ namespace UI.Upgrade
             Logging.Log("@@@@@@@@@@@등록");
             ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
 
-            upgradeReadyPr = new UpgradeReadyPr(upgradeView.Parent); 
+            upgradeReadyPr = new UpgradeReadyPr(upgradeView.Parent);
+            upgradeSlotLinerComp = new UpgradeSlotLinerComp(); 
         }
 
         [SerializeField]
@@ -246,6 +250,7 @@ namespace UI.Upgrade
         /// <param name="_itemUpgradeDataSO"></param>
         private void CreateTree()
         {
+            upgradeSlotLinerComp.ClearSlots();
             List<UpgradeSlotData> _slotDataList = new List<UpgradeSlotData>(); // 재료 슬롯 데이터 리스트 (연결점 생성시 필요)
             List<ItemData> _list = new List<ItemData>(); // 한 무기에서 필요한 재료무기들 
 
@@ -323,6 +328,8 @@ namespace UI.Upgrade
 
                 ++_index;
             }
+            upgradeSlotLinerComp.InitAllItemList(allSlotList);
+            
         }
 
         [SerializeField]
@@ -386,7 +393,8 @@ namespace UI.Upgrade
             }
             if (isConnection == true)
             {
-                isComplete = true; 
+                isComplete = true;
+                upgradeSlotLinerComp.CheckCreateItem(); 
             }
             if (isActive == true)
             {
@@ -437,7 +445,7 @@ namespace UI.Upgrade
         {
             Debug.Log("클릭");
             // 파티클 
-            InActiveAllMark(); // 모든 선택 마크 비활성화 
+          //  InActiveAllMark(); // 모든 선택 마크 비활성화 
             _upgradePr.ActiveMark(true);
 
             ItemUpgradeDataSO _childItemData =
@@ -512,6 +520,8 @@ namespace UI.Upgrade
             List<Vector2> _pointList = new List<Vector2>();
             Vector2 _startPoint, _midPoint, _midPoint2, _targetPoint;
             //CreateRow(); // 줄 생성 
+            
+            // key : parent slot // value : child slot 
             foreach (var _slot in this.parentSlotDic)
             {
                 foreach (var _slot2 in _slot.Value)
@@ -537,6 +547,8 @@ namespace UI.Upgrade
 
                         var _line = LineCreateManager.Instance.CreateLine(ScreenType.Upgrade);
                         _line.UpdateMapLine(_pointList);
+                        // 라인 추가 
+                        upgradeSlotLinerComp.AddSlotAndLiner(_slot2, _line);
                         return;
                     }
                 }
