@@ -2208,7 +2208,6 @@ GameObject:
   - component: {fileID: 5190142910736366513}
   - component: {fileID: 2226814159445434827}
   - component: {fileID: 2226814159445434821}
-  - component: {fileID: 2226814159445434820}
   - component: {fileID: 2226814159445434823}
   - component: {fileID: 2226814159445434822}
   - component: {fileID: 2226814159445434817}
@@ -2217,6 +2216,7 @@ GameObject:
   - component: {fileID: 2226814159445434818}
   - component: {fileID: 2226814159445434844}
   - component: {fileID: 6109953795184042268}
+  - component: {fileID: 889770851409629639}
   m_Layer: 18
   m_Name: xb_Hp_Air
   m_TagString: Untagged
@@ -2232,7 +2232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4849470621064864011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.24063, y: 0.000012874603, z: -16.481298}
+  m_LocalPosition: {x: 17.29811, y: -0.0000009536743, z: -15.119387}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2285,71 +2285,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 7.25, z: 0}
---- !u!114 &2226814159445434820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4849470621064864011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17b3e6f3f28b0f46a2ec1c5aa01e78a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 0
-  lockOnTarget: {fileID: 0}
-  characterController: {fileID: 2226814159445434821}
-  objDir: {x: 0, y: 0}
-  objDirection: {x: 0, y: 0, z: 0}
-  objRotation: {x: 0, y: 0, z: 0, w: 0}
-  objForword: {x: 0, y: 0, z: 0}
-  statData: {fileID: 0}
-  hitCollider:
-  - Player_Weapon
-  moveSpeed: 0
-  isSprint: 0
-  isGround: 0
-  isJump: 0
-  isFreeFall: 0
-  isSlope: 0
-  isJumpBuf: 0
-  canMove: 0
-  isDead: 0
-  isAttack: 0
-  isWeaponExist: 0
-  isHit: 0
-  isCharging: 0
-  isCanHit: 0
-  isStaticTime: 0
-  canConsecutiveAttack: 0
-  isDash: 0
-  isConsecutiveWeapon: 0
-  attacking: 0
-  strongAttacking: 0
-  gravity: 0
-  gravityScale: -0.1
-  groundOffset: -0.4
-  attackedTime: 0
-  knockBackVector: {x: 0, y: 0, z: 0}
-  knockBackPower: 0
-  slopeVector: {x: 0, y: 0, z: 0}
-  hitDelay: 0
-  lockOn: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 132096
-  maxSlope: 0
-  raycastTarget: {fileID: 0}
-  visualObject: {fileID: 4136733436468098978}
-  model: {fileID: 682487080495784542}
-  animator: {fileID: 2226814159445434827}
-  leftFeet: {fileID: 5043874493017710281}
-  rightFeet: {fileID: 4046731491056340026}
-  back: {fileID: 0}
-  animatorOverrideController: {fileID: 0}
-  aiSOAddress: xb_Hp_AISO
-  pathHarver: {fileID: 0}
 --- !u!114 &2226814159445434823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2405,7 +2340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa39787cc5cee324783f874d6df3ba44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyKey: xb_Hp
+  enemyKey: xb_Hp_Air
   questClearKey: NULL
   deadSkinEffectKey: SandSkinEffect
   deadExplosionEffectKey: SandExplosionImpacts
@@ -2414,7 +2349,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 3834362851280895060}
   rootTransform: {fileID: 8223323577454260261}
   animator: {fileID: 2226814159445434827}
-  dropItemListSO: {fileID: 11400000, guid: 3f3425e0a374b024a81bf9b70818f966, type: 2}
+  dropItemListSO: {fileID: 11400000, guid: 252ce8b59ef0f4c4385bcb1f744f4474, type: 2}
   deadEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2442,7 +2377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainModule: {fileID: 2226814159445434820}
+  mainModule: {fileID: 889770851409629639}
   attackMulti: 1
 --- !u!114 &2226814159445434844
 MonoBehaviour:
@@ -2473,6 +2408,71 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &889770851409629639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4849470621064864011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca906d26fb2333d42810570de8177bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 0
+  lockOnTarget: {fileID: 0}
+  characterController: {fileID: 2226814159445434821}
+  objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
+  objRotation: {x: 0, y: 0, z: 0, w: 0}
+  objForword: {x: 0, y: 0, z: 0}
+  statData: {fileID: 0}
+  hitCollider:
+  - Player_Weapon
+  moveSpeed: 0
+  isSprint: 0
+  isGround: 0
+  isJump: 0
+  isFreeFall: 0
+  isSlope: 0
+  isJumpBuf: 0
+  canMove: 0
+  isDead: 0
+  isAttack: 0
+  isWeaponExist: 0
+  isHit: 0
+  isCharging: 0
+  isCanHit: 0
+  isStaticTime: 0
+  canConsecutiveAttack: 0
+  isDash: 0
+  isConsecutiveWeapon: 0
+  attacking: 0
+  strongAttacking: 0
+  gravity: 0
+  gravityScale: -0.1
+  groundOffset: -0.4
+  attackedTime: 0
+  knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
+  slopeVector: {x: 0, y: 0, z: 0}
+  hitDelay: 0
+  lockOn: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 132096
+  maxSlope: 0
+  raycastTarget: {fileID: 0}
+  visualObject: {fileID: 4136733436468098978}
+  model: {fileID: 682487080495784542}
+  animator: {fileID: 2226814159445434827}
+  leftFeet: {fileID: 5043874493017710281}
+  rightFeet: {fileID: 4046731491056340026}
+  back: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
+  aiSOAddress: xb_Hp_AISO
+  pathHarver: {fileID: 0}
 --- !u!1 &5196695013448172100
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,13 +28,14 @@ public class ItemSOMaker : MonoBehaviour
         yield return wwwItemSO.SendWebRequest();
         SetSOItem(wwwItemSO.downloadHandler.text);
 
+        UnityWebRequest wwwDropItemListSO = UnityWebRequest.Get(URL.DROPITEMLISTSO);
+        yield return wwwDropItemListSO.SendWebRequest();
+        SetSODropItemList(wwwDropItemListSO.downloadHandler.text);
+        
         UnityWebRequest wwwUpgradeItemSO = UnityWebRequest.Get(URL.UPGRADEITEMSO);
         yield return wwwUpgradeItemSO.SendWebRequest();
         SetSOUpgradeItem(wwwUpgradeItemSO.downloadHandler.text);
 
-        UnityWebRequest wwwDropItemListSO = UnityWebRequest.Get(URL.DROPITEMLISTSO);
-        yield return wwwDropItemListSO.SendWebRequest();
-        SetSODropItemList(wwwDropItemListSO.downloadHandler.text);
     }
 
     private void SetSOItem(string tsv)
