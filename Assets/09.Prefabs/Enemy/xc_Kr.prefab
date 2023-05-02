@@ -319,7 +319,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab33c4bfaf5f70143bd7417790859218, type: 2}
+  - {fileID: 2100000, guid: 4fc1653f932e8a04f8b0a6ef7e771969, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -945,6 +945,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!143 &1655794461423274077
 CharacterController:
   m_ObjectHideFlags: 0
@@ -997,6 +998,9 @@ MonoBehaviour:
   rootTransform: {fileID: 8791790486105807291}
   animator: {fileID: 1655794461423274069}
   dropItemListSO: {fileID: 11400000, guid: b8d4e7b93c8668643ad8f021a01b0546, type: 2}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1655794461423274064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 307db858945807a4fa6847690a8566a1, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: JumpAttack0
 --- !u!114 &1655794461423274065
 MonoBehaviour:
@@ -1130,7 +1135,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   aiSOAddress: xc_Kr_AISO
-  smoothPath: {fileID: 0}
+  pathHarver: {fileID: 0}
 --- !u!114 &3420433
 MonoBehaviour:
   m_ObjectHideFlags: 0
