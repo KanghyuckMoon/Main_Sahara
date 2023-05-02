@@ -107,6 +107,7 @@ namespace UI
         private void Awake()
         {
             uiCam = transform.parent.GetComponentInChildren<Camera>().gameObject; 
+            uiCam.SetActive(false);
             InitScreenPresenters();
             SetNotInputEvent();
 
