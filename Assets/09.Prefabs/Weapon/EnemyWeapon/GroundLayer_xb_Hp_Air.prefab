@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3879174481662271852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4512123110019644374}
+  - component: {fileID: 662472912879629430}
+  - component: {fileID: 2102031829794338162}
+  m_Layer: 0
+  m_Name: GroundLayer_xb_Hp_Air
+  m_TagString: Player_Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4512123110019644374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879174481662271852}
+  m_LocalRotation: {x: -0.021774396, y: -0.018564478, z: -0.085322246, w: 0.9959425}
+  m_LocalPosition: {x: -0.185, y: 0.043, z: 0.264}
+  m_LocalScale: {x: 0.25, y: 0.24999993, z: 0.24999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -2.668, y: -361.908, z: -9.749}
+--- !u!114 &662472912879629430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879174481662271852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b619e2f7706f14428ffa650abfbe028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHand: 2
+  weaponName: xb_Hp_Air
+  tagName: 
+  isProjectile: 1
+  isConsecutiveWeapon: 0
+  hitBoxDataSO: {fileID: 11400000, guid: 10f170fecea8f994b885cb5b9fc56885, type: 2}
+  animationEffectSO: {fileID: 11400000, guid: 7fa2148ae9341cd4cb15dd51983f0c67, type: 2}
+--- !u!114 &2102031829794338162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879174481662271852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5405fab2c8c674e9b9d9d614793155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: WeaponSkill
+  buffIconString: _Icon
+  buffEffectString: _Effect
+  buffList: []
+  animationClip: {fileID: 7400000, guid: b3669d2fef57cd443aa961f1c2d94055, type: 2}

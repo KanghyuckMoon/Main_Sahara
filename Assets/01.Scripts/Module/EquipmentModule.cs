@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Pool;
 using EquipmentSystem;
@@ -40,7 +41,7 @@ namespace Module {
 
         }
 
-        public override void Start()
+        public override void OnEnable()
         {
             EquipPosition[] _equipPositions = mainModule.VisualObject.GetComponentsInChildren<EquipPosition>();
 
@@ -143,51 +144,29 @@ namespace Module {
 
         public override void OnDisable()
         {
+            foreach (var _itemType in equipItem.Keys.ToList())
+            {
+                TakeOffItem(_itemType);
+            }
+            equipPositions.Clear();
+            equipItem.Clear();
             base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<EquipmentModule>("EquipmentModule", this);
         }
+
+        public override void OnDestroy()
+        {
+            foreach (var _itemType in equipItem.Keys.ToList())
+            {
+                TakeOffItem(_itemType);
+            }
+            equipPositions.Clear();
+            equipItem.Clear();
+            base.OnDestroy();
+            ClassPoolManager.Instance.RegisterObject<EquipmentModule>("EquipmentModule", this);
+        }
+
         #region Trash
-        //private BoneItem equipItemSkinned(EquipmentItem itemObj)
-        //{
-        //    if (itemObj == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    Transform itemInfo = characterEquipment.setBoneItem(itemObj.objModelPrefab, itemObj.boneNameLists);
-
-        //    BoneItem boneItem = itemInfo.gameObject.AddComponent<BoneItem>();
-        //    if (boneItem != null)
-        //    {
-        //        boneItem.itemLists.Add(itemInfo);
-        //    }
-
-        //    return boneItem;
-        //}
-
-        //private BoneItem equipItemMesh(EquipmentItem itemObj)
-        //{
-        //    if (itemObj == null)
-        //    {
-        //        return null;
-        //    }
-        //    Transform[] itemInfos = characterEquipment.setMeshItem(itemObj.objModelPrefab);
-        //    if (itemInfos.Length > 0)
-        //    {
-        //        BoneItem boneItem = new GameObject().AddComponent<BoneItem>();
-        //        foreach (Transform t in itemInfos)
-        //        {
-        //            boneItem.itemLists.Add(t);
-        //        }
-
-        //        boneItem.transform.parent = mainModule.VisualObject.transform;
-
-        //        return boneItem;
-        //    }
-
-        //    return null;
-        //}
-
         #endregion
     }
 }

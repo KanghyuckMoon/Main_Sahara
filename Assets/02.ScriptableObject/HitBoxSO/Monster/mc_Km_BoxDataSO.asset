@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37506751a7e6cca43930267e6e5ad245, type: 3}
-  m_Name: mc_Hd_BoxDataSO
+  m_Name: mc_Km_BoxDataSO
   m_EditorClassIdentifier: 
   hitBoxDataDic:
     m_keys:
@@ -24,45 +24,78 @@ MonoBehaviour:
         hitBoxIndex: 0
         deleteDelay: -1
         childization: 1
+        childSizeOne: 0
         offset: {x: -0.00008341051, y: -0.0013042536, z: 0.00010967825}
-        size: {x: 0.0005728186, y: 0.002390778, z: 0.0009978417}
+        radius: 1
+        height: 1
+        rotation: {x: 0, y: 0, z: 0}
         isContactDirection: 0
         knockbackDir: {x: 10, y: 0, z: 1}
-        defaultPower: 0.1
+        defaultPower: 12
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
         swingEffectSize: {x: 1, y: 1, z: 1}
+        hitStunDelay: 0.3
+        attackStunDelay: 0.3
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: NULL
+        hitEffect:
+        - HitEffect1
+        buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
     - hitBoxDataList:
       - hitBoxName: SpiderCol2
         ClassificationName: col2
         hitBoxIndex: 0
         deleteDelay: -1
         childization: 1
+        childSizeOne: 0
         offset: {x: -0.00008341051, y: -0.0013042536, z: 0.00010967825}
-        size: {x: 0.0005728186, y: 0.002390778, z: 0.0009978417}
+        radius: 1
+        height: 1
+        rotation: {x: 0, y: 0, z: 0}
         isContactDirection: 0
         knockbackDir: {x: 10, y: 180, z: 1}
-        defaultPower: 0.1
+        defaultPower: 12
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
         swingEffectSize: {x: 1, y: 1, z: 1}
+        hitStunDelay: 0.3
+        attackStunDelay: 0.3
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: NULL
+        hitEffect:
+        - HitEffect1
+        buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
     - hitBoxDataList:
       - hitBoxName: SpiderCol3
         ClassificationName: col1
         hitBoxIndex: 0
         deleteDelay: -1
         childization: 1
+        childSizeOne: 0
         offset: {x: 0, y: 0.00041703155, z: 0}
-        size: {x: 0.002, y: 0.0012717204, z: 0.002}
+        radius: 1
+        height: 1
+        rotation: {x: 0, y: 0, z: 0}
         isContactDirection: 1
         knockbackDir: {x: 10, y: 0, z: 1}
-        defaultPower: 0.3
+        defaultPower: 12
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
         swingEffectSize: {x: 1, y: 1, z: 1}
+        hitStunDelay: 0.3
+        attackStunDelay: 0.3
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: NULL
+        hitEffect:
+        - HitEffect1
+        buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
+  setAllHitBoxBuffList: []
+  debugList: []
+  debugString: 
