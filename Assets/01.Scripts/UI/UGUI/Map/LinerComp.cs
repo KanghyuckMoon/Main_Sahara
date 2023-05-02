@@ -40,10 +40,10 @@ namespace UI.Canvas
 
         public MapLiner CreateLine(ScreenType _screenType,Transform _parent)
         {
-            MapLiner _line = Instantiate(Liner);
+            MapLiner _line = Instantiate(Liner);    
             if (_parent is not null)
             {
-                _line.transform.SetParent(_parent);
+                _line.transform.SetParent(_parent,false);
             }
             //    var _line = ObjectPoolManager.Instance.GetObject(lineAddress).GetComponent<MapLiner>();
             //   _line.transform.SetParent(Canvas);
