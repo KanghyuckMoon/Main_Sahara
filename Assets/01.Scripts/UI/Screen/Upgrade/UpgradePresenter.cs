@@ -445,7 +445,7 @@ namespace UI.Upgrade
         {
             Debug.Log("클릭");
             // 파티클 
-          //  InActiveAllMark(); // 모든 선택 마크 비활성화 
+            InActiveAllMark(); // 모든 선택 마크 비활성화 
             _upgradePr.ActiveMark(true);
 
             ItemUpgradeDataSO _childItemData =

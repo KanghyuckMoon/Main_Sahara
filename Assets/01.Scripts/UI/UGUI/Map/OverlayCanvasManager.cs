@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
 using UI.Base;
+using Utill.Addressable;
 
 namespace  UI.Canvas
 {
     public class OverlayCanvasManager : MonoSingleton<OverlayCanvasManager>
     {
-        private CanvasUIComp canvasUIComp; 
+        private CanvasUIComp canvasUIComp;
+        private CanvasScreenDataSO canvasScreenDataSO;
         public override void Awake()
         {
             base.Awake();
 
-            canvasUIComp = new CanvasUIComp("OverlayCanvas");
+            canvasScreenDataSO = AddressablesManager.Instance.GetResource<CanvasScreenDataSO>("OverlayCanvasDataSO");
+            canvasUIComp = new CanvasUIComp("OverlayCanvas",canvasScreenDataSO);
         }
 
         public void ActvieScreen(ScreenType _screenType,bool _isActive)
