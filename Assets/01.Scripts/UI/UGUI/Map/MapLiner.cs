@@ -36,21 +36,17 @@ namespace UI.Canvas
             //Init();
         }
 
-        private void OnEnable()
+        public void SetColor(Color _color)
         {
-            EventManager.Instance.StartListening(EventsType.UpdateMapPos, (x) => UpdatePos((Vector2)x));
-            EventManager.Instance.StartListening(EventsType.UpdateMapScale, (x) => UpdateScale((Vector2)x));
-            EventManager.Instance.StartListening(EventsType.ClearMapLine, () => ClearMapLine());
-            EventManager.Instance.StartListening(EventsType.UpdateMapLine, (x) => UpdateMapLine((List<Vector2>)x));
-        
+            // 색 변경 
+            uiLineRenderer.color = _color; 
         }
-
-        private void OnDisable()
+        
+        public void SetMaterial(Material _mat)
         {
-            EventManager.Instance.StopListening(EventsType.UpdateMapPos, (x) => UpdatePos((Vector2)x));
-            EventManager.Instance.StopListening(EventsType.UpdateMapScale, (x) => UpdateScale((Vector2)x));
-            EventManager.Instance.StopListening(EventsType.UpdateMapLine, (x) => UpdateMapLine((List<Vector2>)x));
-            EventManager.Instance.StartListening(EventsType.ClearMapLine, () => ClearMapLine());
+            if (_mat == null) return; 
+            // material 변경 
+            uiLineRenderer.material =_mat; 
         }
 
         public void UpdatePos(Vector2 _pos)
