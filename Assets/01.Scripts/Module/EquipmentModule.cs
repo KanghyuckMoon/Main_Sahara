@@ -40,7 +40,7 @@ namespace Module {
 
         }
 
-        public override void Start()
+        public override void OnEnable()
         {
             EquipPosition[] _equipPositions = mainModule.VisualObject.GetComponentsInChildren<EquipPosition>();
 
