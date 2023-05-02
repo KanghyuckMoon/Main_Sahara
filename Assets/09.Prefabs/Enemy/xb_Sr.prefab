@@ -646,6 +646,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!143 &3118421499958552672
 CharacterController:
   m_ObjectHideFlags: 0
@@ -698,6 +699,9 @@ MonoBehaviour:
   rootTransform: {fileID: 5641682513679308378}
   animator: {fileID: 8569549290395265192}
   dropItemListSO: {fileID: 11400000, guid: 10bf04b3e7976c3499435bb04266ad91, type: 2}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3118421499958552679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,6 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 665faf74aaede884fa493bb9b2aa8737, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: DashAttack
 --- !u!114 &3118421499958552676
 MonoBehaviour:
@@ -831,7 +836,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   aiSOAddress: xb_Sr_AISO
-  smoothPath: {fileID: 0}
+  pathHarver: {fileID: 0}
 --- !u!114 &590726872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,7 +1970,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4435591e9e46c4544b24a4b715edaf6e, type: 2}
+  - {fileID: 2100000, guid: 772621eeb504ae640b40cf095ec7c6d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

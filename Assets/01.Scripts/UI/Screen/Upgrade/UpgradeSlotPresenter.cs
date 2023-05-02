@@ -119,18 +119,8 @@ namespace UI.Upgrade
         }
         public void ActiveMark(bool _isActive)
         {
-            // 크기 확대 
-            if (_isActive == true)
-            {
-                element1.RemoveFromClassList(activeStr);
-                this.element1.AddToClassList(selectStr);
-            }
-            else
-            {
-                element1.AddToClassList(activeStr);
-                this.element1.RemoveFromClassList(selectStr);
-            }
-            this.upgradeSlotView.ActiveMark.style.display = _isActive ? DisplayStyle.Flex : DisplayStyle.None;
+            upgradeSlotView.SelectSlot(_isActive);
+          //  this.upgradeSlotView.ActiveMark.style.display = _isActive ? DisplayStyle.Flex : DisplayStyle.None;
         }
         /// <summary>
         /// 클릭 이벤트 추가 

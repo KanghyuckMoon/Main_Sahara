@@ -28,13 +28,19 @@ MonoBehaviour:
         rotation: {x: -0, y: 0, z: 0}
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
-        defaultPower: 1
+        defaultPower: 8
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
         swingEffectSize: {x: 1, y: 1, z: 1}
-        hitStunDelay: 0
-        attackStunDelay: 0
+        hitStunDelay: 0.5
+        attackStunDelay: 0.5
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: HitEffect1
+        hitEffect:
+        - HitEffect1
         buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
   setAllHitBoxBuffList: []
+  debugList: []
+  debugString: 

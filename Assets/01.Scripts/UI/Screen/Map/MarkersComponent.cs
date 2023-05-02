@@ -21,7 +21,7 @@ namespace UI
         /// <summary>
         /// 마커 생성 
         /// </summary>
-        public void CreateMarker(Vector2 _pos, VisualElement _parent, Sprite _marker) // 위치, 부모 요소 
+        public VisualElement CreateMarker(Vector2 _pos, VisualElement _parent, Sprite _marker) // 위치, 부모 요소 
         {
             TemplateContainer marker = markerUxml.Instantiate();
             marker.style.position = Position.Absolute;
@@ -29,7 +29,7 @@ namespace UI
             //marker.contentContainer.transform.position = new Vector3(-mapView.Map.transform.position.x /*+ mapView.Map.style.width.value.value * 0.5f*/ - 35,// (-marker.contentContainer.style.width.value.value *0.5f),
             //                                                                  -mapView.Map.transform.position.y/* + mapView.Map.style.width.value.value * 0.5f*/ - 35,//(-marker.contentContainer.transform.position.y * 0.5f),
             //                                                                  0);
-            float _w = marker.ElementAt(0).style.width.value.value;
+            float _w = marker.ElementAt(0).style.width.value.value; 
             float _h = marker.ElementAt(0).style.height.value.value;
 
             width = (int)(_marker.bounds.size.x * 400);
@@ -43,6 +43,8 @@ namespace UI
             _pos += new Vector2(-width / 2, -height / 2);
             marker.contentContainer.transform.position = _pos;
             markerList.Add(marker);
+
+            return marker;
         }
 
         /// <summary>

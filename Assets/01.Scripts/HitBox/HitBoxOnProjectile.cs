@@ -122,7 +122,7 @@ namespace HitBox
 				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
 				{
 					InGameHitBox _ingameHitBox = HitBoxPoolManager.Instance.GetObject();
-					_ingameHitBox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject, null, HitBoxOnAnimation.hitBoxAction);
+					_ingameHitBox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject, null, HitBoxOnAnimation?.hitBoxAction);
 
 					if (isTimeIndexCange)
 					{
