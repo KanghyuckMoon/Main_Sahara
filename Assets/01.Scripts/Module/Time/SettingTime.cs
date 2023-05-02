@@ -12,6 +12,8 @@ namespace Module
         private bool isRunning = false;
         private float durationTime;
 
+        private float originSpeed;
+
         private void Start()
         {
             mainModule = GetComponent<AbMainModule>();
@@ -34,6 +36,7 @@ namespace Module
         {
             durationTime = _duration;
 
+            originSpeed = mainModule.PersonalTime;
             isRunning = true;
             mainModule.PersonalTime = _slowvalue;
         }
@@ -48,6 +51,7 @@ namespace Module
         {
             bool _isOn = _on > 0;
             mainModule.CanMove = _isOn;
+            mainModule.PersonalTime = originSpeed;
         }
     }
 }

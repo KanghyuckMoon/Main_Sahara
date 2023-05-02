@@ -39,7 +39,7 @@ namespace Detect
                     linearColor.blue = 1f;
                     pointLight.color = Color.magenta;   
                 }
-                else if((targetItem.DetectItemType & DetectItemType.Structure) != 0)
+                else if((targetItem.DetectItemType & DetectItemType.Structure) != 0 || (targetItem.DetectItemType & DetectItemType.Creture) != 0)
                 {
                     linearColor.red = 1f;
                     pointLight.color = Color.red;

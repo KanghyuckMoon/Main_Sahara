@@ -12,7 +12,10 @@ namespace Weapon
     public class WeaponPositionSO : ScriptableObject
     {
         public StringListWeaponPositionData positionDatas;// = new StringListWeaponPositionData();
+        public string editorKey;
 
+        public bool isDefaultOn = true;
+        
         public WeaponPositionData GetWeaponPoritionData(string _str)
         {
             if (positionDatas.TryGetValue(_str, out var _value))
@@ -20,7 +23,20 @@ namespace Weapon
                 return _value;
             }
 
+            if (isDefaultOn)
+            {
+                return positionDatas["Player"];
+            }
             return null;
+        }
+
+        [ContextMenu("AddValue")]
+        public void AddValue()
+        {
+            positionDatas.Add(editorKey, new WeaponPositionData());
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
         }
 
         public void UploadWeaponPositionData(WeaponPositionData _weaponPositionData)

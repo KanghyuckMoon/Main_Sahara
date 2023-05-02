@@ -55,8 +55,9 @@ namespace Module {
 
         public override void Update()
         {
+            if (!mainModule.player) return;
             if (Input.GetKeyDown(KeyCode.J))
-                OnEquipItem("Goggles");
+                OnEquipItem("RomanHelmat");
         }
 
         /*
@@ -120,6 +121,7 @@ namespace Module {
                 _item.transform.SetParent(EquipPositions[_equipingItem.itemType].transform);
                 _item.transform.localPosition = _equipingItem.setPos;
                 _item.transform.localRotation = _equipingItem.setRot;
+                _item.transform.localScale = _equipingItem.scale;
 
                 equipItem[_equipingItem.itemType] = _item;
 
@@ -129,9 +131,12 @@ namespace Module {
 
         private void ApplyItemStats(EquipingItem _equipingItem, int _multiplyValue)
         {
-            mainModule.StatData.MeleeAttack += _equipingItem.itemDataSO.atk * _multiplyValue;
-            mainModule.StatData.MagicAttack += _equipingItem.itemDataSO.magic * _multiplyValue;
-            mainModule.StatData.MaxHp += _equipingItem.itemDataSO.hp * _multiplyValue;
+            mainModule.StatData.MeleeAttack += (_equipingItem.itemDataSO.atk * _multiplyValue);
+            mainModule.StatData.MagicAttack += (_equipingItem.itemDataSO.magic * _multiplyValue);
+            mainModule.StatData.MaxHp += (_equipingItem.itemDataSO.hp * _multiplyValue);
+            mainModule.StatData.CurrentHp += _equipingItem.itemDataSO.hp * Mathf.Max(_multiplyValue, 0);
+            mainModule.StatData.PhysicalResistance += _equipingItem.itemDataSO.atkDef * _multiplyValue;
+            mainModule.StatData.MagicResistance += _equipingItem.itemDataSO.magicDef * _multiplyValue;
             //mainModule.StatData.MaxHp = _equipingItem.itemDataSO.hp;
             //mainModule.StatData.MaxHp = _equipingItem.itemDataSO.hp;
         }

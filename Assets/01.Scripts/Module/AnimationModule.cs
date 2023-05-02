@@ -75,7 +75,6 @@ namespace Module
 
             Animator.SetFloat("MoveX", mainModule.ObjDir.x * moveModule.AnimationBlend);
             Animator.SetFloat("MoveY", mainModule.ObjDir.y * moveModule.AnimationBlend);
-            Animator.SetBool("Charge", mainModule.IsCharging);
 
             //Debug.LogError(mainModule.ObjRotation.eulerAngles.x);
             SettingAnimatorSpeed();

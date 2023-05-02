@@ -24,9 +24,9 @@ namespace PassiveItem
         public TimeSlowAccessoriesEffect(AbMainModule _mainModule)
         {
             mainModule = _mainModule;
-            dashEffect = mainModule.GetComponent<BodyRotation>().dashEffect;
-            dashEffect.SetActive(false);
-            _volume = mainModule.GetComponent<BodyRotation>().volume;
+            dashEffect = mainModule.GetComponent<BodyRotation>()?.dashEffect;
+            dashEffect?.SetActive(false);
+            _volume = mainModule.GetComponent<BodyRotation>()?.volume;
         }
         
         public void ApplyPassiveEffect()
@@ -62,6 +62,11 @@ namespace PassiveItem
         }
 
         public void ClearPassiveEffect()
+        {
+            
+        }
+
+        public void UpgradeEffect()
         {
             
         }

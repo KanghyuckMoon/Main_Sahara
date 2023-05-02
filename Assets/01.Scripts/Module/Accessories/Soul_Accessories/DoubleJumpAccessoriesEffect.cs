@@ -9,38 +9,72 @@ namespace PassiveItem
     {
         private AbMainModule mainModule;
         private JumpModule jumpModule;
+        private StateModule stateModule;
 
+        private int maxCount = 1;
+        private int count = 1;
 
-        private bool isLand;
+        private bool air;
+
+        private bool isPlayer = false;
         
         public DoubleJumpAccessoriesEffect(AbMainModule _mainModule)
         {
             mainModule = _mainModule;
+            maxCount = 1;
+            air = false;
+            count = 1;
             jumpModule = mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
+            stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+
+            if (mainModule.name == "Player")
+            {
+                isPlayer = true;
+                return;
+            }
+
+            //Debug.LogError("적 임 적 임");
+            isPlayer = false;
         }
 
         public void ApplyPassiveEffect()
         {
-            DoubleJump();
         }
+
         public void UpdateEffect()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (isPlayer)
             {
-                if (isLand && !mainModule.isGround)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    if (count > 0)
+                    {
+                        stateModule.AddState(State.JUMP);
+                        count--;
+                        Jumping();
+                    }
+                }
+            }
+            else
+            {
+                if (mainModule.IsJump)
+                {
+                    stateModule.AddState(State.JUMP);
                     Jumping();
-                    
-                    isLand = false;
+                    count--;
                 }
             }
             
-            //Debug.LogError("asdadffasdfag");
+            if (!mainModule.isGround)
+            {
+                air = true;
+            }
 
-            if (mainModule.isGround)
-                isLand = mainModule.isGround;// mainModule.Animator.SetBool("DoubleJump", false);
-            
-            //throw new System.NotImplementedException();
+            if (air)
+            {
+                if (mainModule.isGround)
+                    Land();
+            }
         }
 
         public void ClearPassiveEffect()
@@ -48,17 +82,30 @@ namespace PassiveItem
             
         }
 
-        public void DoubleJump()
+        public void UpgradeEffect()
         {
-
+            maxCount++;
+            count = maxCount;
         }
-    
+
+        private void Land()
+        {
+            count = maxCount;
+            air = false;
+        }
+
         private void Jumping()
         {
-            mainModule.Animator.SetBool("DoubleJump", true);
-            jumpModule.Jump();
-            //jumpModule.Jumping(0);
-            //jumpModule.Jump();
+            if (!mainModule.isGround)
+            {
+                mainModule.Animator.SetBool("DoubleJump", true);
+                jumpModule.Jump();
+            }
+            else
+            {
+                mainModule.Animator.SetBool("Jump", true);
+                //jumpModule.Jump();
+            }
         }
     }
 }

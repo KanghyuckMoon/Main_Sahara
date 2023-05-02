@@ -163,7 +163,16 @@ namespace Module
                 _weapon.SetActive(true);
                 SetBehaveAnimation();
 
-                _hitBoxOnAnimation.hitBoxAction = _weaponSkill.GetHitBoxAction();
+                try
+                {
+                    var _action = _weaponSkill.GetHitBoxAction();
+                    _hitBoxOnAnimation.hitBoxAction = _action;
+                }
+                catch (Exception e)
+                {
+                    //Console.WriteLine(e);
+                    //throw;
+                }
                 
                 Animator.SetTrigger("ChangeWeapon");
             }

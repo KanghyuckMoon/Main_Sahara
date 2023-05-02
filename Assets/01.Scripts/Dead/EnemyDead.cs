@@ -94,17 +94,26 @@ namespace Module
         {
             yield return new WaitForSeconds(0.1f);
             animator.speed = 0;
-            EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
-            EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, null, rootTransform, correctionAngle, correctionPos, gameObject.scene);
-            //Item Drop
-            for (int i = 0; i < dropItemListSO.dropCount; ++i)
+            if (!string.IsNullOrEmpty(deadExplosionEffectKey))
             {
-                int _index = StaticRandom.Choose(dropItemListSO.randomPercentArr);
-                if (dropItemListSO.dropItemKeyArr[_index] is null || dropItemListSO.dropItemKeyArr[_index] is "")
+                EffectManager.Instance.SetEffectDefault(deadExplosionEffectKey, transform.position, transform.rotation);
+            }
+            if (!string.IsNullOrEmpty(deadSkinEffectKey))
+            {
+                EffectManager.Instance.SetEffectSkin(deadSkinEffectKey, skinnedMeshRenderer, null, rootTransform, correctionAngle, correctionPos, gameObject.scene);
+            }
+            //Item Drop
+            if (dropItemListSO is not null)
+            {
+                for (int i = 0; i < dropItemListSO.dropCount; ++i)
                 {
-                    continue;
+                    int _index = StaticRandom.Choose(dropItemListSO.randomPercentArr);
+                    if (dropItemListSO.dropItemKeyArr[_index] is null || dropItemListSO.dropItemKeyArr[_index] is "")
+                    {
+                        continue;
+                    }
+                    ItemDrop(dropItemListSO.dropItemKeyArr[_index]); 
                 }
-                ItemDrop(dropItemListSO.dropItemKeyArr[_index]); 
             }
             yield return new WaitForSeconds(0.2f);
             abMainModule.VisualObject.gameObject.SetActive(false);

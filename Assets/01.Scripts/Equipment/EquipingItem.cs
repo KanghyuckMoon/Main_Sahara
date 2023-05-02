@@ -16,11 +16,22 @@ namespace EquipmentSystem
         public ItemType itemType;
         public Vector3 setPos;
         public Quaternion setRot;
+        public Vector3 scale;
         public ItemDataSO itemDataSO;
 
         //public void OnValidate()
         //{
         //    setPos = transform.position;
         //}
+
+        [ContextMenu("¼³Á¤")]
+        public void SettingInfo()
+        {
+            setPos = transform.localPosition;
+            setRot = transform.localRotation;
+            scale = transform.localScale;
+        }
     }
+    
+    
 }
