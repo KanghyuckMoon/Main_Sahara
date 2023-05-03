@@ -76,8 +76,15 @@ namespace CondinedModule
         {
             gameObject.layer = layer;
         }
-        private void OnDestroy()
+
+        public override void OnDisable()
         {
+            base.OnDisable();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
             CharacterController = null;
             RaycastTarget = null;
             Animator = null;

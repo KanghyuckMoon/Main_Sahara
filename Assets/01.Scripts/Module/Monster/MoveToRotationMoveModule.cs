@@ -6,6 +6,16 @@ namespace Module
 {
     public class MoveToRotationMoveModule : MoveModule
     {
+        public MoveToRotationMoveModule() : base()
+        {
+            
+        }
+        
+        public override void Init(AbMainModule _mainModule, params string[] _parameters)
+        {
+            mainModule = _mainModule;
+        }
+
         public override void Move()
         {
             #region 속도 관련 부분
@@ -132,6 +142,32 @@ namespace Module
 
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
+        
+        
+        public override void OnDisable()
+        {
+            stateModule = null;
+            animator = null;
+            statData = null;
+            mainModule = null;
+
+            base.OnDisable();
+
+            Pool.ClassPoolManager.Instance.RegisterObject<MoveToRotationMoveModule>("MoveToRotationMoveModule", this);
+        }
+
+        public override void OnDestroy()
+        {
+            stateModule = null;
+            animator = null;
+            statData = null;
+            mainModule = null;
+
+            base.OnDestroy();
+
+            Pool.ClassPoolManager.Instance.RegisterObject<MoveToRotationMoveModule>("MoveToRotationMoveModule", this);
+        }
     }
+    
 
 }
