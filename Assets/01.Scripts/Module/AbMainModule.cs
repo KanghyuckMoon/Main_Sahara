@@ -698,7 +698,7 @@ namespace Module
             UpdateManager.UpdateManager.Add(this);
 		}
 
-        public void OnDisable()
+        public virtual void OnDisable()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -756,7 +756,7 @@ namespace Module
             }
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
