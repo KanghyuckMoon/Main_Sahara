@@ -48,6 +48,7 @@ namespace UI
         // 프로퍼티 
         private Vector2 MoveDir => new Vector2(xMoveValue, yMoveValue).normalized;
         public MarkersComponent MarkersComponent => markersComponent;
+        public MarkerSetComp MarkerSetComp => markerSetComp; 
         
         private ElementCtrlComponent ElementCtrlComponent
         {

@@ -109,8 +109,9 @@ namespace UI
             mapView.ShowMap(_isActive);
            // StartCoroutine(TestCo());
 
-            if (_isActive == false) 
-            { 
+            if (_isActive == true)
+            {
+                fullMapComponent.MarkerSetComp.UpdateMarker(); 
             }
                 //StartCoroutine(Test());
         }

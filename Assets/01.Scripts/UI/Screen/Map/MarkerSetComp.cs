@@ -51,7 +51,7 @@ namespace  UI.Map
             
             mapView.Map.RegisterCallback<PointerDownEvent>((x) =>
             {
-                if (x.button is not 0 || isInputCtrl is true) return; 
+                if (x.button is not 0 || isInputCtrl is true || curMarkerSlotPr is null) return; 
                 markerList.Add(CreateMarker((Vector2)x.localPosition -
                                        new Vector2(mapView.Map.resolvedStyle.width / 2, mapView.Map.resolvedStyle.height / 2)));
                 // 마커 개수 0 인가 
@@ -97,7 +97,9 @@ namespace  UI.Map
                     if (deleteTarget != null)
                     {
                         deleteTarget.RemoveFromHierarchy();
+                        MarkerDataManager.Instance.AddHaveMarker(GetMarkerData(deleteTarget).key);
                         deleteTarget = null; 
+                        
                     }
                 }
             }
@@ -121,16 +123,34 @@ namespace  UI.Map
                 VisualElement _closedSlot = _slots.OrderBy(x =>
                     Vector2.Distance(x.worldBound.position, mapView.GhostIcon.worldBound.position)).First();
                 _closedSlot.ElementAt(0).AddToClassList(deleteMarkerStr);
-                deleteTarget = _closedSlot; 
+                deleteTarget = _closedSlot;
+                // 데이터 가져오기 
             }
         }
+        
         private void FollowCursor(Vector2 _pos)
         {
             if (curMarkerSlotPr is not null)
             {
                 // 마우스 따라가기 
-                mapView.GhostIcon.transform.position = _pos;
-                mapView.GhostIcon.transform.scale = mapView.Map.parent.transform.scale; 
+                Debug.Log("@@@@@Mouse Pos" + _pos);
+                Debug.Log("@@@@@GhostIcon Pos" + mapView.GhostIcon.transform.position);
+                                                                                            
+//                mapView.GhostIcon.transform.position = _pos;
+                float _width = mapView.GhostIcon.resolvedStyle.width; 
+                float _height = mapView.GhostIcon.resolvedStyle.height;
+                Vector2 _scale = mapView.GhostIcon.transform.scale;
+                Vector2 _mapScale = mapView.Map.parent.transform.scale;
+                
+                float _addWidth = 0f; 
+                float _addHeight = 0f; 
+                // float _addWidth = Mathf.Clamp((mapView.GhostIcon.resolvedStyle.width / mapView.GhostIcon.transform.scale.x)- _width,0,float.MaxValue); 
+                //float _addHeight = Mathf.Clamp((mapView.GhostIcon.resolvedStyle.height / mapView.GhostIcon.transform.scale.y)- _height, 0, float.MaxValue); 
+                
+                mapView.GhostIcon.transform.position = new Vector2(Input.mousePosition.x - _width/2 *  _mapScale.x
+                    , 1080 - Input.mousePosition.y - _height/2 * _mapScale.y);
+                mapView.GhostIcon.transform.scale = _mapScale; 
+                //, 뷰   
                 Debug.Log("Folllow@@@");
             }
         }
@@ -198,6 +218,17 @@ namespace  UI.Map
             {
                 
             }
+        }
+        
+        private  MarkerData GetMarkerData(VisualElement _element)
+        {
+            foreach (var _markerSlot in markerSlotPrList)
+            {
+                if (_markerSlot.Parent.Equals(_element))
+                    return _markerSlot.MarkerData; 
+            }
+
+            return null; 
         }
 
     }    
