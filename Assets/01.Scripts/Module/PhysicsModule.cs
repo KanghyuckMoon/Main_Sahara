@@ -237,7 +237,7 @@ namespace Module
         public override void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(_spherePosition, 0.25f);
+            Gizmos.DrawWireSphere(_spherePosition, mainModule.GroundCheckRadius);
         }
 
         private void GroundCheack()
