@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
 using Utill.Addressable;
-using System.Linq; 
+using System.Linq;
+using UI.Manager;
 
 namespace  UI.Map
 {
@@ -14,7 +15,9 @@ namespace  UI.Map
     {
         private VisualElement parent;
         private List<MarkerSlotPr> markerSlotPrList = new List<MarkerSlotPr>();
-        private List<VisualElement> markerList = new List<VisualElement>();
+        private List<VisualElement> markerList = new List<VisualElement>(); // 맵에 찍혀있는 마커 리스트 
+        private Dictionary<VisualElement,MarkerData> activeMarkerDataDic = new Dictionary<VisualElement,MarkerData>(); // 맵에 찍혀있는 마커 데이터 리스트 
+        
         private MapView mapView;
 
         // 현재 활성화 중인 슬롯 
@@ -51,9 +54,19 @@ namespace  UI.Map
             
             mapView.Map.RegisterCallback<PointerDownEvent>((x) =>
             {
-                if (x.button is not 0 || isInputCtrl is true || curMarkerSlotPr is null) return; 
-                markerList.Add(CreateMarker((Vector2)x.localPosition -
-                                       new Vector2(mapView.Map.resolvedStyle.width / 2, mapView.Map.resolvedStyle.height / 2)));
+                if (x.button is not 0 || isInputCtrl is true || curMarkerSlotPr is null) return;
+                var _marker = CreateMarker((Vector2)x.localPosition -
+                                           new Vector2(mapView.Map.resolvedStyle.width / 2,
+                                               mapView.Map.resolvedStyle.height / 2)); 
+                
+                /*_marker.RegisterCallback<MouseOverEvent>((x) => { UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker); });
+                _marker.RegisterCallback<MouseLeaveEvent>((x) =>
+                {
+                    UIManager.Instance.SetCursorImage(CursorImageType.defaultCursor);
+                });*/
+                markerList.Add(_marker);
+                activeMarkerDataDic.Add(_marker,curMarkerSlotPr.MarkerData);
+                
                 // 마커 개수 0 인가 
                 bool _isZeroCount = MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
                 if (_isZeroCount is true)
@@ -79,14 +92,6 @@ namespace  UI.Map
                 FollowCursor(MousePos);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                for (int i = 0; i < markerList.Count; i++)
-                {
-                    markerList[i].RemoveFromHierarchy();
-                }
-                markerList.Clear();
-            }
 
             if (Input.GetKey(KeyCode.LeftControl))
             {
@@ -98,10 +103,10 @@ namespace  UI.Map
                     {
                         deleteTarget.RemoveFromHierarchy();
                         MarkerDataManager.Instance.AddHaveMarker(GetMarkerData(deleteTarget).key);
-                        deleteTarget = null; 
-                        
+                        UpdateMarker(); 
+                        deleteTarget = null;
                     }
-                }
+                }   
             }
 
             if (Input.GetKeyUp(KeyCode.LeftControl))
@@ -114,17 +119,19 @@ namespace  UI.Map
         private void DeleteMarker()
         {
             IEnumerable<VisualElement> _slots =markerList.
-                Where((x) => x.worldBound.Overlaps(mapView.GhostIcon.worldBound));
+                Where((x) => x.worldBound.Overlaps(new Rect(Input.mousePosition,new Vector2(200,200))));
             
             // 슬롯에 드랍 했다면
             if (_slots.Count() != 0)
             {
                 // 가장 가깝게 드랍한 슬롯 
+                
                 VisualElement _closedSlot = _slots.OrderBy(x =>
                     Vector2.Distance(x.worldBound.position, mapView.GhostIcon.worldBound.position)).First();
                 _closedSlot.ElementAt(0).AddToClassList(deleteMarkerStr);
                 deleteTarget = _closedSlot;
                 // 데이터 가져오기 
+                UpdateMarker(); 
             }
         }
         
@@ -133,25 +140,13 @@ namespace  UI.Map
             if (curMarkerSlotPr is not null)
             {
                 // 마우스 따라가기 
-                Debug.Log("@@@@@Mouse Pos" + _pos);
-                Debug.Log("@@@@@GhostIcon Pos" + mapView.GhostIcon.transform.position);
-                                                                                            
-//                mapView.GhostIcon.transform.position = _pos;
                 float _width = mapView.GhostIcon.resolvedStyle.width; 
                 float _height = mapView.GhostIcon.resolvedStyle.height;
-                Vector2 _scale = mapView.GhostIcon.transform.scale;
                 Vector2 _mapScale = mapView.Map.parent.transform.scale;
-                
-                float _addWidth = 0f; 
-                float _addHeight = 0f; 
-                // float _addWidth = Mathf.Clamp((mapView.GhostIcon.resolvedStyle.width / mapView.GhostIcon.transform.scale.x)- _width,0,float.MaxValue); 
-                //float _addHeight = Mathf.Clamp((mapView.GhostIcon.resolvedStyle.height / mapView.GhostIcon.transform.scale.y)- _height, 0, float.MaxValue); 
                 
                 mapView.GhostIcon.transform.position = new Vector2(Input.mousePosition.x - _width/2 *  _mapScale.x
                     , 1080 - Input.mousePosition.y - _height/2 * _mapScale.y);
                 mapView.GhostIcon.transform.scale = _mapScale; 
-                //, 뷰   
-                Debug.Log("Folllow@@@");
             }
         }
         /// <summary>
@@ -212,21 +207,22 @@ namespace  UI.Map
             if (curMarkerSlotPr is null) return null; 
          
             return markersComponent.CreateMarker(_pos, mapView.MarkerParent,CurMarkerSprite);
-            
-            //MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
-          //  if ()
-            {
-                
-            }
         }
         
         private  MarkerData GetMarkerData(VisualElement _element)
         {
-            foreach (var _markerSlot in markerSlotPrList)
+            foreach (var _markerData in activeMarkerDataDic)
+            {
+                if (_markerData.Key.Equals(_element))
+                {
+                    return _markerData.Value; 
+                }
+            }
+            /*foreach (var _markerSlot in markerSlotPrList)
             {
                 if (_markerSlot.Parent.Equals(_element))
                     return _markerSlot.MarkerData; 
-            }
+            }*/
 
             return null; 
         }

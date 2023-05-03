@@ -121,7 +121,7 @@ namespace UI.Upgrade
                 upgradeSlotLinerComp.CheckCreateItem();
                 Logging.Log("업그레이드 클릭");
             });
-
+    
             rowList.Clear();
             slotPosDIc.Clear();
             allSlotList.Clear();

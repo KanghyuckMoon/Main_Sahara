@@ -9,6 +9,8 @@ namespace  UI.Canvas
 {
     public class OverlayCanvasManager : MonoSingleton<OverlayCanvasManager>
     {
+        // »ý¼º 
+        // particle, 
         private CanvasUIComp canvasUIComp;
         private CanvasScreenDataSO canvasScreenDataSO;
         public override void Awake()
@@ -20,7 +22,7 @@ namespace  UI.Canvas
         }
 
         public void ActvieScreen(ScreenType _screenType,bool _isActive)
-        {
+        {¤·
             canvasUIComp.ActvieScreen(_screenType, _isActive);
         }
         public void UpdateLinesScale(ScreenType _screenType,Vector2 _scale)
