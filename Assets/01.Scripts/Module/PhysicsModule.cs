@@ -242,9 +242,8 @@ namespace Module
 
         private void GroundCheack()
         {
-            float bottomPoint = mainModule.transform.position.y + mainModule.CharacterController.center.y - mainModule.CharacterController.height / 2 + mainModule.CharacterController.radius;
 
-            _spherePosition = new Vector3(mainModule.transform.position.x, bottomPoint + mainModule.groundOffset,
+            _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
                 mainModule.transform.position.z);
             bool _isLand = Physics.CheckSphere(_spherePosition, mainModule.GroundCheckRadius, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
