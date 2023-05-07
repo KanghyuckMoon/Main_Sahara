@@ -64,9 +64,11 @@ namespace UI.Shop
         {
             inventoryGridSlotsPr.ClearSlotDatas(); 
 
+            // 현재 상점npc의 판매 모든 판매아이템 데이터 가져오기 
             var _allDataList = ShopManager.Instance.GetAllItemData();
             foreach(var _data in _allDataList)
             {
+                // 각 타입에 맞는 슬롯ui 설정 
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
                 // 더블클릭시 구매 이벤트 추가 
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
@@ -118,7 +120,7 @@ namespace UI.Shop
             ActivetShop(ShopType.SellShop);
         }
 
-        /// <summary>
+        /// <summary>   
         /// 상점 활성화 
         /// </summary>
         /// <param name="_shopType"></param>

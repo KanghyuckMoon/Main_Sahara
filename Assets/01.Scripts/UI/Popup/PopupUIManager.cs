@@ -28,6 +28,7 @@ namespace UI.Popup
         private PopupHudPr popupHudPr;
         private EventAlarmScreenPresenter eventAlarmScreenPr;
         private InteractionScreenPr interactionScreenPr;
+        private ShopPopupScreenPr shopPopupScreenPr; 
         
         private List<IPopupPr> popupPrList = new List<IPopupPr>(); 
 
@@ -128,10 +129,12 @@ namespace UI.Popup
             popupHudPr = PopupParent.GetComponentInChildren<PopupHudPr>();
             eventAlarmScreenPr = PopupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
             interactionScreenPr = PopupParent.GetComponentInChildren<InteractionScreenPr>(); 
-
+            shopPopupScreenPr = PopupParent.GetComponentInChildren<ShopPopupScreenPr>(); 
+            
             popupPrList.Add(popupHudPr);
             popupPrList.Add(eventAlarmScreenPr);
             popupPrList.Add(interactionScreenPr);
+            popupPrList.Add(shopPopupScreenPr);
         }
         /*private Dictionary<PopupType, Type> popupChangeDic = new Dictionary<PopupType, Type>();
         private Dictionary<PopupType, IPopup> popupDic = new Dictionary<PopupType, IPopup>();

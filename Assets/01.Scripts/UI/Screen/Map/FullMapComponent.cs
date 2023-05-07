@@ -53,7 +53,7 @@ namespace UI
         private ElementCtrlComponent ElementCtrlComponent
         {
             get
-            {
+            {   
                 if (elementCtrlComponent == null)
                 {
                     elementCtrlComponent = new ElementCtrlComponent(mapView.Map);

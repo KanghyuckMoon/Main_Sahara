@@ -29,7 +29,7 @@ namespace  UI.Map
         private bool isInputCtrl = false; // ctrl 누르고 있는 중인가 
         
         private const string selectStr = "active_select"; 
-        private const string deleteMarkerStr = "delete_select"; 
+        private const string deleteMarkerStr = "delete_marker"; 
         
         // 프로퍼티 
         private Sprite CurMarkerSprite =>
@@ -52,36 +52,44 @@ namespace  UI.Map
             
             mapView.GhostIcon.AddManipulator(new Dragger(mapView.GhostIcon));
             
-            mapView.Map.RegisterCallback<PointerDownEvent>((x) =>
-            {
-                if (x.button is not 0 || isInputCtrl is true || curMarkerSlotPr is null) return;
-                var _marker = CreateMarker((Vector2)x.localPosition -
-                                           new Vector2(mapView.Map.resolvedStyle.width / 2,
-                                               mapView.Map.resolvedStyle.height / 2)); 
-                
-                /*_marker.RegisterCallback<MouseOverEvent>((x) => { UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker); });
-                _marker.RegisterCallback<MouseLeaveEvent>((x) =>
-                {
-                    UIManager.Instance.SetCursorImage(CursorImageType.defaultCursor);
-                });*/
-                markerList.Add(_marker);
-                activeMarkerDataDic.Add(_marker,curMarkerSlotPr.MarkerData);
-                
-                // 마커 개수 0 인가 
-                bool _isZeroCount = MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
-                if (_isZeroCount is true)
-                {
-                    ActiveGhostIcon(false);
-                    curMarkerSlotPr = null; 
-                }
-                UpdateMarker(); //마커 ui 업데이트 
-            });
+            mapView.Map.RegisterCallback<PointerDownEvent>(ClickMarker);
             
             mapView.MarkerSetPanel.RegisterCallback<MouseOverEvent>((x) => { mapView.ActiveGhostIcon(false);}); 
             mapView.MarkerSetPanel.RegisterCallback<PointerOutEvent>((x) => { mapView.ActiveGhostIcon(true);}); 
             
         }
 
+        private void ClickMarker(PointerDownEvent _evt)
+        {
+            // 좌클릭인지 체크, Ctrl 입력 하지 않았는지 (삭제) 체크, 현재 선택한 마커 있는지 체크 
+            if (_evt.button is not 0 || isInputCtrl is true || curMarkerSlotPr is null) return;
+           // 마커 생성 
+            var _marker = CreateMarker((Vector2)_evt.localPosition -
+                                       new Vector2(mapView.Map.resolvedStyle.width / 2,
+                                           mapView.Map.resolvedStyle.height / 2)); 
+                
+            /*_marker.RegisterCallback<MouseOverEvent>((x) => { UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker); });
+            _marker.RegisterCallback<MouseLeaveEvent>((x) =>
+            {
+                UIManager.Instance.SetCursorImage(CursorImageType.defaultCursor);
+            });*/
+            
+            // 현재 맵에 찍혀있음 리스트에 추가 
+            markerList.Add(_marker);
+            // 마커 , 마커데이터 dictionary  추가 
+            activeMarkerDataDic.Add(_marker,curMarkerSlotPr.MarkerData);
+                
+            // 마커 개수 0 인가 
+            bool _isZeroCount = MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
+            if (_isZeroCount is true)
+            {
+                // 따라오는 이미지 끄기 
+                ActiveGhostIcon(false);
+                curMarkerSlotPr = null; 
+            }
+            UpdateMarker(); //마커 ui 업데이트 
+        }
+        
         /// <summary>
         /// 마커 
         /// </summary>
@@ -95,7 +103,8 @@ namespace  UI.Map
 
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                isInputCtrl = true; 
+                isInputCtrl = true;
+                DeleteMarker(); 
                 if(Input.GetMouseButtonDown(0))
                 {
                     DeleteMarker();
@@ -111,13 +120,21 @@ namespace  UI.Map
 
             if (Input.GetKeyUp(KeyCode.LeftControl))
             {
+                deleteTarget.RemoveFromClassList(deleteMarkerStr);
+            }
+            if (Input.GetKeyUp(KeyCode.LeftControl))
+            {
                 isInputCtrl = false; 
             }
         
         }
 
+        /// <summary>
+        /// 마커 삭제 
+        /// </summary>
         private void DeleteMarker()
         {
+            // 마우스 커서 위치에 마커 있는지 체크 
             IEnumerable<VisualElement> _slots =markerList.
                 Where((x) => x.worldBound.Overlaps(new Rect(Input.mousePosition,new Vector2(200,200))));
             
@@ -125,9 +142,10 @@ namespace  UI.Map
             if (_slots.Count() != 0)
             {
                 // 가장 가깝게 드랍한 슬롯 
-                
                 VisualElement _closedSlot = _slots.OrderBy(x =>
                     Vector2.Distance(x.worldBound.position, mapView.GhostIcon.worldBound.position)).First();
+                
+                // 스타일 클래스 추가 
                 _closedSlot.ElementAt(0).AddToClassList(deleteMarkerStr);
                 deleteTarget = _closedSlot;
                 // 데이터 가져오기 
