@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3540381545402449233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3540381545402449245}
+  - component: {fileID: 3540381545402449244}
+  - component: {fileID: 3540381545402449247}
+  - component: {fileID: 3540381545402449246}
+  m_Layer: 14
+  m_Name: ClothBelt_Drop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3540381545402449245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540381545402449233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 582297163318152747}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3540381545402449244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540381545402449233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: b6a6d6f9fdecc6a46a7325a781ed978d, type: 2}
+  count: 1
+  rigid: {fileID: 3540381545402449247}
+  itemAddress: Mt_D_RemnantOfNemea
+  targetObj: {fileID: 3540381545402449233}
+  isJumping: 1
+  getEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!54 &3540381545402449247
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540381545402449233}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &3540381545402449246
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540381545402449233}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &3540381544615303957
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3540381545402449245}
+    m_Modifications:
+    - target: {fileID: 3638515707511000964, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_Name
+      value: ClothBelt_Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.142
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.056
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.791734
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.09537523
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.08816565
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5968985
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 14.849
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -1.526
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 73.827
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+--- !u!4 &582297163318152747 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
+  m_PrefabInstance: {fileID: 3540381544615303957}
+  m_PrefabAsset: {fileID: 0}

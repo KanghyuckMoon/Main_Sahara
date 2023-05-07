@@ -8,6 +8,10 @@ namespace EquipmentSystem
     public enum ItemType
     {
         HELMET,
+        WRIST,
+        SHOULDER,
+        BACK,
+        EAR,    
         NONE
     }
 
