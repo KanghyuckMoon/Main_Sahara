@@ -237,6 +237,11 @@ namespace Inventory
 			return GetWhereItem(ItemType.Valuable);
 		}
 
+		public List<ItemData> GetMarkerList()
+		{
+			return GetWhereItem(ItemType.Marker);
+		}
+					
 		public List<ItemData> GetAllItem()
 		{
 			if (!isInit)

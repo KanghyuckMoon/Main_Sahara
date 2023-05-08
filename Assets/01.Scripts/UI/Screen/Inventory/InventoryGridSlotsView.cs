@@ -25,7 +25,8 @@ namespace UI.Inventory
             //skill_panel,
             accessories_panel,
             material_panel,
-            valuable_panel
+            valuable_panel,
+            marker_panel
         }
 
         public enum RadioButtons
@@ -36,7 +37,8 @@ namespace UI.Inventory
            //skill_button,
             accessories_button,
             material_button,
-            valuable_button
+            valuable_button,
+            marker_button 
             //장비
             //소비
             //기타

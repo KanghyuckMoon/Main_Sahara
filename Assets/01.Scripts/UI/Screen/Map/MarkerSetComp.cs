@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 using UnityEngine.VFX;
 using Utill.Addressable;
 using System.Linq;
+using Inventory;
 using UI.Manager;
 
 namespace  UI.Map
@@ -173,6 +174,7 @@ namespace  UI.Map
         public void UpdateMarker()
         {
             ClearMarkers();
+            //var _dataList = InventoryManager.Instance.GetMarkerList();
             var _dataList = MarkerDataManager.Instance.GetAllHaveMakrerList();
 
             foreach (var _data in _dataList)

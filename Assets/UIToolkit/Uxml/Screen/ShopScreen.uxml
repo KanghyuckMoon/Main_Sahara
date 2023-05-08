@@ -19,10 +19,10 @@
                         <ui:RadioButton label="Radio Button" name="weapon_button" value="true" style="display: flex;" />
                         <ui:RadioButton label="Radio Button" name="armor_button" />
                         <ui:RadioButton label="Radio Button" name="consumation_button" />
-                        <ui:RadioButton label="Radio Button" name="skill_button" />
                         <ui:RadioButton label="Radio Button" name="accessories_button" />
                         <ui:RadioButton label="Radio Button" name="material_button" />
                         <ui:RadioButton label="Radio Button" name="valuable_button" />
+                        <ui:RadioButton label="Radio Button" name="marker_button" />
                     </ui:RadioButtonGroup>
                 </ui:VisualElement>
                 <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" class="item__grid-panel inventory_scroll_panel" style="height: 100%; background-color: rgb(29, 29, 29);">
@@ -34,6 +34,7 @@
                     <ui:VisualElement name="accessories_panel" class="inventory_panel shop_panel" style="display: none;" />
                     <ui:VisualElement name="material_panel" class="inventory_panel shop_panel" style="display: none;" />
                     <ui:VisualElement name="valuable_panel" class="inventory_panel shop_panel" style="display: none;" />
+                    <ui:VisualElement name="marker_panel" class="inventory_panel shop_panel" style="display: none;" />
                     <ui:VisualElement name="row" class="row" style="display: none;">
                         <ui:VisualElement name="slot" class="slot" />
                         <ui:VisualElement name="slot" class="slot" />
@@ -46,7 +47,7 @@
             <ui:VisualElement name="center_content_panel" class="center_content_panel" style="padding-top: 3%;">
                 <ui:VisualElement name="header" style="height: 10%; display: none;" />
                 <ui:VisualElement name="content" style="flex-direction: column-reverse; height: 100%;">
-                    <ui:VisualElement name="character_panel" style="height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/UI/InventoryModel.renderTexture?fileID=8400000&amp;guid=409d5825e55d3d94c810734ebf531cc2&amp;type=2#InventoryModel&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:VisualElement name="character_panel" style="height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/InventoryModel.renderTexture?fileID=8400000&amp;guid=409d5825e55d3d94c810734ebf531cc2&amp;type=2#InventoryModel&apos;); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
@@ -60,4 +61,3 @@
         </ui:VisualElement>
     </Gradient>
 </ui:UXML>
-    

@@ -110,6 +110,17 @@ namespace UI.Inventory
 
         }
 
+        public override void ActiveScreen(bool _isActive)
+        {
+            base.ActiveScreen(_isActive);
+            if (_isActive == true)
+            {
+                // 슬롯 초기화 
+                inventoryGridSlotsPr.ClearSlotDatas();
+            }
+        }
+
+
         /// <summary>
         ///  카테고리 강조 패턴 위치 설정 
         /// </summary>
@@ -131,9 +142,9 @@ namespace UI.Inventory
             Rect _firstSlot =
                 inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.weapon_button).worldBound;
             Rect _lastSlot =
-                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.valuable_button).worldBound;
+                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.marker_button).worldBound;
 
-            categoryLength = (_lastSlot.x - _firstSlot.x + 60) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
+            categoryLength = (_lastSlot.x - _firstSlot.x + 80) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
         }
 
         public void AddSlotClickEvent(Action<ItemData> _callback)

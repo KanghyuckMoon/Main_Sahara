@@ -73,6 +73,8 @@ namespace UI.Inventory
                 (x) => AccentPattern(InventoryGridSlotsView.RadioButtons.material_button, x));
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.valuable_button,
                 (x) => AccentPattern(InventoryGridSlotsView.RadioButtons.valuable_button, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.marker_button,
+                (x) => AccentPattern(InventoryGridSlotsView.RadioButtons.marker_button, x));
 
             EventManager.Instance.StartListening(EventsType.UpdateInventoryUI, UpdateUI);
         }

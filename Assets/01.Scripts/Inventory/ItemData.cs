@@ -14,6 +14,7 @@ namespace Inventory
 		Accessories,
 		Material,
 		Valuable,
+		Marker,
 		None,
 	}
 	public enum ConsumptionType
