@@ -522,6 +522,17 @@ namespace Module
                 currentAnimationLayer = value;
             }
         }
+        public float GroundCheckRadius
+        {
+            get
+            {
+                return groundRadius;
+            }
+            set
+            {
+                groundRadius = value;
+            }
+        }
         
         #endregion
 
@@ -606,6 +617,8 @@ namespace Module
         private float gravityScale = -9.8f;
         [SerializeField, Header("땅체크 사거리")] 
         public float groundOffset;
+        [SerializeField, Header("땅체크 크기")] 
+        public float groundRadius = 0.2f;
         [SerializeField, Header("공격 받은 후의 시간")] 
         public float attackedTime = 0f;
         [SerializeField, Header("넉백")]
@@ -703,7 +716,7 @@ namespace Module
             UpdateManager.UpdateManager.Add(this);
 		}
 
-        public void OnDisable()
+        public virtual void OnDisable()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
@@ -761,7 +774,7 @@ namespace Module
             }
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
