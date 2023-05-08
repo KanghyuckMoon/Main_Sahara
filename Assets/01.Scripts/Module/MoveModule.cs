@@ -45,6 +45,9 @@ namespace Module
                 animator = value;
             }
 		}
+
+        public float passiveSpeed = 0;
+        
         protected Animator animator;
         protected float moveSpeed => StatData.WalkSpeed;
         protected float runSpeed => StatData.RunSpeed;
@@ -88,7 +91,7 @@ namespace Module
             #region 속도 관련 부분
 
             float _targetSpeed = mainModule.IsSprint ? runSpeed : moveSpeed;
-            float _lockOnspeed = mainModule.LockOn ? -1 : 0;
+            float _lockOnspeed = (mainModule.LockOn ? -1 : 0) + addSpeed;
 
             float _speed;
 
@@ -155,7 +158,7 @@ namespace Module
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + addSpeed) * mainModule.StopOrNot);
+            _moveValue = _direction.normalized * ((_speed + passiveSpeed) * mainModule.StopOrNot);
             //_moveValue *= mainModule.PersonalDeltaTime;
             Vector3 _moveVector3 = _moveValue;
             mainModule.attackedTime += mainModule.PersonalDeltaTime;

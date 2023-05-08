@@ -48,6 +48,12 @@ namespace Module
 					case AccessoriesItemType.ChargeJump:
 						_itemPassive = GetItemWithPool<SuperJump_Accessories>("SuperJump_Accessories");
 						break;
+					case AccessoriesItemType.AddSpeed:
+						_itemPassive = GetItemWithPool<AddSpeed_Accessories>("AddSpeed_Accessories");
+						break;
+					case AccessoriesItemType.Resurrection:
+						_itemPassive = GetItemWithPool<Resurrection_Accessories>("Resurrection_Accessories");
+						break;
 					case AccessoriesItemType.NONE:
 						break;
 				}

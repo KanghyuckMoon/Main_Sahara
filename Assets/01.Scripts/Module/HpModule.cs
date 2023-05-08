@@ -36,6 +36,11 @@ namespace Module
             //_StatData.CurrentHp = _StatData.MaxHp;
         }
 
+        public int GetMaxHp()
+        {
+            return maxHp;
+        }
+
 
         public int GetDamage(int value)
         {

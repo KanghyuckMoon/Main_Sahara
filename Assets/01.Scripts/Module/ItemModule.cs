@@ -19,6 +19,8 @@ namespace Module
         Shield,
         Flame,
         ChargeJump,
+        AddSpeed,
+        Resurrection,
         NONE
     }
     public partial class ItemModule : AbBaseModule
@@ -71,6 +73,8 @@ namespace Module
             SetPassiveItem(AccessoriesItemType.Dash);
             SetPassiveItem(AccessoriesItemType.TimeSlow);
             SetPassiveItem(AccessoriesItemType.ChargeJump);
+            SetPassiveItem(AccessoriesItemType.AddSpeed);
+            SetPassiveItem(AccessoriesItemType.Resurrection);
             //SetPassiveItem(AccessoriesItemType.Shield);
             //SetPassiveItem(AccessoriesItemType.Flame);
             //SetPassiveItem(AccessoriesItemType.Burning);
