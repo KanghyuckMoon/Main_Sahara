@@ -107,6 +107,7 @@ namespace Detect
             {
                 isGetOut = true;
                 getoutEvent?.Invoke();
+                gameObject.SetActive(false);
             }
         }
         
