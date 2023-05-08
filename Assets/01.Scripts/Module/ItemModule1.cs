@@ -45,6 +45,9 @@ namespace Module
 					case AccessoriesItemType.Flame:
 						_itemPassive = GetItemWithPool<Flame_Accessories>("Flame_Accessories");
 						break;
+					case AccessoriesItemType.ChargeJump:
+						_itemPassive = GetItemWithPool<SuperJump_Accessories>("SuperJump_Accessories");
+						break;
 					case AccessoriesItemType.NONE:
 						break;
 				}

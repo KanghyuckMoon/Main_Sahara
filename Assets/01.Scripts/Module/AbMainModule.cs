@@ -333,6 +333,17 @@ namespace Module
                 isConsecutiveWeapon = value;
             }
         }
+        public bool IsChargeJumpOn
+        {
+            get
+            {
+                return isChargeJumpOn;
+            }
+            set
+            {
+                isChargeJumpOn = value;
+            }
+        }
         public float GravityScale
         {
             get
@@ -579,6 +590,8 @@ namespace Module
         private bool isDash;
         [SerializeField, Header("연속공격이 가능한 무기인가?")]
         private bool isConsecutiveWeapon;
+        [SerializeField, Header("차지점프가 있는가")] 
+        private bool isChargeJumpOn;
 
         [Space]
         [SerializeField, Header("공격하나?")] 
@@ -632,6 +645,8 @@ namespace Module
         private SettingTime settingTime;
 
         private float personalTime;
+
+        public float jumpstrenght = 0;
         //public float addSpeed
 
         [Space]
@@ -661,6 +676,9 @@ namespace Module
         private List<Observer> observers = new List<Observer>();
 
         public virtual void SetConsecutiveAttack(int _on) { }
+
+        public virtual void Jump() { }
+
         public virtual void SetActiveAnimatorRoot(int _on) { }
 
         public virtual void SetAnimationLayerOn(int _on, float _duration){

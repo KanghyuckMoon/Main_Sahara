@@ -43,7 +43,7 @@ namespace PassiveItem
 
         public void UpdateEffect()
         {
-            if (isPlayer)
+            if (!(mainModule.IsChargeJumpOn & mainModule.isGround) && isPlayer)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -70,11 +70,9 @@ namespace PassiveItem
                 air = true;
             }
 
-            if (air)
-            {
-                if (mainModule.isGround)
-                    Land();
-            }
+            if (!air) return;
+            if (mainModule.isGround)
+                Land();
         }
 
         public void ClearPassiveEffect()
@@ -96,6 +94,8 @@ namespace PassiveItem
 
         private void Jumping()
         {
+            mainModule.jumpstrenght = 0;
+            
             if (!mainModule.isGround)
             {
                 mainModule.Animator.SetBool("DoubleJump", true);

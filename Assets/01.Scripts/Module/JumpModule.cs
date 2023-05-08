@@ -139,10 +139,11 @@ namespace Module
             onJump = true;
         }
 
-        public void Jump()
+        public void Jump(float _value = 0)
         {
+            if (_value == 0) _value = JumpHeight;
             onJump = false;
-            mainModule.Gravity = Mathf.Sqrt(JumpHeight * -2.2f * _GravityScale);
+            mainModule.Gravity = Mathf.Sqrt(_value * -2.2f * _GravityScale);
         }
 
         public override void OnDisable()
