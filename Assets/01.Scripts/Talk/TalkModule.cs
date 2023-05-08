@@ -185,9 +185,17 @@ namespace Module.Talk
 					foreach (var questCondition in _talkData.questConditionList)
 					{
 						QuestData questData = QuestManager.Instance.GetQuestData(questCondition.questKey);
-						if(questCondition.questState != questData.QuestState)
+						try
 						{
-							return false;
+						    if(questCondition.questState != questData.QuestState)
+						    {
+							    return false;
+						    }
+						}
+						catch
+						{
+						   Debug.LogError($"Quest Error {questCondition.questKey}"); 
+						   return false;
 						}
 					}
 					break;
