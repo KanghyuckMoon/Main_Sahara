@@ -69,12 +69,6 @@ namespace UI.Inventory
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.accessories_button,
                     InventoryView.Elements.accessoire_equip_panel, x));
 
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.material_button,
-                (x) => AccentPattern(InventoryGridSlotsView.RadioButtons.material_button, x));
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.valuable_button,
-                (x) => AccentPattern(InventoryGridSlotsView.RadioButtons.valuable_button, x));
-            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.marker_button,
-                (x) => AccentPattern(InventoryGridSlotsView.RadioButtons.marker_button, x));
 
             EventManager.Instance.StartListening(EventsType.UpdateInventoryUI, UpdateUI);
         }
@@ -152,14 +146,7 @@ namespace UI.Inventory
                 // 소비, 무기 버튼에서는 
             }
 
-            AccentPattern(_rType, _isActive);
             AnimateSlot(_eType, _isActive);
-        }
-
-        private void AccentPattern(InventoryGridSlotsView.RadioButtons _type, bool _isActive)
-        {
-            if (_isActive == false) return;
-            inventoryView.MoveAccentPattern(_type);
         }
 
         private void AnimateSlot(InventoryView.Elements _type, bool _isActive)

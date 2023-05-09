@@ -6,34 +6,43 @@ using UI.ConstructorManager;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Utill.Addressable;
+using UI.Production;
+using Unity.Plastic.Antlr3.Runtime.Misc;
 
-namespace UI.Production
+namespace UI.Popup
 {
-    public class ShopPopupPr : IPopup
+    public class ShopPopupPr : IPopup   
     {
         private ShopPopupView shopPopupView;
 
         private string itemName; 
         private VisualElement parent;
-        public VisualElement Parent { get; }
+
+        private const string animateStr = "popup_inactive";
+        public VisualElement Parent => parent; 
         
         public ShopPopupPr()
         {
             var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(ShopPopupView));
-            parent = _prod.Item1; 
+            parent = _prod.Item1.ElementAt(0); 
             shopPopupView = _prod.Item2 as ShopPopupView;
         }
         public void ActiveTween()
         {
-            
+            if (parent.ClassListContains(animateStr) == true)
+            {
+                parent.RemoveFromClassList(animateStr);
+            }
         }
 
         public void InActiveTween()
         {
+            parent.AddToClassList(animateStr);
         }
 
         public void Undo()
         {
+            shopPopupView.ParentElement.RemoveFromHierarchy();
         }
 
         public void SetData(object _data)
@@ -41,6 +50,11 @@ namespace UI.Production
             ItemData _itemData = _data as ItemData;
             Texture2D _image = AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey);
             itemName = TextManager.Instance.GetText(_itemData.nameKey);
+        }
+
+        public void AddClickEvent(Action _callback)
+        {
+            shopPopupView.AddBtnEvent(() => _callback?.Invoke()); 
         }
 
         public void SetBuySell(bool _isBuy)

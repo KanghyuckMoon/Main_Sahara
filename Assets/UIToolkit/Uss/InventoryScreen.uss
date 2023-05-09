@@ -406,3 +406,64 @@
     background-image: url('project://database/Packages/com.unity.timeline/Editor/StyleSheets/Images/Icons/d_TrackMarkerButtonEnabled@2x.png?fileID=2800000&guid=6192986415256ca47a97a97507406f5e&type=3#d_TrackMarkerButtonEnabled@2x');
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
+
+.slot_item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.2s;
+}
+
+.slot_item:hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    scale: 1.2 1.2;
+    background-color: rgba(255, 80, 80, 0.02);
+    -unity-background-image-tint-color: rgb(255, 0, 0);
+}
+
+.slot_item_image {
+    background-image: url('project://database/Assets/14.Texture/ItemImage/ExSw_00_Cutlass_Sprite.png?fileID=2800000&guid=c8b0feac60eb8f74b804c50807e7035b&type=3#ExSw_00_Cutlass_Sprite');
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    width: 80%;
+    height: 80%;
+    transition-duration: 0.2s;
+}
+
+.slot_item_image:hover {
+    background-image: url('project://database/Assets/14.Texture/ItemImage/ExSw_00_Cutlass_Sprite.png?fileID=2800000&guid=c8b0feac60eb8f74b804c50807e7035b&type=3#ExSw_00_Cutlass_Sprite');
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    width: 80%;
+    height: 80%;
+    background-color: rgba(255, 137, 0, 0.02);
+}
+
+.category_topline {
+    background-image: url('project://database/Assets/14.Texture/UI/Inventory/title%20line-1.png?fileID=2800000&guid=cce167cb18f4ba14980f3617237dfbbf&type=3#title line-1');
+    height: 30px;
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.category_botline {
+    background-image: url('project://database/Assets/14.Texture/UI/Inventory/title%20line-2.png?fileID=2800000&guid=e6efea9071cff4245befa43863dbfdb7&type=3#title line-2');
+    height: 30px;
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.accent_pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition-property: left;
+    transition-duration: 0.2s;
+    top: 0;
+    left: -2px;
+    translate: 25px 0;
+}

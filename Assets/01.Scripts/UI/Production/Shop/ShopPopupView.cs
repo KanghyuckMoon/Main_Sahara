@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UI.Base;
 using UnityEngine;
+using UnityEngine.UIElements;
+using System; 
 
 namespace UI.Production
 {
@@ -29,6 +31,7 @@ namespace UI.Production
             //base.Cashing();
             BindVisualElements(typeof(Elements));
             BindLabels(typeof(Labels));
+            BindButtons(typeof(Buttons));
         }
 
         public override void Init()
@@ -46,9 +49,10 @@ namespace UI.Production
             //GetLabel((int)Labels.detail_label).text = _str; 
         }
 
-        public void AddBtnEvent()
+        public void AddBtnEvent(Action _callback)
         {
-            
+            AddButtonEvent<ClickEvent>((int)Buttons.accept_btn, _callback);
+            AddButtonEvent<ClickEvent>((int)Buttons.cancel_btn , () => ParentElement.RemoveFromHierarchy());
         }
         
         

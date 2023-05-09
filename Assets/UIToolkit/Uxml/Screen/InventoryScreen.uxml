@@ -107,45 +107,47 @@
             <ui:VisualElement name="Content" class="content_panel" style="justify-content: flex-start; background-color: rgba(87, 0, 255, 0); margin-bottom: 0; margin-right: 0; margin-top: 0; margin-left: 0; padding-bottom: 20px; padding-left: 40px;">
                 <ui:VisualElement name="left_content_panel" class="left_content_panel">
                     <ui:VisualElement name="background" style="position: absolute; width: 100%; height: 100%; -unity-background-scale-mode: scale-and-crop; background-color: rgb(22, 14, 10);" />
-                    <ui:VisualElement name="contents" style="width: 100%; height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-                        <ui:VisualElement name="inventory_select" class="inventory_select">
-                            <ui:VisualElement name="top_line" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/title%20line-1.png?fileID=2800000&amp;guid=cce167cb18f4ba14980f3617237dfbbf&amp;type=3#title line-1&apos;); height: 30px; -unity-background-scale-mode: scale-and-crop;" />
-                            <ui:RadioButtonGroup label="Radio Button Group" name="inventory_select_group" value="-1" picking-mode="Ignore" class="item__list-buttonGroup inventory_select_group">
-                                <ui:RadioButton label="Radio Button" name="weapon_button" value="true" class="inven_button" style="display: flex;" />
-                                <ui:RadioButton label="Radio Button" name="armor_button" class="inven_button" />
-                                <ui:RadioButton label="Radio Button" name="consumation_button" class="inven_button" />
-                                <ui:RadioButton label="Radio Button" name="accessories_button" class="inven_button" />
-                                <ui:RadioButton label="Radio Button" name="material_button" class="inven_button" />
-                                <ui:RadioButton label="Radio Button" name="valuable_button" class="inven_button" />
-                                <ui:RadioButton label="Radio Button" name="marker_button" class="inven_button" />
-                            </ui:RadioButtonGroup>
-                            <ui:VisualElement name="bot_line" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/title%20line-2.png?fileID=2800000&amp;guid=e6efea9071cff4245befa43863dbfdb7&amp;type=3#title line-2&apos;); height: 30px; -unity-background-scale-mode: scale-and-crop;" />
-                            <ui:VisualElement picking-mode="Ignore" name="accent_pattern" style="position: absolute; width: 100%; height: 100%; transition-property: left; transition-duration: 0.2s; top: 0; left: -2px; translate: 25px 0;">
-                                <ui:VisualElement name="top_pattern" picking-mode="Ignore" style="width: 70px; height: 55px; position: absolute; bottom: 80%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;);" />
-                                <ui:VisualElement picking-mode="Ignore" style="height: 100%; width: 100%;" />
-                                <ui:VisualElement name="bot_pattern" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;); width: 70px; height: 55px; -unity-background-scale-mode: scale-and-crop; rotate: 180deg; position: absolute; top: 100%;" />
+                    <ui:VisualElement name="GridView" style="width: 100%; height: 100%;">
+                        <ui:VisualElement name="contents" style="width: 100%; height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; display: flex;">
+                            <ui:VisualElement name="inventory_select" class="inventory_select" style="display: flex;">
+                                <ui:VisualElement name="top_line" picking-mode="Ignore" class="category_topline" />
+                                <ui:RadioButtonGroup label="Radio Button Group" name="inventory_select_group" value="-1" picking-mode="Ignore" class="item__list-buttonGroup inventory_select_group">
+                                    <ui:RadioButton label="Radio Button" name="weapon_button" value="true" class="inven_button" style="display: flex;" />
+                                    <ui:RadioButton label="Radio Button" name="armor_button" class="inven_button" />
+                                    <ui:RadioButton label="Radio Button" name="consumation_button" class="inven_button" />
+                                    <ui:RadioButton label="Radio Button" name="accessories_button" class="inven_button" />
+                                    <ui:RadioButton label="Radio Button" name="material_button" class="inven_button" />
+                                    <ui:RadioButton label="Radio Button" name="valuable_button" class="inven_button" />
+                                    <ui:RadioButton label="Radio Button" name="marker_button" class="inven_button" />
+                                </ui:RadioButtonGroup>
+                                <ui:VisualElement name="bot_line" class="category_botline" />
+                                <ui:VisualElement picking-mode="Ignore" name="accent_pattern" class="accent_pattern">
+                                    <ui:VisualElement name="top_pattern" picking-mode="Ignore" style="width: 70px; height: 55px; position: absolute; bottom: 80%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;);" />
+                                    <ui:VisualElement picking-mode="Ignore" style="height: 100%; width: 100%;" />
+                                    <ui:VisualElement name="bot_pattern" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;); width: 70px; height: 55px; -unity-background-scale-mode: scale-and-crop; rotate: 180deg; position: absolute; top: 100%;" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
-                        </ui:VisualElement>
-                        <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" class="item__grid-panel inventory_scroll_panel" style="height: 100%;">
-                            <ui:VisualElement name="weapon_panel" class="inventory_panel" />
-                            <ui:VisualElement />
-                            <ui:VisualElement name="armor_panel" class="inventory_panel" style="display: none;" />
-                            <ui:VisualElement name="consumation_panel" class="inventory_panel" style="display: none;" />
-                            <ui:VisualElement name="skill_panel" class="inventory_panel" style="display: none;" />
-                            <ui:VisualElement name="accessories_panel" class="inventory_panel" style="display: none;" />
-                            <ui:VisualElement name="material_panel" class="inventory_panel" style="display: none;" />
-                            <ui:VisualElement name="valuable_panel" class="inventory_panel" style="display: none;" />
-                            <ui:VisualElement name="marker_panel" class="inventory_panel" style="display: none;" />
-                            <ui:VisualElement name="row" class="row" style="display: none;">
-                                <ui:VisualElement name="slot" class="slot" />
-                                <ui:VisualElement name="slot" class="slot" />
-                                <ui:VisualElement name="slot" class="slot" />
-                                <ui:VisualElement name="slot" class="slot" />
-                                <ui:VisualElement name="slot" class="slot" />
+                            <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" class="item__grid-panel inventory_scroll_panel" style="height: 100%; display: flex;">
+                                <ui:VisualElement name="weapon_panel" class="inventory_panel" />
+                                <ui:VisualElement style="display: flex;" />
+                                <ui:VisualElement name="armor_panel" class="inventory_panel" style="display: none;" />
+                                <ui:VisualElement name="consumation_panel" class="inventory_panel" style="display: none;" />
+                                <ui:VisualElement name="skill_panel" class="inventory_panel" style="display: none;" />
+                                <ui:VisualElement name="accessories_panel" class="inventory_panel" style="display: none;" />
+                                <ui:VisualElement name="material_panel" class="inventory_panel" style="display: none;" />
+                                <ui:VisualElement name="valuable_panel" class="inventory_panel" style="display: none;" />
+                                <ui:VisualElement name="marker_panel" class="inventory_panel" style="display: none;" />
+                                <ui:VisualElement name="row" class="row" style="display: none;">
+                                    <ui:VisualElement name="slot" class="slot" />
+                                    <ui:VisualElement name="slot" class="slot" />
+                                    <ui:VisualElement name="slot" class="slot" />
+                                    <ui:VisualElement name="slot" class="slot" />
+                                    <ui:VisualElement name="slot" class="slot" />
+                                </ui:VisualElement>
+                            </ui:ScrollView>
+                            <ui:VisualElement name="Title" style="height: 10%; display: none;">
+                                <ui:Label display-tooltip-when-elided="true" text="JJB__" style="height: 100%; -unity-text-align: middle-left; font-size: 50px; -unity-font-style: bold; color: rgb(209, 209, 209);" />
                             </ui:VisualElement>
-                        </ui:ScrollView>
-                        <ui:VisualElement name="Title" style="height: 10%; display: none;">
-                            <ui:Label display-tooltip-when-elided="true" text="JJB__" style="height: 100%; -unity-text-align: middle-left; font-size: 50px; -unity-font-style: bold; color: rgb(209, 209, 209);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>

@@ -27,7 +27,7 @@ namespace UI.Popup
 
         public void SetParent(VisualElement _v)
         {
-            
+            GetVisualElement((int)Elements.shop_popup_parent).Add(_v);
         }
     }
 }

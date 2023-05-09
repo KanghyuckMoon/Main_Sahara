@@ -6,7 +6,6 @@ using UnityEngine;
 using UI.Popup;
 using Utill.Pattern;
 using Inventory;
-using UI.Production;
 
 public class PopupTest : MonoBehaviour
 {
@@ -32,7 +31,7 @@ public class PopupTest : MonoBehaviour
                 new InteractionUIData { targetVec = trm.position, textKey = "ADSAFASFSAFSA" }, -1f);
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             ItemData itemData = ItemData.CopyItemDataSO(ItemDataSo);
             PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,

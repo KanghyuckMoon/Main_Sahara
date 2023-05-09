@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="GridView" src="project://database/Assets/UIToolkit/Uxml/GridView.uxml?fileID=9197481963319205126&amp;guid=3f66e96b90f105344a0e7cb8542aee9d&amp;type=3#GridView" />
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
     <Style src="project://database/Assets/UIToolkit/Uss/Shop.uss?fileID=7433441132597879392&amp;guid=260eb23e2ca883742aa058d080e36060&amp;type=3#Shop" />
@@ -10,44 +11,16 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="content" class="content_panel" style="justify-content: flex-start; background-color: rgba(87, 0, 255, 0); margin-top: 1%; display: flex; flex-direction: row;">
-            <ui:VisualElement name="left_content_panel" class="left_content_panel" style="flex-basis: 50%;">
+            <ui:VisualElement name="left_content_panel" class="left_content_panel" style="flex-basis: 40%;">
                 <ui:VisualElement name="Title" style="height: 10%; display: none;">
                     <ui:Label display-tooltip-when-elided="true" text="JJB__" style="height: 100%; -unity-text-align: middle-left; font-size: 50px; -unity-font-style: bold; color: rgb(209, 209, 209);" />
                 </ui:VisualElement>
-                <ui:VisualElement name="inventory_select" class="inventory_select">
-                    <ui:RadioButtonGroup label="Radio Button Group" value="-1" name="inventory_select_group" class="item__list-buttonGroup inventory_select_group">
-                        <ui:RadioButton label="Radio Button" name="weapon_button" value="true" style="display: flex;" />
-                        <ui:RadioButton label="Radio Button" name="armor_button" />
-                        <ui:RadioButton label="Radio Button" name="consumation_button" />
-                        <ui:RadioButton label="Radio Button" name="accessories_button" />
-                        <ui:RadioButton label="Radio Button" name="material_button" />
-                        <ui:RadioButton label="Radio Button" name="valuable_button" />
-                        <ui:RadioButton label="Radio Button" name="marker_button" />
-                    </ui:RadioButtonGroup>
-                </ui:VisualElement>
-                <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" class="item__grid-panel inventory_scroll_panel" style="height: 100%; background-color: rgb(29, 29, 29);">
-                    <ui:VisualElement name="weapon_panel" class="inventory_panel shop_panel" />
-                    <ui:VisualElement />
-                    <ui:VisualElement name="armor_panel" class="inventory_panel shop_panel" style="display: none;" />
-                    <ui:VisualElement name="consumation_panel" class="inventory_panel shop_panel" style="display: none;" />
-                    <ui:VisualElement name="skill_panel" class="inventory_panel shop_panel" style="display: none;" />
-                    <ui:VisualElement name="accessories_panel" class="inventory_panel shop_panel" style="display: none;" />
-                    <ui:VisualElement name="material_panel" class="inventory_panel shop_panel" style="display: none;" />
-                    <ui:VisualElement name="valuable_panel" class="inventory_panel shop_panel" style="display: none;" />
-                    <ui:VisualElement name="marker_panel" class="inventory_panel shop_panel" style="display: none;" />
-                    <ui:VisualElement name="row" class="row" style="display: none;">
-                        <ui:VisualElement name="slot" class="slot" />
-                        <ui:VisualElement name="slot" class="slot" />
-                        <ui:VisualElement name="slot" class="slot" />
-                        <ui:VisualElement name="slot" class="slot" />
-                        <ui:VisualElement name="slot" class="slot" />
-                    </ui:VisualElement>
-                </ui:ScrollView>
+                <ui:Instance template="GridView" name="GridView" style="width: 100%; height: 100%;" />
             </ui:VisualElement>
             <ui:VisualElement name="center_content_panel" class="center_content_panel" style="padding-top: 3%;">
                 <ui:VisualElement name="header" style="height: 10%; display: none;" />
                 <ui:VisualElement name="content" style="flex-direction: column-reverse; height: 100%;">
-                    <ui:VisualElement name="character_panel" style="height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/InventoryModel.renderTexture?fileID=8400000&amp;guid=409d5825e55d3d94c810734ebf531cc2&amp;type=2#InventoryModel&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:VisualElement name="character_panel" style="height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/ShopModel.renderTexture?fileID=8400000&amp;guid=986570184504270459ba0ff335da20ae&amp;type=2#ShopModel&apos;); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
@@ -60,4 +33,33 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </Gradient>
+    <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" class="item__grid-panel inventory_scroll_panel" style="height: 100%; background-color: rgb(29, 29, 29); display: none;">
+        <ui:VisualElement name="weapon_panel" class="inventory_panel shop_panel" />
+        <ui:VisualElement />
+        <ui:VisualElement name="armor_panel" class="inventory_panel shop_panel" style="display: none;" />
+        <ui:VisualElement name="consumation_panel" class="inventory_panel shop_panel" style="display: none;" />
+        <ui:VisualElement name="skill_panel" class="inventory_panel shop_panel" style="display: none;" />
+        <ui:VisualElement name="accessories_panel" class="inventory_panel shop_panel" style="display: none;" />
+        <ui:VisualElement name="material_panel" class="inventory_panel shop_panel" style="display: none;" />
+        <ui:VisualElement name="valuable_panel" class="inventory_panel shop_panel" style="display: none;" />
+        <ui:VisualElement name="marker_panel" class="inventory_panel shop_panel" style="display: none;" />
+        <ui:VisualElement name="row" class="row" style="display: none;">
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+        </ui:VisualElement>
+    </ui:ScrollView>
+    <ui:VisualElement name="inventory_select" class="inventory_select" style="display: none;">
+        <ui:RadioButtonGroup label="Radio Button Group" value="-1" name="inventory_select_group" class="item__list-buttonGroup inventory_select_group">
+            <ui:RadioButton label="Radio Button" name="weapon_button" value="true" style="display: flex;" />
+            <ui:RadioButton label="Radio Button" name="armor_button" />
+            <ui:RadioButton label="Radio Button" name="consumation_button" />
+            <ui:RadioButton label="Radio Button" name="accessories_button" />
+            <ui:RadioButton label="Radio Button" name="material_button" />
+            <ui:RadioButton label="Radio Button" name="valuable_button" />
+            <ui:RadioButton label="Radio Button" name="marker_button" />
+        </ui:RadioButtonGroup>
+    </ui:VisualElement>
 </ui:UXML>

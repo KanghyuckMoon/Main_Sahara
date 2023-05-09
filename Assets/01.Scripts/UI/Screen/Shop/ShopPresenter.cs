@@ -9,6 +9,7 @@ using UI.Inventory;
 using Shop;
 using Inventory;
 using Utill.Addressable;
+using UI.Popup; 
 
 namespace UI.Shop
 {
@@ -73,7 +74,15 @@ namespace UI.Shop
                 // 더블클릭시 구매 이벤트 추가 
                 inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
                 {
-                    x.AddDoubleClicker(() => ShopManager.Instance.BuyItem(_data));
+                    // 팝업
+                    //x.AddDoubleClicker(() => ShopManager.Instance.BuyItem(_data));
+                    x.AddDoubleClicker(() =>
+                    {
+                        var _popupPr = PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,_data,-1f);
+                        _popupPr.SetBuySell(_isBuy: true);
+                        _popupPr.AddClickEvent(() => ShopManager.Instance.BuyItem(_data));     
+                    });
+                     
                 });
             }
             //   ShopManager.Instance.BuyItem();

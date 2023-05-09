@@ -29,6 +29,11 @@ namespace UI.Inventory
             marker_panel
         }
 
+        enum Elements
+        {
+            accent_pattern = 7, 
+        }
+        
         public enum RadioButtons
         {
             weapon_button,
@@ -56,6 +61,7 @@ namespace UI.Inventory
         {
             //base.Cashing();
             BindVisualElements(typeof(InvenPanelElements));
+            BindVisualElements(typeof(Elements));
             BindRadioButtons(typeof(RadioButtons));
             BindScrollViews(typeof(ScrollViews));
         }
@@ -65,8 +71,9 @@ namespace UI.Inventory
             base.Init();
             AddButtonEvents();
             SendEvent();
+            InitBtnPos(); 
         }
-
+        
         /// <summary>
         /// RadioButton  가져오기 
         /// </summary>
@@ -110,9 +117,37 @@ namespace UI.Inventory
                 {
                     ActiveInventoryPanel((InvenPanelElements)_p, x);
                     ActiveRadioBtn((RadioButtons)_p, x);
+                    MoveAccentPattern((RadioButtons)_p,x); 
                 });
 
             }
+        }
+        
+        private float categoryLength = 0f; 
+        private void InitBtnPos()
+        {
+            Rect _firstSlot =
+               GetRBtn(InventoryGridSlotsView.RadioButtons.weapon_button).worldBound;
+            Rect _lastSlot =
+                GetRBtn(InventoryGridSlotsView.RadioButtons.marker_button).worldBound;
+
+            categoryLength = (_lastSlot.x - _firstSlot.x + 80) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
+        }
+        /// <summary>
+        ///  카테고리 강조 패턴 위치 설정 
+        /// </summary>
+        public void MoveAccentPattern(InventoryGridSlotsView.RadioButtons _btnType, bool _isActive)
+        {
+            if (_isActive == false) return;
+            InitBtnPos(); 
+            //if(categoryLength == 0) InitBtnPos();
+
+            VisualElement _v = GetRBtn(_btnType);
+            Rect _rect = _v.worldBound;
+            float _posX = _rect.x + _v.resolvedStyle.width / 2;
+            float _moveV = categoryLength * (int)_btnType; 
+            GetVisualElement((int)Elements.accent_pattern).style.left = _moveV; 
+            //GetVisualElement((int)Elements.accent_pattern).
         }
 
         /// <summary>

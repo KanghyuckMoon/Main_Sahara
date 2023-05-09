@@ -130,32 +130,7 @@ namespace UI.Inventory
             }
             return _isActive; 
         }
-
-        /// <summary>
-        ///  카테고리 강조 패턴 위치 설정 
-        /// </summary>
-        public void MoveAccentPattern(InventoryGridSlotsView.RadioButtons _btnType)
-        {
-            if(categoryLength == 0) InitBtnPos();
-
-            VisualElement _v = inventoryGridSlotsPr.GridView.GetRBtn(_btnType);
-            Rect _rect = _v.worldBound;
-            float _posX = _rect.x + _v.resolvedStyle.width / 2;
-            float _moveV = categoryLength * (int)_btnType; 
-            GetVisualElement((int)Elements.accent_pattern).style.left = _moveV; 
-            //GetVisualElement((int)Elements.accent_pattern).
-        }
-
-        private float categoryLength = 0f; 
-        private void InitBtnPos()
-        {
-            Rect _firstSlot =
-                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.weapon_button).worldBound;
-            Rect _lastSlot =
-                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.marker_button).worldBound;
-
-            categoryLength = (_lastSlot.x - _firstSlot.x + 80) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
-        }
+        
 
         public void AddSlotClickEvent(Action<ItemData> _callback)
         {

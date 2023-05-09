@@ -156,8 +156,9 @@ namespace UI.Inventory
                 this.inventoryGridSlotsView.SetParent(_itemType, _slotPr.Parent);
             }
         }
+        
 
-
+        
         /// <summary>
         /// 드래거 추가 
         /// </summary>
