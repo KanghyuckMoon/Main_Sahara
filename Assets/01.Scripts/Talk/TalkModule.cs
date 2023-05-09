@@ -235,6 +235,11 @@ namespace Module.Talk
 			pathAction += action;
 		}
 
+		public void InvokePathAction(int index)
+		{
+			pathAction?.Invoke(index);
+		}
+
 		public override void OnDisable()
 		{
 			player = null;
