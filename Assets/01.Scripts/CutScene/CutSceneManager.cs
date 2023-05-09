@@ -160,6 +160,7 @@ namespace CutScene
             {
                 case CutSceneType.PlayerToTarget:
                     CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    CutSceneManager.Instance.SetLookAtTarget(_cutSceneData.lookAtTarget);
                     ChangeLastCam(CamType.TargetCam1);
                     break;
                 case CutSceneType.PlayerToTrack:
@@ -177,25 +178,30 @@ namespace CutScene
                     break;
                 case CutSceneType.PlayerToCutTarget:
                     CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    CutSceneManager.Instance.SetLookAtTarget(_cutSceneData.lookAtTarget);
                     ChangeLastCam(CamType.TargetCam1);
                     break;
                 case CutSceneType.PlayerToZoomInOut:
                     CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
                     CutSceneManager.Instance.SetZoomInOutDistance(_cutSceneData.zoomInOutDistance);
+                    CutSceneManager.Instance.SetLookAtTarget(_cutSceneData.lookAtTarget);
                     ChangeLastCam(CamType.CutSceneZoomCam);
                     break;
                 case CutSceneType.TargetToPlayer:
                     CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
+                    CutSceneManager.Instance.SetLookAtTarget(_cutSceneData.lookAtTarget);
                     ChangeLastCam(CamType.PlayerCam);
                     break;
                 case CutSceneType.CutTargetToCutTarget:
                     CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
                     CutSceneManager.Instance.SetTarget2(_cutSceneData.target2);
+                    CutSceneManager.Instance.SetLookAtTarget(_cutSceneData.lookAtTarget);
                     ChangeLastCam(CamType.TargetCam2);
                     break;
                 case CutSceneType.CutTargetToTarget:
                     CutSceneManager.Instance.SetTarget1(_cutSceneData.target1);
                     CutSceneManager.Instance.SetTarget2(_cutSceneData.target2);
+                    CutSceneManager.Instance.SetLookAtTarget(_cutSceneData.lookAtTarget);
                     ChangeLastCam(CamType.TargetCam2);
                     break;
                 case CutSceneType.PlayerLookAtTarget:
@@ -366,6 +372,23 @@ namespace CutScene
             CamList.GetCam(CamType.CutSceneZoomCam).Follow = _target;
             CamList.GetCam(CamType.LookAtCam).LookAt = _target;
         }
+
+        public void SetLookAtTarget(Transform _target)
+        {
+            if (_target is null)
+            {
+                CamList.GetCam(CamType.TargetCam1).LookAt = null;
+                CamList.GetCam(CamType.TargetCam2).LookAt = null;
+                CamList.GetCam(CamType.CutSceneZoomCam).LookAt = null;
+            }
+            else
+            {
+                CamList.GetCam(CamType.TargetCam1).LookAt = _target;
+                CamList.GetCam(CamType.TargetCam2).LookAt = _target;
+                CamList.GetCam(CamType.CutSceneZoomCam).LookAt = _target;
+            }
+        }
+        
         public void SetTarget2(Transform _target)
         {
             target2 = _target;
@@ -462,7 +485,9 @@ namespace CutScene
         //Target
         public Transform target1;
         public Transform target2;
-
+        public Transform lookAtTarget;
+        
+        
         //Track
         public Transform trackTarget;
         public CinemachineSmoothPath smoothPath;

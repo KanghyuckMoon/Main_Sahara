@@ -12,6 +12,9 @@ namespace CondinedModule
             None,
             Navi,
             Foolue,
+            Kevin,
+            Emiliy,
+            Magi,
         }
 
         public Dictionary<NPCTYPE, TalkNPC> talkNpcDic = new Dictionary<NPCTYPE, TalkNPC>();
