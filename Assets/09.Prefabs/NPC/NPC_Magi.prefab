@@ -158,6 +158,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!143 &2549421850914351978
 CharacterController:
   m_ObjectHideFlags: 0
@@ -205,6 +206,7 @@ MonoBehaviour:
   lockOnTarget: {fileID: 0}
   characterController: {fileID: 0}
   objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
   objRotation: {x: 0, y: 0, z: 0, w: 0}
   objForword: {x: 0, y: 0, z: 0}
   statData: {fileID: 0}
@@ -233,6 +235,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -19.8
   groundOffset: 0
+  groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
@@ -252,8 +255,9 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   aiSOAddress: TestTalkNPCSO
-  smoothPath: {fileID: 0}
-  textSOAddress: 02. Foolue_TalkDataSO
+  pathHarver: {fileID: 0}
+  npctype: 0
+  textSOAddress: Magi_TalkSO
 --- !u!114 &5662192750132716922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +280,9 @@ MonoBehaviour:
   rootTransform: {fileID: 0}
   animator: {fileID: 2549421850914351979}
   dropItemListSO: {fileID: 0}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7747426361158939106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: 
 --- !u!114 &2389877075778003227
 MonoBehaviour:
@@ -377,6 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6724b8ea5b9ec8949a1d92a8de207a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameKey: M00000010
 --- !u!65 &5449538530464776946
 BoxCollider:
   m_ObjectHideFlags: 0
