@@ -47,6 +47,7 @@ namespace Module
 		}
 
         public float passiveSpeed = 0;
+        public bool isCrawling;
         
         protected Animator animator;
         protected float moveSpeed => StatData.WalkSpeed;
@@ -91,7 +92,7 @@ namespace Module
             #region 속도 관련 부분
 
             float _targetSpeed = mainModule.IsSprint ? runSpeed : moveSpeed;
-            float _lockOnspeed = (mainModule.LockOn ? -1 : 0) + addSpeed;
+            float _lockOnspeed = (mainModule.LockOn ? -1 : 0) + passiveSpeed;
 
             float _speed;
 
@@ -196,7 +197,12 @@ namespace Module
 
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
-        
+
+        public void Crawling()
+        {
+            Vector3 _targetDirection = new Vector3(mainModule.ObjDir.x, mainModule.ObjDir.y, 0);
+            mainModule.CharacterController.Move(_targetDirection* mainModule.PersonalDeltaTime);
+        }
         // ReSharper disable Unity.PerformanceAnalysis
         protected Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {

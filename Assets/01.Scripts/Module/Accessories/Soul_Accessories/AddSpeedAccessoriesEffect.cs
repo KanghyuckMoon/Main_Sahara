@@ -28,7 +28,7 @@ namespace PassiveItem
         {
             if (IsMoving())
             {
-                moveModule.passiveSpeed = Mathf.Min(3, moveModule.passiveSpeed + (Time.deltaTime * 0.02f));
+                moveModule.passiveSpeed = Mathf.Min(4, moveModule.passiveSpeed + (Time.deltaTime * 0.02f));
             }
             else
             {
@@ -40,7 +40,10 @@ namespace PassiveItem
         {
             var _x = Input.GetAxis("Horizontal");
             var _y = Input.GetAxis("Vertical");
-            return _x + _y != 0;
+
+            Vector3 _vec = new Vector3(_x, _y, 0);
+
+            return _vec != Vector3.zero;
         }
 
         public void ClearPassiveEffect()

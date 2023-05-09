@@ -64,6 +64,7 @@ namespace Module
 
         private int ChangeHpValue(int value)
         {
+            //Debug.LogError("아파아파파파파파파파");
             _StatData.CurrentHp += value;
             if (_StatData.CurrentHp > _StatData.MaxHp) _StatData.CurrentHp = _StatData.MaxHp;
             if (_StatData.CurrentHp < 0) _StatData.CurrentHp = 0;

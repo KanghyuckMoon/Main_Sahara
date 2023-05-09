@@ -604,6 +604,8 @@ namespace Module
         [SerializeField, Header("차지점프가 있는가")] 
         private bool isChargeJumpOn;
 
+        [SerializeField] public bool isFlameOn;
+
         [Space]
         [SerializeField, Header("공격하나?")] 
         private bool attacking;

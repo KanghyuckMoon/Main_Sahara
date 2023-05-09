@@ -7,6 +7,7 @@ using DG.Tweening;
 using Pool;
 using UnityEngine.Rendering;
 using Weapon;
+using Buff;
 
 namespace PassiveItem
 {
@@ -42,11 +43,14 @@ namespace PassiveItem
             {
                 if (VARIABLE.weaponHand == WeaponHand.Weapon)
                 {
-                    flame = ObjectPoolManager.Instance.GetObject("FlameEffect");
+                    flame = ObjectPoolManager.Instance.GetObject("FireEffect_1");
                     flame.transform.SetParent(VARIABLE.transform);
 
                     flame.transform.localPosition = Vector3.zero;
                     flame.SetActive(true);
+
+                    FlameEffectDmg _fire = flame.GetComponent<FlameEffectDmg>();
+                    _fire.enemyLayerName = "Enemy";
                 }
             }
         }
@@ -56,8 +60,11 @@ namespace PassiveItem
             if (isOn) return;
             if (mainModule.IsWeaponExist)
             {
-                SetFlame();
-                isOn = true;
+                if (Input.GetKeyDown(KeyCode.LeftAlt))
+                {
+                    SetFlame();
+                    isOn = true;
+                }
             }
         }
 

@@ -7,6 +7,7 @@ using DG.Tweening;
 using Pool;
 using UnityEngine.Rendering;
 using Utill.Addressable;
+using Buff;
 
 namespace PassiveItem
 {
@@ -24,11 +25,13 @@ namespace PassiveItem
         public BurningAccessoriesEffect(AbMainModule _mainModule)
         {
             mainModule = _mainModule;
+            if (mainModule.name != "Player") return;
             head = mainModule.GetComponentInChildren<Head>().gameObject;
         }
         
         public void ApplyPassiveEffect()
         {
+            if (mainModule.name != "Player") return;
             GameObject fire = ObjectPoolManager.Instance.GetObject("FireEffect_1");
             fire.transform.SetParent(head.transform);
             
@@ -36,6 +39,8 @@ namespace PassiveItem
             fire.transform.localRotation = Quaternion.identity;
 
             fire.SetActive(true);
+            FlameEffectDmg _fire = fire.GetComponent<FlameEffectDmg>();
+            _fire.enemyLayerName = "Enemy";
         }
         
         public void UpdateEffect()

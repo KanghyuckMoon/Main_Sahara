@@ -54,6 +54,15 @@ namespace Module
 					case AccessoriesItemType.Resurrection:
 						_itemPassive = GetItemWithPool<Resurrection_Accessories>("Resurrection_Accessories");
 						break;
+					case AccessoriesItemType.Glare:
+						_itemPassive = GetItemWithPool<Glare_Accessories>("Glare_Accessories");
+						break;
+					case AccessoriesItemType.Crawling:
+						_itemPassive = GetItemWithPool<Crawling_Accessories>("Crawling_Accessories");
+						break;
+					case AccessoriesItemType.UnlockInteraction:
+						_itemPassive = GetItemWithPool<UnlockInteraction_Accessories>("UnlockInteraction_Accessories");
+						break;
 					case AccessoriesItemType.NONE:
 						break;
 				}

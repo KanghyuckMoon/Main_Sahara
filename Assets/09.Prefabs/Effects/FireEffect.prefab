@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8723461770243791743}
   - component: {fileID: 7234895248809126098}
   - component: {fileID: 3415927245348612235}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Ashes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4832,7 +4832,7 @@ GameObject:
   - component: {fileID: 5589278639119822644}
   - component: {fileID: 2104151986909611599}
   - component: {fileID: 1554108587470130511}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Sparkles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9711,7 +9711,7 @@ GameObject:
   - component: {fileID: 6261296338349454840}
   - component: {fileID: 6100407400656749137}
   - component: {fileID: 8274860978047510816}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Sparkles Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14620,7 +14620,7 @@ GameObject:
   - component: {fileID: 7725773826809478306}
   - component: {fileID: 7362873326358193859}
   - component: {fileID: 4765668986698542331}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19450,7 +19450,7 @@ GameObject:
   - component: {fileID: 7004215306047090060}
   - component: {fileID: 2375201039106683625}
   - component: {fileID: 7326915200721114938}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Flames Secondary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24271,7 +24271,7 @@ GameObject:
   - component: {fileID: 4145591156296750619}
   - component: {fileID: 2942359538023881217}
   - component: {fileID: 5002624857657970101}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Heat Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29092,7 +29092,7 @@ GameObject:
   - component: {fileID: 7977752047692249711}
   - component: {fileID: 2053583067306098826}
   - component: {fileID: 2359408214380708955}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Flames Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33915,9 +33915,11 @@ GameObject:
   - component: {fileID: 8829451551789304543}
   - component: {fileID: 3630983130738417110}
   - component: {fileID: 2762194884798105820}
-  m_Layer: 0
+  - component: {fileID: 2599585695389398895}
+  - component: {fileID: -1810103478714434347}
+  m_Layer: 20
   m_Name: FireEffect
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38845,3 +38847,29 @@ MonoBehaviour:
   - {fileID: 7234895248809126098}
   - {fileID: 2104151986909611599}
   - {fileID: 2942359538023881217}
+--- !u!114 &2599585695389398895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829451551789304542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb731eae0b1dba4bb43c78fcca12f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLayerName: 
+--- !u!65 &-1810103478714434347
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829451551789304542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
