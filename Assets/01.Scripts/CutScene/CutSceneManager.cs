@@ -203,7 +203,7 @@ namespace CutScene
                     ChangeLastCam(CamType.LookAtCam);
                     break;
             }
-            if (_cutSceneData.isTalk)
+            if (_cutSceneData.isTalk || _cutSceneData.isTalkToCutScene)
             {
                 _cutSceneData.talkModule = NPCRegisterManager.Instance.Get(_cutSceneData.npctype).GetModuleComponent<TalkModule>(ModuleType.Talk);
                 CutSceneManager.Instance.SetTalkModule(_cutSceneData.talkModule, _cutSceneData.talkKey);
@@ -253,7 +253,7 @@ namespace CutScene
 				}
 			}
 
-			if (cutSceneDataList.cutSceneDataList[index].isTalk)
+			if (cutSceneDataList.cutSceneDataList[index].isTalk || cutSceneDataList.cutSceneDataList[index].isTalkToCutScene)
             {
                 PlayableDirector.Pause();
                 StartCoroutine(WaitEndTalk());
@@ -417,14 +417,18 @@ namespace CutScene
             {
                 return;
             }
-            talkModule.CutSceneTalk(talkKey);
+
+            if (cutSceneDataList.cutSceneDataList[index].isTalk)
+            {
+                talkModule.CutSceneTalk(talkKey);
+            }
         }
 
         public void TalkModuleCutSceneOff()
 		{
             foreach (var _obj in cutSceneDataList.cutSceneDataList)
 			{
-                if(_obj.isTalk)
+                if(_obj.isTalk || _obj.isTalkToCutScene)
                 {
                     NPCRegisterManager.Instance.Get(_obj.npctype)?.GetModuleComponent<TalkModule>(ModuleType.Talk)?.SetCutScene(false);
 				}
@@ -434,7 +438,7 @@ namespace CutScene
         {
             foreach (var _obj in cutSceneDataList.cutSceneDataList)
             {
-                if(_obj.isTalk)
+                if(_obj.isTalk || _obj.isTalkToCutScene)
                 {
                     NPCRegisterManager.Instance.Get(_obj.npctype)?.GetModuleComponent<TalkModule>(ModuleType.Talk)?.SetCutScene(true);
                 }
@@ -481,6 +485,7 @@ namespace CutScene
 
         //Condition
         public bool isTalk;
+        public bool isTalkToCutScene;
         public bool isNotUseTrackLookAt;
         
         
