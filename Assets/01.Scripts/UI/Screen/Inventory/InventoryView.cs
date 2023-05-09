@@ -120,6 +120,16 @@ namespace UI.Inventory
             }
         }
 
+        public override bool ActiveScreen()
+        {
+            bool _isActive = base.ActiveScreen(); 
+            if(_isActive == true) 
+            {
+                // 슬롯 초기화 
+                inventoryGridSlotsPr.ClearSlotDatas();
+            }
+            return _isActive; 
+        }
 
         /// <summary>
         ///  카테고리 강조 패턴 위치 설정 
@@ -230,7 +240,9 @@ namespace UI.Inventory
 
             // 슬롯에 순서대로 
             if (_itemData.itemType is ItemType.Skill) return; 
+            // 인벤토리 패널 UI 가져와 
             InventoryPanelUI _ui = inventoryGridSlotsPr.ItemSlotDic[_itemData.itemType];
+            // 현재 패널 ui 슷롯 인덱스 체크 
             if (_ui.slotItemViewList.Count <= _ui.index)
             {
                 inventoryGridSlotsPr.CreateRow(invenItemUISO.GetItemUIType(_itemData.itemType));

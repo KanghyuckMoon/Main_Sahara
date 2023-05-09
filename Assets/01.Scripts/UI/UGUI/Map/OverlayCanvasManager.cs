@@ -13,6 +13,9 @@ namespace  UI.Canvas
         // particle, 
         private CanvasUIComp canvasUIComp;
         private CanvasScreenDataSO canvasScreenDataSO;
+        
+        // 프로퍼티 
+        public Transform Canvas => canvasUIComp.Canvas; 
         public override void Awake()
         {
             base.Awake();

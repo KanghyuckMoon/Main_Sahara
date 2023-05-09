@@ -15,7 +15,7 @@ namespace UI.Production
         enum Labels
         {
             title_label, 
-            detail_label 
+            //detail_label 
         }
 
         enum Buttons
@@ -43,7 +43,7 @@ namespace UI.Production
 
         public void SetDetailLabel(string _str)
         {
-            GetLabel((int)Labels.detail_label).text = _str; 
+            //GetLabel((int)Labels.detail_label).text = _str; 
         }
 
         public void AddBtnEvent()

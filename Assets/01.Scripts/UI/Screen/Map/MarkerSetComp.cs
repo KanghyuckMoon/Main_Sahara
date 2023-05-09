@@ -8,7 +8,9 @@ using UnityEngine.VFX;
 using Utill.Addressable;
 using System.Linq;
 using Inventory;
+using UI.Canvas;
 using UI.Manager;
+using UI.ParticleManger;
 
 namespace  UI.Map
 {
@@ -17,7 +19,7 @@ namespace  UI.Map
         private VisualElement parent;
         private List<MarkerSlotPr> markerSlotPrList = new List<MarkerSlotPr>();
         private List<VisualElement> markerList = new List<VisualElement>(); // 맵에 찍혀있는 마커 리스트 
-        private Dictionary<VisualElement,MarkerData> activeMarkerDataDic = new Dictionary<VisualElement,MarkerData>(); // 맵에 찍혀있는 마커 데이터 리스트 
+        private Dictionary<VisualElement,ItemData> activeMarkerDataDic = new Dictionary<VisualElement,ItemData>(); // 맵에 찍혀있는 마커 데이터 리스트 
         
         private MapView mapView;
 
@@ -34,7 +36,7 @@ namespace  UI.Map
         
         // 프로퍼티 
         private Sprite CurMarkerSprite =>
-            AddressablesManager.Instance.GetResource<Sprite>(curMarkerSlotPr.MarkerData.spriteAddress); 
+            AddressablesManager.Instance.GetResource<Sprite>(curMarkerSlotPr.MarkerData.spriteKey); 
         private Vector2 MousePos
         {
             get
@@ -64,13 +66,18 @@ namespace  UI.Map
         {
             // 좌클릭인지 체크, Ctrl 입력 하지 않았는지 (삭제) 체크, 현재 선택한 마커 있는지 체크 
             if (_evt.button is not 0 || isInputCtrl is true || curMarkerSlotPr is null) return;
+
+            Vector2 _markerPos = (Vector2)_evt.localPosition -
+                                 new Vector2(mapView.Map.resolvedStyle.width / 2,
+                                     mapView.Map.resolvedStyle.height / 2);
            // 마커 생성 
-            var _marker = CreateMarker((Vector2)_evt.localPosition -
-                                       new Vector2(mapView.Map.resolvedStyle.width / 2,
-                                           mapView.Map.resolvedStyle.height / 2)); 
-                
+            var _marker = CreateMarker(_markerPos);
+
+            UIParticleManager.Instance.Play(ParticleType.Burst, _marker.worldBound.position,
+                OverlayCanvasManager.Instance.Canvas);          
+            
             /*_marker.RegisterCallback<MouseOverEvent>((x) => { UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker); });
-            _marker.RegisterCallback<MouseLeaveEvent>((x) =>
+            _marker.RegisterCallback<MouseLeaveEvent>((x    ) =>
             {
                 UIManager.Instance.SetCursorImage(CursorImageType.defaultCursor);
             });*/
@@ -80,8 +87,10 @@ namespace  UI.Map
             // 마커 , 마커데이터 dictionary  추가 
             activeMarkerDataDic.Add(_marker,curMarkerSlotPr.MarkerData);
                 
+            
             // 마커 개수 0 인가 
-            bool _isZeroCount = MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
+            //bool _isZeroCount = MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
+            bool _isZeroCount = InventoryManager.Instance.ItemReduce(curMarkerSlotPr.MarkerData.key);
             if (_isZeroCount is true)
             {
                 // 따라오는 이미지 끄기 
@@ -112,7 +121,8 @@ namespace  UI.Map
                     if (deleteTarget != null)
                     {
                         deleteTarget.RemoveFromHierarchy();
-                        MarkerDataManager.Instance.AddHaveMarker(GetMarkerData(deleteTarget).key);
+                        //MarkerDataManager.Instance.AddHaveMarker(GetMarkerData(deleteTarget).key);
+                        InventoryManager.Instance.AddItem(GetMarkerData(deleteTarget).key);
                         UpdateMarker(); 
                         deleteTarget = null;
                     }
@@ -174,8 +184,8 @@ namespace  UI.Map
         public void UpdateMarker()
         {
             ClearMarkers();
-            //var _dataList = InventoryManager.Instance.GetMarkerList();
-            var _dataList = MarkerDataManager.Instance.GetAllHaveMakrerList();
+            var _dataList = InventoryManager.Instance.GetMarkerList();
+            //var _dataList = MarkerDataManager.Instance.GetAllHaveMakrerList();
 
             foreach (var _data in _dataList)
             {
@@ -215,7 +225,7 @@ namespace  UI.Map
             ActiveGhostIcon(true); 
             curMarkerSlotPr = _markerSlot;
             curMarkerSlotPr.SelectSlot(true); 
-            mapView.GhostIcon.style.backgroundImage = AddressablesManager.Instance.GetResource<Texture2D>(_markerSlot.MarkerData.spriteAddress);
+            mapView.GhostIcon.style.backgroundImage = AddressablesManager.Instance.GetResource<Texture2D>(_markerSlot.MarkerData.spriteKey);
             mapView.GhostIcon.style.width =
                 (int)(CurMarkerSprite.bounds.size.x * 400);
             mapView.GhostIcon.style.height =
@@ -229,7 +239,7 @@ namespace  UI.Map
             return markersComponent.CreateMarker(_pos, mapView.MarkerParent,CurMarkerSprite);
         }
         
-        private  MarkerData GetMarkerData(VisualElement _element)
+        private  ItemData GetMarkerData(VisualElement _element)
         {
             foreach (var _markerData in activeMarkerDataDic)
             {

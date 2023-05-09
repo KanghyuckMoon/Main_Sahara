@@ -34,8 +34,9 @@ public class PopupTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
+            ItemData itemData = ItemData.CopyItemDataSO(ItemDataSo);
             PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,
-                new InteractionUIData { targetVec = trm.position, textKey = "ADSAFASFSAFSA" });
+                itemData);
         }
     }
 }
