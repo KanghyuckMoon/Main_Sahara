@@ -100,10 +100,10 @@ namespace CondinedModule
             }
         }
 
-        public void Jump()
+        public override void Jump()
         {
             jumpModule ??= GetModuleComponent<JumpModule>(ModuleType.Jump);
-            jumpModule.Jump();
+            jumpModule.Jump(jumpstrenght);
         }
 
         [ContextMenu("UIOn")]

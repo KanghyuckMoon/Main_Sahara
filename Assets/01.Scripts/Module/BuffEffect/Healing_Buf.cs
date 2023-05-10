@@ -40,6 +40,7 @@ namespace Buff
 
             else
             {
+                hpModule.MainModule.isFlameOn = false;
                 buffModule.buffDic.Remove(this);
                 buffModule.buffList.Remove(this);
             }

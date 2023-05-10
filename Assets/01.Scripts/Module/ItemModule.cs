@@ -18,6 +18,12 @@ namespace Module
         Burning,
         Shield,
         Flame,
+        ChargeJump,
+        AddSpeed,
+        Resurrection,
+        Glare,
+        Crawling,
+        UnlockInteraction,
         NONE
     }
     public partial class ItemModule : AbBaseModule
@@ -69,12 +75,17 @@ namespace Module
             SetPassiveItem(AccessoriesItemType.DoubleJump);
             SetPassiveItem(AccessoriesItemType.Dash);
             SetPassiveItem(AccessoriesItemType.TimeSlow);
-            //SetPassiveItem(AccessoriesItemType.Shield);
-            //SetPassiveItem(AccessoriesItemType.Flame);
-            //SetPassiveItem(AccessoriesItemType.Burning);
-            
-            
+            SetPassiveItem(AccessoriesItemType.ChargeJump);
+            SetPassiveItem(AccessoriesItemType.AddSpeed);
+            SetPassiveItem(AccessoriesItemType.Resurrection);
+            SetPassiveItem(AccessoriesItemType.Glare);
+            SetPassiveItem(AccessoriesItemType.Shield);
+            SetPassiveItem(AccessoriesItemType.Flame);
+            SetPassiveItem(AccessoriesItemType.Burning);
+            SetPassiveItem(AccessoriesItemType.Crawling);
+            SetPassiveItem(AccessoriesItemType.UnlockInteraction);
         }
+        
         private void ApplyPassive()
         {
             foreach(ItemPassive _itemPassive in passiveItem.Values)
@@ -96,6 +107,11 @@ namespace Module
             passiveItem[_itemKey].UndoEffect();
 
             passiveItem.Remove(_itemKey);
+        }
+
+        public bool CheackSoul(AccessoriesItemType _itemType)
+        {
+            return passiveItem.ContainsKey(_itemType);
         }
 
         public override void OnDisable()

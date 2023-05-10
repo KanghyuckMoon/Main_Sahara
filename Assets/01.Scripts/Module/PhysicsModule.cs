@@ -207,31 +207,38 @@ namespace Module
         }
         private void Slope()
         {
-            Vector3 rayPos = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
-                mainModule.transform.position.z);
+            var _position = mainModule.transform.position;
+            Vector3 _rayPos = new Vector3(_position.x, _position.y - mainModule.groundOffset,
+                _position.z);
 
-            Ray ray = new Ray(rayPos, Vector3.down);
+            Ray _ray = new Ray(_rayPos, Vector3.down);
             RaycastHit _raycastHit;
-            if (Physics.Raycast(ray, out _raycastHit, rayDistance, mainModule.groundLayer))
+            if (Physics.Raycast(_ray, out _raycastHit, rayDistance, mainModule.groundLayer))
             {
                 //mainModule.SlopeHit = _raycastHit;
-                var angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
+                var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
                 //Debug.LogError(angle + " : : : : " + Vector3.Angle(Vector3.up, _raycastHit.normal));
-                mainModule.IsSlope = (angle < mainModule.CharacterController.slopeLimit) && (angle > -mainModule.CharacterController.slopeLimit); // 90 - mainModule.MaxSlope = �ö� �� �ִ� ����
+                var _slopeLimit = mainModule.CharacterController.slopeLimit;
+                mainModule.IsSlope = (_angle < _slopeLimit) & (_angle > -_slopeLimit); // 90 - mainModule.MaxSlope = �ö� �� �ִ� ����
                 //return;
                 if(mainModule.IsSlope is false)
                 {
                     mainModule.SlopeVector = Vector3.ProjectOnPlane(new Vector3(0, mainModule.Gravity, 0), _raycastHit.normal);
+                    return;
                 }
+
+                mainModule.SlopeVector = Vector3.zero;
             }
             else
             {
                 //Debug.LogError("�ȴ�ƴ�ƴ��");
                 mainModule.IsSlope = true;
             }
+            
+            //mainModule.CharacterController.
 
             //Debug.DrawLine(rayPos, rayPos + new Vector3(0, 100, 0), Color.red);
-            Debug.DrawRay(rayPos, Vector3.down, Color.red);
+            Debug.DrawRay(_rayPos, Vector3.down, Color.red);
         }
 
         public override void OnDrawGizmos()
@@ -242,14 +249,11 @@ namespace Module
 
         private void GroundCheack()
         {
-
             _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
                 mainModule.transform.position.z);
             bool _isLand = Physics.CheckSphere(_spherePosition, mainModule.GroundCheckRadius, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
-            
-            
             if (!mainModule.isGround && _isLand)
             {
                 FallDamage();
