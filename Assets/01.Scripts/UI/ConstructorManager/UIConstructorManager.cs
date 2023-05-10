@@ -25,7 +25,8 @@ namespace UI.ConstructorManager
         private UIConstructor<SaveEntryView> saveEntryConstructor;
         private UIConstructor<BuffEntryView> buffEntryConstructor;
         private UIConstructor<PopupGetItemView> popupGetItemConstructor;
-        private UIConstructor<InteracftionPopupView> interacftionPopupView; 
+        private UIConstructor<InteracftionPopupView> interacftionPopupView;
+        private UIConstructor<ShopPopupView> shopPopupView; 
     //        private  UIConstructor<popupPr>
 
 
@@ -70,6 +71,7 @@ namespace UI.ConstructorManager
             buffEntryConstructor= new UIConstructor<BuffEntryView>("BuffEntry");
             popupGetItemConstructor = new UIConstructor<PopupGetItemView>("PopupGetItem");
             interacftionPopupView = new UIConstructor<InteracftionPopupView>("InteractionEntry");
+            shopPopupView = new UIConstructor<ShopPopupView>("ShopPopupEntry");
             
             uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor); 
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
@@ -81,6 +83,7 @@ namespace UI.ConstructorManager
             uiConstructorDic.Add(typeof(BuffEntryView), buffEntryConstructor);
             uiConstructorDic.Add(typeof(PopupGetItemView), popupGetItemConstructor);
             uiConstructorDic.Add(typeof(InteracftionPopupView), interacftionPopupView);
+            uiConstructorDic.Add(typeof(ShopPopupView), shopPopupView);
 
         }
 

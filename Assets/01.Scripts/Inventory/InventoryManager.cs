@@ -237,6 +237,11 @@ namespace Inventory
 			return GetWhereItem(ItemType.Valuable);
 		}
 
+		public List<ItemData> GetMarkerList()
+		{
+			return GetWhereItem(ItemType.Marker);
+		}
+					
 		public List<ItemData> GetAllItem()
 		{
 			if (!isInit)
@@ -266,6 +271,11 @@ namespace Inventory
 
 		private List<ItemData> GetWhereItem(ItemType _itemType)
 		{
+			if (!isInit)
+			{
+				Init();
+				isInit = true;
+			}
 			List<ItemData> _itemDataList = inventorySO.itemDataList.Where(item => item.itemType == _itemType).ToList();
 			return _itemDataList;
 		}
@@ -412,7 +422,7 @@ namespace Inventory
 			return false;
 		}
 
-		public void ItemReduce(string _key, int _count)
+		public bool ItemReduce(string _key, int _count = 1)
 		{
 			List<ItemData> _itemList = inventorySO.itemDataList.Where(item => item.key == _key).ToList();
 
@@ -428,9 +438,12 @@ namespace Inventory
 
 				if (_count <= 0)
 				{
+					return false; 
 					break;
 				}
 			}
+			return true; 
+
 		}
 
 		public void ItemRemove(int index)

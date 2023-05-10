@@ -110,31 +110,27 @@ namespace UI.Inventory
 
         }
 
-        /// <summary>
-        ///  카테고리 강조 패턴 위치 설정 
-        /// </summary>
-        public void MoveAccentPattern(InventoryGridSlotsView.RadioButtons _btnType)
+        public override void ActiveScreen(bool _isActive)
         {
-            if(categoryLength == 0) InitBtnPos();
-
-            VisualElement _v = inventoryGridSlotsPr.GridView.GetRBtn(_btnType);
-            Rect _rect = _v.worldBound;
-            float _posX = _rect.x + _v.resolvedStyle.width / 2;
-            float _moveV = categoryLength * (int)_btnType; 
-            GetVisualElement((int)Elements.accent_pattern).style.left = _moveV; 
-            //GetVisualElement((int)Elements.accent_pattern).
+            base.ActiveScreen(_isActive);
+            if (_isActive == true)
+            {
+                // 슬롯 초기화 
+                inventoryGridSlotsPr.ClearSlotDatas();
+            }
         }
 
-        private float categoryLength = 0f; 
-        private void InitBtnPos()
+        public override bool ActiveScreen()
         {
-            Rect _firstSlot =
-                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.weapon_button).worldBound;
-            Rect _lastSlot =
-                inventoryGridSlotsPr.GridView.GetRBtn(InventoryGridSlotsView.RadioButtons.valuable_button).worldBound;
-
-            categoryLength = (_lastSlot.x - _firstSlot.x + 60) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
+            bool _isActive = base.ActiveScreen(); 
+            if(_isActive == true) 
+            {
+                // 슬롯 초기화 
+                inventoryGridSlotsPr.ClearSlotDatas();
+            }
+            return _isActive; 
         }
+        
 
         public void AddSlotClickEvent(Action<ItemData> _callback)
         {
@@ -195,7 +191,7 @@ namespace UI.Inventory
         /// </summary>
         public void UpdateQuickSlotUI(ItemData _itemData, int _index)
         {
-            inventoryGridSlotsPr.ItemSlotDic[ItemType.Weapon].SetEquipItemDataUI(_itemData, _index);
+            inventoryGridSlotsPr.InvenPanelDic[ItemType.Weapon].SetEquipItemDataUI(_itemData, _index);
         
         }
 
@@ -219,7 +215,9 @@ namespace UI.Inventory
 
             // 슬롯에 순서대로 
             if (_itemData.itemType is ItemType.Skill) return; 
-            InventoryPanelUI _ui = inventoryGridSlotsPr.ItemSlotDic[_itemData.itemType];
+            // 인벤토리 패널 UI 가져와 
+            InventoryPanelUI _ui = inventoryGridSlotsPr.InvenPanelDic[_itemData.itemType];
+            // 현재 패널 ui 슷롯 인덱스 체크 
             if (_ui.slotItemViewList.Count <= _ui.index)
             {
                 inventoryGridSlotsPr.CreateRow(invenItemUISO.GetItemUIType(_itemData.itemType));
@@ -289,7 +287,7 @@ namespace UI.Inventory
                 _slotPr.WorldPos, _slotPr.ItemSize));
             _slotPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
 
-            inventoryGridSlotsPr.ItemSlotDic[_itemType].AddEquipSlotView(_slotPr);
+            inventoryGridSlotsPr.InvenPanelDic[_itemType].AddEquipSlotView(_slotPr);
         }
         /// <summary>
         /// 인벤토리 패널 리스트에 넣기 (초기화)

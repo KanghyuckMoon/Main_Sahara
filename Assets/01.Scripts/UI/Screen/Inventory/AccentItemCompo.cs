@@ -111,8 +111,13 @@ namespace UI.Inventory
         public void ActiveModel(string _key)
         {
             InactiveAllModels();
-            curActiveModel = this.modelDic[_key];
-            curActiveModel.SetActive(true); 
+            // 모델이 존재하면 
+            if(modelDic.TryGetValue(_key, out GameObject _obj)== true)
+            {
+                curActiveModel = this.modelDic[_key];
+                curActiveModel.SetActive(true); 
+            }
+
             
         }
 

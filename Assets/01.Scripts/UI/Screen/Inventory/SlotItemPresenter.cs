@@ -19,6 +19,7 @@ namespace UI.Inventory
         private ItemData itemData;
         private ItemType slotType = ItemType.None;
 
+        private bool isIcon = false; // 실사이미지 : true, 흰색 이미지 : false
         private int index;
 
         // 프로퍼티 
@@ -104,15 +105,22 @@ namespace UI.Inventory
             this.slotItemView.ClearUI();
         }
 
+        public void UpdateUI()
+        {
+            if (itemData == null) return; 
+            slotItemView.IsStackable = itemData.IsStackble;
+            if (itemData.spriteKey == "") return;
+            string _imgAdress = isIcon is false ? itemData.spriteKey : itemData.iconKey;
+
+            slotItemView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_imgAdress),
+                itemData.count);
+        }
         public void SetItemData(ItemData _itemData, bool _isIcon = false)
         {
             this.itemData = _itemData;
-            slotItemView.IsStackable = _itemData.IsStackble;
-            if (_itemData.spriteKey == "") return;
-            string _imgAdress = _isIcon is false ? _itemData.spriteKey : _itemData.iconKey;
-
-            slotItemView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_imgAdress),
-                    _itemData.count);
+            this.isIcon = _isIcon;
+        
+            UpdateUI(); 
         }
 
         public void RemoveView()

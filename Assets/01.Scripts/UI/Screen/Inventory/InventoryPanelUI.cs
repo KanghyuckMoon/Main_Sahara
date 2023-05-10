@@ -35,10 +35,13 @@ namespace UI.Inventory
 
         public void ClearDatas()
         {
-            foreach(var _data in slotItemViewList)
+            foreach(var _slotPr in slotItemViewList)
             {
-                _data.ClearData(); 
+                _slotPr.ClearData(); 
+               // _slotPr.Parent.RemoveFromHierarchy();
             }
+
+            index = 0; 
         }
         public void AddSlotView(SlotItemPresenter _slotItemView)
         {

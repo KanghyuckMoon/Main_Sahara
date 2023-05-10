@@ -15,7 +15,7 @@ namespace UI.Inventory
     {
         private InventoryGridSlotsView inventoryGridSlotsView;
 
-        private Dictionary<ItemType, InventoryPanelUI> itemSlotDic = new Dictionary<ItemType, InventoryPanelUI>();
+        private Dictionary<ItemType, InventoryPanelUI> _invenPanelDic = new Dictionary<ItemType, InventoryPanelUI>();
 
         private ItemDescriptionPresenter descriptionPresenter; // 설명창 - 아이템에 커서 갖다댈시 활성화 
         private InvenItemUISO invenItemUISO;
@@ -32,10 +32,10 @@ namespace UI.Inventory
         private int col = 4, row = 4;
 
         // 프로퍼티 
-        public Dictionary<ItemType, InventoryPanelUI> ItemSlotDic => itemSlotDic;
+        public Dictionary<ItemType, InventoryPanelUI> InvenPanelDic => _invenPanelDic;
 
         public InventoryPanelUI CurInvenPanel =>
-            ItemSlotDic[invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType)];
+            InvenPanelDic[invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType)];
 
         public ItemType CurItemType => invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType);
         
@@ -68,7 +68,7 @@ namespace UI.Inventory
 
         public InventoryPanelUI GetInvenPanel(ItemType _itemType)
         {
-            return ItemSlotDic[_itemType];
+            return InvenPanelDic[_itemType];
         }
         public void AddButtonEvent(InventoryGridSlotsView.RadioButtons _type, Action<bool> _callback)
         {
@@ -85,7 +85,7 @@ namespace UI.Inventory
         /// </summary>
         public void ClearSlotDatas()
         {
-            foreach (var _panel in itemSlotDic)
+            foreach (var _panel in _invenPanelDic)
             {
                 _panel.Value.ClearDatas();
             }
@@ -96,7 +96,7 @@ namespace UI.Inventory
         /// </summary>
         private void InitActivePanel()
         {
-            foreach (var _slot in ItemSlotDic)
+            foreach (var _slot in InvenPanelDic)
             {
                 if (InventoryGridSlotsView.InvenPanelElements.weapon_panel == invenItemUISO.GetItemUIType(_slot.Key))
                 {
@@ -114,12 +114,12 @@ namespace UI.Inventory
         /// </summary>
         private void CreateAllSlots()
         {
-            itemSlotDic.Clear();
+            _invenPanelDic.Clear();
             foreach (var _v in Enum.GetValues(typeof(InventoryGridSlotsView.InvenPanelElements)))
             {
                 InventoryGridSlotsView.InvenPanelElements _panelType = (InventoryGridSlotsView.InvenPanelElements)_v;
 
-                itemSlotDic.Add(invenItemUISO.GetItemType(_panelType),
+                _invenPanelDic.Add(invenItemUISO.GetItemType(_panelType),
                     new InventoryPanelUI(inventoryGridSlotsView.GetPanel(_panelType)));
                 for (int j = 0; j < row; j++)
                 {
@@ -152,12 +152,13 @@ namespace UI.Inventory
                     _slotPr.WorldPos, _slotPr.ItemSize));
                 _slotPr.AddOutEvent(() => descriptionPresenter.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
 
-                itemSlotDic[_iType].AddSlotView(_slotPr); // 패널에 슬롯 뷰 추가 
+                _invenPanelDic[_iType].AddSlotView(_slotPr); // 패널에 슬롯 뷰 추가 
                 this.inventoryGridSlotsView.SetParent(_itemType, _slotPr.Parent);
             }
         }
+        
 
-
+        
         /// <summary>
         /// 드래거 추가 
         /// </summary>

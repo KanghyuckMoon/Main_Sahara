@@ -51,8 +51,8 @@ namespace UI.Inventory
 
             this.itemData = _itemData; 
             itemDescriptionView.SetImage(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey));
-            itemDescriptionView.SetNameAndDesciption(TextManager.Instance.GetText(_itemData.nameKey),
-                                                                                    TextManager.Instance.GetText(_itemData.explanationKey));
+            itemDescriptionView.SetNameAndDesciptionAndPrice(TextManager.Instance.GetText(_itemData.nameKey),
+                                                                                    TextManager.Instance.GetText(_itemData.explanationKey), _itemData.price);
             // 위치 설정 
             Vector2 _pos = new Vector2(_slotPos.x + _slotSize.x / 2, _slotPos.y + _slotSize.y);
             // 범위가 넘어가서 설명창이 안보이는 부분이 있다면 위로 올려서  

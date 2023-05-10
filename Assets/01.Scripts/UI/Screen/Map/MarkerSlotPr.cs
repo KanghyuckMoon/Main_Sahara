@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 using UI.Base;
 using UI.ConstructorManager;
 using System;
+using Inventory;
 using UI.Map;
 using Utill.Addressable;
 
@@ -15,9 +16,11 @@ namespace  UI
     {
         private SlotItemView slotItemView;
         private VisualElement parent;
-        private MarkerData markerData;
+       // private MarkerData markerData;
+        private ItemData markerData;
 
-        public MarkerData MarkerData => markerData;
+//        public MarkerData MarkerData => markerData;
+        public ItemData  MarkerData => markerData;
         public Texture2D Image => slotItemView.ItemSprite;
         public VisualElement Parent
         {
@@ -38,13 +41,18 @@ namespace  UI
             this.parent = _v.Item1;
         }
 
-        public void SetData(MarkerData _markerData)
+        /*public void SetData(MarkerData _markerData)
         {
             this.markerData = _markerData; 
             var _sprite = AddressablesManager.Instance.GetResource<Texture2D>(_markerData.spriteAddress);
             slotItemView.SetSpriteAndText(_sprite,_markerData.count);
+        }*/
+        public void SetData(ItemData _markerData)
+        {
+            this.markerData = _markerData; 
+            var _sprite = AddressablesManager.Instance.GetResource<Texture2D>(_markerData.spriteKey);
+            slotItemView.SetSpriteAndText(_sprite,_markerData.count);
         }
-        
         public void SelectSlot(bool _isSelect)
         {
             slotItemView.SelectSlot(_isSelect);

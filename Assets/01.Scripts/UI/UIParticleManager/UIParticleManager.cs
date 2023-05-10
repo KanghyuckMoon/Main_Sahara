@@ -7,21 +7,28 @@ using Coffee.UIParticleExtensions;
 using UnityEditor;
 using Utill.Pattern;
 using Utill.Addressable;
-
+using UnityEngine.UI.Extensions; 
 namespace UI.ParticleManger
 {
+    public enum CanvasType
+    {
+        Cam, 
+        Overlay, 
+        None 
+    }
     public enum ParticleType
     {
         Burst, 
-        
     }
     
     public class UIParticleManager : MonoSingleton<UIParticleManager>
     {
         private Dictionary<ParticleType, UIParticle> uiParticleDic = new Dictionary<ParticleType, UIParticle>();
+        //private Dictionary<ParticleType, UIParticleSystem> uiParticleDic = new Dictionary<ParticleType, UIParticleSystem>();
 
         public override void Awake()
         {
+            
             base.Awake();
             uiParticleDic.Add(ParticleType.Burst, 
                 AddressablesManager.Instance.GetResource<GameObject>("UIBurstParticle")
@@ -40,14 +47,16 @@ namespace UI.ParticleManger
         public UIParticle Play(ParticleType particleType, Vector2 _pos, Transform _parent, bool _isLoop = false)
         {
             UIParticle _particle = uiParticleDic[particleType];
+            UIParticle _p = Instantiate(_particle, _parent);
+            //_p.StartParticleEmission();
             _particle.Play();
-            _particle.GetComponent<RectTransform>().anchoredPosition = _pos; 
-            _particle.transform.SetParent(_parent);
+           _p.GetComponent<RectTransform>().anchoredPosition = _pos; 
+            //_particle.transform.SetParent(_parent);
             if (_isLoop == false)
             {
-                StartCoroutine(Pause(_particle));
+                StartCoroutine(Pause(_p));
             }
-            return _particle; 
+            return _p; 
         }
 
         private IEnumerator Pause(UIParticle _particle)
@@ -56,5 +65,11 @@ namespace UI.ParticleManger
             _particle.Clear();
             // 삭제 
         }
-    }
+    
+        private IEnumerator Pause(UIParticleSystem _particle)
+        {
+            yield return new WaitForSeconds(10f); 
+            _particle.StopParticleEmission();
+            // 삭제 
+        }}
 }

@@ -1,11 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
     <Style src="project://database/Assets/UIToolkit/Uss/Container.uss?fileID=7433441132597879392&amp;guid=fb415ed2a98934248b9610f643b8b73f&amp;type=3#Container" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <ui:VisualElement name="slot" class="slot">
         <ui:VisualElement style="position: absolute; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Inventory%20slot.png?fileID=1392996731&amp;guid=65ee86399d372374981a0580359228d1&amp;type=3#Inventory slot_0&apos;); -unity-background-scale-mode: stretch-to-fill; display: flex;" />
-        <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%; align-items: center; justify-content: center;">
-            <ui:VisualElement name="image" style="background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
-            <ui:Label text="1" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 0; bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold; display: none;" />
+        <ui:VisualElement name="item" class="center_align slot_item">
+            <ui:VisualElement name="image" class="slot_item_image" />
+            <ui:Label text="1" display-tooltip-when-elided="true" name="text" class="font_base" style="position: absolute; right: 8px; bottom: 8px; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold; display: flex;" />
         </ui:VisualElement>
         <ui:VisualElement name="select" class="select_icon" />
     </ui:VisualElement>

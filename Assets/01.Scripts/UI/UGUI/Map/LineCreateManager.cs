@@ -29,12 +29,14 @@ namespace UI.Canvas
     {
         private CanvasUIComp canvasUIComp;
         private LinerComp linerComp; 
-        
+        private CanvasScreenDataSO canvasScreenDataSO;
+
         public override void Awake()
         {
             base.Awake();
 
-            canvasUIComp = new CanvasUIComp("LinerCanvas");
+            canvasScreenDataSO = AddressablesManager.Instance.GetResource<CanvasScreenDataSO>("CanvasDataSO");
+            canvasUIComp = new CanvasUIComp("LinerCanvas",canvasScreenDataSO);
             linerComp = gameObject.AddComponent<LinerComp>(); 
             linerComp.Init(canvasUIComp.Canvas);
             //   GameObject _poolObj = AddressablesManager.Instance.GetResource<GameObject>("MapLiner");
