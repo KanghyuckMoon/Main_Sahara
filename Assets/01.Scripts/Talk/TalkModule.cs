@@ -119,6 +119,7 @@ namespace Module.Talk
 					//없을시 기본 대화
 					RandomDefaultText();
 				}
+				isEndTalk = false;
 				isTalking = true;
 			}
 		}
@@ -134,14 +135,7 @@ namespace Module.Talk
 			{
 				ShopManager.Instance.SetShopModule(ShopModule);
 			}
-
-			//이벤트로 사용된 대화가 있는가?
-			//if (!GetText())
-			//{
-			//	//없을시 기본 대화
-			//	RandomDefaultText();
-			//}
-
+			
 			var _talkData = talkDataSO.talkDataList.Find(x => x.talkCondition == TalkCondition.CutScene && x.talkKey == _talkKey);
 			if (_talkData is null)
 			{
@@ -185,9 +179,17 @@ namespace Module.Talk
 					foreach (var questCondition in _talkData.questConditionList)
 					{
 						QuestData questData = QuestManager.Instance.GetQuestData(questCondition.questKey);
-						if(questCondition.questState != questData.QuestState)
+						try
 						{
-							return false;
+						    if(questCondition.questState != questData.QuestState)
+						    {
+							    return false;
+						    }
+						}
+						catch
+						{
+						   Debug.LogError($"Quest Error {questCondition.questKey}"); 
+						   return false;
 						}
 					}
 					break;

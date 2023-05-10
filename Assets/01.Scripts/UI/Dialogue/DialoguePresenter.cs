@@ -137,7 +137,7 @@ namespace UI.Dialogue
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm(); 
                         //index = 0;
                         //ActiveViewS(false);
-                        QuestManager.Instance.ChangeQuestClear(fullText);
+                        QuestManager.Instance.ChangeQuestClearForce(fullText);
                         return;
                     case "!CHOICE":
                         ActiveSelect(_nameText, fullText);
