@@ -495,6 +495,7 @@ namespace Module
 			{
                 animator = value;
 			}
+            
 		}
         public SettingTime SettingTime
         {
@@ -698,6 +699,14 @@ namespace Module
 
         public virtual void SetAnimationLayerOn(int _on, float _duration){
     }
+
+        public void PlayAllAnimation(string _str)
+        {
+            for (int _i = 0; _i < Animator.layerCount; _i++)
+            {
+                Animator.Play(_str, _i);
+            }
+        }
 
         private void Start()
         {
