@@ -75,8 +75,8 @@ namespace  UI.Map
             var _marker = CreateMarker(_markerPos);
             Vector2 _particlePos = new Vector2(_marker.worldBound.position.x, -_marker.worldBound.position.y);
             
-          //  UIParticleManager.Instance.Play(ParticleType.Burst, ,
-            //    OverlayCanvasManager.Instance.Canvas);          
+            UIParticleManager.Instance.Play(ParticleType.Burst, _particlePos,
+                OverlayCanvasManager.Instance.Canvas);          
             
             /*_marker.RegisterCallback<MouseOverEvent>((x) => { UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker); });
             _marker.RegisterCallback<MouseLeaveEvent>((x    ) =>
