@@ -71,9 +71,14 @@ namespace UI.Inventory
             base.Init();
             AddButtonEvents();
             SendEvent();
-            InitBtnPos(); 
+            InitBtnPos();
+            InitScrollSpeed();  
         }
-        
+
+        private void InitScrollSpeed()
+        {
+            GetScrollView((int)ScrollViews.inventory_scroll_panel).verticalPageSize = 1000000; 
+        }
         /// <summary>
         /// RadioButton  가져오기 
         /// </summary>
