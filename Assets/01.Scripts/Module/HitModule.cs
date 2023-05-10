@@ -45,6 +45,9 @@ namespace Module
         private float currentHitDelay = 0;
         private bool isHit = false;
 
+        public int lifeCount = 0;
+        public int lifeHealValue = 0;
+        
         public HitModule(AbMainModule _mainModule) : base(_mainModule)
         {
 
@@ -108,12 +111,21 @@ namespace Module
 
         private void Dead()
         {
-            AnimationModule.animator.Play("Dead");
-            mainModule.IsDead = true;
-            mainModule.CharacterController.enabled = false;
+            if (lifeCount <= 0)
+            {
+                AnimationModule.animator.Play("Dead");
+                mainModule.IsDead = true;
+                mainModule.CharacterController.enabled = false;
+            }
+            else
+            {
+                hpModule.GetHeal(lifeCount * (int)(hpModule.GetMaxHp() / 0.25f));
+                lifeCount = 0;
+            }
 
             //mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon).currentWeapon.GetComponent<Collider>().enabled = false;
         }
+
         public override void OnDisable()
         {
             hpModule = null;

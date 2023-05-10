@@ -14,6 +14,7 @@ namespace CondinedModule
             Foolue,
             Kevin,
             Emiliy,
+            Ssun,
             Magi,
         }
 
@@ -21,7 +22,17 @@ namespace CondinedModule
 
         public void Register(NPCTYPE _npctype, TalkNPC _talkNpc)
         {
-            talkNpcDic.Add(_npctype, _talkNpc);
+            if (talkNpcDic.TryGetValue(_npctype, out var value))
+            {
+                if (value != _talkNpc)
+                {
+                    talkNpcDic[_npctype] = value;
+                }
+            }
+            else
+            {
+                talkNpcDic.Add(_npctype, _talkNpc);
+            }
         }
 
         public TalkNPC Get(NPCTYPE _npctype)

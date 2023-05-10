@@ -27,17 +27,18 @@ namespace PassiveItem
 
         public void ApplyPassiveEffect()
         {
-            if (mainModule.name != "Player") return;
-            
-            obj = ObjectPoolManager.Instance.GetObject("Shield_Prefab");
-            obj.transform.SetParent(mainModule.transform);
-            obj.transform.position = new Vector3(0, 0.8f, 0);
-            obj.SetActive(true);
         }
 
         public void UpdateEffect()
         {
-            
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                if (mainModule.name != "Player") return;
+                obj = ObjectPoolManager.Instance.GetObject("Shield_Prefab");
+                obj.transform.SetParent(mainModule.transform);
+                obj.transform.localPosition = new Vector3(0, 0.8f, 0);
+                obj.SetActive(true);
+            }
         }
 
         public void ClearPassiveEffect()

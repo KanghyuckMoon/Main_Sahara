@@ -19,6 +19,9 @@ namespace Module
         [SerializeField] private Vector3 position;
         [SerializeField] private Quaternion rotation;
 
+        [SerializeField]
+        private GameObject light;
+
         [SerializeField] private string speedLine;
         public GameObject dashEffect;
 
@@ -84,6 +87,11 @@ namespace Module
             _a.SetActive(false);
             ObjectPoolManager.Instance.RegisterObject(speedLine, _a);
             chromaticEffect.SetActive(false);
+        }
+
+        public void SetLightOff()
+        {
+            light.SetActive(false);
         }
         
     }

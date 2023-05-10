@@ -7858,6 +7858,8 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -7878,6 +7880,7 @@ MonoBehaviour:
   visualObject: {fileID: 919132147866802941}
   model: {fileID: 0}
   animator: {fileID: 0}
+  jumpstrenght: 0
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
   back: {fileID: 4073346932893831406}
@@ -8615,6 +8618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b351821c521334ca2142804d9aa4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemAddress: 
 --- !u!1 &1440935113
 GameObject:
   m_ObjectHideFlags: 0
@@ -10432,6 +10436,8 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -10452,6 +10458,7 @@ MonoBehaviour:
   visualObject: {fileID: 0}
   model: {fileID: 0}
   animator: {fileID: 0}
+  jumpstrenght: 0
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
   back: {fileID: 0}
@@ -12202,6 +12209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZoomCam_Lock
       objectReference: {fileID: 0}
+    - target: {fileID: 7812765841398716510, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716513, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -12518,7 +12529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6426695756013449342, guid: 9fae0bec07e561a4e952590dbc791096, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.809513
+      value: -8.809511
       objectReference: {fileID: 0}
     - target: {fileID: 6426695756013449342, guid: 9fae0bec07e561a4e952590dbc791096, type: 3}
       propertyPath: m_LocalRotation.w
@@ -43915,6 +43926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZoomCam
       objectReference: {fileID: 0}
+    - target: {fileID: 7812765841398716510, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
 --- !u!1 &3181900565339237373
@@ -45722,6 +45737,7 @@ MonoBehaviour:
   cameras: []
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
+  light: {fileID: 0}
   speedLine: 
   dashEffect: {fileID: 0}
   volume: {fileID: 0}
@@ -47968,6 +47984,8 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -47988,6 +48006,7 @@ MonoBehaviour:
   visualObject: {fileID: 1633266547312873092}
   model: {fileID: 0}
   animator: {fileID: 3699875109437129947}
+  jumpstrenght: 0
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
   back: {fileID: 0}
@@ -59916,6 +59935,8 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -59936,6 +59957,7 @@ MonoBehaviour:
   visualObject: {fileID: 8684461301367455794}
   model: {fileID: 8344808533653592712}
   animator: {fileID: 0}
+  jumpstrenght: 0
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
   back: {fileID: 0}
@@ -59976,6 +59998,7 @@ MonoBehaviour:
   - {fileID: 2086611196}
   position: {x: 0, y: 0.0222978, z: 0.8047751}
   rotation: {x: -0.045249656, y: 0, z: 0, w: 0.9989757}
+  light: {fileID: 0}
   speedLine: SpeedLine_Prefab
   dashEffect: {fileID: 1728762701}
   volume: {fileID: 1454672785}
