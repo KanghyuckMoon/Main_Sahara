@@ -50,7 +50,7 @@ namespace UI.Inventory
         }
         enum ScrollViews
         {
-            inventory_scroll_panel
+                inventory_scroll_panel
         }
 
         private InvenPanelElements curPanelType; // 현재 활성화중인 패널 
