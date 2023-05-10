@@ -14,7 +14,8 @@ using UI.ParticleManger;
 
 namespace  UI.Map
 {
-    public class MarkerSetComp
+    public class 
+        MarkerSetComp
     {
         private VisualElement parent;
         private List<MarkerSlotPr> markerSlotPrList = new List<MarkerSlotPr>();
@@ -147,7 +148,7 @@ namespace  UI.Map
         {
             // 마우스 커서 위치에 마커 있는지 체크 
             IEnumerable<VisualElement> _slots =markerList.
-                Where((x) => x.worldBound.Overlaps(new Rect(Input.mousePosition,new Vector2(200,200))));
+                                              Where((x) => x.worldBound.Overlaps(new Rect(Input.mousePosition,new Vector2(200,200))));
             
             // 슬롯에 드랍 했다면
             if (_slots.Count() != 0)

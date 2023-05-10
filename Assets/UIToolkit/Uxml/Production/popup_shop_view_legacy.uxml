@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="popup_shop_view_" class="popup_shop" style="width: 600px; height: 200px; display: none; opacity: 0;">
+        <ui:VisualElement name="deco" class="border_base" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Inventory%20slot.png?fileID=1392996731&amp;guid=65ee86399d372374981a0580359228d1&amp;type=3#Inventory slot_0&apos;); -unity-background-scale-mode: stretch-to-fill; -unity-slice-left: 200; -unity-slice-top: 200; -unity-slice-right: 200; -unity-slice-bottom: 200;" />
+        <ui:VisualElement name="parent" class="border_base" style="flex-direction: row; padding-left: 20px; padding-right: 20px; padding-top: 40px; padding-bottom: 20px;">
+            <ui:VisualElement name="left" style="height: 100%; flex-grow: 0; align-items: center; justify-content: flex-start; padding-left: 20px;">
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Sw_03_Harpe_Sprite.png?fileID=2800000&amp;guid=0507baef2fe2f6847b955598eab75b4d&amp;type=3#Sw_03_Harpe_Sprite&apos;); -unity-background-scale-mode: scale-to-fit; width: 120px; height: 120px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="right" style="flex-grow: 1; height: 100%; padding-left: 10px; justify-content: space-between; padding-right: 15px;">
+                <ui:Label text="&lt;b&gt;정정배의 머리카락&lt;/b&gt;을 구매하시겠습니까?" display-tooltip-when-elided="true" class="font_base" style="font-size: 20px;" />
+                <ui:VisualElement style="flex-direction: row; justify-content: space-between; bottom: 18px; padding-left: 20px; padding-right: 30px;">
+                    <ui:Button text="Button" display-tooltip-when-elided="true" style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;" />
+                    <ui:Button text="Button" display-tooltip-when-elided="true" style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="center" class="border_base center_align" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; display: none;">
+            <ui:VisualElement name="top" class="center_align" style="flex-grow: 1; width: 100%;">
+                <ui:Label text="&lt;b&gt;정정배의 머리카락&lt;/b&gt;을 구매하시겠습니까?" display-tooltip-when-elided="true" enable-rich-text="true" class="font_base" style="font-size: 20px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="bot" style="flex-grow: 1; width: 100%; align-items: center; flex-direction: row; justify-content: space-around;">
+                <ui:Button text="확인" display-tooltip-when-elided="true" class="shop_popup_btn font_base" />
+                <ui:Button text="취소" display-tooltip-when-elided="true" class="shop_popup_btn font_base" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

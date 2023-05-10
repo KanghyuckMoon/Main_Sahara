@@ -3,11 +3,16 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
     <Style src="project://database/Assets/UIToolkit/Uss/Shop.uss?fileID=7433441132597879392&amp;guid=260eb23e2ca883742aa058d080e36060&amp;type=3#Shop" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Popup.uss?fileID=7433441132597879392&amp;guid=7f506964a6cb6c5428fe7aa421dcaf79&amp;type=3#Popup" />
     <Gradient name="shop_screen" right-color="#000000FD" direction="vertical" left-color="#000000FD" class="screen" style="width: 100%; height: 100%; flex-direction: column; display: flex;">
-        <ui:VisualElement name="Header" class="header" style="height: 15%; -unity-background-image-tint-color: rgb(60, 60, 60);">
+        <ui:VisualElement name="Header" class="header" style="height: 15%; -unity-background-image-tint-color: rgb(60, 60, 60); flex-direction: row; justify-content: space-between;">
             <ui:VisualElement name="VisualElement" style="flex-direction: row; width: 25%; height: 100%; padding-left: 115px; background-color: rgba(55, 55, 55, 0); display: flex; visibility: visible;">
                 <ui:VisualElement name="VisualElement" style="height: 100%; width: 30%; background-image: none; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(212, 212, 212); display: none;" />
                 <ui:Label text="판매" display-tooltip-when-elided="true" name="shop_name" class="font_base" style="height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 50px; -unity-text-align: middle-left; -unity-font-style: bold; display: flex; -unity-background-image-tint-color: rgb(255, 255, 255); color: rgb(212, 212, 212);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-direction: row;">
+                <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Inventory/MoneyLogo.png?fileID=2800000&amp;guid=683818fcb7e5026418bfa030a5496552&amp;type=3#MoneyLogo&apos;); width: 70px; height: 70px; -unity-background-scale-mode: scale-to-fit; top: 5px; margin-right: 10px; rotate: 0;" />
+                <ui:Label text="100,00,00" display-tooltip-when-elided="true" name="money_label" class="font_base" style="font-size: 40px;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="content" class="content_panel" style="justify-content: flex-start; background-color: rgba(87, 0, 255, 0); margin-top: 1%; display: flex; flex-direction: row;">

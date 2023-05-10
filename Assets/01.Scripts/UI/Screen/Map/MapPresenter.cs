@@ -96,6 +96,7 @@ namespace UI
             if (MapView.CurMapType == MapType.FullMap)
             {
                 this.fullMapComponent.ActivePath();
+                fullMapComponent.MarkerSetComp.UpdateMarker(); 
             }
             else
             {

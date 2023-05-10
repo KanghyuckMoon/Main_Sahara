@@ -27,7 +27,8 @@ namespace UI.Shop
         private ShopView shopView;
         private InventoryGridSlotsPr inventoryGridSlotsPr;
         private InvenItemUISO invenItemUISO;
-        
+
+        private ShopPopupPr curShopPopupPr; 
         // 프로퍼티
         public IUIController UIController { get ; set; }
 
@@ -58,35 +59,52 @@ namespace UI.Shop
                 CaptureTest(); 
             }
         }
+
+        private void UpdateMoneyText()
+        {
+            int _money = InventoryManager.Instance.GetMoney();
+            shopView.SetMoneyLabel(_money);
+        }
         /// <summary>
         /// 상점 아이템 세팅  
-        /// </summary>
-        private void SetShopItem()
+            /// </summary>
+            private void SetShopItem()
         {
             inventoryGridSlotsPr.ClearSlotDatas(); 
-
+            
             // 현재 상점npc의 판매 모든 판매아이템 데이터 가져오기 
             var _allDataList = ShopManager.Instance.GetAllItemData();
             foreach(var _data in _allDataList)
             {
                 // 각 타입에 맞는 슬롯ui 설정 
-                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
+                inventoryGridSlotsPr.InvenPanelDic[_data.itemType].SetItemDataUI(_data);
                 // 더블클릭시 구매 이벤트 추가 
-                inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                inventoryGridSlotsPr.InvenPanelDic[_data.itemType].SlotItemViewList.ForEach((x) =>
                 {
-                    // 팝업
+                    // 팝업   
                     //x.AddDoubleClicker(() => ShopManager.Instance.BuyItem(_data));
                     x.AddDoubleClicker(() =>
                     {
+                        if (curShopPopupPr != null) return; 
                         var _popupPr = PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,_data,-1f);
                         _popupPr.SetBuySell(_isBuy: true);
-                        _popupPr.AddClickEvent(() => ShopManager.Instance.BuyItem(_data));     
+                        _popupPr.AddClickEvent(
+                            () =>
+                            {
+                                ShopManager.Instance.BuyItem(x.ItemData);
+                                UpdateMoneyText();
+                                x.UpdateUI();
+                                curShopPopupPr = null; 
+                            },
+                            () => { curShopPopupPr = null; });
+                        curShopPopupPr = _popupPr; 
+                        UpdateMoneyText() ;
                     });
                      
                 });
             }
-            //   ShopManager.Instance.BuyItem();
-         //   ShopManager.Instance.SellItem();
+          // ShopManager.Instance.BuyItem();
+           // ShopManager.Instance.SellItem();
         }
 
         /// <summary>
@@ -102,14 +120,14 @@ namespace UI.Shop
             {
                 foreach (var _data in _itemList)
                 {
-                    if (inventoryGridSlotsPr.ItemSlotDic[_data.itemType].CheckIndex() == false)
+                    if (inventoryGridSlotsPr.InvenPanelDic[_data.itemType].CheckIndex() == false)
                     {
                         inventoryGridSlotsPr.CreateRow(invenItemUISO.GetItemUIType(_data.itemType));
                     }
                         
-                    inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SetItemDataUI(_data);
+                    inventoryGridSlotsPr.InvenPanelDic[_data.itemType].SetItemDataUI(_data);
                     // 더블클릭시 판매 이벤트 추가 
-                    inventoryGridSlotsPr.ItemSlotDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                    inventoryGridSlotsPr.InvenPanelDic[_data.itemType].SlotItemViewList.ForEach((x) =>
                     {
                         x.AddDoubleClicker(() => ShopManager.Instance.SellItem(_data));
                     });
@@ -157,7 +175,8 @@ namespace UI.Shop
             this.shopView.SetShopName(_name);
             this.shopView.SetPanelDir(_isLeft); 
             this.shopView.ActiveScreen(true);
-
+            UpdateMoneyText(); 
+            
             return true; 
         }
 
