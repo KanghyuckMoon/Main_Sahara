@@ -73,9 +73,10 @@ namespace  UI.Map
                                      mapView.Map.resolvedStyle.height / 2);
            // 마커 생성 
             var _marker = CreateMarker(_markerPos);
-
-            UIParticleManager.Instance.Play(ParticleType.Burst, _marker.worldBound.position,
-                OverlayCanvasManager.Instance.Canvas);          
+            Vector2 _particlePos = new Vector2(_marker.worldBound.position.x, -_marker.worldBound.position.y);
+            
+          //  UIParticleManager.Instance.Play(ParticleType.Burst, ,
+            //    OverlayCanvasManager.Instance.Canvas);          
             
             /*_marker.RegisterCallback<MouseOverEvent>((x) => { UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker); });
             _marker.RegisterCallback<MouseLeaveEvent>((x    ) =>
