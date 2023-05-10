@@ -5,15 +5,16 @@ using UnityEngine;
 using Module;
 using Module.Talk;
 using Module.Shop;
+using Cinemachine;
+using Talk;
 
 namespace CondinedModule
 {
-	public class TestShopNPC : AbMainModule
+	public class TestShopNPC : TalkNPC
     {
-        public string textSOAddress;
         public string shopSOAddress;
 
-        private void Awake()
+        protected override void OnEnable()
         {
 	        moduleComponentsDic ??= new();
 	        CharacterController = GetComponent<CharacterController>();
@@ -43,6 +44,8 @@ namespace CondinedModule
 	        //visualObject ??= transform.Find("Visual")?.gameObject;
 	        animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
 	        RaycastTarget = transform.Find("RayCastPoint");
+
+	        NPCRegisterManager.Instance.Register(npctype, this);
 
 	        base.OnEnable();
         }
