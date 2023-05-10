@@ -27,13 +27,13 @@ namespace CondinedModule
 		}
 
         [SerializeField]
-        private PathHarver pathHarver;
+        protected PathHarver pathHarver;
 
-        [SerializeField] private NPCRegisterManager.NPCTYPE npctype;
+        [SerializeField] protected NPCRegisterManager.NPCTYPE npctype;
         
 		public string textSOAddress;
 
-        protected void OnEnable()
+        protected virtual void OnEnable()
         {
             moduleComponentsDic ??= new();
             CharacterController = GetComponent<CharacterController>();

@@ -67,6 +67,7 @@ namespace UI.Inventory
                     
                     GameObject _instance = GameObject.Instantiate(_prefab, inventoryCam);
                     _instance.name = _itemData.modelkey;
+                    _instance.layer = 11;
                     _instance.transform.localPosition = new Vector3(0, -0.218f, 2.75f);
                     if (!modelDic.ContainsKey((_itemData.modelkey)))
                     {

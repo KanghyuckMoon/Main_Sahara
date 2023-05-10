@@ -16,6 +16,14 @@ namespace CondinedModule
             Emiliy,
             Ssun,
             Magi,
+            Micha,
+            Gav,
+            Serius,
+            Cecilia,
+            QuizMan,
+            Loo_F,
+            Nai_C,
+            Nu_S,
         }
 
         public Dictionary<NPCTYPE, TalkNPC> talkNpcDic = new Dictionary<NPCTYPE, TalkNPC>();
