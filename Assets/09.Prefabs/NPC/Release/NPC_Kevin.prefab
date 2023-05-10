@@ -102,12 +102,14 @@ GameObject:
   - component: {fileID: 3261138510958885533}
   - component: {fileID: 3261138510958885532}
   - component: {fileID: 3261138510958885531}
-  - component: {fileID: 8233877914491987461}
   - component: {fileID: 4662527257621918860}
   - component: {fileID: 7324219286135939092}
   - component: {fileID: 3869049802107594003}
   - component: {fileID: 1037095456226860960}
   - component: {fileID: 3389580017717113069}
+  - component: {fileID: 4268337152159613758}
+  - component: {fileID: 7867509934373989412}
+  - component: {fileID: -136499428528792364}
   m_Layer: 21
   m_Name: NPC_Kevin
   m_TagString: Enemy
@@ -187,77 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isColliderOn: 0
---- !u!114 &8233877914491987461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3261138510958885529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84761ad46399969499440c6518ee2447, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 0
-  lockOnTarget: {fileID: 0}
-  characterController: {fileID: 0}
-  objDir: {x: 0, y: 0}
-  objDirection: {x: 0, y: 0, z: 0}
-  objRotation: {x: 0, y: 0, z: 0, w: 0}
-  objForword: {x: 0, y: 0, z: 0}
-  statData: {fileID: 0}
-  hitCollider:
-  - Player_Weapon
-  moveSpeed: 0
-  isSprint: 0
-  isGround: 0
-  isJump: 0
-  isFreeFall: 0
-  isSlope: 0
-  isJumpBuf: 0
-  canMove: 0
-  isDead: 0
-  isAttack: 0
-  isWeaponExist: 0
-  isHit: 0
-  isCharging: 0
-  isCanHit: 0
-  isStaticTime: 0
-  canConsecutiveAttack: 0
-  isDash: 0
-  isConsecutiveWeapon: 0
-  isChargeJumpOn: 0
-  isFlameOn: 0
-  attacking: 0
-  strongAttacking: 0
-  gravity: 0
-  gravityScale: -19.8
-  groundOffset: 0
-  groundRadius: 0.2
-  attackedTime: 0
-  knockBackVector: {x: 0, y: 0, z: 0}
-  knockBackPower: 0
-  slopeVector: {x: 0, y: 0, z: 0}
-  hitDelay: 0
-  lockOn: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  maxSlope: 0
-  raycastTarget: {fileID: 0}
-  visualObject: {fileID: 8069024211037925863}
-  model: {fileID: 0}
-  animator: {fileID: 3261138510958885533}
-  jumpstrenght: 0
-  leftFeet: {fileID: 0}
-  rightFeet: {fileID: 0}
-  back: {fileID: 0}
-  animatorOverrideController: {fileID: 0}
-  aiSOAddress: TestTalkNPCSO
-  pathHarver: {fileID: 0}
-  npctype: 3
-  textSOAddress: Kavin_TalkSO
 --- !u!114 &4662527257621918860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainModule: {fileID: 8233877914491987461}
+  mainModule: {fileID: 0}
   attackMulti: 1
 --- !u!114 &1037095456226860960
 MonoBehaviour:
@@ -340,6 +271,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
   parent: {fileID: 0}
+--- !u!114 &4268337152159613758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261138510958885529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddf7dcff87d35a409f55d7c83b98a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 0
+  lockOnTarget: {fileID: 0}
+  characterController: {fileID: 0}
+  objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
+  objRotation: {x: 0, y: 0, z: 0, w: 0}
+  objForword: {x: 0, y: 0, z: 0}
+  statData: {fileID: 0}
+  hitCollider: []
+  moveSpeed: 0
+  isSprint: 0
+  isGround: 0
+  isJump: 0
+  isFreeFall: 0
+  isSlope: 0
+  isJumpBuf: 0
+  canMove: 0
+  isDead: 0
+  isAttack: 0
+  isWeaponExist: 0
+  isHit: 0
+  isCharging: 0
+  isCanHit: 0
+  isStaticTime: 0
+  canConsecutiveAttack: 0
+  isDash: 0
+  isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
+  attacking: 0
+  strongAttacking: 0
+  gravity: 0
+  gravityScale: -9.8
+  groundOffset: 0
+  groundRadius: 0.2
+  attackedTime: 0
+  knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
+  slopeVector: {x: 0, y: 0, z: 0}
+  hitDelay: 0
+  lockOn: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 132096
+  maxSlope: 0
+  raycastTarget: {fileID: 0}
+  visualObject: {fileID: 0}
+  model: {fileID: 0}
+  animator: {fileID: 0}
+  jumpstrenght: 0
+  leftFeet: {fileID: 0}
+  rightFeet: {fileID: 0}
+  back: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
+  aiSOAddress: NPCSO
+  pathHarver: {fileID: 7867509934373989412}
+  npctype: 3
+  textSOAddress: Kavin_TalkSO
+  shopSOAddress: Kevin_ShopSO
+--- !u!114 &7867509934373989412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261138510958885529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a092ab31889ed0b45b8793b963f07c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothPathArr: []
+--- !u!114 &-136499428528792364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261138510958885529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab89502a8c91eeb4eb020ecf10ed27f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutSceneHaverList: []
 --- !u!1 &3261138512133315418
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,10 +490,5 @@ PrefabInstance:
 --- !u!4 &8069024211037925856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3973147174014446468, guid: 764925772371e4842ab4748b737d699f, type: 3}
-  m_PrefabInstance: {fileID: 6402318260322916964}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8069024211037925863 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3973147174014446467, guid: 764925772371e4842ab4748b737d699f, type: 3}
   m_PrefabInstance: {fileID: 6402318260322916964}
   m_PrefabAsset: {fileID: 0}
