@@ -33,7 +33,7 @@ namespace CondinedModule
         
 		public string textSOAddress;
 
-        protected virtual void OnEnable()
+        protected void OnEnable()
         {
             moduleComponentsDic ??= new();
             CharacterController = GetComponent<CharacterController>();
@@ -42,21 +42,8 @@ namespace CondinedModule
 
             moduleComponentsDic = new();
             CharacterController = GetComponent<CharacterController>();
-            AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
-            AddModuleWithPool<MoveModule>(ModuleType.Move, "MoveModule");
-            AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
-            AddModuleWithPool<JumpModule>(ModuleType.Jump, "JumpModule");
-            AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
-            AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
-            AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
-            AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule");
-            AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
-            AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
-            AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
-            AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
-            AddModuleWithPool<TalkModule>(ModuleType.Talk, "TalkModule", textSOAddress);
-
             LockOnTarget = null;
+            ModuleAdd();
 
             Animator = GetComponent<Animator>();
             //visualObject ??= transform.Find("Visual")?.gameObject;
@@ -66,6 +53,23 @@ namespace CondinedModule
             NPCRegisterManager.Instance.Register(npctype, this);
             
             base.OnEnable();
+        }
+
+        protected virtual void ModuleAdd()
+        {
+	        AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
+	        AddModuleWithPool<MoveModule>(ModuleType.Move, "MoveModule");
+	        AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
+	        AddModuleWithPool<JumpModule>(ModuleType.Jump, "JumpModule");
+	        AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
+	        AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
+	        AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
+	        AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule");
+	        AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
+	        AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
+	        AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
+	        AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
+	        AddModuleWithPool<TalkModule>(ModuleType.Talk, "TalkModule", textSOAddress);
         }
     }
 
