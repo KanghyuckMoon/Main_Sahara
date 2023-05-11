@@ -25,7 +25,7 @@ using Module;
 namespace UI
 {
     /*public enum Keys
-    {
+    {   
         QuestUI, 
         InventoryUI, 
         MapUI, 

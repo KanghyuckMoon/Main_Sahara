@@ -29,7 +29,7 @@ namespace UI.Inventory
         private bool isClicker;
         private Action<ItemData> clickCallback; 
         
-        private int col = 4, row = 4;
+        private int col = 4, row = 5;
 
         // 프로퍼티 
         public Dictionary<ItemType, InventoryPanelUI> InvenPanelDic => _invenPanelDic;
