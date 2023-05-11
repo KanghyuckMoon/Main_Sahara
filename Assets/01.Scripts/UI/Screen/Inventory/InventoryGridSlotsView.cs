@@ -50,7 +50,7 @@ namespace UI.Inventory
         }
         enum ScrollViews
         {
-            inventory_scroll_panel
+                inventory_scroll_panel
         }
 
         private InvenPanelElements curPanelType; // 현재 활성화중인 패널 
@@ -71,9 +71,14 @@ namespace UI.Inventory
             base.Init();
             AddButtonEvents();
             SendEvent();
-            InitBtnPos(); 
+            InitBtnPos();
+            InitScrollSpeed();  
         }
-        
+
+        private void InitScrollSpeed()
+        {
+            GetScrollView((int)ScrollViews.inventory_scroll_panel).verticalPageSize = 1000000; 
+        }
         /// <summary>
         /// RadioButton  가져오기 
         /// </summary>

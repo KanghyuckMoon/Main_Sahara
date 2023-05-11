@@ -56,6 +56,7 @@ namespace UI.Inventory
                     {
                         _modelKey = _modelKey.Replace("\r", "");
                         _prefab = AddressablesManager.Instance.GetResource<GameObject>(_modelKey);
+                        
                     }
                     catch (Exception e)
                     {
