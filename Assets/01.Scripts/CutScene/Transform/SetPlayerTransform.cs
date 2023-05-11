@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Module;
 
 namespace CutScene
 {
@@ -13,6 +14,9 @@ namespace CutScene
         public void PlayerTransformTarget()
         {
             originScene = PlayerObj.Player.scene;
+            var _module = PlayerObj.Player.GetComponent<AbMainModule>();
+            _module.ObjDir = Vector2.zero;
+            _module.ObjDirection = Vector2.zero;
             PlayerObj.Player.transform.SetParent(targetTrm);
         }
         
