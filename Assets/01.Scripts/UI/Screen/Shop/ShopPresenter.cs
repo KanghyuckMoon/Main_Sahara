@@ -65,46 +65,62 @@ namespace UI.Shop
             int _money = InventoryManager.Instance.GetMoney();
             shopView.SetMoneyLabel(_money);
         }
+
         /// <summary>
         /// 상점 아이템 세팅  
-            /// </summary>
-            private void SetShopItem()
+        /// </summary>
+        private void SetShopItem()
         {
-            inventoryGridSlotsPr.ClearSlotDatas(); 
-            
+            inventoryGridSlotsPr.ClearSlotDatas();
+
             // 현재 상점npc의 판매 모든 판매아이템 데이터 가져오기 
             var _allDataList = ShopManager.Instance.GetAllItemData();
-            foreach(var _data in _allDataList)
+            foreach (var _data in _allDataList)
             {
                 // 각 타입에 맞는 슬롯ui 설정 
                 inventoryGridSlotsPr.InvenPanelDic[_data.itemType].SetItemDataUI(_data);
+                var _slot = inventoryGridSlotsPr.InvenPanelDic[_data.itemType].GetCurSlot();
+                _slot.SetItemData(_data);
+                _slot.AddDoubleClicker(() => { AddSlotClickEvt(_slot, _data); });
+
                 // 더블클릭시 구매 이벤트 추가 
-                inventoryGridSlotsPr.InvenPanelDic[_data.itemType].SlotItemViewList.ForEach((x) =>
+                /*inventoryGridSlotsPr.InvenPanelDic[_data.itemType].SlotItemViewList.ForEach((x) =>
                 {
-                    // 팝업   
+                    // 팝업
                     //x.AddDoubleClicker(() => ShopManager.Instance.BuyItem(_data));
-                    x.AddDoubleClicker(() =>
-                    {
-                        if (curShopPopupPr != null) return; 
-                        var _popupPr = PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,_data,-1f);
-                        _popupPr.SetBuySell(_isBuy: true);
-                        _popupPr.AddClickEvent(
-                            () =>
-                            {
-                                ShopManager.Instance.BuyItem(x.ItemData);
-                                UpdateMoneyText();
-                                x.UpdateUI();
-                                curShopPopupPr = null; 
-                            },
-                            () => { curShopPopupPr = null; });
-                        curShopPopupPr = _popupPr; 
-                        UpdateMoneyText() ;
-                    });
-                     
-                });
+                    x.AddDoubleClicker(() => { AddSlotClickEvt(x, _data); });
+                });*/
+                // ShopManager.Instance.BuyItem();
+                // ShopManager.Instance.SellItem();
             }
-          // ShopManager.Instance.BuyItem();
-           // ShopManager.Instance.SellItem();
+        }
+
+        /// <summary>
+        /// 슬롯 클릭시 이벤트
+        /// 팝업창, 돈 업데이트 
+        /// </summary>
+        /// <param name="_slotPr"></param>
+        /// <param name="_data"></param>
+        private void AddSlotClickEvt(SlotItemPresenter _slotPr, ItemData _data)
+        {
+            if (curShopPopupPr != null) return;
+            // 확인 팝업 생성 
+            var _popupPr = PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,_data,-1f);
+            _popupPr.SetBuySell(_isBuy: true);
+            _popupPr.AddClickEvent(
+                // 확인 버튼 이벤트 
+                () =>
+                {
+                    ShopManager.Instance.BuyItem(_slotPr.ItemData);
+                    UpdateMoneyText();
+                    _slotPr.UpdateUI();
+                    curShopPopupPr = null; 
+                },
+                //  취소 버튼 이벤트 
+                () => { curShopPopupPr = null; });
+            curShopPopupPr = _popupPr; 
+            // 돈 텍스트 업데이트 
+            UpdateMoneyText() ;
         }
 
         /// <summary>

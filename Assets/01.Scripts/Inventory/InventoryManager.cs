@@ -536,7 +536,7 @@ namespace Inventory
 
 		public void RemoveAccessories(int _index)
 		{
-			if (inventorySO.accessories[_index] is not null)
+			if (inventorySO.accessories[_index] is not null && !string.IsNullOrEmpty(inventorySO.accessories[_index].key))
 			{
 				ItemData _itemData = inventorySO.accessories[_index];
 				PlayerItemModule.RemovePassiveItem(_itemData.accessoriesItemType);

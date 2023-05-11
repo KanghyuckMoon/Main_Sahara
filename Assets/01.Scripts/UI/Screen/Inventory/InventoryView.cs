@@ -371,6 +371,7 @@ namespace UI.Inventory
             this.slotCallbackDic.Add(ItemType.Weapon, (x1, x2) => InventoryManager.Instance.SetQuickSlotItem(x1, x2));
             this.slotCallbackDic.Add(ItemType.Consumption, (x1, x2) => InventoryManager.Instance.EquipArrow(x1));
             this.slotCallbackDic.Add(ItemType.Equipment, (x1, x2) => InventoryManager.Instance.EquipEquipment(x2,x1));
+            this.slotCallbackDic.Add(ItemType.Accessories , (x1, x2) => InventoryManager.Instance.EquipAccessories(x2,x1));
         }
 
         /// <summary>
