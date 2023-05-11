@@ -19,6 +19,10 @@ namespace UI.Inventory
             rotation = _trm.rotation; 
         }
     }
+    
+    /// <summary>
+    /// 인벤토리 아이템 띄워주는 관련 클래스 
+    /// </summary>
     public class AccentItemCompo
     {
         private Transform inventoryCam; 
@@ -64,12 +68,13 @@ namespace UI.Inventory
                         continue; 
                     }
                     
-                    
+                    if (modelDic.ContainsKey((_itemData.modelkey)) == true) continue;
+
                     GameObject _instance = GameObject.Instantiate(_prefab, inventoryCam);
                     _instance.name = _itemData.modelkey;
                     _instance.layer = 11;
                     _instance.transform.localPosition = new Vector3(0, -0.218f, 2.75f);
-                    if (!modelDic.ContainsKey((_itemData.modelkey)))
+                    if (modelDic.ContainsKey((_itemData.modelkey)) == false)
                     {
                         modelDic.Add(_itemData.modelkey,_instance);
                     }
