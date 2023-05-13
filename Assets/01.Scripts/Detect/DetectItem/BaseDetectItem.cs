@@ -7,10 +7,6 @@ using UnityEngine.Events;
 using DG.Tweening;
 using Effect;
 using UnityEngine.Serialization;
-#if UNITY_EDITOR
-using UnityEditor.SceneManagement;
-
-#endif
 
 namespace Detect
 {
@@ -93,23 +89,6 @@ namespace Detect
 
         protected bool isGetOut = false;
         
-#if  UNITY_EDITOR
-
-        public LayerMask debug_LayerMask;
-        
-#endif
-        
-        [ContextMenu("RandomName")]
-        public void RandomName()
-        {
-            var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-            //gameObject.name = _prefeb.name + nameKey++;
-            key = _prefeb.name + nameKey++;
-#if UNITY_EDITOR
-            EditorSceneManager.MarkSceneDirty(gameObject.scene);
-			
-#endif
-        }
         protected virtual void Start()
         {
             if (isSpawnDic.TryGetValue(key, out bool _bool))
@@ -153,6 +132,19 @@ namespace Detect
         }
         
         #if UNITY_EDITOR
+        public LayerMask debug_LayerMask;
+        
+        
+        [ContextMenu("RandomName")]
+        public void RandomName()
+        {
+            var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+            //gameObject.name = _prefeb.name + nameKey++;
+            key = _prefeb.name + nameKey++;
+
+            
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
+        }
 
         [ContextMenu("SetHeight")]
         public void SetHeight()
