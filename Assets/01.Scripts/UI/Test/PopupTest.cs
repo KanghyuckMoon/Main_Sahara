@@ -37,5 +37,12 @@ public class PopupTest : MonoBehaviour
             PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,
                 itemData);
         }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            ItemData itemData = ItemData.CopyItemDataSO(ItemDataSo);
+            PopupUIManager.Instance.CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem,
+                itemData);
+        }
     }
 }

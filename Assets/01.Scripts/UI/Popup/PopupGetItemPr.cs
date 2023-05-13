@@ -22,21 +22,21 @@ namespace UI.Popup
             var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(PopupGetItemView));
             this.popupGetItemView = _prod.Item2 as PopupGetItemView;
             this.parent = _prod.Item1; 
-            
+            popupGetItemView.AddEventAfterImage(AnimateDetails);
             // 애니메이션 
             //  popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
      //       popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
         }
         public void ActiveTween()
         {
-            popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
-            popupGetItemView.Parent.AddToClassList("show_getitem_popup");
+            popupGetItemView.AnimateItem(true);
         }
 
         public void InActiveTween()
         {
-            popupGetItemView.Parent.RemoveFromClassList("show_getitem_popup");
-            popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
+            popupGetItemView.Parent.RemoveFromClassList("show_get_newitem_popup");
+            popupGetItemView.Parent.AddToClassList("hide_get_newitem_popup");
+            popupGetItemView.AnimateItem(false); 
         }
 
         public void Undo()
@@ -61,7 +61,14 @@ namespace UI.Popup
             popupGetItemView.SetData(_stringData);
         }
 
-
+        /// <summary>
+        /// 이미지 하단 설명창 애니메이션 
+        /// </summary>
+        private void AnimateDetails()
+        {
+            popupGetItemView.Parent.RemoveFromClassList("show_get_newitem_popup");
+            popupGetItemView.Parent.AddToClassList("hide_get_newitem_popup");
+        }
         
     }
 
