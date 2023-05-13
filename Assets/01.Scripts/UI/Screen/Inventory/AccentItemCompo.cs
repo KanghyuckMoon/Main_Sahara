@@ -56,6 +56,7 @@ namespace UI.Inventory
                     {
                         _modelKey = _modelKey.Replace("\r", "");
                         _prefab = AddressablesManager.Instance.GetResource<GameObject>(_modelKey);
+                        
                     }
                     catch (Exception e)
                     {
@@ -66,9 +67,17 @@ namespace UI.Inventory
                     
                     GameObject _instance = GameObject.Instantiate(_prefab, inventoryCam);
                     _instance.name = _itemData.modelkey;
+                    _instance.layer = 11;
                     _instance.transform.localPosition = new Vector3(0, -0.218f, 2.75f);
-                    modelDic.Add(_itemData.modelkey,_instance);
-                    modelTrmDic.Add(_itemData.modelkey, new St_Transform(_instance.transform));
+                    if (!modelDic.ContainsKey((_itemData.modelkey)))
+                    {
+                        modelDic.Add(_itemData.modelkey,_instance);
+                    }
+
+                    if (modelTrmDic.ContainsKey(_itemData.modelkey) == false)
+                    {
+                        modelTrmDic.Add(_itemData.modelkey, new St_Transform(_instance.transform));
+                    }
                 }
             }
 
@@ -111,8 +120,13 @@ namespace UI.Inventory
         public void ActiveModel(string _key)
         {
             InactiveAllModels();
-            curActiveModel = this.modelDic[_key];
-            curActiveModel.SetActive(true); 
+            // 모델이 존재하면 
+            if(modelDic.TryGetValue(_key, out GameObject _obj)== true)
+            {
+                curActiveModel = this.modelDic[_key];
+                curActiveModel.SetActive(true); 
+            }
+
             
         }
 

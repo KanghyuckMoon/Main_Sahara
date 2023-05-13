@@ -1,3 +1,4 @@
+    using System;
     using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace UI.Production
         {
             name_label, // 아이템 이름 텍스트 
             description_label, // 아이템 설명 텍스트 
+            price_label, // 가격 텍스트 
         }
 
         public VisualElement Panel => GetVisualElement((int)Elements.description_panel); 
@@ -47,10 +49,11 @@ namespace UI.Production
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_description"></param>
-        public void SetNameAndDesciption(string _name, string _description)
+        public void SetNameAndDesciptionAndPrice(string _name, string _description,int _price)
         {
             GetLabel((int)Labels.name_label).text = _name;
-            GetLabel((int)Labels.description_label).text = _description; 
+            GetLabel((int)Labels.description_label).text = _description;
+            GetLabel((int)Labels.price_label).text = String.Format("가격" + "{0:###}", _price);
         }
 
         public void SetPos(Vector2 _pos)

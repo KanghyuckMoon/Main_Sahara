@@ -98,6 +98,11 @@ namespace UI.Manager
             this.cursorModule.ActiveCursor(_isActive);
         }
 
+        public void SetCursorImage(CursorImageType _type)
+        {
+            cursorModule.SetCursor(_type);
+        }   
+
 
     }
 

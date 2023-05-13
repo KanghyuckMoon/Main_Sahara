@@ -14,7 +14,7 @@ namespace UI.Shop
         enum Labels
         {
             shop_name,
-
+            money_label
         }
 
         enum Elements
@@ -44,6 +44,11 @@ namespace UI.Shop
             GetLabel((int)Labels.shop_name).text = _name; 
         }
 
+        public void SetMoneyLabel(int _money)
+        {
+            GetLabel((int)Labels.money_label).text = string.Format("{0:#,###}", _money);
+        }
+        
         /// <summary>
         /// 상점창과 상점 주인 표시 순서 설정 
         /// </summary>

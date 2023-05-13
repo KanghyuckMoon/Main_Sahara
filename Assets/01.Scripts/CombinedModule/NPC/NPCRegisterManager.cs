@@ -14,14 +14,33 @@ namespace CondinedModule
             Foolue,
             Kevin,
             Emiliy,
+            Ssun,
             Magi,
+            Micha,
+            Gav,
+            Serius,
+            Cecilia,
+            QuizMan,
+            Loo_F,
+            Nai_C,
+            Nu_S,
         }
 
         public Dictionary<NPCTYPE, TalkNPC> talkNpcDic = new Dictionary<NPCTYPE, TalkNPC>();
 
         public void Register(NPCTYPE _npctype, TalkNPC _talkNpc)
         {
-            talkNpcDic.Add(_npctype, _talkNpc);
+            if (talkNpcDic.TryGetValue(_npctype, out var value))
+            {
+                if (value != _talkNpc)
+                {
+                    talkNpcDic[_npctype] = value;
+                }
+            }
+            else
+            {
+                talkNpcDic.Add(_npctype, _talkNpc);
+            }
         }
 
         public TalkNPC Get(NPCTYPE _npctype)

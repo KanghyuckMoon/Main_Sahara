@@ -25,9 +25,15 @@ namespace UI.Inventory
             //skill_panel,
             accessories_panel,
             material_panel,
-            valuable_panel
+            valuable_panel,
+            marker_panel
         }
 
+        enum Elements
+        {
+            accent_pattern = 7, 
+        }
+        
         public enum RadioButtons
         {
             weapon_button,
@@ -36,14 +42,15 @@ namespace UI.Inventory
            //skill_button,
             accessories_button,
             material_button,
-            valuable_button
+            valuable_button,
+            marker_button 
             //장비
             //소비
             //기타
         }
         enum ScrollViews
         {
-            inventory_scroll_panel
+                inventory_scroll_panel
         }
 
         private InvenPanelElements curPanelType; // 현재 활성화중인 패널 
@@ -54,6 +61,7 @@ namespace UI.Inventory
         {
             //base.Cashing();
             BindVisualElements(typeof(InvenPanelElements));
+            BindVisualElements(typeof(Elements));
             BindRadioButtons(typeof(RadioButtons));
             BindScrollViews(typeof(ScrollViews));
         }
@@ -63,8 +71,14 @@ namespace UI.Inventory
             base.Init();
             AddButtonEvents();
             SendEvent();
+            InitBtnPos();
+            InitScrollSpeed();  
         }
 
+        private void InitScrollSpeed()
+        {
+            GetScrollView((int)ScrollViews.inventory_scroll_panel).verticalPageSize = 1000000; 
+        }
         /// <summary>
         /// RadioButton  가져오기 
         /// </summary>
@@ -108,9 +122,37 @@ namespace UI.Inventory
                 {
                     ActiveInventoryPanel((InvenPanelElements)_p, x);
                     ActiveRadioBtn((RadioButtons)_p, x);
+                    MoveAccentPattern((RadioButtons)_p,x); 
                 });
 
             }
+        }
+        
+        private float categoryLength = 0f; 
+        private void InitBtnPos()
+        {
+            Rect _firstSlot =
+               GetRBtn(InventoryGridSlotsView.RadioButtons.weapon_button).worldBound;
+            Rect _lastSlot =
+                GetRBtn(InventoryGridSlotsView.RadioButtons.marker_button).worldBound;
+
+            categoryLength = (_lastSlot.x - _firstSlot.x + 80) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
+        }
+        /// <summary>
+        ///  카테고리 강조 패턴 위치 설정 
+        /// </summary>
+        public void MoveAccentPattern(InventoryGridSlotsView.RadioButtons _btnType, bool _isActive)
+        {
+            if (_isActive == false) return;
+            InitBtnPos(); 
+            //if(categoryLength == 0) InitBtnPos();
+
+            VisualElement _v = GetRBtn(_btnType);
+            Rect _rect = _v.worldBound;
+            float _posX = _rect.x + _v.resolvedStyle.width / 2;
+            float _moveV = categoryLength * (int)_btnType; 
+            GetVisualElement((int)Elements.accent_pattern).style.left = _moveV; 
+            //GetVisualElement((int)Elements.accent_pattern).
         }
 
         /// <summary>

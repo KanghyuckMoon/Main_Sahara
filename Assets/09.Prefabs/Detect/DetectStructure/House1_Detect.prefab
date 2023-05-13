@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6545224693629929255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8858260042798545258}
+  m_Layer: 17
+  m_Name: CameraArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8858260042798545258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6545224693629929255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5267085463249326830}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6781830657356848780
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: 
   detectItemType: 4
   targetHeightTransform: {fileID: 6781830658457966257}
   targetTransform: {fileID: 6781830657356848781}
@@ -88,6 +120,13 @@ MonoBehaviour:
   effectAddress: SandUpEffect
   heightUpTime: 5
   shakeStrength: 0.5
+  getoutEventBefore:
+    m_PersistentCalls:
+      m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls: []
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -229,8 +268,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6205200404844511654, guid: 691a570401cb541459727fd7bb550b5c, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514548426170869333, guid: 691a570401cb541459727fd7bb550b5c, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923099172296156445, guid: 691a570401cb541459727fd7bb550b5c, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156432132464825108, guid: 691a570401cb541459727fd7bb550b5c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 691a570401cb541459727fd7bb550b5c, type: 3}
+--- !u!1 &1628924807587113802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6205200404844511654, guid: 691a570401cb541459727fd7bb550b5c, type: 3}
+  m_PrefabInstance: {fileID: 4649498906891332332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &5645559234281514300
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628924807587113802}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8516734863606869860, guid: 3d59ef32c2955374a8a873cb844f985a, type: 3}
+--- !u!1 &1940494914801208505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6514548426170869333, guid: 691a570401cb541459727fd7bb550b5c, type: 3}
+  m_PrefabInstance: {fileID: 4649498906891332332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &87957584342841563
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940494914801208505}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8516734863606869860, guid: 3d59ef32c2955374a8a873cb844f985a, type: 3}
 --- !u!4 &5267085463249326830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 693031858741098498, guid: 691a570401cb541459727fd7bb550b5c, type: 3}

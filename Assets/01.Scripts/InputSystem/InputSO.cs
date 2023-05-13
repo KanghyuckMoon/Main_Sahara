@@ -27,7 +27,7 @@ namespace InputSystem
 		{
 			keyCodeDic.Clear();
 			foreach (var _obj in inputDataList)
-			{
+				{
 				keyCodeDic.Add(_obj.key, _obj);
 			}
 #if UNITY_EDITOR

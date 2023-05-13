@@ -6,16 +6,18 @@ namespace Inventory
 {
 	public class InventoryTest : MonoBehaviour
 	{
+	    public string itemAddress;
+	
 		[ContextMenu("AddItemTest")]
 		public void AddItemTest()
 		{
-			InventoryManager.Instance.AddItem("ItemTest");
+			InventoryManager.Instance.AddItem(itemAddress);
 		}
 
 		[ContextMenu("GetItemTest")]
 		public void GetItemTest()
 		{
-			InventoryManager.Instance.GetItem("ItemTest");
+			InventoryManager.Instance.GetItem(itemAddress);
 		}
 
 	}

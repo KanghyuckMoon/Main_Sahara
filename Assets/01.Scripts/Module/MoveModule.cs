@@ -137,20 +137,21 @@ namespace Module
             {
                 if (!mainModule.Attacking || !mainModule.StrongAttacking)
                 {
-                    if (mainModule.LockOnTarget is null && mainModule.ObjDir != Vector2.zero)
+                    if (mainModule.LockOnTarget == null )
                     {
-                        mainModule.transform.rotation = Quaternion.Euler(0, rotation, 0);
+                        if (mainModule.ObjDir != Vector2.zero)
+                        {
+                            mainModule.transform.rotation = Quaternion.Euler(0, rotation, 0);
+                        }
                         //Quaternion.RotateTowards(mainModule.transform.rotation,
                         //Quaternion.Euler(0, rotation, 0), 5 * mainModule.PersonalDeltaTime);
                         //Quaternion _qu = Quaternion.LookRotation(Quaternion.Euler(0.0f, rotation, 0.0f).eulerAngles, Vector3.up);
                         //mainModule.transform.rotation =
                         //    Quaternion.RotateTowards(mainModule.transform.rotation, _qu, 10 * mainModule.PersonalDeltaTime);
                     }
-
-                    if (mainModule.LockOnTarget is not null)
+                    else
                     {
-                        mainModule.transform.rotation =
-                            Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
+                        mainModule.transform.rotation = Quaternion.Euler(0.0f,  mainModule.ObjRotation.eulerAngles.y, 0.0f);   
                     }
                 }
             }

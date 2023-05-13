@@ -121,7 +121,7 @@ namespace UI.Upgrade
                 upgradeSlotLinerComp.CheckCreateItem();
                 Logging.Log("업그레이드 클릭");
             });
-
+    
             rowList.Clear();
             slotPosDIc.Clear();
             allSlotList.Clear();
@@ -445,7 +445,7 @@ namespace UI.Upgrade
         {
             Debug.Log("클릭");
             // 파티클 
-          //  InActiveAllMark(); // 모든 선택 마크 비활성화 
+            InActiveAllMark(); // 모든 선택 마크 비활성화 
             _upgradePr.ActiveMark(true);
 
             ItemUpgradeDataSO _childItemData =

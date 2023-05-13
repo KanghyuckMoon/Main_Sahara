@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Popup.uss?fileID=7433441132597879392&amp;guid=7f506964a6cb6c5428fe7aa421dcaf79&amp;type=3#Popup" />
+    <ui:VisualElement name="popup_shop_view" class="popup_shop">
+        <ui:VisualElement name="deco" class="border_base" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Inventory%20slot.png?fileID=1392996731&amp;guid=65ee86399d372374981a0580359228d1&amp;type=3#Inventory slot_0&apos;); -unity-background-scale-mode: stretch-to-fill; -unity-slice-left: 200; -unity-slice-top: 200; -unity-slice-right: 200; -unity-slice-bottom: 200; display: flex;" />
+        <ui:VisualElement class="border_base" />
+        <ui:VisualElement name="center" class="border_base center_align" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+            <ui:VisualElement name="top" class="center_align" style="flex-grow: 1; width: 100%;">
+                <ui:Label text="&lt;b&gt;정정배의 머리카락&lt;/b&gt;을 구매하시겠습니까?" display-tooltip-when-elided="true" enable-rich-text="true" name="title_label" class="font_base" style="font-size: 20px;" />
+                <ui:Label text="가격 : 100,000,000" display-tooltip-when-elided="true" name="price_label" class="font_base" style="font-size: 17px; margin-top: 10px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="bot" style="flex-grow: 1; width: 100%; align-items: center; flex-direction: row; justify-content: space-around;">
+                <ui:Button text="확인" display-tooltip-when-elided="true" name="accept_btn" class="shop_popup_btn font_base" />
+                <ui:Button text="취소" display-tooltip-when-elided="true" name="cancel_btn" class="shop_popup_btn font_base" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Sw_03_Harpe_Sprite.png?fileID=2800000&amp;guid=0507baef2fe2f6847b955598eab75b4d&amp;type=3#Sw_03_Harpe_Sprite&apos;); -unity-background-scale-mode: scale-to-fit; width: 86px; height: 83px; position: absolute; top: 2px; left: 194px; display: none;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
