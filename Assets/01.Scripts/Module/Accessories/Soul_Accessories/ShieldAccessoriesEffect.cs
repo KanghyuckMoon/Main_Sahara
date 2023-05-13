@@ -38,7 +38,7 @@ namespace PassiveItem
                 mainModule.Animator.Play("ShieldAnimation");
                 obj = ObjectPoolManager.Instance.GetObject("Shield_Prefab");
                 obj.transform.SetParent(mainModule.transform);
-                obj.transform.localPosition = new Vector3(0, 0.8f, 0);
+                obj.transform.localPosition = new Vector3(0, 1f, 0);
                 obj.transform.localScale = Vector3.zero;
                 mainModule.StartCoroutine(SetShieldActive(obj));
             }
@@ -48,7 +48,7 @@ namespace PassiveItem
         {
             yield return new WaitForSeconds(0.3f);
             _shield.SetActive(true);
-            obj.transform.DOScale(2, 0.5f);
+            obj.transform.DOScale(1, 0.5f);
         }
         public void ClearPassiveEffect()
         {
