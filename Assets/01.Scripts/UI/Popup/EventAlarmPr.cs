@@ -19,23 +19,29 @@ namespace UI.Popup
 
         public VisualElement Parent => parent;
 
+        private const string activeStr = "active_alarm"; 
+        private const string inactiveStr = "inactive_alarm";
+
+
         public EventAlarmPr()
         {
             var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(EventAlarmView));
-            this.parent = _prod.Item1;
+            this.parent = _prod.Item1.ElementAt(0);
             this.eventAlarmView = _prod.Item2 as EventAlarmView;
+            eventAlarmView.InitUIParent(parent);
+            eventAlarmView.EventAlarmParent.RegisterCallback<TransitionEndEvent>(ActiveText);
         }
 
         public void ActiveTween()
         {
-            eventAlarmView.EventAlarmParent.RemoveFromClassList("inactive_alarm");
-            eventAlarmView.EventAlarmParent.AddToClassList("active_alarm");
+            eventAlarmView.EventAlarmParent.RemoveFromClassList(inactiveStr);
+            eventAlarmView.EventAlarmParent.AddToClassList(activeStr);
         }
 
         public void InActiveTween()
         {
-            eventAlarmView.EventAlarmParent.RemoveFromClassList("active_alarm");
-            eventAlarmView.EventAlarmParent.AddToClassList("inactive_alarm");
+            eventAlarmView.EventAlarmParent.RemoveFromClassList(activeStr);
+            eventAlarmView.EventAlarmParent.AddToClassList(inactiveStr);
         }
 
         public void Undo()
@@ -95,6 +101,19 @@ namespace UI.Popup
                     break;
             }
             return _img; 
+        }
+
+        /// <summary>
+        /// 텍스트 활성화 
+        /// </summary>
+        /// <param name="_evt"></param>
+        private void ActiveText(TransitionEndEvent _evt)
+        {
+            // 활성화 상태에서 
+            if (eventAlarmView.ParentElement.ClassListContains(activeStr) == true)
+            {
+                eventAlarmView.ActiveTexts(); 
+            }
         }
     }
 }

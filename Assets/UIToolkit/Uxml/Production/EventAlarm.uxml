@@ -5,12 +5,12 @@
         <ui:VisualElement picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: none;">
             <ui:Label text="Label" display-tooltip-when-elided="true" name="event_name_label_" class="font_base" style="bottom: 30px; font-size: 15px; color: rgb(255, 255, 255); -unity-text-align: middle-center;" />
         </ui:VisualElement>
-        <ui:VisualElement name="left" style="flex-basis: 20%; align-items: center; justify-content: center;">
+        <ui:VisualElement name="left" style="flex-basis: 20%; align-items: center; justify-content: center; height: 150%; display: none;">
             <ui:VisualElement name="image" class="logo_image" style="display: flex;" />
         </ui:VisualElement>
         <ui:VisualElement name="right" style="flex-grow: 1;">
-            <ui:Label text="자고 있는 정정배를 깨워라 " display-tooltip-when-elided="true" name="event_name_label" picking-mode="Ignore" class="font_base" style="font-size: 18px; color: rgb(255, 255, 255); -unity-text-align: middle-left; margin-bottom: 5px; width: 100%;" />
-            <ui:Label text="퀘스트 수락" display-tooltip-when-elided="true" name="event_detail_label" picking-mode="Ignore" class="font_base" style="font-size: 13px; color: rgb(224, 224, 224); white-space: normal; -unity-text-align: upper-right;" />
+            <ui:Label text="자고 있는 정정배를 깨워라 " display-tooltip-when-elided="true" name="event_name_label" picking-mode="Ignore" class="font_base inactive_text" style="font-size: 42px; color: rgb(224, 224, 224); -unity-text-align: middle-center; margin-bottom: 5px; width: 100%; overflow: hidden; transition-property: opacity; transition-duration: 0.2s;" />
+            <ui:Label text="퀘스트 수락" display-tooltip-when-elided="true" name="event_detail_label" picking-mode="Ignore" class="font_base inactive_text" style="font-size: 20px; color: rgb(255, 255, 255); white-space: normal; -unity-text-align: upper-center; display: flex; overflow: hidden; transition-property: opacity; transition-duration: 0.2s;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

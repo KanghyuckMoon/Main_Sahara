@@ -32,7 +32,8 @@ namespace UI.Inventory
         private Dictionary<string,GameObject> modelDic = new Dictionary<string,GameObject>();
         // 초기화시 사용할 모델 위치, 회전 정보 
         private Dictionary<string, St_Transform> modelTrmDic = new Dictionary<string, St_Transform>(); 
-        private GameObject curActiveModel = null; 
+        private GameObject curActiveModel = null;
+        private St_Transform curActiveModelData ;
         
         private bool isInit = false; 
         
@@ -73,6 +74,12 @@ namespace UI.Inventory
                     GameObject _instance = GameObject.Instantiate(_prefab, inventoryCam);
                     _instance.name = _itemData.modelkey;
                     _instance.layer = 11;
+                    // 자식까지 레이어 달기 
+                    for (int i = 0; i < _instance.transform.childCount; i++)
+                    {
+                        _instance.transform.GetChild(i).gameObject.layer = 11; 
+                    }
+                    
                     _instance.transform.localPosition = new Vector3(0, -0.218f, 2.75f);
                     if (modelDic.ContainsKey((_itemData.modelkey)) == false)
                     {
@@ -124,17 +131,33 @@ namespace UI.Inventory
 
         public void ActiveModel(string _key)
         {
-            InactiveAllModels();
+            //InactiveAllModels();
+            InactiveCurModel(); 
             // 모델이 존재하면 
             if(modelDic.TryGetValue(_key, out GameObject _obj)== true)
             {
                 curActiveModel = this.modelDic[_key];
-                curActiveModel.SetActive(true); 
+                curActiveModel.SetActive(true);
+
+                curActiveModelData = modelTrmDic[_key];
             }
 
             
         }
 
+        /// <summary>
+        /// 현재 활성화 중인 모델 비활성화 
+        /// </summary>
+        private void InactiveCurModel()
+        {
+            if (curActiveModel == null) return; 
+            curActiveModel.transform.position = curActiveModelData.position; 
+            curActiveModel.transform.rotation = curActiveModelData.rotation; 
+            curActiveModel.SetActive(false);
+
+            curActiveModel = null; 
+        }
+        
         /// <summary>
         ///  모든 모델 비활성화
         /// </summary>
@@ -147,7 +170,6 @@ namespace UI.Inventory
                 _model.Value.transform.position = modelTrmDic[_model.Key].position;
                 _model.Value.transform.rotation = modelTrmDic[_model.Key].rotation;
             }
-            
             curActiveModel = null; 
         }
         //   모든 아이템 저장 리스트 

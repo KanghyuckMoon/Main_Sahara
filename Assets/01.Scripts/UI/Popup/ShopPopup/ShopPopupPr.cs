@@ -19,6 +19,7 @@ namespace UI.Popup
         private int price; 
         private VisualElement parent;
 
+        private Action undoCallback = null; 
         private const string animateStr = "popup_inactive";
         public VisualElement Parent => parent; 
         
@@ -28,6 +29,11 @@ namespace UI.Popup
             parent = _prod.Item1.ElementAt(0); 
             shopPopupView = _prod.Item2 as ShopPopupView;
             shopPopupView.InitUIParent(parent);
+        }
+
+        public void AddCallback(Action _callback)
+        {
+            undoCallback = _callback; 
         }
         public void ActiveTween()
         {
@@ -44,6 +50,7 @@ namespace UI.Popup
 
         public void Undo()
         {
+            undoCallback.Invoke();
             shopPopupView.ParentElement.RemoveFromHierarchy();
         }
 

@@ -105,7 +105,7 @@ namespace UI.Shop
         {
             if (curShopPopupPr != null) return;
             // 확인 팝업 생성 
-            var _popupPr = PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,_data,-1f);
+            var _popupPr = PopupUIManager.Instance.CreatePopup<ShopPopupPr>(PopupType.Shop,_data);
             _popupPr.SetBuySell(_isBuy: true);
             _popupPr.AddClickEvent(
                 // 확인 버튼 이벤트 

@@ -22,6 +22,8 @@ namespace UI.Production
 
         public VisualElement Parent => parentElement;
         public VisualElement EventAlarmParent => GetVisualElement((int)Elements.event_alarm_view); 
+        private const string activeTextStr = "active_text"; 
+        private const string inactiveTextStr = "inactive_text"; 
         public EventAlarmView()
         {
  
@@ -44,6 +46,14 @@ namespace UI.Production
             ActiveScreen(_isActive); 
         }
 
+        public void ActiveTexts()
+        {
+            GetLabel((int)Labels.event_name_label).RemoveFromClassList(inactiveTextStr);
+            GetLabel((int)Labels.event_detail_label).RemoveFromClassList(inactiveTextStr);
+          
+            GetLabel((int)Labels.event_detail_label).AddToClassList(activeTextStr);
+            GetLabel((int)Labels.event_detail_label).AddToClassList(activeTextStr);
+        }
         public void SetNameAndDetail(string _name, string _detail)
         {
             SetEventName(_name);
