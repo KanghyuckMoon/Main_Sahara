@@ -20,9 +20,9 @@ namespace Weapon
             projectilePosSO = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
         }
         
-        #if UNITY_EDITOR
-        [Header("Debug")]
         public ProjectileObjectData objectData;
+        //#if UNITY_EDITOR
+        //[Header("Debug")]
 
         [ContextMenu("위치 저장")]
         public void Upload()
@@ -33,7 +33,7 @@ namespace Weapon
             projectilePosSO ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
             projectilePosSO.Upload(objectData);
         }
-        #endif
+        //#endif
         
         protected Vector3 CalculateRotation(Vector3 _vector3)
         {

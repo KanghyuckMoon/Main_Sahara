@@ -15,8 +15,8 @@ using UnityEditor.SceneManagement;
 
 namespace Detect
 {
-public class CreatureDetectItem : MonoBehaviour, IDetectItem
-{
+    public class CreatureDetectItem : MonoBehaviour, IDetectItem
+    {
     private static Dictionary<string, bool> isSpawnDic = new Dictionary<string, bool>();
     private static int nameKey;
     [SerializeField] 
@@ -88,18 +88,18 @@ public class CreatureDetectItem : MonoBehaviour, IDetectItem
         }
 
         private List<Observer> observers = new List<Observer>();
-        
+#if UNITY_EDITOR
         [ContextMenu("RandomName")]
         public void RandomName()
         {
             var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
             //gameObject.name = _prefeb.name + nameKey++;
             key = _prefeb.name + nameKey++;
-#if UNITY_EDITOR
+
             EditorSceneManager.MarkSceneDirty(gameObject.scene);
+        }
 			
 #endif
-        }
         
         public void GetOut()
         {

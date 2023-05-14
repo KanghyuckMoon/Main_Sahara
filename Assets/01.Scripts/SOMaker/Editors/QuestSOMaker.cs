@@ -68,6 +68,10 @@ using Module;
                 _asset.earlyQuestState = (QuestState)Enum.Parse(typeof(QuestState), _earlyQuestState);
                 _asset.questConditionType = (QuestConditionType)Enum.Parse(typeof(QuestConditionType), _questConditionType);
                 _asset.linkQuestKeyList = _linkQuestKeyList.ToList();
+                if (string.IsNullOrEmpty(_asset.linkQuestKeyList[0]))
+                {
+                    _asset.linkQuestKeyList = null;
+                }
                 _asset.isTalkQuest = Convert.ToBoolean(_isTalkQuest);
                 _asset.isUpdate = Convert.ToBoolean(_isUpdate);
 
