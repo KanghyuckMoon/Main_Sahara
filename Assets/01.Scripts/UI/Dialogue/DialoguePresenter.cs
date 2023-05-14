@@ -15,8 +15,10 @@ using System;
 using UI.EventManage;
 using UI.Upgrade;
 using Inventory;
+    using TimeManager;
+    
 
-namespace UI.Dialogue
+    namespace UI.Dialogue
 {
     public class DialoguePresenter : MonoBehaviour, IScreen
     {
@@ -79,6 +81,7 @@ namespace UI.Dialogue
         {
             // 처음 대화시 isDialogue를 true로 설정해준다. 
             if (isDialogue == true) return;
+
             StartText(_name, _dialogue, _callback);
         }
 
@@ -327,6 +330,7 @@ namespace UI.Dialogue
         {
             isDialogue = _isActive;
             dialogueView.ActiveViewS(_isActive);
+            StaticTime.UITime = _isActive ? 0f : 1f; 
             //UIManager.Instance.ActiveCursor(_isActive); 
 
             if (_isActive == false)

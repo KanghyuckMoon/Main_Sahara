@@ -69,7 +69,7 @@ namespace UI.Inventory
                         continue; 
                     }
                     
-                    if (modelDic.ContainsKey((_itemData.modelkey)) == true) continue;
+                    if (modelDic.ContainsKey((_itemData.modelkey)) == true || _prefab == null) continue;
 
                     GameObject _instance = GameObject.Instantiate(_prefab, inventoryCam);
                     _instance.name = _itemData.modelkey;

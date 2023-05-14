@@ -46,7 +46,11 @@ namespace UI.Popup
             {
                 if (popupParent == null)
                 {
-                    popupParent = GameObject.FindWithTag("UIParent").transform.Find("PopupScreens");
+                    GameObject _uiParent = GameObject.FindWithTag("UIParent");
+                    if (_uiParent != null)
+                    {
+                        popupParent = _uiParent.transform.Find("PopupScreens");
+                    }
                     SetPresenters(); 
                 }
 
@@ -103,7 +107,7 @@ namespace UI.Popup
             if (_sender is "QuestManager")
             {
                 QuestData _questData = _obj as QuestData;
-                CreatePopup<EventAlarmPr>(PopupType.EventAlarm, _questData);
+                CreatePopup<EventAlarmPr>(PopupType.EventAlarm, _questData,5f);
             }
         }
 
