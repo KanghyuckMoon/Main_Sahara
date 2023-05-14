@@ -20,16 +20,13 @@ namespace UI.Production
         {
             popup_getitem_view,
             image,
-            slot,
+
         }
 
         enum Labels
         {
             name,
         }
-
-        private const string activeItemStr = "active_item";
-        private const string inactiveItemStr = "inactive_item";
 
         public VisualElement Parent => GetVisualElement((int)Elements.popup_getitem_view);
 
@@ -38,30 +35,6 @@ namespace UI.Production
             //base.Cashing();
             BindVisualElements(typeof(Elements));
             BindLabels(typeof(Labels));
-        }
-
-        /// <summary>
-        /// 아이템 이미지 활성화 시키면서 애니메이션 효과 
-        /// </summary>
-        public void AnimateItem(bool _isActive)
-        {
-            if (_isActive == true)
-            {
-                GetVisualElement((int)Elements.slot).RemoveFromClassList(inactiveItemStr);
-                GetVisualElement((int)Elements.slot).AddToClassList(activeItemStr);
-                return;
-            }
-
-            GetVisualElement((int)Elements.slot).RemoveFromClassList(activeItemStr);
-            GetVisualElement((int)Elements.slot).AddToClassList(inactiveItemStr);
-        }
-
-        /// <summary>
-        /// 이미지 애니메이션 효과 끝난후 진행될 효과 
-        /// </summary>
-        public void AddEventAfterImage(Action _callback)
-        {
-            AddElementEvent<TransitionEndEvent>((int)Elements.slot, _callback);
         }
 
         public void SetData(StringData _stringData)

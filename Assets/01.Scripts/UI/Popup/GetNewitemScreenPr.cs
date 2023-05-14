@@ -14,7 +14,7 @@ namespace UI.Popup
         [SerializeField]
         private GetNewitemScreenView getNewItemScreenView; 
         
-        public PopupType PopupType => PopupType.Shop; 
+        public PopupType PopupType => PopupType.GetNewItem; 
 
         private void OnEnable()
         {

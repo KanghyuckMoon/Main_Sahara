@@ -20,26 +20,28 @@ namespace UI.Popup
         
         public PopupGetNewitemPr()
         {
-            var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(PopupGetItemView));
+            var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(PopupGetNewitemView));
             this.popupGetNewitemView = _prod.Item2 as PopupGetNewitemView;
-            this.parent = _prod.Item1.ElementAt(0); 
-            popupGetNewitemView.InitUIParent(parent);
-          
-            parent.RegisterCallback<TransitionEndEvent>((x) => popupGetNewitemView.ActiveTexts());
-            // 애니메이션 
-            //  popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
-            //       popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
+            this.parent = _prod.Item1.ElementAt(0);
+            
+            if (popupGetNewitemView != null)
+            {
+                popupGetNewitemView.InitUIParent(parent);
+
+                popupGetNewitemView.AddEventAfterImage(AnimateDetails);
+                parent.RegisterCallback<TransitionEndEvent>((x) => popupGetNewitemView.ActiveTexts());
+            }
         }
         public void ActiveTween()
         {
-            popupGetNewitemView.Parent.RemoveFromClassList("hide_getitem_popup");
-            popupGetNewitemView.Parent.AddToClassList("show_getitem_popup");
+            popupGetNewitemView.AnimateItem(true);
         }
 
         public void InActiveTween()
         {
-            popupGetNewitemView.Parent.RemoveFromClassList("show_getitem_popup");
-            popupGetNewitemView.Parent.AddToClassList("hide_getitem_popup");
+            popupGetNewitemView.Parent.RemoveFromClassList("show_get_newitem_popup");
+            popupGetNewitemView.Parent.AddToClassList("hide_get_newitem_popup");
+            popupGetNewitemView.AnimateItem(false); 
         }
 
         public void Undo()
@@ -56,6 +58,15 @@ namespace UI.Popup
             Texture2D _image = AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey);
             PopupGetNewitemView.StringData _stringData = new PopupGetNewitemView.StringData{name = _name, detail = _datail,sprite =_image}; 
             popupGetNewitemView.SetData(_stringData);
+        }
+        
+        /// <summary>
+        /// 이미지 하단 설명창 애니메이션 
+        /// </summary>
+        private void AnimateDetails()
+        {
+            popupGetNewitemView.Parent.RemoveFromClassList("show_get_newitem_popup");
+            popupGetNewitemView.Parent.AddToClassList("hide_get_newitem_popup");
         }
     }    
 }

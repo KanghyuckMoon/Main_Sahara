@@ -42,7 +42,7 @@ public class PopupTest : MonoBehaviour
         {
             ItemData itemData = ItemData.CopyItemDataSO(ItemDataSo);
             PopupUIManager.Instance.CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem,
-                itemData);
+                itemData,-1);
         }
     }
 }

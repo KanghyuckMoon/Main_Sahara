@@ -14,24 +14,25 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="mid_panel" class="panel" />
-        <ui:VisualElement name="bottom_panel" class="panel center_align" style="flex-basis: 20%; padding-left: 15%; padding-right: 15%; padding-bottom: 2%;">
-            <ui:VisualElement name="select_panel" style="width: 100%; justify-content: flex-end; align-items: flex-end; flex-grow: 1; padding-bottom: 40px; flex-direction: column-reverse; position: absolute; bottom: 100%;">
-                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button1" class="select_button font_base" />
-                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button2" class="select_button font_base" />
-                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button3" class="select_button font_base" />
-                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button4" class="select_button font_base" />
-                <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button5" class="select_button font_base" />
-            </ui:VisualElement>
-            <Gradient left-color="#000000E6" right-color="#000000F6" name="Gradient" r="false" direction="vertical" class="center_align" style="width: 100%; height: 80%;">
+        <ui:VisualElement name="select_panel" style="width: 100%; justify-content: flex-end; align-items: flex-end; flex-grow: 1; padding-bottom: 40px; flex-direction: column-reverse; position: absolute; bottom: 100%;">
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button1" class="select_button font_base" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button2" class="select_button font_base" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button3" class="select_button font_base" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button4" class="select_button font_base" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="select_button5" class="select_button font_base" />
+        </ui:VisualElement>
+        <ui:VisualElement name="bottom_panel" class="panel center_align" style="flex-basis: 20%; padding-left: 10%; padding-right: 10%; padding-bottom: 2%;">
+            <Gradient left-color="#00000000" right-color="#00000000" name="Gradient" r="false" direction="vertical" class="center_align" style="width: 100%; height: 90%; background-image: url(&apos;project://database/Assets/01.Scripts/UI/TEST%201/MidGrad.png?fileID=2800000&amp;guid=83c76b0c2f2eeb846920e6007e453757&amp;type=3#MidGrad&apos;); -unity-background-image-tint-color: rgba(0, 0, 0, 0.98);">
                 <ui:VisualElement name="talk_panel" class="dialogue_background" style="align-items: center; background-image: none; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); justify-content: center; display: flex;">
-                    <ui:VisualElement name="deco" style="width: 102%; height: 110%; position: absolute; background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Dialogue/TalkBoxDeco.png?fileID=2800000&amp;guid=1e932aa3fc6543543a0a2b2a799326b1&amp;type=3#TalkBoxDeco&apos;); display: flex;" />
+                    <ui:VisualElement name="deco" style="width: 102%; height: 110%; position: absolute; background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Dialogue/TalkBoxDeco.png?fileID=2800000&amp;guid=1e932aa3fc6543543a0a2b2a799326b1&amp;type=3#TalkBoxDeco&apos;); display: none; -unity-background-image-tint-color: rgb(152, 137, 96);" />
                     <ui:VisualElement name="deco" style="width: 110%; height: 105%; position: absolute; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/Inventory%20slot%20background.png?fileID=21300000&amp;guid=fdf1c42180a808d40a2e436bf5de7e08&amp;type=3#Inventory slot background&apos;); display: flex; -unity-background-scale-mode: scale-and-crop;" />
-                    <ui:Label text="정정배" display-tooltip-when-elided="false" enable-rich-text="true" name="name_label" class="font_base" style="font-size: 35px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; padding-left: 30px; padding-right: 30px; padding-top: 0; bottom: 58%; display: flex; color: rgba(255, 255, 255, 255);" />
+                    <ui:VisualElement name="line_deco" style="width: 100%; height: 95%; position: absolute; display: flex; border-left-width: 0; border-right-width: 0; border-top-width: 3px; border-bottom-width: 2px; border-left-color: rgba(129, 125, 79, 0.46); border-right-color: rgba(129, 125, 79, 0.46); border-top-color: rgba(129, 125, 79, 0.46); border-bottom-color: rgba(129, 125, 79, 0.46);" />
+                    <ui:Label text="정정배" display-tooltip-when-elided="false" enable-rich-text="true" name="name_label" class="font_base" style="font-size: 35px; border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; padding-left: 100px; padding-right: 100px; padding-top: 0; bottom: 60%; display: flex; color: rgb(255, 255, 255); background-image: url(&apos;project://database/Assets/01.Scripts/UI/TEST%201/MidGrad.png?fileID=2800000&amp;guid=83c76b0c2f2eeb846920e6007e453757&amp;type=3#MidGrad&apos;); -unity-background-image-tint-color: rgba(0, 0, 0, 0.94); width: auto; -unity-text-align: middle-center;" />
                     <ui:VisualElement name="panel" style="position: absolute; width: 100%; height: 100%; justify-content: flex-end; align-items: center; display: flex;">
-                        <ui:VisualElement name="end_talk_mark" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Dialogue/EndTalkMark.png?fileID=2800000&amp;guid=db2ee3d8b6af4964eb88d23f55b02fc2&amp;type=3#EndTalkMark&apos;); width: 64px; height: 64px; -unity-background-scale-mode: scale-to-fit; top: 64px;" />
+                        <ui:VisualElement name="end_talk_mark" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Dialogue/EndTalkMark.png?fileID=2800000&amp;guid=db2ee3d8b6af4964eb88d23f55b02fc2&amp;type=3#EndTalkMark&apos;); width: 64px; height: 64px; -unity-background-scale-mode: scale-to-fit; top: 64px; -unity-background-image-tint-color: rgb(224, 224, 224);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:Label display-tooltip-when-elided="true" name="dialogue_label" enable-rich-text="true" text="safsafsafsafsafsa" class="font_base" style="font-size: 35px; width: 80%; height: 80%; -unity-text-align: upper-center; white-space: normal; align-items: stretch; justify-content: flex-start;" />
+                <ui:Label display-tooltip-when-elided="true" name="dialogue_label" enable-rich-text="true" text="safsafsafsafsafsa" class="font_base" style="font-size: 35px; width: 80%; height: 80%; -unity-text-align: upper-center; white-space: normal; align-items: stretch; justify-content: flex-start; padding-top: 20px; color: rgba(224, 224, 224, 255);" />
             </Gradient>
         </ui:VisualElement>
     </ui:VisualElement>
