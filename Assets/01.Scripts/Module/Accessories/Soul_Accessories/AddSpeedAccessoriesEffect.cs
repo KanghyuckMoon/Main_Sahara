@@ -28,7 +28,7 @@ namespace PassiveItem
         {
             if (IsMoving())
             {
-                moveModule.passiveSpeed = Mathf.Min(4, moveModule.passiveSpeed + (Time.deltaTime * 0.02f));
+                moveModule.passiveSpeed = Mathf.Min(4, moveModule.passiveSpeed + (Time.deltaTime * 0.2f));
             }
             else
             {

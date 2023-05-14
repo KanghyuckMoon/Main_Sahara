@@ -13,6 +13,7 @@ namespace PassiveItem
     {
         private AbMainModule mainModule;
         private JumpModule jumpModule;
+        private StateModule stateModule;
         
         float jumpStrength = 0;
         
@@ -20,6 +21,7 @@ namespace PassiveItem
         {
             mainModule = _mainModule;
             jumpModule = mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
+            stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         }
         
         public void ApplyPassiveEffect()
@@ -32,11 +34,15 @@ namespace PassiveItem
             if (!mainModule.isGround) return;
             if (Input.GetKey(KeyCode.Space))
             {
+                stateModule.AddState(State.JUMP);
                 jumpStrength += Time.deltaTime;
+                mainModule.Animator.SetBool("ChargeJump", true);
+                mainModule.StopOrNot = 0;
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
+                mainModule.StopOrNot = 1;
                 Jump();
             }
         }
@@ -57,7 +63,8 @@ namespace PassiveItem
             //jumpModule.Jump(jumpStrength);
 
             mainModule.jumpstrenght = jumpStrength;
-            mainModule.Animator.SetBool("Jump", true);
+            mainModule.Animator.SetBool("ChargeJump", false);
+            //mainModule.Animator.SetBool("Jump", true);
             jumpStrength = 0;
         }
     }
