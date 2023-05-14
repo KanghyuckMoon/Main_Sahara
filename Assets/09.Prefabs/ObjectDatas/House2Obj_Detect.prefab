@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 179575911273707807}
-  m_RootOrder: 17
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -83.547, z: -133.85}
 --- !u!33 &429885037783732644
 MeshFilter:
@@ -129,7 +129,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 179575911273707807}
-  m_RootOrder: 16
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -83.547, z: -133.85}
 --- !u!33 &429885038237052981
 MeshFilter:
@@ -226,7 +226,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 179575911273707807}
-  m_RootOrder: 19
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 4.708, z: -133.85}
 --- !u!33 &429885038283202692
 MeshFilter:
@@ -323,7 +323,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 179575911273707807}
-  m_RootOrder: 18
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 4.708, z: -133.85}
 --- !u!33 &429885038911323157
 MeshFilter:
@@ -468,17 +468,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: 
   detectItemType: 4
   targetHeightTransform: {fileID: 8994959746229033458}
   targetTransform: {fileID: 8994959745178472910}
   targetModel: {fileID: 179575911273707807}
   targetEffectTrm: {fileID: 8994959746641255480}
-  effectAddress: SandUpEffect
+  effectAddress: SandUpVFX
   heightUpTime: 5
   shakeStrength: 0.5
-  getoutEvent:
+  getoutEventBefore:
     m_PersistentCalls:
       m_Calls: []
+  getoutEventAfter:
+    m_PersistentCalls:
+      m_Calls: []
+  isInitFalse: 1
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -570,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829451551789304537, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8829451551789304537, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
       propertyPath: m_LocalScale.x
@@ -643,7 +648,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8280679065188159740, guid: 03cc807974183074282b5fc2db40b108, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8280679065188159740, guid: 03cc807974183074282b5fc2db40b108, type: 3}
       propertyPath: m_LocalScale.x
@@ -716,7 +721,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8280679065188159740, guid: 03cc807974183074282b5fc2db40b108, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8280679065188159740, guid: 03cc807974183074282b5fc2db40b108, type: 3}
       propertyPath: m_LocalScale.x
@@ -837,7 +842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829451551789304537, guid: 8206b722d11501a449d6a278cca2adfa, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8829451551789304537, guid: 8206b722d11501a449d6a278cca2adfa, type: 3}
       propertyPath: m_LocalScale.x
@@ -914,7 +919,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8280679065188159740, guid: 03cc807974183074282b5fc2db40b108, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8280679065188159740, guid: 03cc807974183074282b5fc2db40b108, type: 3}
       propertyPath: m_LocalScale.x
@@ -1049,7 +1054,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8280679065188159740, guid: 03cc807974183074282b5fc2db40b108, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8280679065188159740, guid: 03cc807974183074282b5fc2db40b108, type: 3}
       propertyPath: m_LocalScale.x
