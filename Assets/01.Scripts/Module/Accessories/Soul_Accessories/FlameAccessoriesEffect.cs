@@ -62,7 +62,13 @@ namespace PassiveItem
             {
                 if (Input.GetKeyDown(KeyCode.LeftAlt))
                 {
+                    mainModule.PlayAllAnimation("SetFire");
+                    
+                    //for()
+                    //mainModule.Animator.layerCount
+                    
                     SetFlame();
+                    
                     isOn = true;
                 }
             }

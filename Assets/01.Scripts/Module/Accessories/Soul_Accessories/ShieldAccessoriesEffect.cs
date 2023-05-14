@@ -34,13 +34,22 @@ namespace PassiveItem
             if (Input.GetKeyDown(KeyCode.B))
             {
                 if (mainModule.name != "Player") return;
+
+                mainModule.Animator.Play("ShieldAnimation");
                 obj = ObjectPoolManager.Instance.GetObject("Shield_Prefab");
                 obj.transform.SetParent(mainModule.transform);
-                obj.transform.localPosition = new Vector3(0, 0.8f, 0);
-                obj.SetActive(true);
+                obj.transform.localPosition = new Vector3(0, 1f, 0);
+                obj.transform.localScale = Vector3.zero;
+                mainModule.StartCoroutine(SetShieldActive(obj));
             }
         }
 
+        IEnumerator SetShieldActive(GameObject _shield)
+        {
+            yield return new WaitForSeconds(0.3f);
+            _shield.SetActive(true);
+            obj.transform.DOScale(1, 0.5f);
+        }
         public void ClearPassiveEffect()
         {
             
