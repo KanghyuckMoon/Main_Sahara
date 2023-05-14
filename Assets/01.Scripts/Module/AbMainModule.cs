@@ -495,6 +495,7 @@ namespace Module
 			{
                 animator = value;
 			}
+            
 		}
         public SettingTime SettingTime
         {
@@ -699,6 +700,14 @@ namespace Module
         public virtual void SetAnimationLayerOn(int _on, float _duration){
     }
 
+        public void PlayAllAnimation(string _str)
+        {
+            for (int _i = 0; _i < Animator.layerCount; _i++)
+            {
+                Animator.Play(_str, _i);
+            }
+        }
+
         private void Start()
         {
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
@@ -730,6 +739,10 @@ namespace Module
 
 		void IUpdateObj.UpdateManager_Update()
         {
+			if (StaticTime.EntierTime <= 0f)
+			{
+				return;
+			}
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 try
@@ -746,6 +759,10 @@ namespace Module
         void IUpdateObj.UpdateManager_FixedUpdate()
         
         {
+			if (StaticTime.EntierTime <= 0f)
+			{
+				return;
+			}
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.FixedUpdate();
@@ -754,6 +771,10 @@ namespace Module
 
         void IUpdateObj.UpdateManager_LateUpdate()
         {
+			if (StaticTime.EntierTime <= 0f)
+			{
+				return;
+			}
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.LateUpdate();

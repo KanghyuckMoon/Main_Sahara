@@ -30,12 +30,9 @@ namespace CondinedModule
 
         public void Register(NPCTYPE _npctype, TalkNPC _talkNpc)
         {
-            if (talkNpcDic.TryGetValue(_npctype, out var value))
+            if (talkNpcDic.ContainsKey(_npctype))
             {
-                if (value != _talkNpc)
-                {
-                    talkNpcDic[_npctype] = value;
-                }
+                talkNpcDic[_npctype] = _talkNpc;   
             }
             else
             {

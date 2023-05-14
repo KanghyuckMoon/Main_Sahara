@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Module;
+using Pool;
 
 namespace PassiveItem
 {
@@ -17,6 +18,8 @@ namespace PassiveItem
 
         private float delay;
         private float maxDelay = 0.9f;
+
+        private GameObject dashEffect;
 
         public DashAccessoriesEffect(AbMainModule _mainModule)
         {
@@ -47,9 +50,15 @@ namespace PassiveItem
             {
                 if (mainModule.IsDash && !mainModule.Animator.GetBool("ConsecutiveAttack"))
                 {
+                    dashEffect = ObjectPoolManager.Instance.GetObject("DashEffect");
+                    dashEffect.transform.SetParent(mainModule.transform);
+                    dashEffect.transform.localPosition = Vector3.up;
+                    dashEffect.transform.localRotation = Quaternion.Euler(180, 0, 0);
+                    dashEffect.SetActive(true);
+                    
                     stateModule.AddState(State.SKILL);
                     mainModule.Animator.SetBool("Dash", true);
-
+                    
                     delay = maxDelay;
 
                     Vector3 _dir = (mainModule.ObjDirection.normalized * 24f * mainModule.PersonalDeltaTime);
@@ -65,6 +74,9 @@ namespace PassiveItem
                 delay -= Time.deltaTime;
                 if (delay <= 0)
                 {
+                    Debug.LogError("chr;;;;;");
+                    dashEffect.SetActive(false);
+                    ObjectPoolManager.Instance.RegisterObject("DashEffect", dashEffect);
                     dashing = false;
                 }
             }

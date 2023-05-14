@@ -76,12 +76,12 @@ namespace Module
             SetPassiveItem(AccessoriesItemType.Dash);
             SetPassiveItem(AccessoriesItemType.TimeSlow);
             SetPassiveItem(AccessoriesItemType.ChargeJump);
-            SetPassiveItem(AccessoriesItemType.AddSpeed);
-            SetPassiveItem(AccessoriesItemType.Resurrection);
+            //SetPassiveItem(AccessoriesItemType.AddSpeed);
+            //SetPassiveItem(AccessoriesItemType.Resurrection);
             SetPassiveItem(AccessoriesItemType.Glare);
             SetPassiveItem(AccessoriesItemType.Shield);
             SetPassiveItem(AccessoriesItemType.Flame);
-            SetPassiveItem(AccessoriesItemType.Burning);
+            //SetPassiveItem(AccessoriesItemType.Burning);
             SetPassiveItem(AccessoriesItemType.Crawling);
             SetPassiveItem(AccessoriesItemType.UnlockInteraction);
         }

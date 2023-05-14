@@ -120,6 +120,10 @@ namespace Module
             else
             {
                 hpModule.GetHeal(lifeCount * (int)(hpModule.GetMaxHp() / 0.25f));
+                GameObject a = ObjectPoolManager.Instance.GetObject("FireEffect_1");
+                a.transform.SetParent(mainModule.transform);
+                a.transform.localPosition = Vector3.zero;
+                a.SetActive(true);
                 lifeCount = 0;
             }
 
