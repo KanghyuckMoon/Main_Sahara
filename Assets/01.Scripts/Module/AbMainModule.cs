@@ -739,6 +739,10 @@ namespace Module
 
 		void IUpdateObj.UpdateManager_Update()
         {
+			if (StaticTime.EntierTime <= 0f)
+			{
+				return;
+			}
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 try
@@ -755,6 +759,10 @@ namespace Module
         void IUpdateObj.UpdateManager_FixedUpdate()
         
         {
+			if (StaticTime.EntierTime <= 0f)
+			{
+				return;
+			}
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.FixedUpdate();
@@ -763,6 +771,10 @@ namespace Module
 
         void IUpdateObj.UpdateManager_LateUpdate()
         {
+			if (StaticTime.EntierTime <= 0f)
+			{
+				return;
+			}
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.LateUpdate();

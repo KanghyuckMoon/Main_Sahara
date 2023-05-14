@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
 using InputSystem;
+using TimeManager;
 
 namespace Module
 {
@@ -11,6 +12,10 @@ namespace Module
 	{
 		public override void Update()
 		{
+			if (StaticTime.EntierTime <= 0f)
+			{
+				return;
+			}
 			if (!StateModule.CheckState(State.DEAD, State.UI))
 			{
 				InputMove();
