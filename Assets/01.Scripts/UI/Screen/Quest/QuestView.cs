@@ -11,6 +11,7 @@ using GoogleSpreadSheet;
 using System.Linq;
 using UI.UtilManager;
 using UI.Base;
+using UnityEngine.Analytics;
 
 namespace UI.Quest
 {
@@ -31,7 +32,8 @@ namespace UI.Quest
         enum Elements
         {
             quest_list_panel,
-            quest_select
+            quest_select,
+            header
         }
 
         enum RadioGroups
@@ -50,12 +52,13 @@ namespace UI.Quest
         private List<QuestData> _questDataList = new List<QuestData>();
         private List<(QuestData,VisualElement)> _questEntryList = new List<(QuestData,VisualElement)>(); 
 
-        // 프로퍼티
+        // 프로퍼티Di
         public Dictionary<QuestState, List<QuestEntryView>> QuestEntryDic => questEntryDic;
 
         public override void Cashing()
         {
             base.Cashing();
+            BindVisualElements((typeof(QuestView.Elements)));
             BindLabels(typeof(QuestView.Labels));
             BindRadioButtons(typeof(QuestView.RadioButtons));
             BindListViews(typeof(QuestView.ListViews));
@@ -76,6 +79,20 @@ namespace UI.Quest
             UIUtil.SendEvent(GetRadioButton((int)RadioButtons.main_button));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_isActive"></param>
+        /// <param name="_isImmed">즉시</param>
+        public void ActiveHeader(bool _isActive, bool _isImmed = false)
+        {
+            if (_isActive == true)
+            {
+                GetVisualElement((int)Elements.header).RemoveFromClassList("inactive_header");            
+                return; 
+            }
+            GetVisualElement((int)Elements.header).AddToClassList("inactive_header");            
+        }
         public override void ActiveScreen(bool _isActive)
         {
             base.ActiveScreen(_isActive);
@@ -144,6 +161,10 @@ namespace UI.Quest
 
             _listView.onSelectionChange += (a) =>
             {
+                foreach (var o in a)
+                {
+                    VisualElement _v = o as VisualElement;
+                }
                 Debug.Log("onSelectionChange");
                 var _selected = _listView.selectedItem as QuestData;
                 string _name = TextManager.Instance.GetText(_selected.NameKey);
@@ -153,6 +174,7 @@ namespace UI.Quest
                 UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_state_label),  Enum.GetName(typeof(QuestState), _selected.QuestState));
             
             };
+            
 
         }
 

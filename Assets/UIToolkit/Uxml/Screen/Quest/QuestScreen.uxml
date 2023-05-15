@@ -3,9 +3,9 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Quest.uss?fileID=7433441132597879392&amp;guid=8c1e71513faf6494bb1ff9e03e7cb48a&amp;type=3#Quest" />
     <ui:VisualElement name="quest_screen" class="screen" style="cursor: url(&apos;project://database/Assets/09.Prefabs/SandTextScene/2.png?fileID=2800000&amp;guid=00c1fbb961ec5ac48b94d922eb2d4bb5&amp;type=3#2&apos;);">
         <ui:VisualElement name="Header" class="header" style="margin-left: 0; margin-right: 0; height: 11%; padding-bottom: 0; padding-top: 1.3%; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; flex-direction: row;">
-            <ui:VisualElement style="flex-direction: row; width: 430px; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/quest_icon_background.png?fileID=2800000&amp;guid=d45837fd72eb80d4bb55d2d391abf5fa&amp;type=3#quest_icon_background&apos;); align-items: center;">
-                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/quest_icon.png?fileID=2800000&amp;guid=69262adbb6c99ba4099e2d5f72163bac&amp;type=3#quest_icon&apos;); height: 90%; -unity-background-scale-mode: scale-to-fit; width: 113px;" />
-                <ui:Label text="QUEST" display-tooltip-when-elided="true" class="font_base" style="width: 300px; font-size: 50px; -unity-text-align: middle-left; color: rgb(152, 137, 96);" />
+            <ui:VisualElement name="header" class="quest_header inactive_header">
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/quest_icon.png?fileID=2800000&amp;guid=69262adbb6c99ba4099e2d5f72163bac&amp;type=3#quest_icon&apos;); height: 90%; -unity-background-scale-mode: scale-to-fit; width: 113px; overflow: hidden;" />
+                <ui:Label text="QUEST" display-tooltip-when-elided="true" class="font_base" style="width: 300px; font-size: 50px; -unity-text-align: middle-left; color: rgb(152, 137, 96); overflow: hidden; -unity-font-style: normal; display: flex; visibility: visible;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Content" class="content_panel" style="margin-top: 2%;">

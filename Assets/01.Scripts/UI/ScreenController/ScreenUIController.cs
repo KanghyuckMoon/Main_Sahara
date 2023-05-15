@@ -90,7 +90,7 @@ namespace UI
             {
                 if (player is null)
                 {
-                    this.player = UIManager.Instance.Player.GetComponent<Player>();
+                    this.player = UIManager.Instance.PlayerObj.GetComponent<Player>();
                     if (player is not null)
                     {
                         return player; 
@@ -111,14 +111,24 @@ namespace UI
             InitScreenPresenters();
             SetNotInputEvent();
 
-            if (UIManager.Instance.Player is null)
+            if (UIManager.Instance.PlayerObj is null)
             {
                 screenCallback = (x) =>
                 {
-                    UIManager.Instance.Player.GetComponent<Player>().SetInput(x);
+                    UIManager.Instance.PlayerObj.GetComponent<Player>().SetInput(x);
                 };    
             }
              
+        }
+
+        private void OnEnable()
+        {
+            EventManager.Instance.StartListening(EventsType.SetPlayerCam, (x) => Player.SetInput((bool)x));
+        }
+
+        private void OnDisable()
+        {
+            EventManager.Instance.StopListening(EventsType.SetPlayerCam, (x) => player.SetInput((bool)x));
         }
 
         private void Start()

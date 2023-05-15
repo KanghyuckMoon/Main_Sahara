@@ -61,17 +61,7 @@ using Inventory;
             uiDocument = GetComponent<UIDocument>();
             dialogueView.InitUIDocument(uiDocument); 
         }
-        [ContextMenu("테스트")]
-        public void Test()
-        {
-            ActiveViewS(false);
-        }
-        [ContextMenu("Select테스트")]
-        public void TestSelect()
-        {
-            index = 0; 
-            StartDialogue("A00000002", "T00000002");
-        }
+
         /// <summary>
         /// 처음 대화 시작 코드 넘겨주기 
         /// </summary>
@@ -114,12 +104,7 @@ using Inventory;
         private void SetCodeToText()
         {
             string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}").Replace("\r", "");
-            Debug.Log("NameCode " + nameCode);
-            Debug.Log("Index " + index);
             fullText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
-            Logging.Log($"{nameCode}_{index}");
-            Logging.Log($"{dialogueCode}_{index}"); 
-            Logging.Log($"{fullText}{_nameText}");  
             
             if (_nameText[0] is '!')
             {
@@ -212,12 +197,6 @@ using Inventory;
                 });
             }
 
-            // 선택지 몇 개인지 체크 
-            // 개수 만큼 시트 돌고 버튼 활성화 
-
-            //_nameText = 
-            // _dialogueText = 
-
         }
 
         /// <summary>
@@ -248,6 +227,8 @@ using Inventory;
                     if (isTexting == true) // 텍스트가 진행중이었다면 
                     {
                         isTexting = false;  
+                        // 트윈 실행 
+                        dialogueView.Tween(true);
 //                        SetTextInstant(targetText);
                         yield return null;
                     }
@@ -265,6 +246,7 @@ using Inventory;
                 yield return null;
             }
         }
+
 
         [SerializeField]
         private bool isTexting = false; // 텍스트가 출력되고 있는 중인가 
@@ -304,21 +286,10 @@ using Inventory;
         //    StaticCoroutineManager.Instance.InstanceDoCoroutine(CheckNextDialogue());
         }
 
-        private void SetTextInstant(string _str)
-        {
-            isTexting = false; 
-            StopCoroutine(SetText());
-            this.dialogueView.SetDialogueTextA(_str);
-        }
 
-        public void SetText(string _name, string _dialogue)
-        {
-            dialogueView.SetNameText(_name);
-            dialogueView.SetDialogueText(_dialogue);
-        }
         public bool ActiveView()
         {
-            return dialogueView.ActiveScreen(); 
+            throw new NotImplementedException();
         }
 
         public void ActiveView(bool _isActive)
@@ -330,7 +301,8 @@ using Inventory;
         {
             isDialogue = _isActive;
             dialogueView.ActiveViewS(_isActive);
-            StaticTime.UITime = _isActive ? 0f : 1f; 
+            StaticTime.UITime = _isActive ? 0f : 1f;
+            EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam);
             //UIManager.Instance.ActiveCursor(_isActive); 
 
             if (_isActive == false)
@@ -340,46 +312,6 @@ using Inventory;
                 StopAllCoroutines();
             }
         }
-        
-        public bool TestBool;
-
-
-        [ContextMenu("활성화 테스트")]
-        public void TestActive()
-        {
-            this.dialogueView.ActiveViewS(true);
-        }
-        #region regacy 상점 
-        /*
-        /// <summary>
-        /// 상점 선택창 띄우기 
-        /// </summary>
-        private void ActiveShopSelect()
-        {
-            List<string> _nameList = new List<string>();
-            string _buyName = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopBuy));
-            string _sellName = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.shopSell));
-            _nameList.Add(_buyName);
-            _nameList.Add(_sellName);
-
-            this.dialogueView.ActiveSelectButton(_buyName, () =>
-            {
-                // 구매 
-                UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop);
-                ActiveViewS(false);
-
-            });
-
-            this.dialogueView.ActiveSelectButton(_sellName, () =>
-            {
-                // 판매 
-                UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop);
-                ActiveViewS(false);
-
-            });
-        }
-          */
-        #endregion
 
     }
 }

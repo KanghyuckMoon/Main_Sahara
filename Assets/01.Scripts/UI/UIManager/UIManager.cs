@@ -4,7 +4,6 @@ using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
 using UI.Base; 
-
 namespace UI.Manager
 {
     public class UIManager : MonoSingleton<UIManager>
@@ -14,7 +13,7 @@ namespace UI.Manager
         private GameObject markerUI;
         private GameObject playerHudUI;
 
-        private GameObject player;
+        private GameObject playerObj;
         private TextKeySO textKeySO;
         private EntityPresenter playerHud;
 
@@ -34,21 +33,21 @@ namespace UI.Manager
                 return textKeySO; 
             }
         }
-        public GameObject Player
+        public GameObject PlayerObj
         {
             get
             {
-                if (player is null)
+                if (playerObj is null)
                 {
-                    player ??= GameObject.FindWithTag("Player");
-                    if(player is not null) // 한 번 실행됨
+                    playerObj ??= GameObject.FindWithTag("Player");
+                    if(playerObj is not null) // 한 번 실행됨
                     {
                         AddUIToObj(); // UI 초기화 
-                        playerHud = player.GetComponentInChildren<EntityPresenter>();
+                        playerHud = playerObj.GetComponentInChildren<EntityPresenter>();
                     }
 
                 }
-                return player; 
+                return playerObj; 
             }
         }
 
@@ -72,7 +71,7 @@ namespace UI.Manager
         public void Init()
         {
             //screenUIController = null; 
-            player = null; 
+            playerObj = null; 
         }
         public void ActiveHud(bool _isActive)
         {
@@ -89,8 +88,8 @@ namespace UI.Manager
         /// </summary>
         private void AddUIToObj()
         {
-            Instantiate(markerUI, player.transform);
-            Instantiate(playerHudUI, player.transform);
+            Instantiate(markerUI, playerObj.transform);
+            Instantiate(playerHudUI, playerObj.transform);
         }
 
         public void ActiveCursor(bool _isActive)
@@ -101,9 +100,8 @@ namespace UI.Manager
         public void SetCursorImage(CursorImageType _type)
         {
             cursorModule.SetCursor(_type);
-        }   
-
-
+        }
+    
     }
 
 }

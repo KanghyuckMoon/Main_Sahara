@@ -93,7 +93,9 @@ using UI.Base;
 
         public bool ActiveView()
         {
-            return questView.ActiveScreen(); 
+            bool _isActive = questView.ActiveScreen();
+            questView.ActiveHeader(_isActive);
+            return _isActive; 
         }
 
         public void ActiveView(bool _isActive)
