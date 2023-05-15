@@ -70,20 +70,27 @@ namespace Module
 
         public override void Start()
         {
-            SetPassiveItem(AccessoriesItemType.DoubleJump);
-            SetPassiveItem(AccessoriesItemType.DoubleJump);
-            SetPassiveItem(AccessoriesItemType.DoubleJump);
-            SetPassiveItem(AccessoriesItemType.Dash);
-            SetPassiveItem(AccessoriesItemType.TimeSlow);
-            SetPassiveItem(AccessoriesItemType.ChargeJump);
-            //SetPassiveItem(AccessoriesItemType.AddSpeed);
-            //SetPassiveItem(AccessoriesItemType.Resurrection);
-            SetPassiveItem(AccessoriesItemType.Glare);
-            SetPassiveItem(AccessoriesItemType.Shield);
-            SetPassiveItem(AccessoriesItemType.Flame);
-            //SetPassiveItem(AccessoriesItemType.Burning);
-            SetPassiveItem(AccessoriesItemType.Crawling);
-            SetPassiveItem(AccessoriesItemType.UnlockInteraction);
+            if (mainModule.name == "Player")
+            {
+                SetPassiveItem(AccessoriesItemType.DoubleJump);
+                SetPassiveItem(AccessoriesItemType.DoubleJump);
+                SetPassiveItem(AccessoriesItemType.DoubleJump);
+                SetPassiveItem(AccessoriesItemType.Dash);
+                SetPassiveItem(AccessoriesItemType.TimeSlow);
+                SetPassiveItem(AccessoriesItemType.ChargeJump);
+                //SetPassiveItem(AccessoriesItemType.AddSpeed);
+                //SetPassiveItem(AccessoriesItemType.Resurrection);
+                SetPassiveItem(AccessoriesItemType.Glare);
+                SetPassiveItem(AccessoriesItemType.Shield);
+                SetPassiveItem(AccessoriesItemType.Flame);
+                //SetPassiveItem(AccessoriesItemType.Burning);
+                SetPassiveItem(AccessoriesItemType.Crawling);
+                SetPassiveItem(AccessoriesItemType.UnlockInteraction);
+            }
+            else
+            {
+                SetPassiveItem(AccessoriesItemType.DoubleJump);
+            }
         }
         
         private void ApplyPassive()

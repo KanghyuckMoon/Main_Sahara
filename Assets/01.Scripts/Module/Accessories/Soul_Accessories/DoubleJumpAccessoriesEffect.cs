@@ -45,7 +45,7 @@ namespace PassiveItem
         {
             if (!(mainModule.IsChargeJumpOn & mainModule.isGround) && isPlayer)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (mainModule.IsJump)
                 {
                     if (count > 0)
                     {

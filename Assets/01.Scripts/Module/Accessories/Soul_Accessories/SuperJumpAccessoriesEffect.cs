@@ -59,7 +59,7 @@ namespace PassiveItem
 
         private void Jump()
         {
-            jumpStrength = Mathf.Min(jumpStrength * 10, 15f);
+            jumpStrength = Mathf.Clamp(1f, jumpStrength * 10, 22f);
             //jumpModule.Jump(jumpStrength);
 
             mainModule.jumpstrenght = jumpStrength;

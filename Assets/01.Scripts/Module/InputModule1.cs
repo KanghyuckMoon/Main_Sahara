@@ -19,7 +19,7 @@ namespace Module
 			if (!StateModule.CheckState(State.DEAD, State.UI))
 			{
 				InputMove();
-				//InputJump();
+				InputJump();
 				InputSprint();
 				InputAttack();
 				InputSkill();
@@ -84,21 +84,12 @@ namespace Module
 
 		private void InputJump()
 		{
-			if (!StateModule.CheckState(State.ATTACK, State.JUMP, State.CHARGE))
-			{
-				if (mainModule.StopOrNot >= 1 && !StateModule.CheckState(State.SKILL))
-				{
-					bool _inputup = InputManager.Instance.CheckKey("Jump"); // Input.GetKey(KeyCode.Space);
-					if (_inputup)
-					{
-						mainModule.SetAnimationLayerOn(0, 0);
-						
-					}
+			if (StateModule.CheckState(State.ATTACK, State.CHARGE)) return;
+			if (!(mainModule.StopOrNot >= 1) || StateModule.CheckState(State.SKILL)) return;
+			var _inputup = InputManager.Instance.CheckKey("Jump");
 
-					mainModule.IsJump = _inputup;
-					mainModule.IsJumpBuf = _inputup;
-				}
-			}
+			mainModule.IsJump = _inputup;
+			mainModule.IsJumpBuf = _inputup;
 		}
 
 		private void InputSprint()
