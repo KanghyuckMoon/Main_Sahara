@@ -65,7 +65,7 @@ namespace UI
             mapInfo = new MapInfo(); 
             this.mapView = _mapView;
             // MapInfo 초기화 
-
+            
             mapView.SetMapUISize(mapInfo.UIMapSize);
             //mapInfo.UIMapSize = new Vector2(mapView.Map.style.width.value.value, mapView.Map.style.height.value.value);
             //mapInfo.UIMapCenterPos = new Vector2(mapView.Map.style.width.value.value / 2, mapView.Map.style.height.value.value / 2);
@@ -75,6 +75,16 @@ namespace UI
             playerMarker = null; 
         }
 
+        public void InitSize(bool _isFullmap)
+        {
+            if (_isFullmap == true)
+            {
+            //    mapView.SetMapUISize(mapInfo.UIMapSize);
+                return; 
+            }
+           // mapView.SetMapUISize(mapInfo.UIMapSize * 0.5f);
+
+        }
         public void UpdateUI()
         {
             // 플레이어 마커 가져와서 

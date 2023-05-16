@@ -12,7 +12,7 @@ namespace UI
     public class MapInfo //: ScriptableObject
     {
         [Header("UI")]
-        public Vector2 UIMapSize = new Vector2(8000,8000); // 8000,8000
+        public Vector2 UIMapSize = new Vector2(4000,4000); // 8000,8000
         public Vector2 UIMapCenterPos => new Vector2(UIMapSize.x * 0.5f, UIMapSize.y * 0.5f); // UI 중심 좌표 
 
         [Header("실제 맵")]

@@ -106,8 +106,9 @@ namespace UI
             return MapView.CurMapType == MapType.FullMap ? true : false;  
         }
         public void ActiveView(bool _isActive)
-        {
+        {   
             mapView.ShowMap(_isActive);
+            miniMapComponent.InitSize(_isActive);
            // StartCoroutine(TestCo());
 
             if (_isActive == true)
