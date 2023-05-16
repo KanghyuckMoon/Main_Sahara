@@ -33,13 +33,14 @@ namespace PassiveItem
         {
             if (Input.GetKeyDown(KeyCode.B))
             {
-                if (mainModule.name != "Player") return;
+                if (mainModule.name != "Player" || mainModule.IsCanHit) return;
 
                 mainModule.Animator.Play("ShieldAnimation");
                 obj = ObjectPoolManager.Instance.GetObject("Shield_Prefab");
                 obj.transform.SetParent(mainModule.transform);
                 obj.transform.localPosition = new Vector3(0, 1f, 0);
                 obj.transform.localScale = Vector3.zero;
+                mainModule.IsCanHit = true;
                 mainModule.StartCoroutine(SetShieldActive(obj));
             }
         }
