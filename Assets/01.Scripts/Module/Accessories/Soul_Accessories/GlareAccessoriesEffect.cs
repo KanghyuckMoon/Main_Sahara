@@ -62,7 +62,7 @@ namespace PassiveItem
             yield return new WaitForSeconds(1f);
             light.gameObject.SetActive(false);
             
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(1.3f);
             
             foreach (var _skinnedMeshRenderer in skinnedlist)
             {
