@@ -10,17 +10,7 @@ using Utill.Addressable;
 using UnityEngine.UI.Extensions; 
 namespace UI.ParticleManger
 {
-    [System.Serializable]
-    public class UIParticleData
-    {
-        public ParticleType particleType;
-        public string particleAdress;
-
-    }
-    public class UIParticleDataSO
-    {
-        
-    }
+    
     public enum CanvasType
     {
         Cam, 
