@@ -32,6 +32,11 @@ namespace  UI.Canvas
         {
             canvasUIComp.UpdateScale(_screenType,_scale);
         }
+
+        public Transform GetScreenTrm(ScreenType _type)
+        {
+            return canvasUIComp.GetCanvasContent(_type); 
+        }
     }
     
 }

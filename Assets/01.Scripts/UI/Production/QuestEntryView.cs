@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UI.Base;
+using DG.Tweening;
 
 namespace UI.Production
 {
@@ -44,6 +45,15 @@ namespace UI.Production
             base.Init();
         }
 
+        public void ActiveEntry()
+        {
+            
+        }
+
+        public void ActiveFix()
+        {
+            GetVisualElement((int)Elements.fix).RemoveFromClassList("");
+        }
         /// <summary>
         /// 이름, 설명 설정 
         /// </summary>

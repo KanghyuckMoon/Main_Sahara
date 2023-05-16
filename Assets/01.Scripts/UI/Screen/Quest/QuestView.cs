@@ -154,18 +154,29 @@ namespace UI.Quest
             // 생성
             _listView.makeItem = () =>
             {
+               (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(QuestEntryView));
+               VisualElement _target = _v.Item1;
+               QuestEntryView _view = _v.Item2 as QuestEntryView; 
                 if (isFirst == true)
                 {
                     // 닷트윈으로 야무지게 
+                    Vector3 _originScale = _target.transform.scale;
+                    Vector3 _targetScale = Vector3.one;
+                    float _originOp = _target.resolvedStyle.opacity;
+                    float _targetOp = 1f;
                     Sequence seq = DOTween.Sequence();
-                   // seq.Append(
-                    //        DOTween.To(() => )); 
+                    seq.Append(
+                            DOTween.To(() => _originOp, (x) => _target.style.opacity = x, _targetOp, 0.15f).SetEase(Ease.OutQuart));
+                    seq.Append(
+                        DOTween.To(() => _originScale, (x) => _target.transform.scale = x, _targetScale, 0.4f).SetEase(Ease.OutQuart)); 
+                    seq.Append(
+                        DOTween.To(() => _originScale, (x) => _target.transform.scale = x, _targetScale, 0.4f).SetEase(Ease.OutQuart));
+                    seq.AppendCallback(() => _view.ActiveFix());
                 }
                 else
                 {
                     // style class로 처리 
                 }
-                (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(QuestEntryView));
 
                 _v.Item1.ElementAt(0).userData = _v.Item2 as QuestEntryView;
                 _v.Item1.RegisterCallback<ClickEvent>( (x) => ActiveEntry(_v.Item1));

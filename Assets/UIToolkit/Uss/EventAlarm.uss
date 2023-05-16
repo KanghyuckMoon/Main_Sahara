@@ -1,9 +1,15 @@
+.clear_icon_parent {
+    transition-duration: 1s;
+    transition-delay: 1s;
+    transition-timing-function: ease-out-cubic;
+}
+
 .event_alarm {
     width: 110%;
     height: 210px;
     background-color: rgba(0, 0, 0, 0);
-    transition-property: scale, opacity;
-    transition-duration: 5s, 5s;
+    transition-property: scale, opacity, width;
+    transition-duration: 0.3s, 0.3s, 0.3s;
     flex-direction: row;
     padding-left: 7px;
     padding-right: 7px;
@@ -56,4 +62,48 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.event_name_label {
+    font-size: 42px;
+    color: rgb(224, 224, 224);
+    -unity-text-align: middle-center;
+    margin-bottom: 5px;
+    width: 100%;
+    overflow: hidden;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    -unity-font-style: italic;
+}
+
+.clear_icon {
+    -unity-font-style: bold-and-italic;
+    font-size: 80px;
+    margin-right: 5%;
+    transition-duration: 0.7s;
+    transition-timing-function: ease-out-cubic;
+    transition-delay: 1s;
+}
+
+.inactive_clear_icon {
+    opacity: 0;
+    scale: 2 2;
+    translate: 150px 80px;
+}
+
+.inactive_ci {
+    translate: 150px 80px;
+    scale: 2 2;
+    opacity: 0;
+}
+
+.event_detail_label {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    white-space: normal;
+    -unity-text-align: upper-center;
+    display: flex;
+    overflow: hidden;
+    transition-property: opacity;
+    transition-duration: 0.2s;
 }

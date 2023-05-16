@@ -9,6 +9,10 @@ using DG.Tweening;
 using Quest;
 using Utill.Addressable;
 using GoogleSpreadSheet;
+using UI.Base;
+using UI.Canvas;
+using UI.ParticleManger;
+using UI.UtilManager;
 
 namespace UI.Popup
 {
@@ -30,6 +34,9 @@ namespace UI.Popup
             this.eventAlarmView = _prod.Item2 as EventAlarmView;
             eventAlarmView.InitUIParent(parent);
             eventAlarmView.EventAlarmParent.RegisterCallback<TransitionEndEvent>(ActiveText);
+            eventAlarmView.AddClearIconCallback(() => UIParticleManager.Instance.Play(ParticleType.SandBurst, UIUtil.GetUICenterPos(parent)
+                ,OverlayCanvasManager.Instance.GetScreenTrm(ScreenType.EventAlarm)));
+            
         }
 
         public void ActiveTween()
@@ -54,11 +61,16 @@ namespace UI.Popup
             QuestData _questData = _data as QuestData;
             string _name = TextManager.Instance.GetText(_questData.NameKey);
             string _stateStr = GetQuestStateStr(_questData.QuestState);
+            string _categoryStr = _questData.QuestCategory == QuestCategory.Main ? "메인 퀘스트" : "서브 퀘스트"; 
             Texture2D _categoryImg = GetQuestCategoryStr(_questData.QuestCategory);
             
-            eventAlarmView.SetNameAndDetail(_name, _stateStr);
+            eventAlarmView.SetNameAndDetail(_name, _stateStr,_categoryStr);
             eventAlarmView.SetImage(_categoryImg);
-            
+
+            if (_questData.QuestState == QuestState.Clear)
+            {
+                eventAlarmView.EventAlarmParent.RegisterCallback<TransitionEndEvent>((x) => eventAlarmView.ActiveClearIcon());
+            }
             /*
             (string, string) a = _data is (string, string) ? ((string, string))_data : (null, null); 
             string _str = _data as string;

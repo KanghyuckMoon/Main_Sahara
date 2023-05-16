@@ -6,10 +6,14 @@ using UnityEngine;
 using UI.Popup;
 using Utill.Pattern;
 using Inventory;
+using Quest;
 
 public class PopupTest : MonoBehaviour
 {
     public ItemDataSO ItemDataSo;
+    public QuestDataSO QuestDataSo; 
+    public QuestDataSO ClearQuestDataSo; 
+
     public Transform trm;
 
     private void Update()
@@ -22,7 +26,14 @@ public class PopupTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, ("위험에 처한 이를 구하라!", "퀘스트 활성화"));
+            PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm,
+                new QuestData(QuestDataSo.questKey,QuestDataSo.nameKey, QuestDataSo.explanationKey
+                    ,QuestDataSo.earlyQuestState,QuestDataSo.questConditionType, QuestDataSo.questCreateObjectSOList,QuestDataSo.linkQuestKeyList, QuestDataSo.isTalkQuest));
+        }   
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, new QuestData(ClearQuestDataSo.questKey,ClearQuestDataSo.nameKey, ClearQuestDataSo.explanationKey
+                    ,ClearQuestDataSo.earlyQuestState,ClearQuestDataSo.questConditionType, ClearQuestDataSo.questCreateObjectSOList,ClearQuestDataSo.linkQuestKeyList, ClearQuestDataSo.isTalkQuest));
         }   
 
         if (Input.GetKeyDown(KeyCode.N))
