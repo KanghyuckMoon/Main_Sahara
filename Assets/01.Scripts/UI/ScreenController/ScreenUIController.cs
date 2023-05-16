@@ -88,14 +88,17 @@ namespace UI
         {
             get
             {
-                if (player is null)
+                if (player == null)
                 {
-                    this.player = UIManager.Instance.PlayerObj.GetComponent<Player>();
-                    if (player is not null)
+                    if (UIManager.Instance.PlayerObj != null)
                     {
-                        return player; 
+                        this.player = UIManager.Instance.PlayerObj.GetComponent<Player>();
+                        if (player != null)
+                        {
+                            return player; 
+                        }
                     }
-
+                    
                     return null;
                 }
 
@@ -123,7 +126,22 @@ namespace UI
 
         private void OnEnable()
         {
-            EventManager.Instance.StartListening(EventsType.SetPlayerCam, (x) => Player.SetInput((bool)x));
+            Debug.Log("ONEnable");
+            StartCoroutine(Init());
+        }
+
+        private IEnumerator Init()
+        {
+            while (true)
+            {
+                if (Player == null)
+                {
+                    yield return null; 
+                }    
+                EventManager.Instance.StartListening(EventsType.SetPlayerCam, (x) => Player.SetInput((bool)x));
+                yield break;
+            }
+            
         }
 
         private void OnDisable()

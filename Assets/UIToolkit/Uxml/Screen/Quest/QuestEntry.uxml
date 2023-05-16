@@ -1,24 +1,24 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/Quest.uss?fileID=7433441132597879392&amp;guid=8c1e71513faf6494bb1ff9e03e7cb48a&amp;type=3#Quest" />
-    <ui:VisualElement name="quest_entry" class="clear_entry" style="width: 95%; flex-basis: 140px; background-color: rgba(0, 0, 0, 0); justify-content: center; align-items: center; margin-bottom: 25px; flex-shrink: 0; height: 120px;">
+    <ui:VisualElement name="quest_entry" class="clear_entry" style="width: 95%; flex-basis: 140px; background-color: rgba(0, 0, 0, 0); justify-content: center; align-items: center; margin-bottom: 25px; flex-shrink: 0; height: 140px;">
         <ui:VisualElement name="back" style="position: absolute; width: 100%; height: 100%; border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; background-color: rgb(121, 121, 121); left: 10px; top: 6px; display: none;" />
-        <ui:VisualElement name="active" class="questentry_background" style="display: flex; -unity-background-image-tint-color: rgb(255, 255, 255);">
-            <ui:VisualElement class="border_base center_align" style="display: flex;">
-                <ui:VisualElement style="width: 100%; height: 98%; display: flex; background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/Entry/category_patten_.png?fileID=2800000&amp;guid=160358679eb7e2d428eae86247a15c99&amp;type=3#category_patten_&apos;); -unity-background-scale-mode: scale-to-fit;" />
-            </ui:VisualElement>
+        <ui:VisualElement name="active" class="questentry_background" style="display: flex; -unity-background-image-tint-color: rgb(255, 219, 198);">
             <ui:VisualElement class="center_align" style="width: 100%; height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; flex-direction: row; display: flex;">
+                <ui:VisualElement class="border_base center_align" style="display: flex; height: 90%;">
+                    <ui:VisualElement style="width: 100%; height: 98%; display: flex; background-image: url(&apos;project://database/Assets/14.Texture/UI/Quest/Entry/category_patten_.png?fileID=2800000&amp;guid=160358679eb7e2d428eae86247a15c99&amp;type=3#category_patten_&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                </ui:VisualElement>
                 <ui:VisualElement name="left" style="justify-content: center; padding-right: 10px; display: none;">
                     <ui:VisualElement name="image" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Quest/MainQuestLogo.png?fileID=2800000&amp;guid=ab5e1387c038b884a98b40acd0ad6dc6&amp;type=3#MainQuestLogo&apos;); width: 64px; height: 32px; -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="right" style="height: 100%; padding-top: 5px; padding-bottom: 10px;">
                     <ui:VisualElement style="flex-basis: 5%; display: none;" />
                     <ui:VisualElement name="VisualElement" class="questentry_text" style="flex-basis: 65%; overflow: hidden;">
-                        <ui:Label text="퀘스트 이름" display-tooltip-when-elided="true" name="name_label" class="font_base questentry_text" style="font-size: 30px; -unity-font-style: bold; color: rgba(224, 224, 224, 255);" />
+                        <ui:Label text="퀘스트 이름" display-tooltip-when-elided="true" name="name_label" class="font_base questentry_text" style="font-size: 30px; -unity-font-style: bold; color: rgb(94, 77, 60);" />
                         <ui:Label text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" display-tooltip-when-elided="true" name="detail_label" class="questentry_text" style="font-size: 16px; white-space: normal; -unity-text-align: middle-left; display: none;" />
                     </ui:VisualElement>
                     <ui:VisualElement style="position: relative; height: 100%; justify-content: center; flex-direction: row; align-items: flex-start; flex-grow: 1; padding-left: 5px;">
-                        <ui:Label text="LActive" display-tooltip-when-elided="true" name="state_label" class="font_base questentry_text" style="font-size: 20px; white-space: nowrap; -unity-text-align: upper-left; padding-top: -14px; top: 0; color: rgba(221, 137, 144, 0.9); -unity-font-style: bold;" />
+                        <ui:Label text="LActive" display-tooltip-when-elided="true" name="state_label" class="font_base questentry_text" style="font-size: 20px; white-space: nowrap; -unity-text-align: upper-left; padding-top: -14px; top: 0; color: rgba(176, 159, 107, 0.75); -unity-font-style: bold; text-shadow: 0 0 0.05px rgba(255, 255, 255, 0.73);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

@@ -12,6 +12,7 @@ using System.Linq;
 using UI.UtilManager;
 using UI.Base;
 using UnityEngine.Analytics;
+using DG.Tweening; 
 
 namespace UI.Quest
 {
@@ -50,8 +51,12 @@ namespace UI.Quest
 
         private Dictionary<QuestState, List<QuestEntryView>> questEntryDic = new Dictionary<QuestState, List<QuestEntryView>>();
         private List<QuestData> _questDataList = new List<QuestData>();
-        private List<(QuestData,VisualElement)> _questEntryList = new List<(QuestData,VisualElement)>(); 
+        private List<(QuestData,VisualElement)> _questEntryList = new List<(QuestData,VisualElement)>();
 
+        private VisualElement curActiveEntry; // 현재 활성화 중인 것 
+  
+        private const string activeEntryStr = "active_entry";      
+        //private const string inactiveEntryStr = "inactive_entry"; 
         // 프로퍼티Di
         public Dictionary<QuestState, List<QuestEntryView>> QuestEntryDic => questEntryDic;
 
@@ -74,6 +79,15 @@ namespace UI.Quest
             SendEvent(); 
         }
 
+        private void ActiveEntry(VisualElement _v)
+        {
+            if (curActiveEntry != null && curActiveEntry.ClassListContains(activeEntryStr))
+            {
+                curActiveEntry.RemoveFromClassList(activeEntryStr);
+            }
+            curActiveEntry = _v; 
+            curActiveEntry.AddToClassList(activeEntryStr);
+        }
         public void SendEvent()
         {
             UIUtil.SendEvent(GetRadioButton((int)RadioButtons.main_button));
@@ -134,13 +148,28 @@ namespace UI.Quest
                 Debug.Log(v.NameKey);
             }
             ListView _listView = GetListView((int)ListViews.quest_listview);
-            
+            //_listView.
+
+            bool isFirst = true; 
             // 생성
             _listView.makeItem = () =>
             {
+                if (isFirst == true)
+                {
+                    // 닷트윈으로 야무지게 
+                    Sequence seq = DOTween.Sequence();
+                   // seq.Append(
+                    //        DOTween.To(() => )); 
+                }
+                else
+                {
+                    // style class로 처리 
+                }
                 (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(QuestEntryView));
 
                 _v.Item1.ElementAt(0).userData = _v.Item2 as QuestEntryView;
+                _v.Item1.RegisterCallback<ClickEvent>( (x) => ActiveEntry(_v.Item1));
+                
                 Debug.Log("MAKE");
                 return _v.Item1.ElementAt(0);
             };

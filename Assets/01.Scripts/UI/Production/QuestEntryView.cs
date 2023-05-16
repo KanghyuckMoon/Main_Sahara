@@ -8,6 +8,11 @@ namespace UI.Production
 {
     public class QuestEntryView : AbUI_Base
     {
+        enum Elements
+        {
+            fix, 
+            
+        }
         enum Labels
         {
             name_label, 
@@ -19,6 +24,8 @@ namespace UI.Production
         {
 
         }
+        
+        
         public QuestEntryView(VisualElement _parentE)
         {
             InitUIParent(_parentE);
