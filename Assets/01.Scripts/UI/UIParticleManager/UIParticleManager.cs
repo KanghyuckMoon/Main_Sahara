@@ -10,6 +10,7 @@ using Utill.Addressable;
 using UnityEngine.UI.Extensions; 
 namespace UI.ParticleManger
 {
+    
     public enum CanvasType
     {
         Cam, 
@@ -19,6 +20,7 @@ namespace UI.ParticleManger
     public enum ParticleType
     {
         Burst, 
+        SandBurst
     }
     
     public class UIParticleManager : MonoSingleton<UIParticleManager>
@@ -33,6 +35,10 @@ namespace UI.ParticleManger
             uiParticleDic.Add(ParticleType.Burst, 
                 AddressablesManager.Instance.GetResource<GameObject>("UIBurstParticle")
                     .GetComponent<UIParticle>());
+            uiParticleDic.Add(ParticleType.SandBurst, 
+                AddressablesManager.Instance.GetResource<GameObject>("UISandBurstParticle")
+                    .GetComponent<UIParticle>());
+
             
         }
 

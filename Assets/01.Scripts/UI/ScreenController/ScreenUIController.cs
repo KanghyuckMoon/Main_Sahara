@@ -25,7 +25,7 @@ using Module;
 namespace UI
 {
     /*public enum Keys
-    {
+    {   
         QuestUI, 
         InventoryUI, 
         MapUI, 
@@ -88,14 +88,17 @@ namespace UI
         {
             get
             {
-                if (player is null)
+                if (player == null)
                 {
-                    this.player = UIManager.Instance.Player.GetComponent<Player>();
-                    if (player is not null)
+                    if (UIManager.Instance.PlayerObj != null)
                     {
-                        return player; 
+                        this.player = UIManager.Instance.PlayerObj.GetComponent<Player>();
+                        if (player != null)
+                        {
+                            return player; 
+                        }
                     }
-
+                    
                     return null;
                 }
 
@@ -111,14 +114,39 @@ namespace UI
             InitScreenPresenters();
             SetNotInputEvent();
 
-            if (UIManager.Instance.Player is null)
+            if (UIManager.Instance.PlayerObj is null)
             {
                 screenCallback = (x) =>
                 {
-                    UIManager.Instance.Player.GetComponent<Player>().SetInput(x);
+                    UIManager.Instance.PlayerObj.GetComponent<Player>().SetInput(x);
                 };    
             }
              
+        }
+
+        private void OnEnable()
+        {
+            Debug.Log("ONEnable");
+            StartCoroutine(Init());
+        }
+
+        private IEnumerator Init()
+        {
+            while (true)
+            {
+                if (Player == null)
+                {
+                    yield return null; 
+                }    
+                EventManager.Instance.StartListening(EventsType.SetPlayerCam, (x) => Player.SetInput((bool)x));
+                yield break;
+            }
+            
+        }
+
+        private void OnDisable()
+        {
+            EventManager.Instance.StopListening(EventsType.SetPlayerCam, (x) => player.SetInput((bool)x));
         }
 
         private void Start()

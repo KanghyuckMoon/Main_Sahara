@@ -15,6 +15,7 @@ namespace UI.EventManage
         ClearMapLine,
         SetCanDialogue, 
         UpdateInventoryUI,
+        SetPlayerCam, // 플레이어 카메라 
         ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>

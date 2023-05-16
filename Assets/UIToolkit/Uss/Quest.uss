@@ -98,25 +98,25 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
-    border-left-color: rgb(121, 121, 121);
-    border-right-color: rgb(121, 121, 121);
-    border-top-color: rgb(121, 121, 121);
-    border-bottom-color: rgb(121, 121, 121);
+    border-left-color: rgba(121, 121, 121, 0.41);
+    border-right-color: rgba(121, 121, 121, 0.41);
+    border-top-color: rgba(121, 121, 121, 0.41);
+    border-bottom-color: rgba(121, 121, 121, 0.41);
     border-left-width: 1.5px;
     border-right-width: 1.5px;
     border-top-width: 1.5px;
     border-bottom-width: 1.5px;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 20px;
+    padding-top: 40px;
     padding-bottom: 50px;
     overflow: hidden;
     background-image: none;
     -unity-background-scale-mode: scale-to-fit;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .unity-list-view__item {
@@ -139,7 +139,7 @@
 }
 
 .quest_text {
-    color: rgba(99, 75, 63, 255);
+    color: rgb(99, 75, 63);
 }
 
 .questentry_background {
@@ -151,4 +151,22 @@
 
 .questentry_text {
     color: rgba(99, 75, 63, 0.84);
+}
+
+.quest_header {
+    flex-direction: row;
+    width: 430px;
+    height: 100%;
+    background-image: url('project://database/Assets/14.Texture/UI/Quest/quest_icon_background.png?fileID=2800000&guid=d45837fd72eb80d4bb55d2d391abf5fa&type=3#quest_icon_background');
+    align-items: center;
+    transform-origin: left;
+    transition-duration: 0.2s;
+}
+
+.inactive_header {
+    width: 0;
+    scale: 0 1;
+}
+
+.active_entry {
 }

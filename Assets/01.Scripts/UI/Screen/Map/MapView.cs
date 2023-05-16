@@ -144,7 +144,7 @@ namespace UI
             ShowMiniMap();
             SetMask(true); 
         }
-
+                    
         private const string inactiveStr = "inactive_markerset"; 
          private void ActiveMarkersetPanel()
          {

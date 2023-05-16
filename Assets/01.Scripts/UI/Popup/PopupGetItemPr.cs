@@ -22,15 +22,14 @@ namespace UI.Popup
             var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(PopupGetItemView));
             this.popupGetItemView = _prod.Item2 as PopupGetItemView;
             this.parent = _prod.Item1; 
-            
             // 애니메이션 
             //  popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
      //       popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
         }
         public void ActiveTween()
         {
-            popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
-            popupGetItemView.Parent.AddToClassList("show_getitem_popup");
+            popupGetItemView.Parent.RemoveFromClassList("show_getitem_popup");
+            popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
         }
 
         public void InActiveTween()
@@ -60,8 +59,7 @@ namespace UI.Popup
             PopupGetItemView.StringData _stringData = new PopupGetItemView.StringData{name = _name,sprite =_image}; 
             popupGetItemView.SetData(_stringData);
         }
-
-
+        
         
     }
 

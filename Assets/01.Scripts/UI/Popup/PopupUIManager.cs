@@ -28,7 +28,8 @@ namespace UI.Popup
         private PopupHudPr popupHudPr;
         private EventAlarmScreenPresenter eventAlarmScreenPr;
         private InteractionScreenPr interactionScreenPr;
-        private ShopPopupScreenPr shopPopupScreenPr; 
+        private ShopPopupScreenPr shopPopupScreenPr;
+        private GetNewitemScreenPr getNewitemScreenPr;
         
         private List<IPopupPr> popupPrList = new List<IPopupPr>(); 
 
@@ -45,7 +46,11 @@ namespace UI.Popup
             {
                 if (popupParent == null)
                 {
-                    popupParent = GameObject.FindWithTag("UIParent").transform.Find("PopupScreens");
+                    GameObject _uiParent = GameObject.FindWithTag("UIParent");
+                    if (_uiParent != null)
+                    {
+                        popupParent = _uiParent.transform.Find("PopupScreens");
+                    }
                     SetPresenters(); 
                 }
 
@@ -102,7 +107,7 @@ namespace UI.Popup
             if (_sender is "QuestManager")
             {
                 QuestData _questData = _obj as QuestData;
-                CreatePopup<EventAlarmPr>(PopupType.EventAlarm, _questData);
+                CreatePopup<EventAlarmPr>(PopupType.EventAlarm, _questData,5f);
             }
         }
 
@@ -129,12 +134,14 @@ namespace UI.Popup
             popupHudPr = PopupParent.GetComponentInChildren<PopupHudPr>();
             eventAlarmScreenPr = PopupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
             interactionScreenPr = PopupParent.GetComponentInChildren<InteractionScreenPr>(); 
-            shopPopupScreenPr = PopupParent.GetComponentInChildren<ShopPopupScreenPr>(); 
+            shopPopupScreenPr = PopupParent.GetComponentInChildren<ShopPopupScreenPr>();
+            getNewitemScreenPr = PopupParent.GetComponentInChildren<GetNewitemScreenPr>(); 
             
             popupPrList.Add(popupHudPr);
             popupPrList.Add(eventAlarmScreenPr);
             popupPrList.Add(interactionScreenPr);
             popupPrList.Add(shopPopupScreenPr);
+            popupPrList.Add(getNewitemScreenPr); 
         }
 
     }

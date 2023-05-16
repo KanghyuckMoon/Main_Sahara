@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UIElements;
 using UI.Base;
+using UnityEngine.Android;
 
 namespace UI.Production
 {
@@ -12,12 +13,14 @@ namespace UI.Production
         public class StringData
         {
             public string name;
-            public Texture2D sprite; 
+            public Texture2D sprite;
         }
+
         enum Elements
         {
             popup_getitem_view,
-            image, 
+            image,
+
         }
 
         enum Labels
@@ -26,6 +29,7 @@ namespace UI.Production
         }
 
         public VisualElement Parent => GetVisualElement((int)Elements.popup_getitem_view);
+
         public override void Cashing()
         {
             //base.Cashing();
@@ -36,9 +40,7 @@ namespace UI.Production
         public void SetData(StringData _stringData)
         {
             GetLabel((int)Labels.name).text = _stringData.name;
-            GetVisualElement((int)Elements.image).style.backgroundImage = _stringData.sprite; 
+            GetVisualElement((int)Elements.image).style.backgroundImage = _stringData.sprite;
         }
-        
     }
 }
-

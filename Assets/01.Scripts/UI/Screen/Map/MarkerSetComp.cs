@@ -11,6 +11,8 @@ using Inventory;
 using UI.Canvas;
 using UI.Manager;
 using UI.ParticleManger;
+using Utill.Coroutine;
+
 
 namespace  UI.Map
 {
@@ -63,6 +65,17 @@ namespace  UI.Map
             
         }
 
+        private IEnumerator TestCreateParticle(VisualElement _target)
+        {
+            yield return new WaitForSeconds(0.05f);
+            Vector2 _pScale = mapView.Map.parent.transform.scale; 
+            Vector2 _particlePos = new Vector2(_target.worldBound.position.x + _target.ElementAt(0).resolvedStyle.width /2 * _pScale.x, 
+                -_target.worldBound.position.y - _target.ElementAt(0).resolvedStyle.height /2* _pScale.y);
+            
+            
+            UIParticleManager.Instance.Play(ParticleType.Burst, _particlePos,
+                OverlayCanvasManager.Instance.Canvas);           
+        }
         private void ClickMarker(PointerDownEvent _evt)
         {
             // 좌클릭인지 체크, Ctrl 입력 하지 않았는지 (삭제) 체크, 현재 선택한 마커 있는지 체크 
@@ -73,10 +86,9 @@ namespace  UI.Map
                                      mapView.Map.resolvedStyle.height / 2);
            // 마커 생성 
             var _marker = CreateMarker(_markerPos);
-            Vector2 _particlePos = new Vector2(_marker.worldBound.position.x, -_marker.worldBound.position.y);
-            
-            UIParticleManager.Instance.Play(ParticleType.Burst, _particlePos,
-                OverlayCanvasManager.Instance.Canvas);          
+            //Vector2 _particlePos = new Vector2(_marker.worldBound.position.x, -_marker.worldBound.position.y);
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(TestCreateParticle(_marker));
+
             
             /*_marker.RegisterCallback<MouseOverEvent>((x) => { UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker); });
             _marker.RegisterCallback<MouseLeaveEvent>((x    ) =>

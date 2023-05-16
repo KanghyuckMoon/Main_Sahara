@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Popup.uss?fileID=7433441132597879392&amp;guid=7f506964a6cb6c5428fe7aa421dcaf79&amp;type=3#Popup" />
+    <Style src="project://database/Assets/UIToolkit/Uss/UpgradeScreen.uss?fileID=7433441132597879392&amp;guid=1ee34cea76d74de4eb37c92abf751a82&amp;type=3#UpgradeScreen" />
+    <ui:VisualElement name="get_newitem_entry_view" class="get_newitem hide_get_newitem_popup">
+        <ui:VisualElement name="center_align_parent" class="center_align">
+            <ui:VisualElement name="VisualElement">
+                <ui:VisualElement name="slot" class="upgrade_slot popup_slot inactive_item" style="transition-delay: 0s, 0s; transition-duration: 0.2s, 0.2s;">
+                    <ui:VisualElement name="frame" picking-mode="Ignore" style="width: 100%; height: 100%; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-left-color: rgba(255, 255, 255, 0.47); border-right-color: rgba(255, 255, 255, 0.47); border-top-color: rgba(255, 255, 255, 0.47); border-bottom-color: rgba(255, 255, 255, 0.47); border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;">
+                        <ui:VisualElement name="item" class="center_align" style="position: absolute; width: 100%; height: 100%;">
+                            <ui:VisualElement name="image" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/BoxingGlove_Sprite.png?fileID=21300000&amp;guid=e20cd1b3a57cae24b85d57b4a46fa2d5&amp;type=3#BoxingGlove_Sprite&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); width: 80%; height: 80%;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="label_parent" style="bottom: 10%; overflow: hidden;">
+                <ui:Label text="NEW" display-tooltip-when-elided="true" name="state_label" class="font_base" style="font-size: 15px; -unity-text-align: middle-center;" />
+                <ui:Label text="정정배의 뿅망치" display-tooltip-when-elided="true" name="name_label" class="font_base" style="font-size: 30px; -unity-font-style: normal; margin-bottom: 15px;" />
+                <ui:Label text="이동속도와 행동이 빨라지는 소모 아이템&#10;" display-tooltip-when-elided="true" name="detail_label" class="font_base" style="-unity-text-align: middle-center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="border_base" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -13,7 +13,8 @@ namespace UI.Dialogue
     {
         enum Elements
         {
-            select_panel
+            select_panel,
+            end_talk_mark
         }
         enum Labels
         {
@@ -50,6 +51,11 @@ namespace UI.Dialogue
             name = GetLabel((int)Labels.name_label);
             dialogue = GetLabel((int)Labels.dialogue_label);
             parent.style.display = DisplayStyle.None; 
+        }
+
+        public void Tween(bool _isActive)
+        {
+            
         }
 
         public void SetNameText(string _str)

@@ -68,6 +68,19 @@ namespace UI.Inventory
         }
 
         /// <summary>
+        /// 슬롯 첫 칸부터 초기화 중일 때 현재 슬롯 반환 
+        /// </summary>
+        /// <returns></returns>
+        public SlotItemPresenter GetCurSlot()
+        {
+            return slotItemViewList[index++];
+        }
+
+        public void SetSlotData(SlotItemPresenter _slotPr, ItemData _itemData)
+        {
+            _slotPr.SetItemData(_itemData); 
+        }
+        /// <summary>
         /// 슬롯UI 에 ItemData 추가해서 UI 변경 
         /// </summary>
         public void SetItemDataUI(ItemData _itemData)

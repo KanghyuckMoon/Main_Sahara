@@ -77,7 +77,7 @@ namespace UI.Inventory
 
         private void InitScrollSpeed()
         {
-            GetScrollView((int)ScrollViews.inventory_scroll_panel).verticalPageSize = 1000000; 
+            GetScrollView((int)ScrollViews.inventory_scroll_panel).verticalPageSize = 1; 
         }
         /// <summary>
         /// RadioButton  가져오기 

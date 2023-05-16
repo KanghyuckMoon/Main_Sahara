@@ -11,6 +11,8 @@ using GoogleSpreadSheet;
 using System.Linq;
 using UI.UtilManager;
 using UI.Base;
+using UnityEngine.Analytics;
+using DG.Tweening; 
 
 namespace UI.Quest
 {
@@ -31,7 +33,8 @@ namespace UI.Quest
         enum Elements
         {
             quest_list_panel,
-            quest_select
+            quest_select,
+            header
         }
 
         enum RadioGroups
@@ -48,14 +51,19 @@ namespace UI.Quest
 
         private Dictionary<QuestState, List<QuestEntryView>> questEntryDic = new Dictionary<QuestState, List<QuestEntryView>>();
         private List<QuestData> _questDataList = new List<QuestData>();
-        private List<(QuestData,VisualElement)> _questEntryList = new List<(QuestData,VisualElement)>(); 
+        private List<(QuestData,VisualElement)> _questEntryList = new List<(QuestData,VisualElement)>();
 
-        // 프로퍼티
+        private VisualElement curActiveEntry; // 현재 활성화 중인 것 
+  
+        private const string activeEntryStr = "active_entry";      
+        //private const string inactiveEntryStr = "inactive_entry"; 
+        // 프로퍼티Di
         public Dictionary<QuestState, List<QuestEntryView>> QuestEntryDic => questEntryDic;
 
         public override void Cashing()
         {
             base.Cashing();
+            BindVisualElements((typeof(QuestView.Elements)));
             BindLabels(typeof(QuestView.Labels));
             BindRadioButtons(typeof(QuestView.RadioButtons));
             BindListViews(typeof(QuestView.ListViews));
@@ -71,11 +79,34 @@ namespace UI.Quest
             SendEvent(); 
         }
 
+        private void ActiveEntry(VisualElement _v)
+        {
+            if (curActiveEntry != null && curActiveEntry.ClassListContains(activeEntryStr))
+            {
+                curActiveEntry.RemoveFromClassList(activeEntryStr);
+            }
+            curActiveEntry = _v; 
+            curActiveEntry.AddToClassList(activeEntryStr);
+        }
         public void SendEvent()
         {
             UIUtil.SendEvent(GetRadioButton((int)RadioButtons.main_button));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_isActive"></param>
+        /// <param name="_isImmed">즉시</param>
+        public void ActiveHeader(bool _isActive, bool _isImmed = false)
+        {
+            if (_isActive == true)
+            {
+                GetVisualElement((int)Elements.header).RemoveFromClassList("inactive_header");            
+                return; 
+            }
+            GetVisualElement((int)Elements.header).AddToClassList("inactive_header");            
+        }
         public override void ActiveScreen(bool _isActive)
         {
             base.ActiveScreen(_isActive);
@@ -117,13 +148,39 @@ namespace UI.Quest
                 Debug.Log(v.NameKey);
             }
             ListView _listView = GetListView((int)ListViews.quest_listview);
-            
+            //_listView.
+
+            bool isFirst = true; 
             // 생성
             _listView.makeItem = () =>
             {
-                (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(QuestEntryView));
+               (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(QuestEntryView));
+               VisualElement _target = _v.Item1;
+               QuestEntryView _view = _v.Item2 as QuestEntryView; 
+                if (isFirst == true)
+                {
+                    // 닷트윈으로 야무지게 
+                    Vector3 _originScale = _target.transform.scale;
+                    Vector3 _targetScale = Vector3.one;
+                    float _originOp = _target.resolvedStyle.opacity;
+                    float _targetOp = 1f;
+                    Sequence seq = DOTween.Sequence();
+                    seq.Append(
+                            DOTween.To(() => _originOp, (x) => _target.style.opacity = x, _targetOp, 0.15f).SetEase(Ease.OutQuart));
+                    seq.Append(
+                        DOTween.To(() => _originScale, (x) => _target.transform.scale = x, _targetScale, 0.4f).SetEase(Ease.OutQuart)); 
+                    seq.Append(
+                        DOTween.To(() => _originScale, (x) => _target.transform.scale = x, _targetScale, 0.4f).SetEase(Ease.OutQuart));
+                    seq.AppendCallback(() => _view.ActiveFix());
+                }
+                else
+                {
+                    // style class로 처리 
+                }
 
                 _v.Item1.ElementAt(0).userData = _v.Item2 as QuestEntryView;
+                _v.Item1.RegisterCallback<ClickEvent>( (x) => ActiveEntry(_v.Item1));
+                
                 Debug.Log("MAKE");
                 return _v.Item1.ElementAt(0);
             };
@@ -144,6 +201,10 @@ namespace UI.Quest
 
             _listView.onSelectionChange += (a) =>
             {
+                foreach (var o in a)
+                {
+                    VisualElement _v = o as VisualElement;
+                }
                 Debug.Log("onSelectionChange");
                 var _selected = _listView.selectedItem as QuestData;
                 string _name = TextManager.Instance.GetText(_selected.NameKey);
@@ -153,6 +214,7 @@ namespace UI.Quest
                 UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_state_label),  Enum.GetName(typeof(QuestState), _selected.QuestState));
             
             };
+            
 
         }
 

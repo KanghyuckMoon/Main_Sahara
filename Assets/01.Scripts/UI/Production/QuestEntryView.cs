@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UI.Base;
+using DG.Tweening;
 
 namespace UI.Production
 {
     public class QuestEntryView : AbUI_Base
     {
+        enum Elements
+        {
+            fix, 
+            
+        }
         enum Labels
         {
             name_label, 
@@ -19,6 +25,8 @@ namespace UI.Production
         {
 
         }
+        
+        
         public QuestEntryView(VisualElement _parentE)
         {
             InitUIParent(_parentE);
@@ -37,6 +45,15 @@ namespace UI.Production
             base.Init();
         }
 
+        public void ActiveEntry()
+        {
+            
+        }
+
+        public void ActiveFix()
+        {
+            GetVisualElement((int)Elements.fix).RemoveFromClassList("");
+        }
         /// <summary>
         /// 이름, 설명 설정 
         /// </summary>
