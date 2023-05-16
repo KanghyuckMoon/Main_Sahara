@@ -52,6 +52,7 @@ namespace PassiveItem
                 canUse = false;
                 mainModule.Animator.SetTrigger("LightEffect");
                 light.gameObject.SetActive(true);
+                mainModule.StartCoroutine(SetLightFalse());
                 SetEnemySturn();
             }
         }
@@ -99,12 +100,12 @@ namespace PassiveItem
                 }
 
                 var _enemy = VARIABLE.GetComponent<AbMainModule>();
-                _enemy.PersonalTime = 0;
+                if (_enemy is null) continue;
+                _enemy.PersonalTime = 0f;
                 list.Add(_enemy);
             }
 
-            StaticCoroutineManager.Instance.StartCoroutine(SetLightFalse());
-            //mainModule.StartCoroutine(SetLightFalse());
+            mainModule.StartCoroutine(SetLightFalse());
         }
 
         public void ClearPassiveEffect()
