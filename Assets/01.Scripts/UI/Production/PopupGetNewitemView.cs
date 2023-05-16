@@ -45,20 +45,34 @@ namespace UI.Production
             BindLabels(typeof(Labels));
         }
 
+        public IEnumerator AnimateItemCo(bool _isActive)
+        {
+            yield return null; 
+            if (_isActive == true)
+            {
+                GetVisualElement((int)Elements.slot).RemoveFromClassList(inactiveItemStr);
+                //GetVisualElement((int)Elements.slot).AddToClassList(activeItemStr);
+                yield break;
+            }
+
+            //GetVisualElement((int)Elements.slot).RemoveFromClassList(activeItemStr);
+            GetVisualElement((int)Elements.slot).AddToClassList(inactiveItemStr);
+        }
 
         /// <summary>
         /// 아이템 이미지 활성화 시키면서 애니메이션 효과 
         /// </summary>
         public void AnimateItem(bool _isActive)
         {
+            
             if (_isActive == true)
             {
                 GetVisualElement((int)Elements.slot).RemoveFromClassList(inactiveItemStr);
-                GetVisualElement((int)Elements.slot).AddToClassList(activeItemStr);
+                //GetVisualElement((int)Elements.slot).AddToClassList(activeItemStr);
                 return;
             }
 
-            GetVisualElement((int)Elements.slot).RemoveFromClassList(activeItemStr);
+            //GetVisualElement((int)Elements.slot).RemoveFromClassList(activeItemStr);
             GetVisualElement((int)Elements.slot).AddToClassList(inactiveItemStr);
         }
         
@@ -86,7 +100,7 @@ namespace UI.Production
             GetLabel((int)Labels.detail_label).text = _detailStr; 
             GetLabel((int)Labels.state_label).text = _stateStr; 
         }
-
+        
         public void SetImage(Texture2D _image)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = _image; 

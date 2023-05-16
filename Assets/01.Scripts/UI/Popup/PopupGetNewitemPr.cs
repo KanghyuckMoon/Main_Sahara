@@ -7,6 +7,7 @@ using UI.Production;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Utill.Addressable;
+using Utill.Coroutine;
 
 namespace UI.Popup
 {
@@ -34,14 +35,16 @@ namespace UI.Popup
         }
         public void ActiveTween()
         {
-            popupGetNewitemView.AnimateItem(true);
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(popupGetNewitemView.AnimateItemCo(true));
+            //popupGetNewitemView.AnimateItem(true);
         }
 
         public void InActiveTween()
         {
             popupGetNewitemView.Parent.RemoveFromClassList("show_get_newitem_popup");
             popupGetNewitemView.Parent.AddToClassList("hide_get_newitem_popup");
-            popupGetNewitemView.AnimateItem(false); 
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(popupGetNewitemView.AnimateItemCo(false));
+            //popupGetNewitemView.AnimateItem(false); 
         }
 
         public void Undo()
@@ -65,8 +68,8 @@ namespace UI.Popup
         /// </summary>
         private void AnimateDetails()
         {
-            popupGetNewitemView.Parent.RemoveFromClassList("show_get_newitem_popup");
-            popupGetNewitemView.Parent.AddToClassList("hide_get_newitem_popup");
+            popupGetNewitemView.Parent.RemoveFromClassList("hide_get_newitem_popup");
+            popupGetNewitemView.Parent.AddToClassList("show_get_newitem_popup");
         }
     }    
 }

@@ -53,7 +53,7 @@ public class PopupTest : MonoBehaviour
         {
             ItemData itemData = ItemData.CopyItemDataSO(ItemDataSo);
             PopupUIManager.Instance.CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem,
-                itemData,-1);
+                itemData,3f);
         }
     }
 }
