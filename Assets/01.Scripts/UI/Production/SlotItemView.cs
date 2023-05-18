@@ -110,7 +110,12 @@ namespace UI.Production
         // === UI 설정 관련 === //
         public void ActiveBorder(bool _isActive)
         {
-            GetVisualElement((int)Elements.slot_border).AddToClassList(activeBorderStr);
+            if (_isActive == true)
+            {
+                GetVisualElement((int)Elements.slot_border).AddToClassList(activeBorderStr);
+                return; 
+            }
+            GetVisualElement((int)Elements.slot_border).RemoveFromClassList(activeBorderStr);
         }
         public void ClearUI()
         {

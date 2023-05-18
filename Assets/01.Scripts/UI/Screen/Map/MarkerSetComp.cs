@@ -171,6 +171,7 @@ namespace UI.Map
             if (Input.GetKeyUp(KeyCode.LeftControl))
             {
                 isInputCtrl = false;
+                deleteTarget = null; 
             }
 
             CheckMousePos(); 
@@ -260,6 +261,7 @@ namespace UI.Map
         /// </summary>
         public void UpdateMarker()
         {
+            ActiveGhostIcon(false);
             ClearMarkers();
             var _dataList = InventoryManager.Instance.GetMarkerList();
             //var _dataList = MarkerDataManager.Instance.GetAllHaveMakrerList();
@@ -285,7 +287,7 @@ namespace UI.Map
             markerSlotPrList.Clear();
         }
 
-        private void ActiveGhostIcon(bool _isActive)
+        public void ActiveGhostIcon(bool _isActive)
         {
             mapView.GhostIcon.style.display = _isActive ? DisplayStyle.Flex : DisplayStyle.None;
         }
@@ -304,9 +306,9 @@ namespace UI.Map
             mapView.GhostIcon.style.backgroundImage =
                 AddressablesManager.Instance.GetResource<Texture2D>(_markerSlot.MarkerData.spriteKey);
             mapView.GhostIcon.style.width =
-                (int)(CurMarkerSprite.bounds.size.x * 400);
+                (int)(CurMarkerSprite.bounds.size.x * 200);
             mapView.GhostIcon.style.height =
-                (int)(CurMarkerSprite.bounds.size.y * 400);
+                (int)(CurMarkerSprite.bounds.size.y * 200);
         }
 
         private VisualElement CreateMarker(Vector2 _pos)
