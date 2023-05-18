@@ -92,6 +92,8 @@ namespace Module
                         Vector3 _closerPoint = other.ClosestPoint(_locationHitBox.transform.position);
 
                         _inGameHitBox.HitBoxAction?.Invoke(HitBoxActionType.Hit);
+                        
+                        Debug.LogError(CalculateAngle(mainModule.transform.position, _inGameHitBox.Owner.transform.position));
 
                         var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
                         if (_settingTime is not null)
@@ -107,7 +109,8 @@ namespace Module
                         {
                             mainModule.StopCoroutine(knockBackCoroutine);
                         }
-
+                        
+                        
                         knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
 
                         foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
@@ -203,6 +206,12 @@ namespace Module
             yield return new WaitForSeconds(0.3f);
             _ani.SetBool("Hit", false);
         }*/
+        
+        private float CalculateAngle(Vector3 _from, Vector3 _to)
+        {
+            return Mathf.Atan2(_from.z - _to.z, _from.x - _to.x) * Mathf.Rad2Deg;
+        }
+
         
         private IEnumerator HitKnockBack(InGameHitBox _inGameHitBox, Vector3 _closetPos)
         {
