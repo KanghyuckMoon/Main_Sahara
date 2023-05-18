@@ -51,6 +51,17 @@ namespace UI.Production
             ActiveScreen(_isActive); 
         }
 
+        public void InActiveTexts()
+        {
+            GetLabel((int)Labels.event_name_label).RemoveFromClassList(activeTextStr);
+            GetLabel((int)Labels.event_detail_label).RemoveFromClassList(activeTextStr);
+            GetLabel((int)Labels.event_category_label).RemoveFromClassList(activeTextStr);
+          
+            GetLabel((int)Labels.event_name_label).AddToClassList(inactiveTextStr);
+            GetLabel((int)Labels.event_detail_label).AddToClassList(inactiveTextStr);
+            GetLabel((int)Labels.event_category_label).AddToClassList(inactiveTextStr);
+        }
+
         public void ActiveTexts()
         {
             GetLabel((int)Labels.event_name_label).RemoveFromClassList(inactiveTextStr);

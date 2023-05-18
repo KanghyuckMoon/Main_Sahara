@@ -33,7 +33,7 @@ public class PopupTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, new QuestData(ClearQuestDataSo.questKey,ClearQuestDataSo.nameKey, ClearQuestDataSo.explanationKey
-                    ,ClearQuestDataSo.earlyQuestState,ClearQuestDataSo.questConditionType, ClearQuestDataSo.questCreateObjectSOList,ClearQuestDataSo.linkQuestKeyList, ClearQuestDataSo.isTalkQuest));
+                    ,ClearQuestDataSo.earlyQuestState,ClearQuestDataSo.questConditionType, ClearQuestDataSo.questCreateObjectSOList,ClearQuestDataSo.linkQuestKeyList, ClearQuestDataSo.isTalkQuest),4f);
         }   
 
         if (Input.GetKeyDown(KeyCode.N))

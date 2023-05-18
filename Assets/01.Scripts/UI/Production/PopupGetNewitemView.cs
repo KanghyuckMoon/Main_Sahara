@@ -83,15 +83,20 @@ namespace UI.Production
         {
             AddElementEvent<TransitionEndEvent>((int)Elements.slot, _callback);
         }
+
+        public void AddEventAfterText(Action _callback)
+        {
+            GetLabel((int)Labels.name_label).RegisterCallback<TransitionEndEvent>((x) => _callback?.Invoke());
+        }
+        /// <summary>
+        /// Active -> Inactive / Inactive -> Active 
+        /// </summary>
         public void ActiveTexts()
         {
-            GetLabel((int)Labels.name_label).RemoveFromClassList(inactiveTextStr);
-            GetLabel((int)Labels.detail_label).RemoveFromClassList(inactiveTextStr);
-            GetLabel((int)Labels.state_label).RemoveFromClassList(inactiveTextStr);
-          
-            GetLabel((int)Labels.name_label).AddToClassList(activeTextStr);
-            GetLabel((int)Labels.detail_label).AddToClassList(activeTextStr);
-            GetLabel((int)Labels.state_label).AddToClassList(activeTextStr);
+            GetLabel((int)Labels.name_label).ToggleInClassList(inactiveTextStr);
+            GetLabel((int)Labels.detail_label).ToggleInClassList(inactiveTextStr);
+            GetLabel((int)Labels.state_label).ToggleInClassList(inactiveTextStr);
+
         }
         
         public void SetTexts(string _nameStr, string _detailStr, string _stateStr)

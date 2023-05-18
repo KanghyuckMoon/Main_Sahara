@@ -33,7 +33,7 @@ namespace UI.Quest
         enum Elements
         {
             quest_list_panel,
-            quest_select,
+            //quest_select,
             header
         }
 

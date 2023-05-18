@@ -103,9 +103,9 @@ namespace UI.Popup
                 ItemData _itemData = _obj as ItemData;;
                 if (InventoryManager.Instance.ItemCheck(_itemData.key, 1) == true)
                 {
-                    CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
+                    CreatePopup<PopupGetItemPr>(PopupType.GetNewItem, _itemData);
                 }
-                CreatePopup<PopupGetItemPr>(PopupType.GetNewItem, _itemData);
+                CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
             }
 
             if (_sender is "QuestManager")

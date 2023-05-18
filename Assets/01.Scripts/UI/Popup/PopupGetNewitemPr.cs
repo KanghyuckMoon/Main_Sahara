@@ -16,7 +16,9 @@ namespace UI.Popup
         private PopupGetNewitemView popupGetNewitemView; 
         
         private VisualElement parent;
-        
+
+        private const string activeStr = "show_get_newitem_popup";
+        private const string inactiveStr = "hide_get_newitem_popup";
         public VisualElement Parent => parent; 
         
         public PopupGetNewitemPr()
@@ -30,7 +32,13 @@ namespace UI.Popup
                 popupGetNewitemView.InitUIParent(parent);
 
                 popupGetNewitemView.AddEventAfterImage(AnimateDetails);
-                parent.RegisterCallback<TransitionEndEvent>((x) => popupGetNewitemView.ActiveTexts());
+                parent.RegisterCallback<TransitionEndEvent>((x) =>
+                {
+                    if (parent.ClassListContains(activeStr))
+                    {
+                        popupGetNewitemView.ActiveTexts();
+                    }
+                });
             }
         }
         public void ActiveTween()
@@ -43,6 +51,7 @@ namespace UI.Popup
         {
             popupGetNewitemView.Parent.RemoveFromClassList("show_get_newitem_popup");
             popupGetNewitemView.Parent.AddToClassList("hide_get_newitem_popup");
+            popupGetNewitemView.ActiveTexts();
             StaticCoroutineManager.Instance.InstanceDoCoroutine(popupGetNewitemView.AnimateItemCo(false));
             //popupGetNewitemView.AnimateItem(false); 
         }
