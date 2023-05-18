@@ -97,11 +97,22 @@ namespace UI.Map
             StaticCoroutineManager.Instance.InstanceDoCoroutine(CreateParticleCo(_marker));
 
 
-            _marker.RegisterCallback<MouseOverEvent>((x) => { UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker); });
-            _marker.RegisterCallback<MouseLeaveEvent>((x    ) =>
+            // ==이벤트 등록 == //  
+            _marker.RegisterCallback<MouseOverEvent>((x) =>
             {
-                UIManager.Instance.SetCursorImage(CursorImageType.defaultCursor);
+                ActiveMarker(_marker);
             });
+            _marker.RegisterCallback<MouseLeaveEvent>((x) =>
+            {
+                if (isInputCtrl == true)
+                {
+                    deleteTarget = null;
+                    _marker.ElementAt(0).RemoveFromClassList(deleteMarkerStr);
+                    ;
+                    UIManager.Instance.SetCursorImage(CursorImageType.defaultCursor);
+                }
+            });
+
 
             // 현재 맵에 찍혀있음 리스트에 추가 
             markerList.Add(_marker);
@@ -122,6 +133,15 @@ namespace UI.Map
             UpdateMarker(); //마커 ui 업데이트 
         }
 
+        private void ActiveMarker(VisualElement _marker)
+        {
+            if (isInputCtrl == true)
+            {
+                _marker.ElementAt(0).AddToClassList(deleteMarkerStr);
+                deleteTarget = _marker;
+                UIManager.Instance.SetCursorImage(CursorImageType.deleteMapMarker);
+            }
+        }
         /// <summary>
         /// 마커 
         /// </summary>
@@ -132,14 +152,37 @@ namespace UI.Map
                 FollowCursor(MousePos);
             }
 
+            if (Input.GetMouseButtonDown(0) == true)
+            {
+                if (deleteTarget != null)
+                {
+                    deleteTarget.RemoveFromHierarchy();
+                    InventoryManager.Instance.AddItem(GetMarkerData(deleteTarget).key);
+                    UpdateMarker();
+                    deleteTarget = null;
+                }
+            }
 
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                isInputCtrl = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftControl))
+            {
+                isInputCtrl = false;
+            }
+
+            CheckMousePos(); 
+            /*
             if (Input.GetKey(KeyCode.LeftControl))
             {
                 isInputCtrl = true;
                 DeleteMarker();
                 if (Input.GetMouseButtonDown(0))
-                {
+                {       
                     DeleteMarker(); 
+                    // 삭제할 마커가 있으면 
                     if (deleteTarget != null)
                     {
                         deleteTarget.RemoveFromHierarchy();
@@ -153,16 +196,26 @@ namespace UI.Map
 
             if (Input.GetKeyUp(KeyCode.LeftControl))
             {
+                isInputCtrl = false; 
                 if (deleteTarget == null) return; 
                 deleteTarget.RemoveFromClassList(deleteMarkerStr);
-            }
-
-            if (Input.GetKeyUp(KeyCode.LeftControl))
-            {
-                isInputCtrl = false;
-            }
+            }*/
         }
 
+        private void CheckMousePos()
+        {
+            Vector2 _mousePos = UIUtil.GetUIToolkitPos(Input.mousePosition);
+
+            foreach (var _marker in markerList)
+            {
+                if (UIUtil.IsVectorInTarget(_mousePos, _marker.ElementAt(0)) == true)
+                {
+                    ActiveMarker(_marker);
+                    return; 
+                } 
+            }
+
+        }
         /// <summary>
         /// 마커 삭제 
         /// </summary>

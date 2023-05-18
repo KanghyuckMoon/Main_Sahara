@@ -118,17 +118,6 @@ namespace UI
                 //StartCoroutine(Test());
         }
 
-        [ContextMenu("��Ŀ Ȱ��ȭ")]
-        public void ActiveMarkers()
-        {
-            fullMapComponent.MarkersComponent.ActiveMarkers(true);
-        }
-
-        [ContextMenu("��Ŀ ��Ȱ��ȭ")]
-        public void DisableMarkers()
-        {
-            fullMapComponent.MarkersComponent.ActiveMarkers(false);
-        }
 
         IEnumerator TestCo()
         {

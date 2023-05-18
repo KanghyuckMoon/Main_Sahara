@@ -20,7 +20,8 @@ namespace UI.Production
         {
             image,
             item,
-            select
+            select,
+            slot_border, 
             //frame
         }
         enum Labels
@@ -30,8 +31,9 @@ namespace UI.Production
 
         private bool isStackable; // 셀수 있냐 
         private Manipulator curManipulator;
-        private const string selectStr = "active_select"; 
-
+        private const string selectStr = "active_select";
+        private const string activeBorderStr = "active_slot_border";
+        
         // 프로퍼티 
         public VisualElement Item => GetVisualElement((int)Elements.item);
         public bool IsStackable { get => isStackable; set { isStackable = value; ShowVisualElement(GetLabel((int)Labels.text), value); } }
@@ -106,6 +108,10 @@ namespace UI.Production
         }
         
         // === UI 설정 관련 === //
+        public void ActiveBorder(bool _isActive)
+        {
+            GetVisualElement((int)Elements.slot_border).AddToClassList(activeBorderStr);
+        }
         public void ClearUI()
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = null;

@@ -148,9 +148,17 @@ namespace UI.Inventory
                 if(isClicker == true)
                     _slotPr.AddClickEvent(() => clickCallback?.Invoke(_slotPr.ItemData));
                  
-                _slotPr.AddHoverEvent(() => descriptionPresenter.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
-                    _slotPr.WorldPos, _slotPr.ItemSize));
-                _slotPr.AddOutEvent(() => descriptionPresenter.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
+                _slotPr.AddHoverEvent(() =>
+                {
+                    _slotPr.SlotItemView.ActiveBorder(true);
+                    descriptionPresenter.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
+                        _slotPr.WorldPos, _slotPr.ItemSize);
+                });
+                _slotPr.AddOutEvent(() =>
+                {
+                    _slotPr.SlotItemView.ActiveBorder(false);
+                    descriptionPresenter.ActiveView(false);
+                }); // 마우스 위에서 떠날시 설명창 비활성화
 
                 _invenPanelDic[_iType].AddSlotView(_slotPr); // 패널에 슬롯 뷰 추가 
                 this.inventoryGridSlotsView.SetParent(_itemType, _slotPr.Parent);

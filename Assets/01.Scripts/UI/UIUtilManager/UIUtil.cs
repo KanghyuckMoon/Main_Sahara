@@ -50,6 +50,22 @@ namespace UI.UtilManager
         {
             return new Vector2(_uguiPos.x, height - _uguiPos.y);
         }
+
+        /// <summary>
+        /// 첫 번째 인자가 두 번째 인자 안에 있는가 
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsVectorInTarget(Vector2 _v1, VisualElement _target)
+        {
+            if (_v1.x > _target.worldBound.x && _v1.x < _target.worldBound.x + _target.worldBound.width
+                                             && _v1.y > _target.worldBound.y &&
+                                             _v1.y < _target.worldBound.y + _target.worldBound.height)
+            {
+                return true; 
+            }
+
+            return false; 
+        }
     }
 
 }
