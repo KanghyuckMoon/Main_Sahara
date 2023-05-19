@@ -139,10 +139,10 @@ namespace Inventory
 				return;
 			}
 
-			//if (Input.GetKeyDown(KeyCode.G))
-			//{
-			//	CurrentItemDrop();
-			//}
+			if (Input.GetKeyDown(KeyCode.G))
+			{
+				//CurrentItemDrop();
+			}
 
 			float wheel = Input.GetAxisRaw("Mouse ScrollWheel");
 			if (wheel >= 0.1f)

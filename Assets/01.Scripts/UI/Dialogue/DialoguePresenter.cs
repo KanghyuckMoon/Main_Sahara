@@ -157,7 +157,7 @@ using Inventory;
                         StartText(_name.Replace("T","A"), _name);
                         return; 
                     case "!GIVE":
-                        InventoryManager.Instance.AddItem(fullText);
+                        InventoryManager.Instance.AddItem(fullText.Replace("\r",""));
                         return;
                     case "!GIVES":
                         var _text = fullText.Split(',');

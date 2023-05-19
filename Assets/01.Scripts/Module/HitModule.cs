@@ -19,11 +19,19 @@ namespace Module
                 return hpModule;
             }
         }
-        private StatModule StateModule
+        private StatModule StatModule
         {
             get
             {
-                stateModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.Stat);
+                statModule ??= mainModule.GetModuleComponent<StatModule>(ModuleType.Stat);
+                return statModule;
+            }
+        }
+        private StateModule StateModule
+        {
+            get
+            {
+                stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
                 return stateModule;
             }
         }
@@ -36,10 +44,12 @@ namespace Module
             }
         }
         private PlayerLandEffectSO effectSO;
+        
         //private 
 
+        private StateModule stateModule;
         private HpModule hpModule;
-        private StatModule stateModule;
+        private StatModule statModule;
         private AnimationModule animationModule;
 
         private float currentHitDelay = 0;
@@ -116,6 +126,7 @@ namespace Module
                 AnimationModule.animator.Play("Dead");
                 mainModule.IsDead = true;
                 mainModule.CharacterController.enabled = false;
+                StateModule.AddState(State.DEAD);
             }
             else
             {
@@ -133,7 +144,7 @@ namespace Module
         public override void OnDisable()
         {
             hpModule = null;
-            stateModule = null;
+            statModule = null;
             animationModule = null;
             base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<HitModule>("HitModule", this);
