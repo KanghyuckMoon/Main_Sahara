@@ -18,6 +18,8 @@ namespace UI
         private int width, height; 
         private List<VisualElement> markerList = new List<VisualElement>();
 
+        private const string deleteMarkerStr = "delete_marker";
+
         /// <summary>
         /// 마커 생성 
         /// </summary>
@@ -26,11 +28,6 @@ namespace UI
             TemplateContainer marker = markerUxml.Instantiate();
             marker.style.position = Position.Absolute;
             _parent.Add(marker);
-            //marker.contentContainer.transform.position = new Vector3(-mapView.Map.transform.position.x /*+ mapView.Map.style.width.value.value * 0.5f*/ - 35,// (-marker.contentContainer.style.width.value.value *0.5f),
-            //                                                                  -mapView.Map.transform.position.y/* + mapView.Map.style.width.value.value * 0.5f*/ - 35,//(-marker.contentContainer.transform.position.y * 0.5f),
-            //                                                                  0);
-            float _w = marker.ElementAt(0).style.width.value.value; 
-            float _h = marker.ElementAt(0).style.height.value.value;
 
             width = (int)(_marker.bounds.size.x * 400);
             height = (int)(_marker.bounds.size.y * 400);
@@ -39,7 +36,6 @@ namespace UI
             marker.ElementAt(0).style.height = new StyleLength(height);
             marker.ElementAt(0).style.backgroundImage = new StyleBackground(_marker);
 
-            //Debug.Log("RECT" + _w + " ," + _h);
             _pos += new Vector2(-width / 2, -height / 2);
             marker.contentContainer.transform.position = _pos;
             markerList.Add(marker);

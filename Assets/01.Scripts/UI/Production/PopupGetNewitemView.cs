@@ -45,20 +45,34 @@ namespace UI.Production
             BindLabels(typeof(Labels));
         }
 
+        public IEnumerator AnimateItemCo(bool _isActive)
+        {
+            yield return null; 
+            if (_isActive == true)
+            {
+                GetVisualElement((int)Elements.slot).RemoveFromClassList(inactiveItemStr);
+                //GetVisualElement((int)Elements.slot).AddToClassList(activeItemStr);
+                yield break;
+            }
+
+            //GetVisualElement((int)Elements.slot).RemoveFromClassList(activeItemStr);
+            GetVisualElement((int)Elements.slot).AddToClassList(inactiveItemStr);
+        }
 
         /// <summary>
         /// 아이템 이미지 활성화 시키면서 애니메이션 효과 
         /// </summary>
         public void AnimateItem(bool _isActive)
         {
+            
             if (_isActive == true)
             {
                 GetVisualElement((int)Elements.slot).RemoveFromClassList(inactiveItemStr);
-                GetVisualElement((int)Elements.slot).AddToClassList(activeItemStr);
+                //GetVisualElement((int)Elements.slot).AddToClassList(activeItemStr);
                 return;
             }
 
-            GetVisualElement((int)Elements.slot).RemoveFromClassList(activeItemStr);
+            //GetVisualElement((int)Elements.slot).RemoveFromClassList(activeItemStr);
             GetVisualElement((int)Elements.slot).AddToClassList(inactiveItemStr);
         }
         
@@ -69,15 +83,20 @@ namespace UI.Production
         {
             AddElementEvent<TransitionEndEvent>((int)Elements.slot, _callback);
         }
+
+        public void AddEventAfterText(Action _callback)
+        {
+            GetLabel((int)Labels.name_label).RegisterCallback<TransitionEndEvent>((x) => _callback?.Invoke());
+        }
+        /// <summary>
+        /// Active -> Inactive / Inactive -> Active 
+        /// </summary>
         public void ActiveTexts()
         {
-            GetLabel((int)Labels.name_label).RemoveFromClassList(inactiveTextStr);
-            GetLabel((int)Labels.detail_label).RemoveFromClassList(inactiveTextStr);
-            GetLabel((int)Labels.state_label).RemoveFromClassList(inactiveTextStr);
-          
-            GetLabel((int)Labels.name_label).AddToClassList(activeTextStr);
-            GetLabel((int)Labels.detail_label).AddToClassList(activeTextStr);
-            GetLabel((int)Labels.state_label).AddToClassList(activeTextStr);
+            GetLabel((int)Labels.name_label).ToggleInClassList(inactiveTextStr);
+            GetLabel((int)Labels.detail_label).ToggleInClassList(inactiveTextStr);
+            GetLabel((int)Labels.state_label).ToggleInClassList(inactiveTextStr);
+
         }
         
         public void SetTexts(string _nameStr, string _detailStr, string _stateStr)
@@ -86,7 +105,7 @@ namespace UI.Production
             GetLabel((int)Labels.detail_label).text = _detailStr; 
             GetLabel((int)Labels.state_label).text = _stateStr; 
         }
-
+        
         public void SetImage(Texture2D _image)
         {
             GetVisualElement((int)Elements.image).style.backgroundImage = _image; 

@@ -55,7 +55,7 @@ namespace UI.ParticleManger
             UIParticle _particle = uiParticleDic[particleType];
             UIParticle _p = Instantiate(_particle, _parent);
             //_p.StartParticleEmission();
-            _particle.Play();
+            _p.Play();
            _p.GetComponent<RectTransform>().anchoredPosition = _pos; 
             //_particle.transform.SetParent(_parent);
             if (_isLoop == false)

@@ -128,7 +128,7 @@ namespace UI.EventManage
             Action<object> thisEvent = null;
             if (Instance.eventParamDictionary.TryGetValue(eventName, out thisEvent))
             {
-                thisEvent?.Invoke(param);
+                                thisEvent?.Invoke(param);
             }
             else
             {

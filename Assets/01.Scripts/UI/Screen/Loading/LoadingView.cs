@@ -63,9 +63,17 @@ namespace UI.Loading
         public void LoopLoadingImg()
         {
             VisualElement _icon = GetVisualElement((int)Elements.loading_icon);
-            DOTween.To(() => 1f, x => _icon.style.opacity = new StyleFloat(x), 0.5f, time)
+            DOTween.To(() => 1f,
+                    x => _icon.style.opacity = new StyleFloat(x),
+                    0.5f, time)
                 .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.OutQuad);
 
+             var a= _icon.resolvedStyle.rotate.angle.value;
+            DOTween.To(() =>_icon.resolvedStyle.rotate.angle.value
+                    , x => _icon.style.rotate = new Rotate(x),
+                    360f,time)
+                .SetLoops(-1, LoopType.Incremental).SetEase(Ease.OutQuad);
+             
 //            DOTween.To(() => 1f, x => _icon.style.rotate = new StyleRotate(new Rotate(x)), 0.5f, time)
  //               .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.OutQuad);
         }
