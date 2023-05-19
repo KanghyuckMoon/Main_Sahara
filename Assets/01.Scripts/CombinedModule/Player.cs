@@ -21,12 +21,9 @@ namespace CondinedModule
         {
             get
             {
-                if (camera is null)
-                {
-                    camera = FindObjectOfType<ThirdPersonCameraController>();
-                    if (camera is null) return null; 
-                }
-                return camera; 
+                if (camera is not null) return camera;
+                camera = GameObject.Find("PlayerCam")?.GetComponent<ThirdPersonCameraController>();//FindObjectOfType<ThirdPersonCameraController>();
+                return camera ?? null;
             }
         }
         public void OnEnable()
@@ -125,7 +122,8 @@ namespace CondinedModule
                 stateModule.AddState(State.UI);
             else stateModule.RemoveState(State.UI);
 
-            Camera.isUIOn = _isOn;
+            if (Camera is not null)
+                Camera.isUIOn = _isOn;
         }
 
         private void OnDestroy()
