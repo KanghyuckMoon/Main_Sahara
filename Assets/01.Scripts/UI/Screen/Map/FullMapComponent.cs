@@ -79,44 +79,8 @@ namespace UI
         {
             ElementCtrlComponent.Update();
             markerSetComp.Update();
-            /*
-            // 전체맵일 때만 입력으로 이동 확대 
-            KeyInput();
-            // 이동 
-            MoveMap();
-            // 확대 축소 
-            ZoomMap();
-            */
-            //mapView.MapRect.width 
             LineCreateManager.Instance.UpdateLinesPos(ScreenType.Map, (Vector2)mapView.Map.transform.position); 
-            LineCreateManager.Instance.UpdateLinesScale(ScreenType.Map, (Vector2)mapView.Map.transform.scale); 
-          
-            //EventManager.Instance.TriggerEvent(EventsType.UpdateMapPos, (Vector2)mapView.Map.transform.position);
-           // EventManager.Instance.TriggerEvent(EventsType.UpdateMapScale, (Vector2)mapView.Map.transform.scale);
-            // 마커 생성
-
-            if (Input.GetKeyDown(KeyCode.Keypad1))
-            {
-                selectMarker = AddressablesManager.Instance.GetResource<Sprite>("Marker1");
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad2))
-            {
-                selectMarker = AddressablesManager.Instance.GetResource<Sprite>("Marker2");
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad3))
-            {
-                selectMarker = AddressablesManager.Instance.GetResource<Sprite>("Marker3");
-            }
-            
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                if (selectMarker is null)
-                {
-                    return;
-                }
-                markersComponent.CreateMarker(new Vector2(-mapView.Map.transform.position.x,
-                    -mapView.Map.transform.position.y), mapView.MarkerParent, selectMarker);
-            }
+            LineCreateManager.Instance.UpdateLinesScale(ScreenType.Map, (Vector2)mapView.Map.transform.scale);
         }
         /// <summary>
         /// 발자국 활성화 

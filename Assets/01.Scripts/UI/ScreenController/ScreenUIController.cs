@@ -309,7 +309,7 @@ namespace UI
                 mapPresenter.Active(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
             });
-            inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
+            /*inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
             {
                 //  활성화
                 bool _isActive = upgradePresenter.ActiveView();
@@ -318,7 +318,7 @@ namespace UI
                 UIManager.Instance.ActiveHud(! _isActive);
                 mapPresenter.Active(! _isActive);
                 screenCallback?.Invoke(_isActive);
-            });
+            });*/
             inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
             {
                 //  활성화

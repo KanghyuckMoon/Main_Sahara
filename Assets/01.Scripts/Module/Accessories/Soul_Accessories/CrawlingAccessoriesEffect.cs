@@ -23,7 +23,7 @@ namespace PassiveItem
         
         public void ApplyPassiveEffect()
         {
-            mainModule.CharacterController.slopeLimit = 90;
+            mainModule.CharacterController.slopeLimit = 120;
         }
 
         public void UpdateEffect()
@@ -43,7 +43,7 @@ namespace PassiveItem
         public void ClearPassiveEffect()
         {
             //moveModule.isCrawling = false;
-            mainModule.CharacterController.slopeLimit = 20;
+            mainModule.CharacterController.slopeLimit = 45;
         }
 
         public void UpgradeEffect()

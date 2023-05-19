@@ -57,7 +57,7 @@ namespace UI.Inventory
         private SlotItemPresenter dragItemPresenter; // 드래그시 활성화될 뷰( 아이템 이미지 그대로 복사해서 커서 따라가는 )  
 
         private InventoryGridSlotsPr inventoryGridSlotsPr;
-        private Dictionary<ItemType, Action<ItemData, int>> slotCallbackDic = new Dictionary<ItemType, Action<ItemData, int>>();
+        private Dictionary<ItemType, Func<ItemData, int,bool>> slotCallbackDic = new Dictionary<ItemType, Func<ItemData, int,bool>>();
         private Action<ItemData> callback = null; 
         
         // 프로퍼티
@@ -336,21 +336,62 @@ namespace UI.Inventory
                 // 가장 가깝게 드랍한 슬롯 
                 SlotItemPresenter _closedSlot = _slots.OrderBy(x =>
                     Vector2.Distance(x.Item.worldBound.position, dragItemPresenter.Item.worldBound.position)).First();
-                slotCallbackDic[_closedSlot.SlotType]?.Invoke(dragItemPresenter.ItemData, _closedSlot.Index);
+                
+                var _isSuccessed = slotCallbackDic[_closedSlot.SlotType]?.Invoke(dragItemPresenter.ItemData, _closedSlot.Index);
                    
                 // SO 데이터도 설정
                 //InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
                 // 전체 UI 업데이트 
-                _closedSlot.SetItemData(dragItemPresenter.ItemData); 
+                if (_isSuccessed == true)
+                {
+                    UpdateEquipUI(inventoryGridSlotsPr.CurItemType);
+                    _closedSlot.SetItemData(dragItemPresenter.ItemData);
+                }
 
             }
             else
             {
 
             }
-            ActiveDragItem(false);
+            ActiveDragItem(false);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
         }
 
+        private  void UpdateEquipUI(ItemType _itemTYpe)
+        {
+            List<ItemData> _dataList = new List<ItemData>();
+            switch (_itemTYpe)
+            {
+                case ItemType.Weapon:
+                    _dataList = InventoryManager.Instance.GetEquipWeaponList(); 
+                    break;
+                case ItemType.Consumption:
+                    _dataList = InventoryManager.Instance.GetEquipWeaponList(); 
+                    break;
+                case ItemType.Skill:
+                    break;
+                case ItemType.Equipment:
+                    _dataList = InventoryManager.Instance.GetEquipmentList(); 
+                    break;
+                case ItemType.Accessories:
+                    _dataList = InventoryManager.Instance.GetEquipSoulList(); 
+                    break;
+                case ItemType.Material:
+                    break;
+                case ItemType.Valuable:
+                    break;
+                case ItemType.Marker:
+                    break;
+                case ItemType.None:
+                    break;
+            }
+            var _slotList = inventoryGridSlotsPr.CurInvenPanel.equipItemViewList;
+
+            for (int i = 0; i < _slotList.Count(); i++)
+            {
+                _slotList[i].SetItemData(_dataList[i]);
+            }
+
+        }
         private void ClickItem(SlotItemPresenter _slotView)
         {
             //dragItemView 에 클릭한 슬롯의 아이템 넘겨주기 
@@ -367,7 +408,7 @@ namespace UI.Inventory
         {
             this.slotCallbackDic.Clear(); 
 
-            this.slotCallbackDic.Add(ItemType.None, (x1,x2)=> { });
+            this.slotCallbackDic.Add(ItemType.None, (x1, x2) => { return false;});
             this.slotCallbackDic.Add(ItemType.Weapon, (x1, x2) => InventoryManager.Instance.SetQuickSlotItem(x1, x2));
             this.slotCallbackDic.Add(ItemType.Consumption, (x1, x2) => InventoryManager.Instance.EquipArrow(x1));
             this.slotCallbackDic.Add(ItemType.Equipment, (x1, x2) => InventoryManager.Instance.EquipEquipment(x2,x1));

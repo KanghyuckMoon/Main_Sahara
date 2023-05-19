@@ -33,7 +33,7 @@ public class PopupTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, new QuestData(ClearQuestDataSo.questKey,ClearQuestDataSo.nameKey, ClearQuestDataSo.explanationKey
-                    ,ClearQuestDataSo.earlyQuestState,ClearQuestDataSo.questConditionType, ClearQuestDataSo.questCreateObjectSOList,ClearQuestDataSo.linkQuestKeyList, ClearQuestDataSo.isTalkQuest));
+                    ,ClearQuestDataSo.earlyQuestState,ClearQuestDataSo.questConditionType, ClearQuestDataSo.questCreateObjectSOList,ClearQuestDataSo.linkQuestKeyList, ClearQuestDataSo.isTalkQuest),4f);
         }   
 
         if (Input.GetKeyDown(KeyCode.N))
@@ -53,7 +53,7 @@ public class PopupTest : MonoBehaviour
         {
             ItemData itemData = ItemData.CopyItemDataSO(ItemDataSo);
             PopupUIManager.Instance.CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem,
-                itemData,-1);
+                itemData,3f);
         }
     }
 }

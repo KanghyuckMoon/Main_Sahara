@@ -49,6 +49,8 @@ namespace UI.Popup
         {
             eventAlarmView.EventAlarmParent.RemoveFromClassList(activeStr);
             eventAlarmView.EventAlarmParent.AddToClassList(inactiveStr);
+            eventAlarmView.InActiveTexts(); 
+
         }
 
         public void Undo()

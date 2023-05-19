@@ -8,6 +8,7 @@ using Pool;
 using UnityEngine.Rendering;
 using Utill.Addressable;
 using Buff;
+using EquipmentSystem;
 
 namespace PassiveItem
 {
@@ -19,27 +20,29 @@ namespace PassiveItem
 
         private float delay;
         private float maxDelay = 9f;
+        private GameObject gameObject;
 
-        private GameObject head;
+        //private GameObject head;
         
         public BurningAccessoriesEffect(AbMainModule _mainModule)
         {
             mainModule = _mainModule;
             if (mainModule.name != "Player") return;
-            head = mainModule.GetComponentInChildren<Head>().gameObject;
+            //head = mainModule.GetComponentInChildren<EquipPosition>().gameObject;
         }
         
         public void ApplyPassiveEffect()
         {
             if (mainModule.name != "Player") return;
-            GameObject fire = ObjectPoolManager.Instance.GetObject("FireEffect_1");
-            fire.transform.SetParent(head.transform);
+            gameObject = ObjectPoolManager.Instance.GetObject("BurnningEffect");
+            gameObject.transform.SetParent(mainModule.transform, false);
             
-            fire.transform.localPosition = Vector3.zero;
-            fire.transform.localRotation = Quaternion.identity;
+            gameObject.transform.localPosition = Vector3.up;
+            gameObject.transform.localRotation = Quaternion.identity;
+            gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
-            fire.SetActive(true);
-            FlameEffectDmg _fire = fire.GetComponent<FlameEffectDmg>();
+            gameObject.SetActive(true);
+            FlameEffectDmg _fire = gameObject.GetComponent<FlameEffectDmg>();
             _fire.enemyLayerName = "Enemy";
         }
         
@@ -49,7 +52,8 @@ namespace PassiveItem
 
         public void ClearPassiveEffect()
         {
-            
+            gameObject.SetActive(false);
+            ObjectPoolManager.Instance.RegisterObject("BurnningEffect", gameObject);
         }
 
         public void UpgradeEffect()

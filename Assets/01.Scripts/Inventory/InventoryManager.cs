@@ -208,13 +208,32 @@ namespace Inventory
 			List<ItemData> _itemDataList = inventorySO.itemDataList.Where(item => item.itemType == ItemType.Weapon || item.itemType == ItemType.Consumption).ToList();
 			return _itemDataList;
 		}
+		
+		public List<ItemData> GetEquipWeaponList()
+		{
+			return inventorySO.quickSlot.ToList(); 
+		}
+		public List<ItemData> GetEquipItemList()
+		{
+			return inventorySO.equipments.ToList(); 
+		}
+		public List<ItemData> GetEquipSoulList()
+		{
+			return inventorySO.accessories.ToList(); 
+		}
+		public ItemData GetEquipArrow()
+		{
+			return inventorySO.arrow; 
+		}
+		
+		
 		public List<ItemData> GetWeaponList()
 		{
 			return GetWhereItem(ItemType.Weapon);
 		}
 		public List<ItemData> GetConsumptionList()
 		{
-			return GetWhereItem(ItemType.Weapon);
+			return GetWhereItem(ItemType.Consumption);
 		}
 		public List<ItemData> GetSkillList()
 		{
@@ -222,11 +241,11 @@ namespace Inventory
 		}
 		public List<ItemData> GetEquipmentList()
 		{
-			return GetWhereItem(ItemType.Weapon);
+			return GetWhereItem(ItemType.Equipment);
 		}
 		public List<ItemData> GetAccessoriesList()
 		{
-			return GetWhereItem(ItemType.Weapon);
+			return GetWhereItem(ItemType.Accessories);
 		}
 		public List<ItemData> GetMaterialList()
 		{
@@ -354,9 +373,10 @@ namespace Inventory
 			return null;
 		}
 
-		public void SetQuickSlotItem(ItemData _itemData, int _index)
+		public bool SetQuickSlotItem(ItemData _itemData, int _index)
 		{
 			inventorySO.quickSlot[_index] = _itemData;
+			return true; 
 		}
 
 		[ContextMenu("TestSetQuickSlotItem")]
@@ -462,32 +482,32 @@ namespace Inventory
 		}
 
 		//장비 장착
-		public void EquipEquipment(int index, ItemData _itemData)
+		public bool EquipEquipment(int index, ItemData _itemData)
 		{
 			switch(index)
 			{
 				case 0:
 					if(_itemData.equipmentType != EquipmentType.Head)
 					{
-						return;
+						return false;
 					}
 					break;
 				case 1:
 					if (_itemData.equipmentType != EquipmentType.Armor)
 					{
-						return;
+						return false;
 					}
 					break;
 				case 2:
 					if (_itemData.equipmentType != EquipmentType.Pants)
 					{
-						return;
+						return false;
 					}
 					break;
 				case 3:
 					if (_itemData.equipmentType != EquipmentType.Shoes)
 					{
-						return;
+						return false;
 					}
 					break;
 			}
@@ -496,7 +516,7 @@ namespace Inventory
 
 			//장비스탯 처리
 			PlayerEquipmentModule.OnEquipItem(_itemData.prefebkey);
-			return;
+			return true;
 		}
 		public void RemoveEquipment(int _index)
 		{
@@ -507,23 +527,23 @@ namespace Inventory
 		}
 
 		//장신구 장착
-		public void EquipAccessories(int _index, ItemData _itemData)
+		public bool EquipAccessories(int _index, ItemData _itemData)
 		{
 			if (inventorySO.accessories[0] is not null && inventorySO.accessories[0].key == _itemData.key)
 			{
-				return;
+				return false;
 			}
 			if (inventorySO.accessories[1] is not null && inventorySO.accessories[1].key == _itemData.key)
 			{
-				return;
+				return false;
 			}
 			if (inventorySO.accessories[2] is not null && inventorySO.accessories[2].key == _itemData.key)
 			{
-				return;
+				return false;
 			}
 			if (inventorySO.accessories[3] is not null && inventorySO.accessories[3].key == _itemData.key)
 			{
-				return;
+				return false;
 			}
 			RemoveAccessories(_index);
 			inventorySO.accessories[_index] = _itemData;
@@ -531,7 +551,7 @@ namespace Inventory
 			//장신구스탯 처리
 			PlayerItemModule.SetPassiveItem(_itemData.accessoriesItemType);
 
-			return;
+			return true;
 		}
 
 		public void RemoveAccessories(int _index)
@@ -594,15 +614,16 @@ namespace Inventory
 		}
 
 		//Arrow
-		public void EquipArrow(ItemData _arrow)
+		public bool EquipArrow(ItemData _arrow)
 		{
 			if (_arrow.consumptionType is not ConsumptionType.Arrow)
 			{
-				return;
+				return false;
 			}
 			inventorySO.arrow = _arrow;
 			//Weapon에 데이터 전달
 			weaponModule.SetArrow(_arrow.prefebkey, SpendArrow);
+			return true; 
 		}
 
 		private void SpendArrow()
