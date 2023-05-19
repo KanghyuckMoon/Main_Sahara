@@ -359,21 +359,26 @@ namespace UI.Inventory
         private  void UpdateEquipUI(ItemType _itemTYpe)
         {
             List<ItemData> _dataList = new List<ItemData>();
+            List<SlotItemPresenter> _slotList = new List<SlotItemPresenter>(); 
             switch (_itemTYpe)
             {
                 case ItemType.Weapon:
                     _dataList = InventoryManager.Instance.GetEquipWeaponList(); 
+                    _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Weapon].equipItemViewList;
                     break;
                 case ItemType.Consumption:
-                    _dataList = InventoryManager.Instance.GetEquipWeaponList(); 
+                    _dataList = InventoryManager.Instance.GetConsumptionList(); 
+                    _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Consumption].equipItemViewList;
                     break;
                 case ItemType.Skill:
                     break;
                 case ItemType.Equipment:
                     _dataList = InventoryManager.Instance.GetEquipmentList(); 
+                    _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Equipment].equipItemViewList;
                     break;
                 case ItemType.Accessories:
                     _dataList = InventoryManager.Instance.GetEquipSoulList(); 
+                    _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Accessories].equipItemViewList;
                     break;
                 case ItemType.Material:
                     break;
@@ -384,9 +389,10 @@ namespace UI.Inventory
                 case ItemType.None:
                     break;
             }
-            var _slotList = inventoryGridSlotsPr.CurInvenPanel.equipItemViewList;
+         //   var _slotList = inventoryGridSlotsPr.CurInvenPanel.equipItemViewList;
 
-            for (int i = 0; i < _slotList.Count(); i++)
+            //var slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Accessories].equipItemViewList;
+            for (int i = 0; i < _dataList.Count()-1; i++)
             {
                 _slotList[i].SetItemData(_dataList[i]);
             }

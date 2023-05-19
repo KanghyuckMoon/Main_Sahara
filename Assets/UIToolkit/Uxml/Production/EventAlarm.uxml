@@ -11,9 +11,10 @@
             <ui:VisualElement name="image" class="logo_image" style="display: flex;" />
         </ui:VisualElement>
         <ui:VisualElement name="right" style="flex-grow: 1; padding-left: 5%; padding-right: 5%;">
-            <ui:Label text="메인 퀘스트" display-tooltip-when-elided="true" name="event_category_label" picking-mode="Ignore" class="font_base inactive_text event_detail_label" />
+            <ui:Label text="메인 퀘스트" display-tooltip-when-elided="true" name="event_category_label" picking-mode="Ignore" class="font_base event_detail_label inactive_text" />
             <ui:Label text="자고 있는 정정배를 깨워라 " display-tooltip-when-elided="true" name="event_name_label" picking-mode="Ignore" class="font_base event_name_label inactive_text" />
-            <ui:Label text="퀘스트 수락" display-tooltip-when-elided="true" name="event_detail_label" picking-mode="Ignore" class="font_base event_detail_label inactive_text" />
+            <ui:Label text="퀘스트 수락" display-tooltip-when-elided="true" name="event_detail_label" picking-mode="Ignore" class="font_base event_detail_label inactive_text" style="display: none;" />
+            <ui:Label text="제세한 정보 확인하려면 &lt;color=#FFFFFF&gt;O&lt;/color&gt; 버튼 누르기 " display-tooltip-when-elided="true" name="more_info_label" picking-mode="Ignore" class="font_base event_detail_label inactive_text" style="display: flex; color: rgb(221, 199, 137);" />
             <ui:VisualElement name="deco" class="border_base" style="flex-direction: row-reverse; align-items: center;">
                 <ui:VisualElement name="clear_icon" class="clear_icon_parent inactive_ci">
                     <ui:Label text="Clear" display-tooltip-when-elided="true" name="clear_icon_text" class="font_base clear_icon" />

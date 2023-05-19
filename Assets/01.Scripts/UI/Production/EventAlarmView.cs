@@ -21,6 +21,7 @@ namespace UI.Production
             event_detail_label,
             event_name_label,
             event_category_label, 
+            more_info_label,
         }
 
         public VisualElement Parent => parentElement;
@@ -56,10 +57,12 @@ namespace UI.Production
             GetLabel((int)Labels.event_name_label).RemoveFromClassList(activeTextStr);
             GetLabel((int)Labels.event_detail_label).RemoveFromClassList(activeTextStr);
             GetLabel((int)Labels.event_category_label).RemoveFromClassList(activeTextStr);
+            GetLabel((int)Labels.more_info_label).RemoveFromClassList(activeTextStr);
           
             GetLabel((int)Labels.event_name_label).AddToClassList(inactiveTextStr);
             GetLabel((int)Labels.event_detail_label).AddToClassList(inactiveTextStr);
             GetLabel((int)Labels.event_category_label).AddToClassList(inactiveTextStr);
+            GetLabel((int)Labels.more_info_label).AddToClassList(inactiveTextStr);
         }
 
         public void ActiveTexts()
@@ -67,10 +70,12 @@ namespace UI.Production
             GetLabel((int)Labels.event_name_label).RemoveFromClassList(inactiveTextStr);
             GetLabel((int)Labels.event_detail_label).RemoveFromClassList(inactiveTextStr);
             GetLabel((int)Labels.event_category_label).RemoveFromClassList(inactiveTextStr);
+            GetLabel((int)Labels.more_info_label).RemoveFromClassList(inactiveTextStr);
           
             GetLabel((int)Labels.event_name_label).AddToClassList(activeTextStr);
             GetLabel((int)Labels.event_detail_label).AddToClassList(activeTextStr);
             GetLabel((int)Labels.event_category_label).AddToClassList(activeTextStr);
+            GetLabel((int)Labels.more_info_label).AddToClassList(activeTextStr);
         }
 
         public void AddClearIconCallback(Action _callback)
