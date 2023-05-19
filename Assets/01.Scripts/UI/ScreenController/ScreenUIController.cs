@@ -319,13 +319,13 @@ namespace UI
                 mapPresenter.Active(! _isActive);
                 screenCallback?.Invoke(_isActive);
             });*/
-            inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
+            /*inputDic.Add(new UIInputData(Get(Keys.ShopUI), true), () =>
             {
                 //  활성화
                 bool _isActive = shopPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.InventoryUI));
                 
-            });
+            });*/
             /*inputDic.Add(new UIInputData(Get(Keys.SaveLoadUI), true), () =>
             {Marker
                 //  활성화

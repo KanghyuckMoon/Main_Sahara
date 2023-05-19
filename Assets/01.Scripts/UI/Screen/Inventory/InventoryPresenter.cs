@@ -87,6 +87,7 @@ namespace UI.Inventory
         {
             if (Input.GetMouseButtonUp(0))
             {
+                if (draggerRot == null) return; 
                 draggerRot.IsDragging = false;
             }
         }

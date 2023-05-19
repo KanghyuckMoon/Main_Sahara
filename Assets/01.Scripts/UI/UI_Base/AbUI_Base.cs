@@ -203,8 +203,11 @@ namespace UI.Base
                 for (int i = 0; i < names.Length; i++)
                 {
                     elements[i] = GetElement(names[i]);
-                    if (elements[i] == null) // names[i] 의 이름의 요소가 없으면 에러 
-                        Debug.LogError($"지정된 이름의 요소가 없습니다");
+                    if (elements[i] == null)// names[i] 의 이름의 요소가 없으면 에러
+                    {
+                        //  Debug.LogError($"지정된 이름의 요소가 없습니다");
+                    } 
+                     
                 }
                 this.elementsDic[typeof(T)].AddRange(elements);
 
@@ -222,7 +225,7 @@ namespace UI.Base
                 // names[i] 의 이름의 요소가 없으면 에러
                 if (elements[i] == null) 
                 {
-                    Debug.LogError($" {names[i]} 지정된 이름의 요소가 없습니다");
+                    //Debug.LogError($" {names[i]} 지정된 이름의 요소가 없습니다");
                 } 
             }
         }

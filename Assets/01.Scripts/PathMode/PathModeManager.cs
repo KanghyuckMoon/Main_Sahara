@@ -12,11 +12,7 @@ namespace PathMode
         {
             get
             {
-                if (player is null)
-                {
-                    player = PlayerObj.Player?.transform;
-                }
-                return player;
+                return PlayerObj.Player?.transform;
             }
             set
             {

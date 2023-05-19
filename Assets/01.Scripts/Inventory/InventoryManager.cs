@@ -141,7 +141,7 @@ namespace Inventory
 
 			if (Input.GetKeyDown(KeyCode.G))
 			{
-				CurrentItemDrop();
+				//CurrentItemDrop();
 			}
 
 			float wheel = Input.GetAxisRaw("Mouse ScrollWheel");
@@ -315,9 +315,10 @@ namespace Inventory
 				{
 					if (_itemDatas[i].IsStackble)
 					{
-						_itemDatas[i].count += _count;
 						SendEvent("QuestManager", null);
 						SendEvent("PopupUIManager", _itemDatas[i]);
+						_itemDatas[i].count += _count;
+
 						return;
 					}
 				}
@@ -333,15 +334,16 @@ namespace Inventory
 					}
 					else
 					{
-						inventorySO.itemDataList.Add(_itemData);
 						SendEvent("QuestManager", null);
 						SendEvent("PopupUIManager", _itemData);
+						inventorySO.itemDataList.Add(_itemData);
+
 						break;
 					}
-
-					inventorySO.itemDataList.Add(_itemData);
 					SendEvent("QuestManager", null);
 					SendEvent("PopupUIManager", _itemData);
+					inventorySO.itemDataList.Add(_itemData);
+
 				}
 			}
 			else
@@ -349,8 +351,8 @@ namespace Inventory
 				for (int i = 0; i < _count; ++i)
 				{
 					ItemData _itemData = ItemData.CopyItemData(allItemDataSO.itemDataDic[_itemKey]);
-					inventorySO.itemDataList.Add(_itemData);
 					SendEvent("PopupUIManager", _itemData);
+					inventorySO.itemDataList.Add(_itemData);
 				}
 			}
 			SendEvent("QuestManager", null);
