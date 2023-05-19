@@ -101,9 +101,9 @@ namespace UI.Popup
             if (_sender is "InventoryManager")
             {
                 ItemData _itemData = _obj as ItemData;;
-                if (InventoryManager.Instance.ItemCheck(_itemData.key, 1) == true)
+                if (InventoryManager.Instance.ItemCheck(_itemData.key, 1) == false)
                 {
-                    CreatePopup<PopupGetItemPr>(PopupType.GetNewItem, _itemData);
+                    CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem, _itemData,4f);
                 }
                 CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
             }

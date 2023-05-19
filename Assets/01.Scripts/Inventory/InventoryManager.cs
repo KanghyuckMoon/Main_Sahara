@@ -141,7 +141,7 @@ namespace Inventory
 
 			if (Input.GetKeyDown(KeyCode.G))
 			{
-				CurrentItemDrop();
+				//CurrentItemDrop();
 			}
 
 			float wheel = Input.GetAxisRaw("Mouse ScrollWheel");

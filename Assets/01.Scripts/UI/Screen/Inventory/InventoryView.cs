@@ -107,7 +107,7 @@ namespace UI.Inventory
 
             // 아이템 드랍시 실행할 함수 초기화 
             InitCallbackDic();
-
+            UpdateEquipUI(); 
         }
 
         public override void ActiveScreen(bool _isActive)
@@ -345,7 +345,7 @@ namespace UI.Inventory
                 if (_isSuccessed == true)
                 {
                     UpdateEquipUI(inventoryGridSlotsPr.CurItemType);
-                    _closedSlot.SetItemData(dragItemPresenter.ItemData);
+                    //_closedSlot.SetItemData(dragItemPresenter.ItemData);
                 }
 
             }
@@ -413,6 +413,8 @@ namespace UI.Inventory
             this.slotCallbackDic.Add(ItemType.Consumption, (x1, x2) => InventoryManager.Instance.EquipArrow(x1));
             this.slotCallbackDic.Add(ItemType.Equipment, (x1, x2) => InventoryManager.Instance.EquipEquipment(x2,x1));
             this.slotCallbackDic.Add(ItemType.Accessories , (x1, x2) => InventoryManager.Instance.EquipAccessories(x2,x1));
+            
+            
         }
 
         /// <summary>
@@ -420,6 +422,11 @@ namespace UI.Inventory
         /// </summary>
         private void UpdateEquipUI()
         {
+            UpdateEquipUI(ItemType.Accessories);
+            UpdateEquipUI(ItemType.Consumption);
+            UpdateEquipUI(ItemType.Weapon);
+            UpdateEquipUI(ItemType.Equipment);
+            
             //InventoryManager.Instance.Inventory
         }
     }

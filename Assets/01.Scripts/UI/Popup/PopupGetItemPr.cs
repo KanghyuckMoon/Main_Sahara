@@ -28,8 +28,8 @@ namespace UI.Popup
         }
         public void ActiveTween()
         {
-            popupGetItemView.Parent.RemoveFromClassList("show_getitem_popup");
-            popupGetItemView.Parent.AddToClassList("hide_getitem_popup");
+            popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
+            popupGetItemView.Parent.AddToClassList("show_getitem_popup");
         }
 
         public void InActiveTween()
