@@ -43,8 +43,8 @@ namespace LoadScene
                 yield return null;
             }
 
-            var cam = Camera.main;
-            cam.gameObject.SetActive(false);
+            //var cam = Camera.main;
+            //cam.gameObject.SetActive(false);
             Debug.Log("Scene Check end");
             
             Debug.Log("Load TipScene Start");
@@ -72,17 +72,17 @@ namespace LoadScene
             }
             Debug.Log("SceneManager IsSetting Success");
 
-            //var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
-            //op3.allowSceneActivation = false;
-            //
-            //Debug.Log("PlayerScene Start");
-            //while (op3.progress < 0.9f)
-            //{
-            //    Logging.Log(op3.progress);
-            //    yield return null;
-            //}
-            //op3.allowSceneActivation = true;
-            //Debug.Log("PlayerScene End");
+            var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
+            op3.allowSceneActivation = false;
+            
+            Debug.Log("PlayerScene Start");
+            while (op3.progress < 0.9f)
+            {
+                Logging.Log(op3.progress);
+                yield return null;
+            }
+            op3.allowSceneActivation = true;
+            Debug.Log("PlayerScene End");
             
             var op4 = SceneManager.LoadSceneAsync("Quest", LoadSceneMode.Additive);
             op4.allowSceneActivation = false;
@@ -128,7 +128,7 @@ namespace LoadScene
             }
             Debug.Log("Loading Success");
             Debug.Log("Unloading TipScene");
-            cam.gameObject.SetActive(true);
+            //cam.gameObject.SetActive(true);
             var uop2 = SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
             Debug.Log("Unload TipScene");
             StaticTime.EntierTime = 1f;
