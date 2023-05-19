@@ -88,14 +88,12 @@ namespace Streaming
 			}
 		}
 
-		public bool IsLoadEnd
+		public bool IsLoadEnd()
 		{
-			get
-			{
-				SetSceneDic();
-				Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
-				SubSceneObj _subSceneObj = chunkDictionary[_currentPos];
-				if (_subSceneObj.IsActiveScene())
+			SetSceneDic();
+			Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+			SubSceneObj _subSceneObj = chunkDictionary[_currentPos];
+			if (_subSceneObj.IsActiveScene())
 				{
 					return true;
 				}
@@ -104,7 +102,6 @@ namespace Streaming
 					_subSceneObj.LoadScene();
 					return false;
 				}
-			}
 		}
 
 		private StreamingEventTransmit streamingEventTransmit = default;
@@ -253,8 +250,6 @@ namespace Streaming
 
 		private IEnumerator UpdateChunk()
 		{
-			SetSceneDic();
-			
 			//foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
 			//{
 			//	Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);

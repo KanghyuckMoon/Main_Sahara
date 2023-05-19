@@ -59,23 +59,27 @@ namespace UpdateManager
         void Update()
         {
             SW.Restart();
-            try
+            
+            if (GameManager.GamePlayerManager.Instance.IsPlaying)
             {
-                foreach (var mover in _updateables)
+                try
                 {
-                    try
+                    foreach (var mover in _updateables)
                     {
-                        mover.UpdateManager_Update();
-                    }
-                    catch
-                    {
-                        continue;
+                        try
+                        {
+                            mover.UpdateManager_Update();
+                        }
+                        catch
+                        {
+                            continue;
+                        }
                     }
                 }
-            }
-            catch
-            {
+                catch
+                {
 
+                }
             }
             SW.Stop();
             StopWatchStoppedCallback?.Invoke();
@@ -83,23 +87,26 @@ namespace UpdateManager
         void FixedUpdate()
         {
             SW.Restart();
-            try
+            if (GameManager.GamePlayerManager.Instance.IsPlaying)
             {
-                foreach (var mover in _updateables)
+                try
                 {
-                    try
+                    foreach (var mover in _updateables)
                     {
-                        mover.UpdateManager_FixedUpdate();
-                    }
-                    catch
-                    {
-                        continue;
+                        try
+                        {
+                            mover.UpdateManager_FixedUpdate();
+                        }
+                        catch
+                        {
+                            continue;
+                        }
                     }
                 }
-            }
-            catch
-            {
+                catch
+                {
 
+                }
             }
             SW.Stop();
             StopWatchStoppedCallback?.Invoke();
@@ -107,23 +114,26 @@ namespace UpdateManager
         void LateUpdate()
         {
             SW.Restart();
-            try
+            if (GameManager.GamePlayerManager.Instance.IsPlaying)
             {
-                foreach (var mover in _updateables)
+                try
                 {
-                    try
+                    foreach (var mover in _updateables)
                     {
-                        mover.UpdateManager_LateUpdate();
-                    }
-                    catch
-                    {
-                        continue;
+                        try
+                        {
+                            mover.UpdateManager_LateUpdate();
+                        }
+                        catch
+                        {
+                            continue;
+                        }
                     }
                 }
-            }
-            catch
-            {
+                catch
+                {
 
+                }
             }
             SW.Stop();
             StopWatchStoppedCallback?.Invoke();

@@ -16,12 +16,7 @@ namespace Interaction
 		{
 			get
 			{
-				if (_player is null)
-				{
-					_player = PlayerObj.Player?.transform;
-
-				}
-				return _player;
+				return PlayerObj.Player?.transform;
 			}
 		}
 		private Camera MainCamera
