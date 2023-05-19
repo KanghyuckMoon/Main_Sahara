@@ -43,8 +43,8 @@ namespace PassiveItem
             {
                 if (VARIABLE.weaponHand == WeaponHand.Weapon)
                 {
-                    flame = ObjectPoolManager.Instance.GetObject("FireEffect_1");
-                    flame.transform.SetParent(VARIABLE.transform);
+                    flame = ObjectPoolManager.Instance.GetObject("FlameEffect_Weapon");
+                    flame.transform.SetParent(VARIABLE.transform, false);
 
                     flame.transform.localPosition = Vector3.zero;
                     flame.SetActive(true);

@@ -23,40 +23,52 @@ MonoBehaviour:
         hitBoxIndex: 0
         deleteDelay: 0.1
         childization: 0
+        childSizeOne: 0
         offset: {x: 0, y: 0.66, z: 1.205}
         radius: 1
         height: 1
         rotation: {x: -0, y: 0, z: 0}
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
-        defaultPower: 1
+        defaultPower: 6
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
         swingEffectSize: {x: 1, y: 1, z: 1}
-        hitStunDelay: 0
-        attackStunDelay: 0
+        hitStunDelay: 0.4
+        attackStunDelay: 0.3
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: HitEffect1
+        hitEffect:
+        - Enemy_AttackEffect
         buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
     - hitBoxDataList:
       - hitBoxName: Bite_1
         ClassificationName: col1
         hitBoxIndex: 0
         deleteDelay: 0.1
         childization: 0
+        childSizeOne: 0
         offset: {x: 0.111, y: 0.484, z: 1.444}
         radius: 0.7
         height: 1
         rotation: {x: -0, y: 0, z: 0}
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
-        defaultPower: 10
+        defaultPower: 6
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
         swingEffectSize: {x: 1, y: 1, z: 1}
-        hitStunDelay: 0
-        attackStunDelay: 0
+        hitStunDelay: 0.4
+        attackStunDelay: 0.3
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: HitEffect1
+        hitEffect:
+        - Enemy_AttackEffect
         buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
   setAllHitBoxBuffList: []
+  debugList: []
+  debugString: 
