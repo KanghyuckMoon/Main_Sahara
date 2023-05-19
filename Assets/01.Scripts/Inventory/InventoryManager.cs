@@ -423,7 +423,7 @@ namespace Inventory
 
 		public ItemData GetQuickSlotItem(int _index)
 		{
-			return inventorySO.quickSlot[_index];
+			return inventorySO.quickSlot[_index];	
 		}
 
 		public bool ItemCheck(string _key, int _count)
