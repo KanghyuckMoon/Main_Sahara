@@ -17,6 +17,10 @@ public class Hit : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         
+        stateModule.AddState(State.HIT);
+
+        mainModule.StopOrNot = 0;
+        
         mainModule.IsHit = false;
         animator.SetBool("Hit", false);
         animator.SetBool("ConsecutiveAttack", false);
@@ -36,10 +40,12 @@ public class Hit : StateMachineBehaviour
         stateModule.RemoveTypeState(State.ATTACK);
         stateModule.RemoveTypeState(State.SKILL);
         stateModule.RemoveTypeState(State.CHARGE);
+        stateModule.RemoveTypeState(State.HIT);
         //stateModule.Clea
 
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
         mainModule.CanConsecutiveAttack = false;
+        mainModule.StopOrNot = 1;
     }
 }
