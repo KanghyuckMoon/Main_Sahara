@@ -35,6 +35,7 @@ using Inventory;
         
         private Action _endCallback = null; // 대화 끝났을 떄 호출
 
+        private bool isSelect = false; // 대화 선택창이 떴는가 
         // 프로퍼티 
         public IUIController UIController { get; set; }
 
@@ -193,7 +194,8 @@ using Inventory;
                 string dialogueText = TextManager.Instance.GetText($"{dialogueCode}_{index}"); // 선택 버튼 이름 
                 this.dialogueView.ActiveSelectButton(dialogueText, () =>
                 {
-                    ShowSelectedDialogue(nameText); 
+                    ShowSelectedDialogue(nameText);
+                    isSelecting = false; 
                 });
             }
 
@@ -234,10 +236,14 @@ using Inventory;
                     }
                     else
                     {
-                        index++;
-                        SetCodeToText();
-                        Debug.Log("대화 다음!!");
+                        if(isSelecting == false)
+                        {
+                            index++;
+                            SetCodeToText();
+                            Debug.Log("대화 다음!!");
 
+                        }
+                        
                     }
 
                     //break; 
