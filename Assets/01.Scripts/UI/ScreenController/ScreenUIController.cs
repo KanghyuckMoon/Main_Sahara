@@ -263,7 +263,6 @@ namespace UI
             
             InventoryManager.Instance.gameObject.SetActive(!_isActive);
         }
-        
         private void SetInputEvent()
         {
             inputDic.Clear();
@@ -295,6 +294,12 @@ namespace UI
                 mapPresenter.Active(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
             });
+            inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>
+            {
+                //  활성화
+                bool _isActive = _optionPresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
+            });
             /*inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
             {
                 //  활성화
@@ -318,12 +323,7 @@ namespace UI
                 bool _isActive = saveLoadPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SaveLoadUI));
             });*/
-            inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>
-            {
-                //  활성화
-                bool _isActive = _optionPresenter.ActiveView();
-                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
-            });
+
         }
 
         /// <summary>
@@ -340,14 +340,6 @@ namespace UI
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
             ActiveUICam(_isActive); 
-        }
-        /// <summary>
-        /// 스크린 활성화시 세팅 
-        /// </summary>
-        private void SetUI(bool _isActive, string _keyCode)
-        {
-            SetTime(_isActive);
-            SetKeyAble(_keyCode, _isActive);
         }
 
         private void UIInput()
