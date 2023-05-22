@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1812205439899739506}
   - component: {fileID: 1812205439899739517}
   - component: {fileID: 1812205439899739516}
+  - component: {fileID: -1526784680655639199}
   m_Layer: 0
   m_Name: Bw_03_Zakat_Prefab
   m_TagString: Untagged
@@ -103,3 +104,27 @@ MonoBehaviour:
   isConsecutiveWeapon: 0
   hitBoxDataSO: {fileID: 11400000, guid: cfa42437fec09114a98fd8037d6761b7, type: 2}
   animationEffectSO: {fileID: 11400000, guid: d4c071315ef901c478367f086197b981, type: 2}
+--- !u!114 &-1526784680655639199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812205439899739518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bd2b4743a899f45937537c1297375a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: WeaponSkill
+  buffIconString: _Icon
+  buffEffectString: _Effect
+  buffList:
+  - buffs: 2
+    duration: 10
+    value: 10
+    period: 2
+    bufftype: 1
+  animationClip: {fileID: -1127549396137376381, guid: 945cf314b67ba294db56cd97b642c603, type: 3}
+  usingMana: 100
+  hitBoxInAction: {fileID: 0}

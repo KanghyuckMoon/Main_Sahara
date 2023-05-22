@@ -27,7 +27,7 @@ namespace Weapon
             if (isFly)
             {
                 quaternion = Quaternion.LookRotation(rigidbody.velocity.normalized + Vector3.down);
-                //transform.rotation = quaternion;
+                transform.rotation = quaternion;
             }
         }
 
