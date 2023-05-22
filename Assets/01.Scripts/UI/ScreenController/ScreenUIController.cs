@@ -114,6 +114,7 @@ namespace UI
         {
             Debug.Log("ONEnable");
             StartCoroutine(Init());
+            EventManager.Instance.StartListening(EventsType.SetUIInput,(x) => lsUIInput = (bool)x);
         }
 
         private IEnumerator Init()
@@ -133,6 +134,7 @@ namespace UI
         private void OnDisable()
         {
             EventManager.Instance.StopListening(EventsType.SetPlayerCam, (x) => player.SetInput((bool)x));
+            EventManager.Instance.StopListening(EventsType.SetUIInput,(x) => lsUIInput = (bool)x);
         }
 
         private void Start()
@@ -291,7 +293,7 @@ namespace UI
                 questPresenter.UpdateUI();
                 LineCreateManager.Instance.ActvieScreen(ScreenType.Quest, _isActive);
                 UIManager.Instance.ActiveHud(! _isActive);
-                mapPresenter.Active(! _isActive);
+                    mapPresenter.Active(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
             });
             inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>

@@ -17,7 +17,8 @@ namespace UI
         // 캐싱해줄 요소들 
         enum Elements
         {
-            hp_frame,   
+            hp_frame,
+            line 
         }
         enum ProgressBars
         {
@@ -25,6 +26,9 @@ namespace UI
             back_bar
         }
 
+        // 프로퍼티 
+        public VisualElement AccentLine => GetVisualElement((int)Elements.line);
+        private StyleTranslate LineTrm => AccentLine.style.translate; 
         public override void Cashing()
         {
             base.Cashing();
@@ -55,7 +59,19 @@ namespace UI
 
             Sequence seq = DOTween.Sequence();
             seq.Append(DOTween.To(()    => _fV, (x) => _frontBarView.Bar.value = x, endV,0.5f));
+            if (AccentLine != null)
+            {
+                float _x = _frontBarView.Bar.resolvedStyle.width;
+                float _targetX = _x *  endV;
+
+                seq.Join(DOTween.To(() => AccentLine.style.translate.value.x.value, (x) => AccentLine.style.translate 
+                        = new Translate(x,LineTrm.value.y, LineTrm.value.z),
+                    _targetX, 0.5f));
+            }
             seq.Append(DOTween.To(() => _bV, (x) => _backBarView.Bar.value = x, endV,0.3f));
+
+            //
+            
             //_frontBarView.SetSlider(endV);
             // _backBarView.SetSlider(endV); 
         }
