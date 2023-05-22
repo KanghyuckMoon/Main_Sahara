@@ -24,21 +24,7 @@ using Module;
                                                                                                 
 namespace UI
 {
-    /*public enum Keys
-    {   
-        QuestUI, 
-        InventoryUI, 
-        MapUI, 
-        SaveLoadUI,
-        ShopUI, 
-        UpgradeUI, 
-        OptionUI,
-            
-        // 사용자 입력 X 
-        BuyUI = 100, 
-        SellUI, 
-        SmithUI, 
-    }*/
+
     public class UIInputData
     {
         //public string keyStr; 
