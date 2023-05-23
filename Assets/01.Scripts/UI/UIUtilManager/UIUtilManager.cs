@@ -42,6 +42,7 @@ namespace UI.UtilManager
             WaitForSeconds _w = new WaitForSeconds(_time); 
             for (int i = 0; i <= _fullText.Length; i++)
             {
+                /*
                 if (isRIchText == true)
                 {
                     if (_fullText[i] == '>')
@@ -55,6 +56,7 @@ namespace UI.UtilManager
                     isRIchText = true; 
                     continue;
                 }
+                */
 
 
                 _targetText = _fullText.Substring(0, i) + TransStr + _fullText.Substring(i);
