@@ -253,7 +253,8 @@ using Inventory;
             }
         }
 
-
+        [SerializeField]
+        private bool isRIchText = false;
         [SerializeField]
         private bool isTexting = false; // 텍스트가 출력되고 있는 중인가 
         private string fullText;
@@ -267,29 +268,38 @@ using Inventory;
         {
             Debug.Log("처음 텍스트");
             WaitForSeconds w  = new WaitForSeconds(0.03f);
-            //targetText = _str;
             string _nowText = "";
             string _targetText = ""; 
             isTexting = true; 
             for (int i = 0; i <= fullText.Length; i++)
             {
+                if (isRIchText == true)
+                {
+                    if (fullText[i] == '>')
+                    {
+                        isRIchText = false;
+                    }
+                    continue; 
+                }
+                if (fullText[i] == '<')
+                {
+                    isRIchText = true; 
+                    continue;
+                }
+
                 _targetText = fullText.Substring(0,i)+ TransStr + fullText.Substring(i);
+              
                 if (isTexting == false)  
                 {
                     // 모든 텍스트 바로 보여주기
-                    //this.dialogueView.SetDialogueTextA(fullText);
                     this.dialogueView.SetDialogueTextA(fullText);
                     yield break;
                 }
-                //_nowText += fullText[i];
-                //this.dialogueView.SetDialogueTextA(_nowText);
                 this.dialogueView.SetDialogueTextA(_targetText);
                 Debug.Log("For 텍스트");
                 yield return w;
             }
             isTexting = false;
-          //  StartCoroutine(CheckNextDialogue()); 
-        //    StaticCoroutineManager.Instance.InstanceDoCoroutine(CheckNextDialogue());
         }
 
 
@@ -309,7 +319,7 @@ using Inventory;
             dialogueView.ActiveViewS(_isActive);
             StaticTime.UITime = _isActive ? 0f : 1f;
             EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, _isActive);
-            //EventManager.Instance.TriggerEvent(EventsType.SetUIInput, ! _isActive);
+            EventManager.Instance.TriggerEvent(EventsType.SetUIInput, ! _isActive);
             //UIManager.Instance.ActiveCursor(_isActive); 
 
             if (_isActive == false)

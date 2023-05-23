@@ -59,7 +59,7 @@ namespace UI
 
             Sequence seq = DOTween.Sequence();
             seq.Append(DOTween.To(()    => _fV, (x) => _frontBarView.Bar.value = x, endV,0.5f));
-            if (AccentLine != null)
+            /*if (AccentLine != null)
             {
                 float _x = _frontBarView.Bar.resolvedStyle.width;
                 float _targetX = _x *  endV;
@@ -67,7 +67,7 @@ namespace UI
                 seq.Join(DOTween.To(() => AccentLine.style.translate.value.x.value, (x) => AccentLine.style.translate 
                         = new Translate(x,LineTrm.value.y, LineTrm.value.z),
                     _targetX, 0.5f));
-            }
+            }*/
             seq.Append(DOTween.To(() => _bV, (x) => _backBarView.Bar.value = x, endV,0.3f));
 
             //

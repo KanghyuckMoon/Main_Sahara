@@ -32,6 +32,7 @@ namespace UI.UtilManager
         }
 
         private bool isRIchText = false;
+
         private IEnumerator AnimateTextCo(Label _targetLabel, string _fullText,float _time = 0.03f)
         {
             if (_fullText == null) yield break;
@@ -42,7 +43,8 @@ namespace UI.UtilManager
             WaitForSeconds _w = new WaitForSeconds(_time); 
             for (int i = 0; i <= _fullText.Length; i++)
             {
-                /*
+                Debug.Log("@@@@@@" +_fullText[i]);
+
                 if (isRIchText == true)
                 {
                     if (_fullText[i] == '>')
@@ -56,9 +58,6 @@ namespace UI.UtilManager
                     isRIchText = true; 
                     continue;
                 }
-                */
-
-
                 _targetText = _fullText.Substring(0, i) + TransStr + _fullText.Substring(i);
 
                 _targetLabel.text = _targetText;
