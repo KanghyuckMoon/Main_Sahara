@@ -35,7 +35,7 @@ namespace Streaming
 
         public bool CheckTerrain(string _name)
         {
-            if (terrainActiveDic.ContainsKey(_name))
+            if (!terrainActiveDic.ContainsKey(_name))
             {
                 return false;
             }

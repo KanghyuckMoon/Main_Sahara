@@ -12,21 +12,27 @@ using Streaming;
 using UI.Manager;
 using TimeManager;
 
-namespace LoadScene
+public class InGameSceneSetting : MonoBehaviour
 {
-    public class LoadInGameScene : MonoBehaviour
-    {
+    private static bool isLoading;
         // Start is called before the first frame update
         void Start()
         {
-            //UpdateManager.UpdateManager.Clear();
-            //AddressablesManager.Instance.LodedSceneClear();
-            //ClassPoolManager.Instance.Clear();
-            //ObjectPoolManager.Instance.Clear();
-            //System.GC.Collect(); 
-            //UIManager.Instance.Init();
+            if (isLoading)
+            {
+                return;
+            }
+
+            isLoading = true;
+            UpdateManager.UpdateManager.Clear();
+            AddressablesManager.Instance.LodedSceneClear();
+            ClassPoolManager.Instance.Clear();
+            ObjectPoolManager.Instance.Clear();
+            System.GC.Collect(); 
+            UIManager.Instance.Init();
+            StartCoroutine(LoadingScene());
             //StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
-            SceneManager.LoadScene("InGame");
+            //SceneManager.LoadScene("InGame");
         }
 
 
@@ -58,20 +64,6 @@ namespace LoadScene
             }
             op6.allowSceneActivation = true;
             Debug.Log("Load TipScene Success");
-            Streaming.StreamingManager.Instance.IsSetting = false;
-            Streaming.StreamingManager.Instance.LoadReadyScene();
-            Debug.Log("SceneManager LoadReady");
-            
-            yield return new WaitForSeconds(1f);
-            
-            Debug.Log("SceneManager IsSetting Start");
-            while (!Streaming.StreamingManager.Instance.IsSetting)
-            {
-                Debug.Log("Setting");
-                yield return null;
-            }
-            Debug.Log("SceneManager IsSetting Success");
-
             var op3 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             op3.allowSceneActivation = false;
             
@@ -105,6 +97,22 @@ namespace LoadScene
             }
             op5.allowSceneActivation = true;
             Debug.Log("UI Scene End");
+            
+            
+            Streaming.StreamingManager.Instance.IsSetting = false;
+            Streaming.StreamingManager.Instance.LoadReadyScene();
+            Debug.Log("SceneManager LoadReady");
+            
+            yield return new WaitForSeconds(1f);
+            
+            Debug.Log("SceneManager IsSetting Start");
+            while (!Streaming.StreamingManager.Instance.IsSetting)
+            {
+                Debug.Log("Setting");
+                yield return null;
+            }
+            Debug.Log("SceneManager IsSetting Success");
+
 
             //if (SaveManager.Instance.IsContinue)
             //{
@@ -120,12 +128,12 @@ namespace LoadScene
             //        yield return new WaitForSecondsRealtime(1f);
             //    }
 			//}
-            Debug.Log("IsLoadEnd Start");
-            while (!StreamingManager.Instance.IsLoadEnd())
-            {
-                Debug.Log("Loading");
-                yield return new WaitForSeconds(0.5f);
-            }
+            //Debug.Log("IsLoadEnd Start");
+            //while (!StreamingManager.Instance.IsLoadEnd())
+            //{
+            //    Debug.Log("Loading");
+            //    yield return null;
+            //}
             Debug.Log("Loading Success");
             Debug.Log("Unloading TipScene");
             //cam.gameObject.SetActive(true);
@@ -134,8 +142,7 @@ namespace LoadScene
             StaticTime.EntierTime = 1f;
             Time.timeScale = 1;
             GameManager.GamePlayerManager.Instance.IsPlaying = true;
+            isLoading = false;
             Debug.Log("Time Start");
         }
-    }
-
 }
