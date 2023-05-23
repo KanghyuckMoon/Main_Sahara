@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,9 @@ namespace Weapon
 {
     public class StafeSkill_Projectile_1 : ProjectileObject, IProjectile
     {
-        public Rigidbody rigidbody;
+        public Rigidbody rigidbody = null;
 
-        private SphereCollider col;
+        private SphereCollider col = null;
 
         [SerializeField, Header("중력의 영향을 받는가?")]
         private bool affectedByGravity;
@@ -19,6 +20,15 @@ namespace Weapon
         {
             rigidbody = GetComponent<Rigidbody>();
             col = GetComponent<SphereCollider>();
+            if (col is not null) col.enabled = false;
+        }
+
+        private void OnEnable()
+        {
+            rigidbody ??= GetComponent<Rigidbody>();
+            col ??= GetComponent<SphereCollider>();
+            if (rigidbody is not null) rigidbody.velocity = Vector3.zero;
+            if (col is not null) col.enabled = false;
         }
 
         public void MovingFunc(Vector3 _vector3)
@@ -27,10 +37,12 @@ namespace Weapon
             rigidbody.useGravity = affectedByGravity;
             transform.SetParent(null);
             //rigidbody.AddForce(Vector3.up * 10, ForceMode.Impulse);
-            Vector3 _calcVector = CalculateRotation(_vector3).normalized;
+            var _calcVector = CalculateRotation(_vector3).normalized;
             transform.LookAt(transform.position + _calcVector);
             rigidbody.AddForce(_calcVector * objectData.speed, ForceMode.Impulse);
             col.enabled = true;
+
+            //StartCoroutine(PoolItem());
         }
         
         [SerializeField] 
@@ -39,7 +51,7 @@ namespace Weapon
         [SerializeField] 
         private string hitEffectAddress;
         
-        private void OnTriggerEnter(Collider other)
+        /*private void OnTriggerEnter(Collider other)
         {
             if (gameObject.CompareTag("Player_Weapon"))
             {
@@ -70,6 +82,18 @@ namespace Weapon
                 EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
                 return;
             }
+        }*/
+
+
+        private void OnDisable()
+        {
+            StopCoroutine(nameof(PoolItem));
+        }
+
+        IEnumerator PoolItem()
+        {
+            yield return new WaitForSeconds(17f);
+            
         }
     }
 }

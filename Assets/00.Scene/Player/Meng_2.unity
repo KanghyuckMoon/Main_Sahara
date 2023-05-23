@@ -3764,6 +3764,93 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1974020472074536072, guid: 08a61479adf947b43a537847ea3d19e5, type: 3}
   m_PrefabInstance: {fileID: 559071402}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &599079206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599079209}
+  - component: {fileID: 599079208}
+  - component: {fileID: 599079207}
+  m_Layer: 0
+  m_Name: GameObject (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &599079207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599079206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e23cf5551c1bb04897c5829c6d72622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: 2013d293f2e34a74ab79071312cce91e, type: 2}
+  hitBoxData:
+    hitBoxName: SkillProjectile
+    ClassificationName: col0
+    hitBoxIndex: 0
+    deleteDelay: -1
+    childization: 1
+    childSizeOne: 0
+    offset: {x: 0, y: 0, z: 0}
+    radius: 0.5
+    height: 1
+    rotation: {x: -0, y: 0, z: 0}
+    isContactDirection: 0
+    knockbackDir: {x: 0, y: 0, z: 1}
+    defaultPower: 8
+    swingEffectOffset: {x: 0, y: 0, z: 0}
+    swingEffectRotation: {x: 0, y: 0, z: 0}
+    swingEffectSize: {x: 1, y: 1, z: 1}
+    hitStunDelay: 0.5
+    attackStunDelay: 0.5
+    swingEffectChildization: 0
+    swingEffect: NULL
+    hitEffect:
+    - ShockHitEffect
+    buffList: []
+    physicsAttackWeight: 1
+    magicalAttackWeight: 1
+  swingEffectObj: {fileID: 0}
+--- !u!136 &599079208
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599079206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &599079209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599079206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.881426, y: -58.858227, z: -28.699003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 45
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &612948826
 GameObject:
   m_ObjectHideFlags: 0
@@ -8487,7 +8574,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1768278670
 GameObject:
@@ -59116,6 +59203,67 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &6465917887920074386
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_RootOrder
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330901, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330902, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_Name
+      value: StafeSkill_Projectile2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289122330750330902, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f2223491ed0b2e458a1a3680853c4f7, type: 3}
 --- !u!1 &6479888624263370572
 GameObject:
   m_ObjectHideFlags: 0

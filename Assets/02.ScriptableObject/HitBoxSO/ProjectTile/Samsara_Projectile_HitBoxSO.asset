@@ -15,6 +15,7 @@ MonoBehaviour:
   hitBoxDataDic:
     m_keys:
     - Col
+    - SkillProjectile
     m_values:
     - hitBoxDataList:
       - hitBoxName: Col
@@ -22,6 +23,7 @@ MonoBehaviour:
         hitBoxIndex: 0
         deleteDelay: -1
         childization: 1
+        childSizeOne: 0
         offset: {x: 0, y: 0, z: 0}
         radius: 0.5
         height: 1
@@ -36,8 +38,36 @@ MonoBehaviour:
         attackStunDelay: 0
         swingEffectChildization: 0
         swingEffect: Sparks
-        hitEffect: HitEffect1
+        hitEffect: []
         buffList: []
         physicsAttackWeight: 0
         magicalAttackWeight: 1
+    - hitBoxDataList:
+      - hitBoxName: SkillProjectile
+        ClassificationName: col0
+        hitBoxIndex: 0
+        deleteDelay: -1
+        childization: 1
+        childSizeOne: 0
+        offset: {x: 0, y: 0, z: 0}
+        radius: 0.5
+        height: 1
+        rotation: {x: -0, y: 0, z: 0}
+        isContactDirection: 0
+        knockbackDir: {x: 0, y: 0, z: 1}
+        defaultPower: 8
+        swingEffectOffset: {x: 0, y: 0, z: 0}
+        swingEffectRotation: {x: 0, y: 0, z: 0}
+        swingEffectSize: {x: 1, y: 1, z: 1}
+        hitStunDelay: 0
+        attackStunDelay: 0
+        swingEffectChildization: 0
+        swingEffect: NULL
+        hitEffect:
+        - StafeSkill_HitEffect3
+        buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
   setAllHitBoxBuffList: []
+  debugList: []
+  debugString: 
