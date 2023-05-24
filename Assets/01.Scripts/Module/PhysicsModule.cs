@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,6 +82,11 @@ namespace Module
             {
                 if (other.CompareTag(_tagName) && !mainModule.IsDead)
                 {
+                    if (_tagName == "DeadZone")
+                    {
+                        HitModule.GetHit(1000000);
+                        return;
+                    }
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (!mainModule.IsCanHit)
                     {
@@ -109,7 +115,6 @@ namespace Module
                         {
                             mainModule.StopCoroutine(knockBackCoroutine);
                         }
-                        
                         
                         knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
 
@@ -245,6 +250,8 @@ namespace Module
             GroundCheack();
             Slope();
         }
+
+        private float previousAngle = 0;
         private void Slope()
         {
             var _position = mainModule.transform.position;
@@ -252,11 +259,26 @@ namespace Module
                 _position.z);
 
             Ray _ray = new Ray(_rayPos, Vector3.down);
+            Ray _ray1 = new Ray(_rayPos, mainModule.transform.forward);
             RaycastHit _raycastHit;
             if (Physics.Raycast(_ray, out _raycastHit, rayDistance, mainModule.groundLayer))
             {
                 //mainModule.SlopeHit = _raycastHit;
                 var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
+                //if (mainModule.player) Debug.LogError("각도: " + _angle);
+
+                
+                if (Physics.Raycast(_ray1, out _raycastHit, rayDistance, mainModule.groundLayer))
+                {
+                    previousAngle = _angle > 50 ? Mathf.Lerp(previousAngle, _angle, 5*mainModule.PersonalDeltaTime) : 0;
+                    mainModule.Animator.SetFloat("GrounDegree", previousAngle);
+                }
+                else
+                {
+                    previousAngle = Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
+                    mainModule.Animator.SetFloat("GrounDegree", previousAngle);
+                }
+
                 //Debug.LogError(angle + " : : : : " + Vector3.Angle(Vector3.up, _raycastHit.normal));
                 var _slopeLimit = mainModule.CharacterController.slopeLimit;
                 mainModule.IsSlope = (_angle < _slopeLimit) & (_angle > -_slopeLimit); // 90 - mainModule.MaxSlope = �ö� �� �ִ� ����

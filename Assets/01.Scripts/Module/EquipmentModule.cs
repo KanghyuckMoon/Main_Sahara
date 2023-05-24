@@ -59,9 +59,8 @@ namespace Module {
             if (!mainModule.player) return;
             if (Input.GetKeyDown(KeyCode.J))
             {
-                OnEquipItem("ShoulderGuard_4");
-                OnEquipItem("Earring_4");
-                OnEquipItem("Bracelet_4");
+                OnEquipItem("GoldShoulder_Prefab");
+                OnEquipItem("HelmetOfKnight_Prefab");
             }
         }
 
