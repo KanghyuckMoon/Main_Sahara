@@ -103,7 +103,7 @@ namespace HitBox
 			{
 				_col.transform.SetParent(null);
 				_col.gameObject.SetActive(false);
-				Pool.HitBoxPoolManager.Instance.RegisterObject(_col.gameObject);
+				Pool.HitBoxPoolManager.Instance.RegisterObject(_col);
 			}
 			inGameHitBoxeList.Clear();
 		}
