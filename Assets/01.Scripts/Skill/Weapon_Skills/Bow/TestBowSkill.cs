@@ -22,6 +22,9 @@ namespace Skill
         
         public void Skills(AbMainModule _mainModule)
         {
+            PlaySkillAnimation(_mainModule, animationClip);
+            UseMana(_mainModule, usingMana);
+            GetBuff(_mainModule);
         }
         public HitBoxAction GetHitBoxAction()
         {

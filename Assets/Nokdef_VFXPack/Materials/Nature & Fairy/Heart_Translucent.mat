@@ -24,10 +24,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Heart_Translucent
-  m_Shader: {fileID: 4800000, guid: d985403ea514e7c46bf7c2fab31b9d95, type: 3}
+  m_Shader: {fileID: 4800000, guid: 56e1615ffd6ce5e4a9783c6e90eed86b, type: 3}
   m_ValidKeywords:
+  - _BLENDMODE_ALPHA
   - _SURFACE_TYPE_TRANSPARENT
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _DISABLE_SSR
+  - _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -165,7 +168,6 @@ Material:
     - _DetailSmoothnessScale: 1
     - _DiffusionProfile: 0
     - _DiffusionProfileHash: 0
-    - _DisableErosion: 0
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
@@ -197,9 +199,6 @@ Material:
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _Float1: 4.55
-    - _Fresnel: 0
-    - _FresnelPower: 1
-    - _FresnelScale: 1
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -216,8 +215,6 @@ Material:
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
     - _Metallic: 0
-    - _MiddlePointPos: 0.5
-    - _MultiplyNoiseDesaturation: 1
     - _NormalMapSpace: 0
     - _NormalScale: 1
     - _PPDLodThreshold: 5
@@ -234,7 +231,6 @@ Material:
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
     - _SoftFadeFactor: 0
-    - _SourceBlendRGB: 10
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
@@ -266,13 +262,9 @@ Material:
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
-    - _UseAlphaDisolve: 0
-    - _UseAlphaOverride: 0
     - _UseEmissiveIntensity: 0
-    - _UseRamp: 0
     - _UseShadowThreshold: 0
     - _UseSoftAlpha: 0
-    - _UseUVOffset: 0
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestModeDistortion: 4
@@ -285,7 +277,6 @@ Material:
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAdditiveChannel: {r: 0, g: 0, b: 2, a: 0}
-    - _DetailDisolveChannel: {r: 0, g: 0, b: 0, a: 1}
     - _DetailDistortionChannel: {r: 0, g: 0, b: 0, a: 0}
     - _DetailMultiplyChannel: {r: 0, g: 0, b: 0, a: 0}
     - _DetailNoisePanning: {r: 1, g: 1, b: 0, a: 0}
@@ -295,20 +286,16 @@ Material:
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _FlipbooksColumsRows: {r: 1, g: 2, b: 0, a: 0}
-    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _LastColor: {r: 1, g: 0, b: 0, a: 0}
     - _MainAlphaChannel: {r: 0, g: 0, b: 0, a: 1}
     - _MainAlphaPanning: {r: 0, g: 0, b: 0, a: 0}
     - _MainTextureChannel: {r: 2, g: 2, b: 2, a: 0}
     - _MainTexturePanning: {r: 0, g: 0, b: 0, a: 0}
-    - _MidColor: {r: 1, g: 0.44479147, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _WhiteColor: {r: 1, g: 0.8950032, b: 0, a: 0}
   m_BuildTextureStacks: []
