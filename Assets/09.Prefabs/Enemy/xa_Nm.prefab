@@ -163,6 +163,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!143 &6165384266292577848
 CharacterController:
   m_ObjectHideFlags: 0
@@ -176,7 +177,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 1.2
-  m_SlopeLimit: 20
+  m_SlopeLimit: 45
   m_StepOffset: 0.1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -221,11 +222,14 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0.12
+  groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
@@ -240,12 +244,13 @@ MonoBehaviour:
   visualObject: {fileID: 4134121960605059335}
   model: {fileID: 7118074666309013125}
   animator: {fileID: 6165384266292577847}
+  jumpstrenght: 0
   leftFeet: {fileID: 4838895564799215996}
   rightFeet: {fileID: 6039354688049543047}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   aiSOAddress: xa_Nm_AISO
-  smoothPath: {fileID: 0}
+  pathHarver: {fileID: 0}
 --- !u!114 &6165384266292577854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: e96df07f8b3e6424db8a59574af1b6c7, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: Bite_1
 --- !u!114 &6165384266292577843
 MonoBehaviour:
@@ -310,6 +316,9 @@ MonoBehaviour:
   rootTransform: {fileID: 4141058502605510617}
   animator: {fileID: 6165384266292577847}
   dropItemListSO: {fileID: 11400000, guid: b6f8849e7c7412340b91f4101deafdd9, type: 2}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6165384266292577841
 MonoBehaviour:
   m_ObjectHideFlags: 0
