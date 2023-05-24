@@ -694,6 +694,7 @@ namespace Module
         public virtual void SetConsecutiveAttack(int _on) { }
 
         public virtual void Jump() { }
+        public virtual void Jump(float power) { }
 
         public virtual void SetActiveAnimatorRoot(int _on) { }
 

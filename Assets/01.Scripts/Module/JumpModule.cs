@@ -144,6 +144,7 @@ namespace Module
             if (_value == 0) _value = JumpHeight;
             onJump = false;
             mainModule.Gravity = Mathf.Sqrt(_value * -2.2f * _GravityScale);
+            Animator.SetBool("Jump", true);
         }
 
         public override void OnDisable()
