@@ -25,7 +25,7 @@ namespace HitBox
 		private ulong index = 0;
 		private bool isInit = false;
 		private bool isSetHitbox = false;
-		private List<InGameHitBox> inGameHitBoxeList = null;
+		private List<InGameHitBox> inGameHitBoxeList = new List<InGameHitBox>();
 		
 		[SerializeField] private bool isOnEnalbe = false;
 
@@ -61,11 +61,6 @@ namespace HitBox
 				isInit = true;
 			}
 			index++;
-
-			if (isTimeIndexCange)
-			{
-				inGameHitBoxeList = new List<InGameHitBox>();
-			}
 
 			OnHitBox(hitboxString);
 
