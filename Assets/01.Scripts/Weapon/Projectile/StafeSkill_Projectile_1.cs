@@ -19,14 +19,15 @@ namespace Weapon
         private void Start()
         {
             rigidbody = GetComponent<Rigidbody>();
-            col = GetComponent<SphereCollider>();
+            //col = GetComponent<SphereCollider>();
             if (col is not null) col.enabled = false;
         }
 
         private void OnEnable()
         {
-            rigidbody ??= GetComponent<Rigidbody>();
-            col ??= GetComponent<SphereCollider>();
+            if (rigidbody == null)
+                rigidbody = GetComponent<Rigidbody>();
+            //col ??= GetComponent<SphereCollider>();
             if (rigidbody is not null) rigidbody.velocity = Vector3.zero;
             if (col is not null) col.enabled = false;
         }
@@ -40,7 +41,7 @@ namespace Weapon
             var _calcVector = CalculateRotation(_vector3).normalized;
             transform.LookAt(transform.position + _calcVector);
             rigidbody.AddForce(_calcVector * objectData.speed, ForceMode.Impulse);
-            col.enabled = true;
+            //col.enabled = true;
 
             //StartCoroutine(PoolItem());
         }
@@ -51,7 +52,7 @@ namespace Weapon
         [SerializeField] 
         private string hitEffectAddress;
         
-        /*private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (gameObject.CompareTag("Player_Weapon"))
             {
@@ -59,12 +60,12 @@ namespace Weapon
                 {
                     ObjectPoolManager.Instance.RegisterObject(address, gameObject);
                     gameObject.SetActive(false);
-                    EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
+                    //EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
                     return;
                 }
             }
             
-            if (gameObject.CompareTag("EnemyWeapon"))
+            /*if (gameObject.CompareTag("EnemyWeapon"))
             {
                 if (other.gameObject.CompareTag("Player"))
                 {
@@ -73,16 +74,16 @@ namespace Weapon
                     EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
                     return;
                 }
-            }
+            }*/
 
-            if (other.gameObject.CompareTag("Ground"))
+            /*if (other.gameObject.CompareTag("Ground"))
             {
                 ObjectPoolManager.Instance.RegisterObject(address, gameObject);
                 gameObject.SetActive(false);
-                EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
+                //EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
                 return;
-            }
-        }*/
+            }*/
+        }
 
 
         private void OnDisable()
@@ -93,6 +94,9 @@ namespace Weapon
         IEnumerator PoolItem()
         {
             yield return new WaitForSeconds(17f);
+            ObjectPoolManager.Instance.RegisterObject(address, gameObject);
+            gameObject.SetActive(false);
+            //EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
             
         }
     }
