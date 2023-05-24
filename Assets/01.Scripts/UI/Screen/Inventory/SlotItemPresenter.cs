@@ -107,7 +107,11 @@ namespace UI.Inventory
 
         public void UpdateUI()
         {
-            if (itemData == null) return; 
+            if (itemData == null || itemData.key == null)
+            {
+                ClearData(); 
+                return;
+            } 
             slotItemView.IsStackable = itemData.IsStackble;
             if (itemData.spriteKey == "") return;
             string _imgAdress = isIcon is false ? itemData.spriteKey : itemData.iconKey;

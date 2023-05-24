@@ -41,7 +41,7 @@ namespace UI.UtilManager
             
             string _targetText;
             WaitForSeconds _w = new WaitForSeconds(_time); 
-            for (int i = 0; i <= _fullText.Length; i++)
+            for (int i = 0; i < _fullText.Length; i++)
             {
                 Debug.Log("@@@@@@" +_fullText[i]);
 

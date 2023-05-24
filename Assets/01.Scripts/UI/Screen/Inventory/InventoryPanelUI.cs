@@ -68,6 +68,13 @@ namespace UI.Inventory
         }
 
         /// <summary>
+        ///  이미 장착중인 아이템이라면 
+        /// </summary>
+        public void CheckEquip()
+        {
+            
+        }
+        /// <summary>
         /// 슬롯 첫 칸부터 초기화 중일 때 현재 슬롯 반환 
         /// </summary>
         /// <returns></returns>

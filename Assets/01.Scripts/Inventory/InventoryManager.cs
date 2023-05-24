@@ -377,7 +377,15 @@ namespace Inventory
 
 		public bool SetQuickSlotItem(ItemData _itemData, int _index)
 		{
-			inventorySO.quickSlot[_index] = _itemData;
+			for (int i = 0; i < inventorySO.quickSlot.Length; i++)
+			{
+				if (inventorySO.quickSlot[i].key == _itemData.key)
+				{
+					inventorySO.quickSlot[i] = null; 
+				}
+			}
+
+		inventorySO.quickSlot[_index] = _itemData;
 			return true; 
 		}
 

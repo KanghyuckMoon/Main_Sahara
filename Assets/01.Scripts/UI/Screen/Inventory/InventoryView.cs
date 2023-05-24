@@ -81,7 +81,7 @@ namespace UI.Inventory
 
             // 드래그 아이템 초기화 
             dragItemPresenter = new SlotItemPresenter(DragItem);
-            dragItemPresenter.AddDropper(() => DropItem());
+            dragItemPresenter.AddDropper(DropItem);
 
             // 인벤토리 슬롯들 뷰 생성 
             inventoryGridSlotsPr = new InventoryGridSlotsPr(GetVisualElement((int)Elements.contents));
@@ -171,7 +171,7 @@ namespace UI.Inventory
                 case InventoryGridSlotsView.RadioButtons.weapon_button:
                     inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
                     break;
-                case InventoryGridSlotsView.RadioButtons.armor_button:
+                case Invent oryGridSlotsView.RadioButtons.armor_button:
                     inventoryGridSlotsPr.AddButtonEvent(_btnType, (x) => _callback?.Invoke(x));
                     break;
                 case InventoryGridSlotsView.RadioButtons.consumation_button:
@@ -207,7 +207,7 @@ namespace UI.Inventory
         /// <param name="_itemData"></param>
         public void UpdateInventoryUI(ItemData _itemData)
         {
-            // 셀 수 있는건지 체크 
+            // 셀 수 있는건지 체크                                                                                                                                                                                                                                                                                                                                                                                                                                                
             // 타입 체크 
             // 슬롯 하나씩 가져와서 데이터 넣기 
             // 슬롯 개수 초과하면 한 줄 더 생성 
@@ -250,7 +250,7 @@ namespace UI.Inventory
             for (int i = 0; i < _list.Count(); i++)
             {
                 SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
-                if(_list[i].parent.name == "ArrowSlot")
+                if(_list[i].name == "ArrowSlot")
                 {
                     _slotIPr.SetSlotType(ItemType.Consumption);
                 }
@@ -294,15 +294,15 @@ namespace UI.Inventory
         /// </summary>
         //private void InitPanelList()
         //{
-        //    inventoryPanelList.Clear();
+        //    inventoryPanelList.Clear();                                                                                                                                                                                                                                                                                       
 
         //    // 인벤토리 패널 리스트에 추가 
-        //    foreach (var _p in Enum.GetValues(typeof(InvenPanelElements)))
-        //    {
-        //        inventoryPanelList.Add(GetVisualElement((int)_p));
-        //    }
-
-        //    // weapon 패널만 활성화 후 나머진 비활성화 
+                //    foreach (var _p in Enum.GetValues(typeof(InvenPanelElements)))
+                //    {
+                //        inventoryPanelList.Add(GetVisualElement((int)_p));
+                //    }
+                                                                                                                                
+        //    // weapon 패널만 활성화 후 나머진 비활            성화 
         //    for (int i = 0; i < inventoryPanelList.Count; i++)
         //    {
         //        if (i == (int)InvenPanelElements.weapon_panel)
@@ -323,16 +323,18 @@ namespace UI.Inventory
             // 떨어뜨린 곳이 슬롯이 있는지 체크 
             
             // 무기, 소비템은 공유 
-            List<SlotItemPresenter> _targetList = inventoryGridSlotsPr.CurInvenPanel.equipItemViewList;
+            List<SlotItemPresenter> _targetList = inventoryGridSlotsPr.CurInvenPanel.equipItemViewList; 
             if (inventoryGridSlotsPr.CurItemType is ItemType.Consumption)
                 _targetList = inventoryGridSlotsPr.GetInvenPanel(ItemType.Weapon).equipItemViewList;
             
             IEnumerable<SlotItemPresenter> _slots =_targetList.
                                                                     Where((x) => x.Item.worldBound.Overlaps(dragItemPresenter.Item.worldBound));
 
+            
             // 슬롯에 드랍 했다면
             if (_slots.Count() != 0)
             {
+                
                 // 가장 가깝게 드랍한 슬롯 
                 SlotItemPresenter _closedSlot = _slots.OrderBy(x =>
                     Vector2.Distance(x.Item.worldBound.position, dragItemPresenter.Item.worldBound.position)).First();
@@ -340,7 +342,7 @@ namespace UI.Inventory
                 var _isSuccessed = slotCallbackDic[_closedSlot.SlotType]?.Invoke(dragItemPresenter.ItemData, _closedSlot.Index);
                    
                 // SO 데이터도 설정
-                //InventoryManager.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
+                //InventoryMana ger.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);
                 // 전체 UI 업데이트 
                 if (_isSuccessed == true)
                 {
@@ -392,7 +394,7 @@ namespace UI.Inventory
          //   var _slotList = inventoryGridSlotsPr.CurInvenPanel.equipItemViewList;
 
             //var slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Accessories].equipItemViewList;
-            for (int i = 0; i < _dataList.Count()-1; i++)
+            for (int i = 0; i < _dataList.Count(); i++)
             {
                 _slotList[i].SetItemData(_dataList[i]);
             }
