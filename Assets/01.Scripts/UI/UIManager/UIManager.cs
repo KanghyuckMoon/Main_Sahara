@@ -33,14 +33,14 @@ namespace UI.Manager
                 return textKeySO; 
             }
         }
-        public GameObject PlayerObj
+        public GameObject PlayerObject
         {
             get
             {
-                if (playerObj is null)
+                if (playerObj == null)
                 {
-                    playerObj ??= GameObject.FindWithTag("Player");
-                    if(playerObj is not null) // 한 번 실행됨
+                    playerObj =  PlayerObj.Player;
+                    if(playerObj != null) // 한 번 실행됨
                     {
                         AddUIToObj(); // UI 초기화 
                         playerHud = playerObj.GetComponentInChildren<EntityPresenter>();

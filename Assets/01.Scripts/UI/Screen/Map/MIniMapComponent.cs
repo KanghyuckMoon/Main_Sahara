@@ -43,7 +43,7 @@ namespace UI
             {
                 if (playerMarker == null && Player != null)
                 {
-                    playerMarker = UIManager.Instance.PlayerObj.GetComponentInChildren<FollowObjMarker>();
+                    playerMarker = UIManager.Instance.PlayerObject.GetComponentInChildren<FollowObjMarker>();
                 }
                 return playerMarker;
             }
