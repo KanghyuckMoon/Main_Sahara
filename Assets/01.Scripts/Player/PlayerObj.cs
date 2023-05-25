@@ -9,5 +9,12 @@ public class PlayerObj : MonoBehaviour
     public void Awake()
     {
         Player = gameObject;
+        Debug.Log("Set Player Obj");
+    }
+    
+    public void OnDestroy()
+    {
+        Player = null;
+        Debug.Log("Destroy Player Obj");
     }
 }
