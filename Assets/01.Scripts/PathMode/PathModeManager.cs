@@ -31,7 +31,7 @@ namespace PathMode
 
         private void Update()
         {
-            if (Player is null)
+            if (Player == null)
             {
                 return;
             }

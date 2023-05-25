@@ -47,9 +47,16 @@ namespace HitBox
 
 		private void OnEnable()
 		{
-			if (isOnEnalbe)
+			try
 			{
-				SetEnable();
+				if (isOnEnalbe)
+				{
+					SetEnable();
+				}
+			}
+			catch (Exception e)
+			{
+				Debug.LogWarning(e, gameObject);
 			}
 		}
 
@@ -96,9 +103,17 @@ namespace HitBox
 			
 			foreach (var _col in inGameHitBoxeList)
 			{
-				_col.transform.SetParent(null);
-				_col.gameObject.SetActive(false);
-				Pool.HitBoxPoolManager.Instance.RegisterObject(_col);
+				try
+				{
+					_col.transform.SetParent(null);
+					_col.gameObject.SetActive(false);
+					Pool.HitBoxPoolManager.Instance.RegisterObject(_col);
+				}
+				catch (Exception e)
+				{
+					Debug.LogWarning(e);
+					break;
+				}
 			}
 			inGameHitBoxeList.Clear();
 		}

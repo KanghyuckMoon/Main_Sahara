@@ -53,6 +53,17 @@ namespace Streaming
 				isSceneSetting = value;
 			}
 		}
+		public bool IsCurrentSceneSetting
+		{
+			get
+			{
+				return isCurrentSceneSetting;
+			}
+			set
+			{
+				isCurrentSceneSetting = value;
+			}
+		}
 		private Transform Viewer
 		{
 			get
@@ -131,6 +142,7 @@ namespace Streaming
 		private const int interval = 3;
 		private Vector3 defaultPosition = new Vector3(0,4050,0);
 		private bool isSceneSetting = false;
+		private bool isCurrentSceneSetting = false;
 
 
 		public void ReceiveEvent(string _sender, object _obj)
@@ -164,22 +176,16 @@ namespace Streaming
 		public void LoadReadyScene()
 		{
 			isSceneSetting = false;
-			if (Viewer != null)
-			{
-				originChunkCoordX = Mathf.RoundToInt(viewerPosition.x / chunkSize);
-				originChunkCoordY = Mathf.RoundToInt(viewerPosition.y / chunkSize);
-				originChunkCoordZ = Mathf.RoundToInt(viewerPosition.z / chunkSize);
-			}
-			else
-			{
-				originChunkCoordX = 0;
-				originChunkCoordY = 40;
-				originChunkCoordZ = 0;
-			}
+			viewer = PlayerObj.Player.transform;
+			viewerPosition = viewer.position;
+			originChunkCoordX = Mathf.RoundToInt(viewerPosition.x / chunkSize);
+			originChunkCoordY = Mathf.RoundToInt(viewerPosition.y / chunkSize);
+			originChunkCoordZ = Mathf.RoundToInt(viewerPosition.z / chunkSize);
 			//viewerPosition = defaultPosition;
 			InitSubScene();
 			//InitChunkLegacy();
 			StartCoroutine(InitChunk());
+			//StartCoroutine(InitChunk());
 			//InitChunk();
 		}
 
@@ -193,6 +199,11 @@ namespace Streaming
 
 		private void Update()
 		{
+			if (!isSceneSetting)
+			{
+				return;
+			}
+			
 			if (!GamePlayerManager.Instance.IsPlaying)
 			{
 				return;
@@ -262,29 +273,54 @@ namespace Streaming
 		
 		private IEnumerator InitChunk()
 		{
+			Vector3 _pos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+			var currentScene = chunkDictionary[_pos];
+			LoadSubScene(_pos);
+			while (true)
+			{
+				
+				if (TerrainManager.Instance.CheckTerrain(currentScene.SceneName))
+				{
+					Debug.Log("Success Current Scene");
+					break;
+				}
+				else
+				{
+					Debug.Log("Check Current Scene");
+					yield return null;
+				}
+			}
+
+			isCurrentSceneSetting = true;
+			
 			foreach(var _obj in chunkDictionary)
 			{
 				LoadSubScene(_obj.Key);
-				while (true)
+				Debug.Log("Scene Load : " + _obj.Key);
+				
+				while(true)
 				{
-					if (TerrainManager.Instance.CheckTerrain(_obj.Value.SceneName))
+					if (Vector3.Distance(_pos, _obj.Key) > StreamingManager.chunksVisibleInViewDst)
 					{
-						Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
-						if (Vector3.Distance(_currentPos, _obj.Key) >= StreamingManager.chunksVisibleInViewDst)
-						{
-							//yield return new WaitForSeconds(0.1f);
-							_obj.Value.UnLoadSceneNoneCheck();
-						}
-
+						_obj.Value.UnLoadSceneNoneCheck();
+						Debug.Log("Scene UnLoad : " + _obj.Key);
 						break;
+					}
+					else if (TerrainManager.Instance.CheckTerrain(_obj.Value.SceneName))
+					{
+							Debug.Log("Scene Loading...: " + _obj.Key);
+							break;
 					}
 					else
 					{
-						yield return null;
+					     yield return null;
 					}
 				}
 			}
+
 			isSceneSetting = true;
+			
+			StartCoroutine(UpdateChunk());
 		}
 
 		private IEnumerator UpdateChunk()

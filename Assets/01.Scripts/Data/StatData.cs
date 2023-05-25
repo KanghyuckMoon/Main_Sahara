@@ -221,11 +221,15 @@ namespace Data
         private float runSpeed;
         private float jump;
 
+        [SerializeField]
         private CreatureDataSO playerdata;
 
         public void Awake()
 		{
-			playerdata = AddressablesManager.Instance.GetResource<CreatureDataSO>(dataSOPath);
+            if (playerdata == null)
+            {
+			    playerdata = AddressablesManager.Instance.GetResource<CreatureDataSO>(dataSOPath);
+            }
 			MaxHp = playerdata.hp;
 			CurrentHp = playerdata.hp;
 			MaxMana = playerdata.mp;

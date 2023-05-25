@@ -109,13 +109,20 @@ namespace Module {
 
         private void TakeOffItem(ItemType _itemType)
         {
-            EquipingItem _equipingItem = equipItem[_itemType].GetComponent<EquipingItem>();
-            equipItem[_itemType].SetActive(false);
-            equipItem[_itemType] = null;
+            try
+            {
+                EquipingItem _equipingItem = equipItem[_itemType].GetComponent<EquipingItem>();
+                equipItem[_itemType].SetActive(false);
+                equipItem[_itemType] = null;
 
-            ApplyItemStats(_equipingItem, -1);
+                ApplyItemStats(_equipingItem, -1);
 
-            ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem.gameObject);
+                ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem.gameObject);
+            }
+            catch
+            {
+                
+            }
             //equipPositions[_itemType] = equipPositions[_itemType].transform.parent.gameObject;
         }
 

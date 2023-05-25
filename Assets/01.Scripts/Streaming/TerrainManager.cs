@@ -19,6 +19,7 @@ namespace Streaming
             {
                 terrainActiveDic.Add(_name, true);
             }
+            Debug.Log("Terrain Enalbe : " + _name);
         }
     
         public void DisableTerrain(string _name)
