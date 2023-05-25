@@ -13,31 +13,26 @@ namespace UI
 {
     public enum HudType
     {
-        statData, 
+        statData,
         buffData,
     }
+
     public class EntityPresenter : MonoBehaviour, IUIOwner, Observer, IUIManaged
     {
         // 디버그용
         public float a, b;
-        [SerializeField]
-        private Transform target;
-        [SerializeField]
-        private Renderer targetRenderer;
-        [SerializeField]    
-        private UIDocument uiDocument;
+        [SerializeField] private Transform target;
+        [SerializeField] private Renderer targetRenderer;
+        [SerializeField] private UIDocument uiDocument;
 
-        [SerializeField]
-        private HpPresenter hpPresenter;
-        [SerializeField]
-        private MpPresenter mpPresenter;
-        [SerializeField]
-        private BuffPresenter buffPresenter;
+        [SerializeField] private HpPresenter hpPresenter;
+        [SerializeField] private MpPresenter mpPresenter;
+        [SerializeField] private BuffPresenter buffPresenter;
 
         [SerializeField, Header("False면 머리 위에 Hud 뜨도록")]
         private bool isPlayerHud;
-        
-        
+
+
         private VisualElement hudElement;
         private PresenterFollower presenterFollower;
 
@@ -47,12 +42,15 @@ namespace UI
         private BuffModule buffModule;
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
-        private Dictionary<HudType, List<IUIFollower>> _dataPresenterDic = new Dictionary<HudType, List<IUIFollower>>(); // 데이터 타입, 프레젠터 
+
+        private Dictionary<HudType, List<IUIFollower>>
+            _dataPresenterDic = new Dictionary<HudType, List<IUIFollower>>(); // 데이터 타입, 프레젠터 
 
         // 프로퍼티 
         public UIDocument Root { get; set; }
         public UIDocument RootUIDocument => uiDocument;
         public List<IUIFollower> PresenterList => _presenterList;
+
         private Transform Target
         {
             get
@@ -69,28 +67,29 @@ namespace UI
                     }
                     else return null;
                 }
+
                 //Logging.Log("타겟 반환");
                 return target;
-
             }
         }
 
         protected virtual void OnEnable()
         {
-            StartCoroutine(LateUpdateCo()); 
-            Init(); 
+            StartCoroutine(LateUpdateCo());
+            Init();
             (UIActiveManager.Instance as IUIManager).Add(this);
         }
-        
+
 
         protected virtual void OnDisable()
         {
-            Clear(); 
+            Clear();
             (UIActiveManager.Instance as IUIManager).Remove(this);
         }
+
         private void Update()
         {
-            if (RootUIDocument.enabled == false) return; 
+            if (RootUIDocument.enabled == false) return;
             if (Target == null || targetRenderer == null) return;
 
             //if(Input.GetKeyDown(KeyCode.Tab))
@@ -110,23 +109,24 @@ namespace UI
             {
                 presenterFollower = new PresenterFollower(this, hudElement, target, targetRenderer);
             }
-            if(buffModule != null)
+
+            if (buffModule != null)
             {
-                buffPresenter.Update(); 
+                buffPresenter.Update();
             }
 
             //StartCoroutine(LateUpdateCo());
         }
-        
+
         private void LateUpdate()
         {
-            FollowPr(); 
+            FollowPr();
         }
 
         private IEnumerator LateUpdateCo()
         {
-                yield return new WaitForEndOfFrame(); 
-                FollowPr(); 
+            yield return new WaitForEndOfFrame();
+            FollowPr();
         }
 
         private void FollowPr()
@@ -141,20 +141,23 @@ namespace UI
                 //Debug.Log("따라가는중");
             }
         }
+
         [ContextMenu("버프 테스트")]
         public void Test()
         {
-            buffModule.TestBuff(); 
+            buffModule.TestBuff();
         }
+
         private IEnumerator ActivePn()
         {
-            yield return null; 
+            yield return null;
             hudElement.style.display = DisplayStyle.Flex;
         }
+
         /// <summary>
         /// 변수 초기화 
         /// </summary>
-        protected virtual  void Clear()
+        protected virtual void Clear()
         {
             target = null;
             targetRenderer = null;
@@ -162,7 +165,7 @@ namespace UI
             //isPlayerHud = false;
             statData = null;
             uiModule = null;
-            buffModule = null; 
+            buffModule = null;
         }
 
         private void Init()
@@ -174,6 +177,7 @@ namespace UI
             AwakePresenters();
             StartCoroutine(InitCo());
         }
+
         [ContextMenu("테스트")]
         public void UpdateUI()
         {
@@ -188,7 +192,7 @@ namespace UI
         /// </summary>
         private void UpdateUIActive()
         {
-        if(uiModule == null) return; 
+            if (uiModule == null) return;
             hudElement.style.display = uiModule.IsRender ? DisplayStyle.Flex : DisplayStyle.None;
             //hudElement.style.display  = DisplayStyle.None;
         }
@@ -215,7 +219,7 @@ namespace UI
 
             _dataPresenterDic.Add(HudType.statData, new List<IUIFollower>());
             _dataPresenterDic.Add(HudType.buffData, new List<IUIFollower>());
-        
+
             _dataPresenterDic[HudType.statData].Add(hpPresenter);
             _dataPresenterDic[HudType.statData].Add(mpPresenter);
             _dataPresenterDic[HudType.buffData].Add(buffPresenter);
@@ -229,15 +233,16 @@ namespace UI
                 p.Awake();
             }
         }
+
         private void StartPresenters()
         {
-            foreach(var _p in _dataPresenterDic.Keys)
+            foreach (var _p in _dataPresenterDic.Keys)
             {
                 switch (_p)
                 {
                     case HudType.statData:
                         _dataPresenterDic[_p].ForEach((x) => x.Start(statData));
-                        break; 
+                        break;
                     case HudType.buffData:
                         _dataPresenterDic[_p].ForEach((x) => x.Start(buffModule));
                         break;
@@ -266,13 +271,13 @@ namespace UI
         [ContextMenu("버프 아이콘 생성")]
         public void TestCreateBuffIcon()
         {
-       //     buffPresenter.CreateBuffIcon();
+            //     buffPresenter.CreateBuffIcon();
         }
 
 
         IEnumerator InitCo()
         {
-            if(statData != null && uiModule != null)
+            if (statData != null && uiModule != null)
             {
                 StartPresenters();
             }
@@ -281,9 +286,10 @@ namespace UI
             {
                 yield return null;
             }
+
             while (transform.parent != null && statData == null)
             {
-                AbMainModule _mainModule = transform.parent.GetComponentInChildren<AbMainModule>(); 
+                AbMainModule _mainModule = transform.parent.GetComponentInChildren<AbMainModule>();
                 this.uiModule = _mainModule.GetModuleComponent<UIModule>(ModuleType.UI);
                 this.buffModule = _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
                 this.statData = transform.parent.GetComponent<StatData>();
@@ -319,7 +325,7 @@ namespace UI
             hpPresenter.ActiveScreen(false);
             mpPresenter.ActiveScreen(false);
             buffPresenter.ActiveScreen(false);
-            
+
             //RootUIDocument.enabled = false; 
             //gameObject.SetActive(false);
         }
@@ -334,5 +340,4 @@ namespace UI
             //gameObject.SetActive(true);
         }
     }
-
 }

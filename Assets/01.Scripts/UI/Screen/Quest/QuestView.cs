@@ -152,7 +152,7 @@ namespace UI.Quest
 
             bool isFirst = true; 
             // 생성
-            _listView.makeItem = () =>
+            _listView.makeItem = () =>  
             {
                (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(QuestEntryView));
                VisualElement _target = _v.Item1;
