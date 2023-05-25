@@ -261,6 +261,22 @@ using Inventory;
         private string fullText;
         private const string TransStr = "<alpha=#00>"; // 투명 문자 
         private const string TransEndStr = "</alpha>"; // 투명 문자 
+        
+        private bool CheckColorTag(string _fullText)
+        {
+            if (_fullText.Contains("<color"))
+            {
+            }
+             //   _fullText.Insert()
+            for (int i = 0; i < _fullText.Length; i++)
+            {
+                if (_fullText[i] == '<')
+                {
+                }
+            }
+
+            return true; 
+        }
         /// <summary>
         /// 대화텍스트 애니메이션 
         /// </summary>
@@ -268,7 +284,7 @@ using Inventory;
         /// <returns></returns>
         private IEnumerator SetText()
         {
-            WaitForSeconds w  = new WaitForSeconds(1f);
+            WaitForSeconds w  = new WaitForSeconds(0.03f);
             string _nowText = "";
             string _targetText = ""; 
             isTexting = true;
@@ -288,7 +304,7 @@ using Inventory;
                     isRIchText = true; 
                     continue;
                 }*/
-                if (fullText[i] == '<')
+                /*if (fullText[i] == '<')
                 {
                     // 태그 길이 구하기 
                     int tagEndIndex = fullText.IndexOf('>', i);
@@ -300,14 +316,14 @@ using Inventory;
         
                     int nextTagEndIndex = fullText.IndexOf('>', i);
                     i = nextTagEndIndex + 1; 
-                }
+                }*/
 
                 _targetText = fullText.Substring(0,i)+ TransStr + fullText.Substring(i) + TransEndStr;
                 
                 if (isTexting == false)  
                 {
                     // 모든 텍스트 바로 보여주기
-                    //this.dialogueView.SetDialogueTextA(fullText);
+                    this.dialogueView.SetDialogueTextA(fullText);
                     yield break;
                 }
                 this.dialogueView.SetDialogueTextA(_targetText);
