@@ -13,6 +13,7 @@ namespace UI.Popup
     {
         public Vector3 targetVec; // vec3 위치 
         public string textKey; // ui에 나타날 텍스트
+        public string textTypeKey; // 어떤 상호작용인지 표시해줄 텍스트 키 예) 대화하기 
     }
     
     public class InteractionPresenter : IPopup
@@ -32,7 +33,7 @@ namespace UI.Popup
             var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(InteracftionPopupView));
             parent = _prod.Item1; 
             interacftionPopupView = _prod.Item2 as InteracftionPopupView;
-            ;
+            
             mapInfo = new MapInfo(); 
             interacftionPopupView.InteractionParent.AddToClassList("inactive");
 
