@@ -93,7 +93,7 @@ namespace Module
 
                         _inGameHitBox.HitBoxAction?.Invoke(HitBoxActionType.Hit);
                         
-                        Debug.LogError(CalculateAngle(mainModule.transform.position, _inGameHitBox.Owner.transform.position));
+                        //Debug.LogError(CalculateAngle(mainModule.transform.position, _inGameHitBox.Owner.transform.position));
 
                         var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
                         if (_settingTime is not null)

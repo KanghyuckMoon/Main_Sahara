@@ -66,6 +66,7 @@ namespace Module
             //if (stateModule.CheckState(State.ATTACK)) return;
             StartCoroutine(Delay());
 
+            
             ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(_projectileName);
 
             if (_list is not null)

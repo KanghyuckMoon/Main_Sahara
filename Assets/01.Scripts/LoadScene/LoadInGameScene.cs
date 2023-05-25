@@ -19,13 +19,13 @@ namespace LoadScene
         // Start is called before the first frame update
         void Start()
         {
-            UpdateManager.UpdateManager.Clear();
-            AddressablesManager.Instance.LodedSceneClear();
-            ClassPoolManager.Instance.Clear();
-            ObjectPoolManager.Instance.Clear();
-            System.GC.Collect(); 
-            UIManager.Instance.Init();
-            StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
+            //UpdateManager.UpdateManager.Clear();
+            //AddressablesManager.Instance.LodedSceneClear();
+            //ClassPoolManager.Instance.Clear();
+            //ObjectPoolManager.Instance.Clear();
+            //System.GC.Collect(); 
+            //UIManager.Instance.Init();
+            //StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
             SceneManager.LoadScene("InGame");
         }
 

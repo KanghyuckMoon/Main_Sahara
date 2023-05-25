@@ -102,6 +102,11 @@ namespace CondinedModule
             jumpModule ??= GetModuleComponent<JumpModule>(ModuleType.Jump);
             jumpModule.Jump(jumpstrenght);
         }
+        public override void Jump(float power)
+        {
+            jumpModule ??= GetModuleComponent<JumpModule>(ModuleType.Jump);
+            jumpModule.Jump(power);
+        }
 
         [ContextMenu("UIOn")]
         public void SetCam()

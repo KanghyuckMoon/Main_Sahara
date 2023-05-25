@@ -25,7 +25,7 @@ namespace HitBox
 		private ulong index = 0;
 		private bool isInit = false;
 		private bool isSetHitbox = false;
-		private List<InGameHitBox> inGameHitBoxeList = null;
+		private List<InGameHitBox> inGameHitBoxeList = new List<InGameHitBox>();
 		
 		[SerializeField] private bool isOnEnalbe = false;
 
@@ -62,11 +62,6 @@ namespace HitBox
 			}
 			index++;
 
-			if (isTimeIndexCange)
-			{
-				inGameHitBoxeList = new List<InGameHitBox>();
-			}
-
 			OnHitBox(hitboxString);
 
 			if (isTimeIndexCange)
@@ -98,13 +93,14 @@ namespace HitBox
 		private IEnumerator DisableHitBoxs()
 		{
 			yield return null;
-			InGameHitBox[] _inGameHitBoxArray = GetComponentsInChildren<InGameHitBox>();
-			foreach (var _col in _inGameHitBoxArray)
+			
+			foreach (var _col in inGameHitBoxeList)
 			{
 				_col.transform.SetParent(null);
 				_col.gameObject.SetActive(false);
-				Pool.ObjectPoolManager.Instance.RegisterObject("HitBox", _col.gameObject);
+				Pool.HitBoxPoolManager.Instance.RegisterObject(_col);
 			}
+			inGameHitBoxeList.Clear();
 		}
 
 		public void SetOwner(GameObject _owner)
@@ -124,10 +120,7 @@ namespace HitBox
 					InGameHitBox _ingameHitBox = HitBoxPoolManager.Instance.GetObject();
 					_ingameHitBox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject, null, HitBoxOnAnimation?.hitBoxAction);
 
-					if (isTimeIndexCange)
-					{
-						inGameHitBoxeList.Add(_ingameHitBox);
-					}
+					inGameHitBoxeList.Add(_ingameHitBox);
 				}
 			}
 			isSetHitbox = true;

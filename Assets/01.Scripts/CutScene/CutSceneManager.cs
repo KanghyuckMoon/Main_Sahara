@@ -60,8 +60,10 @@ namespace CutScene
             }
 		}
 
+        [SerializeField] private List<PlayableAsset> playableAssetList = new List<PlayableAsset>();
+
 		private CamList camList;
-        private TimelineAsset timelineAsset;
+        private PlayableAsset timelineAsset;
 		private PlayableDirector playableDirector;
         private CutSceneDataList cutSceneDataList;
         private int index = 0;
@@ -107,8 +109,8 @@ namespace CutScene
         {
             CutSceneData _cutSceneData = cutSceneDataList.cutSceneDataList[index];
             string _address = _cutSceneData.cutSceneType.ToString();
-            timelineAsset = AddressablesManager.Instance.GetResource<TimelineAsset>(_address);
-
+            timelineAsset = playableAssetList[(int)_cutSceneData.cutSceneType];
+            
             SettingParameterCutSceneData(_cutSceneData);
             StaticTime.EntierTime = 0f;
 

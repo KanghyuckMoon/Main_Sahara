@@ -164,13 +164,23 @@ namespace Streaming
 		public void LoadReadyScene()
 		{
 			isSceneSetting = false;
-			originChunkCoordX = 0;
-			originChunkCoordY = 40;
-			originChunkCoordZ = 0;
-			viewerPosition = defaultPosition;
+			if (Viewer != null)
+			{
+				originChunkCoordX = Mathf.RoundToInt(viewerPosition.x / chunkSize);
+				originChunkCoordY = Mathf.RoundToInt(viewerPosition.y / chunkSize);
+				originChunkCoordZ = Mathf.RoundToInt(viewerPosition.z / chunkSize);
+			}
+			else
+			{
+				originChunkCoordX = 0;
+				originChunkCoordY = 40;
+				originChunkCoordZ = 0;
+			}
+			//viewerPosition = defaultPosition;
 			InitSubScene();
-			InitChunk();
-			isSceneSetting = true;
+			//InitChunkLegacy();
+			StartCoroutine(InitChunk());
+			//InitChunk();
 		}
 
 		public void Start()
@@ -240,12 +250,41 @@ namespace Streaming
 			}
 		}
 
-		private void InitChunk()
+		private void InitChunkLegacy()
+		{
+			foreach (var _obj in chunkDictionary)
+			{
+				LoadSubScene(_obj.Key);
+			}
+			isSceneSetting = true;
+		}
+		
+		
+		private IEnumerator InitChunk()
 		{
 			foreach(var _obj in chunkDictionary)
 			{
 				LoadSubScene(_obj.Key);
+				while (true)
+				{
+					if (TerrainManager.Instance.CheckTerrain(_obj.Value.SceneName))
+					{
+						Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
+						if (Vector3.Distance(_currentPos, _obj.Key) >= StreamingManager.chunksVisibleInViewDst)
+						{
+							//yield return new WaitForSeconds(0.1f);
+							_obj.Value.UnLoadSceneNoneCheck();
+						}
+
+						break;
+					}
+					else
+					{
+						yield return null;
+					}
+				}
 			}
+			isSceneSetting = true;
 		}
 
 		private IEnumerator UpdateChunk()
