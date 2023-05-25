@@ -117,6 +117,8 @@ namespace Streaming
 
 		private StreamingEventTransmit streamingEventTransmit = default;
 
+		[SerializeField] private GameObject loadingCanvas;
+		
 		//[SerializeField]
 		private Transform viewer = null;
 
@@ -293,6 +295,8 @@ namespace Streaming
 
 			isCurrentSceneSetting = true;
 			
+			loadingCanvas.SetActive(true);
+			
 			foreach(var _obj in chunkDictionary)
 			{
 				LoadSubScene(_obj.Key);
@@ -300,16 +304,14 @@ namespace Streaming
 				
 				while(true)
 				{
-					if (Vector3.Distance(_pos, _obj.Key) > StreamingManager.chunksVisibleInViewDst)
+					if (TerrainManager.Instance.CheckTerrain(_obj.Value.SceneName))
 					{
-						_obj.Value.UnLoadSceneNoneCheck();
-						Debug.Log("Scene UnLoad : " + _obj.Key);
+						if (Vector3.Distance(_pos, _obj.Key) > StreamingManager.chunksVisibleInViewDst)
+						{
+							_obj.Value.UnLoadSceneNoneCheck();
+							Debug.Log("Scene UnLoad : " + _obj.Key);
+						}
 						break;
-					}
-					else if (TerrainManager.Instance.CheckTerrain(_obj.Value.SceneName))
-					{
-							Debug.Log("Scene Loading...: " + _obj.Key);
-							break;
 					}
 					else
 					{
@@ -317,8 +319,10 @@ namespace Streaming
 					}
 				}
 			}
-
+			
 			isSceneSetting = true;
+			
+			loadingCanvas.SetActive(false);
 			
 			StartCoroutine(UpdateChunk());
 		}
