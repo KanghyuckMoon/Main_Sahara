@@ -69,7 +69,9 @@ namespace UI.Popup
                 interacftionPopupView.ParentElement.transform.position = rect.position;
 
                 string _detail = TextManager.Instance.GetText(_uiData.textKey);
+                string _type = TextManager.Instance.GetText(_uiData.textTypeKey);
                 interacftionPopupView.SetDetail(_detail);
+                interacftionPopupView.SetType(_type);
             }
             catch (Exception e)
             {

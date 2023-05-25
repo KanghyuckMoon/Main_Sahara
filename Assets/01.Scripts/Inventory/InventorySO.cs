@@ -11,7 +11,7 @@ namespace Inventory
         public List<ItemData> itemDataList = new List<ItemData>();
         public ItemData[] quickSlot = new ItemData[5];
         public ItemData[] equipments = new ItemData[4];
-        public ItemData[] accessories = new ItemData[4];
+        public ItemData[] accessories = new ItemData[3];
         public ItemData[] skills = new ItemData[2];
         public ItemData arrow = new ItemData();
 
