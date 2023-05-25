@@ -398,7 +398,7 @@ namespace UI.Inventory
             {
                 _slotList[i].SetItemData(_dataList[i]);
             }
-
+    
         }
         private void ClickItem(SlotItemPresenter _slotView)
         {

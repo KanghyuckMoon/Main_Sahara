@@ -377,18 +377,26 @@ namespace Inventory
 
 		public bool SetQuickSlotItem(ItemData _itemData, int _index)
 		{
-			for (int i = 0; i < inventorySO.quickSlot.Length; i++)
-			{
-				if (inventorySO.quickSlot[i].key == _itemData.key)
-				{
-					inventorySO.quickSlot[i] = null; 
-				}
-			}
+			CheckSameEquip(inventorySO.quickSlot, _itemData);
 
-		inventorySO.quickSlot[_index] = _itemData;
+			inventorySO.quickSlot[_index] = _itemData;
 			return true; 
 		}
 
+		/// <summary>
+		/// 중복 장착 체크 
+		/// </summary>
+		private void CheckSameEquip(ItemData[] _dataList,ItemData _data)
+		{
+			for (int i = 0; i < _dataList.Length; i++)
+			{
+				if (_dataList[i].key == _data.key)
+				{
+					_dataList[i] = null; 
+				}
+			}
+		}
+		
 		[ContextMenu("TestSetQuickSlotItem")]
 		public void TestSetQuickSlotItem()
 		{
@@ -521,6 +529,7 @@ namespace Inventory
 					}
 					break;
 			}
+			CheckSameEquip(inventorySO.equipments, _itemData);
 			RemoveEquipment(index);
 			inventorySO.equipments[index] = _itemData;
 
@@ -555,6 +564,8 @@ namespace Inventory
 			{
 				return false;
 			}
+
+			CheckSameAccessories(_itemData);
 			RemoveAccessories(_index);
 			inventorySO.accessories[_index] = _itemData;
 
@@ -564,6 +575,19 @@ namespace Inventory
 			return true;
 		}
 
+		private void CheckSameAccessories(ItemData _data)
+		{
+			for (int i = 0; i < inventorySO.accessories.Length; i++)
+			{
+				if (inventorySO.accessories[i].key == _data.key)
+				{
+					ItemData _itemData = inventorySO.accessories[i];
+					PlayerItemModule.RemovePassiveItem(_itemData.accessoriesItemType);
+					inventorySO.accessories[i] = null;
+				}
+			}
+		}
+		
 		public void RemoveAccessories(int _index)
 		{
 			if (inventorySO.accessories[_index] is not null && !string.IsNullOrEmpty(inventorySO.accessories[_index].key))

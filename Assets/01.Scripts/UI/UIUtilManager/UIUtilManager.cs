@@ -24,7 +24,9 @@ namespace UI.UtilManager
                 StopCoroutine(changedLabelDic[_targetLabel]);
                 changedLabelDic.Remove(_targetLabel); 
             }
-            IEnumerator _co = AnimateTextCo(_targetLabel,_fullText,_time);
+            //IEnumerator _co = AnimateTextCo(_targetLabel,_fullText,_time);
+            //changedLabelDic.Add(_targetLabel,_co);
+            IEnumerator _co = TypeText(_targetLabel,_fullText,_time);
             changedLabelDic.Add(_targetLabel,_co);
             
             StartCoroutine(_co); 
@@ -65,6 +67,39 @@ namespace UI.UtilManager
             }
             changedLabelDic.Remove(_targetLabel);
         }
+
+        
+        
+        
+        private int index = 0;
+        IEnumerator TypeText(Label _targetLabel, string _fullText,float _time = 0.03f)
+        {
+            if (string.IsNullOrEmpty(_fullText)) yield break;
+
+            _targetLabel.text = String.Empty; 
+            
+            while (index < _fullText.Length)
+            {
+                if (_fullText[index] == '<')
+                {
+                    int tagEndIndex = _fullText.IndexOf('>', index);
+                    if (tagEndIndex != -1)
+                    {
+                        _targetLabel.text += _fullText.Substring(index, tagEndIndex - index + 1);
+                        index = tagEndIndex + 1;
+                    }
+                }
+                else
+                {
+                    _targetLabel.text += _fullText[index];
+                    index++;
+                    yield return new WaitForSeconds(_time);
+                }
+            }
+            changedLabelDic.Remove(_targetLabel);
+
+        }
+        
     }
 
 }
