@@ -18,6 +18,7 @@ namespace UI.Popup
         enum Labels
         {
             detail_label,
+            type_label
             
         }
         
@@ -34,7 +35,12 @@ namespace UI.Popup
         {
             GetLabel((int)Labels.detail_label).text = _str; 
         }
-        
+
+        public void SetType(string _str)
+        {
+            GetLabel((int)Labels.type_label).text = _str; 
+
+        }
     }
         
 }

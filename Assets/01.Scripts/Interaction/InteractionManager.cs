@@ -112,7 +112,7 @@ namespace Interaction
 
 			if (_interactionObj != null && activePopup == null)
 			{
-				uiData = new InteractionUIData { targetVec = _interactionObj.PopUpPos, textKey = _interactionObj.Name };
+				uiData = new InteractionUIData { targetVec = _interactionObj.PopUpPos, textKey = _interactionObj.Name,textTypeKey =  _interactionObj.ActionName};
 				activePopup = PopupUIManager.Instance.CreatePopup<InteractionPresenter>(PopupType.Interaction,
 					uiData,-1f);
 				(UIActiveManager.Instance as IUIManager).Add(this);
