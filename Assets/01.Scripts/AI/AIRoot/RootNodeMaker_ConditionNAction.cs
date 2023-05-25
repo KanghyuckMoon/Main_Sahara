@@ -367,6 +367,17 @@ namespace AI
 			return aiModule.IsUsePath;
 		}
 
+		private bool FollowCondition()
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			if ((targetPos - Position).sqrMagnitude > (aiSO.FixedRadius + 1f) * (aiSO.FixedRadius + 1f))
+			{
+				return false;
+			}
+
+			return true;
+		}
+		
 		#endregion
 
 		
@@ -913,6 +924,23 @@ namespace AI
 
 
 		#region Utill
+
+		public bool ParamCondition(params System.Func<bool>[] functions)
+		{
+			// Check if all functions return true
+			bool allTrue = true;
+			foreach (var function in functions)
+			{
+				if (!function())
+				{
+					allTrue = false;
+					break;
+				}
+			}
+
+			// Return the combined result
+			return allTrue;
+		}
 		
 		//Utill
 		private Vector3 AngleToDir(float angle)
