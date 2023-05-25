@@ -37,6 +37,7 @@ namespace UI.Inventory
             inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.modelkey));
         }
 
+        
         private void OnEnable()
         {
             inventoryView.Cashing();

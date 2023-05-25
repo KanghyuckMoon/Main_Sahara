@@ -318,7 +318,7 @@ using Inventory;
                     i = nextTagEndIndex + 1; 
                 }*/
 
-                _targetText = fullText.Substring(0,i)+ TransStr + fullText.Substring(i) + TransEndStr;
+                _targetText = fullText.Substring(0, i) + TransStr + fullText.Substring(i);// + TransEndStr;
                 
                 if (isTexting == false)  
                 {
