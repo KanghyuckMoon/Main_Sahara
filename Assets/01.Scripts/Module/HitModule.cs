@@ -78,6 +78,7 @@ namespace Module
             //if (HitDelay())
             //{
                 //HitFeedBack();
+                Debug.LogError("µ¥¹ÌÁö: " + dmg);
                 
                 if (HpModule.GetDamage(dmg) == 0)
                 {
