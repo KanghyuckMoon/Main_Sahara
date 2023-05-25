@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 39660}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: PlayerDataSO
+  playerdata: {fileID: 11400000, guid: 3dac7ac8e95b3b4479d4cd9f7d3249dd, type: 2}
 --- !u!114 &39655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +331,7 @@ MonoBehaviour:
   statData: {fileID: 0}
   hitCollider:
   - EnemyWeapon
+  - DeadZone
   moveSpeed: 0
   isSprint: 0
   isGround: 0
@@ -390,7 +392,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.4
   m_Radius: 0.22
-  m_SlopeLimit: 45
+  m_SlopeLimit: 90
   m_StepOffset: 0.1
   m_SkinWidth: 0.1
   m_MinMoveDistance: 0.001
@@ -22139,7 +22141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572420777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -74.2671, y: 3938.7825, z: 172.46529}
+  m_LocalPosition: {x: -74.230606, y: 3938.7046, z: 172.01392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

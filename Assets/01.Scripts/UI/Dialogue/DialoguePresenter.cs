@@ -16,8 +16,8 @@ using UI.EventManage;
 using UI.Upgrade;
 using Inventory;
     using TimeManager;
+    using DG.Tweening; 
     
-
     namespace UI.Dialogue
 {
     public class DialoguePresenter : MonoBehaviour, IScreen
@@ -172,7 +172,8 @@ using Inventory;
             // 텍스트 처리 
             this.dialogueView.SetNameTextA(_nameText); // 말하는 사람 이름 설정 
             StartCoroutine(SetText());
-        //    StaticCoroutineManager.Instance.InstanceDoCoroutine(SetText(_dialogueText)); //
+      //      StartCoroutine(TypeText()); 
+            //    StaticCoroutineManager.Instance.InstanceDoCoroutine(SetText(_dialogueText)); //
         }
 
         /// <summary>
@@ -253,11 +254,29 @@ using Inventory;
             }
         }
 
-
+        [SerializeField]
+        private bool isRIchText = false;
         [SerializeField]
         private bool isTexting = false; // 텍스트가 출력되고 있는 중인가 
         private string fullText;
         private const string TransStr = "<alpha=#00>"; // 투명 문자 
+        private const string TransEndStr = "</alpha>"; // 투명 문자 
+        
+        private bool CheckColorTag(string _fullText)
+        {
+            if (_fullText.Contains("<color"))
+            {
+            }
+             //   _fullText.Insert()
+            for (int i = 0; i < _fullText.Length; i++)
+            {
+                if (_fullText[i] == '<')
+                {
+                }
+            }
+
+            return true; 
+        }
         /// <summary>
         /// 대화텍스트 애니메이션 
         /// </summary>
@@ -265,34 +284,92 @@ using Inventory;
         /// <returns></returns>
         private IEnumerator SetText()
         {
-            Debug.Log("처음 텍스트");
             WaitForSeconds w  = new WaitForSeconds(0.03f);
-            //targetText = _str;
             string _nowText = "";
             string _targetText = ""; 
-            isTexting = true; 
+            isTexting = true;
+
             for (int i = 0; i <= fullText.Length; i++)
             {
-                _targetText = fullText.Substring(0,i)+ TransStr + fullText.Substring(i);
+                /*if (isRIchText == true)
+                {
+                    if (fullText[i] == '>')
+                    {
+                        isRIchText = false;
+                    }
+                    continue; 
+                }
+                if (fullText[i] == '<')
+                {
+                    isRIchText = true; 
+                    continue;
+                }*/
+                /*if (fullText[i] == '<')
+                {
+                    // 태그 길이 구하기 
+                    int tagEndIndex = fullText.IndexOf('>', i);
+                    if (tagEndIndex != -1)
+                    {
+                        //_targetText += fullText.Substring(i, tagEndIndex - i + 1);
+                        i = tagEndIndex + 1;
+                    }
+        
+                    int nextTagEndIndex = fullText.IndexOf('>', i);
+                    i = nextTagEndIndex + 1; 
+                }*/
+
+                _targetText = fullText.Substring(0,i)+ TransStr + fullText.Substring(i) + TransEndStr;
+                
                 if (isTexting == false)  
                 {
                     // 모든 텍스트 바로 보여주기
-                    //this.dialogueView.SetDialogueTextA(fullText);
                     this.dialogueView.SetDialogueTextA(fullText);
                     yield break;
                 }
-                //_nowText += fullText[i];
-                //this.dialogueView.SetDialogueTextA(_nowText);
                 this.dialogueView.SetDialogueTextA(_targetText);
-                Debug.Log("For 텍스트");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Debug.Log("For 텍스트");
                 yield return w;
             }
             isTexting = false;
-          //  StartCoroutine(CheckNextDialogue()); 
-        //    StaticCoroutineManager.Instance.InstanceDoCoroutine(CheckNextDialogue());
         }
 
+        IEnumerator TypeText()
+        {
+            if (string.IsNullOrEmpty(fullText)) yield break;
 
+            string _targetText = "";
+            int _index = 0; 
+            isTexting = true;
+  
+            while (_index < fullText.Length)
+            {
+                if (isTexting == false)  
+                {
+                    // 모든 텍스트 바로 보여주기
+                    this.dialogueView.SetDialogueTextA(fullText);
+                    yield break;
+                }
+                
+                if (fullText[_index] == '<')
+                {
+                    int tagEndIndex = fullText.IndexOf('>', _index);
+                    if (tagEndIndex != -1)
+                    {
+                        //_targetText += fullText.Substring(_index, tagEndIndex - _index + 1);
+                        _index = tagEndIndex + 1;
+                    }
+                }
+                else
+                {
+                    _targetText += fullText[_index];
+                    this.dialogueView.SetDialogueTextA(_targetText);
+
+                    _index++;
+                    yield return new WaitForSeconds(0.03f);
+                }
+            }
+            isTexting = false;
+        }
         public bool ActiveView()
         {
             throw new NotImplementedException();
@@ -309,6 +386,7 @@ using Inventory;
             dialogueView.ActiveViewS(_isActive);
             StaticTime.UITime = _isActive ? 0f : 1f;
             EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, _isActive);
+            EventManager.Instance.TriggerEvent(EventsType.SetUIInput, ! _isActive);
             //UIManager.Instance.ActiveCursor(_isActive); 
 
             if (_isActive == false)

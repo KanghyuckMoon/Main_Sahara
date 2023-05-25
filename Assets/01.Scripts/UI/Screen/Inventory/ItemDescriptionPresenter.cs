@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +48,7 @@ namespace UI.Inventory
         /// </summary> 
         public void SetItemData(ItemData _itemData,Vector2 _slotPos, Vector2 _slotSize)
         {
-            if (_itemData == null) return; // ∫Û ΩΩ∑‘¿Ã∏È ∏Æ≈œ 
+            if (_itemData == null || _itemData.key == String.Empty) return; // ∫Û ΩΩ∑‘¿Ã∏È ∏Æ≈œ 
 
             this.itemData = _itemData; 
             itemDescriptionView.SetImage(AddressablesManager.Instance.GetResource<Texture2D>(_itemData.spriteKey));

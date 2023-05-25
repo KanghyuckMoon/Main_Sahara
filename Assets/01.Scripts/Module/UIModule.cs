@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -153,9 +154,17 @@ namespace Module
             }
             hudObject = ObjectPoolManager.Instance.GetObject(address);
             hudObject.transform.SetParent(null);
-            SceneManager.MoveGameObjectToScene(hudObject, mainModule.gameObject.scene);
-            hudObject.transform.SetParent(mainModule.transform);
-            hudObject.SetActive(true);
+            try
+            {
+                SceneManager.MoveGameObjectToScene(hudObject, mainModule.gameObject.scene);
+                hudObject.transform.SetParent(mainModule.transform);
+                hudObject.SetActive(true);
+            }
+            catch (Exception e)
+            {
+                ObjectPoolManager.Instance.RegisterObject(address, hudObject);
+                Debug.LogWarning(e);
+            }
         }
     }
 }

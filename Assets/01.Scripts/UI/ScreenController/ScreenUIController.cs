@@ -24,21 +24,7 @@ using Module;
                                                                                                 
 namespace UI
 {
-    /*public enum Keys
-    {   
-        QuestUI, 
-        InventoryUI, 
-        MapUI, 
-        SaveLoadUI,
-        ShopUI, 
-        UpgradeUI, 
-        OptionUI,
-            
-        // 사용자 입력 X 
-        BuyUI = 100, 
-        SellUI, 
-        SmithUI, 
-    }*/
+
     public class UIInputData
     {
         //public string keyStr; 
@@ -90,9 +76,9 @@ namespace UI
             {
                 if (player == null)
                 {
-                    if (UIManager.Instance.PlayerObj != null)
+                    if (UIManager.Instance.PlayerObject != null)
                     {
-                        this.player = UIManager.Instance.PlayerObj.GetComponent<Player>();
+                        this.player = UIManager.Instance.PlayerObject.GetComponent<Player>();
                         if (player != null)
                         {
                             return player; 
@@ -114,11 +100,11 @@ namespace UI
             InitScreenPresenters();
             SetNotInputEvent();
 
-            if (UIManager.Instance.PlayerObj is null)
+            if (UIManager.Instance.PlayerObject is null)
             {
                 screenCallback = (x) =>
                 {
-                    UIManager.Instance.PlayerObj.GetComponent<Player>().SetInput(x);
+                    UIManager.Instance.PlayerObject.GetComponent<Player>().SetInput(x);
                 };    
             }
              
@@ -128,6 +114,7 @@ namespace UI
         {
             Debug.Log("ONEnable");
             StartCoroutine(Init());
+            EventManager.Instance.StartListening(EventsType.SetUIInput,(x) => lsUIInput = (bool)x);
         }
 
         private IEnumerator Init()
@@ -147,6 +134,7 @@ namespace UI
         private void OnDisable()
         {
             EventManager.Instance.StopListening(EventsType.SetPlayerCam, (x) => player.SetInput((bool)x));
+            EventManager.Instance.StopListening(EventsType.SetUIInput,(x) => lsUIInput = (bool)x);
         }
 
         private void Start()
@@ -277,7 +265,6 @@ namespace UI
             
             InventoryManager.Instance.gameObject.SetActive(!_isActive);
         }
-        
         private void SetInputEvent()
         {
             inputDic.Clear();
@@ -306,8 +293,14 @@ namespace UI
                 questPresenter.UpdateUI();
                 LineCreateManager.Instance.ActvieScreen(ScreenType.Quest, _isActive);
                 UIManager.Instance.ActiveHud(! _isActive);
-                mapPresenter.Active(! _isActive);
+                    mapPresenter.Active(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
+            });
+            inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>
+            {
+                //  활성화
+                bool _isActive = _optionPresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
             });
             /*inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
             {
@@ -332,12 +325,7 @@ namespace UI
                 bool _isActive = saveLoadPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.SaveLoadUI));
             });*/
-            inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>
-            {
-                //  활성화
-                bool _isActive = _optionPresenter.ActiveView();
-                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
-            });
+
         }
 
         /// <summary>
@@ -354,14 +342,6 @@ namespace UI
             SetTime(_isActive);
             SetKeyAble(_keyCode, _isActive);
             ActiveUICam(_isActive); 
-        }
-        /// <summary>
-        /// 스크린 활성화시 세팅 
-        /// </summary>
-        private void SetUI(bool _isActive, string _keyCode)
-        {
-            SetTime(_isActive);
-            SetKeyAble(_keyCode, _isActive);
         }
 
         private void UIInput()
