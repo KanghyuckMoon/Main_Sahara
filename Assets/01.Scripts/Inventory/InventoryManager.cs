@@ -20,9 +20,9 @@ namespace Inventory
 		{
 			get
 			{
-				if (player is null)
+				if (player == null)
 				{
-					player = GameObject.FindGameObjectWithTag("Player")?.transform;
+					player = PlayerObj.Player.transform;
 				}
 
 				return player;
