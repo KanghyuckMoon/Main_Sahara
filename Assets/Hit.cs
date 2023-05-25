@@ -18,6 +18,7 @@ public class Hit : StateMachineBehaviour
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         
         mainModule.IsHit = false;
+        mainModule.CanMove = false;
         animator.SetBool("Hit", false);
         animator.SetBool("ConsecutiveAttack", false);
         animator.SetBool("Dash", false);
@@ -31,6 +32,7 @@ public class Hit : StateMachineBehaviour
     //    mainModule.Attacking = false;
     //    mainModule.StrongAttacking = false;
         mainModule.IsHit = false;
+        mainModule.CanMove = true;
         
         animator.GetComponent<ProjectileGenerator>()?.MoveProjectile();
         stateModule.RemoveTypeState(State.ATTACK);
