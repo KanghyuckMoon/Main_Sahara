@@ -2186,7 +2186,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504856336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2195,7 +2195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1.14}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1504856338
@@ -2206,11 +2206,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504856336}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 33.097645, y: 11.693295, z: 21.206419}
-  m_Center: {x: -3.7385187, y: 0.8059422, z: -8.803204}
+  m_Size: {x: 33.097645, y: 11.693295, z: 32.645256}
+  m_Center: {x: -3.7385042, y: 0.8059294, z: -14.522607}
 --- !u!114 &1504856339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,6 +2225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 1504856340}
   isMark: 0
+  isInitAlphaZero: 1
 --- !u!114 &1504856340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2272,8 +2273,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.2
-  m_fontSizeBase: 22.2
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
