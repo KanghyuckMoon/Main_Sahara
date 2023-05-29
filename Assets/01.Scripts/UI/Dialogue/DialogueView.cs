@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using DG.Tweening;
-using System; 
+using System;
 using UI.Base;
 
 namespace UI.Dialogue
@@ -16,13 +16,14 @@ namespace UI.Dialogue
             select_panel,
             end_talk_mark
         }
+
         enum Labels
         {
             name_label,
-            dialogue_label 
+            dialogue_label
         }
 
-        private static VisualElement parent; 
+        private static VisualElement parent;
         private static Label name;
         private static Label dialogue;
 
@@ -30,6 +31,7 @@ namespace UI.Dialogue
         private static List<(Button, Action)> activeButtonList = new List<(Button, Action)>();
 
         private readonly string inActiveStr = "inactive_select";
+
         public override void Cashing()
         {
             base.Cashing();
@@ -37,8 +39,9 @@ namespace UI.Dialogue
             BindLabels(typeof(Labels));
             BindVisualElements(typeof(Elements));
 
-            selectButtonList = GetVisualElement((int)Elements.select_panel).Query<Button>(className:"select_button").ToList();
-            foreach(var b in selectButtonList)
+            selectButtonList = GetVisualElement((int)Elements.select_panel).Query<Button>(className: "select_button")
+                .ToList();
+            foreach (var b in selectButtonList)
             {
                 b.AddToClassList(inActiveStr);
                 //b.style.display = DisplayStyle.None; 
@@ -50,31 +53,32 @@ namespace UI.Dialogue
             base.Init();
             name = GetLabel((int)Labels.name_label);
             dialogue = GetLabel((int)Labels.dialogue_label);
-            parent.style.display = DisplayStyle.None; 
+            parent.style.display = DisplayStyle.None;
         }
 
         public void Tween(bool _isActive)
         {
-            
         }
 
         public void SetNameText(string _str)
         {
-            GetLabel((int)Labels.name_label).text = _str; 
+            GetLabel((int)Labels.name_label).text = _str;
         }
+
         public void SetDialogueText(string _str)
         {
             // 이전에 있던거 천천히 사라지고 
             // 텍스트 바뀌고 
             // 텍스트 쭈욱 나오게   
-            GetLabel((int)Labels.dialogue_label).text = _str; 
+            GetLabel((int)Labels.dialogue_label).text = _str;
         }
 
         public void SetNameTextA(string _str)
         {
             name.text = _str;
         }
-        public  void SetDialogueTextA(string _str)
+
+        public void SetDialogueTextA(string _str)
         {
             // 이전에 있던거 천천히 사라지고 
             // 텍스트 바뀌고 
@@ -87,11 +91,11 @@ namespace UI.Dialogue
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_callback"></param>
-        public void ActiveSelectButton(string _name,Action _callback)
+        public void ActiveSelectButton(string _name, Action _callback)
         {
-            for(int i=0;i < selectButtonList.Count;i++)
+            for (int i = 0; i < selectButtonList.Count; i++)
             {
-                Button _b = selectButtonList[i]; 
+                Button _b = selectButtonList[i];
                 if (_b.ClassListContains(inActiveStr) == true)
                 {
                     _b.text = _name;
@@ -100,7 +104,7 @@ namespace UI.Dialogue
                     _b.RemoveFromClassList(inActiveStr);
 
                     activeButtonList.Add((_b, _callback));
-                    return; 
+                    return;
                 }
             }
         }
@@ -110,14 +114,15 @@ namespace UI.Dialogue
         /// </summary>
         public void ResetSelectButtons()
         {
-            foreach(var _b in activeButtonList)
-                                            {
-                                                //_b.Item1.style.display = DisplayStyle.None;
-                                                _b.Item1.AddToClassList(inActiveStr);
-                                                _b.Item1.UnregisterCallback<ClickEvent>((x) =>_b.Item2?.Invoke());
-                                            }
-                                        }
-                                        public void ActiveView()
+            foreach (var _b in activeButtonList)
+            {
+                //_b.Item1.style.display = DisplayStyle.None;
+                _b.Item1.AddToClassList(inActiveStr);
+                _b.Item1.UnregisterCallback<ClickEvent>((x) => _b.Item2?.Invoke());
+            }
+        }
+
+        public void ActiveView()
         {
             ShowVisualElement(parentElement, !IsVisible());
         }
@@ -126,22 +131,22 @@ namespace UI.Dialogue
         {
             ShowVisualElement(parentElement, _isActive);
         }
+
         public void ActiveViewS(bool _isActive)
         {
             float targetV, nowV;
             targetV = _isActive ? 1 : 0;
-            nowV = _isActive ? 0 : 1; 
+            nowV = _isActive ? 0 : 1;
 
-            if(_isActive == true)
+            if (_isActive == true)
             {
                 parent.style.opacity = new StyleFloat(0f);
                 ShowVisualElement(parent, _isActive);
                 DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f);
-            
             }
+
             DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f)
                 .OnComplete(() => ShowVisualElement(parent, _isActive));
         }
     }
-
 }
