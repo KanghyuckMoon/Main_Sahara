@@ -17,7 +17,7 @@ public class Hit : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         
-        mainModule.IsHit = false;
+        mainModule.IsHit = true;
         mainModule.CanMove = false;
         animator.SetBool("Hit", false);
         animator.SetBool("ConsecutiveAttack", false);
