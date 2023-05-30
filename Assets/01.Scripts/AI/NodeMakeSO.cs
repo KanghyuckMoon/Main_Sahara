@@ -97,6 +97,7 @@ namespace AI
 		CheckAttacking,
 		CheckStrongAttacking,
 		CheckAttackState,
+		AttackRangeCondition2,
 	}
 
 	[CreateAssetMenu(fileName = "NodeMakeSO", menuName = "SO/NodeMakeSO")]
