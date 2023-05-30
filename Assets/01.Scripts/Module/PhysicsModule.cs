@@ -249,40 +249,34 @@ namespace Module
         private float previousAngle = 0;
         private void Slope()
         {
-            var _position = mainModule.transform.position;
-            Vector3 _rayPos = new Vector3(_position.x, _position.y - mainModule.groundOffset,
-                _position.z);
+            var _transform = mainModule.transform;
+            var _position = _transform.position;
+            var _rayPos = new Vector3(_position.x, _position.y - mainModule.groundOffset, _position.z);
+            var _ray = new Ray(_rayPos, Vector3.down);
+            var _ray1 = new Ray(_rayPos, _transform.forward);
 
-            Ray _ray = new Ray(_rayPos, Vector3.down);
-            Ray _ray1 = new Ray(_rayPos, mainModule.transform.forward);
-            RaycastHit _raycastHit;
-            if (Physics.Raycast(_ray, out _raycastHit, 2, mainModule.groundLayer))
+
+            if (Physics.Raycast(_ray, out var _raycastHit, 2, mainModule.groundLayer))
             {
                 var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
-                //if (mainModule.player) Debug.LogError("각도: " + _angle);
 
-                previousAngle = Physics.Raycast(_ray1, out _raycastHit, rayDistance, mainModule.groundLayer) ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime) : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
-
+                previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance, mainModule.groundLayer)
+                    ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
+                    : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
                 mainModule.Animator.SetFloat("GrounDegree", previousAngle);
 
                 var _slopeLimit = mainModule.CharacterController.slopeLimit;
-                mainModule.IsSlope = _angle < _slopeLimit;
+                mainModule.IsSlope = _angle <= _slopeLimit;
 
-                if (mainModule.IsSlope == false)
-                {
-                    //mainModule.SlopeVector = Vector3.ProjectOnPlane(new Vector3(0, mainModule.Gravity, 0), _raycastHit.normal);
-                    mainModule.SlopeVector =
-                        new Vector3(_raycastHit.normal.x, mainModule.Gravity, _raycastHit.normal.z);
-                    return;
-                }
+                Debug.LogError(_raycastHit.normal);
 
-                //Debug.LogError("asassssssssssssssssssss");
-                mainModule.SlopeVector = Vector3.zero;
+                mainModule.SlopeVector =
+                    new Vector3(_raycastHit.normal.x, mainModule.Gravity, _raycastHit.normal.z) * 5f;
             }
             else
             {
                 //Debug.LogError("�ȴ�ƴ�ƴ��");
-                mainModule.IsSlope = false;
+                mainModule.IsSlope = true;
             }
             Debug.DrawRay(_rayPos, Vector3.down, Color.red);
         }
@@ -308,7 +302,7 @@ namespace Module
                 landAction?.Invoke();
             }
 
-            mainModule.isGround = _isLand; // && mainModule.IsSlope;
+            mainModule.isGround = _isLand && mainModule.IsSlope;
         }
         IEnumerator LandingDelay()
         {
@@ -321,6 +315,8 @@ namespace Module
             {
                 HitModule.GetHit(20);
             }
+
+            mainModule.Gravity = 0;
             JumpModule.gravityWeight = 0;
         }
         //private AbBuffEffect 
