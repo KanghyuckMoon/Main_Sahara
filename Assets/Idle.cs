@@ -48,6 +48,7 @@ public class Idle : StateMachineBehaviour
             isUp = false;
             mainModule.SetAnimationLayerOn(1, 0);
             mainModule.SetConsecutiveAttack(0);
+            mainModule.SetActiveAnimatorRoot(0);
             mainModule.StopOrNot = 1;
             animator.SetBool("IsCombo", false);
             stateModule.RemoveState(State.ATTACK);

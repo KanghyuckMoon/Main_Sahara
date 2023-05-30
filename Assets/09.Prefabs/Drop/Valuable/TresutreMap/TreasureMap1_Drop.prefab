@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2031581182645052117
+--- !u!1 &4555345256819939728
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1890614469410876346}
-  - component: {fileID: 8103545991530223608}
-  - component: {fileID: 2745059967310827095}
-  - component: {fileID: 4459340522736497586}
+  - component: {fileID: 4123812804251390207}
+  - component: {fileID: 6013398517020454077}
+  - component: {fileID: 368766636596622610}
+  - component: {fileID: 2226102742963243255}
+  - component: {fileID: 7756227578626981251}
   m_Layer: 14
   m_Name: TreasureMap1_Drop
   m_TagString: Untagged
@@ -19,29 +20,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1890614469410876346
+--- !u!4 &4123812804251390207
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031581182645052117}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 4555345256819939728}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 342.3645, y: 267.08594, z: 555.8452}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5564121733633759160}
+  - {fileID: 7940353081427569917}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8103545991530223608
+--- !u!114 &6013398517020454077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031581182645052117}
+  m_GameObject: {fileID: 4555345256819939728}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
@@ -49,20 +50,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDataSO: {fileID: 11400000, guid: 5441a846add7ef0469257e9aea062586, type: 2}
   count: 1
-  rigid: {fileID: 2745059967310827095}
+  rigid: {fileID: 368766636596622610}
   itemAddress: TreasureMap1
-  targetObj: {fileID: 2031581182645052117}
+  targetObj: {fileID: 4555345256819939728}
   isJumping: 1
   getEvent:
     m_PersistentCalls:
-      m_Calls: []
---- !u!54 &2745059967310827095
+      m_Calls:
+      - m_Target: {fileID: 7756227578626981251}
+        m_TargetAssemblyTypeName: Quest.EventQuest, Quest
+        m_MethodName: QuestSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!54 &368766636596622610
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031581182645052117}
+  m_GameObject: {fileID: 4555345256819939728}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -72,13 +85,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &4459340522736497586
+--- !u!136 &2226102742963243255
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031581182645052117}
+  m_GameObject: {fileID: 4555345256819939728}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -86,65 +99,79 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &3481151923136420982
+--- !u!114 &7756227578626981251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4555345256819939728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9445ee14af04cf46be450b287c2e3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questKey: EVQM_01
+  setQuestState: 2
+--- !u!1001 &8237460930259915622
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1890614469410876346}
+    m_TransformParent: {fileID: 4123812804251390207}
     m_Modifications:
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041031255309913042, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+    - target: {fileID: 2044803679078727559, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
       propertyPath: m_Name
       value: TreasureMap1_Model
       objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4494512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1352511
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
---- !u!4 &5564121733633759160 stripped
+--- !u!4 &7940353081427569917 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 9041031255309913038, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
-  m_PrefabInstance: {fileID: 3481151923136420982}
+  m_CorrespondingSourceObject: {fileID: 2044803679078727579, guid: 1cdd708e4838fa64b89355991571381e, type: 3}
+  m_PrefabInstance: {fileID: 8237460930259915622}
   m_PrefabAsset: {fileID: 0}

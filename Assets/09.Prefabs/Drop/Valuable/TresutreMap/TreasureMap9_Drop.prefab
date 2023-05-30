@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5499192315215491866
+--- !u!1 &1947745149431402083
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5499192315215491870}
-  - component: {fileID: 5499192315215491871}
-  - component: {fileID: 5499192315215491864}
-  - component: {fileID: 5499192315215491865}
+  - component: {fileID: 2092670113097877260}
+  - component: {fileID: 8593980329407511374}
+  - component: {fileID: 2390864711810900705}
+  - component: {fileID: 4239194717344161540}
+  - component: {fileID: 5734127306553436784}
   m_Layer: 14
   m_Name: TreasureMap9_Drop
   m_TagString: Untagged
@@ -19,50 +20,62 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5499192315215491870
+--- !u!4 &2092670113097877260
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499192315215491866}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1947745149431402083}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 342.3645, y: 267.08594, z: 555.8452}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3799837459305820284}
+  - {fileID: 5332785919842925326}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5499192315215491871
+--- !u!114 &8593980329407511374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499192315215491866}
+  m_GameObject: {fileID: 1947745149431402083}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: d0d8fac9a9e1ffb40aae3a2c9e1df0ef, type: 2}
+  itemDataSO: {fileID: 11400000, guid: 5441a846add7ef0469257e9aea062586, type: 2}
   count: 1
-  rigid: {fileID: 5499192315215491864}
-  itemAddress: TreasureMap9
-  targetObj: {fileID: 5499192315215491866}
+  rigid: {fileID: 2390864711810900705}
+  itemAddress: TreasureMap1
+  targetObj: {fileID: 1947745149431402083}
   isJumping: 1
   getEvent:
     m_PersistentCalls:
-      m_Calls: []
---- !u!54 &5499192315215491864
+      m_Calls:
+      - m_Target: {fileID: 5734127306553436784}
+        m_TargetAssemblyTypeName: Quest.EventQuest, Quest
+        m_MethodName: QuestSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!54 &2390864711810900705
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499192315215491866}
+  m_GameObject: {fileID: 1947745149431402083}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -72,13 +85,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &5499192315215491865
+--- !u!136 &4239194717344161540
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499192315215491866}
+  m_GameObject: {fileID: 1947745149431402083}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -86,65 +99,79 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &5499192314768107198
+--- !u!114 &5734127306553436784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947745149431402083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9445ee14af04cf46be450b287c2e3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questKey: EVQM_09
+  setQuestState: 2
+--- !u!1001 &228555046027060327
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5499192315215491870}
+    m_TransformParent: {fileID: 2092670113097877260}
     m_Modifications:
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.4494512
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.1352511
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8712972482940425950, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+    - target: {fileID: 5272062667826257781, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
       propertyPath: m_Name
       value: TreasureMap9_Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
---- !u!4 &3799837459305820284 stripped
+--- !u!4 &5332785919842925326 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8712972482940425922, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
-  m_PrefabInstance: {fileID: 5499192314768107198}
+  m_CorrespondingSourceObject: {fileID: 5272062667826257769, guid: 8bbb95c0194cdbd4d8e051435c5e1896, type: 3}
+  m_PrefabInstance: {fileID: 228555046027060327}
   m_PrefabAsset: {fileID: 0}

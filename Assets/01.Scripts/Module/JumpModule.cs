@@ -107,7 +107,6 @@ namespace Module
                 {
                     Animator.SetBool("Jump", true);
                     jumpAction?.Invoke();
-                    //Jumping(0.07f);
                 }
 
                 if (calculatedTime > 0.0f)
