@@ -186,7 +186,6 @@ namespace Module
                 }
                 else
                 {
-
                     mainModule.CharacterController.Move((_moveVector3 + new Vector3(0, _gravity, 0)) *
                                                         mainModule.PersonalDeltaTime);
                 }
@@ -241,7 +240,7 @@ namespace Module
                     mainModule.Gravity = -2f;
                 }
             }
-            if (mainModule.Gravity < 100)
+            if (mainModule.Gravity < 200)
             {
                 mainModule.Gravity += mainModule.GravityScale * mainModule.PersonalFixedDeltaTime * 2;
             }
