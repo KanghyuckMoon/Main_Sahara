@@ -96,6 +96,7 @@ namespace AI
 		RageGaugeUnderCheck,
 		CheckAttacking,
 		CheckStrongAttacking,
+		CheckAttackState,
 	}
 
 	[CreateAssetMenu(fileName = "NodeMakeSO", menuName = "SO/NodeMakeSO")]

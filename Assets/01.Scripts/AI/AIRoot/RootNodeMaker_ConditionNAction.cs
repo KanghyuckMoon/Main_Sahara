@@ -56,6 +56,11 @@ namespace AI
 		{
 		    return aiModule.MainModule.Attacking;
 		}
+		private bool CheckAttackState()
+		{
+		    return aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).CheckState(State.ATTACK);
+		}
+		
 		private bool CheckStrongAttacking()
 		{
 		    return aiModule.MainModule.StrongAttacking;

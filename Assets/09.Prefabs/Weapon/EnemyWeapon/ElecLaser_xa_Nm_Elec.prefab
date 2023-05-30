@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3879174481662271852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4512123110019644374}
+  - component: {fileID: 662472912879629430}
+  - component: {fileID: -4145859222903633396}
+  - component: {fileID: -2809739177343143528}
+  m_Layer: 0
+  m_Name: ElecLaser_xa_Nm_Elec
+  m_TagString: Player_Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4512123110019644374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879174481662271852}
+  m_LocalRotation: {x: -0.021774396, y: -0.018564478, z: -0.085322246, w: 0.9959425}
+  m_LocalPosition: {x: -0.185, y: 0.043, z: 0.264}
+  m_LocalScale: {x: 0.25, y: 0.24999993, z: 0.24999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1653552614650568179}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -2.668, y: -361.908, z: -9.749}
+--- !u!114 &662472912879629430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879174481662271852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b619e2f7706f14428ffa650abfbe028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHand: 2
+  weaponName: xa_Nm_Elec
+  tagName: 
+  isProjectile: 1
+  isConsecutiveWeapon: 0
+  hitBoxDataSO: {fileID: 11400000, guid: 6511136139d7ed3488e4e0423c445938, type: 2}
+  animationEffectSO: {fileID: 11400000, guid: 32c86bf87807d9849876092a0828e8e2, type: 2}
+--- !u!114 &-4145859222903633396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879174481662271852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980a75649ddb02544bfbedca7065011e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationName: WeaponSkill
+  buffIconString: _Icon
+  buffEffectString: _Effect
+  buffList: []
+  animationClip: {fileID: 7400000, guid: 3844ba3f100201a4587ac01f051b277f, type: 2}
+  elecLaser: {fileID: 1653552614650568180}
+--- !u!114 &-2809739177343143528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879174481662271852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321f8cb461e5d8a408a0d3acc5cee235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4145859222903633396}
+        m_TargetAssemblyTypeName: Skill.Skill_ElecLaser, Skill
+        m_MethodName: EndSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1001 &2906855722677189167
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4512123110019644374}
+    m_Modifications:
+    - target: {fileID: 4514190911476230107, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_Name
+      value: ElecLaser_Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+--- !u!4 &1653552614650568179 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4514190911476230108, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+  m_PrefabInstance: {fileID: 2906855722677189167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1653552614650568180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4514190911476230107, guid: d57a62048ecdabe41968a4e747021bc4, type: 3}
+  m_PrefabInstance: {fileID: 2906855722677189167}
+  m_PrefabAsset: {fileID: 0}
