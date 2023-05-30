@@ -12,7 +12,7 @@ public class LookAtPlayer : MonoBehaviour
         {
             return;
         }
-        transform.LookAt(PlayerObj.Player.transform.position); 
+        transform.LookAt(PlayerObj.Player.transform.position + Vector3.up * 2f); 
     }
 }
 }
