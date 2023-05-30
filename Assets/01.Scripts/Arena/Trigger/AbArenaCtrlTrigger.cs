@@ -2,13 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Arena
 {
-    public abstract class AbArenaTrigger : MonoBehaviour, IArenaInteraction
+    public abstract class AbArenaCtrlTrigger : MonoBehaviour, IArenaStartInteraction
     {
         [SerializeField] 
         private ArenaInteractionType interactionType;
+        [Header("True : 투기장 시작 False : 투기장 종료"),SerializeField] 
+        private bool isStartArena = false; 
+        [SerializeField]
         private ArenaMap _arenaMap;
 
         public ArenaInteractionType InteractionType => interactionType; 
@@ -21,7 +25,13 @@ namespace Arena
         
         public void Interact()
         {
-            connectArenaMap.StartArena();
+            Debug.Log("@@ 투기장 트리거 활성화");
+            if (isStartArena == true)
+            {
+                connectArenaMap.StartArena();
+                return; 
+            }
+            connectArenaMap.CompleteArena();
         }
     }    
 }

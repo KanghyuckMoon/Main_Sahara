@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Arena
 {
-    public interface IArenaMap
+    public class ArenaCtrlClickTrigger  : AbArenaCtrlTrigger
     {
-        public void StartArena(); 
     }
-
+    
 }

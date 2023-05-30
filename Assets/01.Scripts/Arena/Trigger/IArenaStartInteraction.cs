@@ -10,12 +10,16 @@ namespace Arena
         Detect, // 탐색해야 
         Click, // 아무거나 클릭하면 
     }
+    public interface IArenaStartInteraction : IArenaInteraction
+    {
+        public IArenaMap connectArenaMap { get; }
+
+    }
+
     public interface IArenaInteraction
     {
         public ArenaInteractionType InteractionType { get;  }
-        public IArenaMap connectArenaMap { get; }
-
         public void Interact();
+
     }
-    
 }

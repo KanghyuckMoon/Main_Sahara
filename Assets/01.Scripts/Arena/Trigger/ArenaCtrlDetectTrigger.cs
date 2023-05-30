@@ -5,10 +5,13 @@ using UnityEngine;
 
 namespace Arena
 {
-    public class ArenaDetectTrigger : AbArenaTrigger,IDetectItem
+    public class ArenaCtrlDetectTrigger : AbArenaCtrlTrigger,IDetectItem
     {
         [SerializeField]
         private DetectItemType detectItemType;
+
+        private bool isGetOut = false; 
+        
         public List<Observer> Observers { get; }
         public DetectItemType DetectItemType
         {
@@ -16,10 +19,11 @@ namespace Arena
             set => detectItemType = value; 
         }
         
-        public bool IsGetOut { get; set; }
+        public bool IsGetOut { get => isGetOut; set => isGetOut = value; }
         public void GetOut()
         {
-            
+            isGetOut = true; 
+            Interact();
         }
     }    
 }

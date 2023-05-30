@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Arena
 {
-    public class ArenaTouchTrigger : AbArenaTrigger
+    public class ArenaCtrlTouchTrigger : AbArenaCtrlTrigger
     {
         [SerializeField] private string targetTag = "Player";
 
