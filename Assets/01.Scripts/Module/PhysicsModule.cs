@@ -260,7 +260,7 @@ namespace Module
             {
                 var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
 
-                previousAngle = Physics.Raycast(_ray1, out _raycastHit, rayDistance, mainModule.groundLayer)
+                previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance, mainModule.groundLayer)
                     ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
                     : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
                 mainModule.Animator.SetFloat("GrounDegree", previousAngle);
@@ -268,7 +268,7 @@ namespace Module
                 var _slopeLimit = mainModule.CharacterController.slopeLimit;
                 mainModule.IsSlope = _angle <= _slopeLimit;
 
-                //Debug.LogError(_raycastHit.normal);
+                Debug.LogError(_raycastHit.normal);
 
                 mainModule.SlopeVector =
                     new Vector3(_raycastHit.normal.x, mainModule.Gravity, _raycastHit.normal.z) * 5f;
