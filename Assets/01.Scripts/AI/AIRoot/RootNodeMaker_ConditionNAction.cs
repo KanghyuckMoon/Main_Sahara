@@ -56,6 +56,11 @@ namespace AI
 		{
 		    return aiModule.MainModule.Attacking;
 		}
+		private bool CheckAttackState()
+		{
+		    return aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).CheckState(State.ATTACK);
+		}
+		
 		private bool CheckStrongAttacking()
 		{
 		    return aiModule.MainModule.StrongAttacking;
@@ -94,6 +99,16 @@ namespace AI
 			Vector3 targetPos = aiModule.Player.position;
 			
 			if ((targetPos - Position).sqrMagnitude < aiSO.AttackRadius * aiSO.AttackRadius)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool AttackRange2Condition() //Make
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			
+			if ((targetPos - Position).sqrMagnitude < aiSO.AttackRadius2 * aiSO.AttackRadius2)
 			{
 				return true;
 			}
@@ -352,6 +367,28 @@ namespace AI
 			return aiModule.IsUsePath;
 		}
 
+		private bool FollowCondition()
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			if ((targetPos - Position).sqrMagnitude > (aiSO.FixedRadius + 1f) * (aiSO.FixedRadius + 1f))
+			{
+				return false;
+			}
+
+			return true;
+		}
+
+		private bool FollowCondition(float addRadius)
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			if ((targetPos - Position).sqrMagnitude > (aiSO.FixedRadius + addRadius) * (aiSO.FixedRadius + addRadius))
+			{
+				return false;
+			}
+
+			return true;
+		}
+		
 		#endregion
 
 		
@@ -499,6 +536,15 @@ namespace AI
 		{
 			Vector3 targetPos = aiModule.Player.position;
 			if ((targetPos - Position).sqrMagnitude > (aiSO.FixedRadius + 1f) * (aiSO.FixedRadius + 1f))
+			{
+				RunMove();
+			}
+		}
+		
+		private void FollowMove(float addRadius)
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			if ((targetPos - Position).sqrMagnitude > (aiSO.FixedRadius + addRadius) * (aiSO.FixedRadius + addRadius))
 			{
 				RunMove();
 			}
@@ -823,7 +869,7 @@ namespace AI
 			aiModule.IsHostilities = true;
 		}
 
-		private void TrackMove() //Make
+		private void TrackMoveWalk() //Make
 		{
 			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
 			{
@@ -852,6 +898,39 @@ namespace AI
 
 				aiModule.AIModuleState = AIModule.AIState.Walk;
 				aiModule.MainModule.IsSprint = false;
+				aiModule.MainModule.ObjDir = aiModule.Input;
+			}
+		}
+		
+		private void TrackMoveRun() //Make
+		{
+			if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking)
+			{
+				
+				CinemachineSmoothPath _smoothPath = aiModule.PathHarver.GetPath(aiModule.PathIndex);
+				float _currentPos = _smoothPath.FindClosestPoint(aiModule.MainModule.transform.position, 0, -1, 2);
+				Vector3 vec = _smoothPath.EvaluatePosition(_currentPos + 0.1f);
+				//Vector3 _firstPoint = _smoothPath.m_Waypoints[0].position;
+				Vector3 _lastPoint = _smoothPath.m_Waypoints[_smoothPath.m_Waypoints.Length - 1].position;
+				Vector3 _pos1 = Position;
+				Vector3 _pos2 = _lastPoint;
+				_pos1.y = 0;
+				_pos2.y = 0;
+				float _distance = Vector3.Distance(_pos1, _pos2);
+				
+				if (_distance < 6f)
+				{
+					aiModule.IsUsePath = false;
+					aiModule.CanTalk(true);
+				}
+
+				Vector3 _dir = (vec - Position).normalized;
+				
+				Vector2 _inputdir = new Vector2(_dir.x, _dir.z);
+				aiModule.Input = _inputdir;
+
+				aiModule.AIModuleState = AIModule.AIState.Run;
+				aiModule.MainModule.IsSprint = true;
 				aiModule.MainModule.ObjDir = aiModule.Input;
 			}
 		}
@@ -898,6 +977,23 @@ namespace AI
 
 
 		#region Utill
+
+		public bool ParamCondition(params System.Func<bool>[] functions)
+		{
+			// Check if all functions return true
+			bool allTrue = true;
+			foreach (var function in functions)
+			{
+				if (!function())
+				{
+					allTrue = false;
+					break;
+				}
+			}
+
+			// Return the combined result
+			return allTrue;
+		}
 		
 		//Utill
 		private Vector3 AngleToDir(float angle)
