@@ -369,7 +369,8 @@ namespace UI.Inventory
                     _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Weapon].equipItemViewList;
                     break;
                 case ItemType.Consumption:
-                    _dataList = InventoryManager.Instance.GetConsumptionList(); 
+                    _dataList = new List<ItemData>(); 
+                    _dataList.Add(InventoryManager.Instance.GetEquipArrow()); 
                     _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Consumption].equipItemViewList;
                     break;
                 case ItemType.Skill:

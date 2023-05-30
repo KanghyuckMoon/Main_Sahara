@@ -166,7 +166,7 @@
                                     <ui:Label display-tooltip-when-elided="true" name="item_title_label" class="font_base" style="font-size: 40px;" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="top" style="flex-basis: 30%; flex-grow: 1;">
-                                    <ui:Label display-tooltip-when-elided="true" name="item_detail_label" text="게임 &lt;color=#FF0000&gt;진&lt;alpha=#00&gt;행이 원활하지 않다고&lt;/color&gt; 느껴지신다면&lt;/alpha&gt;" class="font_base" style="font-size: 25px; flex-grow: 1; white-space: normal;" />
+                                    <ui:Label display-tooltip-when-elided="true" name="item_detail_label" class="font_base" style="font-size: 25px; flex-grow: 1; white-space: normal;" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
@@ -240,7 +240,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="right_content_panel" class="right_content_panel" style="display: flex; flex-basis: 20%; padding-top: 50px; align-items: flex-end; flex-direction: row-reverse; margin-left: 10px;">
                     <ui:VisualElement name="VisualElement" style="flex-basis: 50%; height: 100%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Inventory/InventoryBackgroundDeco.png?fileID=2800000&amp;guid=0a5116f621323444e933b9f7e697eb7d&amp;type=3#InventoryBackgroundDeco&apos;); -unity-background-image-tint-color: rgb(50, 50, 50); display: none;" />
-                    <ui:VisualElement name="quick_slot_panel" class="quickslot" style="padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 35%; left: 0; height: 100%;">
+                    <ui:VisualElement name="quick_slot_panel" class="quickslot" style="padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 35%; left: 0; height: 100%; display: flex;">
                         <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end; width: 100%; justify-content: flex-start; flex-direction: column-reverse;">
                             <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quickslot quick_slot_init">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
@@ -256,7 +256,7 @@
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
                                             <ui:VisualElement name="background_deco_parent" class="border_base center_align">
-                                                <ui:VisualElement name="background_deco" style="width: 85%; height: 80px;" />
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
                                             </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
@@ -267,7 +267,7 @@
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init quickslot">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quickslot quick_slot_init">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -280,16 +280,19 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="2" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label text="2&#10;" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quickslot quick_slot_init">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -301,6 +304,9 @@
                                             <ui:VisualElement name="frame" class="quick_slot_frame frame_base" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;">
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
+                                            </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
                                             </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
@@ -311,7 +317,7 @@
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quickslot quick_slot_init">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -323,6 +329,9 @@
                                             <ui:VisualElement name="frame" class="quick_slot_frame frame_base" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;">
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
+                                            </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
                                             </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
@@ -333,7 +342,7 @@
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quickslot quick_slot_init">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -346,16 +355,19 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="5&#10;" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label text="5" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="ArrowSlot" class="quick_slot_transition quick_slot_init" style="bottom: 30px;">
+                            <ui:VisualElement name="ArrowSlot" class="quick_slot_transition quick_slot_init arrowslot">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -368,11 +380,14 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label display-tooltip-when-elided="true" name="num_label" enable-rich-text="true" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
@@ -381,7 +396,7 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="accessoire_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 30%; display: none;">
                         <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init accessorieslot">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -394,16 +409,20 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="1" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init accessorieslot">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -416,16 +435,20 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="2" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init accessorieslot">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -438,11 +461,15 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="3" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
@@ -451,7 +478,7 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="armor_equip_panel" style="width: auto; height: 80%; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-basis: 35%; display: none;">
                         <ui:VisualElement name="slot_parent" class="quick_slot_panel" style="align-items: flex-end;">
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init armorslot">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -464,16 +491,20 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="1" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init armorslot">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -486,16 +517,20 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="2" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init armorslot">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -508,16 +543,20 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="3" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init">
+                            <ui:VisualElement name="InventoryQuickSlot" class="quick_slot_transition quick_slot_init armorslot">
                                 <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
                                 <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
                                 <ui:VisualElement name="inventory_quickslot" style="width: 100px; height: 100px; translate: -10px 0; align-items: center; justify-content: center;">
@@ -530,11 +569,15 @@
                                                 <ui:Label display-tooltip-when-elided="true" name="text" class="font_base quick_slot_text" />
                                                 <ui:VisualElement name="image" class="quick_slot_image" />
                                             </ui:VisualElement>
+                                            <ui:VisualElement name="background_deco_parent" class="border_base center_align">
+                                                <ui:VisualElement name="background_deco" class="background_deco" />
+                                            </ui:VisualElement>
                                             <ui:VisualElement name="select" style="display: none;" />
                                         </ui:VisualElement>
                                         <ui:VisualElement name="base" class="border_base" style="align-items: flex-start; justify-content: space-between;">
                                             <ui:VisualElement name="num_icon" style="width: 30px; height: 30px; background-image: url(&apos;project://database/Assets/14.Texture/ItemImage/Cerberus_life_Soul_Sprite.png?fileID=2800000&amp;guid=a75bad342938c9c4bb34d0b806fc22c5&amp;type=3#Cerberus_life_Soul_Sprite&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); left: 5px; top: 5px; -unity-background-scale-mode: stretch-to-fill; display: none;" />
-                                            <ui:Label text="4" display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
+                                            <ui:Label display-tooltip-when-elided="true" name="num_label" class="font_base inven_num_label" />
                                         </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
