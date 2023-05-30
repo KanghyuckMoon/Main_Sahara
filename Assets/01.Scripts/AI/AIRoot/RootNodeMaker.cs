@@ -319,6 +319,7 @@ namespace AI
 				NodeCondition.RageGaugeUnderCheck => RageGaugeUnderCheck,
 				NodeCondition.CheckAttacking => CheckAttacking,
 				NodeCondition.CheckStrongAttacking => CheckStrongAttacking,
+				NodeCondition.AttackRangeCondition2 => AttackRange2Condition,
 				_ => null
 			};
 		}
