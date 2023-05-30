@@ -21,6 +21,11 @@ public class AISO : ScriptableObject
 	[Range(0f, 360f)]
 	public float AttackAngle = 0f;
 	public float AttackRadius = 1f;
+	
+	
+	[Range(0f, 360f)]
+	public float AttackAngle2 = 0f;
+	public float AttackRadius2 = 1f;
 
 	//�ǽɰ�
 	[Range(0f, 360f)]

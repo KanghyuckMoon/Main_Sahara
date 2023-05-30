@@ -104,6 +104,16 @@ namespace AI
 			}
 			return false;
 		}
+		private bool AttackRange2Condition() //Make
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			
+			if ((targetPos - Position).sqrMagnitude < aiSO.AttackRadius2 * aiSO.AttackRadius2)
+			{
+				return true;
+			}
+			return false;
+		}
 		private bool AroundRangeCondition() //Make
 		{
 			Vector3 targetPos = aiModule.Player.position;
