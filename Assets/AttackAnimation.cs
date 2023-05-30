@@ -25,6 +25,11 @@ public class AttackAnimation : StateMachineBehaviour
         stateModule.AddState(State.ATTACK);
     }
 
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        mainModule.StopOrNot = 0;
+    }
+
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
