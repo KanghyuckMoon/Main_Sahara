@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6551239855854287279}
   - component: {fileID: 6551239855854287276}
   - component: {fileID: 6551239855854287277}
+  - component: {fileID: 1188028676379824122}
   m_Layer: 14
   m_Name: TreasureMap11_Drop
   m_TagString: Untagged
@@ -55,7 +56,19 @@ MonoBehaviour:
   isJumping: 1
   getEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2220146418526135624, guid: b4ac3d37a622113479b1c48463943d2f, type: 3}
+        m_TargetAssemblyTypeName: Quest.EventQuest, Quest
+        m_MethodName: QuestSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &6551239855854287276
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -86,6 +99,20 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1188028676379824122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551239855854287266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9445ee14af04cf46be450b287c2e3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questKey: 
+  setQuestState: 2
 --- !u!1001 &6551239855382667281
 PrefabInstance:
   m_ObjectHideFlags: 0
