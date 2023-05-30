@@ -14,6 +14,7 @@ public class Skill : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
+        stateModule.AddState(State.SKILL);
         stateModule.AddState(State.ATTACK);
         mainModule.SetActiveAnimatorRoot(1);
     }
