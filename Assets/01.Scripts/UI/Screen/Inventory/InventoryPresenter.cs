@@ -135,7 +135,7 @@ namespace UI.Inventory
             }
 
             ItemData _arrowData = InventoryManager.Instance.GetArrow();
-            this.inventoryView.UpdateQuickSlotUI(_arrowData, 5);
+            this.inventoryView.UpdateArrowSlotUI(_arrowData, 0);
         }
 
 
