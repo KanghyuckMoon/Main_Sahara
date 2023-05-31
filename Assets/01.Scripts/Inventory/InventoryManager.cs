@@ -335,7 +335,7 @@ namespace Inventory
 					else
 					{
 						SendEvent("QuestManager", null);
-						SendEvent("PopupUIManager", _itemData);
+						SendEvent("PopupUIManager", _itemData);	
 						inventorySO.itemDataList.Add(_itemData);
 
 						break;

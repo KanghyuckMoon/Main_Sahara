@@ -61,7 +61,7 @@ namespace Detect
 
         private void OnEnable()
         {
-            var _detectAnimationAction = transform.root.GetComponent<DetectAnimationAction>();
+            var _detectAnimationAction = transform.GetComponentInParent<DetectAnimationAction>();
             if (_detectAnimationAction is not null)
             {
                 Debug.Log("Success");

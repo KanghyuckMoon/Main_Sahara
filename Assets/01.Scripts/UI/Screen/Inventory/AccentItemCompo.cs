@@ -53,7 +53,7 @@ namespace UI.Inventory
                 {
                     GameObject _prefab;
                     string _modelKey = _itemData.modelkey; 
-                    if (_modelKey == String.Empty)
+                    if (string.IsNullOrEmpty(_modelKey))
                     {
                         continue;
                     }
