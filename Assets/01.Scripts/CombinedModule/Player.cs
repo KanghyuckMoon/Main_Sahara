@@ -80,11 +80,11 @@ namespace CondinedModule
 
         public override void SetAnimationLayerOn(int _on, float _duration)
         {
-            int animationIndex = Animator.GetLayerIndex(CurrentAnimationLayer);
+            var animationIndex = Animator.GetLayerIndex(CurrentAnimationLayer);
 
-            if (_duration is > 0 and < 1)
+            if (_duration is > 0f and < 1f)
             {
-                float _a = Animator.GetLayerWeight(animationIndex);
+                var _a = Animator.GetLayerWeight(animationIndex);
 
                 DOTween.To(
                     () => _a, (x) => Animator.SetLayerWeight(animationIndex, x), _on, _duration);
@@ -92,7 +92,6 @@ namespace CondinedModule
 
             else
             {
-                //Debug.LogError("에러에러ㅔ러");
                 Animator.SetLayerWeight(animationIndex, _on);
             }
         }
