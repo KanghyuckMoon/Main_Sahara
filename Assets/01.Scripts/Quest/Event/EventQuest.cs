@@ -12,6 +12,13 @@ namespace Quest
 
         [SerializeField]
         private QuestState setQuestState;
+
+        [ContextMenu("asdhjflakwefku")]
+        public void SetName()
+        {
+            var str = GetComponentInParent<QuestObject>().name.Replace("Treasure_Chest_Detect", "EVQM");
+            questKey = str.Trim();
+        }
         
         public void QuestSet()
         {

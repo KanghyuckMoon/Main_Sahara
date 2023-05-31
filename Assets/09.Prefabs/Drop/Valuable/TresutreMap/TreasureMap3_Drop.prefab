@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7252155475221142115}
   - component: {fileID: 9177912797541328774}
   - component: {fileID: 727731927159182066}
+  - component: {fileID: 6346545703866104603}
   m_Layer: 14
   m_Name: TreasureMap3_Drop
   m_TagString: Untagged
@@ -69,6 +70,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6605192890829223093, guid: b4ac3d37a622113479b1c48463943d2f, type: 3}
+        m_TargetAssemblyTypeName: MyNamespace.TreasureMapEffect, Item
+        m_MethodName: SetActiveActionTreasureMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &7252155475221142115
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113,6 +126,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questKey: EVQM_03
   setQuestState: 2
+--- !u!114 &6346545703866104603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6813134617335166689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc73b3d91d8da749ad6753e37d29c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treasureChest: {fileID: 0}
 --- !u!1001 &5673986623467391175
 PrefabInstance:
   m_ObjectHideFlags: 0

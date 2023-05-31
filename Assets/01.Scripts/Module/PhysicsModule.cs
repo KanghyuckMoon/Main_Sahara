@@ -19,7 +19,7 @@ namespace Module
 {
     public class PhysicsModule : AbBaseModule
     {
-        private float rayDistance = 0.4f;
+        private float rayDistance = 0.3f;
         private ulong praviousHitBoxIndex = 0;
 
         private BuffModule BuffModule
@@ -256,7 +256,7 @@ namespace Module
             var _ray1 = new Ray(_rayPos, _transform.forward);
 
 
-            if (Physics.Raycast(_ray, out var _raycastHit, 2, mainModule.groundLayer))
+            if (Physics.Raycast(_ray, out var _raycastHit, 0.3f, mainModule.groundLayer))
             {
                 var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
 
@@ -268,7 +268,7 @@ namespace Module
                 var _slopeLimit = mainModule.CharacterController.slopeLimit;
                 mainModule.IsSlope = _angle <= _slopeLimit;
 
-                Debug.LogError(_raycastHit.normal);
+                //Debug.LogError(_raycastHit.normal);
 
                 mainModule.SlopeVector =
                     new Vector3(_raycastHit.normal.x, mainModule.Gravity, _raycastHit.normal.z) * 5f;
