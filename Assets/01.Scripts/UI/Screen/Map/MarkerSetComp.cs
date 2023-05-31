@@ -306,9 +306,9 @@ namespace UI.Map
             mapView.GhostIcon.style.backgroundImage =
                 AddressablesManager.Instance.GetResource<Texture2D>(_markerSlot.MarkerData.spriteKey);
             mapView.GhostIcon.style.width =
-                (int)(CurMarkerSprite.bounds.size.x * 200);
+                (int)(CurMarkerSprite.bounds.size.x * 100);
             mapView.GhostIcon.style.height =
-                (int)(CurMarkerSprite.bounds.size.y * 200);
+                (int)(CurMarkerSprite.bounds.size.y * 100);
         }
 
         private VisualElement CreateMarker(Vector2 _pos)

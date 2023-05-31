@@ -186,19 +186,19 @@ namespace UI.Inventory
             }*/
 
         }
+        
         /// <summary>
         /// 퀵 슬롯UI에 데이터 넣기 
         /// </summary>
         public void UpdateQuickSlotUI(ItemData _itemData, int _index)
         {
             inventoryGridSlotsPr.InvenPanelDic[ItemType.Weapon].SetEquipItemDataUI(_itemData, _index);
-        
         }
 
         public void UpdateArrowSlotUI(ItemData _itemData, int _idx)
         {
 
-//            inventoryGridSlotsPr.ItemSlotDic[ItemType.Weapon].SetEquipItemDataUI(_itemData);
+            inventoryGridSlotsPr.InvenPanelDic[ItemType.Consumption].SetEquipItemDataUI(_itemData,_idx);
         }
 
         /// <summary>
@@ -252,14 +252,15 @@ namespace UI.Inventory
                 SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
                 if(_list[i].name == "ArrowSlot")
                 {
-                    _slotIPr.SetSlotType(ItemType.Consumption);
+                    _slotIPr.SetSlotType(ItemType.Consumption); 
+                    AddEquipSlotEvt(_slotIPr, ItemType.Consumption);
                 }
                 else
                 {
                     _slotIPr.SetSlotType(ItemType.Weapon);
+                    AddEquipSlotEvt(_slotIPr, ItemType.Weapon);
                 }
 
-                AddEquipSlotEvt(_slotIPr, ItemType.Weapon);
             }
             List<VisualElement> _armorList = GetVisualElement((int)Elements.armor_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
             AddEquipSlotsEvt(_armorList, ItemType.Equipment);
@@ -369,13 +370,14 @@ namespace UI.Inventory
                     _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Weapon].equipItemViewList;
                     break;
                 case ItemType.Consumption:
-                    _dataList = InventoryManager.Instance.GetConsumptionList(); 
+                    _dataList = new List<ItemData>(); 
+                    _dataList.Add(InventoryManager.Instance.GetEquipArrow()); 
                     _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Consumption].equipItemViewList;
                     break;
                 case ItemType.Skill:
                     break;
                 case ItemType.Equipment:
-                    _dataList = InventoryManager.Instance.GetEquipmentList(); 
+                    _dataList = InventoryManager.Instance.GetEquipItemList(); 
                     _slotList = inventoryGridSlotsPr.InvenPanelDic[ItemType.Equipment].equipItemViewList;
                     break;
                 case ItemType.Accessories:

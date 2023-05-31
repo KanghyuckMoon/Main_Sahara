@@ -264,18 +264,23 @@ using Inventory;
         
         private bool CheckColorTag(string _fullText)
         {
-            if (_fullText.Contains("<color"))
-            {
-            }
-             //   _fullText.Insert()
+            bool _hasColorTag = false || _fullText.Contains("<color");
+            
+            //   _fullText.Insert()
             for (int i = 0; i < _fullText.Length; i++)
             {
-                if (_fullText[i] == '<')
+                if ((_fullText[i] == '<' && _fullText[i+1] == 'c') 
+                    || (_fullText[i] == '<' && _fullText[i+1] == '/' && _fullText[i+2] == 'c'))
                 {
+                    // color 태그 찾아 
+                    int  _tagEndIdx = _fullText.IndexOf('>', i);
+                    fullText = _fullText.Insert(_tagEndIdx + 1, TransStr);
+                    _fullText = fullText;  
+                    i = _tagEndIdx + 1; 
                 }
             }
 
-            return true; 
+            return _hasColorTag; 
         }
         /// <summary>
         /// 대화텍스트 애니메이션 
@@ -289,22 +294,13 @@ using Inventory;
             string _targetText = ""; 
             isTexting = true;
 
-            for (int i = 0; i <= fullText.Length; i++)
+            // 컬러 태그 있나 
+            bool _is = CheckColorTag(fullText);
+
+            for (int i = 0; i < fullText.Length; i++)
             {
-                /*if (isRIchText == true)
-                {
-                    if (fullText[i] == '>')
-                    {
-                        isRIchText = false;
-                    }
-                    continue; 
-                }
+                // 태그는 표시X - >  건너뛰기 
                 if (fullText[i] == '<')
-                {
-                    isRIchText = true; 
-                    continue;
-                }*/
-                /*if (fullText[i] == '<')
                 {
                     // 태그 길이 구하기 
                     int tagEndIndex = fullText.IndexOf('>', i);
@@ -314,9 +310,17 @@ using Inventory;
                         i = tagEndIndex + 1;
                     }
         
-                    int nextTagEndIndex = fullText.IndexOf('>', i);
-                    i = nextTagEndIndex + 1; 
-                }*/
+                    // 타이핑 애니메이션을 위한 alpha 태그 있으면 삭제하기 
+                    //int nextTagEndIndex = fullText.IndexOf('>', i);
+                    // i = nextTagEndIndex + 1;
+                    if (fullText[i] == '<' && fullText[i + 1] == 'a')
+                    {
+                        int _endIdx = fullText.IndexOf('>', i);
+                        fullText = fullText.Remove(i, _endIdx- i +1);
+                        //var replace = fullText.Replace(TransStr, "");
+                    }   
+                    
+                }
 
                 _targetText = fullText.Substring(0, i) + TransStr + fullText.Substring(i);// + TransEndStr;
                 
@@ -330,10 +334,12 @@ using Inventory;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Debug.Log("For 텍스트");
                 yield return w;
             }
+            this.dialogueView.SetDialogueTextA(fullText);
+
             isTexting = false;
         }
 
-        IEnumerator TypeText()
+        IEnumerator SetRichText()
         {
             if (string.IsNullOrEmpty(fullText)) yield break;
 

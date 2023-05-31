@@ -15,11 +15,7 @@ namespace AI
 			return Selector
 			(
 				IgnoreAction(Reset),
-				IfSelector(CheckIsUsePath, 
-					IfAction(FollowCondition, TrackMoveRun), 
-					IfAction(() => FollowCondition(2f), TrackMoveWalk), 
-					Action(MoveReset)),
-				//IfAction(CheckIsUsePath, MoveReset),
+				IfAction(CheckIsUsePath, TrackMove),
 				IgnoreAction(MoveReset),
 				Action(FollowMove)
 			);

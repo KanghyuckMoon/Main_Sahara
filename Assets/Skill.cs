@@ -7,14 +7,12 @@ public class Skill : StateMachineBehaviour
 {
     private StateModule stateModule;
     private AbMainModule mainModule;
-    private EndSkillAnimation endSkillAnimation;
-    
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
-        stateModule.AddState(State.SKILL);
         stateModule.AddState(State.ATTACK);
         mainModule.SetActiveAnimatorRoot(1);
     }
@@ -24,18 +22,11 @@ public class Skill : StateMachineBehaviour
         mainModule ??= animator.GetComponent<AbMainModule>();
         
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-
-        endSkillAnimation ??= animator.gameObject.GetComponentInChildren<EndSkillAnimation>();
         
         stateModule.RemoveState(State.SKILL);
         stateModule.RemoveState(State.ATTACK);
         
         animator.SetBool("WeaponSkill", false);
         animator.SetBool("Skill", false);
-
-        if (endSkillAnimation != null)
-        {
-            endSkillAnimation.EndEvent();
-        }
     }
 }

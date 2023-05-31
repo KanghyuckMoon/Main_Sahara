@@ -29,8 +29,8 @@ namespace UI
             marker.style.position = Position.Absolute;
             _parent.Add(marker);
 
-            width = (int)(_marker.bounds.size.x * 400);
-            height = (int)(_marker.bounds.size.y * 400);
+            width = (int)(_marker.bounds.size.x * 100);
+            height = (int)(_marker.bounds.size.y * 100);
             
             marker.ElementAt(0).style.width = new StyleLength(width);
             marker.ElementAt(0).style.height = new StyleLength(height);

@@ -12,7 +12,7 @@ namespace Interaction
 	{
 		public bool Enabled
 		{
-			get
+			get	
 			{
 				return isEnabled;
 			}

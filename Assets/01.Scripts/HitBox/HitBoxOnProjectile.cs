@@ -56,7 +56,7 @@ namespace HitBox
 			}
 			catch (Exception e)
 			{
-				Debug.LogError(e, gameObject);
+				Debug.LogWarning(e, gameObject);
 			}
 		}
 
@@ -111,7 +111,7 @@ namespace HitBox
 				}
 				catch (Exception e)
 				{
-					Debug.LogError(e);
+					Debug.LogWarning(e);
 					break;
 				}
 			}
@@ -137,10 +137,6 @@ namespace HitBox
 
 					inGameHitBoxeList.Add(_ingameHitBox);
 				}
-			}
-			else
-			{
-				Debug.LogError("Projectile Str is null", gameObject);
 			}
 			isSetHitbox = true;
 		}
