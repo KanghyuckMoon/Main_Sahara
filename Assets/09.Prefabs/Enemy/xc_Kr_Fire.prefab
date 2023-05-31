@@ -1582,6 +1582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: xc_Kr_Fire_DataSO
+  playerdata: {fileID: 0}
 --- !u!114 &2670562217599034947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1649,11 +1650,14 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0
+  groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
@@ -1668,6 +1672,7 @@ MonoBehaviour:
   visualObject: {fileID: 2534940286479682690}
   model: {fileID: 3794945222221765327}
   animator: {fileID: 2670562217599034949}
+  jumpstrenght: 0
   leftFeet: {fileID: 7643545743871187951}
   rightFeet: {fileID: 1014867136350796167}
   back: {fileID: 0}
@@ -1686,7 +1691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef56343958c367e418ff20342b29680e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionSO: {fileID: 11400000, guid: c5cc3ce57176e474bb83e9e26402be33, type: 2}
+  positionSO: {fileID: 11400000, guid: 97167444ee32e2446923a692b1707bc9, type: 2}
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
