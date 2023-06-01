@@ -1,5 +1,102 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &243032218287182993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582297163318152747}
+  - component: {fileID: 4592378293919203726}
+  - component: {fileID: 1756281757232280900}
+  - component: {fileID: 429064741902161315}
+  m_Layer: 0
+  m_Name: ClothBelt_Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &582297163318152747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243032218287182993}
+  m_LocalRotation: {x: 0.09537523, y: -0.08816565, z: 0.5968985, w: 0.791734}
+  m_LocalPosition: {x: 1.142, y: -0.303, z: -0.056}
+  m_LocalScale: {x: 0.41, y: 0.41, z: 0.41}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 3540381545402449245}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 14.849, y: -1.526, z: 73.827}
+--- !u!33 &4592378293919203726
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243032218287182993}
+  m_Mesh: {fileID: -1147026967900084577, guid: 80b71d4026c75d240bf0bb7ffd2ad384, type: 3}
+--- !u!23 &1756281757232280900
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243032218287182993}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8820ab02d9e70284dac3b10802539db9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &429064741902161315
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243032218287182993}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7739994, y: 0.21797116, z: 0.62095183}
+  m_Center: {x: 0.0012096073, y: 2.8965242, z: 0.038729426}
 --- !u!1 &3540381545402449233
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +110,7 @@ GameObject:
   - component: {fileID: 3540381545402449247}
   - component: {fileID: 3540381545402449246}
   m_Layer: 14
-  m_Name: ClothBelt_Drop
+  m_Name: ClothBelt_DROP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,65 +183,3 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &3540381544615303957
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3540381545402449245}
-    m_Modifications:
-    - target: {fileID: 3638515707511000964, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_Name
-      value: ClothBelt_Model
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.142
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.303
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.056
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.791734
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.09537523
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.08816565
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5968985
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 14.849
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -1.526
-      objectReference: {fileID: 0}
-    - target: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 73.827
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
---- !u!4 &582297163318152747 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4122282872473064766, guid: 6b43381dc829edb40bed3c7aa04df0b6, type: 3}
-  m_PrefabInstance: {fileID: 3540381544615303957}
-  m_PrefabAsset: {fileID: 0}

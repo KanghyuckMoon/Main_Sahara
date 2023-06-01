@@ -26,6 +26,9 @@ namespace Module
         private CameraModule cameraModule;
         private WeaponModule weaponModule;
 
+        [SerializeField, Header("Enemy Only")] private bool isUseHeight;
+        [SerializeField, Header("IsUseHeightOn")] private float height;
+
         private float delay = 0.1f;
         private bool canSpwon;
 
@@ -128,7 +131,16 @@ namespace Module
             }
             else
             {
-                _vec = transform.forward;
+                //if (isUseHeight)
+                //{
+                //    _vec = transform.position + transform.forward;
+                //    _vec.y = PlayerObj.Player.transform.position.y + height;
+                //}
+                //else
+                //{
+                //    _vec = transform.position + transform.forward;
+                //}
+                _vec = PlayerObj.Player.transform.position + Vector3.up * height;
             }
 
             foreach (GameObject _projectile in projectileObjects)

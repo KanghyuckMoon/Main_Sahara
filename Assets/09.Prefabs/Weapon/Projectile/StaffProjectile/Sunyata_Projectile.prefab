@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7735412403476677359}
   - component: {fileID: 199331208633570713}
   - component: {fileID: -209244977778162291}
+  - component: {fileID: 3896972817521798675}
   m_Layer: 0
   m_Name: Sunyata_Projectile
   m_TagString: Untagged
@@ -77,6 +78,7 @@ MonoBehaviour:
     InitialDirection: {x: 0, y: 0, z: 1}
     speed: 10
     projectileAddress: Sunyata_Projectile
+    isParentOn: 1
   rigidbody: {fileID: 1164028467344829982}
   affectedByGravity: 0
   address: Sunyata_Projectile
@@ -95,9 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: dba269804c1448140b3893657b020ce5, type: 2}
   hitboxString: Col
-  owner: {fileID: 0}
+  owner: {fileID: 1164028467344829973}
   isTimeIndexCange: 0
-  isOnEnalbe: 0
+  isOnEnalbe: 1
 --- !u!114 &-209244977778162291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +113,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effName: Projectile_03
+--- !u!135 &3896972817521798675
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164028467344829973}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7706828345151788942
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: 03621f138d83762479aab581dbbfb1e0, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: 03621f138d83762479aab581dbbfb1e0, type: 3}
       propertyPath: m_BoundingSphereOverride.z
@@ -279,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 135713622178651324, guid: 03621f138d83762479aab581dbbfb1e0, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 135713622178651324, guid: 03621f138d83762479aab581dbbfb1e0, type: 3}
       propertyPath: m_IsTrigger
@@ -295,6 +310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54347867007870338, guid: 03621f138d83762479aab581dbbfb1e0, type: 3}
+    - {fileID: 135713622178651324, guid: 03621f138d83762479aab581dbbfb1e0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03621f138d83762479aab581dbbfb1e0, type: 3}
 --- !u!4 &5767043214703209117 stripped
 Transform:

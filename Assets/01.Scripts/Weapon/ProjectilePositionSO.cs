@@ -47,6 +47,10 @@ namespace Weapon
                 _projectileObjectDataList.list.Add(ProjectileObjectData.StaticCopy(_projectileObjectData));
                 projectilePosDic.Add(_projectileObjectData.projectileName, _projectileObjectDataList);
             }
+            
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
         }
     }
 
@@ -73,6 +77,8 @@ namespace Weapon
         public float speed;
 
         public string projectileAddress;
+
+        public bool isParentOn = true;
 
         public static ProjectileObjectData StaticCopy(ProjectileObjectData _projectileObjectData)
         {
