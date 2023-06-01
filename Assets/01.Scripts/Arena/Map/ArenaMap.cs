@@ -24,19 +24,19 @@ namespace Arena
 
         private void Start()
         {
-            Init(false); 
+            StartCoroutine(Init(false)); 
             //installationList = 
         }
 
 
         public void StartArena()
         {
-            Init(true);
+            StartCoroutine(Init(true));
         }
 
         public void CompleteArena()
         {
-            Init(false);
+            StartCoroutine(Init(false));
         }
 
         public bool CheckCondition()
@@ -44,19 +44,22 @@ namespace Arena
             return true; 
         }
 
-        private void Init(bool _isActive)
+        private IEnumerator Init(bool _isActive)
         {
             isActive = _isActive; 
-            gameObject.SetActive(isActive);
-
             if (_isActive == true)
             {
+                gameObject.SetActive(isActive);
                 particle.Play();
             }
             else
             {
-                particle.Stop();
+                particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                yield return new WaitForSeconds(1f); 
+                gameObject.SetActive(isActive);
             }
+
+
         }
 
     }
