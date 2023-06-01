@@ -41,8 +41,8 @@ namespace UI.Inventory
         {
             // 초기화
             //modelList.Clear();
-            inventoryCam = _invenCam.Find("ModelParent"); 
-            allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
+            inventoryCam = _invenCam.Find("ModelParent");
+            allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");   
             
           //  return;   
             // 생성 

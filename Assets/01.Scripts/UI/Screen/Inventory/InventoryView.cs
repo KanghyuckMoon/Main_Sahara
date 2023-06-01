@@ -108,6 +108,8 @@ namespace UI.Inventory
             // 아이템 드랍시 실행할 함수 초기화 
             InitCallbackDic();
             UpdateEquipUI(); 
+            
+  
         }
 
         public override void ActiveScreen(bool _isActive)
