@@ -74,6 +74,8 @@ namespace Weapon
 
         public string projectileAddress;
 
+        public bool isParentOn = true;
+
         public static ProjectileObjectData StaticCopy(ProjectileObjectData _projectileObjectData)
         {
             ProjectileObjectData _data = new ProjectileObjectData();
