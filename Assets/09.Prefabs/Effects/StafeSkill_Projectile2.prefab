@@ -14647,6 +14647,8 @@ GameObject:
   - component: {fileID: 3289122330750330910}
   - component: {fileID: 3289122330750330905}
   - component: {fileID: 3289122330750330911}
+  - component: {fileID: 133900869337511042}
+  - component: {fileID: 8743410573430856860}
   m_Layer: 0
   m_Name: StafeSkill_Projectile2
   m_TagString: Untagged
@@ -19559,8 +19561,10 @@ MonoBehaviour:
     InitialDirection: {x: 0, y: 0, z: 10}
     speed: 9
     projectileAddress: DarkFireBall_1
+    isParentOn: 1
   rigidbody: {fileID: 0}
   affectedByGravity: 0
+  deleteDelay: 10
   address: DarkFireBall_1
   hitEffectAddress: ShockHitEffect
 --- !u!54 &3289122330750330905
@@ -19593,9 +19597,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: dba269804c1448140b3893657b020ce5, type: 2}
   hitboxString: SkillProjectile
-  owner: {fileID: 0}
+  owner: {fileID: 3289122330750330902}
   isTimeIndexCange: 0
-  isOnEnalbe: 0
+  isOnEnalbe: 1
+--- !u!114 &133900869337511042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289122330750330902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8abe38ec69872c4693a59dc02e47331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followRotationSpeed: 3
+  rigid: {fileID: 3289122330750330905}
+  addHeight: 0.5
+--- !u!135 &8743410573430856860
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289122330750330902}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4799632033949966327
 GameObject:
   m_ObjectHideFlags: 0
