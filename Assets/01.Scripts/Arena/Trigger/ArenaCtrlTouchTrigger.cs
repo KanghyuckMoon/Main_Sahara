@@ -90,6 +90,7 @@ namespace Arena
 
         private void OnCollisionEnter(Collision collision)
         {
+            Debug.Log("@@@@@@@@@@@@Trigger Col");
             if (collision.transform.CompareTag(targetTag))
             {
                 Interact(); 
@@ -98,6 +99,7 @@ namespace Arena
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            Debug.Log("@@@@@@@@@@@@Trigger Col");
             // CollisionEnter
             // 충돌 안했던 상태에서 플레이어와 충돌시
             if (hit.transform.CompareTag(targetTag) && isCollision == false)

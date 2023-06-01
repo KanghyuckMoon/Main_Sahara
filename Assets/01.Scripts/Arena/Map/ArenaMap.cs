@@ -5,46 +5,45 @@ using UnityEngine;
 
 namespace Arena
 {
-    public class ArenaMap : MonoBehaviour, IArenaMap,IObserble
+    public class ArenaMap : MonoBehaviour, IArenaMap,Observer
     {
         private ParticleSystem particle;
-        private List<Observer> observerList = new List<Observer>();
         private bool isActive = false;
 
-        [Header("탐색 해야할 요소들")]
-        [SerializeField] private List<GameObject> installationList = new List<GameObject>();
+        //[Header("탐색 해야할 요소들")]
+        //[SerializeField] private List<GameObject> installationList = new List<GameObject>();
         // 프로퍼티 
         public bool IsActive => isActive;
-        public List<Observer> Observers => observerList; 
 
-        private void Awake()
+        protected virtual void Awake()
         {
             particle = GetComponentInChildren<ParticleSystem>(); 
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             StartCoroutine(Init(false)); 
             //installationList = 
         }
 
 
-        public void StartArena()
+        public virtual void StartArena()
         {
+            gameObject.SetActive(true);
             StartCoroutine(Init(true));
         }
 
-        public void CompleteArena()
+        public virtual  void CompleteArena()
         {
             StartCoroutine(Init(false));
         }
 
-        public bool CheckCondition()
+        public virtual bool CheckCondition()
         {
             return true; 
         }
 
-        private IEnumerator Init(bool _isActive)
+        protected virtual IEnumerator Init(bool _isActive)
         {
             isActive = _isActive; 
             if (_isActive == true)
@@ -62,6 +61,9 @@ namespace Arena
 
         }
 
+        public virtual void Receive()
+        {
+        }
     }
     
 }
