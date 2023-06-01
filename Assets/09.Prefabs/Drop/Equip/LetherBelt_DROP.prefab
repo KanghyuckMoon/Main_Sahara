@@ -1,5 +1,102 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4089908767824807834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3713665353184992544}
+  - component: {fileID: 299011513825055365}
+  - component: {fileID: 2576826629906736719}
+  - component: {fileID: 4952742455358933818}
+  m_Layer: 0
+  m_Name: LetherBelt_Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3713665353184992544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089908767824807834}
+  m_LocalRotation: {x: 0.09537523, y: -0.08816565, z: 0.5968985, w: 0.791734}
+  m_LocalPosition: {x: 1.142, y: -0.303, z: -0.056}
+  m_LocalScale: {x: 0.41, y: 0.41, z: 0.41}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8108397269221404531}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 14.849, y: -1.526, z: 73.827}
+--- !u!33 &299011513825055365
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089908767824807834}
+  m_Mesh: {fileID: -1147026967900084577, guid: 80b71d4026c75d240bf0bb7ffd2ad384, type: 3}
+--- !u!23 &2576826629906736719
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089908767824807834}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4b4cc465c74e42249b5687b875ff2e78, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4952742455358933818
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089908767824807834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7739994, y: 0.21797116, z: 0.62095183}
+  m_Center: {x: 0.0012096073, y: 2.8965242, z: 0.038729426}
 --- !u!1 &8108397269221404543
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +110,7 @@ GameObject:
   - component: {fileID: 8108397269221404541}
   - component: {fileID: 8108397269221404540}
   m_Layer: 14
-  m_Name: LetherBelt_Drop
+  m_Name: LetherBelt_DROP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,65 +183,3 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &8108397268508329395
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8108397269221404531}
-    m_Modifications:
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.142
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.303
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.056
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.791734
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.09537523
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.08816565
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5968985
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 14.849
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -1.526
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 73.827
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207452003992322601, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-      propertyPath: m_Name
-      value: LetherBelt_Model
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
---- !u!4 &3713665353184992544 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4832158636055435411, guid: af7bdee0d3d507e4a8f1a6114029ed55, type: 3}
-  m_PrefabInstance: {fileID: 8108397268508329395}
-  m_PrefabAsset: {fileID: 0}

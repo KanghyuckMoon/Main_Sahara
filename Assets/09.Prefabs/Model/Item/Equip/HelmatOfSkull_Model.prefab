@@ -9,10 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 340577291308591594}
-  - component: {fileID: 3681167853409297999}
-  - component: {fileID: 1509503989062603397}
-  - component: {fileID: -1608044850418387259}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HelmatOfSkull_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,28 +24,95 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149026559453246288}
   m_LocalRotation: {x: -0.11250355, y: 0.75104475, z: 0.64147836, w: 0.10853719}
-  m_LocalPosition: {x: -0.02156046, y: 1.8847753, z: -0.524632}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6635118392655056041}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -81.107, y: -186.946, z: -371.093}
---- !u!33 &3681167853409297999
+--- !u!1 &1441829413142205369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6635118392655056041}
+  m_Layer: 11
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6635118392655056041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441829413142205369}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8528320916896243624}
+  m_Father: {fileID: 340577291308591594}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5088209038554800895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8528320916896243624}
+  - component: {fileID: 9189290468217472427}
+  - component: {fileID: 5507983478368735475}
+  - component: {fileID: 5258598028841225890}
+  m_Layer: 11
+  m_Name: HelmatOfSkull_Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8528320916896243624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088209038554800895}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.27, y: -0.05, z: 1.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6635118392655056041}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -81.107, y: -186.946, z: -371.093}
+--- !u!33 &9189290468217472427
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149026559453246288}
+  m_GameObject: {fileID: 5088209038554800895}
   m_Mesh: {fileID: 1270225522308307561, guid: f2c7232ba7bd7a44588c8a03224dda89, type: 3}
---- !u!23 &1509503989062603397
+--- !u!23 &5507983478368735475
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149026559453246288}
+  m_GameObject: {fileID: 5088209038554800895}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,13 +148,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-1608044850418387259
+--- !u!65 &5258598028841225890
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149026559453246288}
+  m_GameObject: {fileID: 5088209038554800895}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

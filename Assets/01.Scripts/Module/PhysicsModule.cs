@@ -268,7 +268,7 @@ namespace Module
                 var _slopeLimit = mainModule.CharacterController.slopeLimit;
                 mainModule.IsSlope = _angle <= _slopeLimit;
 
-                Debug.LogError(_raycastHit.normal);
+                //Debug.LogError(_raycastHit.normal);
 
                 mainModule.SlopeVector =
                     new Vector3(_raycastHit.normal.x, mainModule.Gravity, _raycastHit.normal.z) * 5f;
