@@ -56,6 +56,11 @@ namespace AI
 		{
 		    return aiModule.MainModule.Attacking;
 		}
+		private bool CheckAttackState()
+		{
+		    return aiModule.MainModule.GetModuleComponent<StateModule>(ModuleType.State).CheckState(State.ATTACK);
+		}
+		
 		private bool CheckStrongAttacking()
 		{
 		    return aiModule.MainModule.StrongAttacking;
@@ -94,6 +99,16 @@ namespace AI
 			Vector3 targetPos = aiModule.Player.position;
 			
 			if ((targetPos - Position).sqrMagnitude < aiSO.AttackRadius * aiSO.AttackRadius)
+			{
+				return true;
+			}
+			return false;
+		}
+		private bool AttackRange2Condition() //Make
+		{
+			Vector3 targetPos = aiModule.Player.position;
+			
+			if ((targetPos - Position).sqrMagnitude < aiSO.AttackRadius2 * aiSO.AttackRadius2)
 			{
 				return true;
 			}
