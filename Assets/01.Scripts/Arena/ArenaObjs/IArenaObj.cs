@@ -6,7 +6,7 @@ namespace Arena
 {
     public interface IArenaObj : IObserble
     {
-        
+                
     }    
 }
 

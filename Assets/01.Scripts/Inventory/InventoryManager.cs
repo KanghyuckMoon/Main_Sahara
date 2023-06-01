@@ -560,10 +560,10 @@ namespace Inventory
 			{
 				return false;
 			}
-			if (inventorySO.accessories[3] is not null && inventorySO.accessories[3].key == _itemData.key)
+			/*if (inventorySO.accessories[3] is not null && inventorySO.accessories[3].key == _itemData.key)
 			{
 				return false;
-			}
+			}*/
 
 			CheckSameAccessories(_itemData);
 			RemoveAccessories(_index);
