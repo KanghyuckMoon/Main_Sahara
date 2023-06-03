@@ -85,6 +85,24 @@ namespace Inventory
 				}
 			}
 		}
+		public StateModule PlayerStateModule
+		{
+			get
+			{
+				if (Player is null)
+				{
+					return null;
+				}
+				else
+				{
+					if (stateModule is null)
+					{
+						stateModule = Player?.GetComponentInChildren<AbMainModule>()?.GetModuleComponent<StateModule>(ModuleType.State);
+					}
+					return stateModule;
+				}
+			}
+		}
 		public InventoryEventTransmit InventoryEventTransmit
 		{
 			get
@@ -101,6 +119,7 @@ namespace Inventory
 		private WeaponModule weaponModule;
 		private EquipmentModule equipmentModule;
 		private ItemModule itemModule;
+		private StateModule stateModule;
 
 		private AllItemDataSO allItemDataSO;
 		private InventorySO inventorySO;
@@ -142,6 +161,11 @@ namespace Inventory
 			if (Input.GetKeyDown(KeyCode.G))
 			{
 				//CurrentItemDrop();
+			}
+			
+			if(PlayerStateModule.CheckState(State.ATTACK, State.SKILL, State.CHARGE))
+			{
+				return;
 			}
 
 			float wheel = Input.GetAxisRaw("Mouse ScrollWheel");
