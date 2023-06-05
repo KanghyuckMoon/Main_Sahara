@@ -75,8 +75,14 @@ namespace UI
             markerSetComp.UpdateMarker();
         }
 
+        /// <summary>
+        /// 마커 스크롤 위에서 스크롤 하면
+        /// 맵 스크롤 말고 마커 스크롤 되도록 하기 위해 
+        /// </summary>
+        private bool isScrollOver = false;
         public void UpdateUI()
         {
+        //    mapView.Scroll.RegisterCallback<MouseOverEvent>((x) => { })
             ElementCtrlComponent.Update();
             markerSetComp.Update();
             LineCreateManager.Instance.UpdateLinesPos(ScreenType.Map, (Vector2)mapView.Map.transform.position); 

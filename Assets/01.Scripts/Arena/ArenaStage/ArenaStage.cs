@@ -47,7 +47,7 @@ namespace Arena
             {
                 InactiveAll();
                 return; 
-                // 다 비활성화 
+                        // 다 비활성화 
             }
 
             ActiveCurArena();
