@@ -12,6 +12,11 @@ namespace UI.UtilManager
     {
         private static float width => Screen.width;
         private static float height => Screen.height; 
+        public static void SendEvent(RadioButtonGroup _btn)
+        {
+            using (var e = new NavigationSubmitEvent() { target = _btn })
+                _btn.SendEvent(e);
+        }
         public static void SendEvent(RadioButton _btn)
         {
             using (var e = new NavigationSubmitEvent() { target = _btn })
