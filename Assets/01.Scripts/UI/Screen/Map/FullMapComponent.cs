@@ -80,10 +80,20 @@ namespace UI
         /// 맵 스크롤 말고 마커 스크롤 되도록 하기 위해 
         /// </summary>
         private bool isScrollOver = false;
+
+        private void SetIsScrollOver(bool _true)
+        {
+            isScrollOver = _true; 
+        }
         public void UpdateUI()
         {
-        //    mapView.Scroll.RegisterCallback<MouseOverEvent>((x) => { })
-            ElementCtrlComponent.Update();
+            mapView.Scroll.RegisterCallback<MouseOverEvent>((x) => { SetIsScrollOver(true); });
+            mapView.Scroll.RegisterCallback<MouseLeaveEvent>((x) => { SetIsScrollOver(false); });
+
+            if (isScrollOver == false)
+            {
+                ElementCtrlComponent.Update();
+            }
             markerSetComp.Update();
             LineCreateManager.Instance.UpdateLinesPos(ScreenType.Map, (Vector2)mapView.Map.transform.position); 
             LineCreateManager.Instance.UpdateLinesScale(ScreenType.Map, (Vector2)mapView.Map.transform.scale);
