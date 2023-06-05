@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,15 @@ namespace Weapon
 
         private void Awake()
         {
-            projectilePosSO = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
+            try
+            {
+                Debug.Log("projectile", gameObject);
+                projectilePosSO = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e, gameObject);
+            }
         }
         
         public ProjectileObjectData objectData;

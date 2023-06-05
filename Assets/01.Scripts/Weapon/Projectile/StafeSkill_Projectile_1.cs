@@ -16,6 +16,8 @@ namespace Weapon
         [SerializeField, Header("중력의 영향을 받는가?")]
         private bool affectedByGravity;
 
+        [SerializeField] private float deleteDelay = 10f;
+        
         private void Start()
         {
             rigidbody = GetComponent<Rigidbody>();
@@ -30,6 +32,7 @@ namespace Weapon
             //col ??= GetComponent<SphereCollider>();
             if (rigidbody is not null) rigidbody.velocity = Vector3.zero;
             if (col is not null) col.enabled = false;
+            StopCoroutine(nameof(PoolItem));
         }
 
         public void MovingFunc(Vector3 _vector3)
@@ -76,28 +79,26 @@ namespace Weapon
                 }
             }*/
 
-            /*if (other.gameObject.CompareTag("Ground"))
-            {
-                ObjectPoolManager.Instance.RegisterObject(address, gameObject);
-                gameObject.SetActive(false);
-                //EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
-                return;
-            }*/
+            //if (other.gameObject.CompareTag("Ground"))
+            //{
+            //    ObjectPoolManager.Instance.RegisterObject(address, gameObject);
+            //    gameObject.SetActive(false);
+            //    EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
+            //    return;
+            //}
         }
 
 
         private void OnDisable()
         {
-            StopCoroutine(nameof(PoolItem));
         }
 
         IEnumerator PoolItem()
         {
-            yield return new WaitForSeconds(17f);
+            yield return new WaitForSeconds(deleteDelay);
             ObjectPoolManager.Instance.RegisterObject(address, gameObject);
             gameObject.SetActive(false);
-            //EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
-            
+            EffectManager.Instance.SetEffectDefault(hitEffectAddress, transform.position, Quaternion.identity);
         }
     }
 }

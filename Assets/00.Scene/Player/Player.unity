@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -251,6 +251,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  isUseHeight: 0
+  height: 0
 --- !u!114 &39652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22075,6 +22077,7 @@ GameObject:
   - component: {fileID: 1572420781}
   - component: {fileID: 1572420782}
   - component: {fileID: 1572420783}
+  - component: {fileID: 1572420784}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -22329,6 +22332,20 @@ MonoBehaviour:
   cinemachineTargetGroup: {fileID: 776647738}
   playerModule: {fileID: 39656}
   target: {fileID: 0}
+--- !u!114 &1572420784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572420777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348202dc81c30f34fae59b13df6ee67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 1215583281}
+  zoomDistance: 2
 --- !u!1 &1584020869
 GameObject:
   m_ObjectHideFlags: 0
@@ -23630,6 +23647,7 @@ MonoBehaviour:
     InitialDirection: {x: 0, y: 2, z: 100}
     speed: 160
     projectileAddress: Arrow
+    isParentOn: 1
   model: {fileID: 329918046}
   rigidbody: {fileID: 1619835449}
   usingGravity: 0
@@ -27297,6 +27315,7 @@ MonoBehaviour:
     InitialDirection: {x: 0, y: 2, z: 100}
     speed: 160
     projectileAddress: Arrow
+    isParentOn: 1
   model: {fileID: 133688479}
   rigidbody: {fileID: 1759128882}
   usingGravity: 0

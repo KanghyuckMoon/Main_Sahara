@@ -72,6 +72,18 @@ namespace Module
             }
         }
 
+        public ProjectileGenerator ProjectileGenerator
+        {
+            get
+            {
+                if (projectileGenerator == null)
+                {
+                    projectileGenerator = mainModule.GetComponent<ProjectileGenerator>();
+                }
+                return projectileGenerator;
+            }
+        }
+
         #region private º¯¼ö
         private int animationIndex;
         private string currentWeaponName;
@@ -142,7 +154,7 @@ namespace Module
                 BaseWeapon.tagName = _tagname;
                 HitBoxOnAnimation _hitBoxOnAnimation = mainModule.GetComponent<HitBoxOnAnimation>();
                 _hitBoxOnAnimation?.ChangeSO(BaseWeapon.HitBoxDataSO);
-                projectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
+                ProjectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
                 mainModule.GetComponent<AnimationOnEffect>().ChangeSO(BaseWeapon.AnimationEffectSO);
 
                 StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
