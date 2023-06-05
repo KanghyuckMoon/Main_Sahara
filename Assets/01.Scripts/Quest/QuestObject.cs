@@ -21,7 +21,8 @@ namespace Quest
 
         private void CheckQuestState()
         {
-            switch (QuestManager.Instance.questDataDic[questKey].QuestState)
+            var _questData = QuestManager.Instance.questDataDic[questKey];
+            switch (_questData.QuestState)
             {
                 default:
                 case QuestState.Disable:

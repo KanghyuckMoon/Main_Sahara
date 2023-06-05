@@ -141,23 +141,23 @@ namespace Interaction
 			}
 		}
 
-		private void OnDrawGizmos()
-		{
-			if (Application.isEditor)
-			{
-				if (!Application.isPlaying)
-				{
-					return;
-				}
-			}
-
-
-			if (Player == null)
-			{
-				return;
-			}
-			Gizmos.DrawWireSphere(_player.position, _radius);
-		}
+		//private void OnDrawGizmos()
+		//{
+		//	if (Application.isEditor)
+		//	{
+		//		if (!Application.isPlaying)
+		//		{
+		//			return;
+		//		}
+		//	}
+		//
+		//
+		//	if (Player == null)
+		//	{
+		//		return;
+		//	}
+		//	Gizmos.DrawWireSphere(_player.position, _radius);
+		//}
 
 		public void Execute()
 		{
