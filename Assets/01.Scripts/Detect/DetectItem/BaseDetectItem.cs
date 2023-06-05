@@ -89,7 +89,7 @@ namespace Detect
 
         protected bool isGetOut = false;
         
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             if (isSpawnDic.TryGetValue(key, out bool _bool))
             {

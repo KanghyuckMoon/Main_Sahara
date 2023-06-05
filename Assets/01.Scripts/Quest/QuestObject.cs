@@ -13,9 +13,10 @@ namespace Quest
     {
         [SerializeField]
         private string questKey;
-        
-        void Start()
+
+        private IEnumerator Start()
         {
+            yield return new WaitForEndOfFrame();
             CheckQuestState();
         }
 

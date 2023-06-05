@@ -13,7 +13,7 @@ namespace Detect
         [SerializeField] private GameObject rewardObj;
         [SerializeField] private int changeLayer;
         private int originMask;
-        protected override void Start()
+        protected override void Awake()
         {
             originMask = targetModel.gameObject.layer;
         }
