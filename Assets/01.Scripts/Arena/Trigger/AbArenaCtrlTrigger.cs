@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Arena
@@ -15,6 +16,8 @@ namespace Arena
         [SerializeField]
         private ArenaMap _arenaMap;
 
+        public UnityEvent activeTriggerEvent = null; 
+        public UnityEvent inactiveTriggerEvent = null; 
         public ArenaInteractionType InteractionType => interactionType; 
         public IArenaMap connectArenaMap => _arenaMap;
        
@@ -28,9 +31,12 @@ namespace Arena
             Debug.Log("@@ 투기장 트리거 활성화");
             if (isStartArena == true)
             {
+                activeTriggerEvent?.Invoke();
                 connectArenaMap.StartArena();
+                
                 return; 
             }
+            inactiveTriggerEvent?.Invoke();
             connectArenaMap.CompleteArena();
         }
     }    

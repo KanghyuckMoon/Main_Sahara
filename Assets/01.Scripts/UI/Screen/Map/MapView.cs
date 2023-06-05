@@ -42,7 +42,7 @@ namespace UI
         public VisualElement MarkerSetPanel => GetVisualElement((int)Elements.marker_set_panel);
         public VisualElement MarkerSlotParent => GetVisualElement((int)Elements.slot_parent);
         public VisualElement GhostIcon => GetVisualElement((int)Elements.ghost_icon);
-        
+        public VisualElement Scroll => GetVisualElement((int)Elements.marker_scrollview);
         enum Elements
         {
             full_map_panel, 
@@ -56,7 +56,8 @@ namespace UI
             center_anchor, //  확대축소용 가운데 앵커 
             JJB,
             slot_parent,
-            ghost_icon
+            ghost_icon,
+            marker_scrollview
          //   paths
         }
 
