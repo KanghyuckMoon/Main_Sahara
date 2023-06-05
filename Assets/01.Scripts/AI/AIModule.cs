@@ -347,7 +347,7 @@ namespace Module
 			_rootNode = null;
 			talkModule = null;
 			base.OnDisable();
-			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
+			ClassPoolManager.Instance.RegisterObject<AIModule>(this);
 		}
 
 		public override void OnDestroy()
@@ -360,7 +360,7 @@ namespace Module
 			_rootNode = null;
 			talkModule = null;
 			base.OnDestroy();
-			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
+			ClassPoolManager.Instance.RegisterObject<AIModule>(this);
 		}
 
 		public void SetSmoothPath(int index)

@@ -92,7 +92,7 @@ namespace Module
             saveData = null;
             mainModule = null;
             base.OnDisable();
-            ClassPoolManager.Instance.RegisterObject<StatModule>("StatModule", this);
+            ClassPoolManager.Instance.RegisterObject<StatModule>(this);
         }
     }
 }

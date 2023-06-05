@@ -129,7 +129,7 @@ namespace Spawner
 			GameObject obj = ObjectPoolManager.Instance.GetObject(_randomMonsterData.enemyAddress);
 			ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
 			objectClassCycle.TargetObject = obj;
-			ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
+			ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>();
 			if (_objectSceneChecker is null)
 			{
 				_objectSceneChecker = new ObjectSceneChecker();

@@ -69,7 +69,7 @@ namespace Module
             mainModule = null;
 
             base.OnDisable();
-            Pool.ClassPoolManager.Instance.RegisterObject<InputModule>("InputModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<InputModule>(this);
         }
 	}
 }

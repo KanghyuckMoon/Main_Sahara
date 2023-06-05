@@ -102,7 +102,7 @@ namespace Streaming
 			{
 				UnUse();
 				ObjectPoolManager.Instance.RegisterObject(objectData.address, objectClassCycle.gameObject);
-				ClassPoolManager.Instance.RegisterObject<ObjectSceneChecker>("ObjectSceneChecker", this);
+				ClassPoolManager.Instance.RegisterObject<ObjectSceneChecker>(this);
 			}
 			else
 			{

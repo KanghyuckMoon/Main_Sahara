@@ -165,7 +165,7 @@ namespace Module {
             equipPositions.Clear();
             equipItem.Clear();
             base.OnDisable();
-            ClassPoolManager.Instance.RegisterObject<EquipmentModule>("EquipmentModule", this);
+            ClassPoolManager.Instance.RegisterObject<EquipmentModule>(this);
         }
 
         public override void OnDestroy()
@@ -177,7 +177,7 @@ namespace Module {
             equipPositions.Clear();
             equipItem.Clear();
             base.OnDestroy();
-            ClassPoolManager.Instance.RegisterObject<EquipmentModule>("EquipmentModule", this);
+            ClassPoolManager.Instance.RegisterObject<EquipmentModule>(this);
         }
 
         #region Trash

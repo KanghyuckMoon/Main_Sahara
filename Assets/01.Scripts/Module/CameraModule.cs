@@ -268,7 +268,7 @@ namespace Module
             mainModule = null;
             zoomVCam = null;
             base.OnDisable();
-            Pool.ClassPoolManager.Instance.RegisterObject<CameraModule>("CameraModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<CameraModule>(this);
         }
         public override void OnDestroy()
         {
@@ -277,7 +277,7 @@ namespace Module
             zoomVCam = null;
             mainModule = null;
             base.OnDestroy();
-            Pool.ClassPoolManager.Instance.RegisterObject<CameraModule>("CameraModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<CameraModule>(this);
         }
     }
 }

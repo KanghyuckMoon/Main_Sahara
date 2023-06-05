@@ -117,6 +117,29 @@ namespace Module
 
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
+        public override void OnDisable()
+        {
+            stateModule = null;
+            animator = null;
+            statData = null;
+            mainModule = null;
+
+            //base.OnDisable();
+
+            Pool.ClassPoolManager.Instance.RegisterObject<RotationFreeMoveModule>(this);
+        }
+
+        public override void OnDestroy()
+        {
+            stateModule = null;
+            animator = null;
+            statData = null;
+            mainModule = null;
+
+            //base.OnDestroy();
+
+            Pool.ClassPoolManager.Instance.RegisterObject<RotationFreeMoveModule>(this);
+        }
     }
 
 }
