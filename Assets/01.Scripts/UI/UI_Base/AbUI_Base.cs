@@ -258,6 +258,11 @@ namespace UI.Base
         {
             Bind<ScrollView>(_type);
         }
+
+        protected void BindRadioButtonGroups(Type _type)
+        {
+            Bind<RadioButtonGroup>(_type); 
+        }
         /// <summary>
         /// element 가져오기 (idx는 enum을 통해 ) 
         /// </summary>
@@ -288,6 +293,10 @@ namespace UI.Base
         protected RadioButton GetRadioButton(int _idx)
         {
             return Get<RadioButton>(_idx); 
+        }
+        protected RadioButtonGroup GetRadioButtonGroup(int _idx)
+        {
+            return Get<RadioButtonGroup>(_idx); 
         }
         protected Label GetLabel(int _idx)
         {
