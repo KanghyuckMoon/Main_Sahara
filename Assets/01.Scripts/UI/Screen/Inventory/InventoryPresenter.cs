@@ -6,7 +6,8 @@ using System;
 using Inventory;
 using UI.EventManage;
 using UI.Base;
-using UnityEngine.PlayerLoop;
+    using UI.UtilManager;
+    using UnityEngine.PlayerLoop;
 
 namespace UI.Inventory
 {

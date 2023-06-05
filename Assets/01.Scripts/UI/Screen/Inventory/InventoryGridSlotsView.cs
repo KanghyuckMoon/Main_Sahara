@@ -8,6 +8,7 @@ using UI.Production;
 using UI.ConstructorManager;
 using System;
 using UI.Base;
+using UI.UtilManager;
 
 namespace UI.Inventory
 {
@@ -73,6 +74,7 @@ namespace UI.Inventory
             SendEvent();
             InitBtnPos();
             InitScrollSpeed();  
+            UIUtil.SendEvent(GetRadioButton((int)RadioButtons.weapon_button));
         }
 
         private void InitScrollSpeed()

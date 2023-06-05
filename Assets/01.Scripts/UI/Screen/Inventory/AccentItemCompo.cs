@@ -15,7 +15,7 @@ namespace UI.Inventory
 
         public St_Transform(Transform _trm)
         {
-            position = _trm.position;
+            position = _trm.localPosition;
             rotation = _trm.rotation; 
         }
     }
@@ -41,8 +41,8 @@ namespace UI.Inventory
         {
             // 초기화
             //modelList.Clear();
-            inventoryCam = _invenCam.Find("ModelParent"); 
-            allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");
+            inventoryCam = _invenCam.Find("ModelParent");
+            allItemDataSO = AddressablesManager.Instance.GetResource<AllItemDataSO>("AllItemDataSO");   
             
           //  return;   
             // 생성 
@@ -167,7 +167,7 @@ namespace UI.Inventory
             {
                 _model.Value.SetActive(false);
                 // 위치 회전 초기화 
-                _model.Value.transform.position = modelTrmDic[_model.Key].position;
+                _model.Value.transform.localPosition = modelTrmDic[_model.Key].position;
                 _model.Value.transform.rotation = modelTrmDic[_model.Key].rotation;
             }
             curActiveModel = null; 
