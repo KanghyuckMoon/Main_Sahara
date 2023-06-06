@@ -1,6 +1,6 @@
 .markers_active_btn {
-    width: 30px;
-    height: 60px;
+    width: 40px;
+    height: 100px;
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
@@ -20,11 +20,13 @@
     transition-duration: 0.2s;
     right: 100%;
     position: absolute;
+    background-color: rgba(0, 0, 0, 0.78);
 }
 
 .markers_active_btn:hover {
-    scale: 1.1 1.2;
+    scale: 1 1.05;
     transform-origin: right;
+    background-color: rgba(36, 36, 36, 0.86);
 }
 
 .select_icon {
@@ -91,7 +93,7 @@
 .markerset_panel {
     height: 100%;
     width: 400px;
-    left: 0;
+    left: 0%;
     transition-property: left;
     transition-duration: 0.2s;
 }
@@ -149,4 +151,17 @@
 
 .delete_marker {
     -unity-background-image-tint-color: rgba(255, 112, 112, 0.9);
+}
+
+.marker_slot_parent {
+    position: relative;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    cursor: url('project://database/Packages/com.unity.timeline/Editor/StyleSheets/Images/DarkSkin/TimelineAutokey@2x.png?fileID=2800000&guid=af24c542434a025448222d576f61a956&type=3#TimelineAutokey@2x');
 }

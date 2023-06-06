@@ -215,7 +215,7 @@ namespace Quest
 			if (_questData.QuestState == QuestState.Active || _questData.QuestState == QuestState.Clear || _questData.QuestState == QuestState.Achievable)
 			{
 				return;
-			}
+			}	
 			_questData.QuestState = QuestState.Active;
 			Send();
 			SendEvent("PopupUIManager", _questData);

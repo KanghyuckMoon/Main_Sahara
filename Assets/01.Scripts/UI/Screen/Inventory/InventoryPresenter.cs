@@ -6,7 +6,8 @@ using System;
 using Inventory;
 using UI.EventManage;
 using UI.Base;
-using UnityEngine.PlayerLoop;
+    using UI.UtilManager;
+    using UnityEngine.PlayerLoop;
 
 namespace UI.Inventory
 {
@@ -26,6 +27,11 @@ namespace UI.Inventory
         // 프로퍼티 
         public IUIController UIController { get; set; }
 
+        [ContextMenu("버튼 초기화 테스트 ")]
+        public void Test()
+        {
+            inventoryView.GridPr.GridView.InitButton();
+        }
         private void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>();

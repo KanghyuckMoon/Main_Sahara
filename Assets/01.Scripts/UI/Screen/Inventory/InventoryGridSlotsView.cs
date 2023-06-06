@@ -8,6 +8,8 @@ using UI.Production;
 using UI.ConstructorManager;
 using System;
 using UI.Base;
+using UI.UtilManager;
+using Utill.Coroutine;
 
 namespace UI.Inventory
 {
@@ -48,6 +50,11 @@ namespace UI.Inventory
             //소비
             //기타
         }
+
+        public enum RadioButtonGroups
+        {
+            inventory_select_group
+        }
         enum ScrollViews
         {
                 inventory_scroll_panel
@@ -64,6 +71,7 @@ namespace UI.Inventory
             BindVisualElements(typeof(Elements));
             BindRadioButtons(typeof(RadioButtons));
             BindScrollViews(typeof(ScrollViews));
+            BindRadioButtonGroups(typeof(RadioButtonGroups));
         }
 
         public override void Init()
@@ -72,9 +80,17 @@ namespace UI.Inventory
             AddButtonEvents();
             SendEvent();
             InitBtnPos();
-            InitScrollSpeed();  
+            InitScrollSpeed();
+            
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(InitButton());
         }
 
+        public IEnumerator InitButton()
+        {
+            yield return new WaitForSeconds(0.5f); 
+            UIUtil.SendEvent(GetRadioButton((int)RadioButtons.armor_button));
+            UIUtil.SendEvent(GetRadioButton((int)RadioButtons.weapon_button));
+        }
         private void InitScrollSpeed()
         {
             GetScrollView((int)ScrollViews.inventory_scroll_panel).verticalPageSize = 1; 
