@@ -85,7 +85,7 @@ namespace Module
             buffList.Clear();
             observers.Clear();
             base.OnDisable();
-            ClassPoolManager.Instance.RegisterObject<BuffModule>("BuffModule", this);
+            ClassPoolManager.Instance.RegisterObject<BuffModule>(this);
         }
         
         public override void OnDestroy()
@@ -94,7 +94,7 @@ namespace Module
             buffList.Clear();
             observers.Clear();
             base.OnDestroy();
-            ClassPoolManager.Instance.RegisterObject<BuffModule>("BuffModule", this);
+            ClassPoolManager.Instance.RegisterObject<BuffModule>(this);
         }
     }
 }

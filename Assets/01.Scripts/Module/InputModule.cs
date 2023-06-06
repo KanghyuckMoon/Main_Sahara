@@ -69,7 +69,18 @@ namespace Module
             mainModule = null;
 
             base.OnDisable();
-            Pool.ClassPoolManager.Instance.RegisterObject<InputModule>("InputModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject(this);
+        }
+
+        public override void OnDestroy()
+        {
+            attackModule = null;
+            stateModule = null;
+            playerInput = null;
+            mainModule = null;
+
+            base.OnDestroy();
+            Pool.ClassPoolManager.Instance.RegisterObject(this);
         }
 	}
 }

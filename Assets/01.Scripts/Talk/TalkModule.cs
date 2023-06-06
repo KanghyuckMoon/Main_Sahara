@@ -248,7 +248,7 @@ namespace Module.Talk
 			talkWithCutScene = null;
 			pathAction = null;
 			base.OnDisable();
-			ClassPoolManager.Instance.RegisterObject<TalkModule>("TalkModule", this);
+			ClassPoolManager.Instance.RegisterObject<TalkModule>(this);
 		}
 
 		public override void OnDestroy()
@@ -259,7 +259,7 @@ namespace Module.Talk
 			talkWithCutScene = null;
 			pathAction = null;
 			base.OnDestroy();
-			ClassPoolManager.Instance.RegisterObject<TalkModule>("TalkModule", this);
+			ClassPoolManager.Instance.RegisterObject<TalkModule>(this);
 		}
 	}
 }

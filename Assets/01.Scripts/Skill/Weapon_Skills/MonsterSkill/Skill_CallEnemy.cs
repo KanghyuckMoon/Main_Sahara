@@ -55,7 +55,7 @@ namespace Skill
             GameObject _obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
             ObjectClassCycle objectClassCycle = _obj.GetComponentInChildren<ObjectClassCycle>();
             objectClassCycle.TargetObject = _obj;
-            ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
+            ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>();
             if (_objectSceneChecker is null)
             {
                 _objectSceneChecker = new ObjectSceneChecker();
