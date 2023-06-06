@@ -16,7 +16,11 @@ namespace AI
 			(
 				IgnoreAction(Reset),
 				IfAction(() => ParamCondition(CheckIsUsePath, FollowCondition), TrackMove),
-				IgnoreAction(MoveReset),
+				IfSelector(CheckIsUsePath, 
+					IfAction(FollowCondition, TrackMoveRun), 
+					IfAction(() => FollowCondition(2f), TrackMoveWalk), 
+					Action(MoveReset)),
+				//IgnoreAction(MoveReset),
 				Action(FollowMove)
 			);
 		}

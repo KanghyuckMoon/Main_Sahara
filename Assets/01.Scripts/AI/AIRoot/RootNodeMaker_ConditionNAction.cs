@@ -882,6 +882,8 @@ namespace AI
 			}
 		}
 
+		
+		
 		private void RageOn()
 		{
 			isRage = true;
