@@ -18,7 +18,7 @@ namespace CondinedModule
         protected override void ModuleAdd()
         {
 	        base.ModuleAdd();
-            AddModuleWithPool<ShopModule>(ModuleType.Shop, "ShopModule", shopSOAddress);
+            AddModuleWithPool<ShopModule>(ModuleType.Shop, shopSOAddress);
         }
     }
 

@@ -57,19 +57,19 @@ namespace CondinedModule
 
         protected virtual void ModuleAdd()
         {
-	        AddModuleWithPool<AIModule>(ModuleType.Input, "AIModule");
-	        AddModuleWithPool<MoveModule>(ModuleType.Move, "MoveModule");
-	        AddModuleWithPool<StatModule>(ModuleType.Stat, "StatModule");
-	        AddModuleWithPool<JumpModule>(ModuleType.Jump, "JumpModule");
-	        AddModuleWithPool<HpModule>(ModuleType.Hp, "HpModule");
-	        AddModuleWithPool<AnimationModule>(ModuleType.Animation, "AnimationModule");
-	        AddModuleWithPool<PhysicsModule>(ModuleType.Physics, "PhysicsModule");
-	        AddModuleWithPool<UIModule>(ModuleType.UI, "UIModule", null);
-	        AddModuleWithPool<AttackModule>(ModuleType.Attack, "AttackModule");
-	        AddModuleWithPool<WeaponModule>(ModuleType.Weapon, "WeaponModule");
-	        AddModuleWithPool<HitModule>(ModuleType.Hit, "HitModule");
-	        AddModuleWithPool<StateModule>(ModuleType.State, "StateModule");
-	        AddModuleWithPool<TalkModule>(ModuleType.Talk, "TalkModule", textSOAddress);
+	        AddModuleWithPool<AIModule>(ModuleType.Input);
+	        AddModuleWithPool<MoveModule>(ModuleType.Move);
+	        AddModuleWithPool<StatModule>(ModuleType.Stat);
+	        AddModuleWithPool<JumpModule>(ModuleType.Jump);
+	        AddModuleWithPool<HpModule>(ModuleType.Hp);
+	        AddModuleWithPool<AnimationModule>(ModuleType.Animation);
+	        AddModuleWithPool<PhysicsModule>(ModuleType.Physics);
+	        AddModuleWithPool<UIModule>(ModuleType.UI, null);
+	        AddModuleWithPool<AttackModule>(ModuleType.Attack);
+	        AddModuleWithPool<WeaponModule>(ModuleType.Weapon);
+	        AddModuleWithPool<HitModule>(ModuleType.Hit);
+	        AddModuleWithPool<StateModule>(ModuleType.State);
+	        AddModuleWithPool<TalkModule>(ModuleType.Talk, textSOAddress);
         }
     }
 

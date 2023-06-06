@@ -285,14 +285,14 @@ namespace Module
 				rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
 			}
 			
-			AIModuleHostileState = AIModule.AIHostileState.Unknow;
-			MainModule.ObjDir = Vector3.zero;
 		}
 
 		public override void Start()
 		{
 			base.Start();
 			Init(mainModule);
+			AIModuleHostileState = AIModule.AIHostileState.Unknow;
+			MainModule.ObjDir = Vector3.zero;
 		}
 
 		public void SetNode(INode _node)
