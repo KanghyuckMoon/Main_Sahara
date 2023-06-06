@@ -152,43 +152,28 @@ namespace Module
         }
         public bool IsSlope
         {
-            get
-            {
-                return isSlope;
-            }
-            set
-            {
-                isSlope = value;
-            }
+            get => isSlope;
+            set => isSlope = value;
+        }
+
+        public int CanCrawlTheWall
+        {
+            get => canCrawlTheWall;
+            set => canCrawlTheWall = value;
         }
         public bool IsJumpBuf
         {
-            get
-            {
-                return isJumpBuf;
-            }
-            set
-            {
-                isJumpBuf = value;
-            }
+            get => isJumpBuf;
+            set => isJumpBuf = value;
         }
         public bool CanMove
         {
-            get
-            {
-                return canMove;
-            }
-            set
-            {
-                canMove = value;
-            }
+            get => canMove;
+            set => canMove = value;
         }
         public bool IsDead
         {
-            get
-            {
-                return isDead;
-            }
+            get => isDead;
             set
             {
                 isDead = value;
@@ -630,6 +615,9 @@ namespace Module
         public float knockBackPower;
         [SerializeField, Header("바닥 경사")]
         private Vector3 slopeVector;
+
+        [SerializeField, Header("벽을 오를수 있는가?(0, 1)")]
+        private int canCrawlTheWall = 0;
 
         [Space]
         public float hitDelay;

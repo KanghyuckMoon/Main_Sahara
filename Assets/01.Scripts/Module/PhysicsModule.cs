@@ -255,27 +255,23 @@ namespace Module
             var _ray = new Ray(_rayPos, Vector3.down);
             var _ray1 = new Ray(_rayPos, _transform.forward);
 
-
-            if (Physics.Raycast(_ray, out var _raycastHit, 0.3f, mainModule.groundLayer))
+            if (Physics.Raycast(_ray, out var _raycastHit, 0.5f, mainModule.groundLayer))
             {
                 var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
 
                 previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance, mainModule.groundLayer)
                     ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
                     : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
-                mainModule.Animator.SetFloat("GrounDegree", previousAngle);
+                mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
 
                 var _slopeLimit = mainModule.CharacterController.slopeLimit;
                 mainModule.IsSlope = _angle <= _slopeLimit;
 
-                //Debug.LogError(_raycastHit.normal);
-
                 mainModule.SlopeVector =
-                    new Vector3(_raycastHit.normal.x, mainModule.Gravity, _raycastHit.normal.z) * 5f;
+                    new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z);
             }
             else
             {
-                //Debug.LogError("�ȴ�ƴ�ƴ��");
                 mainModule.IsSlope = true;
             }
             Debug.DrawRay(_rayPos, Vector3.down, Color.red);
