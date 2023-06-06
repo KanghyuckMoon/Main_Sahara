@@ -42,6 +42,10 @@ namespace Module
         public StateModule() : base() { }
 
 
+        public int StateCount()
+        {
+            return CurrentState.Count;
+        }
 
         public bool CheckState(State _state)
         {
