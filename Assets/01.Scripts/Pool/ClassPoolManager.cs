@@ -37,7 +37,14 @@ namespace Pool
             Queue<object> queue;
             if (classQueueDic.TryGetValue(nameof(T), out queue) && queue.Count > 0)
             {
-                return (T)queue.Dequeue();
+                try
+                {
+                    return (T)queue.Dequeue();
+                }
+                catch
+                {
+                    return null;
+                }
             }
             else
             {

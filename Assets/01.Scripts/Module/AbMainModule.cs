@@ -835,7 +835,7 @@ namespace Module
         protected void AddModuleWithPool<T>(ModuleType _moduleType, params string[] _parameters) where T : AbBaseModule, new()
         {
             T _module = ClassPoolManager.Instance.GetClass<T>();
-            if (_module is null)
+            if (_module == null)
             {
                 _module = new T();
             }
