@@ -90,7 +90,7 @@ namespace Module
             weaponSkill = null;
             stateModule = null;
             base.OnDisable();
-            ClassPoolManager.Instance.RegisterObject<SkillModule>("SkillModule", this);
+            ClassPoolManager.Instance.RegisterObject<SkillModule>(this);
         }
         
         public override void OnDestroy()
@@ -99,7 +99,7 @@ namespace Module
             weaponSkill = null;
             stateModule = null;
             base.OnDestroy();
-            ClassPoolManager.Instance.RegisterObject<SkillModule>("SkillModule", this);
+            ClassPoolManager.Instance.RegisterObject<SkillModule>(this);
         }
         
     }

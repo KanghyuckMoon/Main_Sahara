@@ -152,43 +152,28 @@ namespace Module
         }
         public bool IsSlope
         {
-            get
-            {
-                return isSlope;
-            }
-            set
-            {
-                isSlope = value;
-            }
+            get => isSlope;
+            set => isSlope = value;
+        }
+
+        public int CanCrawlTheWall
+        {
+            get => canCrawlTheWall;
+            set => canCrawlTheWall = value;
         }
         public bool IsJumpBuf
         {
-            get
-            {
-                return isJumpBuf;
-            }
-            set
-            {
-                isJumpBuf = value;
-            }
+            get => isJumpBuf;
+            set => isJumpBuf = value;
         }
         public bool CanMove
         {
-            get
-            {
-                return canMove;
-            }
-            set
-            {
-                canMove = value;
-            }
+            get => canMove;
+            set => canMove = value;
         }
         public bool IsDead
         {
-            get
-            {
-                return isDead;
-            }
+            get => isDead;
             set
             {
                 isDead = value;
@@ -631,6 +616,9 @@ namespace Module
         [SerializeField, Header("바닥 경사")]
         private Vector3 slopeVector;
 
+        [SerializeField, Header("벽을 오를수 있는가?(0, 1)")]
+        private int canCrawlTheWall = 0;
+
         [Space]
         public float hitDelay;
 
@@ -832,10 +820,10 @@ namespace Module
         {
             moduleComponentsDic.Add(moduleType, baseModule);
         }
-        protected void AddModuleWithPool<T>(ModuleType _moduleType, string _moduleAddress, params string[] _parameters) where T : AbBaseModule, new()
+        protected void AddModuleWithPool<T>(ModuleType _moduleType, params string[] _parameters) where T : AbBaseModule, new()
         {
-            T _module = ClassPoolManager.Instance.GetClass<T>(_moduleAddress);
-            if (_module is null)
+            T _module = ClassPoolManager.Instance.GetClass<T>();
+            if (_module == null)
             {
                 _module = new T();
             }

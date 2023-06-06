@@ -84,8 +84,7 @@ namespace Module
 
 		private void InputJump()
 		{
-			if (StateModule.CheckState(State.ATTACK, State.CHARGE)) return;
-			if (!(mainModule.StopOrNot >= 1) || StateModule.CheckState(State.SKILL)) return;
+			if (!(mainModule.StopOrNot >= 1) || StateModule.StateCount() > 1) return;
 			var _inputup = InputManager.Instance.CheckKey("Jump");
 
 			mainModule.IsJump = _inputup;

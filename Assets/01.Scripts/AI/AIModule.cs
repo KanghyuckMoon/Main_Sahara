@@ -285,14 +285,14 @@ namespace Module
 				rootNodeMaker.Init((_mainModule as IEnemy).AIAddress);
 			}
 			
-			AIModuleHostileState = AIModule.AIHostileState.Unknow;
-			MainModule.ObjDir = Vector3.zero;
 		}
 
 		public override void Start()
 		{
 			base.Start();
 			Init(mainModule);
+			AIModuleHostileState = AIModule.AIHostileState.Unknow;
+			MainModule.ObjDir = Vector3.zero;
 		}
 
 		public void SetNode(INode _node)
@@ -347,7 +347,7 @@ namespace Module
 			_rootNode = null;
 			talkModule = null;
 			base.OnDisable();
-			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
+			ClassPoolManager.Instance.RegisterObject(this);
 		}
 
 		public override void OnDestroy()
@@ -360,7 +360,7 @@ namespace Module
 			_rootNode = null;
 			talkModule = null;
 			base.OnDestroy();
-			ClassPoolManager.Instance.RegisterObject<AIModule>("AIModule", this);
+			ClassPoolManager.Instance.RegisterObject(this);
 		}
 
 		public void SetSmoothPath(int index)

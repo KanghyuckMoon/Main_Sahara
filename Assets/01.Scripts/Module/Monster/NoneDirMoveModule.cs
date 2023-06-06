@@ -178,7 +178,7 @@ namespace Module
         public override void OnDisable()
         {
             base.OnDisable();
-            ClassPoolManager.Instance.RegisterObject<NoneDirMoveModule>("NoneDirMoveModule", this);
+            ClassPoolManager.Instance.RegisterObject<NoneDirMoveModule>(this);
         }
     }
 }

@@ -49,9 +49,9 @@ namespace PassiveItem
                 {
                     if (count > 0)
                     {
+                        Jumping();
                         stateModule.AddState(State.JUMP);
                         count--;
-                        Jumping();
                     }
                 }
             }
@@ -59,8 +59,8 @@ namespace PassiveItem
             {
                 if (mainModule.IsJump)
                 {
-                    stateModule.AddState(State.JUMP);
                     Jumping();
+                    stateModule.AddState(State.JUMP);
                     count--;
                 }
             }

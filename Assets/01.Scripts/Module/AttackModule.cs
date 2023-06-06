@@ -140,7 +140,7 @@ namespace Module
             projectileObject = null;
             mainModule = null;
 			base.OnDisable();
-            Pool.ClassPoolManager.Instance.RegisterObject<AttackModule>("AttackModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<AttackModule>(this);
 		}
 	}
 }

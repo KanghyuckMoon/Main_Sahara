@@ -148,7 +148,7 @@ namespace Module
             statModule = null;
             animationModule = null;
             base.OnDisable();
-            ClassPoolManager.Instance.RegisterObject<HitModule>("HitModule", this);
+            ClassPoolManager.Instance.RegisterObject<HitModule>(this);
         }
     }
 }
