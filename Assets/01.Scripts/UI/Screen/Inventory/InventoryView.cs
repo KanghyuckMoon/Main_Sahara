@@ -72,7 +72,7 @@ namespace UI.Inventory
             BindVisualElements(typeof(Elements));
             BindScrollViews(typeof(ScrollViews));
             BindLabels(typeof(Labels));
-            Bind<RadioButtonGroup>(typeof(RadioButtonGroups));
+            BindRadioButtonGroups(typeof(RadioButtonGroups));
         }
 
         public override void Init()
@@ -255,35 +255,37 @@ namespace UI.Inventory
                 if(_list[i].name == "ArrowSlot")
                 {
                     _slotIPr.SetSlotType(ItemType.Consumption); 
+                    _slotIPr.SetEquipSlotType(new ItemType[]{ItemType.Weapon, ItemType.Consumption});
                     AddEquipSlotEvt(_slotIPr, ItemType.Consumption);
                 }
                 else
                 {
                     _slotIPr.SetSlotType(ItemType.Weapon);
+                    _slotIPr.SetEquipSlotType(new ItemType[]{ItemType.Weapon, ItemType.Consumption});
                     AddEquipSlotEvt(_slotIPr, ItemType.Weapon);
                 }
 
             }
             List<VisualElement> _armorList = GetVisualElement((int)Elements.armor_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
-            AddEquipSlotsEvt(_armorList, ItemType.Equipment);
+            AddEquipSlotsEvt(_armorList, ItemType.Equipment,new ItemType[]{ItemType.Equipment});
            // List<VisualElement> _skillList = GetVisualElement((int)Elements.skill_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
             //AddEquipSlotsEvt(_skillList, ItemType.Skill);
             List<VisualElement> _accesList = GetVisualElement((int)Elements.accessoire_equip_panel).Query<VisualElement>(className: "quick_slot_transition").ToList();
-            AddEquipSlotsEvt(_accesList, ItemType.Accessories);
-
-            
+            AddEquipSlotsEvt(_accesList, ItemType.Accessories,new ItemType[]{ItemType.Accessories});
         }
 
-        private void AddEquipSlotsEvt(List<VisualElement> _list, ItemType _itemType)
+        private void AddEquipSlotsEvt(List<VisualElement> _list, ItemType _itemType,ItemType[] _equipTypeArr = null)
         {
             for (int i = 0; i < _list.Count(); i++)
             {
                 SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
                 _slotIPr.SetSlotType(_itemType);
+                _slotIPr.SetEquipSlotType(_equipTypeArr);
 
                 AddEquipSlotEvt(_slotIPr, _itemType);
             }
         }
+        
         private void AddEquipSlotEvt(SlotItemPresenter _slotPr,ItemType _itemType)
         {
             _slotPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
@@ -341,8 +343,15 @@ namespace UI.Inventory
                 // 가장 가깝게 드랍한 슬롯 
                 SlotItemPresenter _closedSlot = _slots.OrderBy(x =>
                     Vector2.Distance(x.Item.worldBound.position, dragItemPresenter.Item.worldBound.position)).First();
-                
-                var _isSuccessed = slotCallbackDic[_closedSlot.SlotType]?.Invoke(dragItemPresenter.ItemData, _closedSlot.Index);
+
+                // 장착 성공 여부 ( 같은 타입의 아이템인지) 
+                Nullable<bool> _isSuccessed = false; 
+                foreach (var _type in _closedSlot.EquipTypeList)
+                {
+                     _isSuccessed =slotCallbackDic[_type]?.Invoke(dragItemPresenter.ItemData, _closedSlot.Index);
+                     if (_isSuccessed == true) break; 
+                }
+                //_isSuccessed = slotCallbackDic[_closedSlot.SlotType]?.Invoke(dragItemPresenter.ItemData, _closedSlot.Index);
                    
                 // SO 데이터도 설정
                 //InventoryMana ger.Instance.SetQuickSlotItem(_closedSlot.ItemData, _closedSlot.Index);

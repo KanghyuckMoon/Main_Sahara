@@ -8,6 +8,7 @@ using GoogleSpreadSheet;
 using Utill.Addressable;
 using UI.ConstructorManager;
 using System;
+using System.Linq;
 using UI.Base;
 
 namespace UI.Inventory
@@ -18,12 +19,14 @@ namespace UI.Inventory
         private VisualElement parent;
         private ItemData itemData;
         private ItemType slotType = ItemType.None;
+        private List<ItemType> equipTypeList = new List<ItemType>();
 
         private bool isIcon = false; // 실사이미지 : true, 흰색 이미지 : false
         private int index;
 
         // 프로퍼티 
         public ItemType SlotType => slotType;
+        public List<ItemType> EquipTypeList => equipTypeList; 
         public int Index => index;
         public SlotItemView SlotItemView => slotItemView;
 
@@ -71,7 +74,6 @@ namespace UI.Inventory
         /// <param name="_v"></param>
         public SlotItemPresenter(VisualElement _v)
         {
-
             slotItemView = new SlotItemView(_v);
         }
 
@@ -94,6 +96,11 @@ namespace UI.Inventory
             }
         }
 
+        public void SetEquipSlotType(ItemType[] _typeArr)
+        {
+            equipTypeList = _typeArr.ToList(); 
+        }
+
         public void SetSlotType(ItemType _type)
         {
             this.slotType = _type;
@@ -109,9 +116,10 @@ namespace UI.Inventory
         {
             if (itemData == null || itemData.key == null)
             {
-                ClearData(); 
+                ClearData();
                 return;
-            } 
+            }
+
             slotItemView.IsStackable = itemData.IsStackble;
             if (itemData.spriteKey == "") return;
             string _imgAdress = isIcon is false ? itemData.spriteKey : itemData.iconKey;
@@ -119,12 +127,13 @@ namespace UI.Inventory
             slotItemView.SetSpriteAndText(AddressablesManager.Instance.GetResource<Texture2D>(_imgAdress),
                 itemData.count);
         }
+
         public void SetItemData(ItemData _itemData, bool _isIcon = false)
         {
             this.itemData = _itemData;
             this.isIcon = _isIcon;
-        
-            UpdateUI(); 
+
+            UpdateUI();
         }
 
         public void RemoveView()
