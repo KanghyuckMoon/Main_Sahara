@@ -32,29 +32,36 @@ namespace Pool
             return count;
 		}
 
-        public T GetClass<T>(string key) where T : class
+        public T GetClass<T>() where T : class
         {
             Queue<object> queue;
-            if (classQueueDic.TryGetValue(key, out queue) && queue.Count > 0)
+            if (classQueueDic.TryGetValue(nameof(T), out queue) && queue.Count > 0)
             {
-                return (T)queue.Dequeue();
+                try
+                {
+                    return (T)queue.Dequeue();
+                }
+                catch
+                {
+                    return null;
+                }
             }
             else
             {
-                queue = MakeQueue(key);
+                queue = MakeQueue(nameof(T));
                 return null;
             }
         }
-        public void RegisterObject<T>(string key, T cl) where T : class
+        public void RegisterObject<T>(T cl) where T : class
         {
             Queue<object> queue;
-            if (classQueueDic.TryGetValue(key, out queue))
+            if (classQueueDic.TryGetValue(nameof(T), out queue))
             {
                 queue.Enqueue(cl);
             }
             else
             {
-                queue = MakeQueue(key);
+                queue = MakeQueue(nameof(T));
                 queue.Enqueue(cl);
             }
         }

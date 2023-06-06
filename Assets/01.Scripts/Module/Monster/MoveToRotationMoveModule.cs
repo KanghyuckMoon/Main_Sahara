@@ -151,9 +151,9 @@ namespace Module
             statData = null;
             mainModule = null;
 
-            base.OnDisable();
+            //base.OnDisable();
 
-            Pool.ClassPoolManager.Instance.RegisterObject<MoveToRotationMoveModule>("MoveToRotationMoveModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<MoveToRotationMoveModule>(this);
         }
 
         public override void OnDestroy()
@@ -163,9 +163,9 @@ namespace Module
             statData = null;
             mainModule = null;
 
-            base.OnDestroy();
+            //base.OnDestroy();
 
-            Pool.ClassPoolManager.Instance.RegisterObject<MoveToRotationMoveModule>("MoveToRotationMoveModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<MoveToRotationMoveModule>(this);
         }
     }
     

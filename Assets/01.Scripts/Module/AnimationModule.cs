@@ -106,7 +106,7 @@ namespace Module
             mainModule = null;
             (StaticTime.Instance as IObserble).RemoveObserver(this);
             base.OnDisable();
-            ClassPoolManager.Instance.RegisterObject<AnimationModule>("AnimationModule", this);
+            ClassPoolManager.Instance.RegisterObject<AnimationModule>(this);
         }
         public override void OnDestroy()
         {
@@ -114,7 +114,7 @@ namespace Module
             mainModule = null;
             (StaticTime.Instance as IObserble).RemoveObserver(this);
             base.OnDestroy();
-            ClassPoolManager.Instance.RegisterObject<AnimationModule>("AnimationModule", this);
+            ClassPoolManager.Instance.RegisterObject<AnimationModule>(this);
         }
     }
 }

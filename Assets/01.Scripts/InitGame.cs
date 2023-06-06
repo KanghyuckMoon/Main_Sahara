@@ -10,22 +10,22 @@ public class InitGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ClassPoolManager.Instance.RegisterObject("InputModule", new InputModule());
-        ClassPoolManager.Instance.RegisterObject("MoveModule", new MoveModule());
-        ClassPoolManager.Instance.RegisterObject("StatModule", new StatModule());
-        ClassPoolManager.Instance.RegisterObject("CameraModule", new CameraModule());
-        ClassPoolManager.Instance.RegisterObject("JumpModule", new JumpModule());
-        ClassPoolManager.Instance.RegisterObject("HpModule", new HpModule());
-        ClassPoolManager.Instance.RegisterObject("AnimationModule", new AnimationModule());
-        ClassPoolManager.Instance.RegisterObject("PhysicsModule", new PhysicsModule());
-        ClassPoolManager.Instance.RegisterObject("UIModule", new UIModule());
-        ClassPoolManager.Instance.RegisterObject("AttackModule", new AttackModule());
-        ClassPoolManager.Instance.RegisterObject("WeaponModule", new WeaponModule());
-        ClassPoolManager.Instance.RegisterObject("ItemModule", new ItemModule());
-        ClassPoolManager.Instance.RegisterObject("EquipmentModule", new EquipmentModule());
-        ClassPoolManager.Instance.RegisterObject("StateModule", new StateModule());
-        ClassPoolManager.Instance.RegisterObject("SkillModule", new SkillModule());
-        ClassPoolManager.Instance.RegisterObject("BuffModule", new BuffModule());
+        ClassPoolManager.Instance.RegisterObject(new InputModule());
+        ClassPoolManager.Instance.RegisterObject(new MoveModule());
+        ClassPoolManager.Instance.RegisterObject(new StatModule());
+        ClassPoolManager.Instance.RegisterObject(new CameraModule());
+        ClassPoolManager.Instance.RegisterObject(new JumpModule());
+        ClassPoolManager.Instance.RegisterObject(new HpModule());
+        ClassPoolManager.Instance.RegisterObject(new AnimationModule());
+        ClassPoolManager.Instance.RegisterObject(new PhysicsModule());
+        ClassPoolManager.Instance.RegisterObject(new UIModule());
+        ClassPoolManager.Instance.RegisterObject(new AttackModule());
+        ClassPoolManager.Instance.RegisterObject(new WeaponModule());
+        ClassPoolManager.Instance.RegisterObject(new ItemModule());
+        ClassPoolManager.Instance.RegisterObject(new EquipmentModule());
+        ClassPoolManager.Instance.RegisterObject( new StateModule());
+        ClassPoolManager.Instance.RegisterObject(new SkillModule());
+        ClassPoolManager.Instance.RegisterObject(new BuffModule());
         
         EffectManager.Instance.SetEffectDefault("LandingSandVFX", transform.position, Quaternion.identity);
         EffectManager.Instance.SetEffectDefault("LandSandHitEffect", transform.position, Quaternion.identity);

@@ -201,7 +201,7 @@ namespace Streaming
 							_obj.ObjectClassCycle.TargetObject.SetActive(false);
 							_obj.ObjectClassCycle.RemoveObjectClass(_obj);
 							ObjectPoolManager.Instance.RegisterObject(_obj.ObjectData.address, _obj.ObjectClassCycle.TargetObject);
-							ClassPoolManager.Instance.RegisterObject("ObjectSceneChecker", _obj );
+							ClassPoolManager.Instance.RegisterObject(_obj );
 						}
 					}
 				}
@@ -234,7 +234,7 @@ namespace Streaming
 							_obj.ObjectClassCycle.TargetObject.SetActive(false);
 							_obj.ObjectClassCycle.RemoveObjectClass(_obj);
 							ObjectPoolManager.Instance.RegisterObject(_obj.ObjectData.address, _obj.ObjectClassCycle.TargetObject);
-							ClassPoolManager.Instance.RegisterObject("ObjectSceneChecker", _obj);
+							ClassPoolManager.Instance.RegisterObject(_obj);
 						}
 					}
 				}
@@ -278,7 +278,7 @@ namespace Streaming
 			ObjectClassCycle _objectClassCycle = gameObject.GetComponentInChildren<ObjectClassCycle>();
 			if (_objectClassCycle != null)
 			{
-				ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>("ObjectSceneChecker");
+				ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>();
 				if (_objectSceneChecker is null)
 				{
 					_objectSceneChecker = new ObjectSceneChecker();

@@ -130,12 +130,12 @@ namespace Module
                 _itemPassive?.Disable();
             }
             passiveItem.Clear();
-            ClassPoolManager.Instance.RegisterObject<ItemModule>("ItemModule", this);
+            ClassPoolManager.Instance.RegisterObject<ItemModule>(this);
         }
         
-        protected T GetItemWithPool<T>(string _itemAddress, params string[] _parameters) where T : ItemPassive, new()
+        protected T GetItemWithPool<T>(params string[] _parameters) where T : ItemPassive, new()
         {
-            T _module = ClassPoolManager.Instance.GetClass<T>(_itemAddress);
+            T _module = ClassPoolManager.Instance.GetClass<T>();
             if (_module is null)
             {
                 _module = new T();

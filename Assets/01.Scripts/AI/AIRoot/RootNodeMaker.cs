@@ -243,7 +243,7 @@ namespace AI
 				NodeAction.SetMoveDir => SetMoveDir,
 				NodeAction.RotateXYZ => RotateXYZ,
 				NodeAction.ModelRotateXYZ => ModelRotateXYZ,
-				NodeAction.TrackMove => TrackMove,
+				NodeAction.TrackMove => TrackMoveWalk,
 				NodeAction.AroundOriginPos => AroundOriginPos,
 				NodeAction.AroundLastFindPlayerPos => AroundLastFindPlayerPos,
 				NodeAction.SkillWeapon => SkillWeapon,

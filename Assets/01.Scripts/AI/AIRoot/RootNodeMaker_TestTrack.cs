@@ -15,7 +15,7 @@ namespace AI
 			return Selector
 			(
 				IgnoreAction(Reset), //¸®¼Â
-				Action(TrackMove)
+				Action(TrackMoveWalk)
 			);
 		}
 	}

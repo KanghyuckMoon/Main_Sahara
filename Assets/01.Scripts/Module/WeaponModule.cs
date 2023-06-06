@@ -245,7 +245,7 @@ namespace Module
             weaponRight = null;
             mainModule = null;
             base.OnDisable();
-            ClassPoolManager.Instance.RegisterObject<WeaponModule>("WeaponModule", this);
+            ClassPoolManager.Instance.RegisterObject<WeaponModule>(this);
         }
         public override void OnDestroy()
         {
@@ -257,7 +257,7 @@ namespace Module
             weaponRight = null;
             mainModule = null;
             base.OnDestroy();
-            ClassPoolManager.Instance.RegisterObject<WeaponModule>("WeaponModule", this);
+            ClassPoolManager.Instance.RegisterObject<WeaponModule>(this);
         }
     }
 }

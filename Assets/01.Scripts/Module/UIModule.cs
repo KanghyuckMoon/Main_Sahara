@@ -50,6 +50,8 @@ namespace Module
 		public override void Init(AbMainModule _mainModule, params string[] _parameters)
 		{
 			base.Init(_mainModule, _parameters);
+			isRender = false;
+			hudObject = null;
             if (_parameters is not null)
 			{
                 if(_parameters.Length > 0)
@@ -111,7 +113,7 @@ namespace Module
 		{
 			base.OnDisable();
             StaticCoroutineManager.Instance.InstanceDoCoroutine(IRegisterUI());
-            ClassPoolManager.Instance.RegisterObject<UIModule>("UIModule", this);
+            ClassPoolManager.Instance.RegisterObject<UIModule>(this);
         }
 
         private IEnumerator IRegisterUI()

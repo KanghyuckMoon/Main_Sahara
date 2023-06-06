@@ -820,10 +820,10 @@ namespace Module
         {
             moduleComponentsDic.Add(moduleType, baseModule);
         }
-        protected void AddModuleWithPool<T>(ModuleType _moduleType, string _moduleAddress, params string[] _parameters) where T : AbBaseModule, new()
+        protected void AddModuleWithPool<T>(ModuleType _moduleType, params string[] _parameters) where T : AbBaseModule, new()
         {
-            T _module = ClassPoolManager.Instance.GetClass<T>(_moduleAddress);
-            if (_module is null)
+            T _module = ClassPoolManager.Instance.GetClass<T>();
+            if (_module == null)
             {
                 _module = new T();
             }

@@ -152,7 +152,7 @@ namespace Module
             mainModule = null;
             jumpAction = null;
             base.OnDisable();
-            Pool.ClassPoolManager.Instance.RegisterObject<JumpModule>("JumpModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<JumpModule>(this);
         }
 
         public override void OnDestroy()

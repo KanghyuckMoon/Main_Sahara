@@ -344,7 +344,7 @@ namespace Module
             mainModule = null;
             landAction = null;
             base.OnDisable();
-            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>(this);
         }
         public override void OnDestroy()
         {
@@ -353,7 +353,7 @@ namespace Module
             mainModule = null;
             landAction = null;
             base.OnDestroy();
-            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>("PhysicsModule", this);
+            Pool.ClassPoolManager.Instance.RegisterObject<PhysicsModule>(this);
         }
 
         public void AddLandAction(System.Action action)
