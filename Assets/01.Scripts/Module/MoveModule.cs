@@ -108,7 +108,7 @@ namespace Module
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset) // && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 12.2f * mainModule.PersonalDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 10.2f * mainModule.PersonalDeltaTime);
             }
             else
             {
@@ -117,7 +117,7 @@ namespace Module
 
             //animationBlend = mainModule.isGround ? animationBlend : 0;
             animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed,
-                mainModule.PersonalDeltaTime * 9.5f);
+                mainModule.PersonalDeltaTime * 7.5f);
             if (animationBlend < 0.01f) animationBlend = 0f;
 
             #endregion
@@ -131,7 +131,7 @@ namespace Module
             targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
                              mainModule.ObjRotation.eulerAngles.y;
             rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity,
-                5.6f * mainModule.PersonalDeltaTime);
+                1.6f * mainModule.PersonalDeltaTime);
 
             if (!StateModule.CheckState(State.HIT, State.ATTACK, State.SKILL))
             {
