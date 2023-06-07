@@ -149,6 +149,10 @@ namespace UI.Inventory
             this.slotItemView.AddClickEvent(_callback);
         }
 
+        public void AddDoubleClicker2(Action _callback)
+        {
+            
+        }
         public void AddDoubleClicker(Action _callback)
         {
             this.slotItemView.RemoveCurManipulator();
