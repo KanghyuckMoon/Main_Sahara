@@ -21,7 +21,7 @@ namespace Detect
 
         protected float minDistance = 0f;
         
-        private void GetNearObject()
+        protected void GetNearObject()
         {
             GameObject obj = null;
             float minimumDistance = float.MaxValue;
@@ -59,7 +59,7 @@ namespace Detect
             }
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             var _detectAnimationAction = transform.GetComponentInParent<DetectAnimationAction>();
             if (_detectAnimationAction is not null)
