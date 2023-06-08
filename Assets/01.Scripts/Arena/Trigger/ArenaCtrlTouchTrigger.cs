@@ -72,6 +72,11 @@ namespace Arena
             }
         }
 
+        [ContextMenu("Å×½ºÆ®")]
+        public void Test()
+        {
+            Interact();
+        }
         private void Move()
         {
             if ((transform.localPosition.y - targetPos.y) < 0.1f ) return; 

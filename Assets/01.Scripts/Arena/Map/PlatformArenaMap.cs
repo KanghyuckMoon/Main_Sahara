@@ -8,6 +8,7 @@ namespace Arena
     public class PlatformArenaMap : ArenaMap
     {
 
+        [SerializeField]
         private List<PlatformBase> platformList = new List<PlatformBase>();
 
         protected override void Awake()

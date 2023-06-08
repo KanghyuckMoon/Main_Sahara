@@ -34,6 +34,7 @@ namespace Arena
 
                 GameObject _arenaObj = Instantiate(_arenaPrefab,Vector3.zero ,Quaternion.identity, transform);
                 arenaDic.Add(_level, _arenaObj);
+                _arenaObj.transform.localPosition = Vector3.zero; 
                 _arenaObj.SetActive(false);
             }
 
