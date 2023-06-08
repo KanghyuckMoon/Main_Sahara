@@ -49,7 +49,7 @@ namespace Detect
             }
         }
 
-        public void Dig()
+        public virtual void Dig()
         {
             GetNearObject();
             if(targetItem is not null)
