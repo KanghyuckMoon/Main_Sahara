@@ -4,25 +4,34 @@ using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
 using Pool;
+	using UnityEngine.Serialization;
 
-namespace Effect
+	namespace Effect
 {
     public class AnimationOnEffect : MonoBehaviour
 	{
+		[FormerlySerializedAs("animationEffectSO")] [SerializeField]
+		private AnimationEffectSO moveAnimationEffectSO;
+		
 		[SerializeField]
-		private AnimationEffectSO animationEffectSO;
+		private AnimationEffectSO attackAnimationEffectSO;
 
 		[SerializeField] 
 		private GameObject parent;
 
 		public void ChangeSO(AnimationEffectSO _animationEffectSO)//, string _colliderKey)
 		{
-			animationEffectSO = _animationEffectSO;
+			attackAnimationEffectSO = _animationEffectSO;
+			//moveAnimationEffectSO = _animationEffectSO;
 		}
 
 		public void OnEffect(string _str)
 		{
-			EffectDataList _animationEffectList = animationEffectSO.GetEffectList(_str);
+			EffectDataList _animationEffectList = moveAnimationEffectSO.GetEffectList(_str);
+			if (_animationEffectList is null)
+			{
+				_animationEffectList = attackAnimationEffectSO?.GetEffectList(_str);
+			}
 			if (_animationEffectList is not null)
 			{
 				foreach (EffectData _effectBoxData in _animationEffectList.effectDataList)

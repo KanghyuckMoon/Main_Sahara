@@ -59,9 +59,13 @@ namespace Effect
 #endif
 		}
 
+		[ContextMenu("RemoveEffect")]
 		public void RemoveEffect()
 		{
 			effectDataListDic.Remove(removeEffectKey);
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+#endif
 		}
 
 		public EffectDataList GetEffectList(string str)
