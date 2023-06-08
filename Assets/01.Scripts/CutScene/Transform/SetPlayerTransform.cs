@@ -26,6 +26,19 @@ namespace CutScene
             PlayerObj.Player.transform.SetParent(null);
             SceneManager.MoveGameObjectToScene(PlayerObj.Player, originScene);
         }
+
+        public void SetPlayerCollider(bool truefalse)
+        {
+            var module = PlayerObj.Player.GetComponent<AbMainModule>();
+            module.CharacterController.enabled = truefalse;
+        }
+        
+        public void SetPlayerHeight(float height)
+        {
+            var pos = PlayerObj.Player.transform.position;
+            pos.y = transform.position.y + height;
+            PlayerObj.Player.transform.position = pos;
+        }
     }
    
 }
