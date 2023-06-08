@@ -37,15 +37,26 @@ namespace Arena
                 _arenaObj.SetActive(false);
             }
 
+            /*var _a = transform.GetComponentsInChildren<ArenaMap>();
+            for (int i = 0; i < _a.Length; i++)
+            {
+                GameObject _arenaObj = _a[i].gameObject;
+                arenaDic.Add(i+1, _arenaObj);
+                _arenaObj.SetActive(false);
+            }*/
             ActiveCurArena(); 
         }
 
+        /// <summary>
+        /// 아레나 클리어시 
+        /// </summary>
         public void CompleteArena()
         {
             int _nextLevel = arenaStageDataSO.curLevel + 1;
             if (_nextLevel > arenaStageDataSO.maxLevel)
             {
                 InactiveAll();
+                arenaStageDataSO.isClear = true; 
                 return; 
                         // 다 비활성화 
             }
