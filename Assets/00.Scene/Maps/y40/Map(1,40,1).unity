@@ -266,6 +266,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 353b55805f0c9814b8d6bacac5e7bc81, type: 3}
+--- !u!1 &164514643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164514645}
+  - component: {fileID: 164514644}
+  m_Layer: 0
+  m_Name: Quest_RESQ_05 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &164514644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164514643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b710262d902734486e49724a3c06d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectItemList:
+  - {fileID: 1129355705}
+  - {fileID: 1490441669}
+  questKey: EVQM_14
+  clearEvnet:
+    m_PersistentCalls:
+      m_Calls: []
+  isNotQuest: 0
+--- !u!4 &164514645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164514643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217147234
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +621,19 @@ MonoBehaviour:
   effectAddress: BoomSandVFX2
   getoutEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 164514644}
+        m_TargetAssemblyTypeName: DetectCountCheck, Detect
+        m_MethodName: RemoveDetectItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 477207384}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isUseAlreadyCreature: 1
   creature: {fileID: 1129355705}
 --- !u!4 &477207387
@@ -738,7 +802,19 @@ MonoBehaviour:
   effectAddress: BoomSandVFX2
   getoutEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 164514644}
+        m_TargetAssemblyTypeName: DetectCountCheck, Detect
+        m_MethodName: RemoveDetectItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 916517809}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isUseAlreadyCreature: 1
   creature: {fileID: 1129355705}
 --- !u!4 &916517812
@@ -898,7 +974,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1998803299441271051, guid: 5a00a30ff5fe33c43a36d4585eb1ff80, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5a00a30ff5fe33c43a36d4585eb1ff80, type: 3}
 --- !u!1 &1129355705 stripped
 GameObject:
@@ -988,8 +1065,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1998803299441271051, guid: 5a00a30ff5fe33c43a36d4585eb1ff80, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5a00a30ff5fe33c43a36d4585eb1ff80, type: 3}
+--- !u!1 &1490441669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5704192116393379096, guid: 5a00a30ff5fe33c43a36d4585eb1ff80, type: 3}
+  m_PrefabInstance: {fileID: 1490441668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1590599312
 PrefabInstance:
   m_ObjectHideFlags: 0
