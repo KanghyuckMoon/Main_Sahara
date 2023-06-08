@@ -14,7 +14,9 @@ namespace Arena
         private bool isActive = false;
 
         private Player player;
-        private StatData statData; 
+        private StatData statData;
+        private GameObject map; 
+        
         [SerializeField]
         private List<AbArenaCtrlTrigger> triggerList = new List<AbArenaCtrlTrigger>(); 
         
@@ -22,8 +24,18 @@ namespace Arena
         //[SerializeField] private List<GameObject> installationList = new List<GameObject>();
         // 프로퍼티 
         public bool IsActive => isActive;
+        public List<AbArenaCtrlTrigger> TriggerList
+        {
+            get
+            {
+                if (triggerList.Count == 0)
+                {
+                    Cashing(); 
+                }
+                return triggerList;
+            }
+        }
 
-                
         private Player Player
         {
             get
@@ -51,8 +63,7 @@ namespace Arena
         
         protected virtual void Awake()
         {
-            particle = GetComponentInChildren<ParticleSystem>(); 
-            triggerList = transform.parent.GetComponentsInChildren<AbArenaCtrlTrigger>().ToList(); 
+            Cashing();
         }
 
         protected virtual void Start()
@@ -60,6 +71,17 @@ namespace Arena
             StartCoroutine(Init(false));
             SetTriggerEvent(); 
             //installationList = 
+        }
+
+        public void Active(bool _isTrue)
+        {
+            gameObject.SetActive(_isTrue);
+        }
+        private void Cashing()
+        {
+            particle = GetComponentInChildren<ParticleSystem>(); 
+            triggerList = transform.GetComponentsInChildren<AbArenaCtrlTrigger>().ToList();
+            map = transform.Find("Map").gameObject;
         }
         
         /// <summary>       
@@ -70,14 +92,24 @@ namespace Arena
             foreach (var _trigger in triggerList)
             {
                 // 아레나 시작 트리거면 
-                _trigger.activeTriggerEvent.AddListener(() => StatData.Jump = 5.0f);
-                _trigger.inactiveTriggerEvent.AddListener(() => StatData.Jump = 2.9f);
+                _trigger.activeTriggerEvent.AddListener(() =>
+                {
+                    StartArena(); 
+                    StatData.Jump = 5.0f;
+                });
+                _trigger.inactiveTriggerEvent.AddListener(() =>
+                {
+                    CompleteArena();
+                    StatData.Jump = 2.9f;
+                });
+                /*
                 if (_trigger.IsStartArena == true)
                 {
                     _trigger.activeTriggerEvent.AddListener(StartArena);
                     continue; 
                 }
                 _trigger.activeTriggerEvent.AddListener(CompleteArena); 
+            */
             }
         }
 
@@ -102,19 +134,25 @@ namespace Arena
             isActive = _isActive; 
             if (_isActive == true)
             {
-                gameObject.SetActive(isActive);
+                map.SetActive(isActive);
+                GetEndTriggerList().ForEach((x) => x.gameObject.SetActive(true));
                 particle.Play();
             }
             else
             {
                 particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                 yield return new WaitForSeconds(1f); 
-                gameObject.SetActive(isActive);
+                map.SetActive(isActive);
+                GetEndTriggerList().ForEach((x) => x.gameObject.SetActive(false));
             }
 
 
         }
 
+        public List<AbArenaCtrlTrigger> GetEndTriggerList()
+        {
+            return TriggerList.FindAll((x) => x.IsStartArena == false); 
+        }
         public virtual void Receive()
         {
         }

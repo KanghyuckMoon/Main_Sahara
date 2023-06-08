@@ -11,6 +11,7 @@ namespace Arena
         [SerializeField]
         private List<PlatformBase> platformList = new List<PlatformBase>();
 
+        
         protected override void Awake()
         {
             base.Awake();
