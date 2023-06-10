@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using DG.Tweening;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Arena
@@ -11,6 +12,7 @@ namespace Arena
     public class ArenaCtrlTouchTrigger : AbArenaCtrlTrigger
     {
         [SerializeField] private string targetTag = "Player";
+        private BoxCollider triggerCollider; 
         [SerializeField]
         private float pushSpeed = 1f; 
 
@@ -31,6 +33,7 @@ namespace Arena
         {
             base.Awake();
             collider = GetComponent<Collider>();
+            triggerCollider = transform.Find("TriggerCol").GetComponent<BoxCollider>(); 
         }
 
         private void Start()
@@ -44,34 +47,67 @@ namespace Arena
             Move(); 
             float _height = height / 2; 
             Debug.DrawRay(transform.position, Vector3.up,Color.red);
-            var _hitInfos = Physics.RaycastAll( transform.position, Vector3.up, _height * transform.localScale.y  + 0.5f);
+            //var _hitInfos = Physics.RaycastAll( transform.position, Vector3.up, _height * transform.localScale.y  + 0.5f);
+            //Physics.OverlapBox(transform.position + Vector3.up * transform.position.y * 0.5f, new Vector3(),Quaternion.identity);
+            var _hitInfos = MyCollisions();
+            bool isPlayerHit = false;
             for(int i =0;i < _hitInfos.Length; i++)
             {
-                if (_hitInfos[i].transform.CompareTag(targetTag) && isCollision == false )
+                if (_hitInfos[i].transform.CompareTag(targetTag) )
                 {
-                    isCollision = true;
-                    targetPos = movePosY; 
+                    isPlayerHit = true;
+                    if (isCollision == false)
+                    {
+                        isCollision = true;
+                        targetPos = movePosY; 
+
+                    }
                 }
-                else if (_hitInfos[i].transform.CompareTag(targetTag) && isCollision == true)
-                {
+                if (_hitInfos[i].transform.CompareTag(targetTag) && isCollision == true)
+                {   
                     // 목표 도달시 
-                    if ((transform.localPosition.y - movePosY.y) < 0.1f)
+                    if ( Mathf.Abs(transform.localPosition.y - movePosY.y) < 0.1f)
                     {
                         isCollision = false;
                          isTrigger = true; 
                         Interact();
                     }
                 }
-                // CollisionExit
-                // 충돌 했다가 떨어졌으면 
-                else if(isCollision == true && _hitInfos[i].transform.CompareTag(targetTag) == false)
-                {
-                    isCollision = false;
-                    targetPos = originPos; 
-                }
+
             }
+            // CollisionExit
+            // 충돌 했다가 떨어졌으면 
+            if(isCollision == true && (isPlayerHit == false || _hitInfos.Length == 0))
+            {
+                isCollision = false;
+                targetPos = originPos; 
+            }
+
         }
 
+        private Collider[] MyCollisions () {
+            Collider [] hitColliders = Physics.OverlapBox (
+                triggerCollider.center + transform.position,
+                triggerCollider.size / 2, 
+                Quaternion.identity
+                );
+
+            int i = 0;
+            while (i < hitColliders.Length) {
+                Debug.Log ("Hit : " + hitColliders [i].name);
+                i++;
+            }
+
+            return hitColliders; 
+        }
+
+        private void OnDrawGizmos () {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube (
+                triggerCollider.center + transform.position, 
+                triggerCollider.size);
+        }
+        
         [ContextMenu("테스트")]
         public void Test()
         {
@@ -79,7 +115,7 @@ namespace Arena
         }
         private void Move()
         {
-            if ((transform.localPosition.y - targetPos.y) < 0.1f ) return; 
+            if ( Mathf.Abs(transform.localPosition.y - targetPos.y) < 0.1f ) return; 
             transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, Time.fixedDeltaTime * pushSpeed);
         }
 
