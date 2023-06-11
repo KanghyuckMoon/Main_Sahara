@@ -13,7 +13,7 @@ namespace Arena
         [SerializeField] private ArenaStageDataSO arenaStageDataSO;
 
         [SerializeField] private List<GameObject> arenaList = new List<GameObject>(); 
-        [SerializeField] private Dictionary<int,GameObject> arenaDic = new Dictionary<int, GameObject>();
+        [SerializeField] private Dictionary<int,ArenaMap> arenaDic = new Dictionary<int, ArenaMap>();
 
         private void Awake()
         {
@@ -32,20 +32,33 @@ namespace Arena
                 var _arenaPrefab = arenaStageDataSO.arenaStageList[i].arenaPrefab; 
                 var _level = arenaStageDataSO.arenaStageList[i].level; 
 
-                GameObject _arenaObj = Instantiate(_arenaPrefab,Vector3.zero ,Quaternion.identity, transform);
+                ArenaMap _arenaObj = Instantiate(_arenaPrefab,Vector3.zero ,Quaternion.identity, transform).GetComponent<ArenaMap>();
                 arenaDic.Add(_level, _arenaObj);
-                _arenaObj.SetActive(false);
+                _arenaObj.transform.localPosition = Vector3.zero;
+                _arenaObj.GetEndTriggerList().ForEach((x) => x.inactiveTriggerEvent.AddListener(CompleteArena));; ;
+                _arenaObj.gameObject.SetActive(false);
             }
 
+            /*var _a = transform.GetComponentsInChildren<ArenaMap>();
+            for (int i = 0; i < _a.Length; i++)
+            {
+                GameObject _arenaObj = _a[i].gameObject;
+                arenaDic.Add(i+1, _arenaObj);
+                _arenaObj.SetActive(false);
+            }*/
             ActiveCurArena(); 
         }
 
+        /// <summary>
+        /// 아레나 클리어시 
+        /// </summary>
         public void CompleteArena()
         {
-            int _nextLevel = arenaStageDataSO.curLevel + 1;
+            int _nextLevel = ++arenaStageDataSO.curLevel;
             if (_nextLevel > arenaStageDataSO.maxLevel)
             {
                 InactiveAll();
+                arenaStageDataSO.isClear = true; 
                 return; 
                         // 다 비활성화 
             }
@@ -60,14 +73,14 @@ namespace Arena
         private void ActiveCurArena()
         {
             InactiveAll();
-            arenaDic[arenaStageDataSO.curLevel].SetActive(true);
+            arenaDic[arenaStageDataSO.curLevel].Active(true);
         }
 
         private void InactiveAll()
         {
             foreach (var _arena in  arenaDic)
             {
-                _arena.Value.SetActive(false);
+                _arena.Value.Active(false);
             }
         }
     }

@@ -144,16 +144,28 @@ namespace UI.Inventory
             this.inventoryView.UpdateArrowSlotUI(_arrowData, 0);
         }
 
+        private InventoryGridSlotsView.RadioButtons curRadioButton = InventoryGridSlotsView.RadioButtons.weapon_button; 
 
         private void ChangeCategory(InventoryGridSlotsView.RadioButtons _rType, InventoryView.Elements _eType,
             bool _isActive)
         {
-            if (_rType is InventoryGridSlotsView.RadioButtons.consumation_button &&
-                _rType is InventoryGridSlotsView.RadioButtons.weapon_button)
+            // 무기-소비템은 퀵슬롯을 공유
+            if (
+                (_rType is InventoryGridSlotsView.RadioButtons.consumation_button &&
+                curRadioButton is InventoryGridSlotsView.RadioButtons.weapon_button)
+                ||
+                (_rType is InventoryGridSlotsView.RadioButtons.weapon_button &&
+                 curRadioButton is InventoryGridSlotsView.RadioButtons.consumation_button)
+                )
             {
                 // 소비, 무기 버튼에서는 
+                    
             }
 
+            if (_isActive == true)
+            {
+                curRadioButton = _rType;
+            }
             AnimateSlot(_eType, _isActive);
         }
 
