@@ -97,6 +97,11 @@ GameObject:
   - component: {fileID: 4496020649229464950}
   - component: {fileID: 8032650338730453562}
   - component: {fileID: 1748835373647483985}
+  - component: {fileID: 1614770033}
+  - component: {fileID: 1614770029}
+  - component: {fileID: 1614770030}
+  - component: {fileID: 1614770031}
+  - component: {fileID: 1614770032}
   m_Layer: 0
   m_Name: Cactus
   m_TagString: Untagged
@@ -213,6 +218,93 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5258610235180316072}
   m_Enabled: 1
+--- !u!54 &1614770033
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376044110772376989}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &1614770029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376044110772376989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataSOPath: Cactus_DataSO
+  playerdata: {fileID: 0}
+--- !u!114 &1614770030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376044110772376989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246a01631240ca34bac9816ae29f6a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1614770031}
+        m_TargetAssemblyTypeName: HitBox.HitToMana, Module
+        m_MethodName: AddMana
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1614770031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376044110772376989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19a74fc9734c134b83fce078bfefbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTagName: Player_Weapon
+--- !u!114 &1614770032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376044110772376989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: a5215399b230a1d4ea04584b284941a7, type: 2}
+  hitboxString: Niddle
+  owner: {fileID: 4376044110772376989}
+  isTimeIndexCange: 1
+  isOnEnalbe: 1
 --- !u!1 &7955195816899777525
 GameObject:
   m_ObjectHideFlags: 0

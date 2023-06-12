@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37506751a7e6cca43930267e6e5ad245, type: 3}
-  m_Name: CactusHitBoxDataSO
+  m_Name: TornadoHitBoxDataSO
   m_EditorClassIdentifier: 
   hitBoxDataDic:
     m_keys:
-    - Niddle
+    - Tornado
     m_values:
     - hitBoxDataList:
-      - hitBoxName: Niddle
+      - hitBoxName: Tornado
         ClassificationName: col0
-        hitBoxType: 0
+        hitBoxType: 1
         hitBoxIndex: 0
         deleteDelay: -1
         childization: 1
         childSizeOne: 0
-        offset: {x: 1.4, y: -2.6240234, z: 0}
-        radius: 0.7
-        height: 9
+        offset: {x: 0, y: 22, z: 0}
+        radius: 8
+        height: 50
         rotation: {x: -0, y: 0, z: 0}
-        isContactDirection: 1
-        knockbackDir: {x: 0, y: 0, z: 1}
-        defaultPower: 10
+        isContactDirection: 0
+        knockbackDir: {x: 0, y: 0, z: 0}
+        defaultPower: 0
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
         swingEffectSize: {x: 1, y: 1, z: 1}
@@ -42,7 +42,7 @@ MonoBehaviour:
         - HitEffect1
         buffList: []
         physicsAttackWeight: 1
-        magicalAttackWeight: 1
+        magicalAttackWeight: 0
   setAllHitBoxBuffList: []
   debugList: []
   debugString: 

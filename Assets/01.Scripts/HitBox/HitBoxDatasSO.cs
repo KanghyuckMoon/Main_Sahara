@@ -139,12 +139,20 @@ namespace HitBox
 		public List<HitBoxData> hitBoxDataList = new List<HitBoxData>();
 	}
 
+	public enum HitBoxType
+	{
+		Default = 0,
+		DamageOnly = 1,
+	}
+
 	[System.Serializable]
 	public class HitBoxData
 	{
+		
 		//판정
 		public string hitBoxName = "NULL";
 		public string ClassificationName = "NULL";
+		public HitBoxType hitBoxType = HitBoxType.Default;
 		public ulong hitBoxIndex;
 		public float deleteDelay = 0.1f;
 		public bool childization = false;
