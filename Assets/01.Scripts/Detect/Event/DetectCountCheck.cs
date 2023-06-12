@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Quest;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DetectCountCheck : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class DetectCountCheck : MonoBehaviour
 
     [SerializeField] 
     private string questKey;
+
+    [SerializeField] private UnityEvent clearEvnet;
+    
+    [SerializeField] private bool isNotQuest;
     
     public void RemoveDetectItem(GameObject _item)
     {
@@ -18,7 +23,11 @@ public class DetectCountCheck : MonoBehaviour
 
         if (detectItemList.Count == 0)
         {
-            QuestManager.Instance.ChangeQuestClear(questKey);
+            clearEvnet?.Invoke();
+            if (!isNotQuest)
+            {
+                QuestManager.Instance.ChangeQuestClear(questKey);
+            }
         }
     }
 }

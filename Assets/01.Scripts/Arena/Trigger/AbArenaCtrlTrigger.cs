@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using CondinedModule;
+using Data;
 
 namespace Arena
 {
@@ -18,12 +20,14 @@ namespace Arena
 
         public UnityEvent activeTriggerEvent = null; 
         public UnityEvent inactiveTriggerEvent = null; 
+        
         public ArenaInteractionType InteractionType => interactionType; 
         public IArenaMap connectArenaMap => _arenaMap;
-       
+        public bool IsStartArena => isStartArena; 
+
         protected virtual void Awake()
         {
-            _arenaMap = transform.root.GetComponentInChildren<ArenaMap>(); 
+            _arenaMap = transform.parent.GetComponentInChildren<ArenaMap>(); 
         }
         
         public void Interact()
@@ -32,12 +36,12 @@ namespace Arena
             if (isStartArena == true)
             {
                 activeTriggerEvent?.Invoke();
-                connectArenaMap.StartArena();
+                //connectArenaMap.StartArena();
                 
                 return; 
             }
             inactiveTriggerEvent?.Invoke();
-            connectArenaMap.CompleteArena();
+            //connectArenaMap.CompleteArena();
         }
     }    
 }

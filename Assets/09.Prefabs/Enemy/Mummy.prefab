@@ -22034,6 +22034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: Mummy_DataSO
+  playerdata: {fileID: 0}
 --- !u!114 &3896352576331211819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22080,6 +22081,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  isUseHeight: 0
+  height: 0
 --- !u!114 &2689068517018829874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22104,7 +22107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 7455768212807777263}
 --- !u!114 &2689068517018829869
 MonoBehaviour:
@@ -22183,6 +22187,8 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
@@ -22193,6 +22199,7 @@ MonoBehaviour:
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -22203,6 +22210,7 @@ MonoBehaviour:
   visualObject: {fileID: 2305088903993394332}
   model: {fileID: 1492523854269570598}
   animator: {fileID: 0}
+  jumpstrenght: 0
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
   back: {fileID: 0}
@@ -22242,7 +22250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomEquipList:
-  - SkullHelmat
+  - HelmatOfSkull_Prefab
   randomWeaponList:
   - Sw_00_ChippedSword_Prefab
   dropEquipKey:
