@@ -1,9 +1,10 @@
 using UnityEngine;
+using Gradient = UnityEngine.Gradient; 
 
 public class RFX4_ShaderColorGradient : MonoBehaviour {
 
     public RFX4_ShaderProperties ShaderColorProperty = RFX4_ShaderProperties._TintColor;
-    public Gradient Color = new Gradient();
+    public UnityEngine.Gradient Color = new UnityEngine.Gradient();
     public float TimeMultiplier = 1;
     public bool IsLoop;
     //public bool UseSharedMaterial;

@@ -1,26 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Arena
 {
-    public class StoneMoveArenaMap : MonoBehaviour,IArenaMap
+    public class StoneMoveArenaMap : ArenaMap
     {
-        private List<GameObject> stoneList = new List<GameObject>();    
-        public bool IsActive { get; }
-        public void StartArena()
+        private List<MoveStoneItem> stoneList = new List<MoveStoneItem>();    
+
+        protected override void Awake()
         {
+            base.Awake();
+            stoneList = transform.GetComponentsInChildren<MoveStoneItem>().ToList(); 
         }
 
-        public void CompleteArena()
+        protected override void Start()
         {
+            base.Start();
+            InitStoneList();
+        }
+        private void InitStoneList()
+        {
+            foreach (var stone in stoneList)
+            {
+                stone.AddObserver(this);
+            }
         }
 
-        public bool CheckCondition()
+        public override void Receive()
         {
-            return true; 
+            bool isComplete = true; 
+            foreach (var stone in stoneList)
+            {
+                if (stone.IsComplete == false)
+                {
+                    isComplete = false;
+                    return; 
+                }
+            }
+            // 상태 확인 후 모두 자리에 있으면 클리어 
+            GetEndTriggerList().First().inactiveTriggerEvent?.Invoke();
+            Debug.Log("@@@@@@@@@@@@@@클리어! ");
         }
-            
         //private  void Create
     }
 }

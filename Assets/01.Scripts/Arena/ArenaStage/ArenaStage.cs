@@ -27,6 +27,7 @@ namespace Arena
 
         public void Init()
         {
+            /*
             for (int i = 0; i < arenaStageDataSO.arenaStageList.Count; i++)
             {
                 var _arenaPrefab = arenaStageDataSO.arenaStageList[i].arenaPrefab; 
@@ -38,14 +39,19 @@ namespace Arena
                 _arenaObj.GetEndTriggerList().ForEach((x) => x.inactiveTriggerEvent.AddListener(CompleteArena));; ;
                 _arenaObj.gameObject.SetActive(false);
             }
+            */
 
-            /*var _a = transform.GetComponentsInChildren<ArenaMap>();
+            var _a = transform.GetComponentsInChildren<ArenaMap>();
             for (int i = 0; i < _a.Length; i++)
             {
-                GameObject _arenaObj = _a[i].gameObject;
+                ArenaMap _arenaObj = _a[i];
                 arenaDic.Add(i+1, _arenaObj);
-                _arenaObj.SetActive(false);
-            }*/
+                         _arenaObj.transform.localPosition = Vector3.zero;
+
+                                _arenaObj.GetEndTriggerList().ForEach((x) => x.inactiveTriggerEvent.AddListener(CompleteArena));; ;
+
+                _arenaObj.gameObject.SetActive(false);
+            }
             ActiveCurArena(); 
         }
 
