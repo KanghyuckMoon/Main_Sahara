@@ -40,7 +40,7 @@ namespace Item
                     
                     var randomPos = isPositionExit ? 
                         (endPosition - transform.position).normalized * 4f :
-                        new Vector3(Random.Range(-2f, 2f), Random.Range(0.4f, 3f), Random.Range(-2f, 2f));
+                        new Vector3(Random.Range(-6f, -3f), Random.Range(2f, 2.3f), Random.Range(-1f, -0.1f));
                     count--;
 
                     rigid.AddForce(randomPos, ForceMode.Impulse);
