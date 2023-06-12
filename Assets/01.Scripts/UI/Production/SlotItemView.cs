@@ -80,10 +80,18 @@ namespace UI.Production
         private Action mouseOverEvt = null;
         private Action mouseOutEvt = null;
         private Action clickEvt = null; 
+        private Action doubleClickEvt = null; 
+        
         public void AddClickEvent(Action _callback)
         {
             this.clickEvt = _callback;
             AddElementEvent<ClickEvent>((int)Elements.image, _callback);
+        }
+
+        public void AddDoubleClickEvent(Action _callback)
+        {
+            this.doubleClickEvt = _callback;
+            //GetVisualElement((int)Elements.)
         }
         public void AddHoverEvent(Action _callback)
         {

@@ -414,6 +414,7 @@ namespace Inventory
 		{
 			for (int i = 0; i < _dataList.Length; i++)
 			{
+				if (_dataList[i] == null) continue;
 				if (_dataList[i].key == _data.key)
 				{
 					_dataList[i] = null; 

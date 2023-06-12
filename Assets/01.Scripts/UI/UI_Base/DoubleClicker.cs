@@ -11,7 +11,7 @@ namespace UI.Base
         private Action OnClickCallback; 
         public DoubleClicker(Action _callback)
         {
-            activators.Add(new ManipulatorActivationFilter { clickCount = 2, button = MouseButton.LeftMouse });
+            activators.Add(new ManipulatorActivationFilter { clickCount = 1, button = MouseButton.LeftMouse });
             this.OnClickCallback = _callback; 
         }
 
