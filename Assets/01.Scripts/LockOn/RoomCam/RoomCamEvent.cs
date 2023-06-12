@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LockOn
 {
@@ -27,6 +28,11 @@ namespace LockOn
         
         private RoomCamGroup roomCamGroup;
 
+        [SerializeField] 
+        private UnityEvent inEvent; 
+        [SerializeField] 
+        private UnityEvent outEvent; 
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
@@ -43,6 +49,7 @@ namespace LockOn
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+                inEvent?.Invoke();
                 _cam.SetInRoom();
             }
         }
@@ -52,8 +59,9 @@ namespace LockOn
             if (other.gameObject.CompareTag("Player"))
             {
                 var _cam = RoomCamGroup.GetRoomCam(roomCamType);
+                outEvent?.Invoke();
                 _cam.SetOutRoom();
             }
         }
-    }
+    } 
 }
