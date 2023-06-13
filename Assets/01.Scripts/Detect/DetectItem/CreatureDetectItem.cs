@@ -70,6 +70,9 @@ namespace Detect
         private string effectAddress;
         
         [SerializeField]
+        protected UnityEvent getoutEventAfter;
+        
+        [SerializeField]
         protected UnityEvent getoutEvent;
 
         [SerializeField] 
@@ -109,6 +112,7 @@ namespace Detect
         
         private void ItemDrop()
         {
+            getoutEventAfter?.Invoke();
             GameObject _dropObj = null;
             if (isUseAlreadyCreature)
             {
