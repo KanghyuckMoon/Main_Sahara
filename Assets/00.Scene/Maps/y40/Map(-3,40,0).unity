@@ -5999,6 +5999,10 @@ MonoBehaviour:
   - {fileID: 391192239}
   - {fileID: 1655079833}
   questKey: RESQ_05
+  clearEvnet:
+    m_PersistentCalls:
+      m_Calls: []
+  isNotQuest: 0
 --- !u!1001 &1280393022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7656,6 +7660,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583202126}
   m_Mesh: {fileID: -1618395942898074, guid: 0a51d455846370541a0a5ecf208be0f0, type: 3}
+--- !u!1 &1588803339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6813134617335166689, guid: 2afa6257aceff4a46a13f06e3590c4d5, type: 3}
+  m_PrefabInstance: {fileID: 1979665139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1616319261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7955,17 +7964,37 @@ PrefabInstance:
       value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
       propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
       propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1588803339}
+    - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
       propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1230686762}
+    - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
       propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -7975,13 +8004,25 @@ PrefabInstance:
       value: RemoveDetectItem
       objectReference: {fileID: 0}
     - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
       propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DetectCountCheck, Detect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
       propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1655079833}
+    - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6781830657579391205, guid: e38e5f04817a7f947a88386a6065931f, type: 3}
       propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
@@ -9904,7 +9945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6813134617335166689, guid: 2afa6257aceff4a46a13f06e3590c4d5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2afa6257aceff4a46a13f06e3590c4d5, type: 3}
@@ -11425,6 +11466,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ' Treasure_Chest_Detect_3'
       objectReference: {fileID: 0}
+    - target: {fileID: 7943773491161739564, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_RootOrder
       value: 59
@@ -11447,7 +11492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4301
+      value: 4034.041
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_LocalPosition.z

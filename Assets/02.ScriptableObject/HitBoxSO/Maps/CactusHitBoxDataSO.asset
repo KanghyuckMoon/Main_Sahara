@@ -19,16 +19,18 @@ MonoBehaviour:
     - hitBoxDataList:
       - hitBoxName: Niddle
         ClassificationName: col0
+        hitBoxType: 0
         hitBoxIndex: 0
         deleteDelay: -1
         childization: 1
+        childSizeOne: 0
         offset: {x: 1.4, y: -2.6240234, z: 0}
         radius: 0.7
         height: 9
         rotation: {x: -0, y: 0, z: 0}
-        isContactDirection: 0
+        isContactDirection: 1
         knockbackDir: {x: 0, y: 0, z: 1}
-        defaultPower: 2
+        defaultPower: 10
         swingEffectOffset: {x: 0, y: 0, z: 0}
         swingEffectRotation: {x: 0, y: 0, z: 0}
         swingEffectSize: {x: 1, y: 1, z: 1}
@@ -36,7 +38,8 @@ MonoBehaviour:
         attackStunDelay: 0
         swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: HitEffect1
+        hitEffect:
+        - HitEffect1
         buffList: []
         physicsAttackWeight: 1
         magicalAttackWeight: 1

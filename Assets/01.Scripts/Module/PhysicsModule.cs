@@ -115,8 +115,15 @@ namespace Module
                         {
                             mainModule.StopCoroutine(knockBackCoroutine);
                         }
-                        
-                        knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
+
+                        switch (_inGameHitBox.HitBoxData.hitBoxType)
+                        {
+                            case HitBoxType.Default:
+                                knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
+                                break;
+                            case HitBoxType.DamageOnly:
+                                break;
+                        }
 
                         foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
                         {
@@ -139,7 +146,7 @@ namespace Module
 
                                 HitModule.GetHit(Mathf.RoundToInt(
                                     _statData.CalculateDamage(mainModule.StatData.PhysicalResistance,
-                                        mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
+                                        mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti), _inGameHitBox.HitBoxData.hitBoxType);
                                 _totalMana = _statData.ManaRegen + _statData.ChangeMana(_statData.ManaRegen);
 
                                 _manaCount = (_totalMana / 10);
@@ -155,7 +162,7 @@ namespace Module
                             else
                             {
                                 StatData _stat = other.GetComponent<InGameHitBox>().Owner.GetComponent<StatData>();
-                                HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
+                                HitModule.GetHit(other.GetComponent<IndividualObject>().damage, _inGameHitBox.HitBoxData.hitBoxType);
                                 _totalMana = _stat.ManaRegen + _statData.ChangeMana(_stat.ManaRegen);
 
                                 _manaCount = (_totalMana / 10);
@@ -177,13 +184,13 @@ namespace Module
                             {
                                 HitModule.GetHit(Mathf.RoundToInt(
                                     _statData.CalculateDamage(mainModule.StatData.PhysicalResistance,
-                                        mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti));
+                                        mainModule.StatData.MagicResistance) * _locationHitBox.AttackMulti), _inGameHitBox.HitBoxData.hitBoxType);
                                 _totalMana = _statData.ManaRegen + _statData.ChangeMana(_statData.ManaRegen);
                             }
                             else
                             {
                                 StatData _stat = other.GetComponent<InGameHitBox>().Owner.GetComponent<StatData>();
-                                HitModule.GetHit(other.GetComponent<IndividualObject>().damage);
+                                HitModule.GetHit(other.GetComponent<IndividualObject>().damage, _inGameHitBox.HitBoxData.hitBoxType);
                                 _totalMana = _stat.ManaRegen + _statData.ChangeMana(_stat.ManaRegen);
                             }
                         }
