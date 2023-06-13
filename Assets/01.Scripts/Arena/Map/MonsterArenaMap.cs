@@ -48,7 +48,9 @@ namespace Arena
 
             if(spawnMonsterList.Count == 0)
             {
+                GetEndTriggerList().First().inactiveTriggerEvent?.Invoke();
                 CompleteArena(); 
+                // 다음으로 
             }
         }
 

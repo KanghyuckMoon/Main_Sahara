@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Arena;
+using DG.Tweening;
 using UnityEngine;
 using Utill.Addressable;
 
@@ -23,6 +24,15 @@ namespace Arena
         protected virtual void Awake()
         {
             platformDataSO ??= AddressablesManager.Instance.GetResource<PlatformDataSO>(SOAddress);
+        }
+        protected virtual void OnDisable()
+        {
+            DOTween.KillAll(); 
+        }
+
+        protected virtual void OnEnable()
+        {
+            StartAction();
         }
 
         public virtual void StartAction()

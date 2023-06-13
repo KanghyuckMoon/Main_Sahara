@@ -14,7 +14,7 @@ public class RFX4_ParticleTrail : MonoBehaviour
     public bool UseShaderMaterial;
     public Material TrailMaterial;
     public bool UseColorOverLifeTime = false;
-    public Gradient ColorOverLifeTime = new Gradient();
+    public UnityEngine.Gradient ColorOverLifeTime = new UnityEngine.Gradient();
     public RFX4_ShaderProperties colorShaderProperty = RFX4_ShaderProperties._TintColor;
     public float ColorLifeTime = 1;
 
@@ -124,7 +124,7 @@ public class RFX4_ParticleTrail : MonoBehaviour
                 if (UseColorOverLifeTime) {
                     var shaderColor = go.AddComponent<RFX4_ShaderColorGradient>();
                     shaderColor.Color = ColorOverLifeTime;
-                    shaderColor.TimeMultiplier = ColorLifeTime;
+                    shaderColor.TimeMultiplier = ColorLifeTime;  
                     shaderColor.ShaderColorProperty = colorShaderProperty;
                 }
 
