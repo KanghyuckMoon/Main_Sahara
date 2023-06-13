@@ -15,43 +15,43 @@ using UnityEditor.SceneManagement;
 
 namespace Streaming
 {
-	[RequireComponent(typeof(LODMaker)), RequireComponent(typeof(LODGroup))]
-	public class SubSceneObj : MonoBehaviour
-	{
-		/// <summary>
-		/// ¸ÃÀº ¾À ÀÌ¸§
-		/// </summary>
-		public string SceneName
-		{
-			get
-			{
-				return sceneName;
-			}
-		}
+    [RequireComponent(typeof(LODMaker)), RequireComponent(typeof(LODGroup))]
+    public class SubSceneObj : MonoBehaviour
+    {
+        /// <summary>
+        /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½
+        /// </summary>
+        public string SceneName
+        {
+            get
+            {
+                return sceneName;
+            }
+        }
 
-		public LODMaker LODMaker
-		{
-			get
-			{
-				if (lodMaker is null)
-				{
-					lodMaker = GetComponent<LODMaker>();
-					if (lodMaker != null)
-					{
-						lodMaker.Init(this);
-					}
-				}
-				return lodMaker;
-			}
-			set
-			{
-				lodMaker = value;
-			}
-		}
-		[SerializeField]
-		private string sceneName;
-		[SerializeField]
-		private LODMaker lodMaker;
+        public LODMaker LODMaker
+        {
+            get
+            {
+                if (lodMaker == null)
+                {
+                    lodMaker = GetComponent<LODMaker>();
+                    if (lodMaker != null)
+                    {
+                        lodMaker.Init(this);
+                    }
+                }
+                return lodMaker;
+            }
+            set
+            {
+                lodMaker = value;
+            }
+        }
+        [SerializeField]
+        private string sceneName;
+        [SerializeField]
+        private LODMaker lodMaker;
 
 #if UNITY_EDITOR
 		public Scene EditingScene
@@ -85,17 +85,17 @@ namespace Streaming
 
 
 		/// <summary>
-		/// ¸Ã°í ÀÖ´Â ¾À ¿¡¼ÂÀ» ¼³Á¤
+		/// ï¿½Ã°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		/// </summary>
 		/// <param name="_scene"></param>
 		public void SetSceneAsset(SceneAsset _scene)
 		{
-			//¾À ¿¡¼Â ¼³Á¤
+			//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			sceneAsset = _scene;
 		}
 		
 		/// <summary>
-		/// ¾À ¿¡¼Â µîÀÌ º¯°æµÇ¸é ÇØ´ç ³»¿ë¿¡ µû¶ó º¯¼öµéÀ» ¹Ù²Ù°í ¾ÀÀ» ºÒ·¯¿È
+		/// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ë¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½
 		/// </summary>
 		public void OnValidate()
 		{
@@ -122,13 +122,13 @@ namespace Streaming
 				if (_scene.isLoaded)
 				{
 					SceneManager.UnloadSceneAsync(_scene);
-					//EditorSceneManager.CloseScene(scene, false); ÀÛµ¿ ¾È µÊ
+					//EditorSceneManager.CloseScene(scene, false); ï¿½Ûµï¿½ ï¿½ï¿½ ï¿½ï¿½
 				}
 			}
 		}
 
 		/// <summary>
-		/// ¾À ¿¡¼Â ÀÌ¸§À» ¾À ÀÌ¸§¿¡ ÇÒ´ç
+		/// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
 		/// </summary>
 		[ContextMenu("SceneAssetToSceneName")]
 		public void SceneAssetToSceneName()
@@ -138,33 +138,33 @@ namespace Streaming
 
 #endif
 
-		public void SetSceneName(string _name)
-		{
-			sceneName = _name;
-		}
+        public void SetSceneName(string _name)
+        {
+            sceneName = _name;
+        }
 
-		public void Start()
-		{
-			if (lodMaker is null)
-			{
-				lodMaker = GetComponent<LODMaker>();
-				if (lodMaker != null)
-				{
-					lodMaker.Init(this);
-				}
-			}
-			
-			if (SceneName != null)
-			{
-				SceneData sceneData = SceneDataManager.Instance.GetSceneData(SceneName);
-				sceneData.SetLoadSceneObjNLodMaker(this, LODMaker);
-			}
-		}
+        public void Start()
+        {
+            if (lodMaker is null)
+            {
+                lodMaker = GetComponent<LODMaker>();
+                if (lodMaker != null)
+                {
+                    lodMaker.Init(this);
+                }
+            }
 
-		public void OnDrawGizmos()
-		{
-			Gizmos.color = Color.blue;
-			Gizmos.DrawWireCube(transform.position, Vector3.one * 100);
+            if (SceneName != null)
+            {
+                SceneData sceneData = SceneDataManager.Instance.GetSceneData(SceneName);
+                sceneData.SetLoadSceneObjNLodMaker(this, LODMaker);
+            }
+        }
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(transform.position, Vector3.one * 100);
 
 
 #if UNITY_EDITOR
@@ -179,67 +179,67 @@ namespace Streaming
 				Handles.Label(new Vector3(transform.position.x, transform.position.y + 40, transform.position.z), $"{SceneDataManager.Instance.GetSceneData(SceneName).ObjectDataList.objectDataList.Count}", guiSkin.GetStyle("CountStyle"));
 			}
 #endif
-		}
+        }
 
-		/// <summary>
-		/// ¾ÀÀÌ È°¼ºÈ­µÈ »óÅÂÀÎÁö Ã¼Å©ÇÑ´Ù
-		/// </summary>
-		/// <returns></returns>
-		public bool IsActiveScene()
-		{
-			return CheckCurrentlyActhive(SceneName);
-		}
+        /// <summary>
+        /// ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½
+        /// </summary>
+        /// <returns></returns>
+        public bool IsActiveScene()
+        {
+            return CheckCurrentlyActhive(SceneName);
+        }
 
-		/// <summary>
-		/// ¸ÃÀº ¾ÀÀ» ºÒ·¯¿Â´Ù
-		/// </summary>
-		public void LoadScene()
-		{
-			AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
-		}
+        /// <summary>
+        /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½Â´ï¿½
+        /// </summary>
+        public void LoadScene()
+        {
+            AddressablesManager.Instance.LoadSceneAsync(SceneName, LoadSceneMode.Additive, LoadSceneObject);
+        }
 
-		/// <summary>
-		/// ¸ÃÀº ¾ÀÀÌ È°¼ºÈ­µÇ¾î ÀÖ¾î ÀÖ´Ù¸é ºñÈ°¼ºÈ­ÇÑ´Ù
-		/// </summary>
-		public void UnLoadSceneNoneCheck()
-		{
-		    EventQueueManager.Instance.AddAction(SceneDataManager.Instance.GetSceneData(SceneName).UnLoad);
-		    EventQueueManager.Instance.AddAction(LODMaker.UnLoad);
-				
-			AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
-		}
+        /// <summary>
+        /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Ç¾ï¿½ ï¿½Ö¾ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Ñ´ï¿½
+        /// </summary>
+        public void UnLoadSceneNoneCheck()
+        {
+            EventQueueManager.Instance.AddAction(SceneDataManager.Instance.GetSceneData(SceneName).UnLoad);
+            EventQueueManager.Instance.AddAction(LODMaker.UnLoad);
 
-		private void LoadSceneObject(AsyncOperationHandle<SceneInstance> obj)
-		{
-			if (obj.Status == AsyncOperationStatus.Succeeded)
-			{
-				EventQueueManager.Instance.AddAction(SceneDataManager.Instance.GetSceneData(SceneName).Load);
-				EventQueueManager.Instance.AddAction(LODMaker.Load);
-			}
-		}
+            AddressablesManager.Instance.UnLoadSceneAsync(SceneName);
+        }
 
-		#region DebugCode
+        private void LoadSceneObject(AsyncOperationHandle<SceneInstance> obj)
+        {
+            if (obj.Status == AsyncOperationStatus.Succeeded)
+            {
+                EventQueueManager.Instance.AddAction(SceneDataManager.Instance.GetSceneData(SceneName).Load);
+                EventQueueManager.Instance.AddAction(LODMaker.Load);
+            }
+        }
 
-		/// <summary>
-		/// Áß¾ÓÁ¦´ÜÀ» ¿ÀºêÁ§Æ® µ¥ÀÌÅÍ¿¡ Ãß°¡ÇÔ
-		/// </summary>
-		[ContextMenu("AddObjectInScene")]
-		public void AddObjectInScene()
-		{
-			ObjectData _obj1 = new ObjectData();
-			_obj1.address = "Middle";
-			_obj1.lodType = LODType.On;
-			_obj1.lodAddress = "MiddleLOD";
-			_obj1.key = ObjectData.totalKey++;
-			_obj1.position = StringToVector3(sceneName) * 100f + new Vector3(0, 20, 0);
-			_obj1.rotation = Quaternion.identity;
-			_obj1.scale = new Vector3(1, 1, 1) * 0.2f;
+        #region DebugCode
 
-			SceneDataManager.Instance.GetSceneData(SceneName).AddObjectData(_obj1);
-		}
+        /// <summary>
+        /// ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ß°ï¿½ï¿½ï¿½
+        /// </summary>
+        [ContextMenu("AddObjectInScene")]
+        public void AddObjectInScene()
+        {
+            ObjectData _obj1 = new ObjectData();
+            _obj1.address = "Middle";
+            _obj1.lodType = LODType.On;
+            _obj1.lodAddress = "MiddleLOD";
+            _obj1.key = ObjectData.totalKey++;
+            _obj1.position = StringToVector3(sceneName) * 100f + new Vector3(0, 20, 0);
+            _obj1.rotation = Quaternion.identity;
+            _obj1.scale = new Vector3(1, 1, 1) * 0.2f;
 
-		#endregion
+            SceneDataManager.Instance.GetSceneData(SceneName).AddObjectData(_obj1);
+        }
 
-	}
+        #endregion
+
+    }
 
 }

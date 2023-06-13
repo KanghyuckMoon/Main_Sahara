@@ -7,6 +7,7 @@ using Pool;
 using Utill.Random;
 using HitBox;
 using Attack;
+using UnityEngine.Events;
 
 public class HitDropItem : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class HitDropItem : MonoBehaviour
     
     [SerializeField] 
     private int remainCount = 5;
-    
+
+    [SerializeField] private UnityEvent unityEvent;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player_Weapon"))
@@ -66,6 +69,7 @@ public class HitDropItem : MonoBehaviour
 
     private void Break()
     {
+        unityEvent?.Invoke();
         gameObject.SetActive(false);
     }
     
