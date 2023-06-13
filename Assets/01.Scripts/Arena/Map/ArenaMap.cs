@@ -64,13 +64,13 @@ namespace Arena
         protected virtual void Awake()
         {
             Cashing();
-            StartCoroutine(Init(false, true));
         }
 
         protected virtual void Start()
         {
             SetTriggerEvent(); 
             //installationList = 
+            StartCoroutine(Init(false, true));
         }
 
         public void Active(bool _isTrue)

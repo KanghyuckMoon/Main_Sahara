@@ -18,11 +18,11 @@ namespace Arena
         private void Awake()
         {
             arenaStageDataSO ??= AddressablesManager.Instance.GetResource<ArenaStageDataSO>(arenaStageDataSOAdress);
+            Init();
         }
 
         private void Start()
         {
-            Init();
         }
 
         public void Init()

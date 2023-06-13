@@ -8,10 +8,7 @@ namespace Arena
 {
     public class UpDownPlatform : PlatformBase
     {
-        private void OnDisable()
-        {
-            DOTween.KillAll(); 
-        }
+
 
         [ContextMenu("Å×½ºÆ°")]
         public override void StartAction()
