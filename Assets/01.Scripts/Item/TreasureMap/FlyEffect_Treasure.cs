@@ -39,7 +39,7 @@ namespace Item
                     //Debug.LogError("lasiufhlawieufhlweufh");
                     
                     var randomPos = isPositionExit ? 
-                        (endPosition - transform.position).normalized * 4f :
+                        ((endPosition - transform.position).normalized + new Vector3(0,0.2f,0)) * 10f:
                         new Vector3(Random.Range(-6f, -3f), Random.Range(2f, 2.3f), Random.Range(-1f, -0.1f));
                     count--;
 

@@ -18,10 +18,7 @@ namespace Arena
             mat = GetComponent<MeshRenderer>().material;
             col = GetComponent<Collider>(); 
         }
-        private void OnDisable()
-        {
-            DOTween.KillAll(); 
-        }
+
         [ContextMenu("Å×½ºÆ®")]
         public override void StartAction()
         {

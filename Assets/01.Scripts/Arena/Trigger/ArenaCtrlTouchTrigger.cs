@@ -12,7 +12,7 @@ namespace Arena
     public class ArenaCtrlTouchTrigger : AbArenaCtrlTrigger
     {
         [SerializeField] private string targetTag = "Player";
-        private BoxCollider triggerCollider; 
+        private BoxRaycaster boxRaycaster; 
         [SerializeField]
         private float pushSpeed = 1f; 
 
@@ -33,7 +33,7 @@ namespace Arena
         {
             base.Awake();
             collider = GetComponent<Collider>();
-            triggerCollider = transform.Find("TriggerCol").GetComponent<BoxCollider>(); 
+            boxRaycaster = new BoxRaycaster(transform); 
         }
 
         private void Start()
@@ -49,7 +49,7 @@ namespace Arena
             Debug.DrawRay(transform.position, Vector3.up,Color.red);
             //var _hitInfos = Physics.RaycastAll( transform.position, Vector3.up, _height * transform.localScale.y  + 0.5f);
             //Physics.OverlapBox(transform.position + Vector3.up * transform.position.y * 0.5f, new Vector3(),Quaternion.identity);
-            var _hitInfos = MyCollisions();
+            var _hitInfos = boxRaycaster.MyCollisions();
             bool isPlayerHit = false;
             for(int i =0;i < _hitInfos.Length; i++)
             {
@@ -84,28 +84,9 @@ namespace Arena
             }
 
         }
-
-        private Collider[] MyCollisions () {
-            Collider [] hitColliders = Physics.OverlapBox (
-                triggerCollider.center + transform.position,
-                triggerCollider.size / 2, 
-                Quaternion.identity
-                );
-
-            int i = 0;
-            while (i < hitColliders.Length) {
-                Debug.Log ("Hit : " + hitColliders [i].name);
-                i++;
-            }
-
-            return hitColliders; 
-        }
-
+        
         private void OnDrawGizmos () {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube (
-                triggerCollider.center + transform.position, 
-                triggerCollider.size);
+            boxRaycaster.OnDrawGizmos();
         }
         
         [ContextMenu("Å×½ºÆ®")]

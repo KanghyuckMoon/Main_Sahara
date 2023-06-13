@@ -68,9 +68,9 @@ namespace Arena
 
         protected virtual void Start()
         {
-            StartCoroutine(Init(false));
             SetTriggerEvent(); 
             //installationList = 
+            StartCoroutine(Init(false, true));
         }
 
         public void Active(bool _isTrue)
@@ -129,7 +129,7 @@ namespace Arena
             return true; 
         }
 
-        protected virtual IEnumerator Init(bool _isActive)
+        protected virtual IEnumerator Init(bool _isActive, bool _isImme = false)
         {
             isActive = _isActive; 
             if (_isActive == true)
@@ -141,7 +141,10 @@ namespace Arena
             else
             {
                 particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                yield return new WaitForSeconds(1f); 
+                if (_isImme == false)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
                 map.SetActive(isActive);
                 GetEndTriggerList().ForEach((x) => x.gameObject.SetActive(false));
             }
