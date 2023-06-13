@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4251824474338792
 Transform:
   m_ObjectHideFlags: 0
@@ -4899,7 +4899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4831215222243450
 Transform:
   m_ObjectHideFlags: 0
@@ -29014,6 +29014,8 @@ GameObject:
   - component: {fileID: 198761899641189640}
   - component: {fileID: 199894137403827576}
   - component: {fileID: 82852566927101590}
+  - component: {fileID: 1378299750}
+  - component: {fileID: 1378299751}
   m_Layer: 0
   m_Name: Sand tornado 2 loop
   m_TagString: Untagged
@@ -29030,8 +29032,8 @@ Transform:
   m_GameObject: {fileID: 1709930039426524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3.2799997, y: 3.2799997, z: 3.2799997}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4251824474338792}
   - {fileID: 4616307206055518}
@@ -33902,9 +33904,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b070cf40575d29d489a477514dbf01fc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0c6ee06ade9b0dc4dab75a6afec47870, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.118
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -33988,6 +33990,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1378299750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709930039426524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 11400000, guid: 5d3cc1ed305ec1749b7f69ab93872a5a, type: 2}
+  hitboxString: Tornado
+  owner: {fileID: 1709930039426524}
+  isTimeIndexCange: 1
+  isOnEnalbe: 1
+--- !u!114 &1378299751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709930039426524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b98639e49d6c0448a596587469cf61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataSOPath: Tornado_DataSO
+  playerdata: {fileID: 11400000, guid: 0a12471310ce4dc4aa3c1c0e594bb1d3, type: 2}
 --- !u!1 &1963663994705370
 GameObject:
   m_ObjectHideFlags: 0
@@ -34005,7 +34038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4616307206055518
 Transform:
   m_ObjectHideFlags: 0

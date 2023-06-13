@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Effect;
+using HitBox;
 using Utill.Addressable;
 using Utill.Pattern;
 using Pool;
@@ -73,7 +75,7 @@ namespace Module
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
         }
 
-        public void GetHit(int dmg)
+        public void GetHit(int dmg, HitBoxType hitBoxType = HitBoxType.Default)
         {
             //if (HitDelay())
             //{
@@ -86,7 +88,14 @@ namespace Module
                 }
                 else
                 {
-                    Hit();
+                    switch (hitBoxType)
+                    {
+                        case HitBoxType.Default:
+                            Hit();
+                            break;
+                        case HitBoxType.DamageOnly:
+                            break;
+                    }
                 }
             //}
         }

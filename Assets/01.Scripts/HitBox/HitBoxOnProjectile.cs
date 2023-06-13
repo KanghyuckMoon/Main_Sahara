@@ -84,7 +84,9 @@ namespace HitBox
 				yield return new WaitForSeconds(1f);
 				foreach (InGameHitBox inGameHitBox in inGameHitBoxeList)
 				{
+					inGameHitBox.gameObject.SetActive(false);
 					inGameHitBox.SetIndex(inGameHitBox.GetIndex() + 1);
+					inGameHitBox.gameObject.SetActive(true);
 				}
 			}
 		}
