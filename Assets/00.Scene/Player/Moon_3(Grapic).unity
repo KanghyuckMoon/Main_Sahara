@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1559.4507, g: 1221.6182, b: 1349.3789, a: 1}
+  m_IndirectSpecularColor: {r: 1559.6489, g: 1221.1416, b: 1348.5566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8159,6 +8159,7 @@ MonoBehaviour:
     speed: 0
     projectileAddress: SandTornado_Projectile
     isParentOn: 1
+    isSetHitBoxWhenSetProjectile: 1
 --- !u!4 &1563888865
 Transform:
   m_ObjectHideFlags: 0
@@ -8759,6 +8760,7 @@ MonoBehaviour:
     speed: 0
     projectileAddress: 
     isParentOn: 1
+    isSetHitBoxWhenSetProjectile: 1
 --- !u!114 &1659324274
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -25266,10 +25268,14 @@ MonoBehaviour:
     speed: 160
     projectileAddress: Arrow
     isParentOn: 1
+    isSetHitBoxWhenSetProjectile: 1
   model: {fileID: 8540551284920158532}
-  trailRenderer: {fileID: 0}
   rigidbody: {fileID: 5896383344356622098}
   usingGravity: 0
+  shotEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  trailEffect: {fileID: 0}
 --- !u!1 &4533120460934614279
 GameObject:
   m_ObjectHideFlags: 0
@@ -28458,10 +28464,14 @@ MonoBehaviour:
     speed: 160
     projectileAddress: Arrow
     isParentOn: 1
+    isSetHitBoxWhenSetProjectile: 1
   model: {fileID: 562597007116538100}
-  trailRenderer: {fileID: 0}
   rigidbody: {fileID: 2349952885190223522}
   usingGravity: 0
+  shotEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  trailEffect: {fileID: 0}
 --- !u!137 &5768166871777571703
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
