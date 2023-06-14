@@ -137,23 +137,25 @@ namespace Module
             {
                 if (!mainModule.Attacking || !mainModule.StrongAttacking)
                 {
-                        if (mainModule.ObjDir != Vector2.zero)
-                        {
-                                Debug.LogWarning($"Obj Rotation {rotation}, Time {mainModule.PersonalDeltaTime}", mainModule.gameObject);
-                            mainModule.transform.rotation = Quaternion.Euler(0, rotation, 0);
-                        }
-                    //if (mainModule.LockOnTarget == null )
-                    //{
-                    //    //Quaternion.RotateTowards(mainModule.transform.rotation,
-                    //    //Quaternion.Euler(0, rotation, 0), 5 * mainModule.PersonalDeltaTime);
-                    //    //Quaternion _qu = Quaternion.LookRotation(Quaternion.Euler(0.0f, rotation, 0.0f).eulerAngles, Vector3.up);
-                    //    //mainModule.transform.rotation =
-                    //    //    Quaternion.RotateTowards(mainModule.transform.rotation, _qu, 10 * mainModule.PersonalDeltaTime);
-                    //}
-                    //else
-                    //{
-                    //    mainModule.transform.rotation = Quaternion.Euler(0.0f,  mainModule.ObjRotation.eulerAngles.y, 0.0f);   
-                    //}
+                    if (mainModule.ObjDir != Vector2.zero)
+                    {
+                        //Debug.LogWarning($"Obj Rotation {rotation}, Time {mainModule.PersonalDeltaTime}", mainModule.gameObject);
+                        mainModule.transform.rotation = Quaternion.Euler(0, rotation, 0);
+                    }
+
+                    if (mainModule.LockOnTarget == null)
+                    {
+                        mainModule.transform.rotation = Quaternion.RotateTowards(mainModule.transform.rotation,
+                            Quaternion.Euler(0, rotation, 0), 5 * mainModule.PersonalDeltaTime);
+                        //Quaternion _qu = Quaternion.LookRotation(Quaternion.Euler(0.0f, rotation, 0.0f).eulerAngles, Vector3.up);
+                        //mainModule.transform.rotation =
+                        //    Quaternion.RotateTowards(mainModule.transform.rotation, _qu, 10 * mainModule.PersonalDeltaTime);
+                    }
+                    else
+                    {
+                        mainModule.transform.rotation =
+                            Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
+                    }
                 }
             }
 
