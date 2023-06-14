@@ -33,7 +33,7 @@ namespace UI
         private bool isPlayerHud;
 
 
-        private VisualElement hudElement;
+        protected VisualElement hudElement;
         private PresenterFollower presenterFollower;
 
         // 데이터 

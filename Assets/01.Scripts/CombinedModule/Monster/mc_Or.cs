@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,8 +31,16 @@ namespace CondinedModule
         [SerializeField]
         private PathHarver pathHarver;
 
-		protected void OnEnable()
+        [ContextMenu(("SS"))]
+        public override void Start()
         {
+            base.Start();
+            
+        }
+
+        protected void OnEnable()
+        {
+            Debug.Log("@@@OnEnable");
             moduleComponentsDic ??= new();
             CharacterController = GetComponent<CharacterController>();
             StopOrNot = 1;
