@@ -95,7 +95,7 @@ namespace Arena
                 _trigger.activeTriggerEvent.AddListener(() =>
                 {
                     StartArena(); 
-                    StatData.Jump = 5.0f;
+                    StatData.Jump = 6.0f;
                 });
                 _trigger.inactiveTriggerEvent.AddListener(() =>
                 {
