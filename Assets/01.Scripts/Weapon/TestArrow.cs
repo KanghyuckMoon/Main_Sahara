@@ -10,6 +10,9 @@ namespace Weapon
     {
         [SerializeField]
         private Transform model;
+
+        [SerializeField] private TrailRenderer trailRenderer;
+        
         public Rigidbody rigidbody;
 
         public bool usingGravity;
@@ -33,8 +36,10 @@ namespace Weapon
 
         public void MovingFunc(Vector3 _vector3)
         {
+            trailRenderer.Clear();
+            
+            rigidbody.velocity = Vector3.zero;
             rigidbody.useGravity = usingGravity;
-
             //transform.rotation = Quaternion.Euler(objectData.InitialDirection);
 
             isFly = true;
