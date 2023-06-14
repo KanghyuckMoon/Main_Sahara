@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4890,7 +4890,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -9714,7 +9714,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14601,7 +14601,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -19492,7 +19492,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: -1.859525e-11}
+  m_BoundingSphereOverride: {x: 1.186021e+27, y: 1.1258679e+24, z: 2.817509e+20, w: 14299.25}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -19669,7 +19669,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -24493,7 +24493,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -29282,7 +29282,7 @@ GameObject:
   - component: {fileID: 3986065032046533346}
   - component: {fileID: 2988293786429569134}
   m_Layer: 0
-  m_Name: Elec_Projectile
+  m_Name: ThreeFire_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29349,17 +29349,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7649f2c89a7e484099992738b040d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePosSO: {fileID: 11400000, guid: d6ec2535c58f59e4ab8e460a81df98cf, type: 2}
+  projectilePosSO: {fileID: 11400000, guid: c5cc3ce57176e474bb83e9e26402be33, type: 2}
   weaponHand: 2
-  objectName: Elec
+  projectileAddress: ThreeFire_Projectile
+  objectName: ThreeFire
   objectData:
-    projectileName: Elec_Projectile
+    projectileName: ThreeFire_Projectile
     distinguishingName: projectile_1
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
     weaponHand: 2
     InitialDirection: {x: 0, y: 0, z: 0}
     speed: 100
-    projectileAddress: Elec_Projectile
-  _pos: {x: 0, y: 0.5, z: 0}
+    projectileAddress: ThreeFire_Projectile
+    isParentOn: 1
+  _pos: {x: 0, y: 1, z: 0}
   rigidbody: {fileID: 5443221543028546823}

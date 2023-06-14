@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.61249727, b: 0.35294116, a: 1}
+      maxColor: {r: 0.5083832, g: 0.35294116, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5065,7 +5065,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.8090794, b: 0, a: 0.5019608}
+      maxColor: {r: 0.6739578, g: 0, b: 1, a: 0.5019608}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9889,7 +9889,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 0}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14776,7 +14776,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.3962264, g: 0.0014951645, b: 0.34662658, a: 1}
+      maxColor: {r: 1, g: 0.25, b: 0.90588236, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19492,7 +19492,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 1.186021e+27, y: 1.1258679e+24, z: 2.817509e+20, w: 14299.25}
+  m_BoundingSphereOverride: {x: 0, y: 3.1225e-41, z: 1.02e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -29278,11 +29278,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4514190911476230108}
+  - component: {fileID: 3471397907486319785}
   - component: {fileID: 5443221543028546823}
   - component: {fileID: 3986065032046533346}
-  - component: {fileID: 2988293786429569134}
   m_Layer: 0
-  m_Name: ThreeFire_Projectile
+  m_Name: TestSkill_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29304,6 +29304,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3471397907486319785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4514190911476230107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e465db825de3c8479e7b397bae52e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePosSO: {fileID: 11400000, guid: 834565bd7ab923b4c98a34054594d84f, type: 2}
+  weaponHand: 2
+  projectileAddress: TestGeomtry
+  objectName: TestGeomtry
+  objectData:
+    projectileName: TestGeomtry
+    distinguishingName: projectile_1
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    weaponHand: 2
+    InitialDirection: {x: 0, y: 0, z: 20}
+    speed: 100
+    projectileAddress: TestGeomtry
+    isParentOn: 1
+  rigidbody: {fileID: 5443221543028546823}
 --- !u!54 &5443221543028546823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29337,29 +29364,3 @@ MonoBehaviour:
   owner: {fileID: 0}
   isTimeIndexCange: 0
   isOnEnalbe: 0
---- !u!114 &2988293786429569134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4514190911476230107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7649f2c89a7e484099992738b040d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePosSO: {fileID: 11400000, guid: c5cc3ce57176e474bb83e9e26402be33, type: 2}
-  weaponHand: 2
-  objectName: ThreeFire
-  objectData:
-    projectileName: ThreeFire_Projectile
-    distinguishingName: projectile_1
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-    weaponHand: 2
-    InitialDirection: {x: 0, y: 0, z: 0}
-    speed: 100
-    projectileAddress: ThreeFire_Projectile
-  _pos: {x: 0, y: 1, z: 0}
-  rigidbody: {fileID: 5443221543028546823}

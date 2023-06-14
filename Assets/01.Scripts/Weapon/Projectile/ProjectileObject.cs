@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
+using Pool;
+using Object = System.Object;
 
 namespace Weapon
 {
@@ -11,7 +13,8 @@ namespace Weapon
         public ProjectilePositionSO projectilePosSO;
         public WeaponHand weaponHand;
 
-
+        [SerializeField] private string projectileAddress;
+        
         [SerializeField, Header("저장될 SO이름(_Position뺴고)")]
         private string objectName;
         private string positionString = "_Position";
@@ -28,7 +31,18 @@ namespace Weapon
                 Debug.LogError(e, gameObject);
             }
         }
-        
+
+        private void OnEnable()
+        {
+            Invoke("PoolObject", 5f);
+        }
+
+        private void PoolObject()
+        {
+            gameObject.SetActive(false);
+            ObjectPoolManager.Instance.RegisterObject(projectileAddress, gameObject);
+        }
+
         public ProjectileObjectData objectData;
         //#if UNITY_EDITOR
         //[Header("Debug")]
