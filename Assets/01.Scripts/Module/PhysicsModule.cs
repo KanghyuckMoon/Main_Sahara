@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
 using Effect;
 using Utill.Addressable;
@@ -76,7 +77,36 @@ namespace Module
 
         }
 
-        public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox)
+        public bool CheckTagName(Collider other)
+        {
+            foreach (string _tagName in mainModule.HitCollider)
+            {
+                if (other.CompareTag(_tagName) && !mainModule.IsDead)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void InvokeActionFeedback(Collider other, bool isDefaultPos = true, Vector3 point = default)
+        {
+            AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
+            InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
+            foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
+            {
+                if (isDefaultPos)
+                {
+                    _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _s);
+                }
+                else
+                {
+                    _attackFeedBack.InvokeEvent(other.ClosestPoint(point), _s);
+                }
+            }
+        }
+
+        public void OnTriggerEnter(Collider other, LocationHitBox _locationHitBox, UnityEvent hitEvent = null)
         {
             foreach (string _tagName in mainModule.HitCollider)
             {
@@ -87,6 +117,7 @@ namespace Module
                         HitModule.GetHit(1000000);
                         return;
                     }
+                    hitEvent?.Invoke();
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (!mainModule.IsCanHit)
                     {

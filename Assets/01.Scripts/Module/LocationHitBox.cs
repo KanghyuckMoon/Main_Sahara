@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Module
 {
@@ -15,15 +16,17 @@ namespace Module
 		}
 
 		[SerializeField]
-		private AbMainModule mainModule;
+		protected AbMainModule mainModule;
 
 		[SerializeField]
-		private float attackMulti = 1.0f;
+		protected float attackMulti = 1.0f;
 
-		private void OnTriggerEnter(Collider other)
+		[SerializeField] protected UnityEvent hitEvent;
+		
+		protected virtual void OnTriggerEnter(Collider other)
 		{
 			PhysicsModule _physicsModule = mainModule.GetModuleComponent<PhysicsModule>(ModuleType.Physics);
-			_physicsModule.OnTriggerEnter(other, this);
+			_physicsModule.OnTriggerEnter(other, this, hitEvent);
 		}
 		
 	}
