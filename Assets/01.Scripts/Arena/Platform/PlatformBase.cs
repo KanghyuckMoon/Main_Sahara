@@ -37,6 +37,10 @@ namespace Arena
 
         public virtual void StartAction()
         {
+          //  float random
+            transform.DOShakePosition(0.5f, 0.1f, 5, 90f).SetLoops(-1); 
         }
+        
+        
     }
 }
