@@ -697,8 +697,9 @@ namespace Module
             }
         }
 
-        private void Start()
+        public virtual void Start()
         {
+            Debug.Log("@@@Start");
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.Start();
@@ -718,6 +719,7 @@ namespace Module
 
         public virtual void OnDisable()
         {
+            Debug.Log("@@@OnDisable");
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.OnDisable();

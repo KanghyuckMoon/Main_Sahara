@@ -41,16 +41,25 @@ namespace Arena
             }
             */
 
-            var _a = transform.GetComponentsInChildren<ArenaMap>();
-            for (int i = 0; i < _a.Length; i++)
+            List<ArenaMap> _arenaMapList = new List<ArenaMap>();
+            for (int i = 0; i < transform.childCount; i++)
             {
-                ArenaMap _arenaObj = _a[i];
+                ArenaMap _aMap = transform.GetChild(i).GetComponent<ArenaMap>();
+                if (_aMap != null)
+                {
+                    _arenaMapList.Add(_aMap);
+                }
+            }
+            //var _a = transform.GetComponentsInChildren<ArenaMap>();
+            for (int i = 0; i < _arenaMapList.Count; i++)
+            {
+                ArenaMap _arenaObj = _arenaMapList[i];
                 arenaDic.Add(i+1, _arenaObj);
                          _arenaObj.transform.localPosition = Vector3.zero;
 
                                 _arenaObj.GetEndTriggerList().ForEach((x) => x.inactiveTriggerEvent.AddListener(CompleteArena));; ;
 
-                _arenaObj.gameObject.SetActive(false);
+                //_arenaObj.gameObject.SetActive(false);
             }
             ActiveCurArena(); 
         }
