@@ -95,7 +95,7 @@ namespace Arena
                 _trigger.activeTriggerEvent.AddListener(() =>
                 {
                     StartArena(); 
-                    StatData.Jump = 5.0f;
+                    StatData.Jump = 6.0f;
                 });
                 _trigger.inactiveTriggerEvent.AddListener(() =>
                 {
@@ -131,6 +131,8 @@ namespace Arena
 
         protected virtual IEnumerator Init(bool _isActive, bool _isImme = false)
         {
+            yield return new WaitForEndOfFrame();
+            Debug.Log("@@@Init");
             isActive = _isActive; 
             if (_isActive == true)
             {
