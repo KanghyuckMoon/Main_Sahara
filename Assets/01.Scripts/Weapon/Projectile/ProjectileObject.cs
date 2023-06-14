@@ -32,12 +32,12 @@ namespace Weapon
             }
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             Invoke("PoolObject", 5f);
         }
 
-        private void PoolObject()
+        protected void PoolObject()
         {
             gameObject.SetActive(false);
             ObjectPoolManager.Instance.RegisterObject(projectileAddress, gameObject);
