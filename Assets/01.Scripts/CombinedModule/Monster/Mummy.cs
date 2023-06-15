@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,8 @@ namespace CondinedModule
         [SerializeField]
         private PathHarver pathHarver;
 
+        [SerializeField] private HUDType hudType;
+        [SerializeField, Header("HUDTYPE Boss Only")] private string bossName = "TestBoss";
 		protected void OnEnable()
         {
             moduleComponentsDic ??= new();
@@ -48,7 +51,17 @@ namespace CondinedModule
             AddModuleWithPool<HpModule>(ModuleType.Hp);
             AddModuleWithPool<AnimationModule>(ModuleType.Animation);
             AddModuleWithPool<PhysicsModule>(ModuleType.Physics);
-            AddModuleWithPool<UIModule>(ModuleType.UI,"HudUI");
+            switch (hudType)
+            {
+                case HUDType.Default:
+                    AddModuleWithPool<UIModule>(ModuleType.UI, "HudUI");
+                    break;
+                case HUDType.Boss:
+                    AddModuleWithPool<UIModule>(ModuleType.UI, "BossHUD", bossName);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
             AddModuleWithPool<AttackModule>(ModuleType.Attack);
             AddModuleWithPool<WeaponModule>(ModuleType.Weapon);
             AddModuleWithPool<HitModule>(ModuleType.Hit);
