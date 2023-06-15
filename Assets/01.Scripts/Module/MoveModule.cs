@@ -96,7 +96,7 @@ namespace Module
 
             float _speed;
 
-            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? runSpeed - 2 : moveSpeed - 2;
+            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? runSpeed - 1 : moveSpeed - 1;
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking)
                 _targetSpeed = 0.0f;
 
@@ -108,7 +108,7 @@ namespace Module
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset) // && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 10.2f * mainModule.PersonalDeltaTime);
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.5f * mainModule.PersonalDeltaTime);
             }
             else
             {
@@ -117,7 +117,7 @@ namespace Module
 
             //animationBlend = mainModule.isGround ? animationBlend : 0;
             animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed,
-                mainModule.PersonalDeltaTime * 7.5f);
+                mainModule.PersonalDeltaTime * 6.5f);
             if (animationBlend < 0.01f) animationBlend = 0f;
 
             #endregion
