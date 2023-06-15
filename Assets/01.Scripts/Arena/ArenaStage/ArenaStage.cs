@@ -23,6 +23,7 @@ namespace Arena
 
         private void Start()
         {
+            arenaStageDataSO.curLevel = 1; 
         }
 
         public void Init()
@@ -73,6 +74,7 @@ namespace Arena
             if (_nextLevel > arenaStageDataSO.maxLevel)
             {
                 InactiveAll();
+                arenaStageDataSO.curLevel = arenaStageDataSO.maxLevel; 
                 arenaStageDataSO.isClear = true; 
                 return; 
                         // 다 비활성화 
