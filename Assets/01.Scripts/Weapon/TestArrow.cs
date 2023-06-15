@@ -53,7 +53,6 @@ namespace Weapon
             shotEvent?.Invoke();
             Invoke("PoolObject", 5f);
 
-            model.localEulerAngles = new Vector3(180,90,-90);
             rigidbody.isKinematic = false;
             rigidbody.useGravity = usingGravity;
             rigidbody.velocity = Vector3.zero;
@@ -64,6 +63,9 @@ namespace Weapon
             transform.SetParent(null);
             Vector3 _rot = (CalculateRotation(_vector3).normalized * objectData.speed);// + new Vector3(0, 1, 0);
             rigidbody.AddForce(_rot, ForceMode.Impulse);
+            model.localEulerAngles = new Vector3(180,90,-90);
+            quaternion = Quaternion.LookRotation(_rot);
+            transform.rotation = quaternion;
             //model.LookAt(_rot + Vector3.forward);
 
             //rigidbody.MovePosition(Vector3.up * 10);
