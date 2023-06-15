@@ -17,9 +17,12 @@ namespace Arena
         private float pushSpeed = 1f; 
 
         private Collider collider;
+        [SerializeField]
         private Vector3 originPos;
-        private Vector3 targetPos; 
-        
+        [SerializeField]
+        private Vector3 targetPos;
+        [SerializeField] private float Height; 
+
         private Vector3 movePosY => originPos + Vector3.down * height;
         // 충돌 여부 
         [SerializeField]
@@ -33,12 +36,14 @@ namespace Arena
         {
             base.Awake();
             collider = GetComponent<Collider>();
-            boxRaycaster = new BoxRaycaster(transform); 
+            boxRaycaster = new BoxRaycaster(transform);
+            Height = collider.bounds.size.y;
         }
 
         private void Start()
         {
             originPos = transform.localPosition;
+            targetPos = originPos; 
         }
 
         private void Update()
@@ -89,11 +94,7 @@ namespace Arena
             boxRaycaster.OnDrawGizmos();
         }
         
-        [ContextMenu("테스트")]
-        public void Test()
-        {
-            Interact();
-        }
+
         private void Move()
         {
             if ( Mathf.Abs(transform.localPosition.y - targetPos.y) < 0.1f ) return; 
