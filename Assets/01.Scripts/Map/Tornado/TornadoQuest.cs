@@ -21,7 +21,7 @@ namespace Map
 
         public void CutScenePlay()
         {
-            cutSceneHaver.PlayCutScene();
+            cutSceneHaver?.PlayCutScene();
         }
     }
 }
