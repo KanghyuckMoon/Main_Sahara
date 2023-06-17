@@ -6,7 +6,9 @@
     <SplitView style="height: 30%;">
         <ui:VisualElement name="left-panel" style="align-items: auto;">
             <ui:Label text="Inspector" display-tooltip-when-elided="true" style="width: 100%;" />
-            <InspectorView />
+            <ui:VisualElement style="flex-grow: 1; width: 100%; flex-direction: row;">
+                <InspectorView style="width: 100%;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="right-panel">
             <ui:Label text="TreeView" display-tooltip-when-elided="true" />

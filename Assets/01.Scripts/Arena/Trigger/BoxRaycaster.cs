@@ -54,7 +54,7 @@ namespace Arena
         public void OnDrawGizmos () {
             Vector3 _size = new Vector3(triggerCollider.transform.lossyScale.x * triggerCollider.size.x,
                 triggerCollider.transform.lossyScale.y * triggerCollider.size.y,
-                triggerCollider.transform.lossyScale.z * triggerCollider.size.z)
+                triggerCollider.transform.lossyScale.z * triggerCollider.size.z);
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube (
                 triggerCollider.center + transform.position + TriggerCollider.transform.localPosition, 
