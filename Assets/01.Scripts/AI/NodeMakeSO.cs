@@ -122,6 +122,31 @@ namespace AI
 			}
 		}
 
+		[ContextMenu("NodeSOToNodeList")]
+		public void NodeSOToNodeList()
+		{
+			nodes.Clear();
+			AddNodeModelToList(nodeModel, 0, 0, 0, 0, 0);
+		}
+
+		private void AddNodeModelToList(NodeModel _nodeModel, int childGrade, int parentsThisChildCount, int parentsChildCount, float parentsPosY, float additionHeight)
+		{
+			CreateNodeModel(_nodeModel);
+			_nodeModel.position = new Vector2(120 * childGrade, additionHeight + parentsPosY + - 60 * parentsChildCount + 120 * parentsThisChildCount);
+			for (int i = 0; i < _nodeModel.nodeModelList.Count; ++i)
+			{
+				if(i > 0 && _nodeModel.nodeModelList[i - 1].nodeModelList.Count > 1)
+				{
+					float _additionHeight = 120 * (_nodeModel.nodeModelList[i - 1].nodeModelList.Count - 1);
+					AddNodeModelToList(_nodeModel.nodeModelList[i], childGrade + 1, i, _nodeModel.nodeModelList.Count - 1, _nodeModel.position.y, _additionHeight);
+				}
+				else
+				{
+					AddNodeModelToList(_nodeModel.nodeModelList[i], childGrade + 1, i, _nodeModel.nodeModelList.Count - 1, _nodeModel.position.y, 0);
+				}
+			}
+		}
+
 		public NodeModel CreateNodeModel(NodeType _type)
 		{
 			NodeModel _node = new NodeModel();
@@ -137,6 +162,20 @@ namespace AI
 #endif
 
 			return _node;
+		}
+		public NodeModel CreateNodeModel(NodeModel _nodeModel)
+		{
+			_nodeModel.guid = GUID.Generate().ToString();
+			nodes.Add(_nodeModel);
+
+
+#if UNITY_EDITOR
+
+			AssetDatabase.SaveAssets();
+
+#endif
+
+			return _nodeModel;
 		}
 
 		public void DeleteNode(NodeModel _node)
