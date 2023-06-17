@@ -321,6 +321,7 @@ namespace AI
 				NodeCondition.CheckAttackState => CheckAttackState,
 				NodeCondition.CheckStrongAttacking => CheckStrongAttacking,
 				NodeCondition.AttackRangeCondition2 => AttackRange2Condition,
+				NodeCondition.HostileInitCondition => HostileInitCondition,
 				_ => null
 			};
 		}
