@@ -8,5 +8,6 @@ public class PlatformDataSO : ScriptableObject
 {
     public float tweenDuration; 
     public float startDelay;
-    public float actionDelay; 
+    public float actionDelay;
+    
 }
