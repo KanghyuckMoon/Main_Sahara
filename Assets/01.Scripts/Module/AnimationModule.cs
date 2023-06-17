@@ -50,7 +50,7 @@ namespace Module
 
 		private void SettingAnimatorSpeed()
         {
-            Animator.speed = mainModule.PersonalTime;
+            Animator.speed = mainModule.EntireTime;
         }
 
         public override void Awake()

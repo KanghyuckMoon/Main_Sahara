@@ -858,10 +858,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainModule: {fileID: 2089258947399142542}
-  attackMulti: 1
+  attackMulti: 3
   hitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4132183087130052006}
+        m_TargetAssemblyTypeName: Module.LocationHitBox, Module
+        m_MethodName: TimeSlow
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4132183087130052006}
+        m_TargetAssemblyTypeName: Module.LocationHitBox, Module
+        m_MethodName: AddHitEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HitEffect1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4134121960605059335
 GameObject:
   m_ObjectHideFlags: 0

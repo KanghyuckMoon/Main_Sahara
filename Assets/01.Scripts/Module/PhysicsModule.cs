@@ -117,7 +117,6 @@ namespace Module
                         HitModule.GetHit(1000000);
                         return;
                     }
-                    hitEvent?.Invoke();
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (!mainModule.IsCanHit)
                     {
@@ -159,9 +158,10 @@ namespace Module
                         foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
                         {
                             _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _s);
-                        }
+						}
+						hitEvent?.Invoke();
 
-                        SetDeBuff(_inGameHitBox.HitBoxData.buffList);
+						SetDeBuff(_inGameHitBox.HitBoxData.buffList);
 
                         //_inGameHitBox.HitBoxData.hitBoxAction?.Invoke();
 
