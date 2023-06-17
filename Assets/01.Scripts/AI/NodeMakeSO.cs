@@ -1,6 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEditor.Animations;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace AI
 {
@@ -13,6 +18,7 @@ namespace AI
 		IfSelector,
 		StringAction,
 		FloatAction,
+		Count,
 	}
 
 	public enum NodeAction
@@ -104,11 +110,69 @@ namespace AI
 	public class NodeMakeSO : ScriptableObject
 	{
 		public NodeModel nodeModel = new NodeModel();
+		public List<NodeModel> nodes = new List<NodeModel>();
+
+		[ContextMenu("NodeListToNodeSO")]
+		public void NodeListToNodeSO()
+		{
+			NodeModel _rootModel = nodes.Where(x => x.isRoot).First();
+			if(_rootModel != null)
+			{
+				nodeModel = _rootModel;
+			}
+		}
+
+		public NodeModel CreateNodeModel(NodeType _type)
+		{
+			NodeModel _node = new NodeModel();
+			_node.nodeType = _type;
+			_node.guid = GUID.Generate().ToString();
+			nodes.Add(_node);
+
+
+#if UNITY_EDITOR
+
+			AssetDatabase.SaveAssets();
+
+#endif
+
+			return _node;
+		}
+
+		public void DeleteNode(NodeModel _node)
+		{
+			nodes.Remove(_node);
+#if UNITY_EDITOR
+
+			AssetDatabase.SaveAssets();
+
+#endif
+		}
+
+		public void AddChild(NodeModel _parent, NodeModel _child)
+		{
+			_parent.AddChild(_child);
+		}
+		public void RemoveChild(NodeModel _parent, NodeModel _child)
+		{
+			_parent.RemoveChild(_child);
+		}
+		public List<NodeModel> GetChild(NodeModel _node)
+		{
+			return _node.nodeModelList;
+		}
+
+	}
+
+	public class InspectorNodeModel : ScriptableObject
+	{
+		public NodeModel nodeModel;
 	}
 
 	[System.Serializable]
 	public class NodeModel
 	{
+		public bool isRoot;
 		public NodeType nodeType;
 		public NodeCondition nodeCondition;
 		public NodeAction nodeAction;
@@ -132,7 +196,23 @@ namespace AI
 		public bool isUseTimer;
 		public bool isInvertTime;
 
+		[Header("InEditor")]
+		public string guid;
+
+		[Header("InEditor")]
+		public Vector2 position;
 
 		public List<NodeModel> nodeModelList = new List<NodeModel>();
+
+		public void AddChild(NodeModel _node)
+		{
+			nodeModelList.Add(_node);
+		}
+
+		public void RemoveChild(NodeModel _node)
+		{
+			nodeModelList.Remove(_node);
+		}
+
 	}
 }
