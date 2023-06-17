@@ -131,7 +131,7 @@ namespace AI
 
 		private void AddNodeModelToList(NodeModel _nodeModel, int childGrade, int parentsThisChildCount, int parentsChildCount, float parentsPosY, float additionHeight)
 		{
-			CreateNodeModel(_nodeModel);
+			CreateNodeModel(NodeModel.Copy(_nodeModel));
 			_nodeModel.position = new Vector2(120 * childGrade, additionHeight + parentsPosY + - 60 * parentsChildCount + 120 * parentsThisChildCount);
 			for (int i = 0; i < _nodeModel.nodeModelList.Count; ++i)
 			{
@@ -165,7 +165,11 @@ namespace AI
 		}
 		public NodeModel CreateNodeModel(NodeModel _nodeModel)
 		{
-			_nodeModel.guid = GUID.Generate().ToString();
+			NodeModel _node = new NodeModel();
+			if (string.IsNullOrEmpty(_node.guid))
+			{
+				_node.guid = GUID.Generate().ToString();
+			}
 			nodes.Add(_nodeModel);
 
 
@@ -243,6 +247,8 @@ namespace AI
 
 		public List<NodeModel> nodeModelList = new List<NodeModel>();
 
+		public int order = 0;
+
 		public void AddChild(NodeModel _node)
 		{
 			nodeModelList.Add(_node);
@@ -251,6 +257,39 @@ namespace AI
 		public void RemoveChild(NodeModel _node)
 		{
 			nodeModelList.Remove(_node);
+		}
+
+		[ContextMenu("Sort")]
+		public void Sort()
+		{
+			nodeModelList = nodeModelList.OrderBy(x => x.order).ToList();
+		}
+
+		public static NodeModel Copy(NodeModel _nodeModel)
+		{
+			var _newModel = new NodeModel();
+
+			_newModel.isRoot = _nodeModel.isRoot;
+			_newModel.nodeType = _nodeModel.nodeType;
+			_newModel.nodeCondition = _nodeModel.nodeCondition;
+			_newModel.nodeAction = _nodeModel.nodeAction;
+			_newModel.changeDelay = _nodeModel.changeDelay;
+			_newModel.percent = _nodeModel.percent;
+			_newModel.str = _nodeModel.str;
+			_newModel.value = _nodeModel.value;
+			_newModel.delay = _nodeModel.delay;
+			_newModel.isIgnore = _nodeModel.isIgnore;
+			_newModel.isInvert = _nodeModel.isInvert;
+			_newModel.isUseTimer = _nodeModel.isUseTimer;
+			_newModel.isInvertTime = _nodeModel.isInvertTime;
+			_newModel.guid = _nodeModel.guid;
+			_newModel.position = _nodeModel.position;
+			var _modelList = new List<NodeModel>();
+			_modelList = _nodeModel.nodeModelList.ConvertAll(model => NodeModel.Copy(model));
+			_newModel.nodeModelList = _modelList;
+
+
+			return _newModel;
 		}
 
 	}

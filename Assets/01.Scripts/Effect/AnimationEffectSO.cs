@@ -26,6 +26,13 @@ namespace Effect
 				effectDataListDic.Add(_obj, _effectDataList);
 			}
 		}
+
+		[ContextMenu("AddEmpty")]
+		public void AddEmpty()
+		{
+			EffectDataList _effectDataList = new EffectDataList();
+			effectDataListDic.Add("", _effectDataList);
+		}
 		
 		public void UploadEffectData(string _key, EffectData _effectData)
 		{
