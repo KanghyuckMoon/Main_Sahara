@@ -26,7 +26,7 @@ namespace Map
 
         private void QuestAdd()
         {
-            QuestManager.Instance.ChangeQuestActive(questKey);
+            QuestManager.Instance.ChangeQuestDiscoverable(questKey);
         }
     }
 }
