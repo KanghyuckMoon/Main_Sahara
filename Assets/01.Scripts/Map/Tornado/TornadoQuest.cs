@@ -2,26 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using CutScene;
 using UnityEngine;
+using Quest;
+using Utill.Pattern;
 
 namespace Map
 {
     public class TornadoQuest : MonoBehaviour
     {
         [SerializeField] private TornadoQuestSO tornadoQuestSO;
-        [SerializeField] private CutSceneHaver cutSceneHaver;
+        [SerializeField] private string questKey;
         
         public void AddTornadoCount()
         {
-            tornadoQuestSO.tornadoCount++;
-            if (tornadoQuestSO.tornadoCount >= 2)
+            if (tornadoQuestSO.tornadoCount >= 1)
             {
-                CutScenePlay();
+                QuestAdd();
+            }
+            else
+            {
+                tornadoQuestSO.tornadoCount++;
             }
         }
 
-        public void CutScenePlay()
+        private void QuestAdd()
         {
-            cutSceneHaver?.PlayCutScene();
+            QuestManager.Instance.ChangeQuestActive(questKey);
         }
     }
 }
