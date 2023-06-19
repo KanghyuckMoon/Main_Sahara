@@ -389,6 +389,15 @@ namespace AI
             return true;
         }
 
+        private bool HostileInitCondition()
+        {
+            if(aiModule.AIModuleHostileState == AIModule.AIHostileState.Discovery && aiModule.HostileTime < 0.3f)
+            {
+                return true;
+			}
+			return false;
+		}
+
         #endregion
 
 

@@ -75,6 +75,11 @@ namespace Module
             //}
             //mainModule.transform.rotation = Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
 
+            if(!mainModule.LockOn)
+            {
+				mainModule.transform.rotation = Quaternion.Euler(0, rotation, 0);
+			}
+
             Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
 
             _direction = VelocityOnSlope(_direction, _targetDirection);

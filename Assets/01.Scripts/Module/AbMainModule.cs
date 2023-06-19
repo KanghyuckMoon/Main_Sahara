@@ -346,6 +346,10 @@ namespace Module
             {
                 return IsStaticTime ? StaticTime.EntierTime : PersonalTime;
             }
+            set
+            {
+                PersonalTime = value;
+			}
         }
         public float PersonalTime
         {

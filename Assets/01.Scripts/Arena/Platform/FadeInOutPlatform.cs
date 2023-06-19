@@ -22,6 +22,7 @@ namespace Arena
         [ContextMenu("Å×½ºÆ®")]
         public override void StartAction()
         {
+            base.StartAction();
             DoFadeInOut(); 
         }
 

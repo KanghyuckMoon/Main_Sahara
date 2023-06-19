@@ -5,6 +5,7 @@ using Module;
 using Streaming;
 using Pool;
 using HitBox;
+using static GluonGui.WorkspaceWindow.Views.Checkin.Operations.CheckinViewDeleteOperation;
 
 namespace Skill
 {
@@ -15,14 +16,10 @@ namespace Skill
         private AnimationClip animationClip;
 
         [SerializeField]
-        private string enemyAddress;
-        [SerializeField]
-        private ObjectDataSO objectDataSO;
-        [SerializeField]
         private float radius = 1f;
 
         [SerializeField] 
-        private LayerMask spawnLayerMask;
+        private LayerMask callLayerMask;
         
         private Vector3 spawnPos = Vector3.zero;
         //[SerializeField] private buv
@@ -32,68 +29,31 @@ namespace Skill
         public void Skills(AbMainModule _mainModule)
         {
             PlaySkillAnimation(_mainModule, animationClip);
-            //Invoke("SpawnObj", 1f);;
-            isSpawnOn = true;
-        }
+            Call(_mainModule);
+			//Invoke("SpawnObj", 1f);;
+			//isSpawnOn = true;
+		}
 
-        private void Update()
-        {
-            if (isSpawnOn && !isSpawn)
-            {
-                SpawnObj();
-                isSpawn = true;
-            }
-        }
-        
-        public void Spawn()
-        {
-            //ObjectPoolManager.Instance.GetObjectAsync(enemyAddress, SpawnObj);
-        }
-
-        private void SpawnObj()
-        {
-            GameObject _obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
-            ObjectClassCycle objectClassCycle = _obj.GetComponentInChildren<ObjectClassCycle>();
-            objectClassCycle.TargetObject = _obj;
-            ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>();
-            if (_objectSceneChecker is null)
-            {
-                _objectSceneChecker = new ObjectSceneChecker();
-            }
-            _objectSceneChecker.ObjectDataSO = objectDataSO;
-            _objectSceneChecker.ObjectClassCycle = objectClassCycle;
-            objectClassCycle.AddObjectClass(_objectSceneChecker);
-            GetRandomPos();
-            _obj.transform.position = spawnPos;
-            _obj.SetActive(true);
-        }
-
-        private void GetRandomPos()
-        {
-            Vector3 _result = new Vector3();
-
-            int count = 10;
-            while(count-- > 0)
-            {
-                float randomPosX = Random.Range(-radius, radius);
-                float randomPosZ = Random.Range(-radius, radius);
-
-                Vector3 rayPos = new Vector3(transform.position.x + randomPosX, transform.position.y + 50, transform.position.z +randomPosZ);
-                RaycastHit raycastHit;
-
-                if (Physics.Raycast(rayPos, Vector3.down, out raycastHit, 150f, spawnLayerMask))
+        public void Call(AbMainModule _mainModule)
+		{
+			Collider[] targets = Physics.OverlapSphere(_mainModule.transform.position, radius, callLayerMask);
+			foreach (Collider col in targets)
+			{
+                var _otherMainModule = col.gameObject.GetComponent<AbMainModule>();
+                if(_otherMainModule != null)
                 {
-                    _result = rayPos;
-                    _result.y = raycastHit.point.y + 3f;
-                    break;
-                }
-            }
+                    var _aiModule = _otherMainModule.GetModuleComponent<AIModule>(ModuleType.Input);
+                    if(_aiModule != null)
+                    {
+						_aiModule.AIModuleHostileState = AIModule.AIHostileState.Discovery;
+                    }
+				}
+			}
+		}
 
-            spawnPos = _result;
-        }
-        public HitBoxAction GetHitBoxAction()
-        {
+		public HitBoxAction GetHitBoxAction()
+		{
             return null;
-        }
-    }   
+		}
+	}   
 }

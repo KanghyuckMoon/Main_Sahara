@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 247685367826422861}
   - component: {fileID: 6165384266292577847}
   - component: {fileID: 6165384266292577848}
-  - component: {fileID: 6165384266292577855}
   - component: {fileID: 6165384266292577854}
   - component: {fileID: 6165384266292577853}
   - component: {fileID: 6165384266292577843}
@@ -119,6 +118,8 @@ GameObject:
   - component: {fileID: 6165384266292577840}
   - component: {fileID: -2076655983354608633}
   - component: {fileID: 844705169}
+  - component: {fileID: 2089258947399142542}
+  - component: {fileID: 3668975295135533044}
   m_Layer: 18
   m_Name: xa_Nm
   m_TagString: Enemy
@@ -182,75 +183,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.3, z: 0}
---- !u!114 &6165384266292577855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586633618700060407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17b3e6f3f28b0f46a2ec1c5aa01e78a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 0
-  lockOnTarget: {fileID: 0}
-  characterController: {fileID: 6165384266292577848}
-  objDir: {x: 0, y: 0}
-  objDirection: {x: 0, y: 0, z: 0}
-  objRotation: {x: 0, y: 0, z: 0, w: 0}
-  objForword: {x: 0, y: 0, z: 0}
-  statData: {fileID: 6165384266292577843}
-  hitCollider:
-  - Player_Weapon
-  moveSpeed: 0
-  isSprint: 0
-  isGround: 0
-  isJump: 0
-  isFreeFall: 0
-  isSlope: 0
-  isJumpBuf: 0
-  canMove: 0
-  isDead: 0
-  isAttack: 0
-  isWeaponExist: 0
-  isHit: 0
-  isCharging: 0
-  isCanHit: 0
-  isStaticTime: 0
-  canConsecutiveAttack: 0
-  isDash: 0
-  isConsecutiveWeapon: 0
-  isChargeJumpOn: 0
-  isFlameOn: 0
-  attacking: 0
-  strongAttacking: 0
-  gravity: 0
-  gravityScale: -9.8
-  groundOffset: 0.12
-  groundRadius: 0.2
-  attackedTime: 0
-  knockBackVector: {x: 0, y: 0, z: 0}
-  knockBackPower: 0
-  slopeVector: {x: 0, y: 0, z: 0}
-  hitDelay: 0
-  lockOn: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 132096
-  maxSlope: 0
-  raycastTarget: {fileID: 0}
-  visualObject: {fileID: 4134121960605059335}
-  model: {fileID: 7118074666309013125}
-  animator: {fileID: 6165384266292577847}
-  jumpstrenght: 0
-  leftFeet: {fileID: 4838895564799215996}
-  rightFeet: {fileID: 6039354688049543047}
-  back: {fileID: 0}
-  animatorOverrideController: {fileID: 0}
-  aiSOAddress: xa_Nm_AISO
-  pathHarver: {fileID: 0}
 --- !u!114 &6165384266292577854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: 657169a50d452ce40951c287cad30d73, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: 657169a50d452ce40951c287cad30d73, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 586633618700060407}
 --- !u!114 &6165384266292577853
 MonoBehaviour:
@@ -294,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: xa_Nm_DataSO
+  playerdata: {fileID: 0}
 --- !u!114 &6165384266292577842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,8 +277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainModule: {fileID: 6165384266292577855}
+  mainModule: {fileID: 2089258947399142542}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-2076655983354608633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +317,90 @@ MonoBehaviour:
     rotation: {x: 270, y: 0, z: 0}
     scale: {x: 1, y: 1, z: 1}
     childization: 1
+--- !u!114 &2089258947399142542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586633618700060407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647460e23ec8ab6469f1be3921ffda42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 0
+  lockOnTarget: {fileID: 0}
+  characterController: {fileID: 6165384266292577848}
+  objDir: {x: 0, y: 0}
+  objDirection: {x: 0, y: 0, z: 0}
+  objRotation: {x: 0, y: 0, z: 0, w: 0}
+  objForword: {x: 0, y: 0, z: 0}
+  statData: {fileID: 6165384266292577843}
+  hitCollider:
+  - Player_Weapon
+  moveSpeed: 0
+  isSprint: 0
+  isGround: 0
+  isJump: 0
+  isFreeFall: 0
+  isSlope: 0
+  isJumpBuf: 0
+  canMove: 0
+  isDead: 0
+  isAttack: 0
+  isWeaponExist: 0
+  isHit: 0
+  isCharging: 0
+  isCanHit: 0
+  isStaticTime: 0
+  canConsecutiveAttack: 0
+  isDash: 0
+  isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
+  attacking: 0
+  strongAttacking: 0
+  gravity: 0
+  gravityScale: -9.8
+  groundOffset: 0.12
+  groundRadius: 0.2
+  attackedTime: 0
+  knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
+  slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
+  hitDelay: 0
+  lockOn: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 132096
+  maxSlope: 0
+  raycastTarget: {fileID: 0}
+  visualObject: {fileID: 4134121960605059335}
+  model: {fileID: 7118074666309013125}
+  animator: {fileID: 6165384266292577847}
+  jumpstrenght: 0
+  leftFeet: {fileID: 4838895564799215996}
+  rightFeet: {fileID: 6039354688049543047}
+  back: {fileID: 0}
+  animatorOverrideController: {fileID: 0}
+  aiSOAddress: xa_Nm_AISO
+  pathHarver: {fileID: 0}
+  hudType: 0
+  bossName: TestBoss
+--- !u!114 &3668975295135533044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586633618700060407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd01e950db37d2e4d9e397bb8b471f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1032976521521244201
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,8 +857,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainModule: {fileID: 6165384266292577855}
-  attackMulti: 1
+  mainModule: {fileID: 2089258947399142542}
+  attackMulti: 3
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4132183087130052006}
+        m_TargetAssemblyTypeName: Module.LocationHitBox, Module
+        m_MethodName: TimeSlow
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4132183087130052006}
+        m_TargetAssemblyTypeName: Module.LocationHitBox, Module
+        m_MethodName: AddHitEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HitEffect1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4134121960605059335
 GameObject:
   m_ObjectHideFlags: 0
