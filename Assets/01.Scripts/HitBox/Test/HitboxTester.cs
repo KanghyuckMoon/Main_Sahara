@@ -16,7 +16,7 @@ namespace HitBox
 			foreach(HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(hitboxStr).hitBoxDataList)
 			{
 				GameObject hitbox = ObjectPoolManager.Instance.GetObject("HitBox");
-				hitbox.GetComponent<InGameHitBox>().SetHitBox(0, hitBoxData, gameObject, "Player_Weapon");
+				hitbox.GetComponent<InGameHitBox>().SetHitBox(hitbox,0, hitBoxData, gameObject, "Player_Weapon");
 			}
 		}
 	}
