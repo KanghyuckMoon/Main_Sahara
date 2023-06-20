@@ -181,6 +181,10 @@ namespace Module.Talk
 						QuestData questData = QuestManager.Instance.GetQuestData(questCondition.questKey);
 						try
 						{
+							if (questCondition.questState == QuestState.NotClear && questData.QuestState == QuestState.Clear)
+							{
+								return false;
+							}
 						    if(questCondition.questState != questData.QuestState)
 						    {
 							    return false;
