@@ -42,7 +42,7 @@ namespace Attack
         private void AddEvent()
         {
             attackFeedBackEvent.AddListener((vec, s) => AttackEffect(vec, s));
-            //attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
+            attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
         }
 
         private void OnDisable()
@@ -61,14 +61,7 @@ namespace Attack
 
         private void TimeSlow()
         {
-            StaticCoroutineManager.Instance.InstanceDoCoroutine(AttackFeedBack_TimeSlow());
-        }
-
-        IEnumerator AttackFeedBack_TimeSlow()
-        {
-            StaticTime.EntierTime = 0.02f;
-            yield return new WaitForSeconds(0.22f);
-            StaticTime.EntierTime = 1;
+            TimeSlowManager.Instance.SlowTime = 0.22f;
         }
     }
 }

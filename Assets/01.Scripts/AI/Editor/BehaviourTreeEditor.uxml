@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/01.Scripts/AI/Editor/BehaviourTreeEditor.uss?fileID=7433441132597879392&amp;guid=784fa8e2cdd7e1d4f809441cd5b93bd1&amp;type=3#BehaviourTreeEditor" />
+    <uie:Toolbar style="height: 15px;">
+        <uie:ToolbarMenu display-tooltip-when-elided="true" text="Assets" style="width: 59px;" />
+    </uie:Toolbar>
+    <SplitView style="height: 30%;">
+        <ui:VisualElement name="left-panel" style="align-items: auto;">
+            <ui:Label text="Inspector" display-tooltip-when-elided="true" style="width: 100%;" />
+            <ui:VisualElement style="flex-grow: 1; width: 100%; flex-direction: row;">
+                <InspectorView style="width: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="right-panel">
+            <ui:Button text="Sort" display-tooltip-when-elided="true" name="SortBtn" style="justify-content: center; -unity-text-align: middle-center; width: 51px; margin-top: 1px; height: 15px;" />
+            <ui:Label text="TreeView" display-tooltip-when-elided="true" />
+            <BehaviourTreeView focusable="true" style="height: 211px; flex-grow: 1;" />
+        </ui:VisualElement>
+    </SplitView>
+</ui:UXML>

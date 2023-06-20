@@ -80,6 +80,8 @@ namespace Weapon
 
         public bool isParentOn = true;
 
+        public bool isSetHitBoxWhenSetProjectile = true;
+        
         public static ProjectileObjectData StaticCopy(ProjectileObjectData _projectileObjectData)
         {
             ProjectileObjectData _data = new ProjectileObjectData();

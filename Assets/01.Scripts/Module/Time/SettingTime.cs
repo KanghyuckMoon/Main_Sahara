@@ -36,22 +36,22 @@ namespace Module
         {
             durationTime = _duration;
 
-            originSpeed = mainModule.PersonalTime;
+            originSpeed = mainModule.EntireTime;
             isRunning = true;
-            mainModule.PersonalTime = _slowvalue;
+            mainModule.EntireTime = _slowvalue;
         }
 
         private void ResetTime()
         {
             isRunning = false;
-            mainModule.PersonalTime = 1;
+            mainModule.EntireTime = 1;
         }
         
         public void SettingCanMove(int _on)
         {
             bool _isOn = _on > 0;
             mainModule.CanMove = _isOn;
-            mainModule.PersonalTime = originSpeed;
+            mainModule.EntireTime = originSpeed;
         }
     }
 }

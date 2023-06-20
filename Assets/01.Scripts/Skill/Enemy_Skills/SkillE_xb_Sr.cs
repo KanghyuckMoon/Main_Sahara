@@ -18,7 +18,7 @@ namespace Skill
 
         public void Skill(AbMainModule _mainModule)
         {
-            Skill_Test(_mainModule, animationClip);
+            UseSkill(_mainModule, animationClip);
         }
     }
 }

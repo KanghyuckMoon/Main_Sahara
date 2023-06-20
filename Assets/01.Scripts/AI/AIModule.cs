@@ -92,12 +92,14 @@ namespace Module
 					{
 						DynamicBGMManager.Instance.RemoveEnemyCount();
 						UIModule.IsRender = false;
+						mainModule.LockOn = false;
 					}
 				}
 				else if (previousAIHostileState is not AIHostileState.Discovery)
 				{
 					if (currentAIHostileState is AIHostileState.Discovery)
 					{
+						mainModule.LockOn = true;
 						DynamicBGMManager.Instance.AddEnemyCount();
 						UIModule.IsRender = true;
 					}
@@ -233,7 +235,17 @@ namespace Module
 			}
 		}
 		
-		
+		public float HostileTime
+		{
+			get
+			{
+				return hostileTime;
+			}
+			set
+			{
+				hostileTime = value;
+			}
+		}
 		
 		private Transform player;
 		protected INode _rootNode;
@@ -253,6 +265,7 @@ namespace Module
 		private Vector3 originPos = Vector3.zero;
 		private Vector3 lastFindPlayerPos = Vector3.zero;
 		private TalkModule talkModule;
+		private float hostileTime = 0f;
 
 		public AIModule() : base()
 		{
@@ -329,6 +342,14 @@ namespace Module
 				return;
 			}
 
+			if (currentAIHostileState == AIHostileState.Discovery)
+			{
+				hostileTime += Time.deltaTime;
+			}
+			else
+			{
+				hostileTime = 0f;
+			}
 			_rootNode.Run();
 		}
 

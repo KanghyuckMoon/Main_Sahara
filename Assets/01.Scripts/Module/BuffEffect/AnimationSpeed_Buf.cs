@@ -29,7 +29,7 @@ namespace Buff
                 {
                     
                     
-                    abMainModule.PersonalTime += CalculateSpeed(abMainModule.PersonalTime);
+                    abMainModule.EntireTime += CalculateSpeed(abMainModule.EntireTime);
                     //Debug.LogError("회복호복");
                     
                     currentPeriod = period;
@@ -41,7 +41,7 @@ namespace Buff
 
             else
             {
-                abMainModule.PersonalTime -= CalculateSpeed(abMainModule.PersonalTime);
+                abMainModule.EntireTime -= CalculateSpeed(abMainModule.EntireTime);
                 
                 buffModule.buffDic.Remove(this);
                 buffModule.buffList.Remove(this);

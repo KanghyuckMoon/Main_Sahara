@@ -79,12 +79,16 @@ namespace Module
                     //KeyValuePair<GameObject, ProjectileObjectData> keyValuePair = new KeyValuePair(attackModule.CreateProjectile(_datas), _datas);
                     GameObject _projectile = attackModule.CreateProjectile(_datas);
                     HitBoxOnProjectile _hitProj = _projectile.GetComponent<HitBoxOnProjectile>();
-                    if(_hitProj != null)
+                    if (_hitProj != null)
                     {
                         _hitProj.SetOwner(gameObject);
                         _projectile.tag = mainModule.player ? "Player" : "EnemyWeapon";
-                        _hitProj.SetEnable();
+                        if(_datas.isSetHitBoxWhenSetProjectile)
+                        {
+                            _hitProj.SetEnable();
+                        }
                     }
+
                     projectileObjects.Add(_projectile);
                     //projectileObjects
                 }

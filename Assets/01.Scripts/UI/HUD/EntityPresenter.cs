@@ -37,7 +37,7 @@ namespace UI
         private PresenterFollower presenterFollower;
 
         // 데이터 
-        private UIModule uiModule;
+        protected UIModule uiModule;
         private StatData statData;
         private BuffModule buffModule;
 
@@ -179,7 +179,7 @@ namespace UI
         }
 
         [ContextMenu("테스트")]
-        public void UpdateUI()
+        public virtual void UpdateUI()
         {
             foreach (var p in _presenterList)
             {
@@ -298,6 +298,7 @@ namespace UI
                     StartPresenters();
                     this.statData.AddObserver(this);
                     this.uiModule.AddObserver(this);
+                    UpdateUI(); 
                 }
             }
         }

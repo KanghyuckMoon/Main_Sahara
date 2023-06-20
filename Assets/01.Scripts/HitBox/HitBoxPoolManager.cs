@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using HitBox;
@@ -8,7 +9,6 @@ namespace Pool
 {
     public class HitBoxPoolManager : SpecificPoolManager<InGameHitBox>
     {
-    
     }
 
 }

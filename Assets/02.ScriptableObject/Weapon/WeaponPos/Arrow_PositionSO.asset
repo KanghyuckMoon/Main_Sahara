@@ -16,6 +16,7 @@ MonoBehaviour:
     m_keys:
     - Arrow
     - Arrow2
+    - SandTornado_Projectile
     m_values:
     - list:
       - projectileName: Arrow
@@ -24,6 +25,19 @@ MonoBehaviour:
         rotation: {x: -0.70156765, y: 0.7125799, z: -0.005298935, w: -0.0021308018}
         weaponHand: 1
         InitialDirection: {x: 0, y: 0, z: 30}
-        speed: 10
+        speed: 5
         projectileAddress: Arrow
+        isParentOn: 1
+        isSetHitBoxWhenSetProjectile: 0
     - list: []
+    - list:
+      - projectileName: SandTornado_Projectile
+        distinguishingName: SandTornado_Projectile
+        position: {x: 0, y: -10, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 1}
+        weaponHand: 0
+        InitialDirection: {x: 0, y: 0, z: 0}
+        speed: 5
+        projectileAddress: SandTornado_Projectile
+        isParentOn: 0
+        isSetHitBoxWhenSetProjectile: 1

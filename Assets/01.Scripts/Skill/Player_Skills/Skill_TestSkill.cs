@@ -32,7 +32,7 @@ namespace Skill
                 .SetSprite("Demon")
                 .SetSpownObjectName("HealEffect"), BuffType.Update);
             
-            Skill_Test(_mainModule, animationClip);
+            UseSkill(_mainModule, animationClip);
             //throw new System.NotImplementedException();
         }
     }

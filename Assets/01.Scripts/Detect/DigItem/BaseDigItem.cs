@@ -8,20 +8,20 @@ namespace Detect
     public class BaseDigItem : MonoBehaviour
     {
         [SerializeField] 
-        private Transform detectTrm;
+        protected Transform detectTrm;
 
         [SerializeField]
         protected float radius = 5f;
         [SerializeField] 
-        private DetectItemType detectItemType;
+        protected DetectItemType detectItemType;
         [SerializeField] 
-        private LayerMask targetLayerMask;
+        protected LayerMask targetLayerMask;
         
         protected IDetectItem targetItem;
 
         protected float minDistance = 0f;
         
-        protected void GetNearObject()
+        protected virtual void GetNearObject()
         {
             GameObject obj = null;
             float minimumDistance = float.MaxValue;

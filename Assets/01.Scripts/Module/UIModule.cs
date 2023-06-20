@@ -33,6 +33,22 @@ namespace Module
             }
 
         }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                Send();
+            }
+        }
+
+        private string name = "";
+        
         private string address = null;
         private List<Observer> observers = new List<Observer>();
         private bool isRender;
@@ -57,7 +73,12 @@ namespace Module
                 if(_parameters.Length > 0)
 				{
                     address = _parameters[0];
-				}
+                }
+                
+                if(_parameters.Length > 1)
+                {
+                    Name = _parameters[1];
+                }
 			}
 
         }
