@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pool;
 using Utill.Pattern;
-using Utill.Coroutine;
+using Utill.Coroutine;	
 
 namespace HitBox
 {
@@ -30,6 +30,8 @@ namespace HitBox
 		[SerializeField] private bool isOnEnalbe = false;
 
 		private HitBoxOnAnimation hitBoxOnAnimation;
+		private bool isSetting;
+		[SerializeField] private bool isStage;
 
 		private HitBoxOnAnimation HitBoxOnAnimation
 		{
@@ -40,6 +42,20 @@ namespace HitBox
 			}
 		}
 
+
+		private IEnumerator PlayCheck()
+		{
+			while (true)
+			{
+				if (GameManager.GamePlayerManager.Instance.IsPlaying)
+				{
+					OnEnable();
+				}
+
+				yield return null;
+			}
+		}
+
 		private void Start()
 		{
 			hitBoxOnAnimation = GetComponentInParent<HitBoxOnAnimation>();
@@ -47,18 +63,33 @@ namespace HitBox
 
 		private void OnEnable()
 		{
-			try
+			if (isOnEnalbe)
 			{
-				if (isOnEnalbe)
+				if (isStage)
 				{
-					SetEnable();
+					StartCoroutine(SetStageHitBoxOnProjectile());
+				}
+				else
+				{
+					SetEnable();	
 				}
 			}
-			catch (Exception e)
+		}
+
+		private IEnumerator SetStageHitBoxOnProjectile()
+		{
+			while (true)
 			{
-				Debug.LogError(e, gameObject);
+				if (GameManager.GamePlayerManager.Instance.IsPlaying)
+				{
+					yield return new WaitForSeconds(10f);
+					SetEnable();
+					yield break;
+				}
+				yield return null;
 			}
 		}
+
 
 		public void SetEnable()
 		{
@@ -95,19 +126,18 @@ namespace HitBox
 		{
 			if (isSetHitbox)
 			{
-				StaticCoroutineManager.Instance.InstanceDoCoroutine(DisableHitBoxs());
+				StaticCoroutineManager.Instance.StartCoroutine(OnDisableCol());
 			}
 		}
 
-		private IEnumerator DisableHitBoxs()
+		private IEnumerator OnDisableCol()
 		{
 			yield return null;
-			
 			foreach (var _col in inGameHitBoxeList)
 			{
 				try
 				{
-					_col.transform.SetParent(null);
+					//_col.transform.SetParent(null);
 					_col.gameObject.SetActive(false);
 					Pool.HitBoxPoolManager.Instance.RegisterObject(_col);
 				}
@@ -119,6 +149,29 @@ namespace HitBox
 			}
 			inGameHitBoxeList.Clear();
 		}
+
+		private void OnDestroy()
+		{
+			if (isSetHitbox)
+			{
+				foreach (var _col in inGameHitBoxeList)
+				{
+					try
+					{
+						_col.transform.SetParent(null);
+						_col.gameObject.SetActive(false);
+						Pool.HitBoxPoolManager.Instance.RegisterObject(_col);
+					}
+					catch (Exception e)
+					{
+						Debug.LogError(e);
+						break;
+					}
+				}
+				inGameHitBoxeList.Clear();
+			}
+		}
+
 
 		public void SetOwner(GameObject _owner)
 		{
@@ -134,17 +187,14 @@ namespace HitBox
 				string tagname = gameObject.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
 				foreach (HitBoxData hitBoxData in hitBoxDataSO.GetHitboxList(_str).hitBoxDataList)
 				{
-					try
+					InGameHitBox _ingameHitBox = HitBoxPoolManager.Instance.GetObject();
+					if (_ingameHitBox.gameObject == null)
 					{
-						InGameHitBox _ingameHitBox = HitBoxPoolManager.Instance.GetObject();
-						_ingameHitBox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject, null, HitBoxOnAnimation?.hitBoxAction);
-
-						inGameHitBoxeList.Add(_ingameHitBox);
+						Debug.LogError("Error Null Hitbox GameObject");
 					}
-					catch(Exception e)
-					{
-						Debug.LogWarning(e, gameObject);
-					}
+					_ingameHitBox.SetHitBox( _ingameHitBox.gameObject, index + hitBoxData.hitBoxIndex, hitBoxData, owner, tagname, gameObject, null, HitBoxOnAnimation?.hitBoxAction);
+					
+					inGameHitBoxeList.Add(_ingameHitBox);
 				}
 			}
 			else

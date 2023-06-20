@@ -104,6 +104,7 @@ namespace AI
 		CheckStrongAttacking,
 		CheckAttackState,
 		AttackRangeCondition2,
+		HostileInitCondition,
 	}
 
 	[CreateAssetMenu(fileName = "NodeMakeSO", menuName = "SO/NodeMakeSO")]
@@ -122,6 +123,31 @@ namespace AI
 			}
 		}
 
+		[ContextMenu("NodeSOToNodeList")]
+		public void NodeSOToNodeList()
+		{
+			nodes.Clear();
+			AddNodeModelToList(nodeModel, 0, 0, 0, 0, 0);
+		}
+
+		private void AddNodeModelToList(NodeModel _nodeModel, int childGrade, int parentsThisChildCount, int parentsChildCount, float parentsPosY, float additionHeight)
+		{
+			CreateNodeModel(NodeModel.Copy(_nodeModel));
+			_nodeModel.position = new Vector2(120 * childGrade, additionHeight + parentsPosY + - 60 * parentsChildCount + 120 * parentsThisChildCount);
+			for (int i = 0; i < _nodeModel.nodeModelList.Count; ++i)
+			{
+				if(i > 0 && _nodeModel.nodeModelList[i - 1].nodeModelList.Count > 1)
+				{
+					float _additionHeight = 120 * (_nodeModel.nodeModelList[i - 1].nodeModelList.Count - 1);
+					AddNodeModelToList(_nodeModel.nodeModelList[i], childGrade + 1, i, _nodeModel.nodeModelList.Count - 1, _nodeModel.position.y, _additionHeight);
+				}
+				else
+				{
+					AddNodeModelToList(_nodeModel.nodeModelList[i], childGrade + 1, i, _nodeModel.nodeModelList.Count - 1, _nodeModel.position.y, 0);
+				}
+			}
+		}
+
 		public NodeModel CreateNodeModel(NodeType _type)
 		{
 			NodeModel _node = new NodeModel();
@@ -137,6 +163,24 @@ namespace AI
 #endif
 
 			return _node;
+		}
+		public NodeModel CreateNodeModel(NodeModel _nodeModel)
+		{
+			NodeModel _node = new NodeModel();
+			if (string.IsNullOrEmpty(_node.guid))
+			{
+				_node.guid = GUID.Generate().ToString();
+			}
+			nodes.Add(_nodeModel);
+
+
+#if UNITY_EDITOR
+
+			AssetDatabase.SaveAssets();
+
+#endif
+
+			return _nodeModel;
 		}
 
 		public void DeleteNode(NodeModel _node)
@@ -204,6 +248,8 @@ namespace AI
 
 		public List<NodeModel> nodeModelList = new List<NodeModel>();
 
+		public int order = 0;
+
 		public void AddChild(NodeModel _node)
 		{
 			nodeModelList.Add(_node);
@@ -212,6 +258,39 @@ namespace AI
 		public void RemoveChild(NodeModel _node)
 		{
 			nodeModelList.Remove(_node);
+		}
+
+		[ContextMenu("Sort")]
+		public void Sort()
+		{
+			nodeModelList = nodeModelList.OrderBy(x => x.order).ToList();
+		}
+
+		public static NodeModel Copy(NodeModel _nodeModel)
+		{
+			var _newModel = new NodeModel();
+
+			_newModel.isRoot = _nodeModel.isRoot;
+			_newModel.nodeType = _nodeModel.nodeType;
+			_newModel.nodeCondition = _nodeModel.nodeCondition;
+			_newModel.nodeAction = _nodeModel.nodeAction;
+			_newModel.changeDelay = _nodeModel.changeDelay;
+			_newModel.percent = _nodeModel.percent;
+			_newModel.str = _nodeModel.str;
+			_newModel.value = _nodeModel.value;
+			_newModel.delay = _nodeModel.delay;
+			_newModel.isIgnore = _nodeModel.isIgnore;
+			_newModel.isInvert = _nodeModel.isInvert;
+			_newModel.isUseTimer = _nodeModel.isUseTimer;
+			_newModel.isInvertTime = _nodeModel.isInvertTime;
+			_newModel.guid = _nodeModel.guid;
+			_newModel.position = _nodeModel.position;
+			var _modelList = new List<NodeModel>();
+			_modelList = _nodeModel.nodeModelList.ConvertAll(model => NodeModel.Copy(model));
+			_newModel.nodeModelList = _modelList;
+
+
+			return _newModel;
 		}
 
 	}

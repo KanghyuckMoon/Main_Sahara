@@ -50,11 +50,11 @@ namespace HitBox
 					InGameHitBox hitbox = HitBoxPoolManager.Instance.GetObject();
 					if (waeponHandle == null)
 					{
-						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, null);
+						hitbox.SetHitBox(hitbox.gameObject, index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, null, null);
 					}
 					else
 					{
-						hitbox.SetHitBox(index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, waeponHandle.gameObject, waeponHandle.gameObject, hitBoxAction);
+						hitbox.SetHitBox(hitbox.gameObject,index + hitBoxData.hitBoxIndex, hitBoxData, gameObject, tagname, waeponHandle.gameObject, waeponHandle.gameObject, hitBoxAction);
 					}
 				}
 			}

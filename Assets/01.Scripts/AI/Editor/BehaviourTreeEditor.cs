@@ -8,6 +8,8 @@ public class BehaviourTreeEditor : EditorWindow
 {
     BehaviourTreeView treeView;
     InspectorView inspectorView;
+    Button sortBtn;
+    NodeView selectionNodeView;
 
     [MenuItem("BehaviourTreeEditor/Editor ...")]
     public static void OpenWindow()
@@ -28,7 +30,9 @@ public class BehaviourTreeEditor : EditorWindow
 
         treeView = root.Q<BehaviourTreeView>();
         inspectorView = root.Q<InspectorView>();
-        treeView.OnNodeSelected = OnNodeSelectionChanged;
+        sortBtn = root.Q<Button>();
+        sortBtn.clickable.clicked += SortNode;
+		treeView.OnNodeSelected = OnNodeSelectionChanged;
 
 		OnSelectionChange();
 	}
@@ -43,9 +47,17 @@ public class BehaviourTreeEditor : EditorWindow
 		}
 	}
 
+    void SortNode()
+    {
+        if(selectionNodeView != null)
+        {
+            selectionNodeView.node.Sort();
+		}
+    }
+
     void OnNodeSelectionChanged(NodeView _nodeView)
     {
-        inspectorView.UpdateSelection(_nodeView);
-
+        selectionNodeView = _nodeView;
+		inspectorView.UpdateSelection(_nodeView);
 	}
 }

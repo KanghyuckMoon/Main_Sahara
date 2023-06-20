@@ -1,3 +1,5 @@
+using Attack;
+using Effect;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,5 +31,15 @@ namespace Module
 			_physicsModule.OnTriggerEnter(other, this, hitEvent);
 		}
 		
+		public void TimeSlow(float _additionTime)
+		{
+			TimeSlowManager.Instance.SlowTime += _additionTime;
+		}
+
+		public void AddHitEffect(string _effectAddress)
+		{
+			EffectManager.Instance.SetEffectDefault(_effectAddress, transform.position, Quaternion.identity);
+		}
+
 	}
 }

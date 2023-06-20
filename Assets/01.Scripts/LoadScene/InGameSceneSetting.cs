@@ -151,7 +151,7 @@ public class InGameSceneSetting : MonoBehaviour
             }
             StaticTime.EntierTime = 1f;
             Time.timeScale = 1;
-            GameManager.GamePlayerManager.Instance.IsPlaying = true;
+            //GameManager.GamePlayerManager.Instance.IsPlaying = true;
             isLoading = false;
             Debug.Log("Time Start");
         }

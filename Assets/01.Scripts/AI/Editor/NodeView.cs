@@ -14,7 +14,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 	public NodeView(NodeModel _node)
 	{
 		this.node = _node;
-		this.title = node.nodeType.ToString();
+		this.title = $"{node.nodeType.ToString()}\n{node.nodeCondition.ToString()}\n{node.nodeAction.ToString()}"; 
 		this.viewDataKey = node.guid;
 
 		style.left = node.position.x;
@@ -75,6 +75,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 		if(OnNodeSelected != null)
 		{
 			OnNodeSelected.Invoke(this);
+			this.title = $"{node.nodeType.ToString()}\n{node.nodeCondition.ToString()}\n{node.nodeAction.ToString()}";
 		}
 	}
 }
