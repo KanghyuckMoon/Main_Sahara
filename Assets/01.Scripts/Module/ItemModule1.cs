@@ -63,6 +63,9 @@ namespace Module
 					case AccessoriesItemType.UnlockInteraction:
 						_itemPassive = GetItemWithPool<UnlockInteraction_Accessories>("UnlockInteraction_Accessories");
 						break;
+					case AccessoriesItemType.SandStorm:
+						_itemPassive = GetItemWithPool<HpAccessories>("SandStormAccessories");
+						break;
 					case AccessoriesItemType.NONE:
 						break;
 				}

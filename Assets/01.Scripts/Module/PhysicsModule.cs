@@ -122,6 +122,7 @@ namespace Module
                     {
                         if (_inGameHitBox is null) return;
                         if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;
+                        if ((_inGameHitBox.HitBoxData.hitType & mainModule.IgnoreHitType) != 0) return;
                         praviousHitBoxIndex = _inGameHitBox.GetIndex();
                         AttackFeedBack _attackFeedBack = other.GetComponent<AttackFeedBack>();
                         StatData _statData = _inGameHitBox.Owner.GetComponent<StatData>();

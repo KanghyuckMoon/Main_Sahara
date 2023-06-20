@@ -24,6 +24,7 @@ namespace Module
         Glare,
         Crawling,
         UnlockInteraction,
+        SandStorm,
         NONE
     }
     public partial class ItemModule : AbBaseModule

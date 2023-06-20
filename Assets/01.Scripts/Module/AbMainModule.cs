@@ -9,6 +9,7 @@ using Data;
 using Pool;
 using TimeManager;
 using System;
+using HitBox;
 
 namespace Module
 {
@@ -695,9 +696,25 @@ namespace Module
                 return observers;
 			}
 		}
+
+        public HitType IgnoreHitType
+        {
+            get
+            {
+                return ignoreHitType;
+            }
+            set
+            {
+                ignoreHitType = value;
+            }
+        }
+        
+        
         private List<Observer> observers = new List<Observer>();
 
         private Action skillAnimAction;
+
+        [SerializeField] private HitType ignoreHitType;
         
         public virtual void SetConsecutiveAttack(int _on) { }
 
