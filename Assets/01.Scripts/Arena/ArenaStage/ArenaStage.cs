@@ -1,4 +1,4 @@
-using System;
+        using System;
 using System.Collections;
 using System.Collections.Generic;
 using Pool;
@@ -89,7 +89,7 @@ namespace Arena
 
         public void StartArena()
         {
-            GameObject shaker = ObjectPoolManager.Instance.GetObject(arenaCamShakeAddress)
+            GameObject shaker = ObjectPoolManager.Instance.GetObject(arenaCamShakeAddress);
         }
 
         /// <summary>
