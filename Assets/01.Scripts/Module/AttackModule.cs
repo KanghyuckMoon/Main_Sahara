@@ -71,7 +71,7 @@ namespace Module
             //CreateProjectile(WeaponModule.CurrentArrowInfo.weaponHand, ProjectileName);
         }
 
-        public GameObject CreateProjectile(ProjectileObjectData _projectileObjectData)
+        public GameObject  CreateProjectile(ProjectileObjectData _projectileObjectData)
         {
             if (WeaponModule.isProjectileWeapon)
             {
@@ -86,16 +86,16 @@ namespace Module
                 if (_projectileObjectData.isParentOn)
                 {
                     _projectile.transform.SetParent(WhichHandToHold(_projectileObjectData.weaponHand));
-                    _projectile.SetActive(true);
                     _projectile.transform.localRotation = _projectileObjectData.rotation;
                     _projectile.transform.localPosition = _projectileObjectData.position;
+                    _projectile.SetActive(true);
                 }
                 else
                 {
                     Transform _parent = WhichHandToHold(_projectileObjectData.weaponHand);
-                    _projectile.SetActive(true);
                     _projectile.transform.localRotation = _projectileObjectData.rotation;
                     _projectile.transform.localPosition = _parent.position + _projectileObjectData.position;
+                    _projectile.SetActive(true);
                 }
                 
                 ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();

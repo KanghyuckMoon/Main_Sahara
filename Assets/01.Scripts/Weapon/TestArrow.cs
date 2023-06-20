@@ -18,6 +18,7 @@ namespace Weapon
         public bool usingGravity;
 
         private Quaternion quaternion;
+        [SerializeField]
         private bool isFly = false;
 
         [SerializeField] private UnityEvent shotEvent;
@@ -28,6 +29,7 @@ namespace Weapon
         //}
         public void Update()
         {
+            //Debug.Log($"Arrow Position : {transform.localPosition}");
             if (isFly)
             { 
                 //+ Vector3.down
@@ -44,6 +46,14 @@ namespace Weapon
             rigidbody.velocity = Vector3.zero;
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
+        }
+
+        protected override void PoolObject()
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.isKinematic = true;
+            rigidbody.useGravity = false;
+            base.PoolObject();
         }
 
         public void MovingFunc(Vector3 _vector3)
