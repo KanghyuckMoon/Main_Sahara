@@ -25,18 +25,19 @@ namespace Skill
         //[SerializeField] private buv
         private bool isSpawnOn = false;
         private bool isSpawn = false;
+        private AbMainModule mainModule;
         
         public void Skills(AbMainModule _mainModule)
         {
-            PlaySkillAnimation(_mainModule, animationClip);
-            Call(_mainModule);
-			//Invoke("SpawnObj", 1f);;
+	        this.mainModule = _mainModule;
+            PlaySkillAnimation(_mainModule, animationClip, Call);
+            //Invoke("SpawnObj", 1f);;
 			//isSpawnOn = true;
 		}
 
-        public void Call(AbMainModule _mainModule)
+        public void Call()
 		{
-			Collider[] targets = Physics.OverlapSphere(_mainModule.transform.position, radius, callLayerMask);
+			Collider[] targets = Physics.OverlapSphere(mainModule.transform.position, radius, callLayerMask);
 			foreach (Collider col in targets)
 			{
                 var _otherMainModule = col.gameObject.GetComponent<AbMainModule>();
@@ -45,6 +46,7 @@ namespace Skill
                     var _aiModule = _otherMainModule.GetModuleComponent<AIModule>(ModuleType.Input);
                     if(_aiModule != null)
                     {
+	                    Debug.Log(_aiModule.MainModule.gameObject.name);
 						_aiModule.AIModuleHostileState = AIModule.AIHostileState.Discovery;
                     }
 				}

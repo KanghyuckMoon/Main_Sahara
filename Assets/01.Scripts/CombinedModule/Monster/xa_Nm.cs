@@ -45,7 +45,8 @@ namespace CondinedModule
 			CharacterController = GetComponent<CharacterController>();
 			//footRotate = GetComponentInParent<csHomebrewIK>();
 			AddModuleWithPool<AIModule>(ModuleType.Input);
-			AddModuleWithPool<RotationFreeMoveModule>(ModuleType.Move);
+			AddModuleWithPool<MoveModule>(ModuleType.Move);
+			//AddModuleWithPool<RotationFreeMoveModule>(ModuleType.Move);
 			AddModuleWithPool<StatModule>(ModuleType.Stat);
 			//AddModuleWithPool<CameraModule>(ModuleType.Camera, "CameraModule");
 			AddModuleWithPool<JumpModule>(ModuleType.Jump);

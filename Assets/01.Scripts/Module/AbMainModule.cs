@@ -523,7 +523,19 @@ namespace Module
                 groundRadius = value;
             }
         }
-        
+
+        public Action SkillAnimAction
+        {
+            get
+            {
+                return skillAnimAction;
+            }
+            set
+            {
+                skillAnimAction = value;
+            }
+        }
+
         #endregion
 
         #region 변수
@@ -685,6 +697,8 @@ namespace Module
 		}
         private List<Observer> observers = new List<Observer>();
 
+        private Action skillAnimAction;
+        
         public virtual void SetConsecutiveAttack(int _on) { }
 
         public virtual void Jump() { }
@@ -856,6 +870,11 @@ namespace Module
             {
                 observer.Receive();
             }
+        }
+
+        public void OnSkillAnimAction()
+        {
+            skillAnimAction?.Invoke();
         }
     }
 }
