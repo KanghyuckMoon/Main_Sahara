@@ -21,6 +21,7 @@ namespace AI
 					IfAction(() => FollowCondition(2f), TrackMoveWalk), 
 					Action(MoveReset)),
 				//IgnoreAction(MoveReset),
+				IgnoreAction(MoveReset),
 				Action(FollowMove)
 			);
 		}
