@@ -217,6 +217,7 @@ namespace Quest
 				return;
 			}	
 			_questData.QuestState = QuestState.Active;
+			Debug.Log($"{_questData.QuestKey} Active");
 			Send();
 			SendEvent("PopupUIManager", _questData);
 		}
