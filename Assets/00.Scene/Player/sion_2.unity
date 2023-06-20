@@ -4343,7 +4343,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8102d34e0cc85bc4b87f4d87dbe7125c, type: 3}
       propertyPath: m_RootOrder
-      value: 66
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8102d34e0cc85bc4b87f4d87dbe7125c, type: 3}
       propertyPath: m_LocalScale.x
@@ -40630,6 +40630,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 3699875109437129894}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &2334114118716735798
 Transform:
   m_ObjectHideFlags: 0
@@ -49570,6 +49573,8 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 0}
   aiSOAddress: TestEnemySO
   pathHarver: {fileID: 0}
+  hudType: 0
+  bossName: TestBoss
 --- !u!4 &3699875109437129945
 Transform:
   m_ObjectHideFlags: 0
@@ -52831,6 +52836,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 6165384267577075609}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &4132183086132880385
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -55497,6 +55505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePosSO: {fileID: 11400000, guid: 745dcf1f31c057540bb85fe48af9724e, type: 2}
   weaponHand: 1
+  projectileAddress: 
   objectName: Arrow
   objectData:
     projectileName: Arrow
@@ -55508,9 +55517,14 @@ MonoBehaviour:
     speed: 160
     projectileAddress: Arrow
     isParentOn: 1
+    isSetHitBoxWhenSetProjectile: 1
   model: {fileID: 8540551284920158532}
+  trailRenderer: {fileID: 0}
   rigidbody: {fileID: 5896383344356622098}
   usingGravity: 0
+  shotEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4524697719631585301
 GameObject:
   m_ObjectHideFlags: 0
@@ -61032,6 +61046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePosSO: {fileID: 11400000, guid: 745dcf1f31c057540bb85fe48af9724e, type: 2}
   weaponHand: 1
+  projectileAddress: 
   objectName: Arrow
   objectData:
     projectileName: Arrow
@@ -61043,9 +61058,14 @@ MonoBehaviour:
     speed: 160
     projectileAddress: Arrow
     isParentOn: 1
+    isSetHitBoxWhenSetProjectile: 1
   model: {fileID: 562597007116538100}
+  trailRenderer: {fileID: 0}
   rigidbody: {fileID: 2349952885190223522}
   usingGravity: 0
+  shotEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!137 &5768166871777571703
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -61886,6 +61906,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 5866666020243808383}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5866666020243808389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64073,6 +64096,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 6165384267577075609}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6165384267577075607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64170,6 +64196,8 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 0}
   aiSOAddress: xa_Nm_AISO
   pathHarver: {fileID: 0}
+  hudType: 0
+  bossName: TestBoss
 --- !u!114 &6165384267577075611
 MonoBehaviour:
   m_ObjectHideFlags: 0

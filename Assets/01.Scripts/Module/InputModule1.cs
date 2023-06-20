@@ -10,8 +10,13 @@ namespace Module
 {
 	public partial class InputModule : AbBaseModule
 	{
+		private float jumpDelay = 0.35f;
+		private float currentDelay;
+		
 		public override void Update()
 		{
+			
+			
 			if (StaticTime.EntierTime <= 0f)
 			{
 				return;
@@ -84,11 +89,30 @@ namespace Module
 
 		private void InputJump()
 		{
-			if (!(mainModule.StopOrNot >= 1) || StateModule.StateCount() > 1) return;
-			var _inputup = InputManager.Instance.CheckKey("Jump");
+			//if (!(mainModule.StopOrNot >= 1)) return;
 
+			var _inputup = InputManager.Instance.CheckKey("Jump");
+			
 			mainModule.IsJump = _inputup;
 			mainModule.IsJumpBuf = _inputup;
+
+			if (!mainModule.frontInput)
+			{
+				mainModule.frontInput = _inputup;
+				currentDelay = jumpDelay;
+			}
+			else
+			{
+				if (currentDelay < 0)
+				{
+					mainModule.frontInput = false;
+				}
+				else
+				{
+					currentDelay -= Time.deltaTime;
+				}
+
+			}
 		}
 
 		private void InputSprint()

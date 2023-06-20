@@ -669,6 +669,8 @@ namespace Module
         [Space]
         public AnimatorOverrideController animatorOverrideController;
 
+        [HideInInspector] public bool frontInput;
+
         private string currentAnimationLayer;
         #endregion
 

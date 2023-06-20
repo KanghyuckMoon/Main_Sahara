@@ -62,6 +62,7 @@ namespace Module
         protected float speedOffset = 0.1f;
 
         protected float addSpeed;
+        private float previousSpeed;
 
         protected StatData statData;
         protected Vector3 currentDirection;
@@ -91,8 +92,8 @@ namespace Module
         {
             #region 속도 관련 부분
 
-            float _targetSpeed = mainModule.IsSprint ? runSpeed : moveSpeed;
-            float _lockOnspeed = (mainModule.LockOn ? -1 : 0) + passiveSpeed;
+            var _targetSpeed = mainModule.IsSprint ? runSpeed : moveSpeed;
+            var _lockOnspeed = (mainModule.LockOn ? -1 : 0) + passiveSpeed;
 
             float _speed;
 
@@ -100,15 +101,22 @@ namespace Module
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking)
                 _targetSpeed = 0.0f;
 
+            if (_targetSpeed == 0 && previousSpeed > 1.4f)
+                Animator.SetTrigger("IfStop");
+
+            previousSpeed = _targetSpeed;
+
             var velocity = mainModule.CharacterController.velocity;
-            float currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
+            var currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
 
             _targetSpeed *= mainModule.StopOrNot;
-            
+
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset) // && mainModule.objDir != Vector2.up)
             {
-                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed, 6.5f * mainModule.PersonalDeltaTime);
+                var _stopValue = mainModule.ObjDir == Vector2.zero ? 10.2f : 5.7f;
+                _speed = Mathf.Lerp(currentSpeed, _targetSpeed + _lockOnspeed,
+                    _stopValue * mainModule.PersonalDeltaTime);
             }
             else
             {
@@ -117,15 +125,18 @@ namespace Module
 
             //animationBlend = mainModule.isGround ? animationBlend : 0;
             animationBlend = Mathf.Lerp(animationBlend, _targetSpeed + _lockOnspeed,
-                mainModule.PersonalDeltaTime * 6.5f);
+                mainModule.PersonalDeltaTime * 9.5f);
             if (animationBlend < 0.01f) animationBlend = 0f;
 
             #endregion
-            Vector3 _targetDirection = new Vector3(mainModule.ObjDir.x, 0, mainModule.ObjDir.y);
 
-            Vector3 _rotate = mainModule.transform.eulerAngles;
-            Vector3 _dir = _targetDirection.normalized;
-            float _gravity = mainModule.Gravity;
+            #region 이동 관련 부분
+
+            var _targetDirection = new Vector3(mainModule.ObjDir.x, 0, mainModule.ObjDir.y);
+
+            var _rotate = mainModule.transform.eulerAngles;
+            var _dir = _targetDirection.normalized;
+            var _gravity = mainModule.Gravity;
             Vector3 _moveValue;
 
             if (_dir != Vector3.zero)
@@ -168,17 +179,17 @@ namespace Module
                 }
             }
 
-            Vector3 _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
+            var _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
             _moveValue = _direction.normalized * ((_speed + passiveSpeed) * mainModule.StopOrNot);
             //_moveValue *= mainModule.PersonalDeltaTime;
-            Vector3 _moveVector3 = _moveValue;
+            var _moveVector3 = _moveValue;
             mainModule.attackedTime += mainModule.PersonalDeltaTime;
-            float _decreaseKnockBackValue = -3 * mainModule.attackedTime * mainModule.attackedTime;
-            float _knockBackPower = _decreaseKnockBackValue + mainModule.knockBackPower;
-            Vector3 _knockBackVector = _knockBackPower * mainModule.knockBackVector;
+            var _decreaseKnockBackValue = -3 * mainModule.attackedTime * mainModule.attackedTime;
+            var _knockBackPower = _decreaseKnockBackValue + mainModule.knockBackPower;
+            var _knockBackVector = _knockBackPower * mainModule.knockBackVector;
 
             if (_knockBackPower <= 0f)
             {
@@ -204,12 +215,18 @@ namespace Module
             }
             else
             {
-                mainModule.CharacterController.Move((mainModule.SlopeVector.normalized * 4f + new Vector3(0, _gravity, 0))  * mainModule.PersonalDeltaTime);
+                mainModule.CharacterController.Move(
+                    (mainModule.SlopeVector.normalized * 4f + new Vector3(0, _gravity, 0)) *
+                    mainModule.PersonalDeltaTime);
                 //var _position = mainModule.transform.position;
                 //Debug.DrawLine(_position, _position + mainModule.SlopeVector.normalized, Color.magenta);
             }
 
+            #endregion
+
             Animator.SetFloat(MoveSpeed, animationBlend);
+
+            
         }
 
         public void Crawling()
