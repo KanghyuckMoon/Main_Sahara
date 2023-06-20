@@ -101,7 +101,7 @@ namespace Module.Talk
 
 		public void Talk()
 		{
-			if (!isCanTalk)
+			if (!isCanTalk || isCutScene)
 			{
 				return;
 			}
