@@ -415,7 +415,7 @@ namespace Module
             }
             set
             {
-                lockOn = LockOnTarget is not null;
+                lockOn = LockOnTarget != null;
                 //Debug.LogError(lockOn);
                 Animator.SetBool("LockOn", lockOn);
             }
