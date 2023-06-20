@@ -40,10 +40,18 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274848306700900313}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 16, y: 16, z: 2}
+  serializedVersion: 3
+  m_Size: {x: 16, y: 16, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6140172190920976532
 GameObject:
@@ -139,9 +147,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6140172190920976532}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7553716758358721678, guid: 27d7e788824007a41b73be8afb397761, type: 3}
@@ -158,8 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SOAddress: 
-  platformDataSO: {fileID: 0}
+  platformDataSO: {fileID: 11400000, guid: 608059a2d79526c46805f8e4f148488c, type: 2}
   landPlatform:
-    moveDist: -1
+    moveDist: -0.3
     moveSpeed: 5
   isLandEffect: 1

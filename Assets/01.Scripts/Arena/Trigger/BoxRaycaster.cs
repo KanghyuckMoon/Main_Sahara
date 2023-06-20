@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,19 +14,32 @@ namespace Arena
         public BoxCollider TriggerCollider => triggerCollider; 
         public BoxRaycaster(Transform _trm)
         {
-            transform = _trm; 
-            triggerCollider = transform.Find("TriggerCol").GetComponent<BoxCollider>();
-
+            transform = _trm;
+            try
+            {
+                triggerCollider = transform.Find("TriggerCol").GetComponent<BoxCollider>();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(transform.name + "TriggerCol 자식에 추가하세요");
+            }
+          
         }
         public Collider[] MyCollisions () {
             Vector3 size =  triggerCollider.size;
             var lossyScale = triggerCollider.transform.lossyScale;
+            Vector3 center = new Vector3(
+                (transform.position.x) + (triggerCollider.center.x +  TriggerCollider.transform.localPosition.x) * triggerCollider.transform.lossyScale.x,
+                (transform.position.y) + (triggerCollider.center.y +  TriggerCollider.transform.localPosition.y) * triggerCollider.transform.lossyScale.y,
+                (transform.position.z) + (triggerCollider.center.z +  TriggerCollider.transform.localPosition.z) * triggerCollider.transform.lossyScale.z
+                );
+            Quaternion rot = triggerCollider.transform.rotation;
             Collider [] hitColliders = Physics.OverlapBox (
-                triggerCollider.center + transform.position + TriggerCollider.transform.localPosition,
+                center,
                 new Vector3(size.x * lossyScale.x,
                     size.y * lossyScale.y,
                     size.z * lossyScale.z) /2, 
-                Quaternion.identity
+                rot
             );
 
             int i = 0;
@@ -38,7 +52,7 @@ namespace Arena
         }
         public Collider[] MyCollisions (LayerMask mask) {
             Collider [] hitColliders = Physics.OverlapBox (
-                triggerCollider.center + transform.position,
+                triggerCollider.center + transform.position+ TriggerCollider.transform.localPosition,
                 triggerCollider.size / 2, 
                 Quaternion.identity,mask
             );
@@ -55,10 +69,18 @@ namespace Arena
             Vector3 _size = new Vector3(triggerCollider.transform.lossyScale.x * triggerCollider.size.x,
                 triggerCollider.transform.lossyScale.y * triggerCollider.size.y,
                 triggerCollider.transform.lossyScale.z * triggerCollider.size.z);
+            Vector3 center = new Vector3(
+                (transform.position.x) + (triggerCollider.center.x +  TriggerCollider.transform.localPosition.x) * triggerCollider.transform.lossyScale.x,
+                (transform.position.y) + (triggerCollider.center.y +  TriggerCollider.transform.localPosition.y) * triggerCollider.transform.lossyScale.y,
+                (transform.position.z) + (triggerCollider.center.z +  TriggerCollider.transform.localPosition.z) * triggerCollider.transform.lossyScale.z
+            );
+            Quaternion rot = triggerCollider.transform.rotation;
+
+       //     Vector3 a = center * rot; 
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube (
-                triggerCollider.center + transform.position + TriggerCollider.transform.localPosition, 
-                _size);
+                center , 
+                _size );
         }
     }
     
