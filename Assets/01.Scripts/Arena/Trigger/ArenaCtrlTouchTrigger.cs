@@ -91,7 +91,7 @@ namespace Arena
         }
         
         private void OnDrawGizmos () {
-            boxRaycaster.OnDrawGizmos();
+            boxRaycaster?.OnDrawGizmos();
         }
         
 
