@@ -9,7 +9,7 @@
 }
 
 .unity-radio-button-group > .unity-base-field__input {
-    display: none;
+    display: flex;
 }
 
 .unity-radio-button > .unity-label {
@@ -539,4 +539,18 @@
     background-image: url('project://database/Assets/14.Texture/UI/Make/Inventory/AccessoriesLogo.png?fileID=2800000&guid=e45ecdd3665cc6649993ab76d993c0fb&type=3#AccessoriesLogo');
     -unity-background-scale-mode: scale-to-fit;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0.01);
+}
+
+#inventory_select_group .unity-base-field__input {
+    display: flex;
+}
+
+#inventory_select_group #unity-radio-button-group__container {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+}
+
+.background_color {
+    background-color: rgb(15, 15, 15);
 }
