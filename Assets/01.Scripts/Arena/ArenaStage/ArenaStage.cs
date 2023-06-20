@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pool;
 using UnityEngine;
 using Utill.Addressable;
 
@@ -8,12 +9,12 @@ namespace Arena
 {
     public class ArenaStage : MonoBehaviour
     {
-        
-        [Header("SO 주소"), SerializeField] private string arenaStageDataSOAdress; 
+        [Header("SO 주소"), SerializeField] private string arenaStageDataSOAdress;
+        [SerializeField] private string arenaCamShakeAddress;  
         [SerializeField] private ArenaStageDataSO arenaStageDataSO;
 
-        [SerializeField] private List<GameObject> arenaList = new List<GameObject>(); 
-        [SerializeField] private Dictionary<int,ArenaMap> arenaDic = new Dictionary<int, ArenaMap>();
+        [SerializeField] private List<GameObject> arenaList = new List<GameObject>();
+        [SerializeField] private Dictionary<int, ArenaMap> arenaDic = new Dictionary<int, ArenaMap>();
 
         private void Awake()
         {
@@ -23,7 +24,7 @@ namespace Arena
 
         private void Start()
         {
-            arenaStageDataSO.curLevel = 1; 
+            arenaStageDataSO.curLevel = 1;
         }
 
         public void Init()
@@ -51,18 +52,20 @@ namespace Arena
                     _arenaMapList.Add(_aMap);
                 }
             }
+
             //var _a = transform.GetComponentsInChildren<ArenaMap>();
             for (int i = 0; i < _arenaMapList.Count; i++)
             {
                 ArenaMap _arenaObj = _arenaMapList[i];
-                arenaDic.Add(i+1, _arenaObj);
-                         _arenaObj.transform.localPosition = Vector3.zero;
+                arenaDic.Add(i + 1, _arenaObj);
+                _arenaObj.transform.localPosition = Vector3.zero;
 
-                                _arenaObj.GetEndTriggerList().ForEach((x) => x.inactiveTriggerEvent.AddListener(CompleteArena));; ;
-
+                _arenaObj.GetEndTriggerList().ForEach((x) => x.inactiveTriggerEvent.AddListener(CompleteArena));
+                _arenaObj.GetActiveTriggerList().ForEach((x) => x.activeTriggerEvent.AddListener(StartArena));
                 //_arenaObj.gameObject.SetActive(false);
             }
-            ActiveCurArena(); 
+
+            ActiveCurArena();
         }
 
         /// <summary>
@@ -74,16 +77,21 @@ namespace Arena
             if (_nextLevel > arenaStageDataSO.maxLevel)
             {
                 InactiveAll();
-                arenaStageDataSO.curLevel = arenaStageDataSO.maxLevel; 
-                arenaStageDataSO.isClear = true; 
-                return; 
-                        // 다 비활성화 
+                arenaStageDataSO.curLevel = arenaStageDataSO.maxLevel;
+                arenaStageDataSO.isClear = true;
+                return;
+                // 다 비활성화 
             }
 
             ActiveCurArena();
             //arenaStageDataSO.arenaStageList[arenaStageDataSO.curLevel - 1]
         }
-        
+
+        public void StartArena()
+        {
+            GameObject shaker = ObjectPoolManager.Instance.GetObject(arenaCamShakeAddress)
+        }
+
         /// <summary>
         /// 현재 투기장 활성화
         /// </summary>
@@ -95,11 +103,10 @@ namespace Arena
 
         private void InactiveAll()
         {
-            foreach (var _arena in  arenaDic)
+            foreach (var _arena in arenaDic)
             {
                 _arena.Value.Active(false);
             }
         }
     }
-    
 }
