@@ -37,7 +37,7 @@ namespace Weapon
             Invoke("PoolObject", 5f);
         }
 
-        protected void PoolObject()
+        protected virtual void PoolObject()
         {
             gameObject.SetActive(false);
             ObjectPoolManager.Instance.RegisterObject(projectileAddress, gameObject);

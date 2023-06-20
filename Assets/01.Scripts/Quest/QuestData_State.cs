@@ -11,6 +11,7 @@ namespace Quest
 		Active, //활성화
 		Achievable, //달성가능
 		Clear, //클리어
+		NotClear, //Disable Discoverable Active Achievable
 	}
 
 	public enum QuestConditionType

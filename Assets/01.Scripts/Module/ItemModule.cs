@@ -70,9 +70,9 @@ namespace Module
 
         public override void Start()
         {
-            if (mainModule.name == "Player")
+            if (mainModule.player)
             {
-                SetPassiveItem(AccessoriesItemType.DoubleJump);
+                //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.Dash);

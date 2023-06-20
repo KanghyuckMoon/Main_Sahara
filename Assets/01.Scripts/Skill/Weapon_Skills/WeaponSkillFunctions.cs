@@ -17,11 +17,12 @@ namespace Skill
         public List<BuffData> buffList = new List<BuffData>();
         //public List<BuffData> debuffList = new List<BuffData>();
 
-        protected void PlaySkillAnimation(AbMainModule _mainModule, AnimationClip _animationClip)
+        protected void PlaySkillAnimation(AbMainModule _mainModule, AnimationClip _animationClip, System.Action _action = null)
         {
             _mainModule.AnimatorOverrideController[animationName] = _animationClip;
             //_mainModule.Animator.Play(animationName);
 
+            _mainModule.SkillAnimAction = _action;
             _mainModule.Animator.SetBool(animationName, true);
         }
         

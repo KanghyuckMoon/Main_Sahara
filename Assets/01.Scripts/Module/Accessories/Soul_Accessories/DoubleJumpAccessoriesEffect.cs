@@ -27,7 +27,7 @@ namespace PassiveItem
             jumpModule = mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
-            if (mainModule.name == "Player")
+            if (mainModule.player)
             {
                 isPlayer = true;
                 return;
@@ -49,6 +49,7 @@ namespace PassiveItem
                 {
                     if (count > 0)
                     {
+                        Debug.LogError("´þÆàÆàÁ¡Àú¸Ü");
                         Jumping();
                         stateModule.AddState(State.JUMP);
                         count--;
