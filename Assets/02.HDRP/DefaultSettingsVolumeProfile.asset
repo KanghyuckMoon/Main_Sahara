@@ -127,10 +127,10 @@ MonoBehaviour:
     m_Value: 64
   m_VolumetricFogBudget:
     m_OverrideState: 0
-    m_Value: 0.33
+    m_Value: 0.5
   m_ResolutionDepthRatio:
     m_OverrideState: 0
-    m_Value: 0.666
+    m_Value: 0.5
   directionalLightsOnly:
     m_OverrideState: 0
     m_Value: 0
@@ -183,6 +183,37 @@ MonoBehaviour:
   m_SampleCount:
     m_OverrideState: 0
     m_Value: 10
+--- !u!114 &-338985716916942631
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
+  m_Name: DiffusionProfileList
+  m_EditorClassIdentifier: 
+  active: 1
+  diffusionProfiles:
+    m_OverrideState: 1
+    m_Value:
+    - {fileID: 11400000, guid: 78322c7f82657514ebe48203160e3f39, type: 2}
+    - {fileID: 11400000, guid: 26bdddf49760c61438938733f07fa2a2, type: 2}
+    - {fileID: 11400000, guid: 5a9a2dc462c7bde4f86d0615a19c2c72, type: 2}
+    - {fileID: 11400000, guid: 2b7005ba3a4d8474b8cdc34141ad766e, type: 2}
+    - {fileID: 11400000, guid: 727de4c7811cc8a4aa2fd35c4dacb0de, type: 2}
+    - {fileID: 11400000, guid: 6e94d1ca61d56c942aa5808e9a565692, type: 2}
+    - {fileID: 11400000, guid: 1ce8e449be105b04fa89f5adb8bcdab6, type: 2}
+    - {fileID: 11400000, guid: a9e2fdd45db1cd248a51143525073d64, type: 2}
+    - {fileID: 11400000, guid: f9c7b3f0a2e52b94c8fe3b415831a017, type: 2}
+    - {fileID: 11400000, guid: 58a76e867a605c742aa94f71982ef7e7, type: 2}
+    - {fileID: 11400000, guid: 42df212190fe02f46a41475dd41c5fb0, type: 2}
+    - {fileID: 11400000, guid: 927cb1a1d4ddf2144bf125f3bbd836af, type: 2}
+    - {fileID: 11400000, guid: fe4039db552975244bf7f3c3ce891928, type: 2}
+    - {fileID: 11400000, guid: c314e23034ad35d4f9416fe7d41f3800, type: 2}
+    - {fileID: 11400000, guid: 8bc2419b9e65efc469808a16d47dc6ff, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +237,7 @@ MonoBehaviour:
   - {fileID: -7089757308646879465}
   - {fileID: 465949519791817526}
   - {fileID: -3088137232600947018}
-  - {fileID: 2750006055093077927}
+  - {fileID: -338985716916942631}
 --- !u!114 &448115243408767295
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -568,37 +599,6 @@ MonoBehaviour:
   fogType:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &2750006055093077927
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
-  m_Name: DiffusionProfileList
-  m_EditorClassIdentifier: 
-  active: 1
-  diffusionProfiles:
-    m_OverrideState: 1
-    m_Value:
-    - {fileID: 11400000, guid: 78322c7f82657514ebe48203160e3f39, type: 2}
-    - {fileID: 11400000, guid: 806662ba108f2924e87ff130ceb55b0c, type: 2}
-    - {fileID: 11400000, guid: fe4039db552975244bf7f3c3ce891928, type: 2}
-    - {fileID: 11400000, guid: 727de4c7811cc8a4aa2fd35c4dacb0de, type: 2}
-    - {fileID: 11400000, guid: 92119388ece825647ba5039062efc187, type: 2}
-    - {fileID: 11400000, guid: 2efa14a049ef1fc49bcf18c90ebcab30, type: 2}
-    - {fileID: 11400000, guid: a9e2fdd45db1cd248a51143525073d64, type: 2}
-    - {fileID: 11400000, guid: 927cb1a1d4ddf2144bf125f3bbd836af, type: 2}
-    - {fileID: 11400000, guid: ad180cf900c4ef141be2b350f09ffa5b, type: 2}
-    - {fileID: 11400000, guid: 7906daf99f11c624a9d2c8fa0eed731c, type: 2}
-    - {fileID: 11400000, guid: f9c7b3f0a2e52b94c8fe3b415831a017, type: 2}
-    - {fileID: 11400000, guid: 42df212190fe02f46a41475dd41c5fb0, type: 2}
-    - {fileID: 11400000, guid: 58a76e867a605c742aa94f71982ef7e7, type: 2}
-    - {fileID: 11400000, guid: c314e23034ad35d4f9416fe7d41f3800, type: 2}
-    - {fileID: 11400000, guid: 5a9a2dc462c7bde4f86d0615a19c2c72, type: 2}
 --- !u!114 &5315503232242033309
 MonoBehaviour:
   m_ObjectHideFlags: 3

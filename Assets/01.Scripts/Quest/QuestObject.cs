@@ -14,6 +14,11 @@ namespace Quest
         [SerializeField]
         private string questKey;
 
+        [SerializeField] 
+        private bool isInvert = false;
+
+        [SerializeField] private bool noneIncludeDiscoverable = false;
+        
         private IEnumerator Start()
         {
             yield return new WaitForEndOfFrame();
@@ -28,14 +33,20 @@ namespace Quest
                 default:
                 case QuestState.Disable:
                     QuestManager.Instance.AddObserver(this);
-                    gameObject.SetActive(false);
+                    gameObject.SetActive(isInvert);
                     break;
                 case QuestState.Discoverable:
+                    if (!noneIncludeDiscoverable)
+                    {
+                        QuestManager.Instance.RemoveObserver(this);
+                        gameObject.SetActive(!isInvert);
+                    }
+                    break;
                 case QuestState.Active:
                 case QuestState.Achievable:
                 case QuestState.Clear:
                     QuestManager.Instance.RemoveObserver(this);
-                    gameObject.SetActive(true);
+                    gameObject.SetActive(!isInvert);
                     break;
             }
         }

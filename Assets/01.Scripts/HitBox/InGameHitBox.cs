@@ -60,11 +60,14 @@ namespace HitBox
 		private ulong index;
 		private bool isContactDir;
 		private Quaternion rotation;
+		private GameObject obj;
 
-		public void SetHitBox(ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null, GameObject _swingEffectParent = null, HitBoxAction _hitBoxAction = null)
+		public void SetHitBox(GameObject _hitboxObj, ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null, GameObject _swingEffectParent = null, HitBoxAction _hitBoxAction = null)
 		{
+			obj = _hitboxObj;
+			
 			index = _index;
-			gameObject.tag = _tag;
+			obj.tag = _tag;
 			owner = _owner;
 			col ??= GetComponent<CapsuleCollider>();
 			hitBoxData = _hitBoxData;
@@ -82,11 +85,11 @@ namespace HitBox
 			{
 				if(_parent is null)
 				{
-					gameObject.transform.SetParent(owner.transform);
+					obj.transform.SetParent(owner.transform);
 				}
 				else
 				{
-					gameObject.transform.SetParent(_parent.transform);
+					obj.transform.SetParent(_parent.transform);
 					transform.localPosition = Vector3.zero;
 					transform.localEulerAngles = hitBoxData.rotation;
 					if (hitBoxData.childSizeOne)
@@ -99,9 +102,9 @@ namespace HitBox
 			}
 			else
 			{
-				gameObject.transform.SetParent(null);
+				obj.transform.SetParent(null);
 			}
-			gameObject.SetActive(true);
+			obj.SetActive(true);
 			
 			Vector3 _pos = transform.position + (transform.forward * hitBoxData.swingEffectOffset.z) + (transform.up * hitBoxData.swingEffectOffset.y) + (transform.right * hitBoxData.swingEffectOffset.x);
 
@@ -150,10 +153,11 @@ namespace HitBox
 		{
 			yield return new WaitForSeconds(hitBoxData.deleteDelay);
 			transform.SetParent(null);
-			gameObject.SetActive(false);
+			obj.SetActive(false);
 			HitBoxPoolManager.Instance.RegisterObject(this);
 			//Pool.ObjectPoolManager.Instance.RegisterObject("HitBox", gameObject);
 		}
+		
 
 #if UNITY_EDITOR
 		private void OnDrawGizmos()
