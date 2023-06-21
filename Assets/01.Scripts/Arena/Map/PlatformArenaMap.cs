@@ -18,5 +18,4 @@ namespace Arena
             platformList = GetComponentsInChildren<PlatformBase>().ToList(); 
         }
     }
-    
 }
