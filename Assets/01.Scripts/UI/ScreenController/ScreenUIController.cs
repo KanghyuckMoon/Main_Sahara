@@ -114,7 +114,7 @@ namespace UI
         {
             Debug.Log("ONEnable");
             StartCoroutine(Init());
-            EventManager.Instance.StartListening(EventsType.SetUIInput,(x) => lsUIInput = (bool)x);
+            EventManager.Instance.StartListening(EventsType.SetUIInput,(x) => ClearUI((bool)x));
         }
 
         private IEnumerator Init()
@@ -134,7 +134,7 @@ namespace UI
         private void OnDisable()
         {
             EventManager.Instance.StopListening(EventsType.SetPlayerCam, (x) => player.SetInput((bool)x));
-            EventManager.Instance.StopListening(EventsType.SetUIInput,(x) => lsUIInput = (bool)x);
+            EventManager.Instance.StopListening(EventsType.SetUIInput,(x) =>ClearUI((bool)x));
         }
 
         private void Start()
@@ -148,6 +148,14 @@ namespace UI
             UIInput();
         }
 
+        /// <summary>
+        /// 활성화중인 UI 비활성화 하고 
+        /// </summary>
+        private void ClearUI(bool _isActive)
+        {
+            isUIInput = _isActive;
+            EnabledAllScreens(); 
+        }
         private void ActiveUICam(bool _isActive)
         {
             this.uiCam.SetActive(_isActive);

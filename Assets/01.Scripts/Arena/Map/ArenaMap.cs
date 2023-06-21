@@ -80,7 +80,7 @@ namespace Arena
         private void Cashing()
         {
             particle = GetComponentInChildren<ParticleSystem>(); 
-            triggerList = transform.GetComponentsInChildren<AbArenaCtrlTrigger>().ToList();
+            triggerList = transform.GetComponentsInChildren<AbArenaCtrlTrigger>(true).ToList();
             map = transform.Find("Map").gameObject;
         }
         
