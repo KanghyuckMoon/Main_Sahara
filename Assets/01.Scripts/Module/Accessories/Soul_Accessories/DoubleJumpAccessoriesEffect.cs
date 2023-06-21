@@ -43,7 +43,7 @@ namespace PassiveItem
 
         public void UpdateEffect()
         {
-            if (!(mainModule.IsChargeJumpOn & mainModule.isGround) && isPlayer)
+            if (!mainModule.IsChargeJumpOn && !mainModule.isGround && isPlayer)
             {
                 if (mainModule.IsJump)
                 {
@@ -58,12 +58,12 @@ namespace PassiveItem
             }
             else
             {
-                if (mainModule.IsJump)
+                /*if (mainModule.IsJump)
                 {
                     Jumping();
                     stateModule.AddState(State.JUMP);
                     count--;
-                }
+                }*/
             }
             
             if (!mainModule.isGround)
@@ -99,6 +99,7 @@ namespace PassiveItem
             
             if (!mainModule.isGround)
             {
+                Debug.LogError("점프 더블더블");
                 mainModule.Animator.SetBool("DoubleJump", true);
                 jumpModule.Jump();
             }

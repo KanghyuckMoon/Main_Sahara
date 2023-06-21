@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
+using DG.Tweening;
 using Pool;
 //using Codice.Client.Common.Locks.LockOwnerNameResolver;
 using UnityEngine.Rendering;
@@ -37,9 +38,12 @@ namespace Module
             verticalBodyLayerIndex = animator.GetLayerIndex("VerticalBody");
         }
 
-        public void SetVerticalBodyLayer(float _weight)
+        public void SetVerticalBodyLayer(float _duration, int _value)
         {
-            animator.SetLayerWeight(verticalBodyLayerIndex, _weight);
+            DOTween.To(() => animator.GetLayerWeight(verticalBodyLayerIndex),
+                (_x) =>
+                    animator.SetLayerWeight(verticalBodyLayerIndex, _x)
+                , (float)_value, _duration);
         }
 
         public void SetCanLand(int _on)
