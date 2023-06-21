@@ -768,6 +768,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -797,6 +798,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     startSize:
@@ -1118,6 +1120,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -1847,6 +1850,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -1876,6 +1880,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
@@ -4096,6 +4101,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -4125,6 +4131,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
@@ -4514,6 +4521,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.05
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 1
@@ -4556,6 +4564,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -4585,6 +4594,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     widthOverTrail:
@@ -4672,6 +4682,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -4701,6 +4712,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   CustomDataModule:
@@ -4739,6 +4751,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -4768,6 +4781,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     colorLabel0: Color
@@ -5021,6 +5035,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -5050,6 +5065,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     colorLabel1: Color
@@ -5488,7 +5504,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1aed62034fb69840970b5c48b16a1d2, type: 2}
+  - {fileID: 2100000, guid: 9d5fb0b6ec6a53f408007978dbecf0a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6129,7 +6145,7 @@ Transform:
   m_Children:
   - {fileID: 5690554545346477576}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5712746735425984953
 CharacterController:
@@ -6139,9 +6155,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5712746735425984897}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 0.2
   m_Radius: 0.2
   m_SlopeLimit: 45
@@ -6187,6 +6211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: mc_Or_DataSO
+  playerdata: {fileID: 0}
 --- !u!114 &5712746735425984954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6201,6 +6226,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &5712746735425984959
 Animator:
   serializedVersion: 5
@@ -6291,15 +6319,19 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -2
   groundOffset: -9.8
+  groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -6310,10 +6342,13 @@ MonoBehaviour:
   visualObject: {fileID: 5712746733937803191}
   model: {fileID: 5712746733937803188}
   animator: {fileID: 0}
+  jumpstrenght: 0
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+  frontInput: 0
+  ignoreHitType: 0
   aiSOAddress: mc_Or_AISO
   pathHarver: {fileID: 0}
 --- !u!114 &1198188299
@@ -6328,7 +6363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: f589f1ed57ca7ee40b90835de91d4771, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: f589f1ed57ca7ee40b90835de91d4771, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 5712746733937803191}
 --- !u!114 &7581709129782481993
 MonoBehaviour:
@@ -6346,6 +6382,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseHeight: 0
+  height: 0
 --- !u!1 &5712746735479233225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6497,9 +6535,17 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5712746735669257981}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.12
   m_Center: {x: -0.26, y: 0.21, z: -1.85}
 --- !u!114 &5712746735669257974
@@ -6516,6 +6562,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5712746735669257975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6533,6 +6582,7 @@ MonoBehaviour:
   owner: {fileID: 5712746735425984897}
   isTimeIndexCange: 1
   isOnEnalbe: 1
+  isStage: 0
 --- !u!114 &5712746735669257972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6622,7 +6672,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1aed62034fb69840970b5c48b16a1d2, type: 2}
+  - {fileID: 2100000, guid: 9d5fb0b6ec6a53f408007978dbecf0a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6693,6 +6743,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7841695312675089039}
     m_Modifications:
     - target: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -6772,6 +6823,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7841695312142209139}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6514116320441392630, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5690554545320347623}
   m_SourcePrefab: {fileID: 100100000, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
 --- !u!1 &1522509851703552940 stripped
 GameObject:
@@ -6792,6 +6852,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &7841695310693326529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -6802,6 +6865,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7841695312581472581}
     m_Modifications:
     - target: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -6881,6 +6945,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7841695312237673616}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6514116320441392630, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5690554545757193134}
   m_SourcePrefab: {fileID: 100100000, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
 --- !u!1 &1522509850718208271 stripped
 GameObject:
@@ -6901,6 +6974,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &7841695311528326242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -6911,6 +6987,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7841695310693326529}
     m_Modifications:
     - target: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -6990,6 +7067,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7841695312581472581}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6514116320441392630, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5690554546119831453}
   m_SourcePrefab: {fileID: 100100000, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
 --- !u!1 &1522509852385961246 stripped
 GameObject:
@@ -7010,6 +7096,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &7841695312142209139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7020,6 +7109,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7841695311528326242}
     m_Modifications:
     - target: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7099,6 +7189,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7621420768565709628}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6514116320441392630, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5690554546039207143}
   m_SourcePrefab: {fileID: 100100000, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
 --- !u!1 &1522509852171028989 stripped
 GameObject:
@@ -7119,6 +7218,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &7841695312237673616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7129,6 +7231,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 5712746735669257970}
     m_Modifications:
     - target: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7208,6 +7311,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7841695312338550158}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6514116320441392630, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5690554545311962518}
   m_SourcePrefab: {fileID: 100100000, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
 --- !u!1 &1522509852192759077 stripped
 GameObject:
@@ -7228,6 +7340,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &7841695312217450568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7238,6 +7353,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7841695312217450568}
     m_Modifications:
     - target: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7317,6 +7433,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7841695312675089039}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6514116320441392630, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5690554546674784938}
   m_SourcePrefab: {fileID: 100100000, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
 --- !u!1 &1522509852069497059 stripped
 GameObject:
@@ -7337,6 +7462,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &7841695312338550158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7347,6 +7475,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7841695312142209139}
     m_Modifications:
     - target: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7426,6 +7555,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7841695311528326242}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6514116320441392630, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5690554546088804527}
   m_SourcePrefab: {fileID: 100100000, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
 --- !u!1 &1522509851944141864 stripped
 GameObject:
@@ -7446,6 +7584,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &7841695312581472581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7456,6 +7597,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7841695312338550158}
     m_Modifications:
     - target: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
@@ -7535,6 +7677,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7841695310693326529}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6514116320441392630, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5690554545682655554}
   m_SourcePrefab: {fileID: 100100000, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
 --- !u!1 &1522509851869208546 stripped
 GameObject:
@@ -7555,6 +7706,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1198188298}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &7841695312675089039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563828799079819419, guid: 62804179df8259a4a8ecbdc1290dc261, type: 3}
