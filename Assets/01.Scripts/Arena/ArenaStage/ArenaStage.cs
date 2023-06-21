@@ -89,7 +89,7 @@ namespace Arena
 
         public void StartArena()
         {
-            StartCoroutine(ShakeCamCo());
+            //StartCoroutine(ShakeCamCo());
           }
 
         private IEnumerator ShakeCamCo()
