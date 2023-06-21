@@ -101,10 +101,11 @@ namespace Module
                 Animator.SetBool("FreeFall", false);
                 Animator.SetBool("Jump", false);
 
-                if (mainModule.Gravity < 0) mainModule.Gravity = -2;
+                if (mainModule.Gravity < 0) mainModule.Gravity = -12;
                 
                 if (mainModule.frontInput)
                 {
+                    if (mainModule.IsChargeJumpOn) return;
                     Animator.SetBool("Jump", true);
                     return;
                 }
@@ -146,7 +147,7 @@ namespace Module
 
         public void Jump(float _value = 0)
         {
-            if (mainModule.IsChargeJumpOn) return;
+            //if (mainModule.IsChargeJumpOn) return;
             if (_value == 0) _value = JumpHeight;
             onJump = false;
             mainModule.Gravity = Mathf.Sqrt(_value * -2.2f * _GravityScale);
