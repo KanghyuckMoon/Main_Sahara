@@ -101,7 +101,7 @@ namespace Module.Talk
 
 		public void Talk()
 		{
-			if (!isCanTalk)
+			if (!isCanTalk || isCutScene)
 			{
 				return;
 			}
@@ -181,7 +181,14 @@ namespace Module.Talk
 						QuestData questData = QuestManager.Instance.GetQuestData(questCondition.questKey);
 						try
 						{
-						    if(questCondition.questState != questData.QuestState)
+							if (questCondition.questState == QuestState.NotClear)
+							{
+								if (questData.QuestState == QuestState.Clear)
+								{
+									return false;	
+								}
+							}
+						    else if(questCondition.questState != questData.QuestState)
 						    {
 							    return false;
 						    }

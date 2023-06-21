@@ -24,6 +24,7 @@ namespace Module
         Glare,
         Crawling,
         UnlockInteraction,
+        SandStorm,
         NONE
     }
     public partial class ItemModule : AbBaseModule
@@ -70,9 +71,9 @@ namespace Module
 
         public override void Start()
         {
-            if (mainModule.name == "Player")
+            if (mainModule.player)
             {
-                SetPassiveItem(AccessoriesItemType.DoubleJump);
+                //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.Dash);

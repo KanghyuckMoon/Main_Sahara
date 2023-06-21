@@ -77,7 +77,7 @@ namespace LockOn
         private void CameraZoomDelay(int _isOn)
         {
             int _weight = _isOn > 0 ? -10 : 10;
-            bool _on = _isOn > 0 ? true : false;
+            bool _on = _isOn > 0;
             
             lockOnCamera.currentCamera.gameObject.SetActive(!_on);
             ThirdPersonCameraController _thirdPersonCameraController =
@@ -90,8 +90,10 @@ namespace LockOn
             if (_on)
             {
                 if (_thirdPersonCameraController.enabled)
+                {
                     thirdPersonCameraController.cameraY =
                         lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>().cameraY;
+                }
                 else
                 {
                     cinemachineVirtualCamera.m_LookAt = lockOnCamera.currentCamera.LookAt;
@@ -119,7 +121,11 @@ namespace LockOn
                 //cinemachineVirtualCamera.m_LookAt = null;
                 thirdPersonCameraController.enabled = true;
                 lockOnCameraController = lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>();
-                lockOnCameraController.cameraY = thirdPersonCameraController.cameraY;
+                //Debug.LogError("AKJAHEJAEKAAKAJGRAWKGWekjegjawkeje");
+                if (_isOn >= 0)
+                {
+                    lockOnCameraController.cameraY = thirdPersonCameraController.cameraY;
+                }
             }
 
             mainModule.LockOn = false;

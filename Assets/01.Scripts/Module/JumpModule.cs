@@ -102,13 +102,19 @@ namespace Module
                 Animator.SetBool("Jump", false);
 
                 if (mainModule.Gravity < 0) mainModule.Gravity = -2;
+                
+                if (mainModule.frontInput)
+                {
+                    Animator.SetBool("Jump", true);
+                    return;
+                }
 
                 if (mainModule.IsJump && calculatedTime <= 0.0f)
                 {
                     Animator.SetBool("Jump", true);
                     jumpAction?.Invoke();
                 }
-
+                    
                 if (calculatedTime > 0.0f)
                     calculatedTime -= mainModule.PersonalDeltaTime;
 
@@ -140,6 +146,7 @@ namespace Module
 
         public void Jump(float _value = 0)
         {
+            if (mainModule.IsChargeJumpOn) return;
             if (_value == 0) _value = JumpHeight;
             onJump = false;
             mainModule.Gravity = Mathf.Sqrt(_value * -2.2f * _GravityScale);

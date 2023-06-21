@@ -28,6 +28,10 @@ namespace GoogleSpreadSheet
 
 		public void AddTextData(string key, string value)
 		{
+			if(string.IsNullOrEmpty(key))
+			{
+			    return;
+			}
 			textDataDic.Add(key, value);
 		}
 

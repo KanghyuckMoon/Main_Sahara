@@ -27,7 +27,7 @@ namespace PassiveItem
             jumpModule = mainModule.GetModuleComponent<JumpModule>(ModuleType.Jump);
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
 
-            if (mainModule.name == "Player")
+            if (mainModule.player)
             {
                 isPlayer = true;
                 return;
@@ -43,12 +43,13 @@ namespace PassiveItem
 
         public void UpdateEffect()
         {
-            if (!(mainModule.IsChargeJumpOn & mainModule.isGround) && isPlayer)
+            if (!mainModule.IsChargeJumpOn && !mainModule.isGround && isPlayer)
             {
                 if (mainModule.IsJump)
                 {
                     if (count > 0)
                     {
+                        Debug.LogError("´þÆàÆàÁ¡Àú¸Ü");
                         Jumping();
                         stateModule.AddState(State.JUMP);
                         count--;
@@ -57,12 +58,12 @@ namespace PassiveItem
             }
             else
             {
-                if (mainModule.IsJump)
+                /*if (mainModule.IsJump)
                 {
                     Jumping();
                     stateModule.AddState(State.JUMP);
                     count--;
-                }
+                }*/
             }
             
             if (!mainModule.isGround)
@@ -98,6 +99,7 @@ namespace PassiveItem
             
             if (!mainModule.isGround)
             {
+                Debug.LogError("Á¡ÇÁ ´õºí´õºí");
                 mainModule.Animator.SetBool("DoubleJump", true);
                 jumpModule.Jump();
             }

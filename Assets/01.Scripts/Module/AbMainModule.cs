@@ -9,6 +9,7 @@ using Data;
 using Pool;
 using TimeManager;
 using System;
+using HitBox;
 
 namespace Module
 {
@@ -415,7 +416,7 @@ namespace Module
             }
             set
             {
-                lockOn = LockOnTarget is not null;
+                lockOn = LockOnTarget != null;
                 //Debug.LogError(lockOn);
                 Animator.SetBool("LockOn", lockOn);
             }
@@ -523,7 +524,19 @@ namespace Module
                 groundRadius = value;
             }
         }
-        
+
+        public Action SkillAnimAction
+        {
+            get
+            {
+                return skillAnimAction;
+            }
+            set
+            {
+                skillAnimAction = value;
+            }
+        }
+
         #endregion
 
         #region 변수
@@ -669,6 +682,8 @@ namespace Module
         [Space]
         public AnimatorOverrideController animatorOverrideController;
 
+        [HideInInspector] public bool frontInput;
+
         private string currentAnimationLayer;
         #endregion
 
@@ -681,8 +696,26 @@ namespace Module
                 return observers;
 			}
 		}
+
+        public HitType IgnoreHitType
+        {
+            get
+            {
+                return ignoreHitType;
+            }
+            set
+            {
+                ignoreHitType = value;
+            }
+        }
+        
+        
         private List<Observer> observers = new List<Observer>();
 
+        private Action skillAnimAction;
+
+        [SerializeField] private HitType ignoreHitType;
+        
         public virtual void SetConsecutiveAttack(int _on) { }
 
         public virtual void Jump() { }
@@ -854,6 +887,11 @@ namespace Module
             {
                 observer.Receive();
             }
+        }
+
+        public void OnSkillAnimAction()
+        {
+            skillAnimAction?.Invoke();
         }
     }
 }

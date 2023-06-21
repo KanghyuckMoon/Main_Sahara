@@ -63,7 +63,7 @@ namespace CondinedModule
                     AddModuleWithPool<UIModule>(ModuleType.UI, "HudUI");
                     break;
                 case HUDType.Boss:
-                    AddModuleWithPool<UIModule>(ModuleType.UI, "BossHUD", bossName);
+                    AddModuleWithPool<UIModule>(ModuleType.UI, "BossHud", bossName);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

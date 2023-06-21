@@ -23,7 +23,7 @@ public class Landing : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(_mainModule.StopOrNot < 1){
-            _mainModule.StopOrNot += 0.02f;
+            _mainModule.StopOrNot += Time.deltaTime * 10;
         }
         else
         {
@@ -33,7 +33,7 @@ public class Landing : StateMachineBehaviour
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //_mainModule.StopOrNot = 1;
+        _mainModule.StopOrNot = 1;
         //_mainModule.CanConsecutiveAttack = false;
         //_mainModule.canMove = true;
         

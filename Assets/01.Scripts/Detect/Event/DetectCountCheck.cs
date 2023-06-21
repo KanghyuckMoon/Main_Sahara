@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ public class DetectCountCheck : MonoBehaviour
     
     [SerializeField] private bool isNotQuest;
     
+    [SerializeField] private QuestState completeQuestState = QuestState.Clear;
+    
     public void RemoveDetectItem(GameObject _item)
     {
         detectItemList.Remove(_item);
@@ -26,7 +29,19 @@ public class DetectCountCheck : MonoBehaviour
             clearEvnet?.Invoke();
             if (!isNotQuest)
             {
-                QuestManager.Instance.ChangeQuestClear(questKey);
+                switch (completeQuestState)
+                {
+                    case QuestState.Discoverable:
+                        QuestManager.Instance.ChangeQuestDiscoverable(questKey);
+                        break;
+                    case QuestState.Active:
+                        QuestManager.Instance.ChangeQuestActive(questKey);
+                        break;
+                    case QuestState.Achievable:
+                    case QuestState.Clear:
+                        QuestManager.Instance.ChangeQuestClear(questKey);
+                        break;
+                }
             }
         }
     }

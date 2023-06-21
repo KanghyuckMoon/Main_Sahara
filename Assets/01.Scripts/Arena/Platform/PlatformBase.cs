@@ -27,6 +27,11 @@ namespace Arena
             exitCallback = _exitCallback; 
         }
 
+        public void DrawGizmo()
+        {
+            boxRaycaster.OnDrawGizmos();
+        }
+
         public bool CheckCol()
         {
             bool _isCurTrigger = false;  // 현재 체크 트리거
@@ -35,8 +40,15 @@ namespace Arena
             {
                 if (_cols[i].transform.CompareTag(targetTag))
                 {
-                    _isCurTrigger = true; 
-                    stayStayCallback?.Invoke();
+                    if (isTrigger == false)
+                    {
+                        isTrigger = true;
+                        enterCallback?.Invoke();
+                    }
+                    else
+                    {
+                        stayStayCallback?.Invoke();
+                    }
                     return true; 
                 }
             }
@@ -53,6 +65,7 @@ namespace Arena
             if (isTrigger == true && _isCurTrigger == false)
             {
                 exitCallback?.Invoke();
+                isTrigger = false; 
             }
         }
     }
@@ -99,7 +112,7 @@ namespace Arena
         public void MovePower()
         {
             if (isTargetPos == true) return; 
-            Vector3.MoveTowards(targetTrm.position, targetPos, moveSpeed * Time.deltaTime);
+            targetTrm.position = Vector3.MoveTowards(targetTrm.position, targetPos, moveSpeed * Time.deltaTime);
         }
 
         /// <summary>
@@ -163,7 +176,11 @@ namespace Arena
            // StartAction();
             UpdateManager.UpdateManager.Add(this);
         }
-        
+
+        private void OnDrawGizmos()
+        {
+            collisionEvent?.DrawGizmo();
+        }
 
         [ContextMenu("ㄱㄱ")]
         public virtual void StartAction()
