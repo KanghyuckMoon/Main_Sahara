@@ -145,6 +145,15 @@ namespace HitBox
 		DamageOnly = 1,
 	}
 
+	[Flags]
+	public enum HitType
+	{
+		None = 0,
+		Default = 1 << 0,
+		SandStorm = 1 << 1,
+	}
+	
+	
 	[System.Serializable]
 	public class HitBoxData
 	{
@@ -161,6 +170,7 @@ namespace HitBox
 		public float radius = 1f;
 		public float height = 1f;
 		public Vector3 rotation = Vector3.zero;
+		public HitType hitType = HitType.Default;
 		
 		//넉백
 		public bool isContactDirection = false; 
@@ -263,6 +273,7 @@ public enum HitBoxActionType
 	Hit,
 	None
 }
+
 
 public class HitBoxAction
 {

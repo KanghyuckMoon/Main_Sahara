@@ -158,6 +158,10 @@ namespace Arena
         {
             return TriggerList.FindAll((x) => x.IsStartArena == false); 
         }
+                public List<AbArenaCtrlTrigger> GetActiveTriggerList()
+                {
+                    return TriggerList.FindAll((x) => x.IsStartArena == true); 
+                }
         public virtual void Receive()
         {
         }

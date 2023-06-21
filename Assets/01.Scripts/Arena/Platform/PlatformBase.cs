@@ -179,7 +179,7 @@ namespace Arena
 
         private void OnDrawGizmos()
         {
-            collisionEvent.DrawGizmo();
+            collisionEvent?.DrawGizmo();
         }
 
         [ContextMenu("¤¡¤¡")]
