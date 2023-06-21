@@ -89,9 +89,17 @@ namespace Arena
 
         public void StartArena()
         {
-            GameObject shaker = ObjectPoolManager.Instance.GetObject(arenaCamShakeAddress);
-        }
+            StartCoroutine(ShakeCamCo());
+          }
 
+        private IEnumerator ShakeCamCo()
+        {
+            GameObject shaker = ObjectPoolManager.Instance.GetObject(arenaCamShakeAddress);
+
+            yield return new WaitForSeconds(2f);
+            ObjectPoolManager.Instance.RegisterObject(arenaCamShakeAddress,shaker);
+                  
+        }
         /// <summary>
         /// 현재 투기장 활성화
         /// </summary>
