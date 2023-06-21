@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Arena
 {
+    public class MoveToGround
+    {
+        
+    }
     public class PlatformArenaMap : ArenaMap
     {
 

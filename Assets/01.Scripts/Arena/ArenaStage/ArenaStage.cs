@@ -98,7 +98,7 @@ namespace Arena
 
             yield return new WaitForSeconds(2f);
             ObjectPoolManager.Instance.RegisterObject(arenaCamShakeAddress,shaker);
-                  
+            shaker.SetActive(false); 
         }
         /// <summary>
         /// 현재 투기장 활성화
