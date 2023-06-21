@@ -46,7 +46,7 @@ public class Idle : StateMachineBehaviour
         else
         {
             isUp = false;
-            mainModule.SetAnimationLayerOn(1, 0);
+            mainModule.SetAnimationLayerOn(1, 0.1f);
             mainModule.SetConsecutiveAttack(0);
             mainModule.SetActiveAnimatorRoot(0);
             mainModule.StopOrNot = 1;

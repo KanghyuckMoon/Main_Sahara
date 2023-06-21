@@ -146,6 +146,7 @@ namespace Module
 
         public void Jump(float _value = 0)
         {
+            if (mainModule.IsChargeJumpOn) return;
             if (_value == 0) _value = JumpHeight;
             onJump = false;
             mainModule.Gravity = Mathf.Sqrt(_value * -2.2f * _GravityScale);

@@ -8,7 +8,7 @@
  */
 
 
-#if UNITY_EDITOR
+
 using System;       // AttributeUsage
 using UnityEngine;  // GUILayout
 using UnityEditor;  // Editor
@@ -401,4 +401,3 @@ namespace FischlWorks
 
 
 }
-#endif
