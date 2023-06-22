@@ -24,6 +24,7 @@ namespace CondinedModule
             Loo_F,
             Nai_C,
             Nu_S,
+            Marian,
         }
 
         public Dictionary<NPCTYPE, TalkNPC> talkNpcDic = new Dictionary<NPCTYPE, TalkNPC>();

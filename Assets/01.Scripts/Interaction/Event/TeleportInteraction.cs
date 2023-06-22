@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Inventory;
 using UnityEngine;
 
 namespace Interaction
@@ -40,17 +41,34 @@ namespace Interaction
                 {
                         get
                         {
-                                return "O00000050";
+                                if (string.IsNullOrEmpty(needItem))
+                                {
+                                        return "O00000052"; 
+                                }
+                                else if (InventoryManager.Instance.ItemCheck(needItem, 1))
+                                {
+                                        return "O00000052";
+                                }
+                                return "O00000051";
                         }
                 }
 
                 [SerializeField] private string nameKey = "M00000010";
                 [SerializeField] private TeleportSystem teleportSystem;
                 [SerializeField] private bool isUp;
+                [SerializeField] private string needItem;
                 
                 public void Interaction()
                 {
-                        teleportSystem.Interaction(isUp);
+                        if (string.IsNullOrEmpty(needItem))
+                        {
+                                teleportSystem.Interaction(isUp);
+                                return;
+                        }
+                        else if(InventoryManager.Instance.ItemCheck(needItem, 1))
+                        {
+                                teleportSystem.Interaction(isUp);
+                        }
                 }
         }
 }

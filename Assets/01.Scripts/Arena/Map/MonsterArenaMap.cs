@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,28 @@ namespace Arena
         protected override void Start()
         {
             base.Start();
-            InitEnemyList();
         }
+
+        private void OnEnable()
+        {
+            StartCoroutine(SetInit());
+        }
+        
+        private IEnumerator SetInit()
+        {
+            while (true)
+            {
+                if (GameManager.GamePlayerManager.Instance.IsPlaying)
+                {
+                    InitEnemyList();
+                    yield break;
+                }
+                
+                yield return null;
+            }
+            
+        }
+        
 
         public override void Receive()
         {

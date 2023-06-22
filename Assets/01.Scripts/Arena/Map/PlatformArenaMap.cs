@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Arena
 {
+    public class MoveToGround
+    {
+        
+    }
     public class PlatformArenaMap : ArenaMap
     {
 
@@ -18,5 +22,4 @@ namespace Arena
             platformList = GetComponentsInChildren<PlatformBase>().ToList(); 
         }
     }
-    
 }
