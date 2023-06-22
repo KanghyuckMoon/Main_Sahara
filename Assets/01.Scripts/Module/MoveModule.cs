@@ -144,12 +144,6 @@ namespace Module
                 targetRotation = Mathf.Atan2(_dir.x, _dir.z) * Mathf.Rad2Deg +
                                  mainModule.ObjRotation.eulerAngles.y;
             }
-            /*else
-            {
-                targetRotation = Mathf.Lerp(targetRotation, 0, 1.6f * mainModule.PersonalDeltaTime);
-                targetRotation = 0;
-            }*/
-
             rotation = Mathf.SmoothDampAngle(_rotate.y, targetRotation, ref rotationVelocity,
                 1.6f * mainModule.PersonalDeltaTime);
 
