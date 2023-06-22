@@ -1215,11 +1215,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8313201566591732896, guid: a997665990fb36749a90a752ab33927e, type: 3}
       propertyPath: m_Name
-      value: Bottle3_Detect
+      value: Bottle3_Detect_Quest_RESQ_03
       objectReference: {fileID: 0}
     - target: {fileID: 8313201566591732897, guid: a997665990fb36749a90a752ab33927e, type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 8313201566591732897, guid: a997665990fb36749a90a752ab33927e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2444,26 +2444,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2813969337482798595, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
       propertyPath: m_Name
-      value: Chip1_Detect
+      value: Chip1_Detect_RESQ_08
       objectReference: {fileID: 0}
     - target: {fileID: 2813969337482798596, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
       propertyPath: questKey
-      value: RESQ_03
+      value: RESQ_08
       objectReference: {fileID: 0}
     - target: {fileID: 2813969337940222058, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
       propertyPath: effectAddress
       value: SandUpVFX
       objectReference: {fileID: 0}
+    - target: {fileID: 2813969337940222058, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
+      propertyPath: detectItemType
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989013584534585104, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
+      propertyPath: itemDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: a571a99208aabb44abb11834b33ec75b, type: 2}
+    - target: {fileID: 7989013584534585104, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
+      propertyPath: getEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989013584534585104, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
+      propertyPath: getEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1085421578}
+    - target: {fileID: 7989013584534585104, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
+      propertyPath: getEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 187631592677182013, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1085421578}
   m_SourcePrefab: {fileID: 100100000, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
 --- !u!1 &1085421576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2813969337940222061, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
   m_PrefabInstance: {fileID: 1085421575}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1085421577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 187631592677182013, guid: 6c800bf4e73914142a4862a1f6cfc525, type: 3}
+  m_PrefabInstance: {fileID: 1085421575}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1085421578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085421577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9445ee14af04cf46be450b287c2e3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questKey: RESQ_08
+  setQuestState: 3
 --- !u!1001 &1117379888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2757,92 +2799,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1404512881
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4341697087839464370, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_Name
-      value: Key1_Detect
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_RootOrder
-      value: 49
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.21333
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.21333
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.21333
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 321.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4034.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 17.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464371, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697087839464373, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: questKey
-      value: RESQ_04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341697088833236443, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-      propertyPath: effectAddress
-      value: SandUpVFX
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
---- !u!1 &1404512882 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4341697088833236444, guid: 543cf75776573ca4f91d3e55c51033f8, type: 3}
-  m_PrefabInstance: {fileID: 1404512881}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1407565219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3272,7 +3228,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2016773612001224454, guid: a26c4a5e5d63c774a8a7e804c6e47979, type: 3}
       propertyPath: m_RootOrder
-      value: 51
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2016773612001224454, guid: a26c4a5e5d63c774a8a7e804c6e47979, type: 3}
       propertyPath: m_LocalScale.x
@@ -3834,11 +3790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4851561754928707346, guid: 06b9aca47a149184cbe0d679d182b2d4, type: 3}
       propertyPath: m_Name
-      value: Bottle2_Detect
+      value: Bottle2_Detect_Quest_RESQ_03
       objectReference: {fileID: 0}
     - target: {fileID: 4851561754928707347, guid: 06b9aca47a149184cbe0d679d182b2d4, type: 3}
       propertyPath: m_RootOrder
-      value: 47
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 4851561754928707347, guid: 06b9aca47a149184cbe0d679d182b2d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3924,7 +3880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectItemList:
-  - {fileID: 1404512882}
+  - {fileID: 0}
   questKey: RESQ_04
   clearEvnet:
     m_PersistentCalls:
@@ -3964,7 +3920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_RootOrder
-      value: 50
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_LocalScale.x
@@ -4873,7 +4829,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9068816278421435546, guid: 24d6a79b49085d74abff3d2f653d3fe1, type: 3}
       propertyPath: m_Name
-      value: Bottle1_Detect
+      value: Bottle1_Detect_Quest_RESQ_03
       objectReference: {fileID: 0}
     - target: {fileID: 9068816278421435547, guid: 24d6a79b49085d74abff3d2f653d3fe1, type: 3}
       propertyPath: m_RootOrder

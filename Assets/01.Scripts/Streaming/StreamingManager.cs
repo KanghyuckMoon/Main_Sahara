@@ -321,6 +321,7 @@ namespace Streaming
 			}
 			
 			isSceneSetting = true;
+			GameManager.GamePlayerManager.Instance.IsPlaying = true;
 			
 			loadingCanvas.SetActive(false);
 			

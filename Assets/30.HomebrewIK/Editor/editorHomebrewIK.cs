@@ -7,7 +7,7 @@
  * All Content (C) 2022 Unlimited Fischl Works, all rights reserved.
  */
 
-
+#if UNITY_EDITOR
 
 using System;       // AttributeUsage
 using UnityEngine;  // GUILayout
@@ -401,3 +401,5 @@ namespace FischlWorks
 
 
 }
+
+#endif
