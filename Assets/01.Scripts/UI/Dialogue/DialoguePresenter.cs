@@ -90,6 +90,7 @@ using Inventory;
             index = 0; 
             nameCode = _name;
             dialogueCode = _dialogue;
+            fullText = "";
             if (_callback != null)
             {
                 _endCallback = _callback;
