@@ -5,6 +5,7 @@ using System.Linq;
 using CondinedModule;
 using Data;
 using UnityEngine;
+using Utill.Coroutine;
 
 namespace Arena
 {
@@ -121,7 +122,8 @@ namespace Arena
 
         public virtual  void CompleteArena()
         {
-            StartCoroutine(Init(false));
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(Init(false));
+        //    StartCoroutine(Init(false));
         }
 
         public virtual bool CheckCondition()
