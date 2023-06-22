@@ -584,7 +584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2075594142208933119
 Transform:
   m_ObjectHideFlags: 0
@@ -636,9 +636,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695092116382737989}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 8.46
   m_Radius: 1.7
   m_SlopeLimit: 45
@@ -658,7 +666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: b456d5ff379659342a3ed6627a290024, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: b456d5ff379659342a3ed6627a290024, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 1695092116382737989}
 --- !u!114 &5345158356665591432
 MonoBehaviour:
@@ -689,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: xb_Hp_DataSO
+  playerdata: {fileID: 0}
 --- !u!114 &5345158356665591438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,6 +750,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1876360362}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5345158356665591442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,6 +782,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseHeight: 0
+  height: 0
 --- !u!114 &1876360362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,15 +824,19 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -0.1
   groundOffset: -0.4
+  groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -828,10 +847,13 @@ MonoBehaviour:
   visualObject: {fileID: 7899959976664510700}
   model: {fileID: 6751534626200872208}
   animator: {fileID: 5345158356665591429}
+  jumpstrenght: 0
   leftFeet: {fileID: 1240068496116947335}
   rightFeet: {fileID: 7845844785154853748}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+  frontInput: 0
+  ignoreHitType: 0
   aiSOAddress: xb_Hp_AISO
   pathHarver: {fileID: 0}
 --- !u!1 &1739654398586514120

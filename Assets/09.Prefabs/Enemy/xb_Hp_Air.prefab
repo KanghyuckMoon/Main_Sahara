@@ -1024,6 +1024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6439971357446770124}
   - component: {fileID: 5176259623950602902}
+  - component: {fileID: 6032028559287273874}
   m_Layer: 18
   m_Name: SK_Kupolobrach_ThroatWeakPoint
   m_TagString: Untagged
@@ -1134,6 +1135,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -1.6384703, y: 0.00000011920929, z: 0.030667782}
     m_Extent: {x: 1.2047065, y: 1.0867352, z: 1.0109204}
   m_DirtyAABB: 0
+--- !u!95 &6032028559287273874
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2544372867923058091}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a1bbe21278ab604b93256b643f5f3f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2711175184423361396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2256,7 +2278,7 @@ Animator:
   m_GameObject: {fileID: 4849470621064864011}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a4f5c7b2b1afe4541803d25ef1be808d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9de36468e51b1b54aa554da772515fe5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9a1bbe21278ab604b93256b643f5f3f5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2275,9 +2297,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4849470621064864011}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 8.46
   m_Radius: 1.7
   m_SlopeLimit: 45
@@ -2297,7 +2327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: 7fa2148ae9341cd4cb15dd51983f0c67, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: 7fa2148ae9341cd4cb15dd51983f0c67, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 4849470621064864011}
 --- !u!114 &2226814159445434822
 MonoBehaviour:
@@ -2380,6 +2411,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 889770851409629639}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2226814159445434844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2409,6 +2443,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseHeight: 0
+  height: 0
 --- !u!114 &889770851409629639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,6 +2497,7 @@ MonoBehaviour:
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -2476,6 +2513,8 @@ MonoBehaviour:
   rightFeet: {fileID: 4046731491056340026}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+  frontInput: 0
+  ignoreHitType: 0
   aiSOAddress: xb_Hp_Air_AISO
   pathHarver: {fileID: 0}
 --- !u!1 &5196695013448172100
