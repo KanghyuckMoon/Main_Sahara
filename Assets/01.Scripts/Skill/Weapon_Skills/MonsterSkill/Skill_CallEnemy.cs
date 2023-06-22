@@ -5,7 +5,6 @@ using Module;
 using Streaming;
 using Pool;
 using HitBox;
-using static GluonGui.WorkspaceWindow.Views.Checkin.Operations.CheckinViewDeleteOperation;
 
 namespace Skill
 {

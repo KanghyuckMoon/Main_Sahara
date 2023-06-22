@@ -375,9 +375,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023096911993200783}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 2.19
   m_Radius: 0.66
   m_SlopeLimit: 20
@@ -437,6 +445,7 @@ MonoBehaviour:
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -452,8 +461,12 @@ MonoBehaviour:
   rightFeet: {fileID: 5181187757420597759}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+  frontInput: 0
+  ignoreHitType: 0
   aiSOAddress: xa_Nm_Elec_AISO
   pathHarver: {fileID: 0}
+  hudType: 0
+  bossName: TestBoss
 --- !u!114 &4735684078681382982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,7 +479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: 32c86bf87807d9849876092a0828e8e2, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: 32c86bf87807d9849876092a0828e8e2, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 2023096911993200783}
 --- !u!114 &4735684078681382981
 MonoBehaviour:
@@ -549,6 +563,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 4735684078681382983}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8582000127551840895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,6 +595,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseHeight: 0
+  height: 0
 --- !u!1 &2437454243232502329
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,9 +890,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3273880915966927836}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3273880915966927839
@@ -883,10 +910,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3273880915966927836}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -905,7 +943,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainModule: {fileID: 4735684078681382983}
-  attackMulti: 1
+  attackMulti: 3
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3273880915966927838}
+        m_TargetAssemblyTypeName: Module.LocationHitBox, Module
+        m_MethodName: TimeSlow
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3273880915966927838}
+        m_TargetAssemblyTypeName: Module.LocationHitBox, Module
+        m_MethodName: AddHitEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HitEffect1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3650196038762083056
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,6 +90,7 @@ using Inventory;
             index = 0; 
             nameCode = _name;
             dialogueCode = _dialogue;
+            fullText = "";
             if (_callback != null)
             {
                 _endCallback = _callback;
@@ -113,6 +114,7 @@ using Inventory;
                 {   
                     case "!END":
                         index = 0;
+                        fullText = "";
                         ActiveViewS(false); 
                         return;
                     case "!TACTIVE":
