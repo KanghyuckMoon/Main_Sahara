@@ -157,7 +157,10 @@ namespace Arena
         protected virtual void Awake()
         {
             platformDataSO ??= AddressablesManager.Instance.GetResource<PlatformDataSO>(SOAddress);
-            collisionEvent = new CollisionEvent(transform, "Player", LandEffect,landPlatform.MovePower, LandExit);
+            if (isLandEffect == true)
+            {
+                collisionEvent = new CollisionEvent(transform, "Player", LandEffect,landPlatform.MovePower, LandExit);
+            }
         }
 
         private void Start()
@@ -182,6 +185,10 @@ namespace Arena
             collisionEvent?.DrawGizmo();
         }
 
+        private void InitCaster()
+        {
+            
+        }
         [ContextMenu("¤¡¤¡")]
         public virtual void StartAction()
         {
