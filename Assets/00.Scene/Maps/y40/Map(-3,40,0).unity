@@ -10769,6 +10769,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
       propertyPath: getoutEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -10781,7 +10785,23 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
       propertyPath: getoutEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuestSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1998061875}
+    - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: QuestSet
       objectReference: {fileID: 0}
     - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
@@ -10789,7 +10809,15 @@ PrefabInstance:
       value: Quest.EventQuest, Quest
       objectReference: {fileID: 0}
     - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Quest.EventQuest, Quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
       propertyPath: getoutEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309277263379555977, guid: b664b3e493d944748b93840a754ec99e, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6309277263379555978, guid: b664b3e493d944748b93840a754ec99e, type: 3}
@@ -10815,6 +10843,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6309277263379556023, guid: b664b3e493d944748b93840a754ec99e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1998061874}
+    - targetCorrespondingSourceObject: {fileID: 6309277263379556023, guid: b664b3e493d944748b93840a754ec99e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1998061875}
   m_SourcePrefab: {fileID: 100100000, guid: b664b3e493d944748b93840a754ec99e, type: 3}
 --- !u!1 &1998061872 stripped
 GameObject:
@@ -10841,6 +10872,20 @@ MonoBehaviour:
   questKey: REMQ_Nv_A1
   isInvert: 0
   noneIncludeDiscoverable: 0
+--- !u!114 &1998061875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998061872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9445ee14af04cf46be450b287c2e3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questKey: REMQ_Nv_A2
+  setQuestState: 3
 --- !u!1 &2001261732
 GameObject:
   m_ObjectHideFlags: 0
