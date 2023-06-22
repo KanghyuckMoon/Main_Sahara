@@ -91,6 +91,7 @@ using Inventory;
             nameCode = _name;
             dialogueCode = _dialogue;
             fullText = "";
+            this.dialogueView.SetDialogueTextA(fullText);
             if (_callback != null)
             {
                 _endCallback = _callback;
