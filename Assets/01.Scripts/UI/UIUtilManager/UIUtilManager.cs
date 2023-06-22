@@ -71,11 +71,11 @@ namespace UI.UtilManager
         
         
         
-        private int index = 0;
+        //private int index = 0;
         IEnumerator TypeText(Label _targetLabel, string _fullText,float _time = 0.03f)
         {
             if (string.IsNullOrEmpty(_fullText)) yield break;
-
+            int index = 0;
             _targetLabel.text = String.Empty; 
             
             while (index < _fullText.Length)

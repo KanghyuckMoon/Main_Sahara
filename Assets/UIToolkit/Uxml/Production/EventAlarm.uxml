@@ -4,19 +4,19 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Popup.uss?fileID=7433441132597879392&amp;guid=7f506964a6cb6c5428fe7aa421dcaf79&amp;type=3#Popup" />
     <ui:VisualElement name="event_alarm_view" picking-mode="Ignore" class="center_align event_alarm radius_base">
         <ui:VisualElement name="border" class="border_base" style="height: 95%; border-top-width: 1.5px; border-bottom-width: 1.5px; border-left-color: rgba(152, 137, 96, 0.62); border-right-color: rgba(152, 137, 96, 0.62); border-top-color: rgba(152, 137, 96, 0.62); border-bottom-color: rgba(152, 137, 96, 0.62);" />
-        <ui:VisualElement picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: none;">
+        <ui:VisualElement picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: flex;">
             <ui:Label text="Label" display-tooltip-when-elided="true" name="event_name_label_" class="font_base" style="bottom: 30px; font-size: 15px; color: rgb(255, 255, 255); -unity-text-align: middle-center;" />
         </ui:VisualElement>
         <ui:VisualElement name="left" style="flex-basis: 20%; align-items: center; justify-content: center; height: 150%; display: none;">
             <ui:VisualElement name="image" class="logo_image" style="display: flex;" />
         </ui:VisualElement>
-        <ui:VisualElement name="right" style="flex-grow: 1; padding-left: 5%; padding-right: 5%;">
+        <ui:VisualElement name="right" style="flex-grow: 1; padding-left: 5%; padding-right: 5%; justify-content: center; height: 100%;">
             <ui:Label text="메인 퀘스트" display-tooltip-when-elided="true" name="event_category_label" picking-mode="Ignore" class="font_base event_detail_label inactive_text" />
             <ui:Label text="자고 있는 정정배를 깨워라 " display-tooltip-when-elided="true" name="event_name_label" picking-mode="Ignore" class="font_base event_name_label inactive_text" />
             <ui:Label text="퀘스트 수락" display-tooltip-when-elided="true" name="event_detail_label" picking-mode="Ignore" class="font_base event_detail_label inactive_text" style="display: none;" />
             <ui:Label text="제세한 정보 확인하려면 &lt;color=#FFFFFF&gt;O&lt;/color&gt; 버튼 누르기 " display-tooltip-when-elided="true" name="more_info_label" picking-mode="Ignore" class="font_base event_detail_label inactive_text" style="display: flex; color: rgb(221, 199, 137);" />
             <ui:VisualElement name="deco" class="border_base" style="flex-direction: row-reverse; align-items: center;" />
-            <ui:VisualElement name="clear_icon" class="clear_icon_parent" style="flex-direction: row-reverse;">
+            <ui:VisualElement name="clear_icon" class="clear_icon_parent inactive_ci" style="flex-direction: row-reverse; position: absolute; width: 100%;">
                 <ui:Label text="Clear" display-tooltip-when-elided="true" name="clear_icon_text" class="font_base clear_icon" />
             </ui:VisualElement>
         </ui:VisualElement>
