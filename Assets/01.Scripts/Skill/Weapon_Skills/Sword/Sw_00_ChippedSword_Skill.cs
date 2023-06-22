@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Module;
 using UnityEngine;
 using HitBox;
+using DG.Tweening;
 using Pool;
 using Utill.Addressable;
 
@@ -20,6 +21,10 @@ namespace Skill
         [SerializeField] private HitBoxInAction hitBoxInAction;
         [SerializeField] private HitBoxAction hitBoxAction = new HitBoxAction();
 
+        [SerializeField] private string _skillEffectName;
+
+        private GameObject effect;
+
         private void Start()
         {
             hitBoxAction.SetCondition(Hit, 30, HitBoxActionType.Hit);
@@ -29,8 +34,13 @@ namespace Skill
         public void Skills(AbMainModule _mainModule)
         {
             UseMana(_mainModule, -usingMana);
-        
             PlaySkillAnimation(_mainModule, animationClip);
+
+            effect = ObjectPoolManager.Instance.GetObject(_skillEffectName);
+            effect.transform.SetParent(transform);
+            effect.transform.localPosition = Vector3.forward * 3;
+            effect.SetActive(true);
+            Invoke(nameof(SetEffectOff), 1.96f);
         }
 
         public HitBoxAction GetHitBoxAction()
@@ -48,6 +58,12 @@ namespace Skill
             //GameObject obj = ObjectPoolManager.Instance.GetObject("FireEffect_1");
             //obj.SetActive(true);
             //obj.transform.position = transform.position;
+        }
+
+        private void SetEffectOff()
+        {
+            effect.SetActive(false);
+            ObjectPoolManager.Instance.RegisterObject(_skillEffectName, effect);
         }
     }
 }

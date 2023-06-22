@@ -52,10 +52,14 @@ namespace Module
 
         public override void Update()
         {
-            foreach(IBuff _buff in buffList)
+            for (int i = 0; i < buffList.Count; ++i)
             {
-                if (buffDic[_buff] == BuffType.Update)
-                    _buff.Buff(mainModule);
+                var _buff = buffList[i];
+                if (_buff != null)
+                {
+                    if (buffDic[_buff] == BuffType.Update)
+                        _buff.Buff(mainModule);
+                }
             }
         }
 

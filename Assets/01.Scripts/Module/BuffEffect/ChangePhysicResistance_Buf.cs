@@ -55,7 +55,7 @@ namespace Skill
 
         private float CalculateDef(float _def)
         {
-            float addspeed = _def * (value / 100);
+            float addspeed = _def * (value / 100f);
 
             return addspeed;
         }

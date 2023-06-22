@@ -177,7 +177,7 @@ namespace Module
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
-            _moveValue = _direction.normalized * ((_speed + passiveSpeed) * mainModule.StopOrNot);
+            _moveValue = _direction.normalized * (_speed * mainModule.StopOrNot);
             //_moveValue *= mainModule.PersonalDeltaTime;
             var _moveVector3 = _moveValue;
             mainModule.attackedTime += mainModule.PersonalDeltaTime;
