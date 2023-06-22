@@ -114,6 +114,7 @@ using Inventory;
                 {   
                     case "!END":
                         index = 0;
+                        fullText = "";
                         ActiveViewS(false); 
                         return;
                     case "!TACTIVE":
