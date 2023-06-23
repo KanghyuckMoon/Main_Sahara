@@ -58,7 +58,7 @@ namespace Arena
             {
                 ArenaMap _arenaObj = _arenaMapList[i];
                 arenaDic.Add(i + 1, _arenaObj);
-                _arenaObj.transform.localPosition = Vector3.zero;
+                //_arenaObj.transform.localPosition = Vector3.zero;
 
                 _arenaObj.GetEndTriggerList().ForEach((x) => x.inactiveTriggerEvent.AddListener(CompleteArena));
                 _arenaObj.GetActiveTriggerList().ForEach((x) => x.activeTriggerEvent.AddListener(StartArena));
