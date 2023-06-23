@@ -38,12 +38,12 @@ namespace Module
             verticalBodyLayerIndex = animator.GetLayerIndex("VerticalBody");
         }
 
-        public void SetVerticalBodyLayer(float _duration, int _value)
+        public void SetVerticalBodyLayer(int _value)
         {
             DOTween.To(() => animator.GetLayerWeight(verticalBodyLayerIndex),
                 (_x) =>
                     animator.SetLayerWeight(verticalBodyLayerIndex, _x)
-                , (float)_value, _duration);
+                , (float)_value, 0.12f);
         }
 
         public void SetCanLand(int _on)

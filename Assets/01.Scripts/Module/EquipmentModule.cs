@@ -54,16 +54,6 @@ namespace Module {
             //equipPositions.Add(mainModule.VisualObject.GetComponentsInChildren<EquipPosition>();
         }
 
-        public override void Update()
-        {
-            if (!mainModule.player) return;
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                OnEquipItem("GoldShoulder_Prefab");
-                OnEquipItem("HelmetOfKnight_Prefab");
-            }
-        }
-
         /*
         private EquipPosition[] setMeshObj(EquipPosition[] _equipPositions)
         {

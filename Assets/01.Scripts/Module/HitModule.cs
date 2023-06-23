@@ -80,7 +80,7 @@ namespace Module
             //if (HitDelay())
             //{
                 //HitFeedBack();
-                Debug.LogError("데미지: " + dmg);
+                //Debug.LogError("데미지: " + dmg);
                 
                 if (HpModule.GetDamage(dmg) == 0)
                 {
