@@ -293,7 +293,7 @@ namespace UI
                 this.uiModule = _mainModule.GetModuleComponent<UIModule>(ModuleType.UI);
                 this.buffModule = _mainModule.GetModuleComponent<BuffModule>(ModuleType.Buff);
                 this.statData = transform.parent.GetComponent<StatData>();
-                if (statData != null)
+                if (statData != null && buffModule != null && uiModule != null) 
                 {
                     StartPresenters();
                     this.statData.AddObserver(this);

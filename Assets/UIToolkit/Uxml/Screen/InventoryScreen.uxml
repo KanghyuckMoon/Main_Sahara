@@ -98,8 +98,8 @@
                     <ui:Label text="ITEM" display-tooltip-when-elided="true" name="title_label" class="title_label font_base" style="border-bottom-width: 0; color: rgb(152, 137, 96); font-size: 50px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="money_box" style="flex-direction: row;">
-                    <ui:Label text="100,000,000,000" display-tooltip-when-elided="true" name="text" class="font_base" style="font-size: 40px; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: normal;" />
-                    <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Inventory/MoneyLogo.png?fileID=2800000&amp;guid=683818fcb7e5026418bfa030a5496552&amp;type=3#MoneyLogo&apos;); -unity-background-scale-mode: scale-to-fit; height: 100px; width: 100px;" />
+                    <ui:Label display-tooltip-when-elided="true" name="text" class="font_base" style="font-size: 40px; color: rgb(224, 224, 224); -unity-text-align: upper-center; -unity-font-style: normal;" />
+                    <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Make/Inventory/MoneyLogo.png?fileID=2800000&amp;guid=683818fcb7e5026418bfa030a5496552&amp;type=3#MoneyLogo&apos;); -unity-background-scale-mode: scale-to-fit; height: 100px; width: 100px; -unity-background-image-tint-color: rgb(224, 224, 224);" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row; width: 25%; height: 100%; padding-left: 115px; background-color: rgba(55, 55, 55, 0.76); display: none;" />
             </ui:VisualElement>
@@ -123,10 +123,10 @@
                                 <ui:VisualElement picking-mode="Ignore" name="accent_pattern" class="accent_pattern">
                                     <ui:VisualElement name="top_pattern" picking-mode="Ignore" style="width: 70px; height: 55px; position: absolute; bottom: 80%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;);" />
                                     <ui:VisualElement picking-mode="Ignore" style="height: 100%; width: 100%;" />
-                                    <ui:VisualElement name="bot_pattern" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;); width: 70px; height: 55px; -unity-background-scale-mode: scale-and-crop; rotate: 180deg; position: absolute; top: 100%;" />
+                                    <ui:VisualElement name="bot_pattern" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;); width: 70px; height: 55px; -unity-background-scale-mode: scale-and-crop; rotate: 180deg; position: absolute; top: 80%;" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" mouse-wheel-scroll-size="200" class="item__grid-panel inventory_scroll_panel" style="height: 100%; display: flex;">
+                            <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" mouse-wheel-scroll-size="200" class="item__grid-panel inventory_scroll_panel" style="height: 100%; display: flex; padding-top: 3%;">
                                 <ui:VisualElement name="weapon_panel" class="inventory_panel" />
                                 <ui:VisualElement style="display: flex;" />
                                 <ui:VisualElement name="armor_panel" class="inventory_panel" style="display: none;" />
@@ -154,16 +154,16 @@
                     <ui:VisualElement name="header" style="height: 10%; display: none;" />
                     <ui:VisualElement name="content" style="height: 100%;">
                         <ui:VisualElement name="character__selected" class="center_align" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/InventoryModel.renderTexture?fileID=8400000&amp;guid=409d5825e55d3d94c810734ebf531cc2&amp;type=2#InventoryModel&apos;); -unity-background-scale-mode: scale-to-fit; flex-basis: 70%; background-color: rgb(0, 0, 0);">
-                            <ui:VisualElement name="frame" style="position: absolute; width: 97%; height: 97%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/invenAccent_border.png?fileID=21300000&amp;guid=c6177ac8ba7ed2c42b50db29cde5acde&amp;type=3#invenAccent_border&apos;); -unity-background-scale-mode: scale-and-crop; background-color: rgb(0, 0, 0); -unity-slice-left: 839; -unity-slice-top: 839; -unity-slice-right: 839; -unity-slice-bottom: 839; -unity-slice-scale: 0.2px;" />
+                            <ui:VisualElement name="frame" style="position: absolute; width: 95%; height: 97%; background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/invenAccent_border.png?fileID=21300000&amp;guid=c6177ac8ba7ed2c42b50db29cde5acde&amp;type=3#invenAccent_border&apos;); -unity-background-scale-mode: scale-and-crop; background-color: rgba(0, 0, 0, 0); -unity-slice-left: 839; -unity-slice-top: 839; -unity-slice-right: 839; -unity-slice-bottom: 839; -unity-slice-scale: 0.2px; -unity-background-image-tint-color: rgba(255, 255, 255, 0.67); display: flex;" />
                             <ui:VisualElement style="width: 100%; height: 100%; align-items: center; justify-content: center;">
                                 <ui:VisualElement name="select_weapon_image" style="width: 85%; height: 90%; background-image: url(&apos;project://database/Assets/14.Texture/UI/InventoryModel.renderTexture?fileID=8400000&amp;guid=409d5825e55d3d94c810734ebf531cc2&amp;type=2#InventoryModel&apos;); background-color: rgba(0, 0, 0, 0); display: none;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="item_description_panel" class="center_align background_color" style="flex-grow: 1; margin-top: 20px;">
-                            <ui:VisualElement name="frame" class="deco background_color" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/invenAccent_border.png?fileID=21300000&amp;guid=c6177ac8ba7ed2c42b50db29cde5acde&amp;type=3#invenAccent_border&apos;); -unity-background-scale-mode: scale-and-crop; background-color: rgb(0, 0, 0); -unity-slice-scale: 0.15px; -unity-slice-left: 840; -unity-slice-bottom: 840; -unity-slice-right: 840; -unity-slice-top: 840; width: 97%; height: 97%;" />
+                            <ui:VisualElement name="frame" class="deco background_color" style="background-image: url(&apos;project://database/Assets/14.Texture/UI/Inventory/invenAccent_border.png?fileID=21300000&amp;guid=c6177ac8ba7ed2c42b50db29cde5acde&amp;type=3#invenAccent_border&apos;); -unity-background-scale-mode: scale-and-crop; background-color: rgb(0, 0, 0); -unity-slice-scale: 0.15px; -unity-slice-left: 840; -unity-slice-bottom: 840; -unity-slice-right: 840; -unity-slice-top: 840; width: 97%; height: 95%; -unity-background-image-tint-color: rgba(255, 255, 255, 0.67);" />
                             <ui:VisualElement style="width: 100%; height: 100%; padding-left: 40px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px;">
                                 <ui:VisualElement name="bottom">
-                                    <ui:Label display-tooltip-when-elided="true" name="item_title_label" class="font_base" style="font-size: 40px;" />
+                                    <ui:Label display-tooltip-when-elided="true" name="item_title_label" class="font_base" style="font-size: 32px; padding-top: 10px;" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="top" style="flex-basis: 30%; flex-grow: 1;">
                                     <ui:Label display-tooltip-when-elided="true" name="item_detail_label" class="font_base" style="font-size: 25px; flex-grow: 1; white-space: normal;" />

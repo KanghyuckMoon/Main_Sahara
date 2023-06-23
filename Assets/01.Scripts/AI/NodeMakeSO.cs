@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEditor.Animations;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -113,6 +112,7 @@ namespace AI
 		public NodeModel nodeModel = new NodeModel();
 		public List<NodeModel> nodes = new List<NodeModel>();
 
+#if UNITY_EDITOR
 		[ContextMenu("NodeListToNodeSO")]
 		public void NodeListToNodeSO()
 		{
@@ -156,14 +156,14 @@ namespace AI
 			nodes.Add(_node);
 
 
-#if UNITY_EDITOR
 
 			AssetDatabase.SaveAssets();
 
-#endif
 
 			return _node;
 		}
+#endif
+#if UNITY_EDITOR
 		public NodeModel CreateNodeModel(NodeModel _nodeModel)
 		{
 			NodeModel _node = new NodeModel();
@@ -174,14 +174,13 @@ namespace AI
 			nodes.Add(_nodeModel);
 
 
-#if UNITY_EDITOR
 
 			AssetDatabase.SaveAssets();
 
-#endif
 
 			return _nodeModel;
 		}
+#endif
 
 		public void DeleteNode(NodeModel _node)
 		{
