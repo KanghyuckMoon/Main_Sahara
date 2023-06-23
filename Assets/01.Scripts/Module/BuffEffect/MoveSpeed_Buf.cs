@@ -36,7 +36,7 @@ namespace Buff
                     run = CalculateSpeed(statData.RunSpeed);
 
                     statData.WalkSpeed += walk;
-                    statData.WalkSpeed += run;
+                    statData.RunSpeed += run;
                     //Debug.LogError("회복호복");
                     
                     currentPeriod = period;
@@ -58,7 +58,7 @@ namespace Buff
 
         private float CalculateSpeed(float _speed)
         {
-            float addspeed = _speed * (value / 100);
+            float addspeed = _speed * (value / 100f);
 
             return addspeed;
         }
