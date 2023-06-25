@@ -19,6 +19,7 @@ public class RFX4_Decal : MonoBehaviour
         //if (Application.isPlaying) mat = GetComponent<Renderer>().material;
         //else mat = GetComponent<Renderer>().sharedMaterial;
 
+return;
         ps = GetComponent<ParticleSystem>();
         if (ps != null) psMain = ps.main;
 
@@ -50,6 +51,7 @@ public class RFX4_Decal : MonoBehaviour
 
     void LateUpdate()
     {
+return;
         Matrix4x4 invTransformMatrix = transform.worldToLocalMatrix;
         // mat.SetMatrix("_InverseTransformMatrix", invTransformMatrix);
         if (props == null) props = new MaterialPropertyBlock();
@@ -64,6 +66,7 @@ public class RFX4_Decal : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
+return;
         Gizmos.matrix = Matrix4x4.TRS(this.transform.TransformPoint(Vector3.zero), this.transform.rotation, this.transform.lossyScale);
         Gizmos.color = new Color(1, 1, 1, 1);
         Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
