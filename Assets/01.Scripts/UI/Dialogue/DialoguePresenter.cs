@@ -16,8 +16,9 @@ using UI.EventManage;
 using UI.Upgrade;
 using Inventory;
     using TimeManager;
-    using DG.Tweening; 
-    
+    using DG.Tweening;
+    using UI.UtilManager;
+
     namespace UI.Dialogue
 {
     public class DialoguePresenter : MonoBehaviour, IScreen
@@ -245,7 +246,8 @@ using Inventory;
                             index++;
                             SetCodeToText();
                             Debug.Log("대화 다음!!");
-
+                            // 사운드 재생
+                            UIUtilManager.Instance.PlayUISound(UISoundType.NextDialogue);
                         }
                         
                     }

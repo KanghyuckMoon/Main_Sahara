@@ -8,6 +8,7 @@ using UI.ConstructorManager;
 using UI.Production;
 using Utill.Addressable;
 using UI.Base;
+using UI.UtilManager;
 
 namespace UI.Inventory
 {
@@ -27,8 +28,8 @@ namespace UI.Inventory
 
         // 클릭 관련 데이터 
         private bool isClicker;
-        private Action<ItemData> clickCallback; 
-        
+        private Action<ItemData> clickCallback;
+
         private int col = 4, row = 5;
 
         // 프로퍼티 
@@ -38,12 +39,12 @@ namespace UI.Inventory
             InvenPanelDic[invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType)];
 
         public ItemType CurItemType => invenItemUISO.GetItemType(inventoryGridSlotsView.CurPanelType);
-        
+
         public int Col => col;
         public int Row => row;
         public ItemDescriptionPresenter DescriptionPr => descriptionPresenter;
-        public InventoryGridSlotsView GridView => inventoryGridSlotsView; 
-        
+        public InventoryGridSlotsView GridView => inventoryGridSlotsView;
+
         public InventoryGridSlotsPr(VisualElement _parent)
         {
             this.inventoryGridSlotsView = new InventoryGridSlotsView();
@@ -58,8 +59,7 @@ namespace UI.Inventory
 
             // SO 불러오기 
             invenItemUISO = AddressablesManager.Instance.GetResource<InvenItemUISO>("InvenItemUISO");
-
-        }   
+        }
 
         public void Init()
         {
@@ -70,6 +70,7 @@ namespace UI.Inventory
         {
             return InvenPanelDic[_itemType];
         }
+
         public void AddButtonEvent(InventoryGridSlotsView.RadioButtons _type, Action<bool> _callback)
         {
             inventoryGridSlotsView.AddButtonEvent(_type, _callback);
@@ -77,7 +78,6 @@ namespace UI.Inventory
 
         public void SetData()
         {
-
         }
 
         /// <summary>
@@ -106,7 +106,6 @@ namespace UI.Inventory
 
                 _slot.Value.Parent.style.display = DisplayStyle.None;
             }
-
         }
 
         /// <summary>
@@ -144,15 +143,22 @@ namespace UI.Inventory
 
                 // 슬롯 이벤트 등록 
                 if (isDragger == true)
-                        _slotPr.AddDragger(target, () => startDragCallback?.Invoke(_slotPr)); // 드래거 이벤트 
-                if(isClicker == true)
-                    _slotPr.AddClickEvent(() => clickCallback?.Invoke(_slotPr.ItemData));
-                 
+                    _slotPr.AddDragger(target, () => startDragCallback?.Invoke(_slotPr)); // 드래거 이벤트 
+                if (isClicker == true)
+                    _slotPr.AddClickEvent(() =>
+                    {
+                        clickCallback?.Invoke(_slotPr.ItemData);
+                        // 사운드 재생
+                        UIUtilManager.Instance.PlayUISound(UISoundType.Click);
+                    });
+
                 _slotPr.AddHoverEvent(() =>
                 {
                     _slotPr.SlotItemView.ActiveBorder(true);
                     descriptionPresenter.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
                         _slotPr.WorldPos, _slotPr.ItemSize);
+                    // 사운드 재생
+                    UIUtilManager.Instance.PlayUISound(UISoundType.Hover);
                 });
                 _slotPr.AddOutEvent(() =>
                 {
@@ -164,9 +170,8 @@ namespace UI.Inventory
                 this.inventoryGridSlotsView.SetParent(_itemType, _slotPr.Parent);
             }
         }
-        
 
-        
+
         /// <summary>
         /// 드래거 추가 
         /// </summary>
@@ -182,9 +187,7 @@ namespace UI.Inventory
         public void AddClickEvent(Action<ItemData> _callback)
         {
             this.isClicker = true;
-            this.clickCallback = _callback; 
+            this.clickCallback = _callback;
         }
-
+    }
 }
-}
-

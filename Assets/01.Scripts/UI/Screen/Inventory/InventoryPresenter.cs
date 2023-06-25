@@ -40,7 +40,12 @@ namespace UI.Inventory
             inventoryView.InitUIDocument(uiDocument);
             accentItemCompo = new AccentItemCompo();
             accentItemCompo.Init(inventoryCam.transform);
-            inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.modelkey));
+            inventoryView.AddSlotClickEvent((x) =>
+            {
+                // 아이템 띄우기
+                accentItemCompo.ActiveModel(x.modelkey);
+
+            });
         }
 
         

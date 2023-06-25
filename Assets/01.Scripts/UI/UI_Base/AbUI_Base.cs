@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
 using DG.Tweening;
+using Sound;
 using UI.ActiveManager;
+using UI.UtilManager;
 using Utill.Pattern;
 
 
@@ -190,12 +192,12 @@ namespace UI.Base
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_type"></param>
-        protected void Bind<T>(Type _type) where T : VisualElement
+        protected List<VisualElement> Bind<T>(Type _type) where T : VisualElement
         {
             string[] names = Enum.GetNames(_type);
             List<VisualElement> elements = new VisualElement[names.Length].ToList();
 
-            // 한 번 바인딩 했으면 
+            // 한 번 바인딩 했으면 있는거 더해서 추가 
             if (this.elementsDic.ContainsKey(typeof(T)))
             {
                 int _count = this.elementsDic[typeof(T)].Count;
@@ -211,7 +213,7 @@ namespace UI.Base
                 }
                 this.elementsDic[typeof(T)].AddRange(elements);
 
-                return; 
+                return elements; 
             }
 
             this.elementsDic.Add(typeof(T), elements); 
@@ -228,23 +230,29 @@ namespace UI.Base
                     //Debug.LogError($" {names[i]} 지정된 이름의 요소가 없습니다");
                 } 
             }
+            return elements; 
         }
 
         protected void BindVisualElements(Type type)
         {
             Bind<VisualElement>(type); 
         }
-        protected void BindButtons(Type type)
+
+        protected List<VisualElement> BindButtons(Type type)
         {
-            Bind<Button>(type);
+            var _list = Bind<Button>(type);
+            SetDefaultClickSound(_list);
+            return _list; 
         }
         protected void BindProgressBars(Type type)
         {
             Bind<ProgressBar>(type);
         }
-        protected void BindRadioButtons(Type type)
+        protected  List<VisualElement> BindRadioButtons(Type type)
         {
-            Bind<RadioButton>(type); 
+            var _list = Bind<RadioButton>(type);
+            SetDefaultClickSound(_list);
+            return _list;
         }
         protected void BindLabels(Type type)
         {
@@ -378,6 +386,16 @@ namespace UI.Base
         {
             Get<RadioButton>(_idx).RegisterValueChangedCallback((e) => _event?.Invoke(e.newValue)); 
         }
+        
+        /// <summary>
+        /// RadioButton 이벤트
+        /// </summary>
+        /// <param name="_idx"></param>
+        /// <param name="_event"></param>
+        protected void AddRadioEvent<T>(int _idx, Action _event)where T : EventBase<T>, new()
+        {
+            Get<RadioButton>(_idx).RegisterCallback<T>((e) => _event?.Invoke()); 
+        }
 
         /// <summary>
         /// 텍스트필드 이벤트
@@ -397,6 +415,15 @@ namespace UI.Base
         public void Undo()
         {
             ActiveScreen(true);
+        }
+
+        private void SetDefaultClickSound(List<VisualElement> _vList)
+        {
+            for (int i = 0; i < _vList.Count; i++)
+            {
+                //BUTTON_Light_Switch_04_stereo_vList[i].RegisterCallback<ClickEvent>((x)=> SoundManager.Instance.PlayEFF("BUTTON_Light_Switch_04_stereo"));
+                _vList[i].RegisterCallback<ClickEvent>((x)=> UIUtilManager.Instance.PlayUISound(UISoundType.Click));
+            }
         }
     }
 }
