@@ -214,11 +214,12 @@ using Inventory;
         {
             isTexting = true; 
             string _name = _nameText.Replace("\r","");
-            StartText("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
             this.dialogueView.ResetSelectButtons(); // 버튼 삭제 
+            StartText("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
             UIManager.Instance.ActiveCursor(false);// 커서 비활성화 
 
         }
+        
         /// <summary>
         /// 대화 끝 다음 대화 넘어가는 거 체크 
         /// </summary>
