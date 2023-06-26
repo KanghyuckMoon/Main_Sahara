@@ -224,12 +224,12 @@ namespace Quest
 		public void ChangeQuestClear(string _key)
 		{
 			QuestData _questData = questDataDic[_key];
-			if(_questData.QuestState is QuestState.Clear || _questData.QuestState is QuestState.Achievable)
+			if(_questData.QuestState is QuestState.Clear)
 			{
 				return;
 			}
 			
-			if (_questData.IsTalkQuest)
+			if (_questData.IsTalkQuest && _questData.QuestState != QuestState.Achievable)
 			{
 				_questData.QuestState = QuestState.Achievable;
 				questSaveDataSO.ChangeQuestSaveData(_questData.QuestKey, _questData.QuestState);
@@ -245,7 +245,7 @@ namespace Quest
 		public void ChangeQuestClearForce(string _key)
 		{
 			QuestData _questData = questDataDic[_key];
-			if(_questData.QuestState is QuestState.Clear || _questData.QuestState is QuestState.Achievable)
+			if(_questData.QuestState is QuestState.Clear)
 			{
 				return;
 			}

@@ -129,6 +129,7 @@ namespace Data
             set
             {
                 physicalResistance = value;
+                //Debug.LogError(physicalResistance);
                 Send();
             }
         }

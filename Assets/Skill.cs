@@ -17,6 +17,9 @@ public class Skill : StateMachineBehaviour
         stateModule.AddState(State.SKILL);
         stateModule.AddState(State.ATTACK);
         mainModule.SetActiveAnimatorRoot(1);
+        //mainModule.SetAnimationLayerOn();
+        mainModule.SetAnimationLayerOn(0,0);
+        mainModule.StopOrNot = 0;
     }
     
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -32,6 +35,10 @@ public class Skill : StateMachineBehaviour
         
         animator.SetBool("WeaponSkill", false);
         animator.SetBool("Skill", false);
+        
+        mainModule.SetAnimationLayerOn(1,0);
+        
+        mainModule.StopOrNot = 1;
 
         if (endSkillAnimation != null)
         {

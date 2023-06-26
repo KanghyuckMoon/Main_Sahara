@@ -613,6 +613,75 @@ Transform:
   m_Father: {fileID: 543450652060252679}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &139033945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139033947}
+  - component: {fileID: 139033946}
+  m_Layer: 0
+  m_Name: ScreenEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &139033946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139033945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d6499a6bd256e47b859377446493a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  fadeRadius: 0
+  priority: 0
+  customPasses:
+  - rid: 1486611768819318784
+  injectionPoint: 1
+  m_TargetCamera: {fileID: 0}
+  useTargetCamera: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1486611768819318784
+      type: {class: FullScreenCustomPass, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
+      data:
+        m_Name: FS_Speed
+        enabled: 1
+        targetColorBuffer: 0
+        targetDepthBuffer: 0
+        clearFlags: 0
+        passFoldout: 0
+        m_Version: 0
+        fullscreenPassMaterial: {fileID: 0}
+        materialPassIndex: 0
+        materialPassName: Custom Pass 0
+        fetchColorBuffer: 0
+--- !u!4 &139033947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139033945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 43.687256, y: -40.907837, z: -80.883575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 48
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &139616861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2162,7 +2231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360111644}
   m_LocalRotation: {x: 0.34202015, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: -0.000000074505806, y: 5.008217, z: -3.9068265}
+  m_LocalPosition: {x: -0.055945873, y: 4.756586, z: -3.816344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2787,7 +2856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398885874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.101, z: 0}
+  m_LocalPosition: {x: 0.096, y: 1.289, z: 0.365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5405,11 +5474,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomInDataSO: {fileID: 11400000, guid: ae2572be824f23d488415942c0a508ad, type: 2}
-  name: StafeSkill_Zoom2
+  name: sw_00_Skill
   zoomData:
-    duration_Zoom: 0.57
-    duration_Back: 0.15
-    value: 0.9
+    duration_Zoom: 0.48
+    duration_Back: 0.4
+    value: 1.34
 --- !u!1 &1015540828
 GameObject:
   m_ObjectHideFlags: 0
@@ -9061,6 +9130,10 @@ PrefabInstance:
       value: -0.4770005
       objectReference: {fileID: 0}
     - target: {fileID: 4632501979842429444, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
+      propertyPath: m_ScreenY
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632501979842429444, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_XDamping
       value: 0.7
       objectReference: {fileID: 0}
@@ -9114,15 +9187,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000000074505806
+      value: -0.055945873
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.008217
+      value: 4.756586
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.9068265
+      value: -3.816344
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9155,7 +9228,7 @@ PrefabInstance:
     - target: {fileID: 4632501980750910763, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 274345274}
+      objectReference: {fileID: 3326632190595989326}
     - target: {fileID: 4632501980750910763, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_Priority
       value: 22
@@ -9293,15 +9366,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.47
+      value: -0.374
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9430474
+      value: 2.1310475
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.83007854
+      value: -0.46507838
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -34908,6 +34981,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 3699875109437129894}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &2334114118716735798
 Transform:
   m_ObjectHideFlags: 0
@@ -38704,15 +38780,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.47
+      value: -0.334
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9430474
+      value: 2.1110475
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.83007854
+      value: -0.46507847
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716508, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38748,15 +38824,23 @@ PrefabInstance:
       objectReference: {fileID: 398885875}
     - target: {fileID: 7812765841398716509, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_Priority
-      value: 5
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7812765841398716510, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_Name
       value: ZoomCam
       objectReference: {fileID: 0}
     - target: {fileID: 7812765842304569202, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
+      propertyPath: m_CameraDistance
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812765842304569202, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
+      propertyPath: m_TrackedObjectOffset.x
+      value: -0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812765842304569202, guid: a4e61f05564b29449aa0f47ddc6145f9, type: 3}
       propertyPath: m_TrackedObjectOffset.y
-      value: 0.12
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45185,6 +45269,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 6165384267577075609}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &4132183086132880385
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52604,6 +52691,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 5866666020243808383}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5866666020243808389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54643,6 +54733,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 6165384267577075609}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6165384267577075607
 MonoBehaviour:
   m_ObjectHideFlags: 0

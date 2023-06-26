@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using DG.Tweening;
 using System;
+using GoogleSpreadSheet;
 using UI.Base;
 
 namespace UI.Dialogue
@@ -20,9 +21,11 @@ namespace UI.Dialogue
         enum Labels
         {
             name_label,
-            dialogue_label
+            dialogue_label,
+            guide_label, 
         }
 
+        [SerializeField] private string guideCodeStr = "O00000060"; 
         private static VisualElement parent;
         private static Label name;
         private static Label dialogue;
@@ -54,6 +57,8 @@ namespace UI.Dialogue
             name = GetLabel((int)Labels.name_label);
             dialogue = GetLabel((int)Labels.dialogue_label);
             parent.style.display = DisplayStyle.None;
+            GetLabel((int)Labels.guide_label).text = TextManager.Instance.GetText(guideCodeStr);
+
         }
 
         public void Tween(bool _isActive)

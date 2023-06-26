@@ -360,6 +360,7 @@ namespace UI.Inventory
                 if (_isSuccessed == true)
                 {
                     UpdateEquipUI(inventoryGridSlotsPr.CurItemType);
+                    Check(_closedSlot, true); 
                     //_closedSlot.SetItemData(dragItemPresenter.ItemData);
                 }
 
@@ -369,6 +370,27 @@ namespace UI.Inventory
 
             }
             ActiveDragItem(false);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        }
+
+        private void RemoveItemData(SlotItemPresenter slot)
+        {
+            InventoryManager.Instance.ItemRemove(slot.ItemData);
+        }
+
+        private void Check(SlotItemPresenter slot, bool _isActive)
+        {
+            DoubleClicker doubleClicker =new DoubleClicker(() =>
+            {
+                RemoveItemData(slot);
+            });
+            if (_isActive == true)
+            {
+                slot.Item.AddManipulator(doubleClicker);
+            }
+            else 
+            {
+                slot.Item.AddManipulator(doubleClicker);
+            }
         }
 
         private  void UpdateEquipUI(ItemType _itemTYpe)

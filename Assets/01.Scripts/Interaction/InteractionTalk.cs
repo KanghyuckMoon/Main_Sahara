@@ -40,7 +40,7 @@ namespace Interaction
 		{
 			get
 			{
-				return "O00000032";
+				return actionKey;
 			}
 		}
 
@@ -48,6 +48,7 @@ namespace Interaction
 		private TalkModule talkModule;
 
 		[SerializeField] private string nameKey = "M00000010";
+		[SerializeField] private string actionKey = "O00000032";
 
 		public void Interaction()
 		{

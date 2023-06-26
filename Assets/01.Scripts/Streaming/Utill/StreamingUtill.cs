@@ -116,6 +116,15 @@ namespace Streaming
 			return result;
 		}
 
+		public static string Vector3ToString(Vector3 _vector3)
+		{
+			string _result = "";
+
+			_result = $"Map({_vector3.x},{_vector3.y},{_vector3.z})";
+			
+			return _result;
+		}
+
 		/// <summary>
 		/// Scene Name to Vector3
 		/// </summary>
