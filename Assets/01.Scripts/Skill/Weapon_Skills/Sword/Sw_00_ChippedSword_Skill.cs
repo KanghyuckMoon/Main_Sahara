@@ -36,11 +36,11 @@ namespace Skill
             UseMana(_mainModule, -usingMana);
             PlaySkillAnimation(_mainModule, animationClip);
 
-            effect = ObjectPoolManager.Instance.GetObject(_skillEffectName);
-            effect.transform.SetParent(transform);
-            effect.transform.localPosition = Vector3.forward * 3;
-            effect.SetActive(true);
-            Invoke(nameof(SetEffectOff), 1.96f);
+            //effect = ObjectPoolManager.Instance.GetObject(_skillEffectName);
+            //effect.transform.SetParent(transform);
+            //effect.transform.localPosition = Vector3.forward * 3;
+            //effect.SetActive(true);
+            //Invoke(nameof(SetEffectOff), 1.96f);
         }
 
         public HitBoxAction GetHitBoxAction()

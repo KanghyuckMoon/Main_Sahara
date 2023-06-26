@@ -10,6 +10,9 @@ public class HitEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        colEvent?.Invoke(other);
+        if(other.gameObject.CompareTag("Player_Weapon"))
+        {
+            colEvent?.Invoke(other);
+        }
     }
 }

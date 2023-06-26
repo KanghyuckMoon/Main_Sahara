@@ -245,7 +245,7 @@ namespace Quest
 		public void ChangeQuestClearForce(string _key)
 		{
 			QuestData _questData = questDataDic[_key];
-			if(_questData.QuestState is QuestState.Clear || _questData.QuestState is QuestState.Achievable)
+			if(_questData.QuestState is QuestState.Clear)
 			{
 				return;
 			}
