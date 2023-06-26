@@ -9,7 +9,7 @@ namespace Streaming
     {
         private void Awake()
         {
-            TerrainManager.Instance.EnableTerrain(gameObject.name);
+            TerrainManager.Instance.EnableTerrain(GetComponent<Terrain>(), gameObject.name);
         }
 
         private void OnDestroy()
