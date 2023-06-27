@@ -99,7 +99,7 @@ using Inventory;
             }
 
             SetCodeToText();
-            StartCoroutine(CheckNextDialogue()); 
+            StartCoroutine(CheckNextDialogue());
         }
 
         /// <summary>   

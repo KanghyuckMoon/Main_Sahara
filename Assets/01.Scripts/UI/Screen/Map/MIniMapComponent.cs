@@ -28,7 +28,15 @@ namespace UI
         private Camera cam;
 
         // 프로퍼티 
-        public MapInfo MapInfo => mapInfo;
+        public MapInfo MapInfo
+        {
+            get
+            {
+                if (mapInfo == null)
+                    mapInfo = new MapInfo();
+                return mapInfo; 
+            }
+        }
         private GameObject Player
         {
             get

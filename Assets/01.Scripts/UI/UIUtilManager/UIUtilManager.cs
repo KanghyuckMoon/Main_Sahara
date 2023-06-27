@@ -38,7 +38,7 @@ namespace UI.UtilManager
             }
             else
             {
-               // Debug.LogError("사운드 주소 없음 : " + Enum.GetName(typeof(UISoundType),_type));
+                Debug.LogWarning("사운드 주소 없음 : " + Enum.GetName(typeof(UISoundType),_type));
             }
         }
         public void AnimateText(Label _targetLabel, string _fullText, float _time = 0.03f)

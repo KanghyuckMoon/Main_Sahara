@@ -11,6 +11,7 @@ namespace Arena
 {
     public class ArenaCtrlTouchTrigger : AbArenaCtrlTrigger
     {
+        [SerializeField, Header("움직일 물체")] private Transform targetTrm; 
         [SerializeField] private string targetTag = "Player";
         private BoxRaycaster boxRaycaster; 
         [SerializeField]
@@ -28,30 +29,47 @@ namespace Arena
         [SerializeField]
         private bool isCollision = false;
         [SerializeField]
-        private bool isTrigger = false; 
-        
+        private bool isTrigger = false;
+
+        private Rigidbody rigid; 
         // 프로퍼티 
         private float height => collider.bounds.size.y; 
         protected override void Awake()
         {
             base.Awake();
+            if (targetTrm == null) targetTrm = transform;  
             collider = GetComponent<Collider>();
             boxRaycaster = new BoxRaycaster(transform);
+            rigid = GetComponent<Rigidbody>(); 
             Height = collider.bounds.size.y;
         }
 
         private void Start()
         {
-            originPos = transform.localPosition;
-            targetPos = originPos; 
+            StartCoroutine(InitOriginPos()); 
+            //originPos = targetTrm.localPosition;
+            //targetPos = originPos; 
         }
 
+        private IEnumerator InitOriginPos()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(1f); 
+                Debug.Log("RIgid Velocity" + rigid.velocity);
+                if (rigid.velocity.sqrMagnitude > 0) yield return null;
+                
+                originPos = targetTrm.localPosition;
+                targetPos = originPos; 
+                yield break; 
+            }
+        }
         private void Update()
         {
             if(isTrigger == true) return;
             Move(); 
             float _height = height / 2; 
-            Debug.DrawRay(transform.position, Vector3.up,Color.red);
+            Debug.DrawRay(targetTrm.position, Vector3.up,Color.red);
             //var _hitInfos = Physics.RaycastAll( transform.position, Vector3.up, _height * transform.localScale.y  + 0.5f);
             //Physics.OverlapBox(transform.position + Vector3.up * transform.position.y * 0.5f, new Vector3(),Quaternion.identity);
             var _hitInfos = boxRaycaster.MyCollisions();
@@ -71,7 +89,7 @@ namespace Arena
                 if (_hitInfos[i].transform.CompareTag(targetTag) && isCollision == true)
                 {   
                     // 목표 도달시 
-                    if ( Mathf.Abs(transform.localPosition.y - movePosY.y) < 0.1f)
+                    if ( Mathf.Abs(targetTrm.localPosition.y - movePosY.y) < 0.1f)
                     {
                         isCollision = false;
                          isTrigger = true; 
@@ -97,8 +115,8 @@ namespace Arena
 
         private void Move()
         {
-            if ( Mathf.Abs(transform.localPosition.y - targetPos.y) < 0.1f ) return; 
-            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, Time.fixedDeltaTime * pushSpeed);
+            if ( Mathf.Abs(targetTrm.localPosition.y - targetPos.y) < 0.1f ) return; 
+            targetTrm.localPosition = Vector3.Lerp(targetTrm.localPosition, targetPos, Time.fixedDeltaTime * pushSpeed);
         }
 
         public void InitTrigger()

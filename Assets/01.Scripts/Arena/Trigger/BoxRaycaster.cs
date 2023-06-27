@@ -17,7 +17,21 @@ namespace Arena
             transform = _trm;
             try
             {
-                triggerCollider = transform.Find("TriggerCol").GetComponent<BoxCollider>();
+
+                Transform[] allChildren = transform.GetComponentsInChildren<Transform>();
+                foreach (var child in allChildren)
+                {
+                    if (child.name == "TriggerCol")
+                    {
+                        triggerCollider = child.GetComponent<BoxCollider>();
+                        break; 
+                    }
+                }
+
+                if (triggerCollider == null)
+                {
+                    Debug.LogError(transform.name + "TriggerCol 자식에 추가하세요");
+                }
             }
             catch (Exception e)
             {
