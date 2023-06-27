@@ -49,10 +49,10 @@ namespace Utill.Pattern
 						}
                         else
                         {
-                            #if UNITY_EDITOR
-                            #else
+                            //#if UNITY_EDITOR
+                            //#else
                             DontDestroyOnLoad(_Instance.gameObject);
-#endif
+//#endif
                         }
                     }
                     return _Instance;

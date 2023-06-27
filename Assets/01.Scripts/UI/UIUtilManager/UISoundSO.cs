@@ -65,7 +65,7 @@ namespace UI.UtilManager
             {
                 return _data.address; 
             }
-            //Debug.LogError(Enum.GetName(typeof(UISoundType),_type) + "에 맞는 주소가 없습니다 .UISoundSO를 확인하세요");
+            Debug.LogWarning(Enum.GetName(typeof(UISoundType),_type) + "에 맞는 주소가 없습니다 .UISoundSO를 확인하세요");
             return String.Empty;
         }
     }
