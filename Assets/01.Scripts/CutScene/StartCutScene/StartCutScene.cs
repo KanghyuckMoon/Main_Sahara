@@ -18,8 +18,7 @@ namespace CutScene
         public void SetText(string _textKey)
         {
             targetText.text = TextManager.Instance.GetText(_textKey);
-            targetText.DOFade(1, 5f);
-            targetText.DOFade(0, 1f);
+            targetText.DOFade(1, 5f).OnComplete(() => targetText.DOFade(0, 1f));
         }
 
         private void Update()
