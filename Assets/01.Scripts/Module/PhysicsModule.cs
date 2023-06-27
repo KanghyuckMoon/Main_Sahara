@@ -307,7 +307,7 @@ namespace Module
                 mainModule.IsSlope = _angle <= _slopeLimit + 5f;
 
                 mainModule.SlopeVector =
-                    new Vector3(_raycastHit.normal.x, -1.2f, _raycastHit.normal.z);
+                    new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z) * 5;
             }
             else
             {
