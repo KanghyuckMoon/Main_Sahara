@@ -102,7 +102,7 @@ using Inventory;
             StartCoroutine(CheckNextDialogue()); 
         }
 
-        /// <summary>
+        /// <summary>   
         /// 코드를 텍스트로 변환해서 UI에 적용시키기 
         /// </summary>
         private void SetCodeToText()
@@ -110,7 +110,7 @@ using Inventory;
             string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}").Replace("\r", "");
             fullText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
             
-            if (_nameText[0] is '!')
+            if (_nameText[0] is '!')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             {
                 switch (_nameText)
                 {   
@@ -120,7 +120,7 @@ using Inventory;
                         ActiveViewS(false); 
                         return;
                     case "!TACTIVE":
-                        //index = 0;
+                        //index = 0;    
                         //ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestActive(fullText);
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
