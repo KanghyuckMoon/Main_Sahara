@@ -210,7 +210,7 @@ namespace Module
             else
             {
                 mainModule.CharacterController.Move(
-                    (mainModule.SlopeVector.normalized * 4f + new Vector3(0, _gravity, 0)) *
+                    (mainModule.SlopeVector + new Vector3(0, _gravity, 0)) *
                     mainModule.PersonalDeltaTime);
                 //var _position = mainModule.transform.position;
                 //Debug.DrawLine(_position, _position + mainModule.SlopeVector.normalized, Color.magenta);

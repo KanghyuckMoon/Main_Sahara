@@ -101,7 +101,7 @@ namespace Module
                 Animator.SetBool("FreeFall", false);
                 Animator.SetBool("Jump", false);
 
-                if (mainModule.Gravity < 0) mainModule.Gravity = -12;
+                if (mainModule.Gravity < 0) mainModule.Gravity = -4.5f;
                 
                 if (mainModule.frontInput)
                 {
