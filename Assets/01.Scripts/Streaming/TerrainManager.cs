@@ -48,10 +48,10 @@ namespace Streaming
                 Terrain _rightTerrain = GetTerrain(_right);
                 Terrain _downTerrain = GetTerrain(_down);
 
-                //_terrain.Value.SetNeighbors(_leftTerrain, _upTerrain, _rightTerrain, _downTerrain);
+                _terrain.Value.SetNeighbors(_leftTerrain, _upTerrain, _rightTerrain, _downTerrain);
                 
                 //SetEdgeHeight(_terrain.Value, 4500);
-                Debug.Log(_terrain.Key);
+                //Debug.Log(_terrain.Key);
                 //if (_leftTerrain != null)
                 //{
                 //    SetEdgeHeightLeft(_terrain.Value, _leftTerrain);
@@ -60,10 +60,10 @@ namespace Streaming
                 //{
                 //    SetEdgeHeightRight(_terrain.Value, _rightTerrain);
                 //}
-                if (_upTerrain != null)
-                {
-                    SetEdgeHeightUp(_terrain.Value, _upTerrain);
-                }  
+                //if (_upTerrain != null)
+                //{
+                //    SetEdgeHeightUp(_terrain.Value, _upTerrain);
+                //}  
                 //if (_downTerrain != null)
                 //{
                 //    SetEdgeHeightDown(_terrain.Value, _downTerrain);
