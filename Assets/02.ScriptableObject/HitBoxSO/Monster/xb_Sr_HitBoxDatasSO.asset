@@ -21,13 +21,16 @@ MonoBehaviour:
     - hitBoxDataList:
       - hitBoxName: JumpAttack0
         ClassificationName: col0
+        hitBoxType: 0
         hitBoxIndex: 0
         deleteDelay: 0.1
         childization: 0
+        childSizeOne: 0
         offset: {x: 0, y: 1.79, z: 1.5}
         radius: 1
         height: 1
         rotation: {x: -0, y: 0, z: 0}
+        hitType: 1
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
         defaultPower: 1
@@ -36,19 +39,26 @@ MonoBehaviour:
         swingEffectSize: {x: 1, y: 1, z: 1}
         hitStunDelay: 0
         attackStunDelay: 0
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: HitEffect1
+        hitEffect:
+        - HitEffect1
         buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
     - hitBoxDataList:
       - hitBoxName: JumpAttack1
         ClassificationName: col1
+        hitBoxType: 0
         hitBoxIndex: 0
         deleteDelay: 0.1
         childization: 0
+        childSizeOne: 0
         offset: {x: 0, y: 1.79, z: 1.7}
         radius: 1
         height: 1
         rotation: {x: 0, y: 0, z: 0}
+        hitType: 1
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
         defaultPower: 1
@@ -57,19 +67,26 @@ MonoBehaviour:
         swingEffectSize: {x: 1, y: 1, z: 1}
         hitStunDelay: 0
         attackStunDelay: 0
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: HitEffect1
+        hitEffect:
+        - HitEffect1
         buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
     - hitBoxDataList:
       - hitBoxName: DashAttack
         ClassificationName: col0
+        hitBoxType: 0
         hitBoxIndex: 0
         deleteDelay: 0.2
         childization: 1
+        childSizeOne: 0
         offset: {x: 0, y: 1.44, z: 0.47}
         radius: 1.6
         height: 1
         rotation: {x: -0, y: 0, z: 0}
+        hitType: 1
         isContactDirection: 0
         knockbackDir: {x: 0, y: 0, z: 1}
         defaultPower: 1
@@ -78,7 +95,13 @@ MonoBehaviour:
         swingEffectSize: {x: 1, y: 1, z: 1}
         hitStunDelay: 0
         attackStunDelay: 0
+        swingEffectChildization: 0
         swingEffect: NULL
-        hitEffect: HitEffect1
+        hitEffect:
+        - HitEffect1
         buffList: []
+        physicsAttackWeight: 1
+        magicalAttackWeight: 1
   setAllHitBoxBuffList: []
+  debugList: []
+  debugString: 
