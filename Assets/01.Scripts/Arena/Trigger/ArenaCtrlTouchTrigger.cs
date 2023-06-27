@@ -49,7 +49,7 @@ namespace Arena
             collider = targetTrm.GetComponent<Collider>();
             boxRaycaster = new BoxRaycaster(transform);
             rigid = GetComponent<Rigidbody>(); 
-            Height = collider.bounds.size.y;
+            Height = collider.bounds.size.y /2 ;
         }
 
         private void Start()
