@@ -10,6 +10,7 @@ namespace Arena
     public class ArenaStage : MonoBehaviour
     {
         [Header("SO 주소"), SerializeField] private string arenaStageDataSOAdress;
+        [Header("내부에서 초기화할거냐"), SerializeField] private bool isCashingHere = false;  
         [SerializeField] private string arenaCamShakeAddress;  
         [SerializeField] private ArenaStageDataSO arenaStageDataSO;
 
@@ -18,8 +19,10 @@ namespace Arena
 
         private void Awake()
         {
-            arenaStageDataSO ??= AddressablesManager.Instance.GetResource<ArenaStageDataSO>(arenaStageDataSOAdress);
-            Init();
+            if (isCashingHere == true)
+            {
+                Init();
+            }
         }
 
         private void Start()
@@ -29,6 +32,8 @@ namespace Arena
 
         public void Init()
         {
+            arenaStageDataSO ??= AddressablesManager.Instance.GetResource<ArenaStageDataSO>(arenaStageDataSOAdress);
+
             /*
             for (int i = 0; i < arenaStageDataSO.arenaStageList.Count; i++)
             {
@@ -57,6 +62,7 @@ namespace Arena
             for (int i = 0; i < _arenaMapList.Count; i++)
             {
                 ArenaMap _arenaObj = _arenaMapList[i];
+                //_arenaObj.Init();
                 arenaDic.Add(i + 1, _arenaObj);
                 //_arenaObj.transform.localPosition = Vector3.zero;
 

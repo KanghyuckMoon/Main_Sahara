@@ -69,9 +69,15 @@ namespace Arena
 
         protected virtual void Start()
         {
+            Init(); 
+        }
+
+        public void Init()
+        {
             SetTriggerEvent(); 
             //installationList = 
             StartCoroutine(Init(false, true));
+
         }
 
         public void Active(bool _isTrue)

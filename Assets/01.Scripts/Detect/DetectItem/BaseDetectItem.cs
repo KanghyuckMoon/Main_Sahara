@@ -61,6 +61,9 @@ namespace Detect
         
         [FormerlySerializedAs("getoutEvent")] [SerializeField]
         protected UnityEvent getoutEventAfter;
+        
+        [SerializeField]
+        protected UnityEvent settingEventAfter;
 
         [SerializeField]
         protected bool isInitFalse = true;
@@ -91,6 +94,8 @@ namespace Detect
         
         protected virtual void Awake()
         {
+            settingEventAfter?.Invoke();
+            
             if (isSpawnDic.TryGetValue(key, out bool _bool))
             {
                 if (_bool)
