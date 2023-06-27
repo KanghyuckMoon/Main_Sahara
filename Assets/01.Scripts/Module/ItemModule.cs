@@ -73,7 +73,7 @@ namespace Module
         {
             if (mainModule.player)
             {
-                SetPassiveItem(AccessoriesItemType.DoubleJump);
+                //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.DoubleJump);
                 //SetPassiveItem(AccessoriesItemType.Dash);
@@ -90,7 +90,7 @@ namespace Module
             }
             else
             {
-                SetPassiveItem(AccessoriesItemType.DoubleJump);
+                //SetPassiveItem(AccessoriesItemType.DoubleJump);
             }
         }
         
