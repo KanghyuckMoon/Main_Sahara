@@ -33,12 +33,20 @@ namespace Arena
 
         private Rigidbody rigid; 
         // 프로퍼티 
-        private float height => collider.bounds.size.y; 
+        private float height => collider.bounds.size.y;
+
+        [ContextMenu("리셋")]
+        public void TestReset()
+        {
+            isCollision = false;
+            isTrigger = false;
+            targetPos = originPos; 
+        }
         protected override void Awake()
         {
             base.Awake();
             if (targetTrm == null) targetTrm = transform;  
-            collider = GetComponent<Collider>();
+            collider = targetTrm.GetComponent<Collider>();
             boxRaycaster = new BoxRaycaster(transform);
             rigid = GetComponent<Rigidbody>(); 
             Height = collider.bounds.size.y;
