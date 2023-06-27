@@ -6,7 +6,8 @@ using UI.Base;
 using UI.Production;
 using UI.ConstructorManager; 
 using Inventory;
-using GoogleSpreadSheet; 
+using GoogleSpreadSheet;
+using UI.UtilManager;
 using Utill.Addressable; 
 
 namespace UI.Popup
@@ -30,6 +31,9 @@ namespace UI.Popup
         {
             popupGetItemView.Parent.RemoveFromClassList("hide_getitem_popup");
             popupGetItemView.Parent.AddToClassList("show_getitem_popup");
+            // 사운드 재생 
+            UIUtilManager.Instance.PlayUISound(UISoundType.GetItem);
+            
         }
 
         public void InActiveTween()

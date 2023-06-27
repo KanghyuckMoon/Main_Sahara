@@ -65,6 +65,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!143 &4867883010778240668
 CharacterController:
   m_ObjectHideFlags: 0
@@ -73,9 +74,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4867883010778240665}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 1.6
   m_Radius: 0.28
   m_SlopeLimit: 45
@@ -136,15 +145,19 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -19.8
   groundOffset: 0
+  groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -155,12 +168,16 @@ MonoBehaviour:
   visualObject: {fileID: 8576465368313001779}
   model: {fileID: 0}
   animator: {fileID: 4867883010778240669}
+  jumpstrenght: 0
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+  frontInput: 0
+  ignoreHitType: 0
   aiSOAddress: TestTalkNPCSO
-  smoothPath: {fileID: 0}
+  pathHarver: {fileID: 0}
+  npctype: 0
   textSOAddress: 01. Navi_TalkDataSO
 --- !u!114 &3349352293718104204
 MonoBehaviour:
@@ -184,6 +201,9 @@ MonoBehaviour:
   rootTransform: {fileID: 0}
   animator: {fileID: 4867883010778240669}
   dropItemListSO: {fileID: 0}
+  deadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &822768255669554196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: NPCData_TesSO
+  playerdata: {fileID: 0}
 --- !u!114 &6592836337324214547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +232,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 2056818652366162437}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6965754907769353120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
   waeponHandle: {fileID: 0}
+  hitBoxInAction: {fileID: 0}
   hitBoxName: 
 --- !u!114 &4739441491680566509
 MonoBehaviour:
@@ -238,7 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: 0ded3a0c5dd7fbb4d89cf396d742df23, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 0}
 --- !u!1 &4867883011008462228
 GameObject:
@@ -379,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameKey: M00000010
+  actionKey: O00000032
 --- !u!65 &3120935234542944004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -387,9 +414,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5359830546344088494}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1, y: 1.4796143, z: 1}
   m_Center: {x: 0, y: 0.9102173, z: 0}
 --- !u!1001 &7295883820901627677
@@ -397,6 +432,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 4867883010778240671}
     m_Modifications:
     - target: {fileID: 1316623813489721390, guid: 867ed38ef63305a4d988a3dafc522e41, type: 3}
@@ -448,6 +484,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 867ed38ef63305a4d988a3dafc522e41, type: 3}
 --- !u!1 &8576465368313001779 stripped
 GameObject:

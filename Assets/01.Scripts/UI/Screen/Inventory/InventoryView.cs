@@ -361,7 +361,15 @@ namespace UI.Inventory
                 {
                     UpdateEquipUI(inventoryGridSlotsPr.CurItemType);
                     Check(_closedSlot, true); 
+                    // 사운드 재생
+                    UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
+
                     //_closedSlot.SetItemData(dragItemPresenter.ItemData);
+                }
+                else
+                {
+                    // 사운드 재생
+                    UIUtilManager.Instance.PlayUISound(UISoundType.Error);
                 }
 
             }

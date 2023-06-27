@@ -43,6 +43,8 @@ namespace UI.Popup
         {
             eventAlarmView.EventAlarmParent.RemoveFromClassList(inactiveStr);
             eventAlarmView.EventAlarmParent.AddToClassList(activeStr);
+            // 사운드 재생 
+            UIUtilManager.Instance.PlayUISound(UISoundType.EventAlarm);
         }
 
         public void InActiveTween()

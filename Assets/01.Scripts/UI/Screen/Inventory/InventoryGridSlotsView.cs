@@ -138,9 +138,15 @@ namespace UI.Inventory
                 {
                     ActiveInventoryPanel((InvenPanelElements)_p, x);
                     ActiveRadioBtn((RadioButtons)_p, x);
-                    MoveAccentPattern((RadioButtons)_p,x); 
+                    MoveAccentPattern((RadioButtons)_p,x);
+                    if (x == true)
+                    {
+                        // 사운드 재생 
+                        UtilManager.UIUtilManager.Instance.PlayUISound(UISoundType.ChangeInvenCategory);
+                    }
                 });
 
+                AddRadioEvent<MouseOverEvent>((int)_p,() => UtilManager.UIUtilManager.Instance.PlayUISound(UISoundType.Hover));
             }
         }
         
