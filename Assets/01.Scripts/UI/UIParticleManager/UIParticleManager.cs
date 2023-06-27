@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Coffee.UIExtensions;
 using UnityEngine;
 using Coffee.UIParticleExtensions;
+using Pool;
 using UnityEditor;
 using Utill.Pattern;
 using Utill.Addressable;
@@ -26,6 +27,7 @@ namespace UI.ParticleManger
     public class UIParticleManager : MonoSingleton<UIParticleManager>
     {
         private Dictionary<ParticleType, UIParticle> uiParticleDic = new Dictionary<ParticleType, UIParticle>();
+        private Dictionary<ParticleType, string> uiParticleDict = new Dictionary<ParticleType, string>();
         //private Dictionary<ParticleType, UIParticleSystem> uiParticleDic = new Dictionary<ParticleType, UIParticleSystem>();
 
         public override void Awake()
@@ -39,7 +41,10 @@ namespace UI.ParticleManger
                 AddressablesManager.Instance.GetResource<GameObject>("UISandBurstParticle")
                     .GetComponent<UIParticle>());
 
-            
+            uiParticleDict.Add(ParticleType.Burst, "UIBurstParticle");
+            uiParticleDict.Add(ParticleType.SandBurst, "UISandBurstParticle"); 
+
+
         }
 
         private void Update()
@@ -51,8 +56,9 @@ namespace UI.ParticleManger
         }
 
         public UIParticle Play(ParticleType particleType, Vector2 _pos, Transform _parent, bool _isLoop = false)
-        {
-            UIParticle _particle = uiParticleDic[particleType];
+        {   
+            //UIParticle _particle = uiParticleDic[particleType];    
+            var _particle = ObjectPoolManager.Instance.GetObject(uiParticleDict[particleType]).GetComponent<UIParticle>();
             UIParticle _p = Instantiate(_particle, _parent);
             //_p.StartParticleEmission();
             _p.Play();
@@ -60,15 +66,16 @@ namespace UI.ParticleManger
             //_particle.transform.SetParent(_parent);
             if (_isLoop == false)
             {
-                StartCoroutine(Pause(_p));
+                StartCoroutine(Pause(particleType,_p));
             }
             return _p; 
         }
 
-        private IEnumerator Pause(UIParticle _particle)
+        private IEnumerator Pause(ParticleType particleType,UIParticle _particle)
         {
             yield return new WaitForSeconds(10f); 
             _particle.Clear();
+            ObjectPoolManager.Instance.RegisterObject(uiParticleDict[particleType],_particle.gameObject);
             // 삭제 
         }
     

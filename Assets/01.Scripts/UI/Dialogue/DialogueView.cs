@@ -124,6 +124,8 @@ namespace UI.Dialogue
                 //_b.Item1.style.display = DisplayStyle.None;
                 _b.Item1.AddToClassList(inActiveStr);
                 _b.Item1.UnregisterCallback<ClickEvent>((x) => _b.Item2?.Invoke());
+                _b.Item1.clickable = null; 
+                //_b.Item1.clicked -= l; 
             }
         }
 
@@ -145,13 +147,28 @@ namespace UI.Dialogue
 
             if (_isActive == true)
             {
-                parent.style.opacity = new StyleFloat(0f);
+                nowV = parent.style.opacity.value; 
+                //parent.style.opacity = new StyleFloat(0f);
+                parent.style.opacity = new StyleFloat(1); 
                 ShowVisualElement(parent, _isActive);
-                DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f);
+                
+               // DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f)
+                //    .OnComplete(() => ShowVisualElement(parent, _isActive));
+//                DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f);
+ //               DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f);
+  //              ShowVisualElement(parent, _isActive);
+                return; 
             }
+            parent.style.opacity = new StyleFloat(1); 
+            ShowVisualElement(parent, _isActive);
+            //DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f)
+             //    .OnComplete(() => ShowVisualElement(parent, _isActive));
+        }
 
-            DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f)
-                .OnComplete(() => ShowVisualElement(parent, _isActive));
+        public void ActiveViewImmed(bool _isActive)
+        {
+                ShowVisualElement(parent, _isActive);
+
         }
     }
 }

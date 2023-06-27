@@ -131,6 +131,9 @@ namespace UI.Map
             }
 
             UpdateMarker(); //마커 ui 업데이트 
+            
+            // 사운드 재생
+            UIUtilManager.Instance.PlayUISound(UISoundType.MarkMap);
         }
 
         private void ActiveMarker(VisualElement _marker)

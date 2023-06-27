@@ -16,8 +16,9 @@ using UI.EventManage;
 using UI.Upgrade;
 using Inventory;
     using TimeManager;
-    using DG.Tweening; 
-    
+    using DG.Tweening;
+    using UI.UtilManager;
+
     namespace UI.Dialogue
 {
     public class DialoguePresenter : MonoBehaviour, IScreen
@@ -101,7 +102,7 @@ using Inventory;
             StartCoroutine(CheckNextDialogue()); 
         }
 
-        /// <summary>
+        /// <summary>   
         /// 코드를 텍스트로 변환해서 UI에 적용시키기 
         /// </summary>
         private void SetCodeToText()
@@ -109,7 +110,7 @@ using Inventory;
             string _nameText = TextManager.Instance.GetText($"{nameCode}_{index}").Replace("\r", "");
             fullText = TextManager.Instance.GetText($"{dialogueCode}_{index}");
             
-            if (_nameText[0] is '!')
+            if (_nameText[0] is '!')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             {
                 switch (_nameText)
                 {   
@@ -119,7 +120,7 @@ using Inventory;
                         ActiveViewS(false); 
                         return;
                     case "!TACTIVE":
-                        //index = 0;
+                        //index = 0;    
                         //ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestActive(fullText);
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
@@ -213,11 +214,12 @@ using Inventory;
         {
             isTexting = true; 
             string _name = _nameText.Replace("\r","");
-            StartText("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
             this.dialogueView.ResetSelectButtons(); // 버튼 삭제 
+            StartText("A" + _name.Substring(1, _name.Length-1), _name); // 선택에 맞는 대화로 넘어가기
             UIManager.Instance.ActiveCursor(false);// 커서 비활성화 
 
         }
+        
         /// <summary>
         /// 대화 끝 다음 대화 넘어가는 거 체크 
         /// </summary>
@@ -245,7 +247,8 @@ using Inventory;
                             index++;
                             SetCodeToText();
                             Debug.Log("대화 다음!!");
-
+                            // 사운드 재생
+                            UIUtilManager.Instance.PlayUISound(UISoundType.NextDialogue);
                         }
                         
                     }

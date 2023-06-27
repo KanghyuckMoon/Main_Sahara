@@ -45,6 +45,7 @@ namespace Arena
 
         private void OnDrawGizmos()
         {
+            if (boxRaycaster == null) return; 
             Vector3 size =  boxRaycaster.TriggerCollider.size;
             var lossyScale = boxRaycaster.TriggerCollider.transform.lossyScale;
             Gizmos.color = Color.red;
@@ -64,6 +65,7 @@ namespace Arena
 
         private void CheckCurPos()
         {
+            if (boxRaycaster == null) return; 
             bool isTargetCol = false;
             var _cols = boxRaycaster.MyCollisions();
             for (int i = 0; i < _cols.Length; i++)
