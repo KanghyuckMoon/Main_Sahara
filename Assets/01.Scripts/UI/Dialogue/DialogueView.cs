@@ -148,19 +148,10 @@ namespace UI.Dialogue
             if (_isActive == true)
             {
                 nowV = parent.style.opacity.value; 
-                //parent.style.opacity = new StyleFloat(0f);
-                parent.style.opacity = new StyleFloat(1); 
                 ShowVisualElement(parent, _isActive);
-                
-               // DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f)
-                //    .OnComplete(() => ShowVisualElement(parent, _isActive));
-//                DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f);
- //               DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f);
-  //              ShowVisualElement(parent, _isActive);
-         //       return; 
+                DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f);
+                return; 
             }
-           // parent.style.opacity = new StyleFloat(1); 
-           // ShowVisualElement(parent, _isActive);
             DOTween.To(() => nowV, (x) => parent.style.opacity = new StyleFloat(x), targetV, 0.5f)
                 .OnComplete(() => ShowVisualElement(parent, _isActive));
         }
