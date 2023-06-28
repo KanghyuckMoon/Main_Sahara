@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -22,9 +23,9 @@ namespace Arena
         private Vector3 originPos;
         [SerializeField]
         private Vector3 targetPos;
-        [SerializeField] private float Height; 
+         [SerializeField] private float height; 
 
-        private Vector3 movePosY => originPos + Vector3.down * height;
+        private Vector3 movePosY => originPos + Vector3.down * Height;
         // 충돌 여부 
         [SerializeField]
         private bool isCollision = false;
@@ -33,7 +34,7 @@ namespace Arena
 
         private Rigidbody rigid; 
         // 프로퍼티 
-        private float height => collider.bounds.size.y;
+        private float Height => height;
 
         [ContextMenu("리셋")]
         public void TestReset()
@@ -49,7 +50,7 @@ namespace Arena
             collider = targetTrm.GetComponent<Collider>();
             boxRaycaster = new BoxRaycaster(transform);
             rigid = GetComponent<Rigidbody>(); 
-            Height = collider.bounds.size.y /2 ;
+            height = collider.bounds.size.y /2 ;
         }
 
         private void Start()
@@ -76,7 +77,7 @@ namespace Arena
         {
             if(isTrigger == true) return;
             Move(); 
-            float _height = height / 2; 
+            float _height = Height / 2; 
             Debug.DrawRay(targetTrm.position, Vector3.up,Color.red);
             //var _hitInfos = Physics.RaycastAll( transform.position, Vector3.up, _height * transform.localScale.y  + 0.5f);
             //Physics.OverlapBox(transform.position + Vector3.up * transform.position.y * 0.5f, new Vector3(),Quaternion.identity);
