@@ -63,6 +63,37 @@ Transform:
   m_Father: {fileID: 8864016533531162640}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.00077109924, y: 0.0005103651, z: -7.0425787}
+--- !u!1 &545264722820992427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4518063679329822201}
+  m_Layer: 18
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4518063679329822201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545264722820992427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.591, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8354057344160382015}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1206553642315114330
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3794945222221765327}
   - component: {fileID: 6537194889867207411}
+  - component: {fileID: 3113087423826226960}
   m_Layer: 18
   m_Name: SK_Venodonte
   m_TagString: Untagged
@@ -393,6 +425,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.010617435, y: 0.29818976, z: 0.031524688}
     m_Extent: {x: 0.6485984, y: 1.1917161, z: 0.7005781}
   m_DirtyAABB: 0
+--- !u!114 &3113087423826226960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534940286479682690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4435a6c41f11f4e97b9bc2dfed81bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4518063679329822201}
 --- !u!1 &2580996931468852450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,6 +1505,7 @@ Transform:
   m_Children:
   - {fileID: 5329896529247254443}
   - {fileID: 3794945222221765327}
+  - {fileID: 4518063679329822201}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1492,9 +1538,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8693146058095355525}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 0
   m_Radius: 0.5
   m_SlopeLimit: 45
@@ -1567,7 +1621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: f9bb5853ebec69d44a5109938b9a60f2, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: f9bb5853ebec69d44a5109938b9a60f2, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 8693146058095355525}
 --- !u!114 &2670562217599034946
 MonoBehaviour:
@@ -1597,6 +1652,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 2670562217599034956}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2670562217599034948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,6 +1720,7 @@ MonoBehaviour:
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -1677,8 +1736,12 @@ MonoBehaviour:
   rightFeet: {fileID: 1014867136350796167}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+  frontInput: 0
+  ignoreHitType: 0
   aiSOAddress: xc_Kr_Fire_AISO
   pathHarver: {fileID: 0}
+  hudType: 0
+  bossName: TestBoss
 --- !u!114 &3743949767765679873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1695,6 +1758,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseHeight: 0
+  height: 0
 --- !u!1 &8894619874428676168
 GameObject:
   m_ObjectHideFlags: 0

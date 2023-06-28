@@ -558,6 +558,37 @@ Transform:
   m_Father: {fileID: 8634304203252502757}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1251748820523283800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7136220566118728268}
+  m_Layer: 18
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7136220566118728268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251748820523283800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2075594142208933119}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1695092116382737989
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +635,7 @@ Transform:
   - {fileID: 3124768407671157136}
   - {fileID: 1324872341064139756}
   - {fileID: 978887844183624322}
+  - {fileID: 7136220566118728268}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3361,6 +3393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6751534626200872208}
   - component: {fileID: 7060674619287567130}
+  - component: {fileID: 4954945993651000906}
   m_Layer: 18
   m_Name: SK_Kupolobrach_Body
   m_TagString: Untagged
@@ -3534,6 +3567,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 1.6203892, y: -0.09633589, z: 0.00000047683716}
     m_Extent: {x: 6.9423313, y: 6.1386285, z: 6.114187}
   m_DirtyAABB: 0
+--- !u!114 &4954945993651000906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899959976664510700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4435a6c41f11f4e97b9bc2dfed81bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 7136220566118728268}
 --- !u!1 &7905317886411632579
 GameObject:
   m_ObjectHideFlags: 0
