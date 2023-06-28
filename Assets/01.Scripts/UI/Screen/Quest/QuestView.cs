@@ -149,7 +149,7 @@ namespace UI.Quest
             }
             ListView _listView = GetListView((int)ListViews.quest_listview);
             //_listView.
-
+            UIUtil.FixListViewScrollingBug(_listView); 
             bool isFirst = true; 
             // 생성
             _listView.makeItem = () =>  

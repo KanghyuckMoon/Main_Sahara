@@ -71,6 +71,26 @@ namespace UI.UtilManager
 
             return false; 
         }
+        
+        /// <summary>
+        /// 리스트뷰 스크롤 스피드 설정 
+        /// </summary>
+        /// <param name="listView"></param>
+        public static void FixListViewScrollingBug(ListView listView) {
+#if UNITY_EDITOR
+            var scroller = listView.Q<Scroller>();
+            listView.RegisterCallback<WheelEvent>(@event => {
+                scroller.value +=  @event.delta.y * 100;
+                @event.StopPropagation();
+            });
+#else
+            var scroller = listView.Q<Scroller>();
+            listView.RegisterCallback<WheelEvent>(@event => {
+                scroller.value -=  @event.delta.y * 10000;
+                @event.StopPropagation();
+            });
+#endif
+        }
     }
 
 }
