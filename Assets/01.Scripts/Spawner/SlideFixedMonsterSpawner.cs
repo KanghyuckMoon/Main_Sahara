@@ -35,9 +35,9 @@ namespace Spawner
         [ContextMenu("RandomName")]
         public void RandomName()
         {
-            var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+            //var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
             //gameObject.name = _prefeb.name + nameKey++;
-            key = _prefeb.name + nameKey++;
+            key = gameObject.name + nameKey++;
 
             EditorSceneManager.MarkSceneDirty(gameObject.scene);
         }

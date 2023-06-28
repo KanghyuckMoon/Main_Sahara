@@ -934,6 +934,38 @@ PrefabInstance:
       propertyPath: debug_LayerMask.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 6232182850931194615, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232182850931194615, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232182850931194615, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1267490711}
+    - target: {fileID: 6232182850931194615, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232182850931194615, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetGetOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232182850931194615, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Spawner.SlideFixedMonsterSpawner, Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232182850931194615, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232182850931194615, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6287936299596420084, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
       propertyPath: m_LocalPosition.y
       value: 4.9
@@ -945,8 +977,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8979655285846410216, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1267490711}
   m_SourcePrefab: {fileID: 100100000, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+--- !u!1 &1267490710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8979655285846410216, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+  m_PrefabInstance: {fileID: 1267490709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1267490711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267490710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91bcdfd49760b94f99439d95cc63cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Reward16
+  enemyAddress: xa_Nm
+  objectDataSO: {fileID: 11400000, guid: b3e23b16123a9e244b2d0795d3141958, type: 2}
+  spawnEffectAddress: BoomSandVFX
 --- !u!1001 &1311804114
 PrefabInstance:
   m_ObjectHideFlags: 0
