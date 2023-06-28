@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +8,6 @@ using Utill.Random;
 using Pool;
 using Effect;
 using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 #if UNITY_EDITOR
 using UnityEditor.SceneManagement;
 
@@ -105,22 +103,10 @@ namespace Detect
         }
 			
 #endif
-
-        private void Start()
-        {
-            if (isSpawnDic.ContainsKey(key))
-            {
-                isGetOut = true;
-                gameObject.SetActive(false);
-            }
-        }
-
+        
         public void GetOut()
         {
-            if (!isGetOut)
-            {
-                ItemDrop();
-            }
+            ItemDrop(); 
         }
         
         
@@ -157,7 +143,6 @@ namespace Detect
             EffectManager.Instance.SetEffectDefault(effectAddress, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             isGetOut = true;
-            isSpawnDic.Add(key, isGetOut);
             getoutEvent?.Invoke();
         }
     }
