@@ -9,7 +9,7 @@ using UI.Base;
     using UI.UtilManager;
     using UnityEngine.PlayerLoop;
 
-namespace UI.Inventory
+    namespace UI.Inventory
 {
     [Serializable]
     public class InventoryPresenter : MonoBehaviour, IScreen
@@ -24,7 +24,13 @@ namespace UI.Inventory
         private DraggerRot draggerRot;
         //   private 
 
+        private Action onActiveScreenEvt = null; 
         // 프로퍼티 
+        public Action OnActiveScreen
+        {
+            get => onActiveScreenEvt;
+            set => onActiveScreenEvt = value;
+        }
         public IUIController UIController { get; set; }
 
         [ContextMenu("버튼 초기화 테스트 ")]

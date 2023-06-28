@@ -16,6 +16,16 @@ namespace UI.Save
         private SaveLoadView saveLoadView;
 
         private List<SaveEntryPresenter> entryList = new List<SaveEntryPresenter>(); 
+        
+        private Action onActiveScreenEvt = null;
+
+        // 프로퍼티 
+        public Action OnActiveScreen
+        {
+            get => onActiveScreenEvt;
+            set => onActiveScreenEvt = value;
+        }
+        
         public IUIController UIController { get ; set; }
 
         private void Awake()

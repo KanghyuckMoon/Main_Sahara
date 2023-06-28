@@ -23,7 +23,13 @@ using UI.Base;
 
         private Dictionary<QuestState, List<QuestEntryView>> questEntryDic = new Dictionary<QuestState, List<QuestEntryView>>();
 
+        private Action onActiveScreenEvt = null; 
         // 프로퍼티 
+        public Action OnActiveScreen
+        {
+            get => onActiveScreenEvt;
+            set => onActiveScreenEvt = value;
+        }
         public IUIController UIController { get; set; }
 
         private void Awake()

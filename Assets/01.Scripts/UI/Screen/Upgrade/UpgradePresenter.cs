@@ -48,7 +48,15 @@ namespace UI.Upgrade
         private float midY; // 중심 좌표 
         private bool isFirstSlot = true;
 
+        private Action onActiveScreenEvt = null;
+
         // 프로퍼티 
+        public Action OnActiveScreen
+        {
+            get => onActiveScreenEvt;
+            set => onActiveScreenEvt = value;
+        }
+
         public IUIController UIController { get; set; }
         private VisualElement CurRow => rowList[rowList.Count - 1];
 
@@ -80,7 +88,10 @@ namespace UI.Upgrade
         }
 
         private Vector2 MoveScreenV => upgradeView.MoveScreen.transform.position;
-        private Vector2 MoveScreenBound => new Vector2(upgradeView.MoveScreen.worldBound.x, upgradeView.MoveScreen.worldBound.y); 
+
+        private Vector2 MoveScreenBound =>
+            new Vector2(upgradeView.MoveScreen.worldBound.x, upgradeView.MoveScreen.worldBound.y);
+
         private void Start()
         {
             elementCtrlComponent = new ElementCtrlComponent(upgradeView.MoveScreen);
@@ -121,7 +132,7 @@ namespace UI.Upgrade
                 upgradeSlotLinerComp.CheckCreateItem();
                 Logging.Log("업그레이드 클릭");
             });
-    
+
             rowList.Clear();
             slotPosDIc.Clear();
             allSlotList.Clear();
@@ -132,11 +143,10 @@ namespace UI.Upgrade
             ctrlPresenter = new UpgradeCtrlPresenter(upgradeView.Parent, CreateItemTree);
 
             upgradeReadyPr = new UpgradeReadyPr(upgradeView.Parent);
-            upgradeSlotLinerComp = new UpgradeSlotLinerComp(); 
+            upgradeSlotLinerComp = new UpgradeSlotLinerComp();
         }
 
-        [SerializeField]
-        private bool isComplete = false; // 대장장이 UI 생성이 완료 되었는가 ( 안됐으면 조작 불가 )
+        [SerializeField] private bool isComplete = false; // 대장장이 UI 생성이 완료 되었는가 ( 안됐으면 조작 불가 )
 
         private void Update()
         {
@@ -152,7 +162,7 @@ namespace UI.Upgrade
             {
                 LineCreateManager.Instance.UpdateLinesPos(ScreenType.Upgrade,
                     upgradeView.MoveScreen.transform.position);
-                LineCreateManager.Instance.UpdateLinesScale(ScreenType.Upgrade, 
+                LineCreateManager.Instance.UpdateLinesScale(ScreenType.Upgrade,
                     upgradeView.MoveScreen.parent.transform.scale);
             }
         }
@@ -165,8 +175,8 @@ namespace UI.Upgrade
         {
             midX = Screen.width / 2;
             midY = Screen.height / 2;
-            midX = 624; 
-            
+            midX = 624;
+
             List<Vector2> _oneList = new List<Vector2>();
             _oneList.Add(Vector2.zero);
 
@@ -192,7 +202,7 @@ namespace UI.Upgrade
             _fiveList.Add(new Vector2(0, 0));
             _fiveList.Add(new Vector2(slotDist, 0));
             _fiveList.Add(new Vector2(slotDist * 2, 0));
-            
+
             List<Vector2> _sixList = new List<Vector2>();
             _sixList.Add(new Vector2(-slotDist * 3, 0));
             _sixList.Add(new Vector2(-slotDist * 2, 0));
@@ -227,16 +237,16 @@ namespace UI.Upgrade
         {
             Logging.Log("아이템 트리 생성 시작");
             // 실행중인 트윈 종료 
-            elementCtrlComponent.StopTween(); 
-            StopAllCoroutines();    
+            elementCtrlComponent.StopTween();
+            StopAllCoroutines();
             // 연결점 잇다면 삭제 
             LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade);
             // 최종템 UI 생성
             ClearAllSlots();
-           //
-           this.ElementCtrlComponent.ResetPosAndZoom();
-           this.ElementCtrlComponent.SetPos(Vector2.zero);
-           //allItemDataList.Clear();
+            //
+            this.ElementCtrlComponent.ResetPosAndZoom();
+            this.ElementCtrlComponent.SetPos(Vector2.zero);
+            //allItemDataList.Clear();
             ItemData _itemData = ItemData.CopyItemDataSO(_itemDataSO);
             itemDataQueue.Enqueue(new UpgradeSlotData(null, _itemData, 0, 1));
 
@@ -257,7 +267,7 @@ namespace UI.Upgrade
             CreateRow(); // 처음줄 생성 
             int _count = itemDataQueue.Count();
             int _index = 0;
-    
+
             while (itemDataQueue.Count > 0)
             {
                 if (_index >= _count) // 한 줄 생성 끝 다음 줄 시작 
@@ -296,19 +306,20 @@ namespace UI.Upgrade
 
                 // 연결점 생성 위해 부모 자식 관계 설정                                                                                                                                                                                                                                                                                                                                                                                                                        
                 if (_slotData.parentSlot != null)
-                {   
+                {
                     this.parentSlotDic[_slotData.parentSlot].Add(_parent);
                 }
-                
+
                 ItemUpgradeDataSO _childItemData = ItemUpgradeManager.Instance.GetItemUpgradeDataSO(_itemData.key);
                 if (_childItemData != null) // 재료템이 존재한다면 큐에 추가 
                 {
                     var _dataList = ItemUpgradeManager.Instance.UpgradeItemSlotList(_itemData.key);
-                    
+
                     // 무기만 생성 
                     int _idx = 0; // 몇 번째 아이템인지 ( 트리 중에 )  같은 줄 내에서 
 
-                    var _weaponDList = _dataList.Where((x) => x.itemType == ItemType.Weapon).Where((x) => x.isSlot == true).ToList();
+                    var _weaponDList = _dataList.Where((x) => x.itemType == ItemType.Weapon)
+                        .Where((x) => x.isSlot == true).ToList();
                     if (_weaponDList.Count != 0)
                     {
                         // 연결점 생성 위한 추가 
@@ -328,20 +339,19 @@ namespace UI.Upgrade
 
                 ++_index;
             }
+
             upgradeSlotLinerComp.InitAllItemList(allSlotList);
-            
         }
 
-        [SerializeField]
-        private bool isActive = false; // 포지션 설정시 활성화 여부 
-        [SerializeField]
-        private bool isConnection = false; // 연결점 생성 여부 
+        [SerializeField] private bool isActive = false; // 포지션 설정시 활성화 여부 
+        [SerializeField] private bool isConnection = false; // 연결점 생성 여부 
 
-        private int a = 0; 
+        private int a = 0;
+
         [ContextMenu("고고")]
         private IEnumerator SetAllSlotPos()
         {
-            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.01f); 
+            WaitForSecondsRealtime _w = new WaitForSecondsRealtime(0.01f);
 
             int _idx = 1;
             allItemList[0].style.left = midX - allItemList[0].resolvedStyle.width / 2;
@@ -352,36 +362,37 @@ namespace UI.Upgrade
                 Debug.Log("순회 시작");
 
                 float _moveX = slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
-                
+
                 //float _op = _v.parentSlot.worldBound.x - _v.parentSlot.resolvedStyle.left; //  slot이 relative이기 때문에 left == 0 인데 world bound는 200 일 수 있다. 
                 //if (isConnection == false)
                 //{
                 allItemList[_idx].style.left =
                     _moveX + _v.parentSlot.worldBound.x + upgradeView.MoveScreen.transform.position.x;
-                        //*upgradeView.MoveScreen.transform.scale.x;
+                //*upgradeView.MoveScreen.transform.scale.x;
                 //}
 
                 //yield return new WaitForSeconds(0.05f); 
                 // opacity 설정
                 //DOTween.To(() =>0f, x => allItemList[_idx].style.opacity = x, _op, 0.5f).SetDelay(0.5f); 
                 allItemList[_idx].style.opacity = isConnection ? 1 : 0;
-                
+
                 if (isConnection == true)
                 {
                     Debug.Log("생성 시작");
 
                     if (allItemList[_idx].worldBound.y + allItemList[_idx].resolvedStyle.height + 100 >
                         upgradeView.MoveScreen.resolvedStyle.height)
-                        {
-                        elementCtrlComponent.TweenMove(new Vector2(0,-200));
-                        }
+                    {
+                        elementCtrlComponent.TweenMove(new Vector2(0, -200));
+                    }
+
                     yield return _w;
                     Debug.Log("슬롯 위치 설정");
                     float _slotL = allItemList[_idx].style.left.value.value;
                     float _slotB = allItemList[_idx].worldBound.x;
                     float _r1 = _slotB - _slotL;
-                    float _r2 = _slotL - _r1; 
-                    float _targetMoveX =  _r2; 
+                    float _r2 = _slotL - _r1;
+                    float _targetMoveX = _r2;
                     allItemList[_idx].style.left = _targetMoveX;
                     yield return _w;
                     Debug.Log("선 생성");
@@ -391,15 +402,18 @@ namespace UI.Upgrade
 
                 ++_idx;
             }
+
             if (isConnection == true)
             {
                 isComplete = true;
-                upgradeSlotLinerComp.CheckCreateItem(); 
+                upgradeSlotLinerComp.CheckCreateItem();
             }
+
             if (isActive == true)
             {
                 isConnection = true;
             }
+
             isActive = true;
         }
 
@@ -415,7 +429,7 @@ namespace UI.Upgrade
             this.upgradeView.ClearAllSlots();
             isActive = false;
             isConnection = false;
-            isComplete = false; 
+            isComplete = false;
         }
 
         private VisualElement CreateSlot(ItemData _itemData)
@@ -463,7 +477,7 @@ namespace UI.Upgrade
             upgradeReadyPr.SetCurSelectedItem(_upgradePr.ItemData);
             upgradeReadyPr.CheckCanUpgrade();
         }
-        
+
         /// <summary>
         /// 슬롯 클릭시 업그레이드 UI 표시 
         /// </summary>
@@ -486,10 +500,11 @@ namespace UI.Upgrade
             // 위치 설정(해야 해) 
             Rect _slotRect = _upgradePr.Element1.worldBound;
             Rect _screenRect = upgradeView.MoveScreen.worldBound;
-            Vector2 _screenScale = upgradeView.MoveScreen.parent.transform.scale; 
+            Vector2 _screenScale = upgradeView.MoveScreen.parent.transform.scale;
             float _slotX = _upgradePr.Element1.resolvedStyle.width;
-            upgradePickPresenter.SetPos(new Vector2(_slotX + (_slotRect.x - _screenRect.x) / _screenScale.x /*- _screenPos.x/2*/, 
-                (_slotRect.y - _screenRect.y) / _screenScale.y /*+ _screenPos.y*/) );
+            upgradePickPresenter.SetPos(new Vector2(
+                _slotX + (_slotRect.x - _screenRect.x) / _screenScale.x /*- _screenPos.x/2*/,
+                (_slotRect.y - _screenRect.y) / _screenScale.y /*+ _screenPos.y*/));
 
             // 필요 재료들 표시 
             int _idx = 0;
@@ -520,7 +535,7 @@ namespace UI.Upgrade
             List<Vector2> _pointList = new List<Vector2>();
             Vector2 _startPoint, _midPoint, _midPoint2, _targetPoint;
             //CreateRow(); // 줄 생성 
-            
+
             // key : parent slot // value : child slot 
             foreach (var _slot in this.parentSlotDic)
             {
@@ -530,10 +545,12 @@ namespace UI.Upgrade
                     {
                         _pointList.Clear();
 
-                        float _slotX =  -MoveScreenBound.x/2 + MoveScreenV.x + _slot.Key.worldBound.x + _slot.Key.resolvedStyle.width / 2;
-                        float _slotY = -MoveScreenV.y +_slot.Key.worldBound.y + _slot.Key.resolvedStyle.height;
-                        float _slot2X = -MoveScreenBound.x/2 + MoveScreenV.x + _slot2.worldBound.x + _slot2.resolvedStyle.width / 2;
-                        float _slot2Y = -MoveScreenV.y +_slot2.worldBound.y;
+                        float _slotX = -MoveScreenBound.x / 2 + MoveScreenV.x + _slot.Key.worldBound.x +
+                                       _slot.Key.resolvedStyle.width / 2;
+                        float _slotY = -MoveScreenV.y + _slot.Key.worldBound.y + _slot.Key.resolvedStyle.height;
+                        float _slot2X = -MoveScreenBound.x / 2 + MoveScreenV.x + _slot2.worldBound.x +
+                                        _slot2.resolvedStyle.width / 2;
+                        float _slot2Y = -MoveScreenV.y + _slot2.worldBound.y;
 
                         _startPoint = new Vector2(_slotX - midX, _slotY - midY); // 부모 위치 
                         _midPoint = new Vector2(_slotX - midX, _slotY + (_slot2Y - _slotY) / 2 - midY);
@@ -568,7 +585,7 @@ namespace UI.Upgrade
 
         public bool ActiveView()
         {
-                bool _isActive = upgradeView.ActiveScreen();
+            bool _isActive = upgradeView.ActiveScreen();
             if (_isActive == true)
             {
                 //ClearAllSlots();
@@ -596,6 +613,7 @@ namespace UI.Upgrade
             {
                 LineCreateManager.Instance.DestroyLine(ScreenType.Upgrade);
             }
+
             upgradeView.ActiveScreen(_isActive);
         }
     }
