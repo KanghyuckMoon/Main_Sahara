@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,15 @@ namespace UI.Shop
         private InvenItemUISO invenItemUISO;
 
         private ShopPopupPr curShopPopupPr; 
-        // 프로퍼티
+        
+        private Action onActiveScreenEvt = null;
+
+        // 프로퍼티 
+        public Action OnActiveScreen
+        {
+            get => onActiveScreenEvt;
+            set => onActiveScreenEvt = value;
+        }
         public IUIController UIController { get ; set; }
 
         public string name;

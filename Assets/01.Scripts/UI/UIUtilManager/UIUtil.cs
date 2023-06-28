@@ -33,6 +33,11 @@ namespace UI.UtilManager
             string[] _arr = Enum.GetNames(_eType);
             return _arr[_idx];
         }
+        
+        public static T GetEnumStr<T>(string _enumName) where T : Enum
+        {
+            return (T)Enum.Parse(typeof(T), _enumName);
+        }
 
         /// <summary>
         /// uitoolkit  ui의 중심 좌표를 가져온다 
