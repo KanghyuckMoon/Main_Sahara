@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -128,6 +128,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
@@ -231,12 +232,44 @@ PrefabInstance:
       value: -0.5230042
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 920804759290223952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5831504}
   m_SourcePrefab: {fileID: 100100000, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+--- !u!1 &5831503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 920804759290223952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+  m_PrefabInstance: {fileID: 5831502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5831504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5831503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c1da4780729d240a3a2f1acab2f80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  todSO: {fileID: 0}
+  randomMonsterListSO: {fileID: 0}
+  randomMonsterListSONight: {fileID: 0}
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 1
+  spawnEffectAddress: LandSandHitEffect
 --- !u!1001 &103123663
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7361031519425501210, guid: a48606379f1e1904b8e621aa686a739e, type: 3}
@@ -428,12 +461,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a48606379f1e1904b8e621aa686a739e, type: 3}
 --- !u!1001 &125231764
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2962291816258030346, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
@@ -585,12 +622,44 @@ PrefabInstance:
       value: -0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8979655285846410216, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 125231766}
   m_SourcePrefab: {fileID: 100100000, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+--- !u!1 &125231765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8979655285846410216, guid: bc9527944f8675247b8aefa5615bfacf, type: 3}
+  m_PrefabInstance: {fileID: 125231764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &125231766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125231765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c1da4780729d240a3a2f1acab2f80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  todSO: {fileID: 0}
+  randomMonsterListSO: {fileID: 0}
+  randomMonsterListSONight: {fileID: 0}
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 1
+  spawnEffectAddress: LandSandHitEffect
 --- !u!1001 &167149975
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1083277970894470068, guid: b263a52ec3ef6514db2e0ed91b7bdbde, type: 3}
@@ -654,12 +723,16 @@ PrefabInstance:
       value: Map(-3,40,-2)82
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b263a52ec3ef6514db2e0ed91b7bdbde, type: 3}
 --- !u!1001 &463970777
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -751,12 +824,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
 --- !u!1001 &541364775
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 226795926882343517, guid: 36354ae9888b4c245bc0730af0f3c660, type: 3}
@@ -884,7 +961,38 @@ PrefabInstance:
       value: -0.5607718
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1690571275458187141, guid: 36354ae9888b4c245bc0730af0f3c660, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 541364777}
   m_SourcePrefab: {fileID: 100100000, guid: 36354ae9888b4c245bc0730af0f3c660, type: 3}
+--- !u!1 &541364776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1690571275458187141, guid: 36354ae9888b4c245bc0730af0f3c660, type: 3}
+  m_PrefabInstance: {fileID: 541364775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &541364777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541364776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c1da4780729d240a3a2f1acab2f80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  todSO: {fileID: 0}
+  randomMonsterListSO: {fileID: 0}
+  randomMonsterListSONight: {fileID: 0}
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 1
+  spawnEffectAddress: LandSandHitEffect
 --- !u!1 &1947816980
 GameObject:
   m_ObjectHideFlags: 1
@@ -938,6 +1046,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3fa7ed51b7d48f148aea49325751a62c, type: 3}
@@ -993,4 +1102,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fa7ed51b7d48f148aea49325751a62c, type: 3}

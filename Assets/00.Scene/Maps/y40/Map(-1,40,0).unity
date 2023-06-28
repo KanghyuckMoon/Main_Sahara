@@ -2790,7 +2790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 588173116967089993, guid: 21367eb4eb9a5bd46a59d7bcbf665f8b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 774367121561074778, guid: 21367eb4eb9a5bd46a59d7bcbf665f8b, type: 3}
       propertyPath: m_IsActive
@@ -3027,13 +3027,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 484958771148546807, guid: 21367eb4eb9a5bd46a59d7bcbf665f8b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2012147492}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 588173116967089993, guid: 21367eb4eb9a5bd46a59d7bcbf665f8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1566256865}
   m_SourcePrefab: {fileID: 100100000, guid: 21367eb4eb9a5bd46a59d7bcbf665f8b, type: 3}
 --- !u!4 &1566256863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 484958771148546807, guid: 21367eb4eb9a5bd46a59d7bcbf665f8b, type: 3}
   m_PrefabInstance: {fileID: 1566256862}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1566256864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 588173116967089993, guid: 21367eb4eb9a5bd46a59d7bcbf665f8b, type: 3}
+  m_PrefabInstance: {fileID: 1566256862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1566256865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566256864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c1da4780729d240a3a2f1acab2f80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  todSO: {fileID: 0}
+  randomMonsterListSO: {fileID: 0}
+  randomMonsterListSONight: {fileID: 0}
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 1
+  spawnEffectAddress: LandSandHitEffect
 --- !u!1 &1621012042
 GameObject:
   m_ObjectHideFlags: 0
@@ -3563,6 +3591,10 @@ PrefabInstance:
     - target: {fileID: 7377760602891889690, guid: 533e0ee878030e34ba8ed67f69b6b428, type: 3}
       propertyPath: m_Name
       value: MagicalSandGatheringPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377760602891889690, guid: 533e0ee878030e34ba8ed67f69b6b428, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7377760602891889692, guid: 533e0ee878030e34ba8ed67f69b6b428, type: 3}
       propertyPath: m_RootOrder
