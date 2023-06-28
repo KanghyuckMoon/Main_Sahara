@@ -763,6 +763,38 @@ PrefabInstance:
       propertyPath: debug_LayerMask.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 823266023}
+    - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetGetOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Spawner.SlideFixedMonsterSpawner, Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110313662617687952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4780911711016570396, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.2792095
@@ -888,10 +920,35 @@ PrefabInstance:
       value: 0.9500434
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6184776129481978466, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 920804759290223952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 823266023}
   m_SourcePrefab: {fileID: 100100000, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+--- !u!1 &823266022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 920804759290223952, guid: b5263cdaf29a0904e9c164c04aa36364, type: 3}
+  m_PrefabInstance: {fileID: 823266021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &823266023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823266022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91bcdfd49760b94f99439d95cc63cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 
+  enemyAddress: 
+  objectDataSO: {fileID: 0}
+  spawnEffectAddress: 
 --- !u!1001 &1053176983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1332,7 +1389,8 @@ PrefabInstance:
       value: SandUpVFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8298067040881177294, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
@@ -1604,6 +1662,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151054928234246613, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794037505635210053, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -8.432366
@@ -1732,6 +1794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proxy.Stone_020_Detect (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4629018035327512860, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8298067040164197543, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: key
       value: MetalDetect377
@@ -1741,7 +1807,8 @@ PrefabInstance:
       value: SandUpVFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8298067040881177294, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
@@ -1907,6 +1974,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151054928234246613, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794037505635210053, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -8.425984
@@ -2035,6 +2106,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proxy.Stone_020_Detect (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4629018035327512860, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8298067040164197543, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: key
       value: MetalDetect375
@@ -2044,7 +2119,8 @@ PrefabInstance:
       value: SandUpVFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8298067040881177294, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
@@ -2056,6 +2132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151054928234246613, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794037505635210053, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.6031548
@@ -2180,6 +2260,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proxy.Stone_020_Detect (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4629018035327512860, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8298067040164197543, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: key
       value: MetalDetect373
@@ -2189,7 +2273,8 @@ PrefabInstance:
       value: SandUpVFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8298067040881177294, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
@@ -2285,6 +2370,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151054928234246613, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794037505635210053, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.94652104
@@ -2409,6 +2498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proxy.Stone_020_Detect
       objectReference: {fileID: 0}
+    - target: {fileID: 4629018035327512860, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8298067040164197543, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: key
       value: MetalDetect383
@@ -2418,7 +2511,8 @@ PrefabInstance:
       value: SandUpVFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8298067040881177294, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
