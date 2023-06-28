@@ -48,7 +48,21 @@ namespace Detect
             {
                 rewardObj.transform.position = _hit.point;
             }
-        }        
+        }
+        
+        [ContextMenu("LogNotRewardObject")]
+        public void LogNotRewardObject()
+        {
+            if (rewardObj == null)
+            {
+                Debug.Log("null rewardObject", gameObject);
+            }
+            else if (rewardObj.name != "Reward")
+            {
+                Debug.Log("not rewardObject", gameObject);
+            }
+        }
+        
         #endif
     }   
 }
