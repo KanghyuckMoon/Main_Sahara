@@ -486,6 +486,7 @@ Transform:
   - {fileID: 1671336237036493597}
   - {fileID: 7668510067721434745}
   - {fileID: 6594596544769572835}
+  - {fileID: 8638146138417374383}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -518,9 +519,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2765805678131841587}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 0
   m_Radius: 0.5
   m_SlopeLimit: 45
@@ -593,7 +602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: 75360e49f69f21747ba9339fade123d7, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: 75360e49f69f21747ba9339fade123d7, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 2765805678131841587}
 --- !u!114 &8919908907913251572
 MonoBehaviour:
@@ -623,6 +633,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 8919908907913251578}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8919908907913251570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,6 +701,7 @@ MonoBehaviour:
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -703,8 +717,12 @@ MonoBehaviour:
   rightFeet: {fileID: 5824235811423049009}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+  frontInput: 0
+  ignoreHitType: 0
   aiSOAddress: xc_Kr_BigFire_AISO
   pathHarver: {fileID: 0}
+  hudType: 0
+  bossName: TestBoss
 --- !u!114 &7868757967880238007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,6 +739,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseHeight: 0
+  height: 0
 --- !u!1 &2783209152756271547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,6 +1389,37 @@ Transform:
   m_Father: {fileID: 1644572969195112735}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.8222882, y: 1.8167126, z: 22.204971}
+--- !u!1 &7474436838131376386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8638146138417374383}
+  m_Layer: 18
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8638146138417374383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7474436838131376386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.546, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3254357815426207881}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7678433397520390742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7668510067721434745}
   - component: {fileID: 323863115741154885}
+  - component: {fileID: 8510696712004898431}
   m_Layer: 18
   m_Name: SK_Venodonte
   m_TagString: Untagged
@@ -1759,11 +1811,25 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.010617435, y: 0.29818976, z: 0.031524688}
     m_Extent: {x: 0.6485984, y: 1.1917161, z: 0.7005781}
   m_DirtyAABB: 0
+--- !u!114 &8510696712004898431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073544983883030580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4435a6c41f11f4e97b9bc2dfed81bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 8638146138417374383}
 --- !u!1001 &2381337649788908858
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 3254357815426207881}
     m_Modifications:
     - target: {fileID: 8829451551789304537, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
@@ -1815,6 +1881,9 @@ PrefabInstance:
       value: VFX_Fire_01_Big
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
 --- !u!4 &6594596544769572835 stripped
 Transform:

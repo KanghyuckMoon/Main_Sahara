@@ -83,14 +83,14 @@ namespace LockOn
 
                 playerModule.LockOnTarget = null;
                 playerModule.LockOn = false;
-                Debug.Log("t:록온 해제");
+                //Debug.Log("t:록온 해제");
                 return;
             }
 
             if(lockOnTargetList.Count == 0)
 			{
                 //캐릭터의 전방을 본다
-                Debug.Log("t:전방1");
+                //Debug.Log("t:전방1");
                 thirdPersonCameraController.ChangeCamera(10, -player.eulerAngles.y);
                 return;
             }
@@ -100,8 +100,8 @@ namespace LockOn
                 float _minDistance = float.MaxValue;
                 Transform _target = null;
                 for(int i = 0; i < _count; ++i)
-				{
-                    float _distance = DistancePointLine(transform.position, transform.position, lockOnTargetList[i].position);
+                {
+                    float _distance = DistanceBetweenTwoVector(transform.position, lockOnTargetList[i].position);
                     if (_minDistance > _distance)
 					{
                         _minDistance = _distance;
@@ -110,18 +110,18 @@ namespace LockOn
                 }
 
                 //목표하는 대상이 없거나 최단거리 대상이 너무 멀다면 
-                if(_target is null || _minDistance > 1000f)
+                if(_target is null || _minDistance > 42f)
 				{
                     //캐릭터의 전방을 본다
                     thirdPersonCameraController.ChangeCamera(10, -player.eulerAngles.y);
-                    Debug.Log("t:전방2");
+                    //Debug.Log("t:전방2");
                     return;
                 }
                 else
 				{
                     target = _target;
                     isTarget = true;
-                    Debug.Log("t:타겟팅");
+                    //Debug.Log("t:타겟팅");
                     cinemachineTargetGroup.AddMember(target, 1f, 1);
                     groupCam.LookAt = target;
 
@@ -145,8 +145,13 @@ namespace LockOn
 
             return Vector3.Magnitude(ProjectPointLine(point, lineStart, lineEnd) - point);
 
+            //return Vector3.Distance();
         }
 
+        public float DistanceBetweenTwoVector(Vector3 pointStart, Vector3 pointEnd)
+        {
+            return Vector3.Distance(pointStart, pointEnd);
+        }
 
 
         public static Vector3 ProjectPointLine(Vector3 point, Vector3 lineStart, Vector3 lineEnd)

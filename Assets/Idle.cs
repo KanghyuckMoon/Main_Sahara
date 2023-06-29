@@ -22,13 +22,14 @@ public class Idle : StateMachineBehaviour
         
         mainModule.SetActiveAnimatorRoot(0);
         
-        mainModule.CanMove = true;
-        
+        //mainModule.CanMove = true;
         
         _half = 0.65f;//stateInfo.length - (stateInfo.length / 9);
         current = 0;
 
         isUp = true;
+        
+        stateModule.RemoveState(State.ATTACK);
         //mainModule.CanConsecutiveAttack = false;
 
         //animator.SetBool("IsCombo", false);
@@ -46,7 +47,7 @@ public class Idle : StateMachineBehaviour
         else
         {
             isUp = false;
-            mainModule.SetAnimationLayerOn(1, 0.1f);
+            mainModule.SetAnimationLayerOn(1, 0.15f);
             mainModule.SetConsecutiveAttack(0);
             mainModule.SetActiveAnimatorRoot(0);
             mainModule.StopOrNot = 1;
