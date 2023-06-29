@@ -41,8 +41,13 @@ namespace UI.PublicManager
         public void SetTexts(string _name, string _dialogue, Action _callback = null)
         {
             ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).StartDialogue(_name, _dialogue, _callback);
-        }   
+        }
 
+        public bool IsDialogue()
+        {
+            return ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).IsDialogue; 
+
+        }
         public void UpdateQuestUI()
         {
             //   ScreenUIController.GetScreen<QuestPresenter>(ScreenType.Quest).UpdateUI(); 
