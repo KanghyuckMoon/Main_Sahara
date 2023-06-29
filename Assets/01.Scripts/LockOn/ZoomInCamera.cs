@@ -33,6 +33,7 @@ namespace LockOn
 
         private ThirdPersonCameraController thirdPersonCameraController;
         private ThirdPersonCameraController lockOnCameraController;
+        private ThirdPersonCameraController lockOn_ZoomCameraController;
 
         public CinemachineVirtualCamera cinemachineVirtualCamera;
 
@@ -56,6 +57,7 @@ namespace LockOn
             originRot = zoomInCam.transform.localRotation;
 
             thirdPersonCameraController = zoomInCam.GetComponent<ThirdPersonCameraController>();
+            lockOn_ZoomCameraController = zoomInCam_Lock.GetComponent<ThirdPersonCameraController>();
             cinemachineVirtualCamera = zoomInCam_Lock.GetComponent<CinemachineVirtualCamera>();
             zoomInTarget = zoomInCam.transform.Find("ZoomPlayerInTarget");
         }
@@ -89,15 +91,19 @@ namespace LockOn
             
             if (_on)
             {
-                if (_thirdPersonCameraController.enabled)
+                //if (_thirdPersonCameraController.enabled)
                 {
                     thirdPersonCameraController.cameraY =
                         lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>().cameraY;
+                    lockOn_ZoomCameraController.cameraY = -lockOnCamera.currentCamera.transform.eulerAngles.y;
+                    //Debug.LogError(lockOnCamera.currentCamera.transform.rotation.y);
+
                 }
-                else
+                //else
                 {
-                    cinemachineVirtualCamera.m_LookAt = lockOnCamera.currentCamera.LookAt;
+                    /*cinemachineVirtualCamera.m_LookAt = lockOnCamera.currentCamera.LookAt;
                     thirdPersonCameraController.enabled = false;
+                    lockOn_ZoomCameraController.enabled = false;*/
                 }
 
                 if (_thirdPersonCameraController.enabled)
@@ -109,10 +115,6 @@ namespace LockOn
                 {
                     originTarget = mainModule.LockOnTarget;
                     cinemachineVirtualCamera.m_LookAt = _thirdPersonCameraController.GetComponent<CinemachineVirtualCamera>().m_LookAt;
-                    //CinemachineComposer composer = cinemachineVirtualCamera.gameObject.AddComponent<CinemachineComposer>();
-
-                    //cinemachineVirtualCamera. = _thirdPersonCameraController.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineComposer>()
-                    //composer = cinemachineVirtualCamera;
                 }
             }
             else
@@ -120,8 +122,8 @@ namespace LockOn
                 mainModule.LockOnTarget = originTarget;
                 //cinemachineVirtualCamera.m_LookAt = null;
                 thirdPersonCameraController.enabled = true;
+                lockOn_ZoomCameraController.enabled = true;
                 lockOnCameraController = lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>();
-                //Debug.LogError("AKJAHEJAEKAAKAJGRAWKGWekjegjawkeje");
                 if (_isOn >= 0)
                 {
                     lockOnCameraController.cameraY = thirdPersonCameraController.cameraY;
