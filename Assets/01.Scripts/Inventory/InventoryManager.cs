@@ -167,7 +167,6 @@ namespace Inventory
 			{
 				return;
 			}
-			
 
 			float wheel = Input.GetAxisRaw("Mouse ScrollWheel");
 			if (wheel >= 0.1f)

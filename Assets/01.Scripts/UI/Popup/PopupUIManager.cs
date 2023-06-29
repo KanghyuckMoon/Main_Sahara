@@ -58,7 +58,13 @@ namespace UI.Popup
             }
         }
 
-        private bool isInit = false; 
+        private bool isInit = false;
+
+        public T GetScreen<T>(PopupType popupType) where T : IPopup
+        {
+            IPopupPr popupPr = popupPrList.Find((x) => x.PopupType == popupType); 
+            return (T)popupPr ;
+        }
         public override void Awake()
         {
             base.Awake();
