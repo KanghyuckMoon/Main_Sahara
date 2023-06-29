@@ -824,13 +824,45 @@ PrefabInstance:
       propertyPath: debug_LayerMask.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 4132749982380407372, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132749982380407372, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132749982380407372, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1175290951}
+    - target: {fileID: 4132749982380407372, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132749982380407372, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnRandomMonsterFromRandomListSO
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132749982380407372, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Spawner.SlideRandomMonsterSpawner, Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132749982380407372, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      propertyPath: getoutEventAfter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6646251068955511015, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: -0.58
       objectReference: {fileID: 0}
     - target: {fileID: 6646251068955511015, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.3
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701502474783379529, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      propertyPath: m_Name
+      value: SlideDetect_Treasure
       objectReference: {fileID: 0}
     - target: {fileID: 8919179936964435165, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -905,10 +937,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1970036360346345642, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 507250961878874924, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1175290951}
   m_SourcePrefab: {fileID: 100100000, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+--- !u!1 &1175290950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 507250961878874924, guid: c779183edf62b344fb7b535d5d40f0a4, type: 3}
+  m_PrefabInstance: {fileID: 1175290949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1175290951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175290950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f11d3596b5bd14d88c0b2bd77816d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentArray:
+  - 20
+  - 50
+  - 30
+  monsterListSOList:
+  - {fileID: 11400000, guid: 419c4aa99b19ac64f82b02843ccb282c, type: 2}
+  - {fileID: 11400000, guid: a34f6697e486f5545bb8025316a8a3a7, type: 2}
+  - {fileID: 11400000, guid: c7a080a9afcb9744397b55303f63b629, type: 2}
+  spawnEffectAddress: BoomSandVFX
 --- !u!1001 &1290370313
 PrefabInstance:
   m_ObjectHideFlags: 0

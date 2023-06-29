@@ -230,6 +230,11 @@ namespace UI
             
         }
 
+        private void SetOnActiveEvt()
+        {
+
+            
+        }
         private void SetNotInputEvent()
         {
             notInputDic.Clear();
@@ -239,12 +244,14 @@ namespace UI
                 bool _isActive = shopPresenter.ActivetShop(ShopType.BuyShop);
                 SetUIAndCursor(_isActive, Get(Keys.BuyUI));
                 curActiveScreen = (Keys.BuyUI,shopPresenter); 
+                if(_isActive == false) curActiveScreen.Item2 = null; 
             });
             notInputDic.Add(Keys.SellUI, () => 
             {
                 bool _isActive = shopPresenter.ActivetShop(ShopType.SellShop);
                 SetUIAndCursor(_isActive, Get(Keys.SellUI));
                 curActiveScreen = (Keys.SellUI,shopPresenter); 
+                if(_isActive == false) curActiveScreen.Item2 = null; 
             });
             notInputDic.Add(Keys.SmithUI, () => 
             {
@@ -253,6 +260,50 @@ namespace UI
                 curActiveScreen = (Keys.SmithUI,upgradePresenter);
 
                 ActiveUpgrade(_isActive);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
+            });
+            
+            notInputDic.Add(Keys.InventoryUI, () =>
+            {
+                // 인벤토리 활성화 
+                bool _isActive = inventoryPresenter.ActiveView();   
+                UIManager.Instance.ActiveHud(!_isActive);
+                mapPresenter.Active(! _isActive);
+                LineCreateManager.Instance.ActvieScreen(ScreenType.Inventory, _isActive);
+
+                SetUIAndCursor(_isActive, Get(Keys.InventoryUI));
+                curActiveScreen = (Keys.InventoryUI, inventoryPresenter);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
+            });
+            notInputDic.Add(Keys.MapUI, () =>
+            {
+                // 맵 활성화
+                bool _isActive = mapPresenter.ActiveView();
+                UIManager.Instance.ActiveHud(! _isActive);
+                SetUIAndCursor(_isActive, Get(Keys.MapUI));
+                curActiveScreen = (Keys.MapUI, mapPresenter);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
+            });
+            notInputDic.Add(Keys.QuestUI, () =>
+            {
+                // 퀘스트 활성화
+                bool _isActive = questPresenter.ActiveView();
+                questPresenter.UpdateUI();
+                LineCreateManager.Instance.ActvieScreen(ScreenType.Quest, _isActive);
+                UIManager.Instance.ActiveHud(! _isActive);
+                mapPresenter.Active(! _isActive);
+                SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
+                curActiveScreen = (Keys.QuestUI, questPresenter);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
+            });
+            notInputDic.Add(Keys.OptionUI, () =>
+            {
+                //  활성화
+                // 다른 끌 스크린 있으면 그것부터 비활성화 
+                bool _isActive = _optionPresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
+                curActiveScreen = (Keys.OptionUI, _optionPresenter);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
             });
         }
 
@@ -285,7 +336,9 @@ namespace UI
                 mapPresenter.Active(! _isActive);
                 LineCreateManager.Instance.ActvieScreen(ScreenType.Inventory, _isActive);
 
-                SetUIAndCursor(_isActive, Get(Keys.InventoryUI)); 
+                SetUIAndCursor(_isActive, Get(Keys.InventoryUI));
+                curActiveScreen = (Keys.InventoryUI, inventoryPresenter);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
             });
             inputDic.Add(new UIInputData(Get(Keys.MapUI), true), () =>
             {
@@ -293,6 +346,8 @@ namespace UI
                 bool _isActive = mapPresenter.ActiveView();
                 UIManager.Instance.ActiveHud(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.MapUI));
+                curActiveScreen = (Keys.MapUI, mapPresenter);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
             });
             inputDic.Add(new UIInputData(Get(Keys.QuestUI), true), () =>
             {
@@ -303,12 +358,19 @@ namespace UI
                 UIManager.Instance.ActiveHud(! _isActive);
                     mapPresenter.Active(! _isActive);
                 SetUIAndCursor(_isActive, Get(Keys.QuestUI)); 
+                curActiveScreen = (Keys.QuestUI, questPresenter);
+                
+                if(_isActive == false) curActiveScreen.Item2 = null; 
+
             });
             inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>
             {
                 //  활성화
+                // 다른 끌 스크린 있으면 그것부터 비활성화 
                 bool _isActive = _optionPresenter.ActiveView();
                 SetUIAndCursor(_isActive, Get(Keys.OptionUI));
+                curActiveScreen = (Keys.OptionUI, _optionPresenter);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
             });
             /*inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
             {
@@ -357,25 +419,47 @@ namespace UI
             if (isUIInput == false) return;
             foreach(var _v in inputDic)
             {
-                if(_v.Key.isCan == true && InputManager.Instance.CheckKey(_v.Key.keyStr))
+                // ESC 입력시 
+                if (_v.Key.keyStr == Get(Keys.OptionUI)&& InputManager.Instance.CheckKey(_v.Key.keyStr))
+                {
+                        bool isCheck = CheckUndoScreen();
+                       // if (isCheck == true)
+                        //{
+                         //   notInputDic[Get(_v.Key.keyStr)]?.Invoke();  
+                       // }
+                       if(isCheck == true)
+                        return; 
+                }
+                if(_v.Key.isCan == true && InputManager.Instance.CheckKey(_v.Key.keyStr))   
                 {
                     _v.Value?.Invoke();
                 }
             }
 
-            if (curActiveScreen.Item2 != null && Input.GetKeyDown(KeyCode.Escape))
+
+        }
+
+        private bool CheckUndoScreen()
+        {
+            if (curActiveScreen.Item2 != null)
             {
-                SetUIAndCursor(false, Get(curActiveScreen.Item1));
-                curActiveScreen.Item2.ActiveView(false);
+                notInputDic[curActiveScreen.Item1]?.Invoke();
+                //SetUIAndCursor(false, Get(curActiveScreen.Item1));
+                //curActiveScreen.Item2.ActiveView(false);
                 curActiveScreen.Item2 = null; 
+                // 흠.. 왜 꺼주었을까.. 
                 EventManager.Instance.TriggerEvent(EventsType.SetCanDialogue,false);
 
-                 if (curActiveScreen.Item1 == Keys.SmithUI)
-                {
-                    ActiveUpgrade(false);
-                    SetIsDialogue(false);
-                }
+                //if (curActiveScreen.Item1 == Keys.SmithUI)
+                //{
+                //    ActiveUpgrade(false);
+                //    SetIsDialogue(false);
+                //}
+
+                return true; 
             }
+
+            return false;
         }
         
         /// <summary>
@@ -427,6 +511,11 @@ namespace UI
         private string Get(Keys _key)
         {
             return UIUtil.GetEnumStr(typeof(Keys), (int)_key);
+        }
+
+        private Keys Get(string _keyStr)
+        {
+            return UIUtil.GetEnumStr<Keys>(_keyStr); 
         }
     }
 }

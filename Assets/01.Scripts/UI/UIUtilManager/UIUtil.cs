@@ -33,6 +33,11 @@ namespace UI.UtilManager
             string[] _arr = Enum.GetNames(_eType);
             return _arr[_idx];
         }
+        
+        public static T GetEnumStr<T>(string _enumName) where T : Enum
+        {
+            return (T)Enum.Parse(typeof(T), _enumName);
+        }
 
         /// <summary>
         /// uitoolkit  ui의 중심 좌표를 가져온다 
@@ -70,6 +75,26 @@ namespace UI.UtilManager
             }
 
             return false; 
+        }
+        
+        /// <summary>
+        /// 리스트뷰 스크롤 스피드 설정 
+        /// </summary>
+        /// <param name="listView"></param>
+        public static void FixListViewScrollingBug(ListView listView) {
+#if UNITY_EDITOR
+            var scroller = listView.Q<Scroller>();
+            listView.RegisterCallback<WheelEvent>(@event => {
+                scroller.value +=  @event.delta.y * 100;
+                @event.StopPropagation();
+            });
+#else
+            var scroller = listView.Q<Scroller>();
+            listView.RegisterCallback<WheelEvent>(@event => {
+                scroller.value -=  @event.delta.y * 10000;
+                @event.StopPropagation();
+            });
+#endif
         }
     }
 

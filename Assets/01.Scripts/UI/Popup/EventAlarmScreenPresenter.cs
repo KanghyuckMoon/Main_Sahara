@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,16 +8,14 @@ using UI.Production;
 
 namespace UI.EventAlarm
 {
-    public class EventAlarmScreenPresenter : MonoBehaviour,IScreen,IPopupPr
+    public class EventAlarmScreenPresenter : MonoBehaviour,IPopupPr
     {
         private UIDocument uiDocument; 
         [SerializeField]
         private EventAlarmScreenView alarmScreenView;
 
-
         private UIConstructor<EventAlarmView> eventAlarmConstructor;
 
-        // 프로퍼티 
         public PopupType PopupType  => PopupType.EventAlarm; 
         public IUIController UIController { get; set; }
 

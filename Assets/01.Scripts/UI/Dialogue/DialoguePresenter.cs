@@ -37,7 +37,14 @@ using Inventory;
         private Action _endCallback = null; // 대화 끝났을 떄 호출
 
         private bool isSelect = false; // 대화 선택창이 떴는가 
+        
+        private Action onActiveScreenEvt = null; 
         // 프로퍼티 
+        public Action OnActiveScreen
+        {
+            get => onActiveScreenEvt;
+            set => onActiveScreenEvt = value;
+        }
         public IUIController UIController { get; set; }
 
         public bool IsDialogue

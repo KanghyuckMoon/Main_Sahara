@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UI.UtilManager;
+using System; 
 using UnityEngine;
 
 namespace UI.Base
 {
     public interface IScreen
     {
+        public Action OnActiveScreen { get; set; }
         public IUIController UIController { get; set; }
         public void Init(IUIController _uiController)
         {   
@@ -18,6 +20,7 @@ namespace UI.Base
 
     public abstract class AbBaseScreen : IScreen
     {
+        public Action OnActiveScreen { get; set; }
         public abstract IUIController UIController { get; set; }
 
         public virtual bool ActiveView()

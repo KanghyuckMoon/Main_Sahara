@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,13 @@ using Streaming;
 using Module;
 using Effect;
 using Utill.Random;
+using Detect;
+using Random = UnityEngine.Random;
+using UnityEngine.Events;
 
 namespace Spawner
 {
-    public class SlideRandomMonsterSpawner : MonoBehaviour
+    public class SlideRandomMonsterSpawner : MonoBehaviour, IReturnFunction
     {
         //풀 관련
         //퍼센트 배열
@@ -74,7 +78,11 @@ namespace Spawner
 			
             obj.SetActive(true);
         }
-        
+
+        public UnityAction ReturnFunction()
+        {
+            return SpawnRandomMonsterFromRandomListSO;
+        }
     }
 }
 

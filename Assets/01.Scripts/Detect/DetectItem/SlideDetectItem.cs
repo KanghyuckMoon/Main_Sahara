@@ -6,6 +6,10 @@ using UnityEngine;
 using DG.Tweening;
 using Effect;
 
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+#endif
+
 namespace Detect
 {
     public class SlideDetectItem : BaseDetectItem
@@ -48,7 +52,37 @@ namespace Detect
             {
                 rewardObj.transform.position = _hit.point;
             }
-        }        
+        }
+        
+        [ContextMenu("LogNotRewardObject")]
+        public void LogNotRewardObject()
+        {
+            if (rewardObj == null)
+            {
+                Debug.Log("null rewardObject", gameObject);
+            }
+            else if (rewardObj.name != "Reward")
+            {
+                Debug.Log("not rewardObject", gameObject);
+            }
+        }
+
+        [ContextMenu("AddFunction")]
+        public void AddFunction()
+        {
+            if (rewardObj == null)
+            {
+                return;
+            }
+            var _function = rewardObj.GetComponent<IReturnFunction>();
+            if (_function is not null)
+            {
+                getoutEventAfter.AddListener(_function.ReturnFunction());
+                EditorSceneManager.MarkSceneDirty(gameObject.scene);
+            }
+            
+        }
+        
         #endif
     }   
 }
