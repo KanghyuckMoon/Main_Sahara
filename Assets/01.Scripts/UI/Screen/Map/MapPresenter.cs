@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Utill.Measurement;
-using UI.Base; 
+using UI.Base;
+using Random = UnityEngine.Random;
 
 namespace UI
 {
@@ -23,7 +25,13 @@ namespace UI
         [SerializeField]
         private MIniMapComponent miniMapComponent;
 
-        // ������Ƽ 
+        private Action onActiveScreenEvt = null; 
+        // 프로퍼티 
+        public Action OnActiveScreen
+        {
+            get => onActiveScreenEvt;
+            set => onActiveScreenEvt = value;
+        }
         public IUIController UIController { get; set; }
         public MapView MapView => mapView;
         public MapInfo MapInfo => miniMapComponent.MapInfo; 

@@ -15,6 +15,14 @@ namespace UI.Option
         [SerializeField]
         private OptionView optionView; 
         
+        private Action onActiveScreenEvt = null;
+
+        // 프로퍼티 
+        public Action OnActiveScreen
+        {
+            get => onActiveScreenEvt;
+            set => onActiveScreenEvt = value;
+        }
         public IUIController UIController { get; set; }
 
         private void Awake()
