@@ -141,6 +141,7 @@ namespace UI.Dialogue
 
         public void ActiveViewS(bool _isActive)
         {
+            DOTween.KillAll(); 
             float targetV, nowV;
             targetV = _isActive ? 1 : 0;
             nowV = _isActive ? 0 : 1;

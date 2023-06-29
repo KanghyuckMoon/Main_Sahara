@@ -80,7 +80,7 @@ using Inventory;
         {
             // 처음 대화시 isDialogue를 true로 설정해준다. 
             if (isDialogue == true) return;
-
+            isDialogue = true; 
             StartText(_name, _dialogue, _callback);
         }
 
