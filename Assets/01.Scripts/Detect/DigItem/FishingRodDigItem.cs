@@ -28,8 +28,17 @@ public class FishingRodDigItem : BaseDigItem
         var playerAnimator =  transform.root.GetComponentInParent<Animator>();
         if(targetItem is not null)
         {
-            Debug.Log("GetOut");
+            Debug.Log("Check");
             playerAnimator.Play(animString);
+        }
+    }
+
+    public override void Dig()
+    {
+        if(targetItem is not null)
+        {
+            Debug.Log("GetOut");
+            targetItem.GetOut();
         }
     }
 }
