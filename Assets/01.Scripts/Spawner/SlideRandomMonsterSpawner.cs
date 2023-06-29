@@ -41,21 +41,21 @@ namespace Spawner
             for(;_randomRange-- > 0 ; )
             {
                 int _index = StaticRandom.Choose(_randomMonsterListSO.randomPercentArr);
-                RandomSpawn(_randomMonsterListSO.spawnMonsterDataArr[_index]);
+                StartCoroutine(RandomSpawn(_randomMonsterListSO.spawnMonsterDataArr[_index]));
             }
         }
 
-        private void RandomSpawn(RandomMonsterData _randomMonsterData)
+        private IEnumerator RandomSpawn(RandomMonsterData _randomMonsterData)
         {
             int _randomRange = Random.Range(_randomMonsterData.minSpawnCount, _randomMonsterData.maxSpawnCount + 1);
             for(; _randomRange-- > 0; )
             {
-                StartCoroutine(Spawn(_randomMonsterData));
+                yield return new WaitForSeconds(1.5f);
+                Spawn(_randomMonsterData);
             }
         }
-        private IEnumerator Spawn(RandomMonsterData _randomMonsterData)
+        private void Spawn(RandomMonsterData _randomMonsterData)
         {
-            yield return new WaitForSeconds(Random.Range(0.1f, 0.3f));
             Vector3 _spawnPos = transform.position;
             GameObject obj = ObjectPoolManager.Instance.GetObject(_randomMonsterData.enemyAddress);
             ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
@@ -72,7 +72,7 @@ namespace Spawner
             obj.transform.position = _spawnPos;
             var _module = obj.GetComponent<AbMainModule>();
             _module.attackedTime = 0f;
-            _module.knockBackVector = Vector3.up;
+            _module.knockBackVector = new Vector3(Random.Range(-0.5f, 0.5f),1,Random.Range(-0.5f, 0.5f));
             _module.knockBackPower = 15;
             EffectManager.Instance.SetEffectDefault(spawnEffectAddress, _spawnPos, Quaternion.identity);
 			
