@@ -140,9 +140,7 @@ namespace LockOn
 
 
         public static float DistancePointLine(Vector3 point, Vector3 lineStart, Vector3 lineEnd)
-
         {
-
             return Vector3.Magnitude(ProjectPointLine(point, lineStart, lineEnd) - point);
 
         }
@@ -150,9 +148,7 @@ namespace LockOn
 
 
         public static Vector3 ProjectPointLine(Vector3 point, Vector3 lineStart, Vector3 lineEnd)
-
         {
-
             Vector3 rhs = point - lineStart;
 
             Vector3 vector = lineEnd - lineStart;

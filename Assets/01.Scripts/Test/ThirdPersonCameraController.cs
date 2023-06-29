@@ -33,6 +33,8 @@ namespace ForTheTest
 
         public bool isUIOn;
 
+        private ThirdPersonCameraController playerCam;
+
         private Cinemachine3rdPersonFollow followCam; // so we can manipulate the 'camera side' property dynamically
 
         // current camera rotation values
@@ -62,23 +64,21 @@ namespace ForTheTest
             {
                 Debug.Log("Need to connect your 3rd person vcam to the CameraController!");
             }
-
-
         }
 
         public void ChangeCamera(float x, float y)
         {
-            DOTween.To(() => cameraX, a =>
+            /*DOTween.To(() => cameraX, a =>
             {
                 cameraX = a;
                 invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
-            }, x, 1f);
+            }, x, 1f);*/
             DOTween.To(() => cameraY, a =>
                 {
                     cameraY = a;
                     invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
                 }
-                , y, 1f);
+                , FindFront(cameraY), 1f);
         }
 
         private void Update()
@@ -151,6 +151,12 @@ namespace ForTheTest
                     invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
                 }
             }
+        }
+
+        private int FindFront(float _num)
+        {
+            var _a = _num / 360;
+            return (int)(_num - _a);
         }
     }
 }
