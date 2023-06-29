@@ -22,8 +22,7 @@ public class Idle : StateMachineBehaviour
         
         mainModule.SetActiveAnimatorRoot(0);
         
-        mainModule.CanMove = true;
-        
+        //mainModule.CanMove = true;
         
         _half = 0.65f;//stateInfo.length - (stateInfo.length / 9);
         current = 0;
