@@ -95,6 +95,9 @@ namespace UI
                 ElementCtrlComponent.Update();
             }
             markerSetComp.Update();
+            //LineCreateManager.Instance.UpdateLinesPos(ScreenType.Map, (Vector2)mapView.Map.transform.position); 
+            //LineCreateManager.Instance.UpdateLinesScale(ScreenType.Map, (Vector2)mapView.Map.transform.scale);
+            
             LineCreateManager.Instance.UpdateLinesPos(ScreenType.Map, (Vector2)mapView.Map.transform.position); 
             LineCreateManager.Instance.UpdateLinesScale(ScreenType.Map, (Vector2)mapView.Map.transform.scale);
         }

@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1630992598434033444
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7404632275744897969}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7404632275744897969
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630992598434033444}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.81}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3690666114823516560}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3690666114732375865
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +51,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666114742541294
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +100,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666114813887816
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +189,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3690666114965403565}
-  - {fileID: 7404632275744897969}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -253,17 +219,9 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3690666114823516570}
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Height: 1.6
   m_Radius: 0.85
   m_SlopeLimit: 45
@@ -324,9 +282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 109468037}
   attackMulti: 1
-  hitEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &7783330879738541321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: mc_Km_DataSO
-  playerdata: {fileID: 0}
 --- !u!114 &7783330879738541322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,19 +372,15 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
-  isChargeJumpOn: 0
-  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -9.8
   groundOffset: 1
-  groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
-  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -441,13 +391,10 @@ MonoBehaviour:
   visualObject: {fileID: 3690666114965403566}
   model: {fileID: 3690666114914965622}
   animator: {fileID: 0}
-  jumpstrenght: 0
   leftFeet: {fileID: 0}
   rightFeet: {fileID: 0}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
-  frontInput: 0
-  ignoreHitType: 0
   aiSOAddress: mc_Km_AISO
   pathHarver: {fileID: 0}
 --- !u!1 &3690666114875874389
@@ -581,7 +528,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3690666114914965622}
   - component: {fileID: 3690666114914965621}
-  - component: {fileID: 277428929713438373}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -675,19 +621,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000050750095, y: -0.0009142313, z: 0.000008250587}
     m_Extent: {x: 0.004060234, y: 0.0012699604, z: 0.004052602}
   m_DirtyAABB: 0
---- !u!114 &277428929713438373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3690666114914965623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4435a6c41f11f4e97b9bc2dfed81bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 7404632275744897969}
 --- !u!1 &3690666114923207523
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +704,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666114955588024
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,7 +925,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666115164322049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1063,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666115197285527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,7 +1400,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666115376776879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,7 +1951,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666115527738988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,7 +2000,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666115551232489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,7 +2573,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666115917266551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2984,7 +2910,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666116070834044
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,7 +3135,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666116223707393
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,7 +3184,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666116234177281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,7 +3375,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666116298076876
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,7 +3562,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666116375099313
 GameObject:
   m_ObjectHideFlags: 0
@@ -4026,7 +3947,6 @@ MonoBehaviour:
   owner: {fileID: 3690666114823516570}
   isTimeIndexCange: 1
   isOnEnalbe: 1
-  isStage: 0
 --- !u!1 &3690666116641077646
 GameObject:
   m_ObjectHideFlags: 0

@@ -80,7 +80,6 @@ using Inventory;
         {
             // 처음 대화시 isDialogue를 true로 설정해준다. 
             if (isDialogue == true) return;
-
             StartText(_name, _dialogue, _callback);
         }
 
@@ -130,6 +129,7 @@ using Inventory;
                         //index = 0;    
                         //ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestActive(fullText);
+                        NextDialogue(); 
                         //UIConstructorManager.Instance.EventAlarmPresenter.TestEventAlarm();
                         return;
                     case "!TCLEAR":
@@ -138,6 +138,7 @@ using Inventory;
                         //index = 0;
                         //ActiveViewS(false);
                         QuestManager.Instance.ChangeQuestClearForce(fullText);
+                        NextDialogue(); 
                         return;
                     case "!CHOICE":
                         ActiveSelect(_nameText, fullText);
@@ -251,11 +252,7 @@ using Inventory;
                     {
                         if(isSelecting == false)
                         {
-                            index++;
-                            SetCodeToText();
-                            Debug.Log("대화 다음!!");
-                            // 사운드 재생
-                            UIUtilManager.Instance.PlayUISound(UISoundType.NextDialogue);
+                            NextDialogue(); 
                         }
                         
                     }
@@ -267,6 +264,14 @@ using Inventory;
             }
         }
 
+        private void NextDialogue()
+        {
+            index++;
+            SetCodeToText();
+            Debug.Log("대화 다음!!");
+            // 사운드 재생
+            UIUtilManager.Instance.PlayUISound(UISoundType.NextDialogue);
+        }
         [SerializeField]
         private bool isRIchText = false;
         [SerializeField]
