@@ -116,6 +116,7 @@ using UI.Base;
             inventoryCam.gameObject.SetActive(_isActive);
 
             EventManager.Instance.TriggerEvent(EventsType.UpdateQuickSlot);
+            UIUtilManager.Instance.PlayUISound(UISoundType.ShowScreen);
 
             if (_isActive == true)
             {

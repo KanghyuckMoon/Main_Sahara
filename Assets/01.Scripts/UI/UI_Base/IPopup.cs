@@ -14,11 +14,13 @@ public interface IPopup
     public IEnumerator TimerCo(float _time)
     {
         float _curTime = 0f;
+        bool isActiveTween = false; 
         while (true)
         {
             _curTime += Time.deltaTime;
-            if (_curTime > 0.1f)
+            if (isActiveTween == false && _curTime > 0.1f)
             {
+                isActiveTween = true; 
                 ActiveTween();
             }
 
