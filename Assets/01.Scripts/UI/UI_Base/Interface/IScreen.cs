@@ -18,7 +18,7 @@ namespace UI.Base
         public void ActiveView(bool _isActive);
     }
 
-    public abstract class AbBaseScreen : IScreen
+    public abstract class AbBaseScreen : MonoBehaviour, IScreen
     {
         public Action OnActiveScreen { get; set; }
         public abstract IUIController UIController { get; set; }

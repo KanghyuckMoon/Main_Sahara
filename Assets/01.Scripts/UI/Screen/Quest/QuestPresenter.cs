@@ -14,7 +14,7 @@ using UI.Base;
 
     namespace UI.Quest
 {
-    public class QuestPresenter : MonoBehaviour, IScreen
+    public class QuestPresenter :AbBaseScreen
     {
         [SerializeField]
         private UIDocument uiDocument;
@@ -30,7 +30,7 @@ using UI.Base;
             get => onActiveScreenEvt;
             set => onActiveScreenEvt = value;
         }
-        public IUIController UIController { get; set; }
+        public override IUIController UIController { get; set; }
 
         private void Awake()
         {
@@ -97,15 +97,17 @@ using UI.Base;
             this.questView.InitListView(); 
         }
 
-        public bool ActiveView()
+        public override bool ActiveView()
         {
+            base.ActiveView(); 
             bool _isActive = questView.ActiveScreen();
             questView.ActiveHeader(_isActive);
             return _isActive; 
         }
 
-        public void ActiveView(bool _isActive)
+        public override void ActiveView(bool _isActive)
         {
+            base.ActiveView(_isActive); 
             questView.ActiveScreen(_isActive);
         }
 

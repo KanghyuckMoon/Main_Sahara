@@ -12,7 +12,7 @@ using UI.Base;
     namespace UI.Inventory
 {
     [Serializable]
-    public class InventoryPresenter : MonoBehaviour, IScreen
+    public class InventoryPresenter : AbBaseScreen
     {
         [SerializeField] private UIDocument uiDocument;
         [SerializeField] private Camera inventoryCam;
@@ -31,7 +31,7 @@ using UI.Base;
             get => onActiveScreenEvt;
             set => onActiveScreenEvt = value;
         }
-        public IUIController UIController { get; set; }
+        public override IUIController UIController { get; set; }
 
         [ContextMenu("버튼 초기화 테스트 ")]
         public void Test()
@@ -110,13 +110,13 @@ using UI.Base;
             }
         }
 
-        public bool ActiveView()
+        public override  bool ActiveView()
         {
+            base.ActiveView();
             bool _isActive = inventoryView.ActiveScreen();
             inventoryCam.gameObject.SetActive(_isActive);
 
             EventManager.Instance.TriggerEvent(EventsType.UpdateQuickSlot);
-            UIUtilManager.Instance.PlayUISound(UISoundType.ShowScreen);
 
             if (_isActive == true)
             {
@@ -125,8 +125,9 @@ using UI.Base;
             return _isActive;
         }
 
-        public void ActiveView(bool _isActive)
+        public override  void ActiveView(bool _isActive)
         {
+            base.ActiveView(_isActive); 
             inventoryCam.gameObject.SetActive(_isActive); // 인벤토리 활성화시에만 카메라 활성화 
             inventoryView.ActiveScreen(_isActive);
             if (_isActive == false)
