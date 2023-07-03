@@ -2,11 +2,10 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/Popup.uss?fileID=7433441132597879392&amp;guid=7f506964a6cb6c5428fe7aa421dcaf79&amp;type=3#Popup" />
     <Style src="project://database/Assets/UIToolkit/Uss/UpgradeScreen.uss?fileID=7433441132597879392&amp;guid=1ee34cea76d74de4eb37c92abf751a82&amp;type=3#UpgradeScreen" />
-    <ui:VisualElement name="get_newitem_entry_view" class="get_newitem hide_get_newitem_popup" style="background-color: rgba(0, 0, 0, 0.2);">
-        <ui:VisualElement name="VisualElement" class="border_base" style="align-items: center; justify-content: center;">
-            <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/01.Scripts/UI/TEST%201/MidGrad.png?fileID=2800000&amp;guid=83c76b0c2f2eeb846920e6007e453757&amp;type=3#MidGrad&apos;); -unity-background-image-tint-color: rgba(0, 0, 0, 0.13); -unity-background-scale-mode: stretch-to-fill;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="center_align_parent" class="center_align border_base" style="justify-content: flex-start;">
+    <ui:VisualElement name="get_newitem_entry_view" class="get_newitem hide_get_newitem_popup" style="-unity-background-scale-mode: stretch-to-fill; -unity-slice-left: 20; -unity-slice-right: 20;">
+        <ui:VisualElement name="VisualElement" class="border_base" style="align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.11); display: none;" />
+        <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/01.Scripts/UI/TEST%201/MidGrad.png?fileID=2800000&amp;guid=83c76b0c2f2eeb846920e6007e453757&amp;type=3#MidGrad&apos;); -unity-background-image-tint-color: rgba(0, 0, 0, 0.13); -unity-background-scale-mode: stretch-to-fill;" />
+        <ui:VisualElement name="center_align_parent" class="center_align border_base" style="justify-content: flex-start; flex-grow: 1;">
             <ui:VisualElement name="VisualElement" class="border_base" style="align-items: center; justify-content: center;">
                 <ui:VisualElement name="line_parent" style="height: 90%; width: 95%; border-top-width: 0; border-bottom-width: 0; border-left-color: rgba(152, 137, 96, 0.54); border-right-color: rgba(152, 137, 96, 0.54); border-top-color: rgba(152, 137, 96, 0.54); border-bottom-color: rgba(152, 137, 96, 0.54); border-left-width: 0; border-right-width: 0; justify-content: space-between;">
                     <ui:VisualElement name="top_line" class="line_base" />
@@ -22,10 +21,10 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="label_parent" style="bottom: 0; overflow: visible; align-items: center; height: 67%;">
+            <ui:VisualElement name="label_parent" style="bottom: 0; overflow: visible; align-items: center; height: 67%; flex-grow: 1; width: 100%;">
                 <ui:Label text="NEW" display-tooltip-when-elided="true" name="state_label" class="font_base inactive_text" style="font-size: 25px; -unity-text-align: middle-center; color: rgb(212, 185, 113); margin-bottom: 10px;" />
                 <ui:Label text="정정배의 뿅망치" display-tooltip-when-elided="true" name="name_label" class="font_base inactive_text" style="font-size: 40px; -unity-font-style: normal; margin-bottom: 20px; -unity-text-align: upper-center;" />
-                <ui:Label text="마우스 커서 올릴 때 설명창 위치 마우스 커서 올릴 때 설명창 위치 마우스 커서 올릴 때 설명창 위치&#10;" display-tooltip-when-elided="true" name="detail_label" class="font_base inactive_text" style="-unity-text-align: middle-center; width: 55%; white-space: normal; font-size: 20px;" />
+                <ui:Label display-tooltip-when-elided="true" name="detail_label" class="font_base inactive_text" style="-unity-text-align: middle-center; width: 80%; white-space: normal; font-size: 20px; background-color: rgba(0, 0, 0, 0);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -2,6 +2,7 @@
     <ui:Template name="ItemDescription" src="project://database/Assets/ItemDescription.uxml?fileID=9197481963319205126&amp;guid=208a55c32d354ad4b9366b2b9508dbaa&amp;type=3#ItemDescription" />
     <Style src="project://database/Assets/UIToolkit/Uss/InventoryScreen.uss?fileID=7433441132597879392&amp;guid=56c62c7399baf3b4eab12f31d896ee27&amp;type=3#InventoryScreen" />
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
+    <ui:RadioButton label="Radio Button" />
     <ui:VisualElement name="inventory_screen_" style="width: 100%; height: 100%; background-color: rgb(24, 24, 24); position: absolute; display: none;">
         <ui:VisualElement name="Header" class="header">
             <ui:VisualElement style="flex-direction: row; width: 25%; height: 100%; padding-left: 115px; background-color: rgba(55, 55, 55, 0.76);">
@@ -89,7 +90,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <Gradient name="inventory_screen" right-color="#00000000" direction="vertical" left-color="#00000000" class="screen" style="width: 100%; height: 100%; flex-direction: column; opacity: 1;">
+    <Gradient name="inventory_screen" right-color="#00000000" direction="vertical" left-color="#00000000" picking-mode="Ignore" class="screen" style="width: 100%; height: 100%; flex-direction: column; opacity: 1;">
         <ui:VisualElement name="contents" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%;">
             <ui:VisualElement name="Header" class="header" style="flex-direction: row; justify-content: space-between; padding-top: 1.3%;">
                 <ui:VisualElement style="position: relative; flex-direction: row; align-items: center;">
@@ -103,12 +104,12 @@
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row; width: 25%; height: 100%; padding-left: 115px; background-color: rgba(55, 55, 55, 0.76); display: none;" />
             </ui:VisualElement>
-            <ui:VisualElement name="Content" class="content_panel" style="justify-content: flex-start; background-color: rgba(87, 0, 255, 0); margin-bottom: 0; margin-right: 0; margin-top: 0; margin-left: 0; padding-bottom: 20px; padding-left: 40px;">
-                <ui:VisualElement name="left_content_panel" class="left_content_panel">
-                    <ui:VisualElement name="background" style="position: absolute; width: 100%; height: 100%; background-color: rgba(22, 14, 10, 0); background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Make/RectangleCenterGrad.png?fileID=2800000&amp;guid=3abffbc01bbcf1a49baec6f95279c870&amp;type=3#RectangleCenterGrad&apos;); -unity-background-image-tint-color: rgb(0, 0, 0); top: 28px; left: -1px;" />
-                    <ui:VisualElement name="GridView" style="width: 100%; height: 100%;">
-                        <ui:VisualElement name="contents" style="width: 100%; height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 30px; display: flex;">
-                            <ui:VisualElement name="inventory_select" class="inventory_select" style="display: flex;">
+            <ui:VisualElement name="Content" picking-mode="Ignore" class="content_panel" style="justify-content: flex-start; background-color: rgba(87, 0, 255, 0); margin-bottom: 0; margin-right: 0; margin-top: 0; margin-left: 0; padding-bottom: 20px; padding-left: 40px;">
+                <ui:VisualElement name="left_content_panel" picking-mode="Ignore" class="left_content_panel">
+                    <ui:VisualElement name="background" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; background-color: rgba(22, 14, 10, 0); background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Make/RectangleCenterGrad.png?fileID=2800000&amp;guid=3abffbc01bbcf1a49baec6f95279c870&amp;type=3#RectangleCenterGrad&apos;); -unity-background-image-tint-color: rgb(0, 0, 0); top: 28px; left: -1px;" />
+                    <ui:VisualElement name="GridView" picking-mode="Ignore" style="width: 100%; height: 100%;">
+                        <ui:VisualElement name="contents" picking-mode="Ignore" style="width: 100%; height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 30px; display: flex;">
+                            <ui:VisualElement name="inventory_select" picking-mode="Ignore" class="inventory_select" style="display: flex;">
                                 <ui:VisualElement name="top_line" picking-mode="Ignore" class="category_topline" />
                                 <ui:RadioButtonGroup label="Radio Button Group" name="inventory_select_group" value="-1" picking-mode="Ignore" class="item__list-buttonGroup inventory_select_group">
                                     <ui:RadioButton label="Radio Button" name="weapon_button" value="true" class="inven_button" style="display: flex;" />
@@ -119,7 +120,7 @@
                                     <ui:RadioButton label="Radio Button" name="valuable_button" class="inven_button" />
                                     <ui:RadioButton label="Radio Button" name="marker_button" class="inven_button" />
                                 </ui:RadioButtonGroup>
-                                <ui:VisualElement name="bot_line" class="category_botline" />
+                                <ui:VisualElement name="bot_line" picking-mode="Ignore" class="category_botline" />
                                 <ui:VisualElement picking-mode="Ignore" name="accent_pattern" class="accent_pattern">
                                     <ui:VisualElement name="top_pattern" picking-mode="Ignore" style="width: 70px; height: 55px; position: absolute; bottom: 80%; background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;);" />
                                     <ui:VisualElement picking-mode="Ignore" style="height: 100%; width: 100%;" />

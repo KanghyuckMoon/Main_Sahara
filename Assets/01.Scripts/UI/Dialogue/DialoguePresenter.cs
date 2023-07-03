@@ -21,7 +21,7 @@ using Inventory;
 
     namespace UI.Dialogue
 {
-    public class DialoguePresenter : MonoBehaviour, IScreen
+    public class DialoguePresenter :AbBaseScreen
     {
         [SerializeField]
         private UIDocument uiDocument; 
@@ -45,7 +45,8 @@ using Inventory;
             get => onActiveScreenEvt;
             set => onActiveScreenEvt = value;
         }
-        public IUIController UIController { get; set; }
+
+        public override IUIController UIController { get; set; }
 
         public bool IsDialogue
         {
@@ -91,7 +92,7 @@ using Inventory;
         /// <param name="_callback"></param>
         private void StartText(string _name, string _dialogue, Action _callback = null)
         {
-            ActiveViewS(true); // 활성화 하고 
+            ActiveView(true); // 활성화 하고 
     
             StopAllCoroutines();
             index = 0; 
@@ -123,7 +124,7 @@ using Inventory;
                     case "!END":
                         index = 0;
                         fullText = "";
-                        ActiveViewS(false); 
+                        ActiveView(false); 
                         return;
                     case "!TACTIVE":
                         //index = 0;    
@@ -148,21 +149,21 @@ using Inventory;
 //                        UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.BuyShop); // 구매창 활성화 
                         UIController.ActiveScreen(Keys.BuyUI); // 구매창 활성화 
                         index = 0; 
-                        ActiveViewS(false);
+                        ActiveView(false);
                         isDialogue = true; 
                         return;
                     case "!SELL":
                         //UIController.GetScreen<ShopPresenter>(ScreenType.Shop).ActivetShop(ShopType.SellShop); // 판매 창 활성화 
                         UIController.ActiveScreen(Keys.SellUI);
                         index = 0; 
-                        ActiveViewS(false);
+                        ActiveView(false);
                         isDialogue = true; 
                         return;
                     case "!SMITH":
                         //UIController.GetScreen<UpgradePresenter>(ScreenType.Upgrade).ActiveView();
                         UIController.ActiveScreen(Keys.SmithUI);
                         index = 0; 
-                        ActiveViewS(false);
+                        ActiveView(false);
                         isDialogue = true; 
                         return; 
                     case "!MOVE":
@@ -399,12 +400,7 @@ using Inventory;
             throw new NotImplementedException();
         }
 
-        public void ActiveView(bool _isActive)
-        {
-            dialogueView.ActiveView(_isActive); 
-        }
-       
-        private void ActiveViewS(bool _isActive)
+        public override void ActiveView(bool _isActive)
         {
             isDialogue = _isActive;
             dialogueView.ActiveViewS(_isActive);

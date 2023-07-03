@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,14 @@ namespace UI.Popup
         private VisualElement parent;
         
         public VisualElement Parent => parent; 
+        
+        private Action onInactiveEvt = null; 
+        // 프로퍼티 
+        public Action OnInactiveEvt
+        {
+            get => onInactiveEvt;
+            set => onInactiveEvt = value;
+        }
         public PopupGetItemPr()
         {
             var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(PopupGetItemView));

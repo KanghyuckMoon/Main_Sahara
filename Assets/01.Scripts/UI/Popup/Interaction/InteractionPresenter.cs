@@ -24,8 +24,15 @@ namespace UI.Popup
 
         private MapInfo mapInfo;
 
-        private Camera cam; 
+        private Camera cam;
+
+        private Action onInactiveEvt = null; 
        // 프로퍼티 
+       public Action OnInactiveEvt
+       {
+           get => onInactiveEvt;
+           set => onInactiveEvt = value;
+       }
        public VisualElement Parent => parent; 
         
         public InteractionPresenter()
