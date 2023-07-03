@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utill.Pattern;
+using TimeManager;
 
 namespace Module
 {
@@ -29,7 +30,9 @@ namespace Module
         {
             if (abMainModule.IsDead)
             {
-                StartCoroutine(SceneMove());
+                StaticTime.EntierTime = 0f;
+                //여기에 캔버스 활성화되는 코드 넣어주세요.
+                //StartCoroutine(SceneMove());
             }
         }
 
