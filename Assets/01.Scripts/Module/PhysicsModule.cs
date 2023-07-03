@@ -150,7 +150,7 @@ namespace Module
                         switch (_inGameHitBox.HitBoxData.hitBoxType)
                         {
                             case HitBoxType.Default:
-                                knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
+                                    knockBackCoroutine = mainModule.StartCoroutine(HitKnockBack(_inGameHitBox, _closerPoint));
                                 break;
                             case HitBoxType.DamageOnly:
                                 break;
