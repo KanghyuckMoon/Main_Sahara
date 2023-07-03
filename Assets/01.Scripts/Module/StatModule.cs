@@ -94,5 +94,10 @@ namespace Module
             base.OnDisable();
             ClassPoolManager.Instance.RegisterObject<StatModule>(this);
         }
+
+        public void Restore()
+        {
+            statData.CurrentHp = statData.MaxHp;
+        }
     }
 }
