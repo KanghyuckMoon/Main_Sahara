@@ -1586,11 +1586,11 @@ MonoBehaviour:
     width: 0.2
   m_Looped: 0
   m_Waypoints:
-  - position: {x: -92.06985, y: 4069.069, z: -23.413736}
+  - position: {x: -92.06985, y: 4073.8003, z: -23.413736}
     roll: 0
-  - position: {x: -86.25244, y: 4065.0999, z: -39.70803}
+  - position: {x: -86.25244, y: 4073.8, z: -39.70803}
     roll: 0
-  - position: {x: -102.074715, y: 4066.8489, z: -43.72805}
+  - position: {x: -102.074715, y: 4073.8, z: -43.72805}
     roll: 0
 --- !u!1 &558956285
 GameObject:
@@ -1702,10 +1702,10 @@ MonoBehaviour:
       isTalk: 0
       isTalkToCutScene: 0
       isNotUseTrackLookAt: 0
-    - cutSceneType: 11
-      target1: {fileID: 1799531370}
+    - cutSceneType: 1
+      target1: {fileID: 1489055800}
       target2: {fileID: 0}
-      lookAtTarget: {fileID: 0}
+      lookAtTarget: {fileID: 1799531370}
       trackTarget: {fileID: 0}
       smoothPath: {fileID: 556659246}
       npctype: 1
@@ -1752,6 +1752,7 @@ Transform:
   - {fileID: 817364577}
   - {fileID: 556659245}
   - {fileID: 1799531370}
+  - {fileID: 1489055800}
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2772,6 +2773,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1489055799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489055800}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1489055800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489055799}
+  m_LocalRotation: {x: -0.14374694, y: -0.77266115, z: 0.18857637, w: -0.5888723}
+  m_LocalPosition: {x: -104.867874, y: 4087.6804, z: -31.157063}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 608350066}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1566256862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3983,7 +4015,7 @@ MonoBehaviour:
   targetModel: {fileID: 820883113}
   targetEffectTrm: {fileID: 6862984307705517318}
   effectAddress: SandUpVFX
-  heightUpTime: 10
+  heightUpTime: 6
   shakeStrength: 0
   getoutEventBefore:
     m_PersistentCalls:
@@ -4012,6 +4044,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6862984308473863840}
+        m_TargetAssemblyTypeName: Quest.EventQuest, Quest
+        m_MethodName: QuestSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 462600301}
         m_TargetAssemblyTypeName: CutScene.SetPlayerTransform, CutScene
         m_MethodName: SetPlayerCollider
@@ -4027,18 +4071,6 @@ MonoBehaviour:
   getoutEventAfter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 462600299}
-        m_TargetAssemblyTypeName: EventTOD, TimeOfDay
-        m_MethodName: SetIsUpdateOn
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 462600301}
         m_TargetAssemblyTypeName: CutScene.SetPlayerTransform, CutScene
         m_MethodName: PlayerTransformNull
@@ -4051,10 +4083,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6862984308473863840}
-        m_TargetAssemblyTypeName: Quest.EventQuest, Quest
-        m_MethodName: QuestSet
-        m_Mode: 1
+      - m_Target: {fileID: 462600301}
+        m_TargetAssemblyTypeName: CutScene.SetPlayerTransform, CutScene
+        m_MethodName: SetPlayerCollider
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4063,9 +4095,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 462600301}
-        m_TargetAssemblyTypeName: CutScene.SetPlayerTransform, CutScene
-        m_MethodName: SetPlayerCollider
+      - m_Target: {fileID: 462600299}
+        m_TargetAssemblyTypeName: EventTOD, TimeOfDay
+        m_MethodName: SetIsUpdateOn
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
