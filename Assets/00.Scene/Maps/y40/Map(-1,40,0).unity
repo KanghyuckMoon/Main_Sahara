@@ -3984,10 +3984,22 @@ MonoBehaviour:
   targetEffectTrm: {fileID: 6862984307705517318}
   effectAddress: SandUpVFX
   heightUpTime: 10
-  shakeStrength: 0.7
+  shakeStrength: 0
   getoutEventBefore:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 608350065}
+        m_TargetAssemblyTypeName: CutScene.CutSceneColliderStarter, CutScene
+        m_MethodName: CutSceneStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 462600301}
         m_TargetAssemblyTypeName: CutScene.SetPlayerTransform, CutScene
         m_MethodName: PlayerTransformTarget
@@ -4000,10 +4012,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 608350065}
-        m_TargetAssemblyTypeName: CutScene.CutSceneColliderStarter, CutScene
-        m_MethodName: CutSceneStart
-        m_Mode: 1
+      - m_Target: {fileID: 462600301}
+        m_TargetAssemblyTypeName: CutScene.SetPlayerTransform, CutScene
+        m_MethodName: SetPlayerCollider
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4043,6 +4055,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Quest.EventQuest, Quest
         m_MethodName: QuestSet
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 462600301}
+        m_TargetAssemblyTypeName: CutScene.SetPlayerTransform, CutScene
+        m_MethodName: SetPlayerCollider
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
