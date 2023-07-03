@@ -277,6 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 531271823052535007}
   - component: {fileID: 7587974280913669347}
+  - component: {fileID: 4840976094606527671}
   m_Layer: 18
   m_Name: SK_Venodonte
   m_TagString: Untagged
@@ -392,6 +393,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.010617435, y: 0.29818976, z: 0.031524688}
     m_Extent: {x: 0.6485984, y: 1.1917161, z: 0.7005781}
   m_DirtyAABB: 0
+--- !u!114 &4840976094606527671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213936397263741586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4435a6c41f11f4e97b9bc2dfed81bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 7813038609837071868}
 --- !u!1 &1569858836903065943
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +563,37 @@ Transform:
   m_Father: {fileID: 1633443099385770859}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 11.834721, y: 21.498896, z: 29.308935}
+--- !u!1 &2735055367966615323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7813038609837071868}
+  m_Layer: 18
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7813038609837071868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2735055367966615323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.468, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4619211757620843055}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2851828381211533998
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +967,7 @@ Transform:
   m_Children:
   - {fileID: 8791790486105807291}
   - {fileID: 531271823052535007}
+  - {fileID: 7813038609837071868}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -954,9 +1000,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5427237988666706069}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 0
   m_Radius: 0.5
   m_SlopeLimit: 45
@@ -1029,7 +1083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf2d32bd1b0b524ab34a9d90460f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEffectSO: {fileID: 11400000, guid: 3b349d43c163ce2469e8d4fd0d20bc8b, type: 2}
+  moveAnimationEffectSO: {fileID: 11400000, guid: 3b349d43c163ce2469e8d4fd0d20bc8b, type: 2}
+  attackAnimationEffectSO: {fileID: 0}
   parent: {fileID: 5427237988666706069}
 --- !u!114 &1655794461423274066
 MonoBehaviour:
@@ -1044,6 +1099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOPath: xc_Kr_DataSO
+  playerdata: {fileID: 0}
 --- !u!114 &1655794461423274067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,6 +1114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 1655794461423274076}
   attackMulti: 1
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1655794461423274068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1111,15 +1170,19 @@ MonoBehaviour:
   canConsecutiveAttack: 0
   isDash: 0
   isConsecutiveWeapon: 0
+  isChargeJumpOn: 0
+  isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0
+  groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
   slopeVector: {x: 0, y: 0, z: 0}
+  canCrawlTheWall: 0
   hitDelay: 0
   lockOn: 0
   groundLayer:
@@ -1130,12 +1193,17 @@ MonoBehaviour:
   visualObject: {fileID: 1213936397263741586}
   model: {fileID: 531271823052535007}
   animator: {fileID: 1655794461423274069}
+  jumpstrenght: 0
   leftFeet: {fileID: 6477999397971195391}
   rightFeet: {fileID: 4458746367607068567}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
+  frontInput: 0
+  ignoreHitType: 0
   aiSOAddress: xc_Kr_AISO
   pathHarver: {fileID: 0}
+  hudType: 0
+  bossName: TestBoss
 --- !u!114 &3420433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1220,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseHeight: 0
+  height: 0
 --- !u!1 &5452874347617569565
 GameObject:
   m_ObjectHideFlags: 0
