@@ -115,6 +115,7 @@ namespace Detect
             }
         }
 
+        [ContextMenu("GetOut")]
         public virtual void GetOut()
         {
             if (isGetOut)

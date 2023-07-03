@@ -192,7 +192,14 @@ namespace Module
                 _knockBackVector = Vector3.zero;
             }
 
-            mainModule.ObjDirection = _moveVector3;
+            if (mainModule.ObjDir != Vector2.zero)
+            {
+                mainModule.ObjDirection = _moveVector3;
+            }
+            else
+            {
+                _moveVector3 = Vector3.zero;
+            }
 
             if (mainModule.IsSlope)
             {
@@ -212,15 +219,11 @@ namespace Module
                 mainModule.CharacterController.Move(
                     (mainModule.SlopeVector + new Vector3(0, _gravity, 0)) *
                     mainModule.PersonalDeltaTime);
-                //var _position = mainModule.transform.position;
-                //Debug.DrawLine(_position, _position + mainModule.SlopeVector.normalized, Color.magenta);
             }
 
             #endregion
 
             Animator.SetFloat(MoveSpeed, animationBlend);
-
-            
         }
 
         public void Crawling()
@@ -239,12 +242,20 @@ namespace Module
             if (Physics.Raycast(_ray, out RaycastHit _hitInfo, 0.2f))
             {
                 var _slopRotation = Quaternion.FromToRotation(Vector3.up, _hitInfo.normal);
+                if (mainModule.ObjDir == Vector2.zero)
+                {
+                            _slopRotation = Quaternion.identity;
+                    velocity = Vector3.zero;
+                    return Vector3.zero;
+                }
+
                 var _adjustedVelocity = _slopRotation * velocity;
 
                 if (_adjustedVelocity.y < 0)
                 {
                     addSpeed = ((0.5f - _adjustedVelocity.y) * (0.3f - _adjustedVelocity.y) * 1.1f);
-                    Logging.Log(addSpeed);
+
+                    //Logging.Log(addSpeed);
                     return _adjustedVelocity;
                 }
             }
