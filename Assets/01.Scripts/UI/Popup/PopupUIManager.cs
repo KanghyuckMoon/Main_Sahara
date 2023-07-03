@@ -120,7 +120,7 @@ namespace UI.Popup
                     //if (isCurPopupu == false)
                     //{
                      //   isCurPopupu = true; 
-                        ItemData _data = dataStack.Pop(); 
+                      //  ItemData _data = dataStack.Pop(); 
                         var _popup  = CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem, _itemData,3f);
                       //  _popup.OnInactiveEvt += () =>
                        // {
