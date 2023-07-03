@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,8 +31,13 @@ namespace UI
                     SceneManager.LoadScene("StartCutScene", LoadSceneMode.Single);
                 });
            
-            titleView.AddButtonEventToDic(TitleView.Buttons.end_button, () => Debug.Log("����"));
+            titleView.AddButtonEventToDic(TitleView.Buttons.end_button, Application.Quit);
 
+        }
+
+        private void OnDisable()
+        {
+            titleView.RemoveButtonEvents(); 
         }
 
         IEnumerator Start()
