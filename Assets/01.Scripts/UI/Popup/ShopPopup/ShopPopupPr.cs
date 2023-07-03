@@ -21,6 +21,14 @@ namespace UI.Popup
 
         private Action undoCallback = null; 
         private const string animateStr = "popup_inactive";
+        
+        private Action onInactiveEvt = null; 
+        // 프로퍼티 
+        public Action OnInactiveEvt
+        {
+            get => onInactiveEvt;
+            set => onInactiveEvt = value;
+        }
         public VisualElement Parent => parent; 
         
         public ShopPopupPr()

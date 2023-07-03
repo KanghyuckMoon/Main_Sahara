@@ -7,6 +7,7 @@ using UI.Popup;
 using Utill.Pattern;
 using Inventory;
 using Quest;
+using TimeManager;
 
 public class PopupTest : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PopupTest : MonoBehaviour
                 new QuestData(QuestDataSo.questKey,QuestDataSo.nameKey, QuestDataSo.explanationKey
                     ,QuestDataSo.earlyQuestState,QuestDataSo.questConditionType, QuestDataSo.questCreateObjectSOList,QuestDataSo.linkQuestKeyList, QuestDataSo.isTalkQuest));
         }   
+        
         if (Input.GetKeyDown(KeyCode.C))
         {
             PopupUIManager.Instance.CreatePopup<EventAlarmPr>(PopupType.EventAlarm, new QuestData(ClearQuestDataSo.questKey,ClearQuestDataSo.nameKey, ClearQuestDataSo.explanationKey
@@ -55,5 +57,6 @@ public class PopupTest : MonoBehaviour
             PopupUIManager.Instance.CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem,
                 itemData,3f);
         }
+       
     }
 }

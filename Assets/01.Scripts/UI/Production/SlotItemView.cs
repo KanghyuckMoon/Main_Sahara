@@ -96,19 +96,19 @@ namespace UI.Production
         public void AddHoverEvent(Action _callback)
         {
             this.mouseOverEvt = _callback;
-            AddElementEvent<MouseOverEvent>((int)Elements.image, _callback); 
+            AddElementEvent<PointerOverEvent>((int)Elements.image, _callback); 
         }
         public void AddOutEvent(Action _callback)
         {
             this.mouseOutEvt = _callback;
-            AddElementEvent<MouseOutEvent>((int)Elements.image, _callback);
+            AddElementEvent<PointerOutEvent>((int)Elements.image, _callback);
         }
 
         public void RemoveEvent()
         {
             RemoveElementEvent<ClickEvent>((int)Elements.image, clickEvt);
-            RemoveElementEvent<MouseOverEvent>((int)Elements.image, mouseOverEvt);
-            RemoveElementEvent<MouseOutEvent>((int)Elements.image, mouseOutEvt);
+            RemoveElementEvent<PointerOverEvent>((int)Elements.image, mouseOverEvt);
+            RemoveElementEvent<PointerOutEvent>((int)Elements.image, mouseOutEvt);
         }
         public void RemoveView()
         {

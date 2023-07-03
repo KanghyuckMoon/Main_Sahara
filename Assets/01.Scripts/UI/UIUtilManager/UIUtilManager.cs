@@ -35,6 +35,8 @@ namespace UI.UtilManager
             if (string.IsNullOrEmpty(_address) == false)
             {
                 SoundManager.Instance.PlayEFF(_address);
+                Debug.Log("@사운드 재생 : " + Enum.GetName(typeof(UISoundType),_type));
+
             }
             else
             {

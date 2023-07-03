@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GoogleSpreadSheet;
@@ -19,9 +20,17 @@ namespace UI.Popup
 
         private const string activeStr = "show_get_newitem_popup";
         private const string inactiveStr = "hide_get_newitem_popup";
+        
+        private Action onInactiveEvt = null; 
+        // 프로퍼티 
+        public Action OnInactiveEvt
+        {
+            get => onInactiveEvt;
+            set => onInactiveEvt = value;
+        }
         public VisualElement Parent => parent; 
         
-        public PopupGetNewitemPr()
+        public PopupGetNewitemPr()  
         {
             var _prod = UIConstructorManager.Instance.GetProductionUI(typeof(PopupGetNewitemView));
             this.popupGetNewitemView = _prod.Item2 as PopupGetNewitemView;
@@ -43,6 +52,7 @@ namespace UI.Popup
         }
         public void ActiveTween()
         {
+            // 
             StaticCoroutineManager.Instance.InstanceDoCoroutine(popupGetNewitemView.AnimateItemCo(true));
             //popupGetNewitemView.AnimateItem(true);
         }

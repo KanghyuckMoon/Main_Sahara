@@ -12,7 +12,7 @@ namespace UI
     /// <summary>
     /// ��ü�� Ȱ��ȭ�� �̵�, Ȯ�����, ��Ŀ ��� 
     /// </summary>
-    public class MapPresenter : MonoBehaviour, IScreen
+    public class MapPresenter : AbBaseScreen
     {
         // �ν����� ���� 
         [SerializeField]
@@ -32,7 +32,7 @@ namespace UI
             get => onActiveScreenEvt;
             set => onActiveScreenEvt = value;
         }
-        public IUIController UIController { get; set; }
+        public override IUIController UIController { get; set; }
         public MapView MapView => mapView;
         public MapInfo MapInfo => miniMapComponent.MapInfo; 
 
@@ -91,8 +91,10 @@ namespace UI
         {
             mapView.ActiveScreen(_isActive);
         }
-        public bool ActiveView()
+        public override bool ActiveView()
         {
+            base.ActiveView();
+
             //mapView.ShowMap();
             StartCoroutine(TestCo());
             // StartCoroutine(T()); 
@@ -113,8 +115,9 @@ namespace UI
             }
             return MapView.CurMapType == MapType.FullMap ? true : false;  
         }
-        public void ActiveView(bool _isActive)
-        {   
+        public override void ActiveView(bool _isActive)
+        {
+            base.ActiveView(_isActive);
             mapView.ShowMap(_isActive);
             miniMapComponent.InitSize(_isActive);
            // StartCoroutine(TestCo());

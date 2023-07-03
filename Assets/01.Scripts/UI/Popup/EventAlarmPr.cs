@@ -21,6 +21,13 @@ namespace UI.Popup
         private EventAlarmView eventAlarmView;
         private VisualElement parent;
 
+        private Action onInactiveEvt = null; 
+        // 프로퍼티 
+        public Action OnInactiveEvt
+        {
+            get => onInactiveEvt;
+            set => onInactiveEvt = value;
+        }
         public VisualElement Parent => parent;
 
         private const string activeStr = "active_alarm"; 

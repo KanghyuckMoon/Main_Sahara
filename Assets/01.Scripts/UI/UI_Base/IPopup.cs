@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.UIElements;
 
 public interface IPopup
 {
+    public Action OnInactiveEvt { get; set; }
     public VisualElement Parent { get; }
     public void ActiveTween();
     public void InActiveTween();
@@ -14,11 +16,13 @@ public interface IPopup
     public IEnumerator TimerCo(float _time)
     {
         float _curTime = 0f;
+        bool isActiveTween = false; 
         while (true)
         {
             _curTime += Time.deltaTime;
-            if (_curTime > 0.1f)
+            if (isActiveTween == false && _curTime > 0.1f)
             {
+                isActiveTween = true; 
                 ActiveTween();
             }
 
