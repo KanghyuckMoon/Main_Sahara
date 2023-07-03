@@ -16,7 +16,7 @@ namespace UI.Inventory
     /// <summary>
     /// 인벤토리의 슬롯들 보여준는 부분 
     /// </summary>
-    public class InventoryGridSlotsView : AbUI_Base
+    public class  InventoryGridSlotsView : AbUI_Base
     {
         public enum InvenPanelElements
         {
@@ -209,15 +209,28 @@ namespace UI.Inventory
             });
         }
 
+        private const string imageActiveStr = "active_inven_image";
+        private const string buttonActiveStr = "active_inven_button";
+        
         private void ActiveRadioBtn(RadioButtons _type, bool _isActive)
         {
-            float _v = _isActive ? 1.15f : 1f;
-            Color _c = new Color(243f / 255f, 153f / 255f, 104f / 255f, 1f);
+            //float _v = _isActive ? 1.15f : 1f;
+            //Color _c = new Color(243f / 255f, 153f / 255f, 104f / 255f, 1f);
 
-            Color _tC = _isActive ? _c : Color.white;
-            GetRadioButton((int)_type).style.scale = new StyleScale(new Scale(new Vector2(_v, _v)));
+            //Color _tC = _isActive ? _c : Color.white;
+            //GetRadioButton((int)_type).style.scale = new StyleScale(new Scale(new Vector2(_v, _v)));
             VisualElement _b = GetRadioButton((int)_type).Q(className: "unity-radio-button__checkmark-background");
-            _b.style.unityBackgroundImageTintColor = new StyleColor(_tC);
+
+            if (_isActive == true)
+            {
+                GetRadioButton((int)_type).AddToClassList(buttonActiveStr);
+                _b.AddToClassList(imageActiveStr);
+                return; 
+            }
+            GetRadioButton((int)_type).RemoveFromClassList(buttonActiveStr);
+            _b.RemoveFromClassList(imageActiveStr);
+            
+            //_b.style.unityBackgroundImageTintColor = new StyleColor(_tC);
         }
     }
 }

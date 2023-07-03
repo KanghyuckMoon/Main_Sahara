@@ -151,7 +151,7 @@ namespace UI.Inventory
         private void InactiveCurModel()
         {
             if (curActiveModel == null) return; 
-            curActiveModel.transform.position = curActiveModelData.position; 
+            curActiveModel.transform.localPosition = curActiveModelData.position; 
             curActiveModel.transform.rotation = curActiveModelData.rotation; 
             curActiveModel.SetActive(false);
 

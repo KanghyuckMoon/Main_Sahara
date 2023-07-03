@@ -73,6 +73,8 @@ namespace UI.Popup
 
         public T CreatePopup<T>(PopupType _popupType, object _data = null,float _time = 2f) where  T : IPopup,new()
         {
+            // 스크린 활성화 여부 체크후 활성화
+            
             if (isInit == false)    
             {
                 isInit = true; 
@@ -82,7 +84,8 @@ namespace UI.Popup
 
             try
             {
-                popupPrList.First(x => x.PopupType == _popupType).SetParent(_popupGetItemPr.Parent);
+                var _screenPr = popupPrList.First(x => x.PopupType == _popupType);
+                _screenPr.SetParent(_popupGetItemPr.Parent);
             }
             catch (Exception e)
             {
@@ -98,10 +101,12 @@ namespace UI.Popup
                 _popupGetItemPr.ActiveTween();   
             }
             _popupGetItemPr.SetData(_data);
-
+    
             return _popupGetItemPr; 
         }
 
+        private Stack<PopupGetNewitemPr> getNewItemStack = new Stack<PopupGetNewitemPr>();
+        private Stack<ItemData> dataStack = new Stack<ItemData>(); 
         public void ReceiveEvent(string _sender, object _obj)
         {
             if (_sender is "InventoryManager")
@@ -109,7 +114,24 @@ namespace UI.Popup
                 ItemData _itemData = _obj as ItemData;;
                 if (InventoryManager.Instance.ItemCheck(_itemData.key, 1) == false)
                 {
-                    CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem, _itemData,4f);
+                    //dataStack.Push(_itemData);
+                    // 현재 활성화 중인 팝업있으면, 넘어가기 
+
+                    //if (isCurPopupu == false)
+                    //{
+                     //   isCurPopupu = true; 
+                        ItemData _data = dataStack.Pop(); 
+                        var _popup  = CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem, _itemData,3f);
+                      //  _popup.OnInactiveEvt += () =>
+                       // {
+                       //     _popup.OnInactiveEvt = null;
+                       //     isCurPopupu = false;
+                       // };
+                   // }
+                    
+                   
+                    // 트윈끝났을 때 알림 
+                    
                 }
                 CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
             }
@@ -121,6 +143,20 @@ namespace UI.Popup
             }
         }
 
+        private bool isCurPopupu = false; 
+        private bool isExeCo = false; 
+        private IEnumerator PopupWaitCo()
+        {
+            while (getNewItemStack.Count > 0)
+            {
+                
+                yield return null;
+                if (getNewItemStack.Count > 0)
+                {
+                    
+                }
+            }
+        }
         private void CreateGetItemPopup(ItemData _itemData)
         {
             CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.UIElements;
 
 public interface IPopup
 {
+    public Action OnInactiveEvt { get; set; }
     public VisualElement Parent { get; }
     public void ActiveTween();
     public void InActiveTween();
