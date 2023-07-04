@@ -61,7 +61,7 @@ public class fising : StateMachineBehaviour
         animator.SetBool("IsCombo", false);
         
         mainModule.SetConsecutiveAttack(0);
-        mainModule.SetActiveAnimatorRoot(0);
+        mainModule.SetActiveAnimatorRoot(1);
 
         stateModule.AddState(State.ATTACK);
         mainModule.StopOrNot = 0;
