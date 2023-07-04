@@ -59,6 +59,7 @@ namespace UI.Save
                 entryList.Add(_entry);
             }
         }
+        [ContextMenu("활성화")]
         public bool ActiveView()
         {
             UpdateUI(); 

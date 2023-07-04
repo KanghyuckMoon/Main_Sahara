@@ -5,17 +5,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Json;
 using UI.EventManage;
+using UI.Manager;
 
 namespace LoadScene
 {
     public class DeadSceneLoad : MonoBehaviour
     {
-        public void OnEnable()
+        public void Awake()
         {
             EventManager.Instance.StartListening(EventsType.ActiveDeadCanvas, ActiveObj);
+            ActiveObj(false);
         }
 
-        public void OnDisable()
+        public void OnDestroy()
         {
             EventManager.Instance.StopListening(EventsType.ActiveDeadCanvas, ActiveObj);
         }
@@ -23,6 +25,7 @@ namespace LoadScene
         public void ActiveObj(object _isActive)
         {
             gameObject.SetActive((bool)_isActive);
+            UIManager.Instance.ActiveCursor((bool)_isActive);
         }
 
         public void ReStart()
