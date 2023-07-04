@@ -129,17 +129,22 @@ namespace UI.Base
             Debug.Log("ActiveScreen");
             float _targetV = !IsVisible() ? 1f : 0;
             isTargetActive = !IsVisible();
-            
+    
             if (isTargetActive == true)
             {
-                parentElement.style.opacity = _targetV;
-                ShowVisualElement(parentElement, isTargetActive);
+                ShowVisualElement(parentElement, true);
+                DOTween.To(() => parentElement.style.opacity.value, (x) => parentElement.style.opacity = x, _targetV, 0.125f);
+
+                //parentElement.style.opacity = _targetV;
+                //ShowVisualElement(parentElement, isTargetActive);
                 
                 //(UIActiveManager.Instance as IUIManager).UIIgnoredList.Add(this);
                 //(UIActiveManager.Instance as IUIManager).ExecuteAll();
                 return true;
             }
+            
             Sequence _seq = DOTween.Sequence();
+
             _seq.Append(DOTween.To(() => parentElement.style.opacity.value, (x) => parentElement.style.opacity = x, _targetV, 0.125f));
             _seq.AppendCallback(() =>
             {

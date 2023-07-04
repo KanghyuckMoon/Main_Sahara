@@ -88,5 +88,10 @@ namespace Module
                 }
             }
         }
+
+        public void Restore()
+        {
+            RemoveState(State.DEAD);
+        }
     }
 }
