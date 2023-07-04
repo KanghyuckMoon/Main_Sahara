@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utill.Pattern;
 using TimeManager;
+using UI.EventManage;
 
 namespace Module
 {
@@ -31,6 +32,7 @@ namespace Module
             if (abMainModule.IsDead)
             {
                 StaticTime.EntierTime = 0f;
+                EventManager.Instance.TriggerEvent(EventsType.ActiveDeadCanvas, true);
                 //여기에 캔버스 활성화되는 코드 넣어주세요.
                 //StartCoroutine(SceneMove());
             }

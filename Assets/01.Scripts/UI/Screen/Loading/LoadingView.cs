@@ -43,7 +43,7 @@ namespace UI.Loading
         public override void Init()
         {
             base.Init();
-            InitDecosStyle();
+            //InitDecosStyle();
             Panels.style.opacity = 0f; 
         }
 
