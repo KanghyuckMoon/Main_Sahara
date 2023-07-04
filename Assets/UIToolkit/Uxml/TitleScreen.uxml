@@ -10,10 +10,12 @@
         <ui:VisualElement name="mid_panel" class="panel mid_panel" style="flex-direction: column-reverse; padding-bottom: 100px; -unity-font: url(&apos;project://database/Assets/08.Fonts/HeirofLightRegular.ttf?fileID=12800000&amp;guid=04d99ebcfa7ab3747b391c78f8a3a65a&amp;type=3#HeirofLightRegular&apos;);">
             <ui:VisualElement name="button_group" class="vertical_group">
                 <ui:Button text="시작하기" display-tooltip-when-elided="true" name="start_button" class="button_base title_button font_base" />
-                <ui:Button text="옵션" display-tooltip-when-elided="true" name="setting_button" class="button_base title_button font_base" />
-                <ui:Button text="종료하기" display-tooltip-when-elided="true" name="end_button" class="button_base title_button font_base" />
+                <ui:Button text="옵션" display-tooltip-when-elided="true" name="setting_button" class="button_base title_button font_base" style="display: none;" />
+                <ui:Button text="종료" display-tooltip-when-elided="true" name="end_button" class="button_base title_button font_base" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="bottom_panel" class="panel" />
+        <ui:VisualElement name="bottom_panel" class="panel" style="flex-direction: column-reverse;">
+            <ui:Label tabindex="-1" text="DEMO" display-tooltip-when-elided="true" class="font_base" style="font-size: 30px; margin-left: 1%; margin-bottom: 0.5%;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

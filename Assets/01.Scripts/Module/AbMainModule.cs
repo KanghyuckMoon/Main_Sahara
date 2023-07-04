@@ -687,6 +687,8 @@ namespace Module
         private string currentAnimationLayer;
         #endregion
 
+        public Vector3 lastGroundPos;
+        
         protected Dictionary<ModuleType, AbBaseModule> moduleComponentsDic = null;
 
 		public List<Observer> Observers

@@ -22,6 +22,7 @@ namespace UI.Loading
         [SerializeField]
         private LoadingView loadingView;
 
+        [SerializeField] private bool isTween = true; 
         private bool _isCoroutine = true;
         private static bool _isUnload = false;
         // 프로퍼티 
@@ -43,14 +44,22 @@ namespace UI.Loading
             uiDocument ??= GetComponent<UIDocument>();
             tipInfoSO ??= AddressablesManager.Instance.GetResource<TipInfoSO>("TipInfoSO");
 
-            GetLoadingTip();
+           // GetLoadingTip();
         }
 
         private void Start()
         {
             loadingView.LoopLoadingImg();
-            SelectTip();
-            StartCoroutine(AnimatePanel());
+            //SelectTip();
+
+            if (isTween == true)
+            {
+                StartCoroutine(AnimatePanel());
+            }
+            else
+            {
+                StartCoroutine(NotAnimatePanel()); 
+            }
         }
 
         private void Update()
@@ -80,6 +89,19 @@ namespace UI.Loading
             }
             yield return new WaitForSeconds(1f);
 //            SceneManager.UnloadSceneAsync("TipScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+
+        }
+
+        private IEnumerator NotAnimatePanel()
+        {
+            yield return null; 
+            var _list = loadingView.GetDecos();
+
+            foreach (var _e in _list)
+            {
+                _e.transform.position = Vector3.zero; 
+            }
+            loadingView.Panels.style.opacity = 1f;
 
         }
         private IEnumerator AnimatePanel()
