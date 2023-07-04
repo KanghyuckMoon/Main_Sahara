@@ -62,7 +62,7 @@ namespace UI.Option
 
         public void ActiveView(bool _isActive)
         {
-            StaticTime.UITime = _isActive ? 1f : 0f; 
+            StaticTime.UITime = _isActive ? 0f : 1f; 
 
             optionView.ActiveScreen(_isActive);
         }
