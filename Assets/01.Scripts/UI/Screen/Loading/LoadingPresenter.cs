@@ -44,13 +44,13 @@ namespace UI.Loading
             uiDocument ??= GetComponent<UIDocument>();
             tipInfoSO ??= AddressablesManager.Instance.GetResource<TipInfoSO>("TipInfoSO");
 
-            GetLoadingTip();
+           // GetLoadingTip();
         }
 
         private void Start()
         {
             loadingView.LoopLoadingImg();
-            SelectTip();
+            //SelectTip();
 
             if (isTween == true)
             {
@@ -58,7 +58,7 @@ namespace UI.Loading
             }
             else
             {
-                NotAnimatePanel(); 
+                StartCoroutine(NotAnimatePanel()); 
             }
         }
 
@@ -92,8 +92,9 @@ namespace UI.Loading
 
         }
 
-        private void NotAnimatePanel()
+        private IEnumerator NotAnimatePanel()
         {
+            yield return null; 
             var _list = loadingView.GetDecos();
 
             foreach (var _e in _list)
