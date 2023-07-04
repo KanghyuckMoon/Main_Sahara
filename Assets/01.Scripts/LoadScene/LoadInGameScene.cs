@@ -26,6 +26,7 @@ namespace LoadScene
             //System.GC.Collect(); 
             //UIManager.Instance.Init();
             //StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
+            //SceneManager.LoadScene("TipScene", LoadSceneMode.Additive);
             SceneManager.LoadScene("InGame");
         }
     }

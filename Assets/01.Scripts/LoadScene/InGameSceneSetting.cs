@@ -42,16 +42,16 @@ public class InGameSceneSetting : MonoBehaviour
             Time.timeScale = 1;
             StaticTime.EntierTime = 0f;
             
-            Debug.Log("Scene Check Start");
-            while (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("InGame"))
-            {
-                Debug.Log("Scene Checking");
-                yield return null;
-            }
+            //Debug.Log("Scene Check Start");
+            //while (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("InGame"))
+            //{
+            //    Debug.Log("Scene Checking");
+            //    yield return null;
+            //}
 
             //var cam = Camera.main;
             //cam.gameObject.SetActive(false);
-            Debug.Log("Scene Check end");
+            //Debug.Log("Scene Check end");
             
             Debug.Log("Load TipScene Start");
             var op6 = SceneManager.LoadSceneAsync("TipScene", LoadSceneMode.Additive);
