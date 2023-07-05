@@ -11,29 +11,32 @@ namespace UI.UtilManager
     public class UIUtil : MonoBehaviour
     {
         private static float width => Screen.width;
-        private static float height => Screen.height; 
+        private static float height => Screen.height;
+
         public static void SendEvent(RadioButtonGroup _btn)
         {
             using (var e = new NavigationSubmitEvent() { target = _btn })
                 _btn.SendEvent(e);
         }
+
         public static void SendEvent(RadioButton _btn)
         {
             using (var e = new NavigationSubmitEvent() { target = _btn })
                 _btn.SendEvent(e);
         }
+
         public static void SendEvent(Button _btn)
         {
             using (var e = new NavigationSubmitEvent() { target = _btn })
                 _btn.SendEvent(e);
         }
-        
+
         public static string GetEnumStr(Type _eType, int _idx)
         {
             string[] _arr = Enum.GetNames(_eType);
             return _arr[_idx];
         }
-        
+
         public static T GetEnumStr<T>(string _enumName) where T : Enum
         {
             return (T)Enum.Parse(typeof(T), _enumName);
@@ -71,31 +74,34 @@ namespace UI.UtilManager
                                              && _v1.y > _target.worldBound.y &&
                                              _v1.y < _target.worldBound.y + _target.worldBound.height)
             {
-                return true; 
+                return true;
             }
 
-            return false; 
+            return false;
         }
-        
+
         /// <summary>
         /// 리스트뷰 스크롤 스피드 설정 
         /// </summary>
         /// <param name="listView"></param>
-        public static void FixListViewScrollingBug(ListView listView) {
+        public static void FixListViewScrollingBug(ListView listView)
+        {
 #if UNITY_EDITOR
             var scroller = listView.Q<Scroller>();
-            listView.RegisterCallback<WheelEvent>(@event => {
-                scroller.value +=  @event.delta.y * 100;
+            listView.RegisterCallback<WheelEvent>(@event =>
+            {
+                scroller.value += @event.delta.y * 100;
                 @event.StopPropagation();
             });
 #else
             var scroller = listView.Q<Scroller>();
             listView.RegisterCallback<WheelEvent>(@event => {
-                scroller.value -=  @event.delta.y * 10000;
+               scroller.value += @event.delta.y * 100;
                 @event.StopPropagation();
             });
 #endif
+            //               scroller.value -=  @event.delta.y * 10000;
+
         }
     }
-
 }

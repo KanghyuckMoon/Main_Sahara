@@ -22,6 +22,12 @@ namespace LoadScene
             EventManager.Instance.StopListening(EventsType.ActiveDeadCanvas, ActiveObj);
         }
 
+        public void ActiveObj(bool _isActive)
+        {
+            gameObject.SetActive(_isActive);
+            UIManager.Instance.ActiveCursor(_isActive);
+        }
+
         public void ActiveObj(object _isActive)
         {
             gameObject.SetActive((bool)_isActive);
