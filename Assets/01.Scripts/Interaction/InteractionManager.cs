@@ -7,6 +7,7 @@ using UI.Base;
 using System.Linq;
 using UI.ActiveManager;
 using Utill.Pattern;
+using Module;
 
 namespace Interaction
 {
@@ -126,6 +127,7 @@ namespace Interaction
 			{
 				if (_interactionObj != null)
 				{
+				    Player.gameObject.GetComponent<AbMainModule>().ObjDir = Vector2.zero;
 					_interactionObj.Interaction();
 				}
 			}
