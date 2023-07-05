@@ -305,6 +305,15 @@ namespace UI
                 curActiveScreen = (Keys.OptionUI, _optionPresenter);
                 if(_isActive == false) curActiveScreen.Item2 = null; 
             });
+            _optionPresenter.OnActiveScreen = () =>
+            {
+                //  활성화
+                // 다른 끌 스크린 있으면 그것부터 비활성화 
+                bool _isActive = _optionPresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
+                curActiveScreen = (Keys.OptionUI, _optionPresenter);
+                if (_isActive == false) curActiveScreen.Item2 = null;
+            };
         }
 
         private void SetIsDialogue(bool _isActive)

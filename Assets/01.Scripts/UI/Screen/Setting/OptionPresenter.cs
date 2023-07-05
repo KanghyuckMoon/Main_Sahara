@@ -39,7 +39,7 @@ namespace UI.Option
             
             optionView.AddButtonEventToDic(OptionView.Buttons.continue_button, () =>
             {
-                ActiveView(false); 
+                OnActiveScreen?.Invoke();
             });
             optionView.AddButtonEventToDic(OptionView.Buttons.exit_button, Application.Quit);
             optionView.Init();
