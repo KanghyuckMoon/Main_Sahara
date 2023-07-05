@@ -44,13 +44,13 @@ namespace UI.Loading
             uiDocument ??= GetComponent<UIDocument>();
             tipInfoSO ??= AddressablesManager.Instance.GetResource<TipInfoSO>("TipInfoSO");
 
-           // GetLoadingTip();
+            GetLoadingTip();
         }
 
         private void Start()
         {
             loadingView.LoopLoadingImg();
-            //SelectTip();
+            SelectTip();
 
             if (isTween == true)
             {
