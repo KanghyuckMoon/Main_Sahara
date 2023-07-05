@@ -32,7 +32,7 @@ namespace CutScene
         public void GameStart()
         {
             //SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
-            SceneManager.LoadScene("InGame", LoadSceneMode.Single);
+            SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);
         }
     }
 }

@@ -27,7 +27,31 @@ namespace LoadScene
             //UIManager.Instance.Init();
             //StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
             //SceneManager.LoadScene("TipScene", LoadSceneMode.Additive);
-            SceneManager.LoadScene("InGame");
+            //SceneManager.LoadScene("InGame");
+            StartCoroutine(LoadingIngame());
+        }
+        
+        private IEnumerator  LoadingIngame()
+        {
+            yield return null;
+            var op = SceneManager.LoadSceneAsync("InGame");
+            op.allowSceneActivation = false;
+            float timer = 0.0f;
+            while (!op.isDone)
+            {
+                yield return null;
+                timer += Time.deltaTime;
+                if (op.progress < 0.9f)
+                {
+                    
+                }
+                else
+                {
+                    op.allowSceneActivation = true;
+                    yield break;
+                }
+            }
+        
         }
     }
 
