@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 544.49664, g: 410.9615, b: 279.54837, a: 1}
+  m_IndirectSpecularColor: {r: 544.6512, g: 410.44513, b: 278.19315, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10363,7 +10363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
       propertyPath: ClampVelocityModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
       propertyPath: NoiseModule.strength.scalar
@@ -10398,8 +10398,16 @@ PrefabInstance:
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
       propertyPath: InitialModule.startSize.minMaxState
@@ -10411,6 +10419,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
       propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
+      propertyPath: InitialModule.startSpeed.minMaxState
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6295080742814462221, guid: 54a873be0103c8e42839b9abb6ccf9ae, type: 3}
@@ -11352,7 +11364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5571655352630525369
 Transform:
   m_ObjectHideFlags: 0
@@ -11419,7 +11431,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 5
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
@@ -11635,7 +11647,7 @@ MonoBehaviour:
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
   m_UseContactShadow:
-    m_Override: 1
+    m_Override: 0
     m_UseOverride: 1
     m_Level: 0
   m_RayTracedContactShadow: 0
