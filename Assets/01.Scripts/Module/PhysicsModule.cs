@@ -338,6 +338,10 @@ namespace Module
             }
 
             mainModule.isGround = _isLand && mainModule.IsSlope;
+            if (mainModule.isGround)
+            {
+                mainModule.lastGroundPos = mainModule.transform.position;
+            }
         }
         IEnumerator LandingDelay()
         {

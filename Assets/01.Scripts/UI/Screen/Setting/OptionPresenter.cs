@@ -5,6 +5,8 @@ using UI.Base;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
+using TimeManager;
+
 
 namespace UI.Option
 {
@@ -34,16 +36,35 @@ namespace UI.Option
         {
             optionView.InitUIDocument(uiDocument);
             optionView.Cashing();
+            
+            optionView.AddButtonEventToDic(OptionView.Buttons.continue_button, () =>
+            {
+                OnActiveScreen?.Invoke();
+            });
+            optionView.AddButtonEventToDic(OptionView.Buttons.exit_button, Application.Quit);
             optionView.Init();
+
+
+        }
+
+        private void OnDisable()
+        {
+            optionView.RemoveButtonEvents();
         }
 
         public bool ActiveView()
         {
-            return optionView.ActiveScreen();
+            bool _isActive = optionView.ActiveScreen(); 
+            
+            StaticTime.UITime = _isActive ? 0f : 1f; 
+
+            return _isActive;
         }
 
         public void ActiveView(bool _isActive)
         {
+            StaticTime.UITime = _isActive ? 0f : 1f; 
+
             optionView.ActiveScreen(_isActive);
         }
     }

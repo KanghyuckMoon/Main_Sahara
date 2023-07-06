@@ -207,9 +207,9 @@ namespace UI
             questPresenter = GetComponentInChildren<QuestPresenter>();
             upgradePresenter = GetComponentInChildren<UpgradePresenter>();
             shopPresenter = GetComponentInChildren<ShopPresenter>();
-            /*
-            saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
-            */
+            
+            //saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
+            
             _optionPresenter = GetComponentInChildren<OptionPresenter>(); 
             //// UIController 넣어주기 
            
@@ -220,7 +220,7 @@ namespace UI
             screenDic.Add(ScreenType.Quest, questPresenter);
             screenDic.Add(ScreenType.Upgrade, upgradePresenter);
             screenDic.Add(ScreenType.Shop, shopPresenter);
-            /*screenDic.Add(ScreenType.Save, saveLoadPresenter);*/
+            //screenDic.Add(ScreenType.Save, saveLoadPresenter);
             screenDic.Add(ScreenType.Option, _optionPresenter);
             
             foreach (var _pr in screenDic)
@@ -305,6 +305,15 @@ namespace UI
                 curActiveScreen = (Keys.OptionUI, _optionPresenter);
                 if(_isActive == false) curActiveScreen.Item2 = null; 
             });
+            _optionPresenter.OnActiveScreen = () =>
+            {
+                //  활성화
+                // 다른 끌 스크린 있으면 그것부터 비활성화 
+                bool _isActive = _optionPresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
+                curActiveScreen = (Keys.OptionUI, _optionPresenter);
+                if (_isActive == false) curActiveScreen.Item2 = null;
+            };
         }
 
         private void SetIsDialogue(bool _isActive)

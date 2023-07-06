@@ -11,9 +11,9 @@ namespace CondinedModule
         public void RestorePlayerObj()
         {
             var _playerModule = PlayerObj.Player.GetComponent<AbMainModule>();
+            _playerModule.transform.position = _playerModule.lastGroundPos;
             Restore(_playerModule);
             StaticTime.EntierTime = 1f;
-            
         }
     }
 
