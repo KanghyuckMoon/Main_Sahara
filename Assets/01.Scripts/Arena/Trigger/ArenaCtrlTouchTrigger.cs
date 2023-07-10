@@ -115,12 +115,15 @@ namespace Arena
             // isTrigger false 
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.transform.CompareTag(targetTag) )
+            Debug.Log("충돌1");
+            if (other.transform.CompareTag(targetTag) )
             {
+                Debug.Log("충돌2");
                 if (!isCollision)
                 {
+                    Debug.Log("충돌3");
                     isCollision = true;
                     targetPos = movePosY; 
 
@@ -128,7 +131,7 @@ namespace Arena
             }
         }
 
-        private void OnCollisionExit(Collision collision)
+        private void OnTriggerExit(Collider other)
         {
             // CollisionExit
             // 충돌 했다가 떨어졌으면 
