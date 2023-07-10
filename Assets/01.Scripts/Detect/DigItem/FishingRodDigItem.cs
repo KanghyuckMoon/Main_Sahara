@@ -22,6 +22,15 @@ public class FishingRodDigItem : BaseDigItem
         }
     }
 
+    public override void Dig()
+    {
+            if(targetItem is not null)
+            {
+                Debug.Log("GetOut");
+                targetItem.GetOut();
+            }
+    }
+
     public void FishingCheck()
     {
         GetNearObject();

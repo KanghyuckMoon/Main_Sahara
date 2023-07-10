@@ -75,47 +75,24 @@ namespace Arena
         }
         private void Update()
         {
-            if(isTrigger == true) return;
+            if(isTrigger) return;
             Move(); 
             float _height = Height / 2; 
             Debug.DrawRay(targetTrm.position, Vector3.up,Color.red);
-            //var _hitInfos = Physics.RaycastAll( transform.position, Vector3.up, _height * transform.localScale.y  + 0.5f);
-            //Physics.OverlapBox(transform.position + Vector3.up * transform.position.y * 0.5f, new Vector3(),Quaternion.identity);
-            var _hitInfos = boxRaycaster.MyCollisions();
-            bool isPlayerHit = false;
-            for(int i =0;i < _hitInfos.Length; i++)
-            {
-                if (_hitInfos[i].transform.CompareTag(targetTag) )
+            //var _hitInfos = boxRaycaster.MyCollisions();
+            if (isCollision)
+            {   
+                // 목표 도달시 
+                if (Mathf.Abs(targetTrm.localPosition.y - movePosY.y) < 0.1f)
                 {
-                    isPlayerHit = true;
-                    if (isCollision == false)
-                    {
-                        isCollision = true;
-                        targetPos = movePosY; 
-
-                    }
+                    isCollision = false;
+                    isTrigger = true; 
+                    Debug.Log("OnArena");
+                    Interact();
                 }
-                if (_hitInfos[i].transform.CompareTag(targetTag) && isCollision == true)
-                {   
-                    // 목표 도달시 
-                    if ( Mathf.Abs(targetTrm.localPosition.y - movePosY.y) < 0.1f)
-                    {
-                        isCollision = false;
-                         isTrigger = true; 
-                        Interact();
-                    }
-                }
-
             }
-            // CollisionExit
-            // 충돌 했다가 떨어졌으면 
-            if(isCollision == true && (isPlayerHit == false || _hitInfos.Length == 0))
-            {
-                isCollision = false;
-                targetPos = originPos; 
-            }
-
         }
+        
         
         private void OnDrawGizmos () {
             boxRaycaster?.OnDrawGizmos();
@@ -125,7 +102,7 @@ namespace Arena
         private void Move()
         {
             if ( Mathf.Abs(targetTrm.localPosition.y - targetPos.y) < 0.1f ) return; 
-            targetTrm.localPosition = Vector3.Lerp(targetTrm.localPosition, targetPos, Time.fixedDeltaTime * pushSpeed);
+            targetTrm.localPosition = Vector3.Lerp(targetTrm.localPosition, targetPos, Time.deltaTime * pushSpeed);
         }
 
         public void InitTrigger()
@@ -140,33 +117,25 @@ namespace Arena
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("@@@@@@@@@@@@Trigger Col");
-            if (collision.transform.CompareTag(targetTag))
+            if (collision.transform.CompareTag(targetTag) )
             {
-                Interact(); 
+                if (!isCollision)
+                {
+                    isCollision = true;
+                    targetPos = movePosY; 
+
+                }
             }
         }
 
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+        private void OnCollisionExit(Collision collision)
         {
-            Debug.Log("@@@@@@@@@@@@Trigger Col");
-            // CollisionEnter
-            // 충돌 안했던 상태에서 플레이어와 충돌시
-            if (hit.transform.CompareTag(targetTag) && isCollision == false)
-            {
-                isCollision = true; 
-                Interact();
-            }    
-            // CollisionStay
-            else if (hit.transform.CompareTag(targetTag) && isCollision == true)
-            {
-                
-            }
             // CollisionExit
             // 충돌 했다가 떨어졌으면 
-            else if(isCollision == true && hit.transform.CompareTag(targetTag) == false)
+            if(isCollision)
             {
-                isCollision = false; 
+                isCollision = false;
+                targetPos = originPos; 
             }
         }
     }

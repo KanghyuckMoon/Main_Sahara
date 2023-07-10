@@ -280,17 +280,24 @@ namespace Streaming
 			LoadSubScene(_pos);
 			while (true)
 			{
-				
-				if (TerrainManager.Instance.CheckTerrain(currentScene.SceneName))
+            yield return new WaitForSeconds(1f);
+				if(currentScene.IsActiveScene())
 				{
-					Debug.Log("Success Current Scene");
 					break;
 				}
 				else
 				{
-					Debug.Log("Check Current Scene");
 					yield return null;
 				}
+				
+				//if (TerrainManager.Instance.CheckTerrain(currentScene.SceneName))
+				//{
+				//	Debug.Log("Success Current Scene");
+				//}
+				//else
+				//{
+				//	Debug.Log("Check Current Scene");
+				//}
 			}
 
 			isCurrentSceneSetting = true;
@@ -299,24 +306,25 @@ namespace Streaming
 			
 			foreach(var _obj in chunkDictionary)
 			{
+            yield return new WaitForSeconds(0.3f);
 				LoadSubScene(_obj.Key);
 				Debug.Log("Scene Load : " + _obj.Key);
 				
 				while(true)
 				{
-					if (TerrainManager.Instance.CheckTerrain(_obj.Value.SceneName))
-					{
+				    if(_obj.Value.IsActiveScene())
+				    {
 						if (Vector3.Distance(_pos, _obj.Key) > StreamingManager.chunksVisibleInViewDst)
 						{
 							_obj.Value.UnLoadSceneNoneCheck();
 							Debug.Log("Scene UnLoad : " + _obj.Key);
 						}
-						break;
-					}
-					else
-					{
-					     yield return null;
-					}
+				    	break;
+				    }
+				    else
+				    {
+				    	yield return null;
+				    }
 				}
 			}
 			
