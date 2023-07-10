@@ -10,7 +10,7 @@ using TimeManager;
 
 namespace UI.Option
 {
-    public class OptionPresenter : MonoBehaviour,IScreen
+    public class PausePresenter : MonoBehaviour,IScreen
     {
         private UIDocument uiDocument;
         
