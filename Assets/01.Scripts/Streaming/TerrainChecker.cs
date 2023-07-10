@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utill.Addressable;
 
 namespace Streaming
 {
@@ -10,6 +11,7 @@ namespace Streaming
         private void Awake()
         {
             AddTerrain();
+            GetComponent<Terrain>().materialTemplate = AddressablesManager.Instance.GetResource<Material>("SandMaterial"); //Resources.Load<Material>("Material/HDRPLitGround");
         }
 
         private void OnDestroy()
