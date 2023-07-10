@@ -14,6 +14,7 @@ using Skill;
 using Item;
 using Pool;
 using Module;
+using Utill.Measurement;
 
 namespace HitBox
 {
@@ -24,10 +25,10 @@ namespace HitBox
         
         public void AddMana(Collider other)
         {
-            Debug.Log(12);
+            Logging.Log(12);
                 if (other.CompareTag(hitTagName))
                 {
-                    Debug.Log(1);
+                    Logging.Log(1);
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (_inGameHitBox is null) return;
                     if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;

@@ -18,6 +18,7 @@ using Inventory;
     using TimeManager;
     using DG.Tweening;
     using UI.UtilManager;
+    using Utill.Measurement;
 
     namespace UI.Dialogue
 {
@@ -260,7 +261,7 @@ using Inventory;
 
                     //break; 
                 }
-                Debug.Log("대화 루프...");
+                Logging.Log("대화 루프...");
                 yield return null;
             }
         }
@@ -269,7 +270,7 @@ using Inventory;
         {
             index++;
             SetCodeToText();
-            Debug.Log("대화 다음!!");
+            Logging.Log("대화 다음!!");
             // 사운드 재생
             UIUtilManager.Instance.PlayUISound(UISoundType.NextDialogue);
         }
@@ -350,7 +351,7 @@ using Inventory;
                     yield break;
                 }
                 this.dialogueView.SetDialogueTextA(_targetText);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Debug.Log("For 텍스트");
+                Logging.Log("For 텍스트");
                 yield return w;
             }
             this.dialogueView.SetDialogueTextA(fullText);

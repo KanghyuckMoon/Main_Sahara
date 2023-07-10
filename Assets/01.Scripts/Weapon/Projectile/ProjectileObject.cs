@@ -5,6 +5,7 @@ using UnityEngine;
 using Utill.Addressable;
 using Pool;
 using Object = System.Object;
+using Utill.Measurement;
 
 namespace Weapon
 {
@@ -23,7 +24,7 @@ namespace Weapon
         {
             try
             {
-                Debug.Log("projectile", gameObject);
+                Logging.Log($"projectile {gameObject}");
                 projectilePosSO = AddressablesManager.Instance.GetResource<ProjectilePositionSO>(objectName + positionString);
             }
             catch (Exception e)

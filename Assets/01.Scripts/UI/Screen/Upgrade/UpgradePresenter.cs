@@ -15,6 +15,7 @@ using DG.Tweening;
 using UI;
 using UI.Canvas;
 using UI.Base;
+using Utill.Measurement;
 
 
 namespace UI.Upgrade
@@ -297,7 +298,7 @@ namespace UI.Upgrade
                 {
                     if (_slotData.maxIndex >= 1)
                     {
-                        Debug.Log("MaxIndex" + _slotData.maxIndex);
+                        Logging.Log("MaxIndex" + _slotData.maxIndex);
                     }
 
                     _parent.style.left = _slotData.parentSlot.worldBound.x +
@@ -359,7 +360,7 @@ namespace UI.Upgrade
 
             foreach (var _v in allItemDataList)
             {
-                Debug.Log("순회 시작");
+                Logging.Log("순회 시작");
 
                 float _moveX = slotPosDIc[_v.maxIndex].ElementAt(_v.index).x;
 
@@ -378,7 +379,7 @@ namespace UI.Upgrade
 
                 if (isConnection == true)
                 {
-                    Debug.Log("생성 시작");
+                    Logging.Log("생성 시작");
 
                     if (allItemList[_idx].worldBound.y + allItemList[_idx].resolvedStyle.height + 100 >
                         upgradeView.MoveScreen.resolvedStyle.height)
@@ -387,7 +388,7 @@ namespace UI.Upgrade
                     }
 
                     yield return _w;
-                    Debug.Log("슬롯 위치 설정");
+                    Logging.Log("슬롯 위치 설정");
                     float _slotL = allItemList[_idx].style.left.value.value;
                     float _slotB = allItemList[_idx].worldBound.x;
                     float _r1 = _slotB - _slotL;
@@ -395,7 +396,7 @@ namespace UI.Upgrade
                     float _targetMoveX = _r2;
                     allItemList[_idx].style.left = _targetMoveX;
                     yield return _w;
-                    Debug.Log("선 생성");
+                    Logging.Log("선 생성");
                     CreateConnection(allItemList[_idx]);
                     yield return _w;
                 }
@@ -457,7 +458,7 @@ namespace UI.Upgrade
         /// </summary>
         private void ActiveNeedItems(UpgradeSlotPresenter _upgradePr)
         {
-            Debug.Log("클릭");
+            Logging.Log("클릭");
             // 파티클 
             InActiveAllMark(); // 모든 선택 마크 비활성화 
             _upgradePr.ActiveMark(true);
@@ -483,7 +484,7 @@ namespace UI.Upgrade
         /// </summary>
         private void ActiveUpgradePn(UpgradeSlotPresenter _upgradePr)
         {
-            Debug.Log("클릭");
+            Logging.Log("클릭");
 
             upgradePickPresenter.ClearSlots(); // 있던거 초기화 해주고 
             InActiveAllMark(); // 모든 선택 마크 비활성화 
@@ -531,7 +532,7 @@ namespace UI.Upgrade
 
         private void CreateConnection(VisualElement _targeSlot /*List<UpgradeSlotData> _slotList*/)
         {
-            Debug.Log("연결점 생성");
+            Logging.Log("연결점 생성");
             List<Vector2> _pointList = new List<Vector2>();
             Vector2 _startPoint, _midPoint, _midPoint2, _targetPoint;
             //CreateRow(); // 줄 생성 

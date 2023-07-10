@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utill.Measurement;
 
 namespace Detect
 {
@@ -38,7 +39,7 @@ public class ShovelDigItem : BaseDigItem
         {
             if(_targetObj is not null)
             {
-                Debug.Log("GetOut");
+                Logging.Log("GetOut");
                 _targetObj.GetOut();
             }   
         }

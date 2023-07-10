@@ -13,6 +13,7 @@ using UI.UtilManager;
 using UI.Base;
 using UnityEngine.Analytics;
 using DG.Tweening; 
+using Utill.Measurement;
 
 namespace UI.Quest
 {
@@ -140,12 +141,12 @@ namespace UI.Quest
         /// </summary>
         public void InitListView()
         {
-            Debug.Log("AAA");
+            Logging.Log("AAA");
             _questDataList = QuestManager.Instance.GetActiveOrClearQuest();
             // 테스트
             foreach (var v in _questDataList)
             {
-                Debug.Log(v.NameKey);
+                Logging.Log(v.NameKey);
             }
             ListView _listView = GetListView((int)ListViews.quest_listview);
             //_listView.
@@ -181,7 +182,7 @@ namespace UI.Quest
                 _v.Item1.ElementAt(0).userData = _v.Item2 as QuestEntryView;
                 _v.Item1.RegisterCallback<ClickEvent>( (x) => ActiveEntry(_v.Item1));
                 
-                Debug.Log("MAKE");
+                Logging.Log("MAKE");
                 return _v.Item1.ElementAt(0);
             };
 
@@ -191,7 +192,7 @@ namespace UI.Quest
                 string _name = TextManager.Instance.GetText(_questDataList[_index].NameKey);
                 string _detail = TextManager.Instance.GetText(_questDataList[_index].ExplanationKey);
                 string _state = Enum.GetName(typeof(QuestState), _questDataList[_index].QuestState);
-                Debug.Log("BIND");
+                Logging.Log("BIND");
                 _questEntryList.Add((_questDataList[_index], _item));
 
                 (_item.userData as QuestEntryView).SetNameAndDetailAndState(_name, _detail,_state);
@@ -205,7 +206,7 @@ namespace UI.Quest
                 {
                     VisualElement _v = o as VisualElement;
                 }
-                Debug.Log("onSelectionChange");
+                Logging.Log("onSelectionChange");
                 var _selected = _listView.selectedItem as QuestData;
                 string _name = TextManager.Instance.GetText(_selected.NameKey);
                 string _detail = TextManager.Instance.GetText(_selected.ExplanationKey);

@@ -28,7 +28,6 @@ namespace Module
 				InputSprint();
 				InputAttack();
 				InputSkill();
-				InputTest();
 			}
 		}
 
@@ -132,7 +131,6 @@ namespace Module
 					{
 						//Input.key
 						//StateModule.AddState(State.SKILL);
-						//Debug.LogError(("sdffgafgadfadfafgafgafgasgasgasgd"));
 						SkillModule.UseSkill("E");//.BaseWeapon.weaponSkills.Invoke();
 					}
 					if (InputManager.Instance.CheckKey("Skill2"))
@@ -151,15 +149,6 @@ namespace Module
 				}
 			}
 		}
-
-		private void InputTest()
-        {
-			/*if(Input.GetMouseButtonDown(2))
-            {
-				//Debug.LogError("asdfawefaeabraergae");
-				mainModule.SettingTime.SetTime(1, 0.1f);
-            }*/
-        }
 
 	}
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using Utill.Measurement;
 using Utill.Pattern;
 
 namespace Streaming
@@ -24,7 +25,7 @@ namespace Streaming
 
             //SetConnect();
 
-            Debug.Log("Terrain Enalbe : " + _name);
+            Logging.Log($"Terrain Enalbe : {_name}");
         }
 
         [ContextMenu("SetConnect")]

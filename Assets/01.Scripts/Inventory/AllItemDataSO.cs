@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utill.Measurement;
 
 namespace Inventory
 {
@@ -22,7 +23,7 @@ namespace Inventory
 				}
 				catch (Exception e)
 				{
-					Debug.Log("ItemdataKey Same" + itemDataSOList[i].key);
+					Logging.Log("ItemdataKey Same" + itemDataSOList[i].key);
 					throw;
 				}
 			}

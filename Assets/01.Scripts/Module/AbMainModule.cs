@@ -10,6 +10,8 @@ using Pool;
 using TimeManager;
 using System;
 using HitBox;
+using Utill.Measurement;
+
 
 namespace Module
 {
@@ -738,7 +740,7 @@ namespace Module
 
         public virtual void Start()
         {
-            Debug.Log("@@@Start");
+            Logging.Log("@@@Start");
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.Start();
@@ -758,7 +760,7 @@ namespace Module
 
         public virtual void OnDisable()
         {
-            Debug.Log("@@@OnDisable");
+            Logging.Log("@@@OnDisable");
             foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.OnDisable();
