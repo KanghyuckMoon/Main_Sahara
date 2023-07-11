@@ -5,8 +5,9 @@ using Utill.Pattern;
 using UI.Base;
 using UI.Dialogue;
 using System;
+    using UI.Option;
 
-namespace UI.PublicManager
+    namespace UI.PublicManager
 {
 
     /// <summary>
@@ -32,6 +33,12 @@ namespace UI.PublicManager
             }
         }
 
+        public void ActiveOptionPr(bool _isActive)
+        {
+            ScreenUIController.ActiveScreen(Keys.OptionUI);
+            //var screen = ScreenUIController.GetScreen<OptionPresenter>(ScreenType.Option);
+            //screen.OnActiveScreen(); 
+        }
         /// <summary>
         /// 처음 대화 텍스트 설정
         /// </summary>

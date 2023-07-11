@@ -49,6 +49,7 @@ namespace UI
         private ShopPresenter shopPresenter;
         private SaveLoadPresenter saveLoadPresenter;
         private PausePresenter _pausePresenter;
+        private OptionPresenter optionPresenter; 
         
         private Dictionary<ScreenType, IScreen> screenDic = new Dictionary<ScreenType, IScreen>();
         private Dictionary<UIInputData, Action> inputDic = new Dictionary<UIInputData, Action>(); // 사용자 키 입력으로 스크린 활성화
@@ -210,9 +211,9 @@ namespace UI
             
             //saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
             
-            _pausePresenter = GetComponentInChildren<PausePresenter>(); 
-            //// UIController 넣어주기 
-           
+            _pausePresenter = GetComponentInChildren<PausePresenter>();
+            optionPresenter = GetComponentInChildren<OptionPresenter>(); 
+            
             screenDic.Add(ScreenType.Inventory, inventoryPresenter);
             screenDic.Add(ScreenType.Map, mapPresenter);
             screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
@@ -221,8 +222,11 @@ namespace UI
             screenDic.Add(ScreenType.Upgrade, upgradePresenter);
             screenDic.Add(ScreenType.Shop, shopPresenter);
             //screenDic.Add(ScreenType.Save, saveLoadPresenter);
-            screenDic.Add(ScreenType.Option, _pausePresenter);
+            screenDic.Add(ScreenType.Pause, _pausePresenter);
+            screenDic.Add(ScreenType.Option, optionPresenter);
             
+
+            //// UIController 넣어주기 
             foreach (var _pr in screenDic)
             {
                 _pr.Value.Init(this);
@@ -296,22 +300,39 @@ namespace UI
                 curActiveScreen = (Keys.QuestUI, questPresenter);
                 if(_isActive == false) curActiveScreen.Item2 = null; 
             });
-            notInputDic.Add(Keys.OptionUI, () =>
+            notInputDic.Add(Keys.PauseUI, () =>
             {
                 //  활성화
                 // 다른 끌 스크린 있으면 그것부터 비활성화 
                 bool _isActive = _pausePresenter.ActiveView();
-                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
-                curActiveScreen = (Keys.OptionUI, _pausePresenter);
+                SetUIAndCursor(_isActive, Get(Keys.PauseUI));
+                curActiveScreen = (Keys.PauseUI, _pausePresenter);
                 if(_isActive == false) curActiveScreen.Item2 = null; 
+            });
+            notInputDic.Add(Keys.OptionUI, () =>
+            {
+                //  활성화
+                bool _isActive = optionPresenter.ActiveView();
+                curActiveScreen = (Keys.OptionUI, optionPresenter);
+                if (_isActive == false) curActiveScreen.Item2 = null;
             });
             _pausePresenter.OnActiveScreen = () =>
             {
                 //  활성화
                 // 다른 끌 스크린 있으면 그것부터 비활성화 
                 bool _isActive = _pausePresenter.ActiveView();
-                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
-                curActiveScreen = (Keys.OptionUI, _pausePresenter);
+                SetUIAndCursor(_isActive, Get(Keys.PauseUI));
+                curActiveScreen = (Keys.PauseUI, _pausePresenter);
+                if (_isActive == false) curActiveScreen.Item2 = null;
+            };
+            
+            optionPresenter.OnActiveScreen = () =>
+            {
+                //  활성화
+                // 다른 끌 스크린 있으면 그것부터 비활성화 
+                bool _isActive = optionPresenter.ActiveView();
+                //SetUIAndCursor(_isActive, Get(Keys.PauseUI));
+                curActiveScreen = (Keys.OptionUI, optionPresenter);
                 if (_isActive == false) curActiveScreen.Item2 = null;
             };
         }
@@ -372,13 +393,13 @@ namespace UI
                 if(_isActive == false) curActiveScreen.Item2 = null; 
 
             });
-            inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>
+            inputDic.Add(new UIInputData(Get(Keys.PauseUI), true), () =>
             {
                 //  활성화
                 // 다른 끌 스크린 있으면 그것부터 비활성화 
                 bool _isActive = _pausePresenter.ActiveView();
-                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
-                curActiveScreen = (Keys.OptionUI, _pausePresenter);
+                SetUIAndCursor(_isActive, Get(Keys.PauseUI));
+                curActiveScreen = (Keys.PauseUI, _pausePresenter);
                 if(_isActive == false) curActiveScreen.Item2 = null; 
             });
             /*inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
@@ -429,7 +450,7 @@ namespace UI
             foreach(var _v in inputDic)
             {
                 // ESC 입력시 
-                if (_v.Key.keyStr == Get(Keys.OptionUI)&& InputManager.Instance.CheckKey(_v.Key.keyStr))
+                if (_v.Key.keyStr == Get(Keys.PauseUI)&& InputManager.Instance.CheckKey(_v.Key.keyStr))
                 {
                         bool isCheck = CheckUndoScreen();
                        // if (isCheck == true)

@@ -8,7 +8,7 @@ using UI.Base;
 namespace UI.Option
 {
     [System.Serializable]   
-    public class OptionView : AbUI_Base
+    public class PauseView : AbUI_Base
     {
         enum Elements
         {
@@ -18,6 +18,7 @@ namespace UI.Option
         public enum Buttons
         {
             continue_button, 
+            option_button,
             exit_button
         }
         enum Labels
@@ -44,12 +45,14 @@ namespace UI.Option
         private void AddButtonEvents()
         {
             AddButtonEvent<ClickEvent>((int)Buttons.continue_button, callbackDic[Buttons.continue_button]);
+            AddButtonEvent<ClickEvent>((int)Buttons.option_button, callbackDic[Buttons.option_button]);
             AddButtonEvent<ClickEvent>((int)Buttons.exit_button, callbackDic[Buttons.exit_button]);
         }
 
         public void RemoveButtonEvents()
         {
             RemoveButtonEvent<ClickEvent>((int)Buttons.continue_button, callbackDic[Buttons.continue_button]);
+            RemoveButtonEvent<ClickEvent>((int)Buttons.option_button, callbackDic[Buttons.option_button]);
             RemoveButtonEvent<ClickEvent>((int)Buttons.exit_button, callbackDic[Buttons.exit_button]);
         }
         

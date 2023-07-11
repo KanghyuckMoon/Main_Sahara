@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using GoogleSpreadSheet;
+using UI.PublicManager;
 
 namespace UI
 {
@@ -30,7 +31,10 @@ namespace UI
                 {
                     SceneManager.LoadScene("StartCutScene", LoadSceneMode.Single);
                 });
-           
+           titleView.AddButtonEventToDic(TitleView.Buttons.setting_button,() => 
+           {
+               PublicUIManager.Instance.ActiveOptionPr(true);
+           });
             titleView.AddButtonEventToDic(TitleView.Buttons.end_button, Application.Quit);
 
         }

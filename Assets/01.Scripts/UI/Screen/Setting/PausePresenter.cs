@@ -14,18 +14,23 @@ namespace UI.Option
     {
         private UIDocument uiDocument;
         
-        [SerializeField]
-        private OptionView optionView; 
+        [FormerlySerializedAs("optionView")] [SerializeField]
+        private PauseView pauseView; 
         
         private Action onActiveScreenEvt = null;
 
+        private IUIController owner; 
         // 프로퍼티 
         public Action OnActiveScreen
         {
             get => onActiveScreenEvt;
             set => onActiveScreenEvt = value;
         }
-        public IUIController UIController { get; set; }
+        public IUIController UIController
+        {
+            get => owner;
+            set => owner = value;
+        }
 
         private void Awake()
         {
@@ -34,27 +39,32 @@ namespace UI.Option
 
         private void OnEnable()
         {
-            optionView.InitUIDocument(uiDocument);
-            optionView.Cashing();
+            pauseView.InitUIDocument(uiDocument);
+            pauseView.Cashing();
             
-            optionView.AddButtonEventToDic(OptionView.Buttons.continue_button, () =>
+            pauseView.AddButtonEventToDic(PauseView.Buttons.continue_button, () =>
             {
                 OnActiveScreen?.Invoke();
             });
-            optionView.AddButtonEventToDic(OptionView.Buttons.exit_button, Application.Quit);
-            optionView.Init();
+            pauseView.AddButtonEventToDic(PauseView.Buttons.option_button, () =>
+            {
+                var _optionPr = UIController.GetScreen<OptionPresenter>(ScreenType.Option);
+                _optionPr.OnActiveScreen(); 
+            });
+            pauseView.AddButtonEventToDic(PauseView.Buttons.exit_button, Application.Quit);
+            pauseView.Init();
 
 
         }
 
         private void OnDisable()
         {
-            optionView.RemoveButtonEvents();
+            pauseView.RemoveButtonEvents();
         }
 
         public bool ActiveView()
         {
-            bool _isActive = optionView.ActiveScreen(); 
+            bool _isActive = pauseView.ActiveScreen(); 
             
             StaticTime.UITime = _isActive ? 0f : 1f; 
 
@@ -65,7 +75,7 @@ namespace UI.Option
         {
             StaticTime.UITime = _isActive ? 0f : 1f; 
 
-            optionView.ActiveScreen(_isActive);
+            pauseView.ActiveScreen(_isActive);
         }
     }
 }
