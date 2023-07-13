@@ -8,5 +8,8 @@ namespace Option
     public class OptionManager : Singleton<OptionManager>
     {
         public OptionData optionData = new OptionData();
+        
+        
+        
     }   
 }
