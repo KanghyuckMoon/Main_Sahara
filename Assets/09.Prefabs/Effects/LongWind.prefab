@@ -46,6 +46,7 @@ VisualEffect:
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
+  m_AllowInstancing: 1
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
@@ -159,7 +160,7 @@ Transform:
   m_Children:
   - {fileID: 2334075301479148886}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6482511508623565374
 MonoBehaviour:
@@ -194,9 +195,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482511508623565371}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.5, y: 0.3, z: 2.5}
   m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &4774441379230689761
@@ -213,3 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBoxDataSO: {fileID: 11400000, guid: a5dc029f87c9d2a4db18d2e353828816, type: 2}
   hitboxString: DefaultCol
+  owner: {fileID: 0}
+  isTimeIndexCange: 0
+  isOnEnalbe: 0
+  isStage: 0
