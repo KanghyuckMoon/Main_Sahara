@@ -30,7 +30,6 @@ namespace Buff
                     
                     
                     abMainModule.EntireTime += CalculateSpeed(abMainModule.EntireTime);
-                    //Debug.LogError("회복호복");
                     
                     currentPeriod = period;
                 }

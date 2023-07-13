@@ -4,6 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
+using Utill.Measurement;
 
 public static class wAnimationWindowHelper
 {
@@ -55,7 +56,7 @@ public static class wAnimationWindowHelper
                 BindingFlags.InvokeMethod | BindingFlags.Public, null, animWindowState.GetValue(animEditorObject),
                 null);
 
-            Debug.Log(clip);
+            Logging.Log(clip);
 
 
             return (AnimationClip)clip;

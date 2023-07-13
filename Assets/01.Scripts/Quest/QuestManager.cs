@@ -8,6 +8,7 @@ using Utill.Pattern;
 using Utill.Measurement;
 using System.Linq;
 using GameManager;
+using Utill.Measurement;
 
 namespace Quest
 {
@@ -217,7 +218,7 @@ namespace Quest
 				return;
 			}	
 			_questData.QuestState = QuestState.Active;
-			Debug.Log($"{_questData.QuestKey} Active");
+			Logging.Log($"{_questData.QuestKey} Active");
 			Send();
 			SendEvent("PopupUIManager", _questData);
 		}

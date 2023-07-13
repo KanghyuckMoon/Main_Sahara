@@ -4,6 +4,7 @@ using UnityEngine;
 using Data;
 using EnemyAnimation;
 using Pool;
+using Utill.Measurement;
 
 namespace Module
 {
@@ -124,7 +125,7 @@ namespace Module
                 if (_adjustedVelocity.y < 0)// && _adjustedVelocity.y > 60)
                 {
                     addSpeed = ((0.5f - _adjustedVelocity.y) * (0.3f - _adjustedVelocity.y) * 1.1f);
-                    Debug.Log(addSpeed);
+                    Logging.Log(addSpeed);
                     //if (dir == Vector3.zero) { addSpeed = 0; mainModule.StopOrNot = 0; }
                     //else mainModule.StopOrNot = 1;
                     return _adjustedVelocity;

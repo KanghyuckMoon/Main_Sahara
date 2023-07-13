@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Detect;
 using DG.Tweening;
 using UnityEngine;
+using Utill.Measurement;
 
 namespace Arena
 {
@@ -112,7 +113,7 @@ namespace Arena
         {
             if (other.CompareTag("Player_Weapon"))
             {
-                Debug.Log("플레이어 웨폰 충돌" + other.name);
+                Logging.Log("플레이어 웨폰 충돌" + other.name);
             }
         }
     }

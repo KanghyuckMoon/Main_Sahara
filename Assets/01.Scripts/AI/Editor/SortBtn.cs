@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Utill.Measurement;
 
 public class SortBtn
 {
@@ -21,6 +22,6 @@ public class SortBtn
 
 	private void OnClickSortBtn()
 	{
-		Debug.Log("click btn");
+		Logging.Log("click btn");
 	}
 }

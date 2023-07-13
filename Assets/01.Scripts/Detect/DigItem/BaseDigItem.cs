@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utill.Measurement;
 
 namespace Detect
 {
@@ -54,7 +55,7 @@ namespace Detect
             GetNearObject();
             if(targetItem is not null)
             {
-                Debug.Log("GetOut");
+                Logging.Log("GetOut");
                 targetItem.GetOut();
             }
         }
@@ -64,7 +65,7 @@ namespace Detect
             var _detectAnimationAction = transform.GetComponentInParent<DetectAnimationAction>();
             if (_detectAnimationAction is not null)
             {
-                Debug.Log("Success");
+                Logging.Log("Success");
                 _detectAnimationAction.ChangeAction(Dig);
             }
         }
@@ -77,7 +78,7 @@ namespace Detect
                 GetNearObject();
                 if(targetItem is not null)
                 {
-                    Debug.Log("GetOut");
+                    Logging.Log("GetOut");
                     targetItem.GetOut();
                 }
             }

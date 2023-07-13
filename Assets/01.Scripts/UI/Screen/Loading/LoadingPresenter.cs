@@ -10,6 +10,7 @@ using UI.Manager;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UI.UtilManager;
+using Utill.Measurement;
 
 namespace UI.Loading
 {
@@ -35,7 +36,7 @@ namespace UI.Loading
         }
         private void OnDisable()
         {
-            Debug.Log("DD");
+            Logging.Log("DD");
             loadingView.StopTween();
             StopAllCoroutines();
         }

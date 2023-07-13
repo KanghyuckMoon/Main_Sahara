@@ -5,6 +5,7 @@ using Pool;
 using Utill.Pattern;
 using System.Linq;
 using UnityEngine.Serialization;
+using Utill.Measurement;
 
 namespace HitBox
 {
@@ -40,13 +41,13 @@ namespace HitBox
 		public void OnHitBox(string _str)
 		{
 			HitBoxDataList hitBoxDataList = hitBoxDataSO.GetHitboxList(_str);
-			Debug.Log(_str);
+			Logging.Log(_str);
 			if (hitBoxDataList is not null)
 			{
 				string tagname = gameObject.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
 				foreach (HitBoxData hitBoxData in hitBoxDataList.hitBoxDataList)
 				{
-					Debug.Log("In : " + _str);
+					Logging.Log("In : " + _str);
 					InGameHitBox hitbox = HitBoxPoolManager.Instance.GetObject();
 					if (waeponHandle == null)
 					{
@@ -144,13 +145,13 @@ namespace HitBox
 		[ContextMenu("CheckFrame")]
 		public void CheckFrame()
 		{
-			Debug.Log(AnimationHitBoxEditor.GetAnimationWindowCurrentFrame());
+			Logging.Log(AnimationHitBoxEditor.GetAnimationWindowCurrentFrame());
 		}
 
 		[ContextMenu("CheckTime")]
 		public void CheckTime()
 		{
-			Debug.Log(AnimationHitBoxEditor.GetAnimationWindowTime());
+			Logging.Log(AnimationHitBoxEditor.GetAnimationWindowTime());
 		}
 #endif
 	}

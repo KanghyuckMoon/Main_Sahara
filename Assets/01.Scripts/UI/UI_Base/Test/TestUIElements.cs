@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Utill.Measurement;
 
 public class TestUIElements : EditorWindow
 {
@@ -18,7 +19,7 @@ public class TestUIElements : EditorWindow
     void OnEnable()
     {
         m_Texture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/unitylogo_small.png");
-        Debug.Log(m_Texture);
+        Logging.Log(m_Texture);
 
         var box = new Box()
         {
@@ -40,7 +41,7 @@ public class TestUIElements : EditorWindow
 
     void MyGenVisualContent(MeshGenerationContext mgc)
     {
-        Debug.Log(m_Texture);
+        Logging.Log(m_Texture);
         var w = mgc.visualElement.worldBound.width;
         var h = mgc.visualElement.worldBound.height;
 

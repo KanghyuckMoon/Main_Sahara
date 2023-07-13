@@ -18,6 +18,7 @@ using Unity.Collections;
 using Tutorial;
 using Option;
 using UnityEngine.Rendering;
+using Utill.Measurement;
 
 namespace Json
 {
@@ -416,7 +417,7 @@ namespace Json
             StartCoroutine(asyncScreenCapture.CaptureAsync(_imagePath));
                 
             sw.Stop();
-            Debug.Log("Save: " + sw.ElapsedMilliseconds.ToString() + "ms");
+            Logging.Log("Save: " + sw.ElapsedMilliseconds.ToString() + "ms");
 
             yield return null;
         }
@@ -498,7 +499,7 @@ namespace Json
             StaticTime.EntierTime = 1;
 
             sw.Stop();
-            Debug.Log(sw.ElapsedMilliseconds.ToString() + "ms");
+            Logging.Log(sw.ElapsedMilliseconds.ToString() + "ms");
         }
 
         [ContextMenu("Load")]

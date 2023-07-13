@@ -1,27 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utill.Measurement;
 
 public class DebugTest : MonoBehaviour
 {
     public void DebugA()
     {
-        Debug.Log("AAA");
+        Logging.Log("AAA");
     }
     
     public void DebugB()
     {
-        Debug.Log("BBB");
+        Logging.Log("BBB");
     }
     
     public void DebugC()
     {
-        Debug.Log("CCC");
+        Logging.Log("CCC");
     }
     
     public void DebugD()
     {
-        Debug.Log("DDD");
+        Logging.Log("DDD");
     }
 
 
@@ -41,8 +42,8 @@ public class DebugTest : MonoBehaviour
     [ContextMenu("World")]
     public void SetWorld()
     {
-        Debug.Log("World" + target.transform.lossyScale);
-        Debug.Log("Local" + target.transform.localScale);
+        Logging.Log("World" + target.transform.lossyScale);
+        Logging.Log("Local" + target.transform.localScale);
         target.transform.position = scale; 
         target.transform.eulerAngles = scale; 
     }

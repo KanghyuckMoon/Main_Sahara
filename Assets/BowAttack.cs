@@ -40,6 +40,5 @@ public class BowAttack : StateMachineBehaviour
         //animator.SetBool("ConsecutiveAttack", false);
 
         //stateModule.RemoveState(State.ATTACK);
-        //Debug.Log("aflahfaiufhaliuhlaiuehgaliuehlaueghlawiueghliueghlawueghlahuegl");
     }
 }

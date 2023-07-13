@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using HitBox;
 using UnityEngine;
 using Weapon;
+using Utill.Measurement;
 
 namespace Module
 {
@@ -126,7 +127,7 @@ namespace Module
                 if (Physics.Raycast(_ray, out _raycastHit, 80, targetLayerMask))
                 {
                     _vec = _raycastHit.point;
-                    Debug.Log("맞음!" + _raycastHit.transform.name);
+                    Logging.Log("맞음!" + _raycastHit.transform.name);
                 }
                 else
                 {

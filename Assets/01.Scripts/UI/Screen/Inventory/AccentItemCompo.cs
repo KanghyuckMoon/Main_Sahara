@@ -5,6 +5,7 @@ using UnityEngine;
 using Inventory;
 using UnityEngine.UIElements;
 using Utill.Addressable;
+using Utill.Measurement;
 
 namespace UI.Inventory
 {
@@ -102,7 +103,7 @@ namespace UI.Inventory
         {
             if (curActiveModel is null) return;
 
-            Debug.Log("클릭중");
+            Logging.Log("클릭중");
             //Quaternion xQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up); 
             //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
             //Quaternion _resultQut = xQut * yQut;  
@@ -114,7 +115,7 @@ namespace UI.Inventory
         {
             if (curActiveModel is null) return;
 
-            Debug.Log("클릭중");
+            Logging.Log("클릭중");
             //Quaternion xQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.y + _rotV.y, Vector3.up); 
             //Quaternion yQut =  Quaternion.AngleAxis(curActiveModel.transform.eulerAngles.x + _rotV.x, Vector3.right); 
             //Quaternion _resultQut = xQut * yQut;  

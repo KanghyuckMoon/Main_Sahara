@@ -8,6 +8,7 @@ using Utill.Addressable;
 using GameManager;
 using Unity.Jobs;
 using UnityEngine.SceneManagement;
+using Utill.Measurement;
 
 namespace Streaming
 {
@@ -289,15 +290,6 @@ namespace Streaming
 				{
 					yield return null;
 				}
-				
-				//if (TerrainManager.Instance.CheckTerrain(currentScene.SceneName))
-				//{
-				//	Debug.Log("Success Current Scene");
-				//}
-				//else
-				//{
-				//	Debug.Log("Check Current Scene");
-				//}
 			}
 
 			isCurrentSceneSetting = true;
@@ -308,7 +300,7 @@ namespace Streaming
 			{
             yield return new WaitForSeconds(0.3f);
 				LoadSubScene(_obj.Key);
-				Debug.Log("Scene Load : " + _obj.Key);
+				Logging.Log($"Scene Load : {_obj.Key}");
 				
 				while(true)
 				{
@@ -317,7 +309,7 @@ namespace Streaming
 						if (Vector3.Distance(_pos, _obj.Key) > StreamingManager.chunksVisibleInViewDst)
 						{
 							_obj.Value.UnLoadSceneNoneCheck();
-							Debug.Log("Scene UnLoad : " + _obj.Key);
+							Logging.Log($"Scene UnLoad : {_obj.Key}");
 						}
 				    	break;
 				    }

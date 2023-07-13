@@ -34,7 +34,6 @@ namespace PassiveItem
             if (!mainModule.isGround) return;
             if (Input.GetKey(KeyCode.Space))
             {
-                Debug.LogError("Â÷Â¡Â÷Â¡Â÷Â¡");
                 stateModule.AddState(State.JUMP);
                 jumpStrength += Time.deltaTime;
                 mainModule.Animator.SetBool("ChargeJump", true);

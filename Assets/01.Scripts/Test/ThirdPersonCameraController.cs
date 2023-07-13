@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using UnityEngine;
 using DG.Tweening;
+using Utill.Measurement;
 
 namespace ForTheTest
 {
@@ -62,7 +63,7 @@ namespace ForTheTest
             }
             else
             {
-                Debug.Log("Need to connect your 3rd person vcam to the CameraController!");
+                Logging.Log("Need to connect your 3rd person vcam to the CameraController!");
             }
         }
 

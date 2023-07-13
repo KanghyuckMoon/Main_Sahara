@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.SeralizableDictionary;
+using Utill.Measurement;
 
 namespace GoogleSpreadSheet
 {
@@ -17,7 +18,7 @@ namespace GoogleSpreadSheet
 		{
 			foreach (var txt in textDataDic)
 			{
-				Debug.Log($"KEY : {txt.Key}, VALUE : {txt.Value}");
+				Logging.Log($"KEY : {txt.Key}, VALUE : {txt.Value}");
 			}
 		}
 

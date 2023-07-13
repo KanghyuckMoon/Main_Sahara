@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
+using Utill.Measurement;
 
 namespace Arena
 {
@@ -65,7 +66,7 @@ namespace Arena
             while (true)
             {
                 yield return new WaitForSeconds(1f); 
-                Debug.Log("RIgid Velocity" + rigid.velocity);
+                Logging.Log("RIgid Velocity" + rigid.velocity);
                 if (rigid.velocity.sqrMagnitude > 0) yield return null;
                 
                 originPos = targetTrm.localPosition;
@@ -87,7 +88,7 @@ namespace Arena
                 {
                     isCollision = false;
                     isTrigger = true; 
-                    Debug.Log("OnArena");
+                    Logging.Log("OnArena");
                     Interact();
                 }
             }
@@ -115,9 +116,9 @@ namespace Arena
             // isTrigger false 
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.transform.CompareTag(targetTag) )
+            if (other.transform.CompareTag(targetTag) )
             {
                 if (!isCollision)
                 {
@@ -128,7 +129,7 @@ namespace Arena
             }
         }
 
-        private void OnCollisionExit(Collision collision)
+        private void OnTriggerExit(Collider other)
         {
             // CollisionExit
             // 충돌 했다가 떨어졌으면 
