@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Option;
 using UI.Base;
 using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine;
@@ -10,6 +11,10 @@ namespace UI.Option
 {
     public class OptionPresenter : MonoBehaviour, IScreen
     {
+        // 데이터 관련 
+        private GrapicSetting grahpicSetting;
+        private SoundSetting soundSetting; 
+        
         private UIDocument uiDocument;
 
         [SerializeField]
@@ -25,8 +30,9 @@ namespace UI.Option
 
         private void Awake()
         {
-            this.uiDocument = GetComponent<UIDocument>(); 
-
+            this.uiDocument = GetComponent<UIDocument>();
+            this.grahpicSetting = GetComponent<GrapicSetting>();
+            this.soundSetting = GetComponent<SoundSetting>(); 
         }
 
         private void OnEnable()
@@ -34,10 +40,12 @@ namespace UI.Option
             optionView.InitUIDocument(uiDocument);
             optionView.Cashing();
             optionView.Init();
+            
         }
 
         private void OnDisable()
         {
+            optionView.RemoveButtonEvents();
         }
 
         public bool ActiveView()

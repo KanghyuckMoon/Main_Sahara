@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="option_button_modify" src="project://database/Assets/UIToolkit/Uxml/Production/option_button_modify.uxml?fileID=9197481963319205126&amp;guid=8a3bf51166dce5f48ab012428590bc1b&amp;type=3#option_button_modify" />
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/Option.uss?fileID=7433441132597879392&amp;guid=74af02d65dd8fae4da27c45fa897fced&amp;type=3#Option" />
     <Gradient direction="vertical" left-color="#100E08FF" right-color="#3A311AFF" focusable="true" name="option_screen" class="screen center_align">
@@ -16,11 +15,44 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="bottom_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 90%;">
                     <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" name="option_scroll_view" style="width: 100%; height: 100%;">
-                        <ui:VisualElement name="graphics_panel" class="option_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;" />
+                        <ui:VisualElement name="graphics_panel" class="option_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;">
+                            <ui:VisualElement name="option_button_modify" class="option_modify">
+                                <ui:VisualElement name="hover_image" picking-mode="Ignore" class="border_base option_modify_hover" style="background-color: rgb(0, 0, 0);" />
+                                <ui:VisualElement name="background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center; align-items: center;">
+                                    <ui:Label tabindex="-1" text="01010101012120000101010101212000" display-tooltip-when-elided="true" name="Label" class="font_base option_name_label" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: middle-center;" />
+                                    <ui:VisualElement name="control" style="background-color: rgba(0, 0, 0, 0); flex-direction: row; width: 600px; align-items: center; justify-content: flex-end;">
+                                        <ui:Button display-tooltip-when-elided="true" name="left_button" class="option_leftbutton" />
+                                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="value_label" class="font_base option_value_label" />
+                                        <ui:Button display-tooltip-when-elided="true" name="right_button" class="option_rightbutton" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="option_button_modify" class="option_modify">
+                                <ui:VisualElement name="hover_image" picking-mode="Ignore" class="border_base option_modify_hover" style="background-color: rgb(0, 0, 0);" />
+                                <ui:VisualElement name="background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-around; align-items: center;">
+                                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="option_name" class="font_base option_name_label" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: middle-center;" />
+                                    <ui:VisualElement name="control" style="background-color: rgba(0, 0, 0, 0); flex-direction: row; width: 600px; align-items: center; justify-content: flex-end;">
+                                        <ui:Button display-tooltip-when-elided="true" name="left_button" class="option_leftbutton" />
+                                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="value_label" class="font_base option_value_label" />
+                                        <ui:Button display-tooltip-when-elided="true" name="right_button" class="option_rightbutton" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="option_button_modify" class="option_modify">
+                                <ui:VisualElement name="hover_image" picking-mode="Ignore" class="border_base option_modify_hover" style="background-color: rgb(0, 0, 0);" />
+                                <ui:VisualElement name="background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-around; align-items: center;">
+                                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="option_name" class="font_base option_name_label" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: middle-center;" />
+                                    <ui:VisualElement name="control" style="background-color: rgba(0, 0, 0, 0); flex-direction: row; width: 600px; align-items: center; justify-content: flex-end;">
+                                        <ui:Button display-tooltip-when-elided="true" name="left_button" class="option_leftbutton" />
+                                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="value_label" class="font_base option_value_label" />
+                                        <ui:Button display-tooltip-when-elided="true" name="right_button" class="option_rightbutton" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
                         <ui:VisualElement name="sound_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;" />
                         <ui:VisualElement name="gameinfo_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;" />
                         <ui:VisualElement name="help_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;" />
-                        <ui:Instance template="option_button_modify" name="option_button_modify" />
                         <ui:VisualElement name="opotion_dropdown_modify" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 50px; display: none;">
                             <ui:VisualElement name="background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-around; align-items: center;">
                                 <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="option_name" class="font_base" />

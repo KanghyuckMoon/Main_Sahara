@@ -11,33 +11,22 @@ namespace  UI.Option
     [Serializable]
     public class OptionVIew : AbUI_Base 
     {
-        public class OptionDataSO
-        {
-            public Dictionary<string, OptionData> optionDataDic = new Dictionary<string, OptionData>(); 
-            
-            // 키별로 묶어서 
-            
-        }
-        public class OptionData
-        {
-            public string optionType;
-            public string optionModifyType;
-            public string optionCategoryType;
-            public string name; 
-        }
-        
         /*
          * 옵션 타입 
          * 옵션 조정 타입 
          *  옵션 카테고리 타입
          * 
-         * 이름
+         * 이름   
          *
          * 드롭다운
          * ->
          * 이름 리스트 생성하는그거 choices랑 이벤트 설정  
          * 
          */
+        enum PanelElements
+        {
+            
+        }
         enum Elements
         {
             graphic_panel, 
@@ -67,7 +56,7 @@ namespace  UI.Option
 
         private List<(Buttons, Elements)> buttonPanelConnect = new List<(Buttons, Elements)>();
 
-        private Buttons activeBtn;
+        private Buttons activeBtn;  
         private Elements activePanel; 
         
         public override void Cashing()
@@ -78,27 +67,41 @@ namespace  UI.Option
             BindVisualElements(typeof(Elements));
         }
 
+        private Dictionary<Elements,OptionBtnEntryPr> optionBtnEntryPrList = new Dictionary<Elements, OptionBtnEntryPr>(); 
+        
         public override void Init()
         {
             base.Init();
-            SetCategoryBtnEvent(); 
+            SetCategoryBtnEvent();
+            AddButtonEvents(); 
             UIUtil.SendEvent(GetButton((int)Buttons.graphics_button));
+        
+            // 옵션 패널 안에서 바UI들을 가져온다 
+            
         }
 
+        private const string optionModifyStr = "option_modify";
+
+        private void CashingOptionBars()
+        {
+            foreach (var _panel in Enum.GetValues(typeof(Elements)))
+            {
+                var a= GetVisualElement((int)_panel).Query<VisualElement>(className:optionModifyStr);
+                foreach (var bar in a.ToList())
+                {
+                    optionBtnEntryPrList.Add((Elements)_panel, new OptionBtnEntryPr(bar));
+                    //리스트에서 각각의 요소 가져오기 
+                    
+
+                }                                                                                                                                                                                                       
+            }
+        }
+        
         /// <summary>
         /// 상단 카테고리 버튼 이벤트 설정
         /// </summary>
         private void SetCategoryBtnEvent()
         {
-            // 패널 비활성화 활성화 
-            // 버튼 활성화 비활성화 
-            
-            // 오직 하나만 활성화 
-            // 버튼과 패널 연결 
-            // 나 끄고 
-            
-            // 클릭한 버튼만 활성화 
-            
             AddButtonEventToDic(Buttons.graphics_button, () => ActivePanel(Buttons.graphics_button, Elements.graphic_panel));
             AddButtonEventToDic(Buttons.sound_button, () => ActivePanel(Buttons.sound_button, Elements.sound_panel));
             AddButtonEventToDic(Buttons.gameinfo_button, () => ActivePanel(Buttons.gameinfo_button, Elements.gameinfo_panel));
@@ -112,7 +115,7 @@ namespace  UI.Option
             if (isFirstActivePn == false)
             {
                 // 처음이 아니면 
-                GetButton((int)_btn).RemoveFromClassList(activeStr);
+                GetButton((int)activeBtn).RemoveFromClassList(activeStr);
                 ShowVisualElement(GetVisualElement((int)_panel), false);
             }
             else

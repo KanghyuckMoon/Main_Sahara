@@ -19,6 +19,11 @@ namespace Option
         public int height;
         public bool isFullScreen;
 
+        public int framerate; //주사율 
+        public int shadowQuality; // 그림자 품질 0~3
+        public int textureQuality; // 텍스쳐 품질  0~2
+        
+        
         public List<InputData> inputDataList = new List<InputData>();
     }   
 }

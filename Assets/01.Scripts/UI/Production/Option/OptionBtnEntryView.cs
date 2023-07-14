@@ -35,6 +35,18 @@ namespace UI.Production
             base.Init();
         }
 
+        public OptionBtnEntryView()
+        {
+            
+        }
+        public OptionBtnEntryView(VisualElement _parent)
+        {
+            InitUIParent(_parent);
+            Cashing();
+            Init();
+        }
+
+        //== 텍스트 설정 ==// 
         public void SetName(string _nameStr)
         {
             GetLabel((int)Labels.name_label).text = _nameStr; 
@@ -45,6 +57,7 @@ namespace UI.Production
             GetLabel((int)Labels.value_label).text = _value.ToString(); 
         }
         
+        //== 버튼 이벤트 설정 ==// 
         public void AddButtonsEvent()
         {
             AddElementEvent<ClickEvent>((int)Buttons.left_button ,callbackDic[Buttons.left_button]);
