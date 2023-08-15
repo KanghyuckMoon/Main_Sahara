@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -145,6 +146,22 @@ namespace Module.Talk
                     {
                         case "!END":
                             return;
+                        case "!CHOICE":
+                            int _count = Int32.Parse(fullText);
+                            for (int i = 0; i < _count; ++i)
+                            {
+                                _nameText = textSO.GetText($"{nameCode}_{index + i}").Replace("\r", "");
+                                fullText = textSO.GetText($"{nameCode}_{index + i}").Replace("\r", "");
+                                Debug.Log($"{_nameText}\n{fullText}");
+                                string _name = _nameText.Replace("\r","");
+                                DebugLogTalkCode("A" + _name.Substring(1, _name.Length-1), _name);
+                            }
+                            
+                            return;
+                        case "!MOVE":
+                            string _name2 = fullText.Replace("\r","");
+                            DebugLogTalkCode( _name2.Replace("T","A"),  _name2);
+                            return; 
                     }
                 }
             }
