@@ -14,12 +14,27 @@ namespace HitBox
 	[CreateAssetMenu(fileName = "HitBoxDatasSO", menuName = "SO/HitBoxDatasSO")]
 	public class HitBoxDatasSO : ScriptableObject
 	{
+		public HitBoxDatasSO mainHitBox;
+
 		public StringListHitBoxData hitBoxDataDic = new StringListHitBoxData();
 		public List<BuffData> setAllHitBoxBuffList = new List<BuffData>();
 		
 		public List<string> debugList = new List<string>();
 		public string debugString;
-		
+
+		[ContextMenu("DeleteDuplicationMainHitboxsHitBox")]
+		public void DeleteDuplicationMainHitboxsHitBox()
+		{
+			//메인 히트박스와 겹치는 히트박스들을 제거합니다.
+			foreach(var _hitbox in mainHitBox.hitBoxDataDic)
+			{
+				if(hitBoxDataDic.ContainsKey(_hitbox.Key))
+				{
+					hitBoxDataDic.Remove(_hitbox.Key);
+				}
+			}
+		}
+
 		[ContextMenu("ResetDic")]
 		public void ResetDic()
 		{
