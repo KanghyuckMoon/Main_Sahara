@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3.3854737, g: 2.163067, b: 1.5922339, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16110,6 +16110,103 @@ Transform:
   m_Father: {fileID: 552586202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &378620974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378620977}
+  - component: {fileID: 378620976}
+  - component: {fileID: 378620975}
+  m_Layer: 0
+  m_Name: Gmae
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &378620975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378620974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e23cf5551c1bb04897c5829c6d72622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDataSO: {fileID: 0}
+  hitBoxData:
+    hitBoxName: NULL
+    ClassificationName: NULL
+    hitBoxType: 0
+    hitBoxIndex: 0
+    deleteDelay: 0.1
+    childization: 0
+    childSizeOne: 0
+    offset: {x: 0, y: 0, z: 0}
+    radius: 0.5
+    height: 1
+    rotation: {x: -0, y: 0, z: 0}
+    hitType: 1
+    isContactDirection: 0
+    knockbackDir: {x: 0, y: 0, z: 1}
+    defaultPower: 1
+    swingEffectOffset: {x: 0, y: 0, z: 0}
+    swingEffectRotation: {x: 0, y: 0, z: 0}
+    swingEffectSize: {x: 1, y: 1, z: 1}
+    hitStunDelay: 0
+    attackStunDelay: 0
+    swingEffectChildization: 0
+    swingEffect: NULL
+    hitEffect: []
+    buffList: []
+    physicsAttackWeight: 1
+    magicalAttackWeight: 1
+  swingEffectObj: {fileID: 0}
+--- !u!136 &378620976
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378620974}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &378620977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378620974}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5510643, y: -0.589179, z: 0.08219522}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &378664180
 GameObject:
   m_ObjectHideFlags: 0
@@ -23890,10 +23987,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 1382492716}
   hitBoxInAction: {fileID: 0}
   hitBoxName: 
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &885623156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53560,7 +53659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056879189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.9888122, z: -6.1}
+  m_LocalPosition: {x: -74.230606, y: 3938.7046, z: 172.01392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
