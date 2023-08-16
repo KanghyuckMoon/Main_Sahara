@@ -135,9 +135,37 @@ namespace Detect
                 isGetOut = true;
                 getoutEventAfter?.Invoke();
             });
-        }
+
+		}
+
+#if UNITY_EDITOR
         
-        #if UNITY_EDITOR
+        private static int debugDotCount = 0;
+
+        [ContextMenu("DebugGetOut")]
+        public void DebugGetOut()
+        {
+            upPos = targetModel.position;
+            targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
+            
+            debugDotCount++;
+            targetModel.gameObject.SetActive(true);
+            isGetOut = true;
+            Vector3 _movePos = upPos;
+            var tween2 = targetModel.DOMove(_movePos,  heightUpTime);
+            var tween = targetTransform.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
+            {   
+                debugDotCount--;
+                if(debugDotCount == 0)
+                {
+                    DG.DOTweenEditor.DOTweenEditorPreview.Stop();
+                }
+            });
+            DG.DOTweenEditor.DOTweenEditorPreview.PrepareTweenForPreview(tween,false,false,true);
+            DG.DOTweenEditor.DOTweenEditorPreview.PrepareTweenForPreview(tween2,false,false,true);
+            DG.DOTweenEditor.DOTweenEditorPreview.Start();
+        }
+
         public LayerMask debug_LayerMask;
         
         
@@ -181,6 +209,6 @@ namespace Detect
             targetModel.position = transform.position;
         }
         
-        #endif
-    }   
+#endif
+	}
 }
