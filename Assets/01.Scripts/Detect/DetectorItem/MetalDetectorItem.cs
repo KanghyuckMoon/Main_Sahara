@@ -28,8 +28,6 @@ namespace Detect
         {
             base.Detect();
 
-            
-
             if (closeRadius > minDistance)
             {
                 LinearColor linearColor = default;
@@ -70,12 +68,24 @@ namespace Detect
             {
                 currentTimer = 0f;
                 //Sound Play
-                EffectManager.Instance.SetEffectDefault(closeDetectEffect, targetEffectTrm.position, Vector3.zero, Vector3.one, targetEffectTrm);
+
+
+                EffectManager.Instance.SetEffectDefault(closeDetectEffect, targetEffectTrm.position, CalculateRotation(transform.position, targetTrm.position), Vector3.one, targetEffectTrm);
             }
             else
             {
                 currentTimer += Time.deltaTime;
             }
         }
-    }
+
+		private Vector3 CalculateRotation(Vector3 fromPosition, Vector3 toPosition)
+		{
+			Vector3 direction = toPosition - fromPosition;
+			Quaternion rotation = Quaternion.LookRotation(direction);
+            var rotate = rotation.eulerAngles;
+            rotate.x = 0;
+            rotate.z = 0;
+			return rotate;
+		}
+	}
 }
