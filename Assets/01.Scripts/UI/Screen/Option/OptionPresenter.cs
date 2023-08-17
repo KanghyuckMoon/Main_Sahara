@@ -12,7 +12,7 @@ namespace UI.Option
     public class OptionPresenter : MonoBehaviour, IScreen
     {
         // 데이터 관련 
-        private GrapicSetting grahpicSetting;
+        private GraphicsSetting grahpicSetting;
         private SoundSetting soundSetting; 
         
         private UIDocument uiDocument;
@@ -31,7 +31,7 @@ namespace UI.Option
         private void Awake()
         {
             this.uiDocument = GetComponent<UIDocument>();
-            this.grahpicSetting = GetComponent<GrapicSetting>();
+            this.grahpicSetting = GetComponent<GraphicsSetting>();
             this.soundSetting = GetComponent<SoundSetting>(); 
         }
 

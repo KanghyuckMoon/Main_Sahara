@@ -17,7 +17,14 @@ namespace Option
             // 해상도 업데이트 
             Screen.SetResolution(optionData.width,optionData.height,optionData.isFullScreen);
             Application.targetFrameRate = optionData.framerate; 
+        }
+
+        /// <summary>
+        /// 사운드 세팅관련 업데이트 
+        /// </summary>
+        public void UpdateSoundData()
+        {
             
-        }   
+        }
     }   
 }

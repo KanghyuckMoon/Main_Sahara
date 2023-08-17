@@ -5,7 +5,7 @@ using UnityEngine;
 namespace  Option
 {
     
-public class GrapicSetting : MonoBehaviour
+public class GraphicsSetting : MonoBehaviour
 {
     public bool IsFoolScreen
     {
@@ -43,10 +43,43 @@ public class GrapicSetting : MonoBehaviour
         }
     }
 
+    public int Framerate
+    {
+        get
+        {
+            return framerate; 
+        }
+        set
+        {
+            framerate = value; 
+        }
+    }
+
+    public int Fps
+    {
+        get
+        {
+            return fps; 
+        }
+        set
+        {
+            fps = value;   
+        } 
+    }
+
     private bool _isFoolScreen = true;
     private int _width = 1920;
     private int _height = 1080;
 
+    private int framerate = 144;
+    private int antialiacing = 0;
+    private int fps;
+
+    public void ChangeFps(int _fps)
+    {
+        fps = _fps; 
+        Application.targetFrameRate = fps; 
+    }
     /// <summary>
     /// 퀄리티 레벨 변경
     /// </summary>
@@ -84,6 +117,9 @@ public class GrapicSetting : MonoBehaviour
         OptionManager.Instance.optionData.width = Width;
         OptionManager.Instance.optionData.height = Height;
         OptionManager.Instance.optionData.isFullScreen = IsFoolScreen;
+        Application.targetFrameRate = framerate;
+
+        QualitySettings.antiAliasing = antialiacing; 
     }
 }
 

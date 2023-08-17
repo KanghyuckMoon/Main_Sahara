@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Option;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
+//using UnityEngine.UI;
+using UnityEngine.UIElements; 
 
 public class SoundSetting : MonoBehaviour
 {
-
     AudioMixer _audioMixer;
     Slider _bgmAudioSlider;
     Slider _effAudioSlider;
