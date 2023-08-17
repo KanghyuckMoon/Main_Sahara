@@ -79,10 +79,12 @@ namespace Streaming
 		[SerializeField]
 		private SceneAsset sceneAsset;
 		[SerializeField]
-		private bool isLoadScene;
+		private bool isLoadBool;
+        [SerializeField]
+        private bool isDebugLoaded;
 		[SerializeField]
 		private GUISkin guiSkin;
-
+        private bool isLoadSceneNotSave;
 
 		/// <summary>
 		/// �ð� �ִ� �� ������ ����
@@ -112,7 +114,14 @@ namespace Streaming
 
 			Scene _scene = EditingScene;
 
-			if (isLoadScene)
+            if(isLoadBool)
+            {
+                isLoadSceneNotSave = !isLoadSceneNotSave;
+                isDebugLoaded = isLoadSceneNotSave;
+            }
+            isLoadBool = false;
+
+			if (isLoadSceneNotSave)
 			{
 				string _path = AssetDatabase.GetAssetPath(sceneAsset);
 				EditorSceneManager.OpenScene(_path, OpenSceneMode.Additive);
@@ -138,7 +147,7 @@ namespace Streaming
 
 #endif
 
-        public void SetSceneName(string _name)
+		public void SetSceneName(string _name)
         {
             sceneName = _name;
         }

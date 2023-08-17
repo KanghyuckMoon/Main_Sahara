@@ -5,6 +5,7 @@ using Pool;
 using Utill.Pattern;
 using System.Linq;
 using UnityEngine.Serialization;
+using Utill.Measurement;
 
 namespace HitBox
 {
@@ -13,7 +14,9 @@ namespace HitBox
 		private ulong index;
 
 		[SerializeField]
-		private HitBoxDatasSO hitBoxDataSO;
+		private HitBoxDatasSO mainHitBoxDataSO;
+		[SerializeField]
+		private HitBoxDatasSO subHitBoxDataSO;
 
 		[SerializeField] 
 		private Transform waeponHandle;
@@ -33,20 +36,34 @@ namespace HitBox
 
 		public void ChangeSO(HitBoxDatasSO _hitBoxDataSO)//, string _colliderKey)
 		{
-			hitBoxDataSO = _hitBoxDataSO;
+			if(_hitBoxDataSO.mainHitBox is null)
+			{
+				mainHitBoxDataSO = _hitBoxDataSO;
+				subHitBoxDataSO = _hitBoxDataSO;
+			}
+			else
+			{
+				mainHitBoxDataSO = _hitBoxDataSO.mainHitBox;
+				subHitBoxDataSO = _hitBoxDataSO;
+			}
 			//colliderKey = _colliderKey;
 		}
 
 		public void OnHitBox(string _str)
 		{
-			HitBoxDataList hitBoxDataList = hitBoxDataSO.GetHitboxList(_str);
-			Debug.Log(_str);
+			HitBoxDataList hitBoxDataList = null;
+			if (subHitBoxDataSO != null)
+			{
+				hitBoxDataList = subHitBoxDataSO.GetHitboxList(_str);
+			}
+			hitBoxDataList ??= mainHitBoxDataSO.GetHitboxList(_str);
+			Logging.Log(_str);
 			if (hitBoxDataList is not null)
 			{
 				string tagname = gameObject.tag == "Player" ? "Player_Weapon" : "EnemyWeapon";
 				foreach (HitBoxData hitBoxData in hitBoxDataList.hitBoxDataList)
 				{
-					Debug.Log("In : " + _str);
+					Logging.Log("In : " + _str);
 					InGameHitBox hitbox = HitBoxPoolManager.Instance.GetObject();
 					if (waeponHandle == null)
 					{
@@ -71,6 +88,9 @@ namespace HitBox
 
 		[Header("DEBUGOPTION")]
 		public string hitBoxName = "";
+		
+		[SerializeField]
+		private HitBoxDatasSO debugHitBoxDataSO;
 
 		[ContextMenu("AddEvent")]
 		public void AddEvent()
@@ -84,7 +104,7 @@ namespace HitBox
 			CapsuleColEditor _boxColEditor = obj.AddComponent<CapsuleColEditor>();
 			HitBoxData _hitBoxData = new HitBoxData();
 			_hitBoxData.hitBoxName = hitBoxName;
-			_boxColEditor.hitBoxDataSO = hitBoxDataSO;
+			_boxColEditor.hitBoxDataSO = debugHitBoxDataSO;
 			_boxColEditor.SetHitBox(_hitBoxData);
 			_boxColEditor.Upload();
 			boxColEditorList.Add(_boxColEditor);
@@ -115,13 +135,13 @@ namespace HitBox
 			{
 				if (_animationEvent.stringParameter is not null)
 				{
-					HitBoxDataList hitBoxDataList = hitBoxDataSO.hitBoxDataDic[_animationEvent.stringParameter];
+					HitBoxDataList hitBoxDataList = debugHitBoxDataSO.hitBoxDataDic[_animationEvent.stringParameter];
 					for (int i = 0; i < hitBoxDataList.hitBoxDataList.Count; ++i)
 					{
 						GameObject obj = new GameObject();
 						CapsuleColEditor boxColEditor = obj.AddComponent<CapsuleColEditor>();
 						boxColEditor.SetHitBox(hitBoxDataList.hitBoxDataList[i]);
-						boxColEditor.hitBoxDataSO = hitBoxDataSO;
+						boxColEditor.hitBoxDataSO = debugHitBoxDataSO;
 						boxColEditorList.Add(boxColEditor);
 					}
 				}
@@ -144,13 +164,13 @@ namespace HitBox
 		[ContextMenu("CheckFrame")]
 		public void CheckFrame()
 		{
-			Debug.Log(AnimationHitBoxEditor.GetAnimationWindowCurrentFrame());
+			Logging.Log(AnimationHitBoxEditor.GetAnimationWindowCurrentFrame());
 		}
 
 		[ContextMenu("CheckTime")]
 		public void CheckTime()
 		{
-			Debug.Log(AnimationHitBoxEditor.GetAnimationWindowTime());
+			Logging.Log(AnimationHitBoxEditor.GetAnimationWindowTime());
 		}
 #endif
 	}

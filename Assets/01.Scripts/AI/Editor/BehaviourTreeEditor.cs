@@ -11,7 +11,7 @@ public class BehaviourTreeEditor : EditorWindow
     Button sortBtn;
     NodeView selectionNodeView;
 
-    [MenuItem("BehaviourTreeEditor/Editor ...")]
+    [MenuItem("MoonTool/BehaviourTreeEditor/Editor ...")]
     public static void OpenWindow()
     {
         BehaviourTreeEditor wnd = GetWindow<BehaviourTreeEditor>();
