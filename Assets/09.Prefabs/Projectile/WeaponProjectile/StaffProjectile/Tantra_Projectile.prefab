@@ -35,7 +35,7 @@ Transform:
   - {fileID: 4394317413903519945}
   - {fileID: 945272312866358458}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1164028467344829982
 Rigidbody:
@@ -44,10 +44,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164028467344829973}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -79,6 +90,7 @@ MonoBehaviour:
     speed: 10
     projectileAddress: Tantra_Projectile
     isParentOn: 1
+    isSetHitBoxWhenSetProjectile: 1
   rigidbody: {fileID: 1164028467344829982}
   affectedByGravity: 0
   address: Tantra_Projectile
@@ -100,6 +112,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   isTimeIndexCange: 0
   isOnEnalbe: 0
+  isStage: 0
 --- !u!114 &4065833615221506640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +214,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1164028467344829969}
     m_Modifications:
     - target: {fileID: -4474587332706455566, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
@@ -261,15 +275,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.6015625
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.6000004
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 108176094184806404, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
@@ -333,6 +347,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54347867007870338, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa331b8213914f44cab65156c1ba366e, type: 3}
 --- !u!4 &945272312866358458 stripped
 Transform:
