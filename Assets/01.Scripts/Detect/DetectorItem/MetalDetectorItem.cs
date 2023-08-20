@@ -70,7 +70,7 @@ namespace Detect
                 //Sound Play
 
 
-                EffectManager.Instance.SetEffectDefault(closeDetectEffect, targetEffectTrm.position, CalculateRotation(transform.position, targetTrm.position), Vector3.one, targetEffectTrm);
+                EffectManager.Instance.SetEffectDefault(closeDetectEffect, targetEffectTrm.position, CalculateRotation(transform.position, targetTrm.position), Vector3.one, null);
             }
             else
             {

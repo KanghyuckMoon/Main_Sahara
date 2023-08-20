@@ -91,6 +91,7 @@ namespace Detect
         }
 
         protected bool isGetOut = false;
+        private EffectObject effectObj;
         
         protected virtual void Awake()
         {
@@ -126,17 +127,28 @@ namespace Detect
             targetModel.gameObject.SetActive(true);
             isGetOut = true;
             Vector3 _movePos = upPos;
-            var _effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
+			effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
             targetModel.DOMove(_movePos,  heightUpTime);
             targetTransform.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
             {
-                _effectObj.Pool();
+				effectObj.Pool();
                 gameObject.SetActive(false);
                 isGetOut = true;
                 getoutEventAfter?.Invoke();
             });
-
+            Invoke("CheckDetectRemove", heightUpTime);
 		}
+
+        private void CheckDetectRemove()
+        {
+            if(!isGetOut)
+			{
+				effectObj.Pool();
+				gameObject.SetActive(false);
+				isGetOut = true;
+				getoutEventAfter?.Invoke();
+			}
+        }
 
 #if UNITY_EDITOR
         
