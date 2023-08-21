@@ -71,7 +71,7 @@ namespace Interaction
 
 				upWall.position = upVec;
                 downWall.position = downVec;   
-                upWall.DOMoveY(upWallOrigin, 1f).OnComplete(() => PlayerTeleport());
+                upWall.DOMoveY(upWallOrigin, 3f).OnComplete(() => PlayerTeleport());
             }
             else
 			{
@@ -83,7 +83,7 @@ namespace Interaction
 
 				upWall.position = upVec;
                 downWall.position = downVec;
-                downWall.DOMoveY(downWallOrigin, 1f).OnComplete(() => PlayerTeleport());
+                downWall.DOMoveY(downWallOrigin, 3f).OnComplete(() => PlayerTeleport());
             }
         }
 
@@ -100,11 +100,11 @@ namespace Interaction
         {
             if (isUp)
             {
-                downWall.DOMoveY(downWallIsUp, 5f).OnComplete(() => ResetIsMoving());   
+                downWall.DOMoveY(downWallIsUp, 7f).OnComplete(() => ResetIsMoving());   
             }
             else
             {
-                upWall.DOMoveY(upWallIsDown, 5f).OnComplete(() => ResetIsMoving());   
+                upWall.DOMoveY(upWallIsDown, 7f).OnComplete(() => ResetIsMoving());   
             }
         }
         
