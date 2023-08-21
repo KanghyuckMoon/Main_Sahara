@@ -333,7 +333,7 @@ namespace Module
 
                 //StateModule.RemoveState(State.JUMP);
 
-                mainModule.KnockBackVector = Vector3.zero;
+                //mainModule.KnockBackVector = Vector3.zero;
                 landAction?.Invoke();
             }
 

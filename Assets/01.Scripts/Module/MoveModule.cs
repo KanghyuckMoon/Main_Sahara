@@ -64,6 +64,8 @@ namespace Module
         protected float addSpeed;
         private float previousSpeed;
 
+        private float knockBackPower = 0;
+
         protected StatData statData;
         protected Vector3 currentDirection;
         protected StateModule stateModule;
@@ -149,7 +151,7 @@ namespace Module
 
             if (!StateModule.CheckState(State.HIT, State.ATTACK, State.SKILL))
             {
-                if (!mainModule.Attacking || !mainModule.StrongAttacking)
+                if (!mainModule.Attacking || !mainModule.StrongAttacking || knockBackPower > 0f)
                 {
                     if (mainModule.ObjDir != Vector2.zero)
                     {
@@ -182,10 +184,10 @@ namespace Module
             var _moveVector3 = _moveValue;
             mainModule.attackedTime += mainModule.PersonalDeltaTime;
             var _decreaseKnockBackValue = -3 * mainModule.attackedTime * mainModule.attackedTime;
-            var _knockBackPower = _decreaseKnockBackValue + mainModule.knockBackPower;
-            var _knockBackVector = _knockBackPower * mainModule.knockBackVector;
+            knockBackPower = _decreaseKnockBackValue + mainModule.knockBackPower;
+            var _knockBackVector = knockBackPower * mainModule.knockBackVector;
 
-            if (_knockBackPower <= 0f)
+            if (knockBackPower <= 0f)
             {
                 mainModule.knockBackPower = 0f;
                 mainModule.KnockBackVector = Vector3.zero;
@@ -203,7 +205,7 @@ namespace Module
 
             if (mainModule.IsSlope)
             {
-                if (_knockBackPower > 0f)
+                if (knockBackPower > 0f)
                 {
                     mainModule.CharacterController.Move((_knockBackVector + new Vector3(0, _gravity, 0)) *
                                                         mainModule.PersonalDeltaTime);
