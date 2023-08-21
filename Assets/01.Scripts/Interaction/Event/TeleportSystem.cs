@@ -10,38 +10,39 @@ namespace Interaction
 
     public class TeleportSystem : MonoBehaviour
     {
-        [SerializeField] private float upHeightPos;
-        [SerializeField] private float downHeightPos;
-        
         [SerializeField] private Transform upWall;
         [SerializeField] private Transform downWall;
         
-        [SerializeField] private float upWallHeightPos_Down;
-        [SerializeField] private float downWallHeightPos_Down;
-        [SerializeField] private float upWallHeightPos_Up;
-        [SerializeField] private float downWallHeightPos_Up;
+        [SerializeField]
+        private Transform upHouse;
+		[SerializeField]
+		private Transform downHouse;
 
-        [SerializeField]
-        private float originUpWallHeight_Up;
-        [SerializeField]
-        private float originUpWallHeight_Down;
-        [SerializeField]
-        private float originDownWallHeight_Up;
-        [SerializeField]
-        private float originDownWallHeight_Down;
-        
-        private bool isMoving = false;
+		private bool isMoving = false;
         private bool isUp;
 
-        void Start()
-        {
-            Vector3 upPos = upWall.position;
-            upPos.y = originUpWallHeight_Down;
-            Vector3 downPos = downWall.position;
-            downPos.y = originDownWallHeight_Down;
+        private float upWallOrigin;
+        private float upWallIsUp;
+        private float upWallIsDown;
+        private float downWallOrigin;
+		private float downWallIsUp;
+		private float downWallIsDown;
 
-            upWall.position = upPos;
-            downWall.position = downPos;
+		void Start()
+        {
+            upWallOrigin = upHouse.position.y;
+			upWallIsUp = upHouse.position.y + 25f;
+			upWallIsDown = upHouse.position.y - 25f;
+			downWallOrigin = downHouse.position.y;
+			downWallIsUp = downHouse.position.y + 25f;
+			downWallIsDown = downHouse.position.y - 25f;
+
+            var upVec = upWall.position;
+			upVec.y = upWallIsDown;
+			var downVec = downWall.position;
+            downVec.y = downWallIsUp;
+			upWall.position = upVec;
+            downWall.position = downVec;
         }
 
         public void Interaction(bool _isUp)
@@ -62,44 +63,34 @@ namespace Interaction
             upWall.gameObject.SetActive(true);
             downWall.gameObject.SetActive(true);
             if (isUp)
-            {
-                Vector3 upPos = upWall.position;
-                upPos.y = originUpWallHeight_Down;
-                Vector3 downPos = downWall.position;
-                downPos.y = originDownWallHeight_Down;
+			{
+				var upVec = upWall.position;
+				upVec.y = upWallIsDown;
+				var downVec = downWall.position;
+				downVec.y = downWallOrigin;
 
-                upWall.position = upPos;   
-                downWall.position = downPos;   
-                upWall.DOMoveY(upWallHeightPos_Down, 1f).OnComplete(() => PlayerTeleport());
+				upWall.position = upVec;
+                downWall.position = downVec;   
+                upWall.DOMoveY(upWallOrigin, 1f).OnComplete(() => PlayerTeleport());
             }
             else
-            {
-                Vector3 upPos = upWall.position;
-                upPos.y = originUpWallHeight_Up;
-                Vector3 downPos = downWall.position;
-                downPos.y = originDownWallHeight_Up;
-                
-                upWall.position = upPos;   
-                downWall.position = downPos;
-                downWall.DOMoveY(downWallHeightPos_Up, 1f).OnComplete(() => PlayerTeleport());
+			{
+				var upVec = upWall.position;
+				upVec.y = upWallOrigin;
+				var downVec = downWall.position;
+				downVec.y = downWallIsUp;
+
+
+				upWall.position = upVec;
+                downWall.position = downVec;
+                downWall.DOMoveY(downWallOrigin, 1f).OnComplete(() => PlayerTeleport());
             }
         }
 
         private void PlayerTeleport()
         {
-            Vector3 newPosition = PlayerObj.Player.transform.position;
+            Vector3 newPosition = isUp ? CalcLocalPos(upHouse, downHouse) : CalcLocalPos(downHouse, upHouse);
             Vector3 newCamPosition = Camera.main.transform.position;
-            if (isUp)
-            {
-                newPosition.y = downHeightPos;
-                newCamPosition.y = downHeightPos;
-            }
-            else
-            {
-                newPosition.y = upHeightPos;   
-                newCamPosition.y = upHeightPos;
-            }
-
             PlayerObj.Player.transform.position = newPosition;
             Camera.main.transform.position = newCamPosition;
             EndPointWallMoving();
@@ -109,11 +100,11 @@ namespace Interaction
         {
             if (isUp)
             {
-                downWall.DOMoveY(downWallHeightPos_Down, 5f).OnComplete(() => ResetIsMoving());   
+                downWall.DOMoveY(downWallIsUp, 5f).OnComplete(() => ResetIsMoving());   
             }
             else
             {
-                upWall.DOMoveY(upWallHeightPos_Up, 5f).OnComplete(() => ResetIsMoving());   
+                upWall.DOMoveY(upWallIsDown, 5f).OnComplete(() => ResetIsMoving());   
             }
         }
         
@@ -124,6 +115,13 @@ namespace Interaction
             upWall.gameObject.SetActive(false);
             downWall.gameObject.SetActive(false);
         }
+
+        private Vector3 CalcLocalPos(Transform house, Transform moveHouse)
+        {
+            Vector3 differencePos = house.position - PlayerObj.Player.transform.position;
+            Vector3 newPos = moveHouse.position + differencePos;
+            return newPos;
+		}
     }
 }
 

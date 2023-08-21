@@ -103,10 +103,6 @@ namespace Detect
                 {
                     gameObject.SetActive(false);
                 }
-                else
-                {
-                    _bool = true;
-                }
             }
             upPos = targetModel.position;
             targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
@@ -135,7 +131,12 @@ namespace Detect
                 gameObject.SetActive(false);
                 isGetOut = true;
                 getoutEventAfter?.Invoke();
-            });
+				if (!isSpawnDic.ContainsKey(key))
+				{
+					isSpawnDic.Add(key, true);
+				}
+
+			});
             Invoke("CheckDetectRemove", heightUpTime);
 		}
 
@@ -147,6 +148,10 @@ namespace Detect
 				gameObject.SetActive(false);
 				isGetOut = true;
 				getoutEventAfter?.Invoke();
+                if(!isSpawnDic.ContainsKey(key))
+                {
+				    isSpawnDic.Add(key, true);
+                }
 			}
         }
 

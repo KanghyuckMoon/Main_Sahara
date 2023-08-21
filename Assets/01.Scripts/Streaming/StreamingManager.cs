@@ -298,7 +298,7 @@ namespace Streaming
 			
 			foreach(var _obj in chunkDictionary)
 			{
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
 				LoadSubScene(_obj.Key);
 				Logging.Log($"Scene Load : {_obj.Key}");
 				
