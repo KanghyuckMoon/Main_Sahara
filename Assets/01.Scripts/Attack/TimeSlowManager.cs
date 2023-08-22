@@ -24,7 +24,7 @@ namespace Attack
 
 		private void Start()
 		{
-			StartCoroutine(AttackFeedBack_TimeSlow());
+			//StartCoroutine(AttackFeedBack_TimeSlow());
 		}
 		IEnumerator AttackFeedBack_TimeSlow()
 		{
@@ -34,12 +34,12 @@ namespace Attack
 				slowTime -= Time.deltaTime;
 				if(slowTime > 0f)
 				{
-					StaticTime.EntierTime = 0.2f;
+					//StaticTime.EntierTime = 0.05f;
 					_isTimeSlow = true;
 				}
 				else if(_isTimeSlow)
 				{
-					StaticTime.EntierTime = 1;
+					//StaticTime.EntierTime = 1;
 					_isTimeSlow = false;
 				}
 				yield return null;

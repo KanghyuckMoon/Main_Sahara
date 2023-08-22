@@ -149,6 +149,9 @@ namespace ForTheTest
                     }
 
                     cameraX = Mathf.Clamp(cameraX, verticalRotateMin, verticalRotateMax);
+
+                    //invisibleCameraOrigin.eulerAngles = Vector3.Lerp(invisibleCameraOrigin.eulerAngles,
+                        //new Vector3(-cameraX, -cameraY, 0.0f), 0.1f);
                     invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
                 }
             }
