@@ -10,9 +10,9 @@ namespace UI.Production
     public class BuffEntryView   : AbUI_Base
     {
         private SliderView coolView; 
-        private float coolTime; // ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Ã°ï¿½ 
+        private float coolTime; // ????? ?©£? 
 
-        // ÇÁ·ÎÆÛÆ¼ 
+        // ??????? 
         public VisualElement Parent => parentElement;
         public SliderView CoolView => coolView; 
 

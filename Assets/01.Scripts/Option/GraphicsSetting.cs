@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -121,6 +122,87 @@ public class GraphicsSetting : MonoBehaviour
 
         QualitySettings.antiAliasing = antialiacing; 
     }
+
+    #region gpt 
+    
+    [SerializeField]
+    private Resolution[] resolutions;
+    List<string> resolutionOptions = new List<string>();
+    public int currentResolutionIndex = 0;
+    public int shadowQualityIndex = 0;
+    public int isFullScreen = 0;  
+    
+
+    private void Start()
+    {
+        resolutions = Screen.resolutions;
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            resolutionOptions.Add(resolutions[i].width + " x " + resolutions[i].height);
+            
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        shadowQualityIndex = (int)QualitySettings.shadows;
+    }
+
+    /// <summary>
+    /// 해상도 설정 
+    /// </summary>
+    /// <param name="resolutionIndex"></param>
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    /// <summary>
+    /// 텍스쳐 
+    /// </summary>
+    /// <param name="qualityIndex"></param>
+    public void SetTextureQuality(int qualityIndex)
+    {
+        QualitySettings.globalTextureMipmapLimit = qualityIndex;
+    }
+
+    public void SetShadowQuality(int qualityIndex)
+    {
+        switch (qualityIndex)
+        {
+            case 0: 
+                QualitySettings.shadows = ShadowQuality.Disable;
+                break; 
+            case 1: 
+                QualitySettings.shadows = ShadowQuality.HardOnly;
+                break; 
+            case 2: 
+                QualitySettings.shadows = ShadowQuality.All;
+                break; 
+        }
+    }
+
+    public void SetVSync(int vsyncIndex)
+    {
+        QualitySettings.vSyncCount = vsyncIndex;
+    }
+
+    public void SetAntiAliasing(int aaIndex)
+    {
+        QualitySettings.antiAliasing = aaIndex;
+    }
+
+    public void SetFullscreen(int isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen == 0 ? false : true;
+    }
+    
+
+    #endregion
 }
 
 }

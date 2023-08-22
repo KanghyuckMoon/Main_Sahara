@@ -7,11 +7,13 @@ using UnityEngine.UIElements;
 
 namespace UI.Option
 {
-    public class OptionBtnEntryPr 
+    public class OptionBtnEntryPr : IOptionEntry 
     {
         private OptionBtnEntryView optionBtnEntryView;
         private VisualElement parent;
-
+        private OptionData optionData; 
+        
+        public OptionData OptionData  => optionData; 
         public VisualElement Parent => parent; 
         public OptionBtnEntryPr()
         {
@@ -19,6 +21,7 @@ namespace UI.Option
             optionBtnEntryView = _pr.Item2 as OptionBtnEntryView;
             parent = _pr.Item1;
             optionBtnEntryView.AddButtonsEvent();
+            
         }
 
         // 있는거 캐싱 
@@ -30,19 +33,28 @@ namespace UI.Option
         }
 
 
-        public void SetData(Action<int> _callback, string _nameAddress)
+        // OptionData 받아두고 
+        // OptionType으로 찾고 
+        // 가져와서 
+        public void SetData(Action<int> _callback, string _nameAddress, List<string> dropdownList, OptionData _optionData)
         {
+            this.optionData = _optionData; 
             //string _name  = TextMan
             optionBtnEntryView.SetName(_nameAddress);
-            optionBtnEntryView.AddButtonEventToDic(OptionBtnEntryView.Buttons.left_button, () =>
+            optionBtnEntryView.SetDropdown(dropdownList);
+            // 드롭다운 값이 변경될 때 
+            optionBtnEntryView.SetDropdownEvent(_callback); 
+            
+            /*optionBtnEntryView.AddButtonEventToDic(OptionBtnEntryView.Buttons.left_button, () =>
             {
                 _callback?.Invoke(-1);
             });
             optionBtnEntryView.AddButtonEventToDic(OptionBtnEntryView.Buttons.right_button,() =>
             {
                 _callback?.Invoke(+1);
-            });
+            });*/
         }
+
     }
     
 }

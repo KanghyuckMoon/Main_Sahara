@@ -34,7 +34,8 @@ namespace UI.Quest
         {
             quest_list_panel,
             //quest_select,
-            header
+            header,
+            clear_stamp, 
         }
 
         enum RadioGroups
@@ -73,7 +74,7 @@ namespace UI.Quest
         public override void Init()
         {
             base.Init();
-            InitQuestDic(); 
+            InitQuestDic();     
             AddEvents();
             InitListView();
             SendEvent(); 
@@ -211,13 +212,31 @@ namespace UI.Quest
                 string _detail = TextManager.Instance.GetText(_selected.ExplanationKey);
 
                 SetTitleAndDetail(_name, _detail);
+            
                 UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_state_label),  Enum.GetName(typeof(QuestState), _selected.QuestState));
-            
+            // 퀘스트 클리어했으면  
+            if(_selected.QuestState == QuestState.Clear)
+            {
+                ShowVisualElement(GetVisualElement((int)Elements.clear_stamp), false);
+                GetVisualElement((int)Elements.clear_stamp).RemoveFromClassList(activeClearStampStr);
+                GetVisualElement((int)Elements.clear_stamp).AddToClassList(inactiveClearStampStr);
+                
+                ShowVisualElement(GetVisualElement((int)Elements.clear_stamp), true);
+                GetVisualElement((int)Elements.clear_stamp).RemoveFromClassList(inactiveClearStampStr);
+                GetVisualElement((int)Elements.clear_stamp).AddToClassList(activeClearStampStr);
+            }
+            else // 퀘스트 클리어 안했으면 
+            {
+                ShowVisualElement(GetVisualElement((int)Elements.clear_stamp), false);
+                GetVisualElement((int)Elements.clear_stamp).RemoveFromClassList(activeClearStampStr);
+                GetVisualElement((int)Elements.clear_stamp).AddToClassList(inactiveClearStampStr);
+            }
             };
-            
-
         }
 
+        private string activeClearStampStr = "active_clear_stamp"; 
+        private string inactiveClearStampStr = "inactive_clear_stamp"; 
+        
         /// <summary>
         /// 버튼 이벤트 추가 
         /// </summary>

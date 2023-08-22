@@ -8,6 +8,27 @@ using UnityEngine.UIElements;
 
 namespace  UI.Option
 {
+
+    public class SoundOptionView
+    {
+        enum Sliders
+        {
+            master_slider, 
+            background_slider, 
+            eff_slider, 
+            envir_slider, 
+        }
+
+        enum Labels
+        {
+            master_label, 
+            background_label, 
+            eff_label, 
+            envir_label, 
+        }
+        
+    }
+    
     [Serializable]
     public class OptionVIew : AbUI_Base 
     {
@@ -29,7 +50,7 @@ namespace  UI.Option
         }
         enum Elements
         {
-            graphic_panel, 
+            graphics_panel, 
             sound_panel,
             gameinfo_panel,
             help_panel
@@ -52,12 +73,22 @@ namespace  UI.Option
             option_scroll_view,
         }
 
+        enum Sliders
+        {
+            
+        }
         private Dictionary<Buttons, Action> callbackDic = new Dictionary<Buttons, Action>();
 
         private List<(Buttons, Elements)> buttonPanelConnect = new List<(Buttons, Elements)>();
 
         private Buttons activeBtn;  
         private Elements activePanel; 
+        
+        // 프로퍼티 
+        public VisualElement GraphicPanel => GetVisualElement((int)Elements.graphics_panel);
+        public VisualElement SoundPanel => GetVisualElement((int)Elements.sound_panel);
+        public VisualElement GameInfoPanel => GetVisualElement((int)Elements.gameinfo_panel);
+        public VisualElement HelpPanel => GetVisualElement((int)Elements.help_panel);
         
         public override void Cashing()
         {
@@ -73,7 +104,8 @@ namespace  UI.Option
         {
             base.Init();
             SetCategoryBtnEvent();
-            AddButtonEvents(); 
+            AddButtonEvents();
+            InActiveAllPanels(); 
             UIUtil.SendEvent(GetButton((int)Buttons.graphics_button));
         
             // 옵션 패널 안에서 바UI들을 가져온다 
@@ -102,7 +134,7 @@ namespace  UI.Option
         /// </summary>
         private void SetCategoryBtnEvent()
         {
-            AddButtonEventToDic(Buttons.graphics_button, () => ActivePanel(Buttons.graphics_button, Elements.graphic_panel));
+            AddButtonEventToDic(Buttons.graphics_button, () => ActivePanel(Buttons.graphics_button, Elements.graphics_panel));
             AddButtonEventToDic(Buttons.sound_button, () => ActivePanel(Buttons.sound_button, Elements.sound_panel));
             AddButtonEventToDic(Buttons.gameinfo_button, () => ActivePanel(Buttons.gameinfo_button, Elements.gameinfo_panel));
             AddButtonEventToDic(Buttons.help_button, () => ActivePanel(Buttons.help_button, Elements.help_panel));
@@ -114,9 +146,9 @@ namespace  UI.Option
         {
             if (isFirstActivePn == false)
             {
-                // 처음이 아니면 
+                // 처음이 아니면 활성화 됐던거 지우기 (버튼색, 패널) 
                 GetButton((int)activeBtn).RemoveFromClassList(activeStr);
-                ShowVisualElement(GetVisualElement((int)_panel), false);
+                ShowVisualElement(GetVisualElement((int)activePanel), false);
             }
             else
             {
@@ -127,27 +159,39 @@ namespace  UI.Option
             
             GetButton((int)activeBtn).AddToClassList(activeStr);
             ShowVisualElement(GetVisualElement((int)activePanel), true);
-        }   
-        private void SetListviewEvents()
+        }
+
+        private void InActiveAllPanels()
+        {
+            foreach (var _panel in Enum.GetValues(typeof(Elements)))
+            {
+                ShowVisualElement(GetVisualElement((int)_panel), false);
+            }
+        }
+        private void SetListviewEvents()    
         {
             
         }
 
         private void AddButtonEvents()
         {
-            AddButtonEvent<ClickEvent>((int)Buttons.graphics_button, callbackDic[Buttons.graphics_button]);
+            //AddButtonEvent<ClickEvent>((int)Buttons.graphics_button, callbackDic[Buttons.graphics_button]);
             AddButtonEvent<ClickEvent>((int)Buttons.sound_button, callbackDic[Buttons.sound_button]);
             AddButtonEvent<ClickEvent>((int)Buttons.gameinfo_button, callbackDic[Buttons.gameinfo_button]);
             AddButtonEvent<ClickEvent>((int)Buttons.help_button, callbackDic[Buttons.help_button]);
 
+            GetButton((int)Buttons.graphics_button).clicked += callbackDic[Buttons.graphics_button];
         }
 
         public void RemoveButtonEvents()
         {
-            RemoveButtonEvent<ClickEvent>((int)Buttons.graphics_button, callbackDic[Buttons.graphics_button]);
+            //RemoveButtonEvent<ClickEvent>((int)Buttons.graphics_button, callbackDic[Buttons.graphics_button]);
             RemoveButtonEvent<ClickEvent>((int)Buttons.sound_button, callbackDic[Buttons.sound_button]);
             RemoveButtonEvent<ClickEvent>((int)Buttons.gameinfo_button, callbackDic[Buttons.gameinfo_button]);
             RemoveButtonEvent<ClickEvent>((int)Buttons.help_button, callbackDic[Buttons.help_button]);
+       
+            GetButton((int)Buttons.graphics_button).clicked -= callbackDic[Buttons.graphics_button];
+
         }
         
         public void AddButtonEventToDic(Buttons buttonType, Action callback)

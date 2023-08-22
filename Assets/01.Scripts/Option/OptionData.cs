@@ -9,6 +9,7 @@ namespace Option
     public class OptionData
     {
         //Sound
+        public float masterVolume = 1f; 
         public float bgmVolume = 1f;
         public float effVolume = 1f;
         public float envirVolume = 1f;

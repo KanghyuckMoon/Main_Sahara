@@ -28,7 +28,8 @@ namespace UI.ConstructorManager
         private UIConstructor<InteracftionPopupView> interacftionPopupView;
         private UIConstructor<ShopPopupView> shopPopupView; 
         private UIConstructor<PopupGetNewitemView> popupGetNewitemConstructor; 
-        private UIConstructor<OptionBtnEntryView> optionButtonEntryConstructor; 
+        private UIConstructor<OptionBtnEntryView> optionButtonEntryConstructor;
+        private UIConstructor<OptionBarEntryView> optionBarEntryConstructor; 
     //        private  UIConstructor<popupPr>
 
 
@@ -76,6 +77,7 @@ namespace UI.ConstructorManager
             shopPopupView = new UIConstructor<ShopPopupView>("ShopPopupEntry");
             popupGetNewitemConstructor = new UIConstructor<PopupGetNewitemView>("PopupGetNewitemEntry");
             optionButtonEntryConstructor = new UIConstructor<OptionBtnEntryView>("OptionButtonEntry");
+            optionBarEntryConstructor = new UIConstructor<OptionBarEntryView>("OptionBarEntry"); 
             
             uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor); 
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
@@ -90,7 +92,8 @@ namespace UI.ConstructorManager
             uiConstructorDic.Add(typeof(ShopPopupView), shopPopupView);
             uiConstructorDic.Add(typeof(PopupGetNewitemView), popupGetNewitemConstructor);
             uiConstructorDic.Add(typeof(OptionBtnEntryView), optionButtonEntryConstructor);
-
+            uiConstructorDic.Add(typeof(OptionBarEntryView), optionBarEntryConstructor);
+            
         }
 
         private void Awake()
