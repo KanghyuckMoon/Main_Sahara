@@ -84,6 +84,11 @@ namespace ForTheTest
 
         private void Update()
         {
+            if(Camera.main == null)
+            {
+                return;
+            }
+
             // make sure we have a handle to the follow component
             if (followCam == null)
             {
