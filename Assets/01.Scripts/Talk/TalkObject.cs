@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Utill.Measurement;
 using Quest;
 using Module;
@@ -32,6 +33,9 @@ namespace Module.Talk
 		private string talkCode;
 		[SerializeField]
 		private string authorCode;
+
+		[SerializeField]
+		private UnityEvent endTalkEvent;
 
 		private int index = 0;
 
@@ -80,6 +84,7 @@ namespace Module.Talk
 		{
 			isEndTalk = true;
 			isTalking = false;
+			endTalkEvent?.Invoke();
 		}
 	}
 }
