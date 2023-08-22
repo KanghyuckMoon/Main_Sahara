@@ -91,6 +91,7 @@ namespace Detect
         }
 
         protected bool isGetOut = false;
+        private EffectObject effectObj;
         
         protected virtual void Awake()
         {
@@ -101,10 +102,6 @@ namespace Detect
                 if (_bool)
                 {
                     gameObject.SetActive(false);
-                }
-                else
-                {
-                    _bool = true;
                 }
             }
             upPos = targetModel.position;
@@ -126,17 +123,37 @@ namespace Detect
             targetModel.gameObject.SetActive(true);
             isGetOut = true;
             Vector3 _movePos = upPos;
-            var _effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
+			effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
             targetModel.DOMove(_movePos,  heightUpTime);
             targetTransform.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
             {
-                _effectObj.Pool();
+				effectObj.Pool();
                 gameObject.SetActive(false);
                 isGetOut = true;
                 getoutEventAfter?.Invoke();
-            });
+				if (!isSpawnDic.ContainsKey(key))
+				{
+					isSpawnDic.Add(key, true);
+				}
 
+			});
+            Invoke("CheckDetectRemove", heightUpTime);
 		}
+
+        private void CheckDetectRemove()
+        {
+            if(!isGetOut)
+			{
+				effectObj.Pool();
+				gameObject.SetActive(false);
+				isGetOut = true;
+				getoutEventAfter?.Invoke();
+                if(!isSpawnDic.ContainsKey(key))
+                {
+				    isSpawnDic.Add(key, true);
+                }
+			}
+        }
 
 #if UNITY_EDITOR
         
@@ -172,9 +189,16 @@ namespace Detect
         [ContextMenu("RandomName")]
         public void RandomName()
         {
-            var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-            //gameObject.name = _prefeb.name + nameKey++;
-            key = _prefeb.name + nameKey++;
+            try
+            {
+                var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+                //gameObject.name = _prefeb.name + nameKey++;
+                key = _prefeb.name + nameKey++;
+            }
+            catch
+            {
+                key = gameObject.name + nameKey++;
+            }
 
             
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);

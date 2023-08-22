@@ -17,17 +17,19 @@ namespace Module
         private void Start()
         {
             mainModule = GetComponent<AbMainModule>();
+            isRunning = false;
         }
 
         private void Update()
         {
-            if (durationTime >= 0)
+            if (durationTime > 0)
             {
                 durationTime -= Time.deltaTime;
+               // Debug.LogError(durationTime);
             }
 
             if(durationTime < 0 && isRunning)
-            {
+            {//Debug.LogError("skadjf");
                 ResetTime();
             }
         }
@@ -35,10 +37,13 @@ namespace Module
         public void SetTime(float _duration, float _slowvalue)
         {
             durationTime = _duration;
-
-            originSpeed = mainModule.EntireTime;
+            
             isRunning = true;
+            
+            //originSpeed = mainModule.EntireTime;
             mainModule.EntireTime = _slowvalue;
+            
+            //Debug.LogError(Time.timeScale);
         }
 
         private void ResetTime()

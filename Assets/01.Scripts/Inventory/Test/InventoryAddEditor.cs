@@ -26,6 +26,12 @@ namespace Inventory
         private int itemCodeToSlotIndex = 0;
         private InventorySO inventorySO;
         private AllItemDataSO allItemDataSO;
+
+        void OnEnable()
+        {
+            inventorySO = AssetDatabase.LoadAssetAtPath<InventorySO>("Assets/02.ScriptableObject/InventorySO/InventorySO.asset");
+            allItemDataSO = AssetDatabase.LoadAssetAtPath<AllItemDataSO>("Assets/02.ScriptableObject/InventorySO/AllItemDataSO.asset");
+        }
         
         void OnGUI ()
         {

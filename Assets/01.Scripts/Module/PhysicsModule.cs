@@ -130,17 +130,14 @@ namespace Module
 
                         _inGameHitBox.HitBoxAction?.Invoke(HitBoxActionType.Hit);
                         
-                        //Debug.LogError(CalculateAngle(mainModule.transform.position, _inGameHitBox.Owner.transform.position));
+                        mainModule.SettingTime.SetTime(/*_inGameHitBox.HitBoxData.attackStunDelay - 0.1f*/0.18f, 0f);
 
                         var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
+                    
                         if (_settingTime is not null)
                         {
-                            _settingTime.SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.1f);
+                            _settingTime.SetTime(/*_inGameHitBox.HitBoxData.hitStunDelay - 0.1f*/.18f, 0f);
                         }
-
-                        mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0.1f);
-
-                        //_inGameHitBox.GetComponent<HitBoxInAction>().HitBoxAction?.Invoke();
 
                         if (knockBackCoroutine != null)
                         {
@@ -158,7 +155,7 @@ namespace Module
 
                         foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
                         {
-                            _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position), _s);
+                            _attackFeedBack.InvokeEvent(other.ClosestPoint(mainModule.transform.position + Vector3.up), _s);
 						}
 						hitEvent?.Invoke();
 
@@ -243,6 +240,8 @@ namespace Module
                     }
                 }
             }
+
+//            Debug.LogError(mainModule.EntireTime);
         }
         /*private IEnumerator SetDisableHit(Animator _ani)
         {
@@ -333,7 +332,7 @@ namespace Module
 
                 //StateModule.RemoveState(State.JUMP);
 
-                mainModule.KnockBackVector = Vector3.zero;
+                //mainModule.KnockBackVector = Vector3.zero;
                 landAction?.Invoke();
             }
 

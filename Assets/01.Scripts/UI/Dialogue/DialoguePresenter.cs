@@ -19,7 +19,7 @@ using Inventory;
     using DG.Tweening;
     using UI.UtilManager;
 
-    namespace UI.Dialogue
+namespace UI.Dialogue
 {
     public class DialoguePresenter :AbBaseScreen
     {
