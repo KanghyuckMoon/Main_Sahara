@@ -189,9 +189,16 @@ namespace Detect
         [ContextMenu("RandomName")]
         public void RandomName()
         {
-            var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-            //gameObject.name = _prefeb.name + nameKey++;
-            key = _prefeb.name + nameKey++;
+            try
+            {
+                var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+                //gameObject.name = _prefeb.name + nameKey++;
+                key = _prefeb.name + nameKey++;
+            }
+            catch
+            {
+                key = gameObject.name + nameKey++;
+            }
 
             
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);

@@ -68,6 +68,11 @@ namespace UI
 
         private void Update()
         {
+            if(Camera.main == null)
+            {
+                return;
+            }
+
             if (isUpdatePosAndRot == false) return;
             SetMarkerPosAndRot();
 
@@ -130,8 +135,12 @@ namespace UI
         }
 
         public void SetMarkerPosAndRot(float _rot)
-        {
-            Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
+		{
+			if (Camera.main == null)
+			{
+				return;
+			}
+			Vector2 _uiPos = MapInfo.WorldToUIPos(transform.position);
             markerView.SetPosAndRot(_uiPos,/* CamTrm.eulerAngles.y -*/ transform.eulerAngles.y + _rot);
             sightUI.style.rotate = new Rotate(CamTrm.eulerAngles.y);
             //markerView.SetPosAndRot(_uiPos, transform.eulerAngles.y - CamTrm.eulerAngles.y + _rot);

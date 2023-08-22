@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEditor;
 using Module;
 
-
 public class PlayerMover : EditorWindow
 {
 	static PlayerMover window;
@@ -24,9 +23,23 @@ public class PlayerMover : EditorWindow
 	void OnGUI()
 	{
 		movePos = EditorGUILayout.Vector3Field("MovePos:", movePos);
+		string pasteValue = EditorGUILayout.TextField("Paste Vector3", EditorGUIUtility.systemCopyBuffer);
+		if (GUILayout.Button("Paste"))
+		{
+			movePos = stringToVec(pasteValue);
+		}
+
 		if (GUILayout.Button("Move"))
 		{
 			PlayerObj.Player.transform.position = movePos;
 		}
+	}
+	public Vector3 stringToVec(string s)
+	{
+		string resultStr = s.Replace("Vector3(", "");
+		resultStr = resultStr.Replace(")", "");
+		Debug.Log(resultStr);
+		string[] temp = resultStr.Split(',');
+		return new Vector3(float.Parse(temp[0]), float.Parse(temp[1]), float.Parse(temp[2]));
 	}
 }

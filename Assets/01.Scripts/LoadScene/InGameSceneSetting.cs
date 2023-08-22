@@ -109,7 +109,8 @@ public class InGameSceneSetting : MonoBehaviour
                 Logging.Log("PlayerObj Loading");
                 yield return null;
             }
-            
+
+            GameEventManager.Instance.GetGameEvent("0.InitSceneLoadStart");
             Streaming.StreamingManager.Instance.IsSetting = false;
             Streaming.StreamingManager.Instance.LoadReadyScene();
             Logging.Log("SceneManager LoadReady");
@@ -156,8 +157,9 @@ public class InGameSceneSetting : MonoBehaviour
             {
                 Logging.Log("Setting");
                 yield return null;
-            }
-            StaticTime.EntierTime = 1f;
+		}
+		    GameEventManager.Instance.GetGameEvent("1.InitSceneLoadEnd");
+		    StaticTime.EntierTime = 1f;
             Time.timeScale = 1;
             //GameManager.GamePlayerManager.Instance.IsPlaying = true;
             isLoading = false;
