@@ -62,7 +62,7 @@ namespace Module
         IEnumerator ActiveAhromaticAberration(float _duration)
         {
             chromaticEffect.SetActive(true);
-            GameObject _a = ObjectPoolManager.Instance.GetObject(speedLine);
+            /*GameObject _a = ObjectPoolManager.Instance.GetObject(speedLine);
 
             if (cameras[0].activeInHierarchy){
                 _a.transform.SetParent(cameras[0].transform);
@@ -89,7 +89,9 @@ namespace Module
             _a.GetComponent<ParticleSystem>().Play();
             yield return new WaitForSeconds(_duration);
             _a.SetActive(false);
-            ObjectPoolManager.Instance.RegisterObject(speedLine, _a);
+            ObjectPoolManager.Instance.RegisterObject(speedLine, _a);*/
+            
+            yield return new WaitForSeconds(_duration);
             chromaticEffect.SetActive(false);
         }
 

@@ -48,9 +48,10 @@ namespace Module
 			base.Init(_mainModule, _parameters);
 		}
 
-		private void SettingAnimatorSpeed()
+		public void SettingAnimatorSpeed()
         {
-            Animator.speed = mainModule.EntireTime;
+            //Debug.LogError("½Ã°£¾Æ!~~");
+            Animator.speed = mainModule.PersonalTime;
         }
 
         public override void Awake()
@@ -77,7 +78,7 @@ namespace Module
             Animator.SetFloat("MoveY", mainModule.ObjDir.y * moveModule.AnimationBlend);
 
             //Debug.LogError(mainModule.ObjRotation.eulerAngles.x);
-            SettingAnimatorSpeed();
+            //SettingAnimatorSpeed();
 
             Animator.SetFloat("BodyRotation", RotateWeight(mainModule.ObjRotation.eulerAngles.x+19));
         }

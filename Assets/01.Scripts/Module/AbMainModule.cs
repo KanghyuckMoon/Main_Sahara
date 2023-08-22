@@ -352,17 +352,15 @@ namespace Module
             set
             {
                 PersonalTime = value;
-			}
+                GetModuleComponent<AnimationModule>(ModuleType.Animation).SettingAnimatorSpeed();
+            }
         }
         public float PersonalTime
         {
-            get
-            {
-                return player ? StaticTime.PlayerTime : StaticTime.EnemyTime;
-            }
+            get => player ? StaticTime.PlayerTime : StaticTime.EnemyTime;
             set 
             {
-                if(player == true)
+                if(player)
                 {
                     StaticTime.PlayerTime = value; 
                 }

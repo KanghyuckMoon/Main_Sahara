@@ -21,6 +21,7 @@ namespace Attack
         private void Start()
         {
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
+            AddEvent();
         }
 
         public void InvokeEvent(Vector3 closetPoint, string _effectName)
@@ -41,8 +42,8 @@ namespace Attack
 
         private void AddEvent()
         {
-            attackFeedBackEvent.AddListener((vec, s) => AttackEffect(vec, s));
-            attackFeedBackEvent.AddListener((vec, s) => TimeSlow());
+            attackFeedBackEvent.AddListener(AttackEffect);
+            attackFeedBackEvent.AddListener(TimeSlow);
         }
 
         private void OnDisable()
@@ -59,9 +60,9 @@ namespace Attack
             EffectManager.Instance.SetEffectDefault(_efectName, vec, Quaternion.identity);
         }
 
-        private void TimeSlow()
+        private void TimeSlow(Vector3 vec, string _efectName)
         {
-            TimeSlowManager.Instance.SlowTime = 0.22f;
+            TimeSlowManager.Instance.SlowTime = 0.7f;
         }
     }
 }

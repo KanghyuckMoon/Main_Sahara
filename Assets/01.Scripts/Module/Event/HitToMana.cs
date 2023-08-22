@@ -38,9 +38,17 @@ namespace HitBox
                     Vector3 _closerPoint = other.ClosestPoint(transform.position);
 
                     var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
-                    if(_settingTime is not null)
+
+                    //Debug.LogError(_inGameHitBox.Owner);
+                    /*if(_settingTime is not null)
                     {
                         _settingTime.SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0.7f);
+                    }*/
+                    
+                    if (_settingTime is not null)
+                    {
+                        //Debug.LogError("안돼안대ㅗ난돼어노대ㅗ애나애내");
+                        _settingTime.SetTime(/*_inGameHitBox.HitBoxData.hitStunDelay - 0.1f*/1f, 0f);
                     }
 
                     foreach (var _s in _inGameHitBox.HitBoxData.hitEffect)
