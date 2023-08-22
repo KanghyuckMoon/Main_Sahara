@@ -8,7 +8,6 @@ using UI.EventManage;
 using UI.Base;
     using UI.UtilManager;
     using UnityEngine.PlayerLoop;
-    using Utill.Measurement;
 
     namespace UI.Inventory
 {
@@ -57,11 +56,11 @@ using UI.Base;
 
         
         private void OnEnable()
-        {
+        {   
             inventoryView.Cashing();
             inventoryView.Init();
             draggerRot = new DraggerRot(
-                () => Logging.Log("s"),
+                () => Debug.Log("s"),
                 () =>
                 {
                     accentItemCompo.RotateModelHorizon(-Input.GetAxis("Mouse X") * Vector3.up * 1000 * Time.deltaTime);
@@ -69,10 +68,10 @@ using UI.Base;
                         -Input.GetAxis("Mouse Y") * Vector3.right * 500 * Time.deltaTime);
                     accentItemCompo.UpdateRotateModel();
                 },
-                () => Logging.Log("³¡"));
+                () => Debug.Log("³¡"));
             //inventoryView.AddSlotClickEvent((x) => accentItemCompo.ActiveModel(x.prefebkey));
             inventoryView.SelectImage.AddManipulator(draggerRot);
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.weapon_button,
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.weapon_button,
                     InventoryView.Elements.quick_slot_panel, x));

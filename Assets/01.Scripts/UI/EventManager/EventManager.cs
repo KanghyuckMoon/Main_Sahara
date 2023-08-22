@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
 using System; 
-using Utill.Measurement;
 
 namespace UI.EventManage
 {
@@ -117,7 +116,7 @@ namespace UI.EventManage
             Action thisEvent = null;
             if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
             {
-                Logging.Log("이벤트 실행!");
+                Debug.Log("이벤트 실행!");
                 thisEvent?.Invoke();
             }
             else

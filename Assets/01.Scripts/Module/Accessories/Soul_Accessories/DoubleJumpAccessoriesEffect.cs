@@ -33,6 +33,7 @@ namespace PassiveItem
                 return;
             }
 
+            //Debug.LogError("적 임 적 임");
             isPlayer = false;
         }
 

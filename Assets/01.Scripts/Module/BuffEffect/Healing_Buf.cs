@@ -30,6 +30,7 @@ namespace Buff
                 if (currentPeriod <= 0)
                 {
                     hpModule.GetHeal((int)value);
+                    //Debug.LogError("회복호복");
                     currentPeriod = period;
                 }
 

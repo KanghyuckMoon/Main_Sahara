@@ -18,7 +18,6 @@ using Inventory;
     using TimeManager;
     using DG.Tweening;
     using UI.UtilManager;
-    using Utill.Measurement;
 
 namespace UI.Dialogue
 {
@@ -261,7 +260,7 @@ namespace UI.Dialogue
 
                     //break; 
                 }
-                Logging.Log("대화 루프...");
+                Debug.Log("대화 루프...");
                 yield return null;
             }
         }
@@ -270,7 +269,7 @@ namespace UI.Dialogue
         {
             index++;
             SetCodeToText();
-            Logging.Log("대화 다음!!");
+            Debug.Log("대화 다음!!");
             // 사운드 재생
             UIUtilManager.Instance.PlayUISound(UISoundType.NextDialogue);
         }
@@ -351,7 +350,7 @@ namespace UI.Dialogue
                     yield break;
                 }
                 this.dialogueView.SetDialogueTextA(_targetText);
-                Logging.Log("For 텍스트");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Debug.Log("For 텍스트");
                 yield return w;
             }
             this.dialogueView.SetDialogueTextA(fullText);
@@ -406,7 +405,7 @@ namespace UI.Dialogue
             isDialogue = _isActive;
             dialogueView.ActiveViewS(_isActive);
             StaticTime.UITime = _isActive ? 0f : 1f;
-            EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, _isActive);
+            //EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, _isActive);
             EventManager.Instance.TriggerEvent(EventsType.SetUIInput, ! _isActive);
             //UIManager.Instance.ActiveCursor(_isActive); 
 

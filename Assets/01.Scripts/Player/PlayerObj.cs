@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utill.Measurement;
 
 public class PlayerObj : MonoBehaviour
 {
@@ -10,12 +9,12 @@ public class PlayerObj : MonoBehaviour
     public void Awake()
     {
         Player = gameObject;
-        Logging.Log("Set Player Obj");
+        Debug.Log("Set Player Obj");
     }
     
     public void OnDestroy()
     {
         Player = null;
-        Logging.Log("Destroy Player Obj");
+        Debug.Log("Destroy Player Obj");
     }
 }

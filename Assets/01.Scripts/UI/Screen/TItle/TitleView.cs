@@ -20,7 +20,7 @@ namespace UI
         public enum Buttons
         {
             start_button,
-            //setting_button,
+            setting_button,
             end_button
         }
 
@@ -39,7 +39,7 @@ namespace UI
             base.Init();
             GetLabel((int)Labels.title_label).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.title));;
             GetButton((int)Buttons.start_button).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.titleStart));
-            //GetButton((int)Buttons.setting_button).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.titleSetting));
+            GetButton((int)Buttons.setting_button).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.titleSetting));
             GetButton((int)Buttons.end_button).text = TextManager.Instance.GetText(UIManager.Instance.TextKeySO.FindKey(TextKeyType.titleEnd));
             AddButtonEvents();
         }
@@ -47,12 +47,14 @@ namespace UI
         private void AddButtonEvents()
         {
             AddButtonEvent<ClickEvent>((int)Buttons.start_button, callbackDic[Buttons.start_button]);
+            AddButtonEvent<ClickEvent>((int)Buttons.setting_button, callbackDic[Buttons.setting_button]);
             AddButtonEvent<ClickEvent>((int)Buttons.end_button, callbackDic[Buttons.end_button]);
         }
 
         public void RemoveButtonEvents()
         {
             RemoveButtonEvent<ClickEvent>((int)Buttons.start_button, callbackDic[Buttons.start_button]);
+            RemoveButtonEvent<ClickEvent>((int)Buttons.setting_button, callbackDic[Buttons.setting_button]);
             RemoveButtonEvent<ClickEvent>((int)Buttons.end_button, callbackDic[Buttons.end_button]);
 
         }

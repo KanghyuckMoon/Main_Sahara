@@ -13,7 +13,6 @@ using UI.UtilManager;
 using UI.Base;
 using UnityEngine.Analytics;
 using DG.Tweening; 
-using Utill.Measurement;
 
 namespace UI.Quest
 {
@@ -35,7 +34,8 @@ namespace UI.Quest
         {
             quest_list_panel,
             //quest_select,
-            header
+            header,
+            clear_stamp, 
         }
 
         enum RadioGroups
@@ -74,7 +74,7 @@ namespace UI.Quest
         public override void Init()
         {
             base.Init();
-            InitQuestDic(); 
+            InitQuestDic();     
             AddEvents();
             InitListView();
             SendEvent(); 
@@ -141,12 +141,12 @@ namespace UI.Quest
         /// </summary>
         public void InitListView()
         {
-            Logging.Log("AAA");
+            Debug.Log("AAA");
             _questDataList = QuestManager.Instance.GetActiveOrClearQuest();
             // 테스트
             foreach (var v in _questDataList)
             {
-                Logging.Log(v.NameKey);
+                Debug.Log(v.NameKey);
             }
             ListView _listView = GetListView((int)ListViews.quest_listview);
             //_listView.
@@ -182,7 +182,7 @@ namespace UI.Quest
                 _v.Item1.ElementAt(0).userData = _v.Item2 as QuestEntryView;
                 _v.Item1.RegisterCallback<ClickEvent>( (x) => ActiveEntry(_v.Item1));
                 
-                Logging.Log("MAKE");
+                Debug.Log("MAKE");
                 return _v.Item1.ElementAt(0);
             };
 
@@ -192,7 +192,7 @@ namespace UI.Quest
                 string _name = TextManager.Instance.GetText(_questDataList[_index].NameKey);
                 string _detail = TextManager.Instance.GetText(_questDataList[_index].ExplanationKey);
                 string _state = Enum.GetName(typeof(QuestState), _questDataList[_index].QuestState);
-                Logging.Log("BIND");
+                Debug.Log("BIND");
                 _questEntryList.Add((_questDataList[_index], _item));
 
                 (_item.userData as QuestEntryView).SetNameAndDetailAndState(_name, _detail,_state);
@@ -206,19 +206,37 @@ namespace UI.Quest
                 {
                     VisualElement _v = o as VisualElement;
                 }
-                Logging.Log("onSelectionChange");
+                Debug.Log("onSelectionChange");
                 var _selected = _listView.selectedItem as QuestData;
                 string _name = TextManager.Instance.GetText(_selected.NameKey);
                 string _detail = TextManager.Instance.GetText(_selected.ExplanationKey);
 
                 SetTitleAndDetail(_name, _detail);
+            
                 UIUtilManager.Instance.AnimateText(GetLabel((int)Labels.quest_state_label),  Enum.GetName(typeof(QuestState), _selected.QuestState));
-            
+            // 퀘스트 클리어했으면  
+            if(_selected.QuestState == QuestState.Clear)
+            {
+                ShowVisualElement(GetVisualElement((int)Elements.clear_stamp), false);
+                GetVisualElement((int)Elements.clear_stamp).RemoveFromClassList(activeClearStampStr);
+                GetVisualElement((int)Elements.clear_stamp).AddToClassList(inactiveClearStampStr);
+                
+                ShowVisualElement(GetVisualElement((int)Elements.clear_stamp), true);
+                GetVisualElement((int)Elements.clear_stamp).RemoveFromClassList(inactiveClearStampStr);
+                GetVisualElement((int)Elements.clear_stamp).AddToClassList(activeClearStampStr);
+            }
+            else // 퀘스트 클리어 안했으면 
+            {
+                ShowVisualElement(GetVisualElement((int)Elements.clear_stamp), false);
+                GetVisualElement((int)Elements.clear_stamp).RemoveFromClassList(activeClearStampStr);
+                GetVisualElement((int)Elements.clear_stamp).AddToClassList(inactiveClearStampStr);
+            }
             };
-            
-
         }
 
+        private string activeClearStampStr = "active_clear_stamp"; 
+        private string inactiveClearStampStr = "inactive_clear_stamp"; 
+        
         /// <summary>
         /// 버튼 이벤트 추가 
         /// </summary>

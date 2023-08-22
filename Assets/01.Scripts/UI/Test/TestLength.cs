@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utill.Measurement;
 
 public class TestLength : MonoBehaviour
 {
@@ -9,21 +8,21 @@ public class TestLength : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Logging.Log("local scale" + transform.localScale);
+            Debug.Log("local scale" + transform.localScale);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             float PositionOfTheHead = (GetComponent<MeshFilter>().mesh.bounds.extents.z * transform.localScale.z) + transform.position.z;
-            Logging.Log("2번째" + PositionOfTheHead); 
+            Debug.Log("2번째" + PositionOfTheHead); 
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Logging.Log("MeshFilter Bounds" + GetComponent<MeshFilter>().mesh.bounds);
-            Logging.Log("MeshRenderer Bounds" + GetComponent<MeshRenderer>().bounds);
+            Debug.Log("MeshFilter Bounds" + GetComponent<MeshFilter>().mesh.bounds);
+            Debug.Log("MeshRenderer Bounds" + GetComponent<MeshRenderer>().bounds);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Logging.Log("4번째"  +GetTotalMeshFilterBounds(transform)); 
+            Debug.Log("4번째"  +GetTotalMeshFilterBounds(transform)); 
         }
     }
     private static Bounds GetTotalMeshFilterBounds(Transform objectTransform)

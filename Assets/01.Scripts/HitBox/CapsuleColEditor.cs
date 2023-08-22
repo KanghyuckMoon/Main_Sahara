@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utill.Measurement;
 
 namespace HitBox
 {
@@ -84,7 +83,7 @@ namespace HitBox
 		{
 			if (hitBoxDataSO is null)
 			{
-				Logging.Log("Error: SO 없음");
+				Debug.LogError("SO 없음");
 				return;
 			}
 			hitBoxDataSO.UploadHitBoxNoneCopy(hitBoxData);

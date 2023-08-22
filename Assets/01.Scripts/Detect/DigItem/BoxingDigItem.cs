@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
 using Effect;
-using Utill.Measurement;
 
 namespace Detect
 {   
@@ -20,7 +19,7 @@ namespace Detect
             GetNearObject();
             if(targetItem is not null)
             {
-                Logging.Log("GetOut");
+                Debug.Log("GetOut");
                 targetItem.GetOut();
                 Vector3 addtionPos = transform.right * vectorPos.x + transform.up * vectorPos.y + transform.forward * vectorPos.z; 
                 

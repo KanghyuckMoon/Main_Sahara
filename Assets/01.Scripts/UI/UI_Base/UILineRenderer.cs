@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-using Utill.Measurement;
 
 
 namespace UI.Base
@@ -16,7 +15,7 @@ namespace UI.Base
 
         protected override void OnPopulateMesh(VertexHelper vh)
         {
-            Logging.Log("dd");
+            Debug.Log("dd");
             vh.Clear();
 
             if (points == null || points.Length < 2)

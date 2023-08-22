@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Profiling;
 using UnityEngine.Rendering;
-using Utill.Measurement;
 
 /// <summary>
 /// Asynchronous Capture Screen
@@ -43,7 +42,7 @@ public class AsyncScreenCapture : IDisposable {
             }
         }
         buffer = null;
-        Logging.Log("NULL1");
+Debug.Log("NULL1");
     }
 
     private void ReadbackCompleted(AsyncGPUReadbackRequest request, string path, RenderTexture renderTexture) {
@@ -85,7 +84,7 @@ public class AsyncScreenCapture : IDisposable {
     }
 
     private int FindUsableTexture(int width, int height, GraphicsFormat graphicsFormat) {
-        Logging.Log("NULL2");
+		Debug.Log("NULL2");
         int index = -1;
         for (int i = 0; i < buffer.Length; ++i) {
             if (buffer[ i ].request.done) {

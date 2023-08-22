@@ -9,7 +9,6 @@ using Sound;
 using UI.ActiveManager;
 using UI.UtilManager;
 using Utill.Pattern;
-using Utill.Measurement;
 
 
 namespace UI.Base
@@ -127,7 +126,7 @@ namespace UI.Base
         /// </summary>
         public virtual bool ActiveScreen()
         {
-            Logging.Log("ActiveScreen");
+            Debug.Log("ActiveScreen");
             float _targetV = !IsVisible() ? 1f : 0;
             isTargetActive = !IsVisible();
     
@@ -164,7 +163,7 @@ namespace UI.Base
         private bool isTargetActive; 
         public virtual void ActiveScreen(bool _isActive)
         {
-            Logging.Log("ActiveScreen bool");
+            Debug.Log("ActiveScreen bool");
             float _targetV = _isActive ? 1f : 0;
             isTargetActive = _isActive; 
           //  if (_isActive == true)
@@ -190,7 +189,7 @@ namespace UI.Base
         protected void EndScreenTransition(TransitionEndEvent _evt)
         {
             if (_evt.stylePropertyNames.Contains("opacity") == false || isTargetActive == true) return;
-            Logging.Log(isTargetActive); 
+            Debug.Log(isTargetActive); 
             ShowVisualElement(parentElement, isTargetActive);
         }
         /// <summary>
@@ -277,6 +276,17 @@ namespace UI.Base
         {
             Bind<RadioButtonGroup>(_type); 
         }
+        
+        protected void BindDropdowns(Type _type)
+        {
+            Bind<DropdownField>(_type); 
+        }
+        
+        protected void BindSliderInts(Type _type)
+        {
+            Bind<SliderInt>(_type); 
+        }
+        
         /// <summary>
         /// element 가져오기 (idx는 enum을 통해 ) 
         /// </summary>
@@ -324,6 +334,15 @@ namespace UI.Base
         {
             return Get<ScrollView>(_idx); 
         }
+        protected DropdownField GetDropdown(int _idx)
+        {
+            return Get<DropdownField>(_idx); 
+        }
+        protected SliderInt GetSliderInt(int _idx)
+        {
+            return Get<SliderInt>(_idx); 
+        }
+        
         // == 이벤트 관련 == //
 
         //public void AddClickEvent(int _idx,Action _event)

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utill.Measurement;
 
 namespace PassiveItem
 {
@@ -28,12 +27,12 @@ namespace PassiveItem
 
         private void HpUp()
         {
-            Logging.Log("체력 30%업!");
+            Debug.Log("체력 30%업!");
         }
 
         private void HpDown()
         {
-            Logging.Log("체력 30%다운!");
+            Debug.Log("체력 30%다운!");
         }
 
     }
