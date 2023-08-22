@@ -4,7 +4,6 @@ using UnityEngine;
 using UI.Base;
 using UnityEngine.UIElements;
 using System;
-using Utill.Measurement;
 
 
 namespace UI.Production
@@ -157,7 +156,7 @@ namespace UI.Production
         }
         public void SetSprite(Texture2D _sprite)
         {
-            Logging.Log(_sprite.name);
+            Debug.Log(_sprite.name);
             GetVisualElement((int)Elements.image).style.backgroundImage = new StyleBackground(_sprite);
         }
 

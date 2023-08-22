@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="opotion_dropdown_modify" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 50px; display: flex;">
+        <ui:VisualElement name="background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-around; align-items: center;">
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="option_name" class="font_base option_name_label" />
+            <ui:VisualElement name="VisualElement" style="background-color: rgba(0, 0, 0, 0); flex-direction: row; width: 600px; align-items: center; justify-content: flex-end;">
+                <ui:Button display-tooltip-when-elided="true" name="left_button" class="option_button option_leftbutton" />
+                <ui:DropdownField label="Dropdown" index="1" choices="1,2,3" name="dropdown" style="width: 200px;" />
+                <ui:Button display-tooltip-when-elided="true" name="right_button" class="option_rightbutton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

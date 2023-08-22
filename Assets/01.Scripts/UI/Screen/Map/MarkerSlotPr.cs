@@ -39,6 +39,8 @@ namespace  UI
             (VisualElement, AbUI_Base) _v = UIConstructorManager.Instance.GetProductionUI(typeof(SlotItemView));
             this.slotItemView = _v.Item2 as SlotItemView;
             this.parent = _v.Item1;
+
+            parent.style.marginRight = new StyleLength(new Length(0));
         }
 
         /*public void SetData(MarkerData _markerData)

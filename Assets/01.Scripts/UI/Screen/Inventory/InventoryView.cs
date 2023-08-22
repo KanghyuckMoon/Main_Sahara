@@ -11,7 +11,6 @@ using Inventory;
 using Utill.Addressable;
 using UI.Base;
 using UI.UtilManager;
-using Utill.Measurement;
 
 namespace UI.Inventory
 {
@@ -292,7 +291,7 @@ namespace UI.Inventory
             _slotPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
                 _slotPr.WorldPos, _slotPr.ItemSize));
             _slotPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
-            _slotPr.AddDoubleClicker(() => Logging.Log("더블클릭"));
+            _slotPr.AddDoubleClicker(() => Debug.Log("더블클릭"));
             
             inventoryGridSlotsPr.InvenPanelDic[_itemType].AddEquipSlotView(_slotPr);
         }

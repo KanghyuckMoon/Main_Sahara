@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utill.Measurement;
 
 namespace Arena
 {
@@ -59,7 +58,7 @@ namespace Arena
 
             int i = 0;
             while (i < hitColliders.Length) {
-                Logging.Log ("Hit : " + hitColliders [i].name);
+                Debug.Log ("Hit : " + hitColliders [i].name);
                 i++;
             }
 
@@ -74,7 +73,7 @@ namespace Arena
 
             int i = 0;
             while (i < hitColliders.Length) {
-                Logging.Log ("Hit : " + hitColliders [i].name);
+                Debug.Log ("Hit : " + hitColliders [i].name);
                 i++;
             }
 

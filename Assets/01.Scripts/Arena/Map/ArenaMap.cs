@@ -6,7 +6,6 @@ using CondinedModule;
 using Data;
 using UnityEngine;
 using Utill.Coroutine;
-using Utill.Measurement;
 
 namespace Arena
 {
@@ -141,7 +140,7 @@ namespace Arena
         protected virtual IEnumerator Init(bool _isActive, bool _isImme = false)
         {
             yield return new WaitForEndOfFrame();
-            Logging.Log("@@@Init");
+            Debug.Log("@@@Init");
             isActive = _isActive; 
             if (_isActive == true)
             {

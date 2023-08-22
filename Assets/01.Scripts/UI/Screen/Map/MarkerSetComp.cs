@@ -120,15 +120,15 @@ namespace UI.Map
             activeMarkerDataDic.Add(_marker, curMarkerSlotPr.MarkerData);
 
 
-            // 마커 개수 0 인가 
-            //bool _isZeroCount = MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
-            bool _isZeroCount = InventoryManager.Instance.ItemReduce(curMarkerSlotPr.MarkerData.key);
-            if (_isZeroCount is true)
-            {
-                // 따라오는 이미지 끄기 
-                ActiveGhostIcon(false);
-                curMarkerSlotPr = null;
-            }
+            // 마커 개수 제거 코드 
+            // 마커 개수 0 인가 //bool _isZeroCount = MarkerDataManager.Instance.RemoveHaveMarker(curMarkerSlotPr.MarkerData.key);
+            //bool _isZeroCount = InventoryManager.Instance.ItemReduce(curMarkerSlotPr.MarkerData.key);
+            //if (_isZeroCount is true)
+            //{
+            //    // 따라오는 이미지 끄기 
+            //    ActiveGhostIcon(false);
+            //    curMarkerSlotPr = null;
+            //}
 
             UpdateMarker(); //마커 ui 업데이트 
             

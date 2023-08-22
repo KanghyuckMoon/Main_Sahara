@@ -4,7 +4,6 @@ using UnityEngine;
 using EventTrigger;
 using Utill.Pattern;
 using Utill.Addressable;
-using Utill.Measurement;
 
 namespace Tutorial
 {
@@ -33,7 +32,7 @@ namespace Tutorial
 			if (!CheckAlreadyView(_key))
 			{
 				//UI
-				Logging.Log("Tutorial : UI 표시");
+				Debug.Log("Tutorial : UI 표시");
 			}
 		}
 

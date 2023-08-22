@@ -35,6 +35,7 @@ namespace Skill
                     increseResistance = CalculateDef(statData.PhysicalResistance);
 
                     statData.PhysicalResistance += (int)increseResistance;
+                    //Debug.LogError("회복호복");
                     
                     currentPeriod = period;
                 }

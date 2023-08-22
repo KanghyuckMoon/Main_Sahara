@@ -98,7 +98,7 @@
                     <ui:VisualElement name="icon_image" style="background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/Inventory.png?fileID=2800000&amp;guid=05e222b4c879d604989dd3352e3d6b59&amp;type=3#Inventory&apos;); -unity-background-scale-mode: scale-to-fit; width: 50px; height: 50px;" />
                     <ui:Label text="ITEM" display-tooltip-when-elided="true" name="title_label" class="title_label font_base" style="border-bottom-width: 0; color: rgb(152, 137, 96); font-size: 50px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="money_box" style="flex-direction: row;">
+                <ui:VisualElement name="money_box" style="flex-direction: row; display: none;">
                     <ui:Label display-tooltip-when-elided="true" name="text" class="font_base" style="font-size: 40px; color: rgb(224, 224, 224); -unity-text-align: upper-center; -unity-font-style: normal;" />
                     <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Make/Inventory/MoneyLogo.png?fileID=2800000&amp;guid=683818fcb7e5026418bfa030a5496552&amp;type=3#MoneyLogo&apos;); -unity-background-scale-mode: scale-to-fit; height: 100px; width: 100px; -unity-background-image-tint-color: rgb(224, 224, 224);" />
                 </ui:VisualElement>
@@ -586,7 +586,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement style="height: 100%; flex-grow: 1; padding-right: 10px; padding-left: 10px; align-items: center; justify-content: flex-end;">
-                        <ui:VisualElement name="lock_parent" class="lock_view" style="height: 576px;">
+                        <ui:VisualElement name="lock_parent" class="lock_view" style="height: 576px; display: none;">
                             <ui:VisualElement name="lock_background" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/Lock%20background%20shadow.png?fileID=-519771521&amp;guid=12d6a28d7282d9d47b1a9d451a215ce3&amp;type=3#Lock background shadow_0&apos;);" />
                             <ui:VisualElement name="lock_chain" class="deco" style="background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/Lock.png?fileID=2800000&amp;guid=80d20d36da45f7e46af28e0207c7de9f&amp;type=3#Lock&apos;); -unity-background-scale-mode: scale-and-crop;" />
                             <ui:VisualElement name="lock_icon" />

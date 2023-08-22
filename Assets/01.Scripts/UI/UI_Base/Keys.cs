@@ -12,11 +12,12 @@ namespace UI.Base
         SaveLoadUI,
         ShopUI, 
         UpgradeUI, 
-        OptionUI,
+        PauseUI,
             
         // 사용자 입력 X 
         BuyUI , 
         SellUI, 
         SmithUI, 
+        OptionUI
     }    
 }

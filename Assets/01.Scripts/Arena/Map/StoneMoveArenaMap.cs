@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Utill.Measurement;
 
 namespace Arena
 {
@@ -42,7 +41,7 @@ namespace Arena
             }
             // 상태 확인 후 모두 자리에 있으면 클리어 
             GetEndTriggerList().First().inactiveTriggerEvent?.Invoke();
-            Logging.Log("@@@@@@@@@@@@@@클리어! ");
+            Debug.Log("@@@@@@@@@@@@@@클리어! ");
         }
         //private  void Create
     }

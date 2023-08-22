@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utill.Measurement;
 
 namespace Detect
 {
@@ -16,7 +15,7 @@ public class FishingRodDigItem : BaseDigItem
         var _detectAnimationAction = transform.root.GetComponentInParent<DetectAnimationAction>();
         if (_detectAnimationAction is not null)
         {
-            Logging.Log("Success");
+            Debug.Log("Success");
             _detectAnimationAction.ChangeAction(Dig);
             _detectAnimationAction.ChangeAction2(FishingCheck);
             _detectAnimationAction.SetAnimator(animator);
@@ -27,7 +26,7 @@ public class FishingRodDigItem : BaseDigItem
     {
             if(targetItem is not null)
             {
-                Logging.Log("GetOut");
+                Debug.Log("GetOut");
                 targetItem.GetOut();
             }
     }
@@ -38,7 +37,7 @@ public class FishingRodDigItem : BaseDigItem
         var playerAnimator =  transform.root.GetComponentInParent<Animator>();
         if(targetItem is not null)
         {
-            Logging.Log("GetOut");
+            Debug.Log("GetOut");
             playerAnimator.Play(animString);
         }
     }

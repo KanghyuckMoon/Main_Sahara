@@ -8,7 +8,6 @@ using Pool;
 using Utill.Pattern;
 using Cinemachine;
 using Talk;
-using Utill.Measurement;
 
 namespace CondinedModule
 {
@@ -41,7 +40,7 @@ namespace CondinedModule
 
         protected void OnEnable()
         {
-            Logging.Log("@@@OnEnable");
+            Debug.Log("@@@OnEnable");
             moduleComponentsDic ??= new();
             CharacterController = GetComponent<CharacterController>();
             StopOrNot = 1;

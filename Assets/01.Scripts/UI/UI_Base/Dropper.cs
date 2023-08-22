@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System; 
-using Utill.Measurement;
 
 namespace UI.Base
 {
@@ -37,10 +36,10 @@ namespace UI.Base
 
         protected void OnMouseMove(MouseMoveEvent e)
         {
-            Logging.Log("Move2");
+            Debug.Log("Move2");
             if (/*_isDragging &&*/ target.HasMouseCapture())
             {
-                Logging.Log("Move");
+                Debug.Log("Move");
                 Vector2 diff = e.localMousePosition - _startPos; // 변화값 
 
                 //layout은 부모로부터의 상대적인 위치를 말한다.기본은 픽셀이니까 걍 넣어도 되긴해 new Length 없이
@@ -54,7 +53,7 @@ namespace UI.Base
 
         protected void OnMouseUp(MouseUpEvent e)
         {
-            Logging.Log("up");
+            Debug.Log("up");
             if (/*!_isDragging ||*/ !target.HasMouseCapture())
             {
                 return;
@@ -64,7 +63,7 @@ namespace UI.Base
 
             _isDragging = false;
             target.ReleaseMouse(); //터치라면 릴리즈 포인터
-            Logging.Log($"{target.name} : 로컬 {e.localMousePosition}, 월드 : {e.mousePosition}, 오리진 : {e.originalMousePosition}");
+            Debug.Log($"{target.name} : 로컬 {e.localMousePosition}, 월드 : {e.mousePosition}, 오리진 : {e.originalMousePosition}");
 
             // 현재 마우스 포인터 위치가 슬롯 바운더리 안에 있는지 체크 
             // 있다면, 슬롯이 인벤토리인지, 장착슬롯인지 체크 

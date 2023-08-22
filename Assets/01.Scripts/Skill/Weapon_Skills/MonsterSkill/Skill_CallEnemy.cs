@@ -5,7 +5,6 @@ using Module;
 using Streaming;
 using Pool;
 using HitBox;
-using Utill.Measurement;
 
 namespace Skill
 {
@@ -46,7 +45,7 @@ namespace Skill
                     var _aiModule = _otherMainModule.GetModuleComponent<AIModule>(ModuleType.Input);
                     if(_aiModule != null)
                     {
-	                    Logging.Log(_aiModule.MainModule.gameObject.name);
+	                    Debug.Log(_aiModule.MainModule.gameObject.name);
 						_aiModule.AIModuleHostileState = AIModule.AIHostileState.Discovery;
                     }
 				}

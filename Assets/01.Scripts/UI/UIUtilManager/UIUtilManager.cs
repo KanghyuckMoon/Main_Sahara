@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Utill.Addressable;
 using Utill.Pattern;
-using Utill.Measurement;
 
 namespace UI.UtilManager
 {
@@ -36,7 +35,7 @@ namespace UI.UtilManager
             if (string.IsNullOrEmpty(_address) == false)
             {
                 SoundManager.Instance.PlayEFF(_address);
-                Logging.Log("@사운드 재생 : " + Enum.GetName(typeof(UISoundType),_type));
+                Debug.Log("@사운드 재생 : " + Enum.GetName(typeof(UISoundType),_type));
 
             }
             else
@@ -73,7 +72,7 @@ namespace UI.UtilManager
             WaitForSeconds _w = new WaitForSeconds(_time); 
             for (int i = 0; i < _fullText.Length; i++)
             {
-                Logging.Log("@@@@@@" +_fullText[i]);
+                Debug.Log("@@@@@@" +_fullText[i]);
 
                 if (isRIchText == true)
                 {

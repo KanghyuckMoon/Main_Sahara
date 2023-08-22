@@ -14,6 +14,7 @@ namespace UI.Base
         Upgrade,
         Shop,
         Save,
+        Pause,
         Option
     }
 }

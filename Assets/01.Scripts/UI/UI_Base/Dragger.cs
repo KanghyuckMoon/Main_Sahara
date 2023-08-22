@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Utill.Measurement;
 
 namespace UI.Base
 {
@@ -39,7 +38,7 @@ namespace UI.Base
         // 여기서 다른 거 하나랑 연동 
         protected void OnMouseDown(MouseDownEvent e)
         {
-            Logging.Log("Down2");
+            Debug.Log("Down2");
             if (CanStartManipulation(e))
             {
                 DownCallback?.Invoke(); 
@@ -50,7 +49,7 @@ namespace UI.Base
 
                 _isDragging = true;
 
-                Logging.Log("Down");
+                Debug.Log("Down");
                 newTarget.CaptureMouse(); //해당 타겟이 마우스를 잡는거
 
                 float _h = newTarget.resolvedStyle.height / 2;

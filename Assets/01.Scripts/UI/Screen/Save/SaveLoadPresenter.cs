@@ -6,7 +6,6 @@ using UI.Base;
 using Json;
 using UnityEngine.SceneManagement;
 using System;
-using Utill.Measurement;
 
 namespace UI.Save
 {
@@ -53,7 +52,7 @@ namespace UI.Save
                 _entry.SetStrData(_v.imagePath, _v.date);
                 _entry.AddClickEvent(() =>
                 {
-                    Logging.Log("클릭");
+                    Debug.Log("클릭");
                     Load(_v.date); 
                 });
                 saveLoadView.SetParent(_entry.Parent);

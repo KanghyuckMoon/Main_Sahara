@@ -21,8 +21,7 @@ using UI.Canvas;
 using UI.ActiveManager;
 using CondinedModule;
 using Module;
-using Utill.Measurement;
-
+                                                                                                 
 namespace UI
 {
 
@@ -49,7 +48,8 @@ namespace UI
         private UpgradePresenter upgradePresenter;
         private ShopPresenter shopPresenter;
         private SaveLoadPresenter saveLoadPresenter;
-        private OptionPresenter _optionPresenter;
+        private PausePresenter _pausePresenter;
+        private OptionPresenter optionPresenter; 
         
         private Dictionary<ScreenType, IScreen> screenDic = new Dictionary<ScreenType, IScreen>();
         private Dictionary<UIInputData, Action> inputDic = new Dictionary<UIInputData, Action>(); // 사용자 키 입력으로 스크린 활성화
@@ -113,7 +113,7 @@ namespace UI
 
         private void OnEnable()
         {
-            Logging.Log("ONEnable");
+            Debug.Log("ONEnable");
             StartCoroutine(Init());
             EventManager.Instance.StartListening(EventsType.SetUIInput,(x) =>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ClearUI((bool)x));
         }
@@ -211,9 +211,9 @@ namespace UI
             
             //saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
             
-            _optionPresenter = GetComponentInChildren<OptionPresenter>(); 
-            //// UIController 넣어주기 
-           
+            _pausePresenter = GetComponentInChildren<PausePresenter>();
+            optionPresenter = GetComponentInChildren<OptionPresenter>(); 
+            
             screenDic.Add(ScreenType.Inventory, inventoryPresenter);
             screenDic.Add(ScreenType.Map, mapPresenter);
             screenDic.Add(ScreenType.Dialogue, dialoguePresenter);
@@ -222,8 +222,11 @@ namespace UI
             screenDic.Add(ScreenType.Upgrade, upgradePresenter);
             screenDic.Add(ScreenType.Shop, shopPresenter);
             //screenDic.Add(ScreenType.Save, saveLoadPresenter);
-            screenDic.Add(ScreenType.Option, _optionPresenter);
+            screenDic.Add(ScreenType.Pause, _pausePresenter);
+            screenDic.Add(ScreenType.Option, optionPresenter);
             
+
+            //// UIController 넣어주기 
             foreach (var _pr in screenDic)
             {
                 _pr.Value.Init(this);
@@ -297,22 +300,39 @@ namespace UI
                 curActiveScreen = (Keys.QuestUI, questPresenter);
                 if(_isActive == false) curActiveScreen.Item2 = null; 
             });
+            notInputDic.Add(Keys.PauseUI, () =>
+            {
+                //  활성화
+                // 다른 끌 스크린 있으면 그것부터 비활성화 
+                bool _isActive = _pausePresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.PauseUI));
+                curActiveScreen = (Keys.PauseUI, _pausePresenter);
+                if(_isActive == false) curActiveScreen.Item2 = null; 
+            });
             notInputDic.Add(Keys.OptionUI, () =>
             {
                 //  활성화
-                // 다른 끌 스크린 있으면 그것부터 비활성화 
-                bool _isActive = _optionPresenter.ActiveView();
-                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
-                curActiveScreen = (Keys.OptionUI, _optionPresenter);
-                if(_isActive == false) curActiveScreen.Item2 = null; 
+                bool _isActive = optionPresenter.ActiveView();
+                curActiveScreen = (Keys.OptionUI, optionPresenter);
+                if (_isActive == false) curActiveScreen.Item2 = null;
             });
-            _optionPresenter.OnActiveScreen = () =>
+            _pausePresenter.OnActiveScreen = () =>
             {
                 //  활성화
                 // 다른 끌 스크린 있으면 그것부터 비활성화 
-                bool _isActive = _optionPresenter.ActiveView();
-                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
-                curActiveScreen = (Keys.OptionUI, _optionPresenter);
+                bool _isActive = _pausePresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.PauseUI));
+                curActiveScreen = (Keys.PauseUI, _pausePresenter);
+                if (_isActive == false) curActiveScreen.Item2 = null;
+            };
+            
+            optionPresenter.OnActiveScreen = () =>
+            {
+                //  활성화
+                // 다른 끌 스크린 있으면 그것부터 비활성화 
+                bool _isActive = optionPresenter.ActiveView();
+                //SetUIAndCursor(_isActive, Get(Keys.PauseUI));
+                curActiveScreen = (Keys.OptionUI, optionPresenter);
                 if (_isActive == false) curActiveScreen.Item2 = null;
             };
         }
@@ -373,13 +393,13 @@ namespace UI
                 if(_isActive == false) curActiveScreen.Item2 = null; 
 
             });
-            inputDic.Add(new UIInputData(Get(Keys.OptionUI), true), () =>
+            inputDic.Add(new UIInputData(Get(Keys.PauseUI), true), () =>
             {
                 //  활성화
                 // 다른 끌 스크린 있으면 그것부터 비활성화 
-                bool _isActive = _optionPresenter.ActiveView();
-                SetUIAndCursor(_isActive, Get(Keys.OptionUI));
-                curActiveScreen = (Keys.OptionUI, _optionPresenter);
+                bool _isActive = _pausePresenter.ActiveView();
+                SetUIAndCursor(_isActive, Get(Keys.PauseUI));
+                curActiveScreen = (Keys.PauseUI, _pausePresenter);
                 if(_isActive == false) curActiveScreen.Item2 = null; 
             });
             /*inputDic.Add(new UIInputData(Get(Keys.UpgradeUI), true), () =>
@@ -430,7 +450,7 @@ namespace UI
             foreach(var _v in inputDic)
             {
                 // ESC 입력시 
-                if (_v.Key.keyStr == Get(Keys.OptionUI)&& InputManager.Instance.CheckKey(_v.Key.keyStr))
+                if (_v.Key.keyStr == Get(Keys.PauseUI)&& InputManager.Instance.CheckKey(_v.Key.keyStr))
                 {
                         bool isCheck = CheckUndoScreen();
                        // if (isCheck == true)

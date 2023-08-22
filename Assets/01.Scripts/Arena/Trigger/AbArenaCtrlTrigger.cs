@@ -6,7 +6,6 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using CondinedModule;
 using Data;
-using Utill.Measurement;
 
 namespace Arena
 {
@@ -34,7 +33,7 @@ namespace Arena
         [ContextMenu("활성화")]
         public void Interact()
         {
-            Logging.Log("@@ 투기장 트리거 활성화");
+            Debug.Log("@@ 투기장 트리거 활성화");
             if (isStartArena == true)
             {
                 activeTriggerEvent?.Invoke();
