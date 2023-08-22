@@ -19,6 +19,8 @@ namespace Detect
         
         protected IDetectItem targetItem;
 
+        protected Transform targetTrm;
+
         protected float minDistance = 0f;
         
         private void GetNearObject()
@@ -35,7 +37,8 @@ namespace Detect
                     if ((detectItemType & component.DetectItemType) != 0)
                     {
                         targetItem = component;
-                        minimumDistance = dir.sqrMagnitude;
+						targetTrm = col.gameObject.transform;
+						minimumDistance = dir.sqrMagnitude;
                     }
                 }
             }

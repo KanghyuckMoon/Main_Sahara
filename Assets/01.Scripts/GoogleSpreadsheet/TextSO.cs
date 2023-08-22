@@ -33,6 +33,11 @@ namespace GoogleSpreadSheet
 			{
 			    return;
 			}
+			if(textDataDic.ContainsKey(key))
+			{
+				Debug.LogError($"{key} 키가 이미 포함되어 있음.");
+				return;
+			}
 			textDataDic.Add(key, value);
 		}
 

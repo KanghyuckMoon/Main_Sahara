@@ -20,7 +20,7 @@ using Inventory;
     using UI.UtilManager;
     using Utill.Measurement;
 
-    namespace UI.Dialogue
+namespace UI.Dialogue
 {
     public class DialoguePresenter :AbBaseScreen
     {

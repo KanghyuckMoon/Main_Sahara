@@ -41,18 +41,29 @@ public class IKFootSolver : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit info, 10, terrainLayer.value))
         {
-            if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
-            {
-                if (effectName is not "NULL")
+            if(Vector3.Distance(body.position, newPosition) < 3f)
+			{
+				Ray ray2 = new Ray(body.position + (-body.right * footSpacingX * 1.5f) + (-body.forward * footSpacingZ * 1.5f), Vector3.down);
+				if (Physics.Raycast(ray2, out RaycastHit info2, 10, terrainLayer.value))
 				{
-                    EffectManager.Instance.SetEffectDefault(effectName, transform.position, Quaternion.identity);
+					lerp = 0;
+                    oldPosition = newPosition;
+					oldNormal = newNormal;
+					newPosition = info2.point;
+					newNormal = info2.normal;
 				}
-                lerp = 0;
-                int direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
-                newPosition = info.point; //+ (body.forward * stepLength * direction) + footOffset;
-                newNormal = info.normal;
-            }
-        }
+			}
+			else if ((Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1))
+			{
+				if (effectName is not "NULL")
+				{
+					EffectManager.Instance.SetEffectDefault(effectName, transform.position, Quaternion.identity);
+				}
+				lerp = 0;
+				newPosition = info.point;
+				newNormal = info.normal;
+			}
+		}
 
         if (lerp < 1)
         {
