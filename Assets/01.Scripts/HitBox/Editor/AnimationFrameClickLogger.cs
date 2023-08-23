@@ -1,3 +1,4 @@
+#if Unity_Editor
 using UnityEditor;
 using UnityEngine;
 using System.Reflection;
@@ -122,3 +123,4 @@ public class AnimationClickLoggerWindow : EditorWindow
 	}
 
 }
+#endif
