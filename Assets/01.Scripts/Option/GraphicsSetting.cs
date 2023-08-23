@@ -126,20 +126,25 @@ public class GraphicsSetting : MonoBehaviour
     #region gpt 
     
     [SerializeField]
-    private Resolution[] resolutions;
+    private List<Resolution> resolutions = new List<Resolution>();
     List<string> resolutionOptions = new List<string>();
     public int currentResolutionIndex = 0;
     public int shadowQualityIndex = 0;
     public int isFullScreen = 0;  
     
 
-    private void Start()
+    private void Awake()
     {
-        resolutions = Screen.resolutions;
-
-        for (int i = 0; i < resolutions.Length; i++)
+        resolutions.Add(new Resolution{width = 800, height = 600});
+        resolutions.Add(new Resolution{width = 1024 , height = 768});
+        resolutions.Add(new Resolution{width = 1280 , height = 720});
+        resolutions.Add(new Resolution{width = 1366 , height = 768});
+        resolutions.Add(new Resolution{width = 1920 , height = 1080});
+        
+        for (int i = 0; i < resolutions.Count; i++)
         {
             resolutionOptions.Add(resolutions[i].width + " x " + resolutions[i].height);
+            
             
             if (resolutions[i].width == Screen.currentResolution.width &&
                 resolutions[i].height == Screen.currentResolution.height)

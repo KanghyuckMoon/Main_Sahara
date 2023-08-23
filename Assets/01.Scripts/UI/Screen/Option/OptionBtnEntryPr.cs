@@ -43,8 +43,10 @@ namespace UI.Option
             optionBtnEntryView.SetName(_nameAddress);
             optionBtnEntryView.SetDropdown(dropdownList);
             // 드롭다운 값이 변경될 때 
-            optionBtnEntryView.SetDropdownEvent(_callback); 
-            
+            optionBtnEntryView.SetDropdownEvent(_callback);
+            optionBtnEntryView.DropDown.index =
+                _optionData.dropdownList.IndexOf(_optionData
+                    .defaultDropdownStr);
             /*optionBtnEntryView.AddButtonEventToDic(OptionBtnEntryView.Buttons.left_button, () =>
             {
                 _callback?.Invoke(-1);

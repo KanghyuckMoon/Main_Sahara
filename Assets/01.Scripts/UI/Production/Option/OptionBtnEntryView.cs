@@ -79,7 +79,7 @@ namespace UI.Production
 
         public void SetDropdownEvent(Action<int> _callback)
         {
-            DropDown.RegisterValueChangedCallback((x) => _callback(int.Parse(DropDown.value)));
+            DropDown.RegisterValueChangedCallback((x) => _callback(DropDown.index));
         }
         
         //== 텍스트 설정 ==// 
