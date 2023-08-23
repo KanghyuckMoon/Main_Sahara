@@ -183,6 +183,26 @@ namespace Detect
             DG.DOTweenEditor.DOTweenEditorPreview.Start();
         }
 
+        [ContextMenu("DebugMoveHeight")]
+        public void DebugMoveHeight()
+        {
+            Vector3 curPos = targetModel.position;
+            targetModel.gameObject.SetActive(true);
+            debugDotCount++;
+            upPos = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
+            var tween2 = targetModel.DOMove(upPos,  1f).OnComplete(() =>
+            {   
+                debugDotCount--;
+                if(debugDotCount == 0)
+                {
+                    DG.DOTweenEditor.DOTweenEditorPreview.Stop();
+                }
+                targetModel.position = curPos;
+            });
+            DG.DOTweenEditor.DOTweenEditorPreview.PrepareTweenForPreview(tween2,false,false,true);
+            DG.DOTweenEditor.DOTweenEditorPreview.Start();
+        }
+
         public LayerMask debug_LayerMask;
         
         
