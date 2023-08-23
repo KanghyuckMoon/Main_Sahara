@@ -1,3 +1,4 @@
+#if Unity_Editor
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,3 +44,4 @@ public class PlayerMover : EditorWindow
 		return new Vector3(float.Parse(temp[0]), float.Parse(temp[1]), float.Parse(temp[2]));
 	}
 }
+#endif
