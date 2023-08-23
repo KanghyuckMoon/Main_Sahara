@@ -1,3 +1,4 @@
+#if Unity_Editor
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,3 +57,4 @@ public class AnimationTest : MonoBehaviour
         }
     }
 }
+#endif
