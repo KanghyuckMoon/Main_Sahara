@@ -59,14 +59,72 @@ public class SoundSetting : MonoBehaviour
 
         // 처음 값 설정 
         _audioMixer.GetFloat("MasterVolume",out float _masterValue);
-        masterAudioSlider.value = (int)_masterValue; 
+        masterAudioSlider.value = SetVolume(_masterValue); 
         _audioMixer.GetFloat("EFFVolume",out float _effValue);
-        masterAudioSlider.value = (int)_effValue; 
+        masterAudioSlider.value = SetVolume(_effValue); 
         _audioMixer.GetFloat("EnvironmentVolume",out float _environmentValue);
-        masterAudioSlider.value = (int)_environmentValue; 
+        masterAudioSlider.value = SetVolume(_environmentValue); 
         _audioMixer.GetFloat("BGMVolume",out float _bgmValue);
-        masterAudioSlider.value = (int)_bgmValue; 
+        masterAudioSlider.value = SetVolume(_bgmValue); 
     }
+    
+    //===============/
+    public float OnVolumeSliderChanged(int uiVolume)
+    {
+        // 0 ~ 100 범위의 값을 -40 ~ 0 범위로 매핑
+        float volume = MapUIToVolumeRange(uiVolume);
+
+        return volume; 
+        // 여기에서 실제 볼륨 조절 로직 수행
+        // 예: AudioMixer.SetFloat("VolumeParameter", volume);
+    }
+
+    // 0 ~ 100 범위의 값을 -40 ~ 0 범위로 매핑하는 함수
+    float MapUIToVolumeRange(int uiVolume)
+    {
+        // 0 ~ 100 범위의 값을 0 ~ 1 범위로 매핑
+        float normalizedUIVolume = uiVolume / 100f;
+
+        // 0 ~ 1 범위의 값을 -40 ~ 0 범위로 매핑
+        float volume = Mathf.Lerp(-40f, 0f, normalizedUIVolume);
+        return volume;
+    }
+    
+    //===============/
+    // -40 ~ 0 범위의 볼륨 값을 0 ~ 1 범위로 매핑하는 함수
+    float MapVolumeToUnityRange(float volume)
+    {
+        return Mathf.InverseLerp(-40f, 0f, volume);
+    }
+    // 0 ~ 1 범위의 값을 0 ~ 100 범위로 매핑하는 함수
+    float MapValueToUIRange(float value)
+    {
+        return value * 100f;
+    }
+    // 볼륨 값을 -40 ~ 0 범위로 설정
+    int SetVolume(float volume)
+    {
+        // 볼륨 값을 -40 ~ 0 범위에서 0 ~ 1 범위로 매핑
+        float unityVolume = MapVolumeToUnityRange(volume);
+
+        // 여기에서 실제 볼륨 조절 로직 수행
+        // 예: AudioMixer.SetFloat("VolumeParameter", unityVolume);
+
+        // UI에도 볼륨 값을 업데이트
+        return (int)UpdateVolumeUI(unityVolume);
+    }
+    //===============/
+
+    // UI에 볼륨 값을 업데이트
+    float UpdateVolumeUI(float unityVolume)
+    {
+        // 0 ~ 1 범위의 값을 0 ~ 100 범위로 매핑하여 UI에 설정
+        float uiVolume = MapValueToUIRange(unityVolume);
+        return uiVolume;
+    }
+
+    //===============/
+
     public void SetBgmAudio(float bgmValue)
     {
         _audioMixer.SetFloat("BGMVolume",bgmValue);
@@ -91,10 +149,10 @@ public class SoundSetting : MonoBehaviour
     /// </summary>
     public void ApplySettingSound()
     {
-        _audioMixer.SetFloat("MasterVolume", masterAudioSlider.Slider.value);
-        _audioMixer.SetFloat("BGMVolume", bgmSlider.Slider.value);
-        _audioMixer.SetFloat("EFFVolume", effSlider.Slider.value);
-        _audioMixer.SetFloat("EnvironmentVolume", envirnmentSlider.Slider.value);
+        _audioMixer.SetFloat("MasterVolume", OnVolumeSliderChanged(masterAudioSlider.Slider.value));
+        _audioMixer.SetFloat("BGMVolume", OnVolumeSliderChanged(bgmSlider.Slider.value));
+        _audioMixer.SetFloat("EFFVolume", OnVolumeSliderChanged(effSlider.Slider.value));
+        _audioMixer.SetFloat("EnvironmentVolume", OnVolumeSliderChanged(envirnmentSlider.Slider.value));
 
         OptionManager.Instance.optionData.masterVolume = masterAudioSlider.Slider.value;
         OptionManager.Instance.optionData.bgmVolume = bgmSlider.Slider.value;

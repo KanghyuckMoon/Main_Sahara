@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,17 @@ using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Utill.Addressable;
+ using Utill.Pattern;
 
-namespace UI.Option
+ namespace UI.Option
 {
     public interface IOptionEntry
     {
         public OptionData OptionData { get;  }
     }
     
-    public class OptionPresenter : MonoBehaviour, IScreen
+    // Monosingleton<> 
+    public class OptionPresenter : MonoSingleton<OptionPresenter>, IScreen
     {
         // 데이터 관련 
         private GraphicsSetting grahpicSetting;

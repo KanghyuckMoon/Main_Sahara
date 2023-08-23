@@ -212,8 +212,8 @@ namespace UI
             //saveLoadPresenter = GetComponentInChildren<SaveLoadPresenter>();
             
             _pausePresenter = GetComponentInChildren<PausePresenter>();
-            optionPresenter = GetComponentInChildren<OptionPresenter>(); 
-            
+            //optionPresenter = GetComponentInChildren<OptionPresenter>();
+            optionPresenter = OptionPresenter.Instance; 
             screenDic.Add(ScreenType.Inventory, inventoryPresenter);
             screenDic.Add(ScreenType.Map, mapPresenter);
             screenDic.Add(ScreenType.Dialogue, dialoguePresenter);

@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using GoogleSpreadSheet;
 using UI.PublicManager;
+using UI.Option;
 
 namespace UI
 {
@@ -31,9 +32,11 @@ namespace UI
                 {
                     SceneManager.LoadScene("StartCutScene", LoadSceneMode.Single);
                 });
-           titleView.AddButtonEventToDic(TitleView.Buttons.setting_button,() => 
+           titleView.AddButtonEventToDic(TitleView.Buttons.setting_button,() =>
            {
-               PublicUIManager.Instance.ActiveOptionPr(true);
+               OptionPresenter.Instance.ActiveView(true);
+              // PublicUIManager.Instance.ActiveOptionPr(true);
+               
            });
             titleView.AddButtonEventToDic(TitleView.Buttons.end_button, Application.Quit);
 
@@ -51,9 +54,17 @@ namespace UI
                 yield return null; 
             }
             titleView.Init();
+            OptionPresenter.Instance.ActiveView(false); 
 
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OptionPresenter.Instance.ActiveView(false); 
+            }
+        }
     }
 
 }
