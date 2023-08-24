@@ -94,10 +94,10 @@ namespace Module
                     switch (hitBoxType)
                     {
                         case HitBoxType.Default:
-                            if(EnemySuperAromored())
+                            if(hitSuperArmor != null && EnemySuperAromored())
 						    {
-							mainModule.IsHit = true;
-							hitSuperArmor.HitToSuperArmor();
+							    mainModule.IsHit = true;
+							    hitSuperArmor.HitToSuperArmor();
 							}
                             else
                             {

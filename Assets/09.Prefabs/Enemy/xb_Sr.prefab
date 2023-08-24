@@ -633,6 +633,7 @@ GameObject:
   - component: {fileID: 3118421499958552683}
   - component: {fileID: 3118421499958552675}
   - component: {fileID: 590726872}
+  - component: {fileID: 6831960145793757954}
   m_Layer: 18
   m_Name: xb_Sr
   m_TagString: Untagged
@@ -754,10 +755,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: 665faf74aaede884fa493bb9b2aa8737, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 0}
   hitBoxInAction: {fileID: 0}
   hitBoxName: DashAttack
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &3118421499958552676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +889,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: xb_Sr_AISO
   pathHarver: {fileID: 0}
@@ -907,8 +911,25 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseWeapon: 0
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0
+--- !u!114 &6831960145793757954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3118421499958552680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51072f00c2718814db99284e0812924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superArmorMat: {fileID: 2100000, guid: d9434335538b68d40bee9e508f1ad94c, type: 2}
+  originArmorMat: {fileID: 2100000, guid: 772621eeb504ae640b40cf095ec7c6d0, type: 2}
+  renderer: {fileID: 6352364709499329591}
 --- !u!1 &3219875347953761325
 GameObject:
   m_ObjectHideFlags: 0

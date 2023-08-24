@@ -464,6 +464,7 @@ GameObject:
   - component: {fileID: 8919908907913251570}
   - component: {fileID: 8919908907913251578}
   - component: {fileID: 7868757967880238007}
+  - component: {fileID: 2772415382362454310}
   m_Layer: 18
   m_Name: xc_Kr_BigFire
   m_TagString: Untagged
@@ -586,10 +587,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: da2c4d9f930903245a3efcf5f06f2faf, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 0}
   hitBoxInAction: {fileID: 0}
   hitBoxName: JumpAttack0
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &8919908907913251575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,6 +721,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: xc_Kr_BigFire_AISO
   pathHarver: {fileID: 0}
@@ -739,8 +743,25 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseWeapon: 0
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0
+--- !u!114 &2772415382362454310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2765805678131841587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51072f00c2718814db99284e0812924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superArmorMat: {fileID: 2100000, guid: ea37c8b4f1994014b843437471dd4718, type: 2}
+  originArmorMat: {fileID: 2100000, guid: ab33c4bfaf5f70143bd7417790859218, type: 2}
+  renderer: {fileID: 323863115741154885}
 --- !u!1 &2783209152756271547
 GameObject:
   m_ObjectHideFlags: 0
