@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 8668.495, g: 7687.126, b: 7384.251, a: 1}
+  m_IndirectSpecularColor: {r: 8666.606, g: 7685.3057, b: 7382.415, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -594,14 +594,13 @@ MonoBehaviour:
   projectileAddress: 
   objectName: Arrow
   objectData:
-    projectileName: Arrow
-    distinguishingName: arw1
+    animationEventName: 
+    projectileAddress: Arrow
     position: {x: -0.47, y: 0.14, z: 0.027}
     rotation: {x: -0.019643148, y: 0.026176363, z: -0.79941344, w: 0.5998893}
     weaponHand: 1
     InitialDirection: {x: 0, y: 2, z: 100}
     speed: 160
-    projectileAddress: Arrow
     isParentOn: 1
     isSetHitBoxWhenSetProjectile: 1
   model: {fileID: 2126990810}
@@ -13990,6 +13989,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  isUseWeapon: 0
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0
 --- !u!114 &833259811
@@ -17041,7 +17042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586633618700060407, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6165384266292577842, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
       propertyPath: m_Enabled
@@ -17051,11 +17052,38 @@ PrefabInstance:
       propertyPath: dropItemListSO
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8131282086769055482, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c4d7c6025ad8a24ab8985cc5ee1ceca, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 586633618700060407, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1051042997}
   m_SourcePrefab: {fileID: 100100000, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+--- !u!1 &1051042996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 586633618700060407, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+  m_PrefabInstance: {fileID: 1051042995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1051042997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051042996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51072f00c2718814db99284e0812924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superArmorMat: {fileID: 2100000, guid: d7a98221c95e48f4d8dd05b2fd15b2d4, type: 2}
+  originArmorMat: {fileID: 2100000, guid: 5c4d7c6025ad8a24ab8985cc5ee1ceca, type: 2}
+  renderer: {fileID: 1923168756}
 --- !u!1 &1053303859
 GameObject:
   m_ObjectHideFlags: 0
@@ -30304,6 +30332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mc_Hd
       objectReference: {fileID: 0}
+    - target: {fileID: 3208937498358750690, guid: a115e9d14f33a514aa806c33a9678e7f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3208937498358750696, guid: a115e9d14f33a514aa806c33a9678e7f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -36495,14 +36527,13 @@ MonoBehaviour:
   projectileAddress: 
   objectName: SandTornado_Projectile
   objectData:
-    projectileName: SandTornado_Projectile
-    distinguishingName: SandTornado_Projectile
+    animationEventName: 
+    projectileAddress: SandTornado_Projectile
     position: {x: 7.751642, y: 8.382752, z: 81.36193}
     rotation: {x: 0, y: 0, z: 0, w: 1}
     weaponHand: 0
     InitialDirection: {x: 0, y: 0, z: 0}
     speed: 0
-    projectileAddress: SandTornado_Projectile
     isParentOn: 1
     isSetHitBoxWhenSetProjectile: 1
 --- !u!4 &1563888865
@@ -37404,14 +37435,13 @@ MonoBehaviour:
   projectileAddress: 
   objectName: 
   objectData:
-    projectileName: 
-    distinguishingName: 
+    animationEventName: 
+    projectileAddress: 
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
     weaponHand: 0
     InitialDirection: {x: 0, y: 0, z: 0}
     speed: 0
-    projectileAddress: 
     isParentOn: 1
     isSetHitBoxWhenSetProjectile: 1
 --- !u!1 &1656095161
@@ -49552,6 +49582,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918921208}
   m_Mesh: {fileID: 5828714007021999026, guid: f1ab1dfcfb06f2b4da104eb608636c0e, type: 3}
+--- !u!137 &1923168756 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8131282086769055482, guid: 8ec806064ea104541b9cdb9501dddfbe, type: 3}
+  m_PrefabInstance: {fileID: 1051042995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1926789778
 GameObject:
   m_ObjectHideFlags: 0
@@ -50054,14 +50089,13 @@ MonoBehaviour:
   projectileAddress: 
   objectName: Arrow
   objectData:
-    projectileName: Arrow
-    distinguishingName: arw1
+    animationEventName: 
+    projectileAddress: Arrow
     position: {x: -0.4773714, y: 0.02863412, z: 0.01035774}
     rotation: {x: -0.70156765, y: 0.7125799, z: -0.005298935, w: -0.0021308018}
     weaponHand: 1
     InitialDirection: {x: 0, y: 2, z: 100}
     speed: 160
-    projectileAddress: Arrow
     isParentOn: 1
     isSetHitBoxWhenSetProjectile: 1
   model: {fileID: 1682209848}
@@ -50444,6 +50478,10 @@ PrefabInstance:
     - target: {fileID: 3118421499958552680, guid: 37a5c109cf3ddfe48bd5331bcdd10d13, type: 3}
       propertyPath: m_Name
       value: xb_Sr
+      objectReference: {fileID: 0}
+    - target: {fileID: 3118421499958552680, guid: 37a5c109cf3ddfe48bd5331bcdd10d13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
