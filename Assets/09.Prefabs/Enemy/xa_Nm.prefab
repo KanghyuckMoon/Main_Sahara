@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 844705169}
   - component: {fileID: 2089258947399142542}
   - component: {fileID: 3668975295135533044}
+  - component: {fileID: 5569756276076324114}
   m_Layer: 18
   m_Name: xa_Nm
   m_TagString: Enemy
@@ -143,7 +144,7 @@ Transform:
   - {fileID: 7118074666309013125}
   - {fileID: 6289230584526597940}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6165384266292577847
 Animator:
@@ -219,10 +220,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: e96df07f8b3e6424db8a59574af1b6c7, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 0}
   hitBoxInAction: {fileID: 0}
   hitBoxName: Bite_1
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &6165384266292577843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +261,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 8131282086769055482}
   rootTransform: {fileID: 4141058502605510617}
   animator: {fileID: 6165384266292577847}
-  dropItemListSO: {fileID: 11400000, guid: b6f8849e7c7412340b91f4101deafdd9, type: 2}
+  dropItemListSO: {fileID: 0}
   deadEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -395,6 +398,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: xa_Nm_AISO
   pathHarver: {fileID: 0}
@@ -412,6 +416,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd01e950db37d2e4d9e397bb8b471f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5569756276076324114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586633618700060407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51072f00c2718814db99284e0812924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superArmorMat: {fileID: 2100000, guid: d7a98221c95e48f4d8dd05b2fd15b2d4, type: 2}
+  originArmorMat: {fileID: 2100000, guid: 5c4d7c6025ad8a24ab8985cc5ee1ceca, type: 2}
+  renderer: {fileID: 8131282086769055482}
 --- !u!1 &1032976521521244201
 GameObject:
   m_ObjectHideFlags: 0

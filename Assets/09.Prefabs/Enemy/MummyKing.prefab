@@ -3264,6 +3264,7 @@ GameObject:
   - component: {fileID: 6819035825466073022}
   - component: {fileID: 6819035825466073021}
   - component: {fileID: 1173809046489317248}
+  - component: {fileID: 700077846234848270}
   m_Layer: 12
   m_Name: MummyKing
   m_TagString: Enemy
@@ -3366,10 +3367,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 2056839677981696126}
   hitBoxInAction: {fileID: 0}
   hitBoxName: 
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &5611988041174302648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3403,6 +3406,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  isUseWeapon: 0
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 1
   height: 1
 --- !u!114 &6819035825466072992
@@ -3538,6 +3543,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: MummyKing_AISO
   pathHarver: {fileID: 0}
@@ -3587,6 +3593,21 @@ MonoBehaviour:
   dropWeaponKey: []
   mainModule: {fileID: 6819035825466073022}
   effectAddress: SandExplosionImpacts
+--- !u!114 &700077846234848270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173809046489317249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51072f00c2718814db99284e0812924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superArmorMat: {fileID: 2100000, guid: bbbf34a643f402b41a119e704e84e1a6, type: 2}
+  originArmorMat: {fileID: 2100000, guid: cc13dc332f0a4f6498a156a9d7c8fa06, type: 2}
+  renderer: {fileID: 7157179686339340178}
 --- !u!1 &1180163390094925070
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,6 +56,7 @@ namespace Module
 
         private float currentHitDelay = 0;
         private bool isHit = false;
+        private HitSuperArmor hitSuperArmor;
 
         public int lifeCount = 0;
         public int lifeHealValue = 0;
@@ -73,7 +74,9 @@ namespace Module
         public override void Start()
         {
             effectSO = AddressablesManager.Instance.GetResource<PlayerLandEffectSO>("PlayerAttackEffect");
-        }
+            hitSuperArmor = mainModule.GetComponent<HitSuperArmor>();
+
+		}
 
         public void GetHit(int dmg, HitBoxType hitBoxType = HitBoxType.Default)
         {
@@ -91,7 +94,15 @@ namespace Module
                     switch (hitBoxType)
                     {
                         case HitBoxType.Default:
-                            Hit();
+                            if(hitSuperArmor != null && EnemySuperAromored())
+						    {
+							    mainModule.IsHit = true;
+							    hitSuperArmor.HitToSuperArmor();
+							}
+                            else
+                            {
+                                Hit();
+                            }
                             break;
                         case HitBoxType.DamageOnly:
                             break;
@@ -99,6 +110,15 @@ namespace Module
                 }
             //}
         }
+
+        private bool EnemySuperAromored()
+		{
+			if (mainModule.gameObject.CompareTag("Enemy") && StateModule.CheckState(State.ATTACK, State.SKILL))
+			{
+                return true;
+			}
+            return false;
+		}
 
         private bool HitDelay()
         {
