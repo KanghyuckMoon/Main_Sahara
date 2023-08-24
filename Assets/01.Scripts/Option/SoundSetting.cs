@@ -61,11 +61,11 @@ public class SoundSetting : MonoBehaviour
         _audioMixer.GetFloat("MasterVolume",out float _masterValue);
         masterAudioSlider.value = SetVolume(_masterValue); 
         _audioMixer.GetFloat("EFFVolume",out float _effValue);
-        masterAudioSlider.value = SetVolume(_effValue); 
+        effAudioSlider.value = SetVolume(_effValue); 
         _audioMixer.GetFloat("EnvironmentVolume",out float _environmentValue);
-        masterAudioSlider.value = SetVolume(_environmentValue); 
+        environmentAudioSlider.value = SetVolume(_environmentValue); 
         _audioMixer.GetFloat("BGMVolume",out float _bgmValue);
-        masterAudioSlider.value = SetVolume(_bgmValue); 
+        bgmAudioSlider.value = SetVolume(_bgmValue); 
     }
     
     //===============/
