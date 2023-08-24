@@ -36,16 +36,19 @@ namespace Spawner
 		private MonsterType enemyAddress;
 		[SerializeField]
 		private ObjectDataSO objectDataSO;
+
+		[SerializeField]
 		private int curIndex = 0;
 
-		private void Awake()
+		[ContextMenu("SetIndex")]
+		public void SetIndex()
 		{
 			curIndex = index++;
 		}
 
 		public void OnEnable()
 		{
-			if (isSpawnDic.TryGetValue(index, out bool _bool))
+			if (isSpawnDic.TryGetValue(curIndex, out bool _bool))
 			{
 				if (_bool)
 				{
@@ -58,7 +61,7 @@ namespace Spawner
 			}
 			else
 			{
-				isSpawnDic.Add(index, true);
+				isSpawnDic.Add(curIndex, true);
 				GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress.ToString());
 				ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
 				if(objectClassCycle is not null)

@@ -12,10 +12,8 @@ namespace Detect
 {
     public class BaseDetectItem : MonoBehaviour, IDetectItem
     {
-        private static Dictionary<string, bool> isSpawnDic = new Dictionary<string, bool>();
-        private static int nameKey;
-        [SerializeField] 
-        private string key;
+        private static Dictionary<int, bool> isSpawnDic = new Dictionary<int, bool>();
+        private static int index;
 
         public DetectItemType DetectItemType
         {
@@ -92,25 +90,33 @@ namespace Detect
 
         protected bool isGetOut = false;
         private EffectObject effectObj;
-        
-        protected virtual void Awake()
-        {
-            settingEventAfter?.Invoke();
-            
-            if (isSpawnDic.TryGetValue(key, out bool _bool))
-            {
-                if (_bool)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-            upPos = targetModel.position;
-            targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
-            if (isInitFalse)
-            {
-                targetModel.gameObject.SetActive(false);
-            }
-        }
+		[SerializeField]
+		private int curIndex = 0;
+
+		[ContextMenu("SetIndex")]
+		public void SetIndex()
+		{
+			curIndex = index++;
+		}
+
+		protected virtual void Awake()
+		{
+			settingEventAfter?.Invoke();
+
+			if (isSpawnDic.TryGetValue(curIndex, out bool _bool))
+			{
+				if (_bool)
+				{
+					gameObject.SetActive(false);
+				}
+			}
+			upPos = targetModel.position;
+			targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
+			if (isInitFalse)
+			{
+				targetModel.gameObject.SetActive(false);
+			}
+		}
 
         [ContextMenu("GetOut")]
         public virtual void GetOut()
@@ -131,9 +137,9 @@ namespace Detect
                 gameObject.SetActive(false);
                 isGetOut = true;
                 getoutEventAfter?.Invoke();
-				if (!isSpawnDic.ContainsKey(key))
+				if (!isSpawnDic.ContainsKey(curIndex))
 				{
-					isSpawnDic.Add(key, true);
+					isSpawnDic.Add(curIndex, true);
 				}
 
 			});
@@ -148,9 +154,9 @@ namespace Detect
 				gameObject.SetActive(false);
 				isGetOut = true;
 				getoutEventAfter?.Invoke();
-                if(!isSpawnDic.ContainsKey(key))
+                if(!isSpawnDic.ContainsKey(curIndex))
                 {
-				    isSpawnDic.Add(key, true);
+				    isSpawnDic.Add(curIndex, true);
                 }
 			}
         }
@@ -205,25 +211,6 @@ namespace Detect
 
         public LayerMask debug_LayerMask;
         
-        
-        [ContextMenu("RandomName")]
-        public void RandomName()
-        {
-            try
-            {
-                var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-                //gameObject.name = _prefeb.name + nameKey++;
-                key = _prefeb.name + nameKey++;
-            }
-            catch
-            {
-                key = gameObject.name + nameKey++;
-            }
-
-            
-            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
-        }
-
         [ContextMenu("SetHeight")]
         public void SetHeight()
         {
