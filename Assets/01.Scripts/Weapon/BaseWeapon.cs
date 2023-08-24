@@ -46,7 +46,7 @@ namespace Weapon
         {
             get
             {
-                projectilePositionSo ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(WeaponDataSO.projectileObjectName + weaponPosStr);
+                projectilePositionSo ??= WeaponDataSO.projectileObjectSO;
                 return projectilePositionSo;
             }
         }
@@ -76,8 +76,9 @@ namespace Weapon
             //weaponSkills = new WeaponSkills();
             weaponPositionSO ??= AddressablesManager.Instance.GetResource<WeaponPositionSO>(weaponName + weaponPosStr);
             weaponDataSO ??= AddressablesManager.Instance.GetResource<WeaponDataSO>(weaponName + weaponDataStr);
-            projectilePositionSo ??= AddressablesManager.Instance.GetResource<ProjectilePositionSO>(weaponDataSO.projectileObjectName + weaponPosStr);
-        }
+            projectilePositionSo ??= weaponDataSO.projectileObjectSO;
+
+		}
 
         [ContextMenu("??? ????")]
         public void Upload()

@@ -9,14 +9,6 @@ namespace Module
     {
         private PlayerInput playerInput;
 
-        private AttackModule AttackModule
-        {
-            get
-            {
-                attackModule ??= mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
-                return attackModule;
-            }
-        }
         private StateModule StateModule
         {
             get
@@ -34,7 +26,6 @@ namespace Module
             }
         }
 
-        private AttackModule attackModule;
         private StateModule stateModule;
         private SkillModule skillModule;
 
@@ -63,7 +54,6 @@ namespace Module
 
 		public override void OnDisable()
 		{
-            attackModule = null;
             stateModule = null;
             playerInput = null;
             mainModule = null;
@@ -74,7 +64,6 @@ namespace Module
 
         public override void OnDestroy()
         {
-            attackModule = null;
             stateModule = null;
             playerInput = null;
             mainModule = null;

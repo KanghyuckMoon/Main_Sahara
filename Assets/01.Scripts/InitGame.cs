@@ -19,7 +19,6 @@ public class InitGame : MonoBehaviour
         ClassPoolManager.Instance.RegisterObject(new AnimationModule());
         ClassPoolManager.Instance.RegisterObject(new PhysicsModule());
         ClassPoolManager.Instance.RegisterObject(new UIModule());
-        ClassPoolManager.Instance.RegisterObject(new AttackModule());
         ClassPoolManager.Instance.RegisterObject(new WeaponModule());
         ClassPoolManager.Instance.RegisterObject(new ItemModule());
         ClassPoolManager.Instance.RegisterObject(new EquipmentModule());
