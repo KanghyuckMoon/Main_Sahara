@@ -22011,6 +22011,7 @@ GameObject:
   - component: {fileID: 2689068517018829868}
   - component: {fileID: 2689068517018829871}
   - component: {fileID: 1947488912}
+  - component: {fileID: 4316797607464134026}
   m_Layer: 12
   m_Name: Mummy2
   m_TagString: Enemy
@@ -22113,10 +22114,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 7455768212807777260}
   hitBoxInAction: {fileID: 0}
   hitBoxName: 
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &3896352576331211818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22150,6 +22153,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  isUseWeapon: 0
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0
 --- !u!114 &2689068517018829874
@@ -22285,6 +22290,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: Mummy2_AISO
   pathHarver: {fileID: 0}
@@ -22332,6 +22338,21 @@ MonoBehaviour:
   - Sw_00_ChippedSword_Drop
   mainModule: {fileID: 2689068517018829868}
   effectAddress: SandExplosionImpacts
+--- !u!114 &4316797607464134026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7762337129525142547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51072f00c2718814db99284e0812924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superArmorMat: {fileID: 2100000, guid: bbbf34a643f402b41a119e704e84e1a6, type: 2}
+  originArmorMat: {fileID: 2100000, guid: cc13dc332f0a4f6498a156a9d7c8fa06, type: 2}
+  renderer: {fileID: 1774418686705974272}
 --- !u!1 &7851497837810337388
 GameObject:
   m_ObjectHideFlags: 0

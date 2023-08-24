@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 4735684078681382984}
   - component: {fileID: 8582000127551840895}
   - component: {fileID: 861382424}
+  - component: {fileID: 266753423073929524}
   m_Layer: 12
   m_Name: xa_Nm_Elec
   m_TagString: Enemy
@@ -494,6 +495,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: xa_Nm_Elec_AISO
   pathHarver: {fileID: 0}
@@ -526,10 +528,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: 6511136139d7ed3488e4e0423c445938, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 0}
   hitBoxInAction: {fileID: 0}
   hitBoxName: Bite_1
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &4735684078681382987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,8 +631,25 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseWeapon: 0
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0
+--- !u!114 &266753423073929524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023096911993200783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51072f00c2718814db99284e0812924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superArmorMat: {fileID: 2100000, guid: 8afbda8f5cc8ff844afbfce7ff0d7330, type: 2}
+  originArmorMat: {fileID: 2100000, guid: e3c182d6c66a5bf45875db933e7950e8, type: 2}
+  renderer: {fileID: 7273104760641548418}
 --- !u!1 &2437454243232502329
 GameObject:
   m_ObjectHideFlags: 0
