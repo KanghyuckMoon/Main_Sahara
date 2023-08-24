@@ -2357,10 +2357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: 10f170fecea8f994b885cb5b9fc56885, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 0}
   hitBoxInAction: {fileID: 0}
   hitBoxName: GroundAttack1
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &2226814159445434817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2458,6 +2460,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseWeapon: 1
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0
 --- !u!114 &889770851409629639
@@ -2529,6 +2533,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: xb_Hp_Air_AISO
   pathHarver: {fileID: 0}

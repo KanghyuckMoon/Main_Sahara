@@ -8,20 +8,44 @@ using Streaming;
 
 namespace Spawner
 {
+	public enum MonsterType
+	{
+		xa_Nm,
+		xa_Nm_Elec,
+		xa_Nm_Stone,
+		xb_Hp,
+		xb_Hp_Air,
+		xb_Sr,
+		xb_Sr_Life,
+		xc_Kr,
+		xc_Kr_BigFire,
+		xc_Kr_Fire,
+		Mummy,
+		mc_Hd,
+		mc_Km,
+		mc_Or,
+	}
+
 	public class MonsterSpawner : MonoBehaviour
 	{
-		private static Dictionary<string, bool> isSpawnDic = new Dictionary<string, bool>();
+		private static Dictionary<int, bool> isSpawnDic = new Dictionary<int, bool>();
+
+		private static int index;
 
 		[SerializeField]
-		private string spawnerName;
-		[SerializeField]
-		private string enemyAddress;
+		private MonsterType enemyAddress;
 		[SerializeField]
 		private ObjectDataSO objectDataSO;
+		private int curIndex = 0;
+
+		private void Awake()
+		{
+			curIndex = index++;
+		}
 
 		public void OnEnable()
 		{
-			if (isSpawnDic.TryGetValue(spawnerName, out bool _bool))
+			if (isSpawnDic.TryGetValue(index, out bool _bool))
 			{
 				if (_bool)
 				{
@@ -34,23 +58,26 @@ namespace Spawner
 			}
 			else
 			{
-				isSpawnDic.Add(spawnerName, true);
-				GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress);
+				isSpawnDic.Add(index, true);
+				GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress.ToString());
 				ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
-				objectClassCycle.TargetObject = obj;
-				ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>();
-				if (_objectSceneChecker is null)
+				if(objectClassCycle is not null)
 				{
-					_objectSceneChecker = new ObjectSceneChecker();
+					objectClassCycle.TargetObject = obj;
+					ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>();
+					if (_objectSceneChecker is null)
+					{
+						_objectSceneChecker = new ObjectSceneChecker();
+					}
+					_objectSceneChecker.ObjectDataSO = objectDataSO;
+					_objectSceneChecker.ObjectClassCycle = objectClassCycle;
+					objectClassCycle.AddObjectClass(_objectSceneChecker);
 				}
-				_objectSceneChecker.ObjectDataSO = objectDataSO;
-				_objectSceneChecker.ObjectClassCycle = objectClassCycle;
-				objectClassCycle.AddObjectClass(_objectSceneChecker);
 				obj.transform.position = transform.position;
+				obj.transform.rotation = transform.rotation;
 				obj.SetActive(true);
 			}
 		}
-
 
 	}
 }
