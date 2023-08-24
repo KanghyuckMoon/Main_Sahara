@@ -68,7 +68,7 @@ namespace  UI.Option
             
         }
 
-        enum ListViews
+        enum ScrollViews
         {
             option_scroll_view,
         }
@@ -94,7 +94,7 @@ namespace  UI.Option
         {
             base.Cashing();
             BindButtons(typeof(Buttons)); 
-            BindListViews(typeof(ListViews));
+            BindScrollViews(typeof(ScrollViews));
             BindVisualElements(typeof(Elements));
         }
 
@@ -107,7 +107,7 @@ namespace  UI.Option
             AddButtonEvents();
             InActiveAllPanels(); 
             UIUtil.SendEvent(GetButton((int)Buttons.graphics_button));
-        
+            UIUtil.FixScrollViewScrollingBug(GetScrollView((int)ScrollViews.option_scroll_view));
             // 옵션 패널 안에서 바UI들을 가져온다 
             
         }

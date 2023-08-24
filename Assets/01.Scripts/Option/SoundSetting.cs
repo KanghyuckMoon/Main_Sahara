@@ -58,10 +58,11 @@ public class SoundSetting : MonoBehaviour
         this.envirnmentSlider = new ToolkitSlider(environmentAudioSlider, envirLabel);
 
         // 처음 값 설정 
-        _audioMixer.GetFloat("MasterVolume",out float _masterValue);
-        masterAudioSlider.value = SetVolume(_masterValue); 
         _audioMixer.GetFloat("EFFVolume",out float _effValue);
         effAudioSlider.value = SetVolume(_effValue); 
+        _audioMixer.GetFloat("MasterVolume",out float _masterValue);
+        masterAudioSlider.value = SetVolume(_masterValue); 
+
         _audioMixer.GetFloat("EnvironmentVolume",out float _environmentValue);
         environmentAudioSlider.value = SetVolume(_environmentValue); 
         _audioMixer.GetFloat("BGMVolume",out float _bgmValue);
