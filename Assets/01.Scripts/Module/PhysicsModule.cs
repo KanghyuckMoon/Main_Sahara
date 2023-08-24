@@ -349,7 +349,7 @@ namespace Module
         }
         private void FallDamage()
         {
-            if (JumpModule.gravityWeight <= -100)
+            if (JumpModule.gravityWeight <= -50)
             {
                 HitModule.GetHit(20);
             }
