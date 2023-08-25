@@ -51,7 +51,7 @@ public class LookAtPlayer : MonoBehaviour
 
 		if(euler.y < 90)
 		{
-			euler.y = 0;
+			euler.y = 270 + limitY;
 		}
 		else
 		{
