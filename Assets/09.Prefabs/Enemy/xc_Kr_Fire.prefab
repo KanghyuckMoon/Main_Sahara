@@ -1605,10 +1605,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: d2bfb6d7f4cef9e4096c0196d3ac2231, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 0}
   hitBoxInAction: {fileID: 0}
   hitBoxName: JumpAttack0
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &2670562217599034945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1737,6 +1739,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: xc_Kr_Fire_AISO
   pathHarver: {fileID: 0}
@@ -1758,6 +1761,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  isUseWeapon: 1
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0
 --- !u!1 &8894619874428676168

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using HitBox;
 using UnityEngine;
 using Weapon;
+using Pool;
 
 namespace Module
 {
@@ -16,15 +17,31 @@ namespace Module
             }
         }
 
+        public bool IsUseWeapon
+        {
+            get
+            {
+                return isUseWeapon;
+            }
+            set
+            {
+                isUseWeapon = value;
+            }
+        }
+
         [SerializeField]
         private ProjectilePositionSO positionSO;
         [SerializeField]
         private LayerMask targetLayerMask;
-        private AttackModule attackModule;
+        [SerializeField]
+        private bool isUseWeapon;
+        [SerializeField]
+        private Transform noneUseWeaponTargetTrm;
+
+		private WeaponModule weaponModule;
         private AbMainModule mainModule;
         private StateModule stateModule;
         private CameraModule cameraModule;
-        private WeaponModule weaponModule;
 
         [SerializeField, Header("Enemy Only")] private bool isUseHeight;
         [SerializeField, Header("IsUseHeightOn")] private float height;
@@ -37,9 +54,12 @@ namespace Module
         private void OnEnable()
         {
             mainModule = GetComponent<AbMainModule>();
-            attackModule = mainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
+            if(isUseWeapon)
+            {
+                weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
+            }
+
             stateModule = mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-            weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
             cameraModule = mainModule.GetModuleComponent<CameraModule>(ModuleType.Camera);
         }
 
@@ -50,34 +70,31 @@ namespace Module
 
         public void SpownAndMove(string _projectileName)
         {
-            //if (stateModule.CheckState(State.ATTACK)) return;
-            if (canSpwon) return;
+            if (canSpwon) 
+                return;
             if (positionSO == null)
                 return;
             SpownProjectile(_projectileName);
             MoveProjectile();
         }
 
-        public void SpownProjectile(string _projectileName)
+        public void SpownProjectile(string _animationEvent)
         {
-            //for (int i = 0; i < _count; i++)
-            //{
-            if (canSpwon) return;
+            if (canSpwon) 
+                return;
             if (positionSO == null)
                 return;
 
-            //if (stateModule.CheckState(State.ATTACK)) return;
             StartCoroutine(Delay());
 
             
-            ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(_projectileName);
+            ProjectileObjectDataList _list = PositionSO.GetProjectilePosList(_animationEvent);
 
             if (_list is not null)
             {
                 foreach (ProjectileObjectData _datas in _list.list)
                 {
-                    //KeyValuePair<GameObject, ProjectileObjectData> keyValuePair = new KeyValuePair(attackModule.CreateProjectile(_datas), _datas);
-                    GameObject _projectile = attackModule.CreateProjectile(_datas);
+                    GameObject _projectile = CreateProjectile(_datas);
                     HitBoxOnProjectile _hitProj = _projectile.GetComponent<HitBoxOnProjectile>();
                     if (_hitProj != null)
                     {
@@ -90,34 +107,21 @@ namespace Module
                     }
 
                     projectileObjects.Add(_projectile);
-                    //projectileObjects
                 }
             }
-            //_gameObject?.GetComponent<IProjectile>().MovingFunc(transform.forward, Quaternion.identity);
-            //}
+            else
+            {
+                Debug.Log($"None Animation Event : {_animationEvent} Current SO : {PositionSO}");
+            }
         }
 
         public void MoveProjectile()
         {
-            //if (stateModule.CheckState(State.ATTACK)) return;
-            if (!weaponModule.isProjectileWeapon) return;
-            //if (canSpwon) return;
             if (PositionSO is null)
                 return;
         
-            //Quaternion _quaternion = Quaternion.Euler(transform.forward);
-
-            /*projectileObjects.ForEach((x) =>
-            {
-                x.GetComponent<IProjectile>().MovingFunc(mainModule.ObjRotation);
-            });*/
-
             Vector3 _vec;
             
-            
-            
-            //if (mainModule.LockOnTarget is not null)
-            //    _vec = mainModule.LockOnTarget.position + new Vector3(0,1, 0);
             if(mainModule.player)
             {
                 Ray _ray = new Ray(cameraModule.CurrentCamera.transform.position, cameraModule.CurrentCamera.transform.forward);
@@ -135,15 +139,6 @@ namespace Module
             }
             else
             {
-                //if (isUseHeight)
-                //{
-                //    _vec = transform.position + transform.forward;
-                //    _vec.y = PlayerObj.Player.transform.position.y + height;
-                //}
-                //else
-                //{
-                //    _vec = transform.position + transform.forward;
-                //}
                 _vec = PlayerObj.Player.transform.position + Vector3.up * height;
             }
 
@@ -155,7 +150,57 @@ namespace Module
             projectileObjects.Clear();
         }
 
-        IEnumerator Delay()
+		public GameObject CreateProjectile(ProjectileObjectData _projectileObjectData)
+		{
+            string _name = "";
+			if (isUseWeapon)
+			{
+			    _name = _projectileObjectData.projectileAddress == "Arrow" ? weaponModule.CurrentArrowInfo.arrowAddress : _projectileObjectData.projectileAddress;
+				weaponModule = mainModule.GetModuleComponent<WeaponModule>(ModuleType.Weapon);
+			}
+            {
+                _name = _projectileObjectData.projectileAddress;
+
+			}
+			GameObject _projectile = ObjectPoolManager.Instance.GetObject(_name);
+
+			if (_projectileObjectData.animationEventName == "Arrow")
+			{
+				weaponModule.CurrentArrowInfo.action?.Invoke();
+			}
+
+			if (_projectileObjectData.isParentOn)
+			{
+				_projectile.transform.SetParent(isUseWeapon ? WhichHandToHold(_projectileObjectData.weaponHand) : noneUseWeaponTargetTrm);
+				_projectile.transform.localRotation = _projectileObjectData.rotation;
+				_projectile.transform.localPosition = _projectileObjectData.position;
+				_projectile.SetActive(true);
+			}
+			else
+			{
+				Transform _parent = isUseWeapon ? WhichHandToHold(_projectileObjectData.weaponHand) : noneUseWeaponTargetTrm;
+				_projectile.transform.localRotation = _projectileObjectData.rotation;
+				_projectile.transform.localPosition = _parent.position + _projectileObjectData.position;
+				_projectile.SetActive(true);
+			}
+
+			ProjectileObject _projectileObject = _projectile.GetComponent<ProjectileObject>();
+			_projectileObject.objectData = _projectileObjectData;
+
+			return _projectile;
+		}
+
+		private Transform WhichHandToHold(WeaponHand _weaponHand)
+		{
+			foreach (WeaponSpownObject _hand in weaponModule.WeaponRight)
+			{
+				if (_hand.weaponHand == _weaponHand)
+					return _hand.transform;
+			}
+			return null;
+		}
+
+		IEnumerator Delay()
         {
             canSpwon = true;
             yield return new WaitForEndOfFrame();

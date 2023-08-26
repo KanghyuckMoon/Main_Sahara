@@ -4585,6 +4585,7 @@ GameObject:
   - component: {fileID: 6204677725807662206}
   - component: {fileID: 6204677725807662205}
   - component: {fileID: 8307465748063126210}
+  - component: {fileID: 3700539428850983281}
   m_Layer: 12
   m_Name: Vayu
   m_TagString: Enemy
@@ -4687,10 +4688,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxDataSO: {fileID: 11400000, guid: 2d18be157ee9df84f8a8f28127272ffb, type: 2}
+  mainHitBoxDataSO: {fileID: 0}
+  subHitBoxDataSO: {fileID: 0}
   waeponHandle: {fileID: 1455289104263359422}
   hitBoxInAction: {fileID: 0}
   hitBoxName: 
+  debugHitBoxDataSO: {fileID: 0}
 --- !u!114 &4996932984355763320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4724,6 +4727,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  isUseWeapon: 0
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 1
   height: 0.5
 --- !u!114 &6204677725807662176
@@ -4883,6 +4888,7 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
+  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: Vayu_AISO
   pathHarver: {fileID: 0}
@@ -4930,6 +4936,21 @@ MonoBehaviour:
   - Sw_00_ChippedSword_Drop
   mainModule: {fileID: 6204677725807662206}
   effectAddress: SandExplosionImpacts
+--- !u!114 &3700539428850983281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797869097098720321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51072f00c2718814db99284e0812924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superArmorMat: {fileID: 2100000, guid: cc40239259649f848912588e2ed6ccba, type: 2}
+  originArmorMat: {fileID: 2100000, guid: 4a376d8d66c1d1f40ab57e6b8868b67f, type: 2}
+  renderer: {fileID: 7776041389753625682}
 --- !u!1 &1801388601459345692
 GameObject:
   m_ObjectHideFlags: 0

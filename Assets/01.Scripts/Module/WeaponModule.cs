@@ -20,20 +20,11 @@ namespace Module
                 return weaponRight;
             }
         }
-        public AttackModule AttackModule
-        {
-            get
-            {
-                attackModule ??= MainModule.GetModuleComponent<AttackModule>(ModuleType.Attack);
-                return attackModule;
-            }
-        }
         public BaseWeapon BaseWeapon => baseWeapon;
         public CurrentArrowInfo CurrentArrowInfo => currentArrowInfo;
         #endregion
 
         public GameObject currentWeapon;
-        public bool isProjectileWeapon;
 
         private StatModule StatModule
         {
@@ -89,7 +80,6 @@ namespace Module
         private string currentWeaponName;
 
         private CurrentArrowInfo currentArrowInfo = new CurrentArrowInfo("Arrow");
-        private AttackModule attackModule;
         private BaseWeapon baseWeapon;
         private ProjectileGenerator projectileGenerator;
 
@@ -165,10 +155,6 @@ namespace Module
                 currentWeapon = _weapon;
 
                 Animator.SetBool("CanCharge", BaseWeapon.WeaponDataSO.canCharge);
-
-                isProjectileWeapon = BaseWeapon.isProjectile;
-
-                AttackModule.ProjectileName = BaseWeapon.WeaponDataSO.projectileObjectName;
 
                 mainModule.IsConsecutiveWeapon = BaseWeapon.isConsecutiveWeapon;
                 mainModule.IsWeaponExist = true;

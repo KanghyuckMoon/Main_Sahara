@@ -24,28 +24,18 @@ namespace Weapon
 
         public void Upload(ProjectileObjectData _projectileObjectData)
         {
-            if (_projectileObjectData.projectileName is null)
+            if (_projectileObjectData.animationEventName is null)
                 return;
 
-            if(projectilePosDic.TryGetValue(_projectileObjectData.projectileName, out var _list))
-            {
-                ProjectileObjectData _data = _list.list.Find(x => x.distinguishingName == _projectileObjectData.distinguishingName);
-                if (_data is not null)
-                {
-                    //ProjectileObjectData에 카피함수 만들기
-                    //_date.Copy(_projectileObjectData) 이런 식으로 되도록
-                    //_data.Copy(_projectileObjectData); // = ProjectileObjectData.StaticCopy(_projectileObjectData);
-
-                    _data.Copy(_projectileObjectData); // = ProjectileObjectData.StaticCopy(_projectileObjectData);
-                }
-                else
-                    _list.list.Add(_projectileObjectData);
-            }
+            if(projectilePosDic.TryGetValue(_projectileObjectData.animationEventName, out var _list))
+			{
+				_list.list.Add(_projectileObjectData);
+			}
             else
             {
                 ProjectileObjectDataList _projectileObjectDataList = new ProjectileObjectDataList();
                 _projectileObjectDataList.list.Add(ProjectileObjectData.StaticCopy(_projectileObjectData));
-                projectilePosDic.Add(_projectileObjectData.projectileName, _projectileObjectDataList);
+                projectilePosDic.Add(_projectileObjectData.animationEventName, _projectileObjectDataList);
             }
             
 #if UNITY_EDITOR
@@ -63,8 +53,8 @@ namespace Weapon
     [System.Serializable]
     public class ProjectileObjectData
     {
-        public string projectileName;
-        public string distinguishingName;
+        public string animationEventName;
+        public string projectileAddress;
 
         //생성 위치
         public Vector3 position;
@@ -76,7 +66,6 @@ namespace Weapon
 
         public float speed;
 
-        public string projectileAddress;
 
         public bool isParentOn = true;
 
@@ -86,8 +75,7 @@ namespace Weapon
         {
             ProjectileObjectData _data = new ProjectileObjectData();
 
-            _data.projectileName = _projectileObjectData.projectileName;
-            _data.distinguishingName = _projectileObjectData.distinguishingName;
+            _data.animationEventName = _projectileObjectData.animationEventName;
 
             _data.position = _projectileObjectData.position;
             _data.rotation = _projectileObjectData.rotation;
@@ -102,8 +90,7 @@ namespace Weapon
 
         public void Copy(ProjectileObjectData _projectileObjectData)
         {
-            projectileName = _projectileObjectData.projectileName;
-            distinguishingName = _projectileObjectData.distinguishingName;
+			animationEventName = _projectileObjectData.animationEventName;
 
             position = _projectileObjectData.position;
             rotation = _projectileObjectData.rotation;

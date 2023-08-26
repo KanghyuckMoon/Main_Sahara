@@ -68,7 +68,6 @@ namespace CondinedModule
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            AddModuleWithPool<AttackModule>(ModuleType.Attack);
             AddModuleWithPool<WeaponModule>(ModuleType.Weapon);
             AddModuleWithPool<HitModule>(ModuleType.Hit);
             AddModuleWithPool<ItemModule>(ModuleType.Item);

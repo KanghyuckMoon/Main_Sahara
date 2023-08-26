@@ -56,8 +56,6 @@ namespace Module
 						
 						StateModule.AddState(State.ATTACK);
 						StateModule.AddState(State.CHARGE);
-
-						AttackModule.SpownAttackEffect();
 						mainModule.Attacking = true;
 					}
 				}
