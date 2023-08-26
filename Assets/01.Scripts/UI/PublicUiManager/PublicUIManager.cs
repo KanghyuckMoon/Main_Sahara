@@ -1,21 +1,20 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utill.Pattern;
 using UI.Base;
 using UI.Dialogue;
 using System;
-    using UI.Option;
 
-    namespace UI.PublicManager
+namespace UI.PublicManager
 {
-
     /// <summary>
     /// UI관련이 아닌 외부에서 UI에 접근하기 위해 사용하는 Manager 
     /// </summary>
     public class PublicUIManager : MonoSingleton<PublicUIManager>
     {
         private IUIController screenUIController = null;
+
         public IUIController ScreenUIController
         {
             get
@@ -29,9 +28,11 @@ using System;
                         return screenUIController;
                     }
                 }
+
                 return screenUIController;
             }
         }
+
 
         public void ActiveOptionPr(bool _isActive)
         {
@@ -39,6 +40,7 @@ using System;
             //var screen = ScreenUIController.GetScreen<OptionPresenter>(ScreenType.Option);
             //screen.OnActiveScreen(); 
         }
+
         /// <summary>
         /// 처음 대화 텍스트 설정
         /// </summary>
@@ -47,20 +49,18 @@ using System;
         /// <param name="_callback"></param>
         public void SetTexts(string _name, string _dialogue, Action _callback = null)
         {
-            ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).StartDialogue(_name, _dialogue, _callback);
+            ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue)
+                .StartDialogue(_name, _dialogue, _callback);
         }
 
         public bool IsDialogue()
         {
-            return ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).IsDialogue; 
-
+            return ScreenUIController.GetScreen<DialoguePresenter>(ScreenType.Dialogue).IsDialogue;
         }
+
         public void UpdateQuestUI()
         {
             //   ScreenUIController.GetScreen<QuestPresenter>(ScreenType.Quest).UpdateUI(); 
         }
-
     }
-
 }
-
