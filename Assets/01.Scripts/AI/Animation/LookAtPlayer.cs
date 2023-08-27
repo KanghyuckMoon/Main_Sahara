@@ -2,9 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Module;
 
 public class LookAtPlayer : MonoBehaviour
 {
+	private AIModule AIModule
+	{
+		get
+		{
+			aiModule ??= mainModule.GetModuleComponent<AIModule>(ModuleType.Input);
+			return aiModule;
+		}
+	}
+
+	[SerializeField]
+	private AbMainModule mainModule;
+
 	[SerializeField]
 	private Transform head;
 	[SerializeField]
@@ -26,17 +39,18 @@ public class LookAtPlayer : MonoBehaviour
 	private float limitZ = 0f;
 
 	[SerializeField]
-	private bool isInvertY;
-	[SerializeField]
-	private bool isInvertX;
-	[SerializeField]
-	private bool isInvertZ;
+	private float rotationSpeed = 1f;
 
 	private Quaternion targetRotation;
 
+	private AIModule aiModule;
+
 	public void Update()
 	{
-		LookHeadToPlayer();
+		if(AIModule.AIModuleHostileState is AIModule.AIHostileState.Discovery)
+		{
+			LookHeadToPlayer();
+		}
 	}
 
 	private void LookHeadToPlayer()
@@ -69,5 +83,7 @@ public class LookAtPlayer : MonoBehaviour
 		euler.z += correctionZ;
 
 		head.localEulerAngles = euler;
+		//head.localEulerAngles = Vector3.Lerp(head.localEulerAngles, euler, Time.deltaTime * rotationSpeed);
 	}
+	//
 }
