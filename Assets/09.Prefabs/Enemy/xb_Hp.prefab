@@ -641,6 +641,8 @@ GameObject:
   - component: {fileID: 5345158356665591442}
   - component: {fileID: 1144251986}
   - component: {fileID: 1876360362}
+  - component: {fileID: 8960906036545370924}
+  - component: {fileID: 8658057111346611559}
   m_Layer: 18
   m_Name: xb_Hp
   m_TagString: Untagged
@@ -669,7 +671,7 @@ Transform:
   - {fileID: 978887844183624322}
   - {fileID: 7136220566118728268}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5345158356665591429
 Animator:
@@ -925,6 +927,42 @@ MonoBehaviour:
   ignoreHitType: 0
   aiSOAddress: xb_Hp_AISO
   pathHarver: {fileID: 0}
+--- !u!114 &8960906036545370924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695092116382737989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db229456a81930f4584813f44c88d2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 1876360362}
+  head: {fileID: 487620548609599513}
+  rotationSpeed: 5
+  initVector: 0
+  maxRotationAngle: 180
+  desiredRotationEulerAngles: {x: 10, y: 90, z: -100}
+--- !u!114 &8658057111346611559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695092116382737989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db229456a81930f4584813f44c88d2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 1876360362}
+  head: {fileID: 7675422930189301226}
+  rotationSpeed: 3
+  initVector: 0
+  maxRotationAngle: 45
+  desiredRotationEulerAngles: {x: 180, y: 90, z: 100}
 --- !u!1 &1739654398586514120
 GameObject:
   m_ObjectHideFlags: 0

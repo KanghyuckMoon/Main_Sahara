@@ -163,7 +163,38 @@ namespace Detect
 
 #if UNITY_EDITOR
         
+        [SerializeField]
+        private bool isDebugRender = true;
+
+		[SerializeField]
+        private MeshFilter debugRenderer;
+
         private static int debugDotCount = 0;
+        
+
+        private void OnDrawGizmos()
+		{
+            if(!isDebugRender)
+            {
+                return;
+            }
+
+            if(targetModel == null || debugRenderer == null)
+            {
+                if(targetModel != null)
+                {
+                    debugRenderer = targetModel.GetComponentInChildren<MeshFilter>();
+				}
+                return;
+            }
+
+            Vector3 renderPos = targetModel.transform.position + debugRenderer.transform.localPosition;
+			renderPos.y = targetHeightTransform.position.y;
+
+            Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+
+		}
+
 
         [ContextMenu("DebugGetOut")]
         public void DebugGetOut()
