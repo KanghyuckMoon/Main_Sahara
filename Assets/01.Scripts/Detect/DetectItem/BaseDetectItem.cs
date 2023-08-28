@@ -188,10 +188,25 @@ namespace Detect
                 return;
             }
 
-            Vector3 renderPos = targetModel.transform.position + debugRenderer.transform.localPosition;
-			renderPos.y = targetHeightTransform.position.y;
+            Vector3 renderPos = Vector3.zero;
+            if(DetectItemType == DetectItemType.Slide)
+            {
+                renderPos = targetHeightTransform.transform.position;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+            }
+            else
+            {
+                renderPos = targetModel.transform.position;
+                if(debugRenderer.transform != targetModel.transform)
+                {
+                    renderPos += debugRenderer.transform.localPosition;
+                }
+			    renderPos.y = targetHeightTransform.position.y;
+                Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+            }
 
-            Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+
 
 		}
 
