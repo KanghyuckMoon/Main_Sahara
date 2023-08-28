@@ -63,6 +63,21 @@ namespace UI.Popup
             popupTutorialView.SetDetailImage(AddressablesManager.Instance.GetResource<Sprite>(_detailStr)); 
         }
 
+        public void ActiveGuideLabel(bool _isActive)
+        {
+            popupTutorialView.ActiveGuideLabel(_isActive);
+        }
+
+        public void ActiveButton(bool _isLeft, bool _isActive)
+        {
+            popupTutorialView.ActiveButton(_isLeft, _isActive);
+        }
+
+        public void AddButtonEvt(PopupTutorialView.Buttons _btnType, Action _callback)
+        {
+            popupTutorialView.AddButtonEventToDic(_btnType, _callback);
+        }
+        
         public void ActiveTween()
         {
         }

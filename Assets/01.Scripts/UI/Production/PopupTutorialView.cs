@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UI.Base;
@@ -13,13 +14,22 @@ namespace UI.Production
         enum Labels
         {
             title_label, 
-            detail_label
+            detail_label,
+            guide_label, 
         }
 
         enum Elements
         {
             detail_image
         }
+
+        public enum Buttons
+        {
+            left_button, 
+            right_button 
+        }
+        
+        private Dictionary<Buttons, Action> callbackDic = new Dictionary<Buttons, Action>();
         
         public override void Cashing()
         {
@@ -27,24 +37,64 @@ namespace UI.Production
             Debug.Log(parentElement.name);
             BindLabels(typeof(Labels));
             BindVisualElements(typeof(Elements));
+            BindButtons(typeof(Buttons));
         }
 
         public override void Init()
         {
             base.Init();
+            AddButtonEventToDic(Buttons.left_button, null); 
+            AddButtonEventToDic(Buttons.right_button, null); 
+            AddButtonEvents();  
         }
 
         public void SetTitle(string _title)
         {
             GetLabel((int)Labels.title_label).text = _title; 
         }
-        public void SetDetail(string _detail)
+        public void SetDetail(string _detail)   
         {
             GetLabel((int)Labels.detail_label).text = _detail; 
         }
         public void SetDetailImage(Sprite _detailImage)
         {
             GetVisualElement((int)Elements.detail_image).style.backgroundImage = new StyleBackground(_detailImage); 
+        }
+
+        public void ActiveGuideLabel(bool _isActive)
+        {
+            ShowVisualElement(GetLabel((int)Labels.guide_label),_isActive);
+        }
+        
+        private void AddButtonEvents()
+        {
+            //AddButtonEvent<ClickEvent>((int)Buttons.graphics_button, callbackDic[Buttons.graphics_button]);
+            AddButtonEvent<ClickEvent>((int)Buttons.left_button, callbackDic[Buttons.left_button]);
+            AddButtonEvent<ClickEvent>((int)Buttons.right_button, callbackDic[Buttons.right_button]);
+        }
+
+        public void RemoveButtonEvents()
+        {
+            //RemoveButtonEvent<ClickEvent>((int)Buttons.graphics_button, callbackDic[Buttons.graphics_button]);
+            RemoveButtonEvent<ClickEvent>((int)Buttons.left_button, callbackDic[Buttons.left_button]);
+            RemoveButtonEvent<ClickEvent>((int)Buttons.right_button, callbackDic[Buttons.right_button]);
+
+        }
+        
+        public void AddButtonEventToDic(Buttons buttonType, Action callback)
+        {
+            callbackDic[buttonType] = callback;
+        }
+
+        public void ActiveButton(bool _isLeft, bool _isActive)
+        {
+            if (_isLeft == true)
+            {
+                ShowVisualElement(GetButton((int)Buttons.left_button), _isActive);
+                return; 
+            }
+            ShowVisualElement(GetButton((int)Buttons.right_button), _isActive);
+
         }
 
 
