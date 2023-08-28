@@ -32,21 +32,6 @@ public class LookAtPlayer : MonoBehaviour
 	private Transform head;
 
 	[SerializeField]
-	private float correctionY;
-	[SerializeField]
-	private float correctionX;
-	[SerializeField]
-	private float correctionZ;
-
-
-	[SerializeField, RangeAttribute(0f, 180f)]
-	private float limitY = 20f;
-	[SerializeField, RangeAttribute(0f, 180f)]
-	private float limitX = 0f;
-	[SerializeField, RangeAttribute(0f, 180f)]
-	private float limitZ = 0f;
-
-	[SerializeField]
 	private float rotationSpeed = 1f;
 
 	private Quaternion targetRotation;
