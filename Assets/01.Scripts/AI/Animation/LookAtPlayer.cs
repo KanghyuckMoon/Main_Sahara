@@ -6,6 +6,16 @@ using Module;
 
 public class LookAtPlayer : MonoBehaviour
 {
+	private enum InitVector
+	{
+		Forward, 
+		Right, 
+		Left, 
+		Back,
+		Up,
+		Down,
+	}
+
 	private AIModule AIModule
 	{
 		get
@@ -20,8 +30,6 @@ public class LookAtPlayer : MonoBehaviour
 
 	[SerializeField]
 	private Transform head;
-	[SerializeField]
-	private Transform body;
 
 	[SerializeField]
 	private float correctionY;
@@ -31,11 +39,11 @@ public class LookAtPlayer : MonoBehaviour
 	private float correctionZ;
 
 
-	[SerializeField]
+	[SerializeField, RangeAttribute(0f, 180f)]
 	private float limitY = 20f;
-	[SerializeField]
+	[SerializeField, RangeAttribute(0f, 180f)]
 	private float limitX = 0f;
-	[SerializeField]
+	[SerializeField, RangeAttribute(0f, 180f)]
 	private float limitZ = 0f;
 
 	[SerializeField]
@@ -45,45 +53,74 @@ public class LookAtPlayer : MonoBehaviour
 
 	private AIModule aiModule;
 
+	private Vector3 originForward;
+
+	[SerializeField]
+	private InitVector initVector;
+
+	public float maxRotationAngle;
+	public Vector3 desiredRotationEulerAngles = new Vector3(0f, 0f, 180f);
+
+	private void Start()
+	{
+	}
+
 	public void Update()
 	{
-		if(AIModule.AIModuleHostileState is AIModule.AIHostileState.Discovery)
-		{
-			LookHeadToPlayer();
-		}
+		LookHeadToPlayer();
+		//if (AIModule.AIModuleHostileState is AIModule.AIHostileState.Discovery)
+		//{
+		//	//LookHeadToPlayer();
+		//}
 	}
 
 	private void LookHeadToPlayer()
-	{// Calculate the direction to the player
-        Vector3 targetDirection = PlayerObj.Player.transform.position - head.position;
+	{        
+		// Calculate the direction from the head to the player
+		Vector3 targetDirection = (PlayerObj.Player.transform.position - transform.position).normalized;
 
-        // Calculate the rotation to look at the player
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-		var localEuler = (Quaternion.Inverse(head.transform.parent.rotation) * targetRotation);
+		// Calculate the rotation that points the forward vector in the target direction
+		Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
-		var euler = localEuler.eulerAngles;
+		Quaternion direction = Quaternion.LookRotation(GetDirection(initVector));
 
-		if(euler.y < 90)
+		// Limit the rotation to the specified angle
+		Quaternion desiredRotation = Quaternion.Euler(desiredRotationEulerAngles);
+		float angleDifference = Quaternion.Angle(direction, targetRotation);
+		
+
+		if (angleDifference > maxRotationAngle)
 		{
-			euler.y = 270 + limitY;
+			// Calculate the clamped rotation
+			Quaternion clampedRotation = Quaternion.RotateTowards(direction, targetRotation, maxRotationAngle);
+
+			// Apply the clamped rotation to your object
+			head.rotation = Quaternion.Lerp(head.rotation, clampedRotation * desiredRotation, Time.deltaTime * rotationSpeed) ;
 		}
 		else
 		{
-			euler.y = Mathf.Clamp(euler.y, 270 - limitY, 270 + limitY);
+			// If the angle difference is within the allowed range, directly set the rotation
+			head.rotation = Quaternion.Lerp(head.rotation, targetRotation * desiredRotation, Time.deltaTime * rotationSpeed);
 		}
-
-		//euler.x = euler.x > 180 ? euler.x - 360 : euler.x;
-		euler.x = Mathf.Clamp(euler.x, -limitX, limitX);
-		
-		//euler.z = euler.z > 180 ? euler.z - 360 : euler.z;
-		euler.z = Mathf.Clamp(euler.z, -limitZ, limitZ);
-
-		euler.x += correctionX;
-		euler.y += correctionY;
-		euler.z += correctionZ;
-
-		head.localEulerAngles = euler;
-		//head.localEulerAngles = Vector3.Lerp(head.localEulerAngles, euler, Time.deltaTime * rotationSpeed);
 	}
-	//
+
+	private Vector3 GetDirection(InitVector initVector)
+	{
+		switch (initVector)
+		{
+			case InitVector.Forward:
+				return transform.forward;
+			case InitVector.Right:
+				return transform.right;
+			case InitVector.Left:
+				return -transform.right;
+			case InitVector.Back:
+				return -transform.forward;
+			case InitVector.Up:
+				return transform.up;
+			case InitVector.Down:
+				return -transform.up;
+		}
+		return Vector3.zero;
+	}
 }
