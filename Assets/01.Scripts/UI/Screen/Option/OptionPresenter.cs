@@ -6,7 +6,8 @@ using Option;
 using UI.Base;
 using UI.Production;
 using UnityEngine;
-using UnityEngine.UIElements;
+ using UnityEngine.UI;
+ using UnityEngine.UIElements;
 using Utill.Addressable;
  using Utill.Pattern;
 
@@ -71,8 +72,32 @@ using Utill.Addressable;
 
             CreateEntry();
             ConnectUIAndData(); 
+            
+            
+            GetDropdown(OptionType.Resolution).index = grahpicSetting.currentResolutionIndex; 
+            GetDropdown(OptionType.AntiAliasing).index = grahpicSetting.antiAliasingIdx; 
+            GetDropdown(OptionType.ShadowQuality).index = grahpicSetting.shadowQualityIndex; 
+            GetDropdown(OptionType.TextureQuality).index = grahpicSetting.textureQualityIdx; 
+            GetDropdown(OptionType.IsFullScreen).index = grahpicSetting.isFullScreen;
         }
 
+        private DropdownField GetDropdown(OptionType _optionType)
+        {
+            DropdownField _dropdown = null;
+
+            try
+            {
+                var _findEntry= optionEntryList.Find((x) => x.OptionData.optionType == _optionType) ;
+                OptionBtnEntryPr _dropdownPr = _findEntry as OptionBtnEntryPr;
+                _dropdown = _dropdownPr.Dropdown;
+
+            }
+            catch (Exception e)
+            {
+                Debug.Log(_optionType);
+            }
+            return _dropdown; 
+        }
         [ContextMenu("변경사항 적용")]
         private void Apply()
         {
@@ -153,7 +178,7 @@ using Utill.Addressable;
         private void CreateUI(List<OptionData> _optionDataList, VisualElement _parent)
         {
             VisualElement _newOptionEntry; 
-            foreach (var _optionData in _optionDataList)
+            foreach (var _optionData in _optionDataList)    
             {
                 // 생성할 거 정해주고 
                 switch (_optionData.optionModifyType)
