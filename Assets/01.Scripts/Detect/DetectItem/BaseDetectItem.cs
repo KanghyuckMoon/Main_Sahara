@@ -65,8 +65,14 @@ namespace Detect
 
         [SerializeField]
         protected bool isInitFalse = true;
-        
-        public List<Observer> Observers
+
+        [SerializeField]
+        private MeshRenderer outLineMeshRenderer;
+
+		[SerializeField]
+        private Material outlineMat;
+
+		public List<Observer> Observers
         {
             get
             {
@@ -116,6 +122,11 @@ namespace Detect
 			{
 				targetModel.gameObject.SetActive(false);
 			}
+            else
+            {
+				outLineMeshRenderer = targetModel.GetComponentInChildren<MeshRenderer>();
+				outLineMeshRenderer.materials = CopyMaterialsAndAdd();
+			}
 		}
 
         [ContextMenu("GetOut")]
@@ -124,19 +135,26 @@ namespace Detect
             if (isGetOut)
             {
                 return;
-            }
-            getoutEventBefore?.Invoke();
+			}
+			getoutEventBefore?.Invoke();
             targetModel.gameObject.SetActive(true);
             isGetOut = true;
             Vector3 _movePos = upPos;
 			effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
-            targetModel.DOMove(_movePos,  heightUpTime);
+
+			if (!isInitFalse)
+			{
+				outLineMeshRenderer.materials = RemoveMateiral();
+			}
+
+			targetModel.DOMove(_movePos,  heightUpTime);
             targetTransform.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
             {
 				effectObj.Pool();
                 gameObject.SetActive(false);
                 isGetOut = true;
                 getoutEventAfter?.Invoke();
+
 				if (!isSpawnDic.ContainsKey(curIndex))
 				{
 					isSpawnDic.Add(curIndex, true);
@@ -154,12 +172,36 @@ namespace Detect
 				gameObject.SetActive(false);
 				isGetOut = true;
 				getoutEventAfter?.Invoke();
-                if(!isSpawnDic.ContainsKey(curIndex))
+				if (!isSpawnDic.ContainsKey(curIndex))
                 {
 				    isSpawnDic.Add(curIndex, true);
                 }
 			}
         }
+
+        private Material[] CopyMaterialsAndAdd()
+        {
+			Material[] materials = new Material[outLineMeshRenderer.materials.Length + 1];
+            int index = outLineMeshRenderer.materials.Length;
+            for(int i = 0; i < index; ++i)
+            {
+                materials[i] = outLineMeshRenderer.materials[i];
+			}
+            materials[index] = outlineMat;
+            return materials;
+		}
+
+        private Material[] RemoveMateiral()
+		{
+			Material[] materials = new Material[outLineMeshRenderer.materials.Length - 1];
+			int index = outLineMeshRenderer.materials.Length - 1;
+			for (int i = 0; i < index; ++i)
+			{
+				materials[i] = outLineMeshRenderer.materials[i];
+			}
+			//materials[index] = null;
+			return materials;
+		}
 
 #if UNITY_EDITOR
         
@@ -188,10 +230,25 @@ namespace Detect
                 return;
             }
 
-            Vector3 renderPos = targetModel.transform.position + debugRenderer.transform.localPosition;
-			renderPos.y = targetHeightTransform.position.y;
+            Vector3 renderPos = Vector3.zero;
+            if(DetectItemType == DetectItemType.Slide)
+            {
+                renderPos = targetHeightTransform.transform.position;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+            }
+            else
+            {
+                renderPos = targetModel.transform.position;
+                if(debugRenderer.transform != targetModel.transform)
+                {
+                    renderPos += debugRenderer.transform.localPosition;
+                }
+			    renderPos.y = targetHeightTransform.position.y;
+                Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+            }
 
-            Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+
 
 		}
 
