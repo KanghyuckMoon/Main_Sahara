@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GoogleSpreadSheet;
 using UI.ConstructorManager;
 using UI.Production;
 using UnityEngine;
@@ -47,14 +48,19 @@ namespace UI.Popup
         public void SetData(object _data)
         {
             PopupTutorialData _tData = _data as PopupTutorialData;
+            popupTutoData = _tData; 
             popupTutorialView.SetTitle(_tData.titleAddress);
-            popupTutorialView.SetDetail(_tData.detailAddress);
+            popupTutorialView.SetDetail(TextManager.Instance.GetText(_tData.detailAddress));
             popupTutorialView.SetDetailImage(AddressablesManager.Instance.GetResource<Sprite>(_tData.detailImageAddress) );
         }
 
         public void SetDetail(string _detailStr)
         {
             popupTutorialView.SetDetail(_detailStr); 
+        }
+        public void SetDetailImage(string _detailStr)
+        {
+            popupTutorialView.SetDetailImage(AddressablesManager.Instance.GetResource<Sprite>(_detailStr)); 
         }
 
         public void ActiveTween()

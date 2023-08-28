@@ -49,17 +49,19 @@ namespace UI.Popup
 
         private IEnumerator StayTimeStopPopupCo(PopupTutorialPr _popup)
         {
-            int _count = _popup.Data.detailImageAddressList.Count;
+            int _count = _popup.Data.page;
             int _idx = 1; 
             while (true)
             {
                 // 설명 페이지가 2장 이상이고 마지막 페이지가 아니라면  
-                if (_count >= 2 && _idx <_count)
+                if (_count >= 2 && _idx+1 <_count)
                 {
                     // 1보다 크면 
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        _popup.SetDetail(_popup.Data.detailImageAddressList[_idx++]);
+                        ++_idx; 
+                        _popup.SetDetail(_popup.Data.detailAddressList[_idx]);
+                        _popup.SetDetailImage(_popup.Data.detailImageAddressList[_idx]);
                     }
                     yield return null;
                 }
@@ -77,6 +79,7 @@ namespace UI.Popup
                     EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, false);
                     // UI 입력 멈춘거 풀고
                     // UI 닫고 
+                    yield break;
                 }
                 yield return null;
 

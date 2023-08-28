@@ -9,31 +9,38 @@ namespace UI.Popup
     
     public class PopupTutorialData
     {
-        public PopupTutorialData(PopupTutorialDataSO _dataSO)
+        public PopupTutorialData(PopupTutorialDataSO _dataSO, int _idx = 0)
         {
             titleAddress = _dataSO.titleAddress;
-            detailAddress = _dataSO.detailAddress;
-            detailImageAddress = _dataSO.detailImageAddress;
+            detailAddress = _dataSO.detailAddressList[_idx];
+            detailImageAddress = _dataSO.detailImageAddressList[_idx];
+            page = _dataSO.page;
 
+            detailAddressList = _dataSO.detailAddressList;
             detailImageAddressList = _dataSO.detailImageAddressList; 
         }
         public string titleAddress;
         public string detailAddress;
         public string detailImageAddress; 
+        public int page; 
 
-        public List<string> detailImageAddressList = new List<string>();
+        public List<string> detailAddressList = new List<string>();
+        public List<string> detailImageAddressList = new List<string>(); 
     }
 
     [CreateAssetMenu(menuName = "SO/UI/PopupTutorialDataSO")]
     public class PopupTutorialDataSO : ScriptableObject, IObserble
     {
         private List<Observer> listeners = new List<Observer>();
-        public List<Observer> Observers => listeners; 
-        
+        public List<Observer> Observers => listeners;
+
+        public string key;
+        public int page; 
         public string titleAddress;
         public string detailAddress;
         public string detailImageAddress;
 
+        public List<string> detailAddressList = new List<string>();
         public List<string> detailImageAddressList = new List<string>(); 
         public void AddObserver(Observer _listener)
         {
