@@ -30,6 +30,8 @@ namespace UI.ConstructorManager
         private UIConstructor<PopupGetNewitemView> popupGetNewitemConstructor; 
         private UIConstructor<OptionBtnEntryView> optionButtonEntryConstructor;
         private UIConstructor<OptionBarEntryView> optionBarEntryConstructor; 
+        private UIConstructor<PopupTutorialView> tutorialPopupConstructor; 
+        
     //        private  UIConstructor<popupPr>
 
 
@@ -78,6 +80,8 @@ namespace UI.ConstructorManager
             popupGetNewitemConstructor = new UIConstructor<PopupGetNewitemView>("PopupGetNewitemEntry");
             optionButtonEntryConstructor = new UIConstructor<OptionBtnEntryView>("OptionButtonEntry");
             optionBarEntryConstructor = new UIConstructor<OptionBarEntryView>("OptionBarEntry"); 
+            tutorialPopupConstructor = new UIConstructor<PopupTutorialView>("TutorialPopup"); 
+            
             
             uiConstructorDic.Add(typeof(EventAlarmView), eventAlarmConstructor); 
             uiConstructorDic.Add(typeof(QuestEntryView), questEntryConstructor);
@@ -93,6 +97,7 @@ namespace UI.ConstructorManager
             uiConstructorDic.Add(typeof(PopupGetNewitemView), popupGetNewitemConstructor);
             uiConstructorDic.Add(typeof(OptionBtnEntryView), optionButtonEntryConstructor);
             uiConstructorDic.Add(typeof(OptionBarEntryView), optionBarEntryConstructor);
+            uiConstructorDic.Add(typeof(PopupTutorialView), tutorialPopupConstructor);
             
         }
 

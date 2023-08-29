@@ -35,7 +35,7 @@ namespace UI.Base
             VisualElement _v = buff.contentContainer;
             T buffView = new T();
 
-            buffView.InitUIParent(_v);
+            buffView.InitUIParent(_v.ElementAt(0));
             buffView.Cashing();
             buffView.Init();
 

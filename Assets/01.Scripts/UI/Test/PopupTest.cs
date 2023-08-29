@@ -13,8 +13,9 @@ public class PopupTest : MonoBehaviour
 {
     public ItemDataSO ItemDataSo;
     public QuestDataSO QuestDataSo; 
-    public QuestDataSO ClearQuestDataSo; 
-
+    public QuestDataSO ClearQuestDataSo;
+    public PopupTutorialDataSO tutorialDataSO; 
+    
     public Transform trm;
 
     private void Update()
@@ -57,6 +58,13 @@ public class PopupTest : MonoBehaviour
             PopupUIManager.Instance.CreatePopup<PopupGetNewitemPr>(PopupType.GetNewItem,
                 itemData,3f);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            tutorialDataSO.Send();
+        }
+        
+        
+        
        
     }
 }
