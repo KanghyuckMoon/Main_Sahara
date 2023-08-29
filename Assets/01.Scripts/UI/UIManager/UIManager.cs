@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utill.Addressable;
 using Utill.Pattern;
-using UI.Base; 
+//using UI.Base; 
 namespace UI.Manager
 {
     public class UIManager : MonoSingleton<UIManager>

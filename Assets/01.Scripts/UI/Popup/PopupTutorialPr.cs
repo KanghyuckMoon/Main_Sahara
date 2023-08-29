@@ -53,10 +53,10 @@ namespace UI.Popup
             popupTutorialView.SetDetail(TextManager.Instance.GetText(_tData.detailAddress));
             popupTutorialView.SetDetailImage(AddressablesManager.Instance.GetResource<Sprite>(_tData.detailImageAddress) );
         }
-
+    
         public void SetDetail(string _detailStr)
         {
-            popupTutorialView.SetDetail(_detailStr); 
+            popupTutorialView.SetDetail(TextManager.Instance.GetText(_detailStr)); 
         }
         public void SetDetailImage(string _detailStr)
         {
@@ -77,7 +77,11 @@ namespace UI.Popup
         {
             popupTutorialView.AddButtonEventToDic(_btnType, _callback);
         }
-        
+
+        public void SetButtonEvts()
+        {
+            popupTutorialView.AddButtonEvents(); 
+        }
         public void ActiveTween()
         {
         }
