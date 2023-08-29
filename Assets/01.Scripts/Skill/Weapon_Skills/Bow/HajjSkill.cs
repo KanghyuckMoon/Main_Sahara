@@ -23,48 +23,58 @@ namespace Skill
         [SerializeField] private HitBoxInAction hitBoxInAction;
         [SerializeField] private HitBoxAction hitBoxAction = new HitBoxAction();
 
-        [SerializeField] private Mesh swordMesh;
-        [SerializeField] private Material swordMat;
-
-        private MeshFilter meshFilter;
         private MeshRenderer meshRenderer;
-        private Material originMat;
-        private Mesh originMesh;
-
+        
         private void Start()
         {
-            meshFilter = GetComponent<MeshFilter>();
             meshRenderer = GetComponent<MeshRenderer>();
-
-            originMesh = meshFilter.mesh;
-            originMat = meshRenderer.material;
         }
 
         public void Skills(AbMainModule _mainModule)
         {
             //transform.root.GetComponent<CharacterController>().Move(Vector3.forward * 10);
 
-            //var sword = ObjectPoolManager.Instance.GetObject("Hajj_SkillSword");
+            var sword = ObjectPoolManager.Instance.GetObject("Hajj_SkillSword");
+            var effect = ObjectPoolManager.Instance.GetObject("Hajj_SkillEffect");
+            //var effect2 = ObjectPoolManager.Instance.GetObject("Hajj_SkillEffect_1");
 
-            meshFilter.mesh = swordMesh;
-            meshRenderer.material = swordMat;
+            //meshFilter.mesh = swordMesh;
+            //meshRenderer.material = swordMat;
             
-            //sword.transform.SetParent(transform.parent);
-            //sword.GetComponent<RememberPosition>().SetPos();
-            //sword.SetActive(true);
+            //transform.localScale = Vector3.one;
 
-            StartCoroutine(SetSwordOff(animationClip.length));
+            sword.transform.SetParent(transform.parent);
+            sword.GetComponent<RememberPosition>().SetPos();
+            sword.SetActive(true);
 
+            effect.transform.localPosition = _mainModule.transform.position + new Vector3(0, 1, 0);
+            effect.transform.SetParent(_mainModule.transform);
+            effect.SetActive(true);
+
+            //effect2.transform.localPosition = transform.position;
+            //effect2.SetActive(true);
+
+            meshRenderer.enabled = false;
+            
             PlaySkillAnimation(_mainModule, animationClip);
             UseMana(_mainModule, usingMana);
             GetBuff(_mainModule);
+            
+            StartCoroutine(SetSwordOff(sword, animationClip.length, _mainModule));
         }
 
-        IEnumerator SetSwordOff(float _time)
+        IEnumerator SetSwordOff(GameObject _sword, float _time,AbMainModule _mainModule)
         {
-            yield return new WaitForSeconds(_time);
+            yield return new WaitUntil(() => !_mainModule.Animator.GetBool("WeaponSkill"));
+    
+            meshRenderer.enabled = true;
+            _sword.SetActive(false);
+            //transform.root.GetComponent<Animator>().speed
+            
+            ObjectPoolManager.Instance.RegisterObject("Hajj_SkillSword", _sword);
+            /*transform.localScale = new Vector3(0.24f, 0.24f,0.24f);
             meshFilter.mesh = originMesh;
-            meshRenderer.material = originMat;
+            meshRenderer.material = originMat;*/
         }
 
         public HitBoxAction GetHitBoxAction()
