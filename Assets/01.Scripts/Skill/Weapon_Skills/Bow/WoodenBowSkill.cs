@@ -15,9 +15,6 @@ namespace Skill
     {
         [SerializeField]
         private AnimationClip animationClip;
-        
-        [SerializeField]
-        private int usingMana;  
 
         [SerializeField] private HitBoxInAction hitBoxInAction;
         [SerializeField] private HitBoxAction hitBoxAction = new HitBoxAction();
@@ -31,6 +28,10 @@ namespace Skill
             GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkillProjectile");
             _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
             
+            var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");
+            _effect.transform.position = transform.position;
+            _effect.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            _effect.SetActive(true);
             
             PlaySkillAnimation(_mainModule, animationClip);
             UseMana(_mainModule, usingMana);

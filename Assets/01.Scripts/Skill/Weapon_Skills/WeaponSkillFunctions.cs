@@ -10,6 +10,9 @@ namespace Skill
 {
     public class WeaponSkillFunctions : MonoBehaviour
     {
+        [SerializeField]
+        public int usingMana;
+        
         public string animationName = "WeaponSkill";
         public string buffIconString = "_Icon";
         public string buffEffectString = "_Effect";

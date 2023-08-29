@@ -14,9 +14,6 @@ namespace Skill
     {
         [SerializeField]
         private AnimationClip animationClip;
-        
-        [SerializeField]
-        private int usingMana;
 
         [SerializeField] private Material playerReinnforceMat;
 
