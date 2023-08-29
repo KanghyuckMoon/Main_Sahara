@@ -64,11 +64,6 @@ namespace UI
         // 프로퍼티 
         public InventoryPresenter InventoryPresenter => inventoryPresenter;
         public MapPresenter MapPresenter => mapPresenter;
-        public bool lsUIInput
-        {
-            get => isUIInput;
-            set => isUIInput = value;
-        }
 
         private Player player; 
         private Player Player
@@ -115,9 +110,14 @@ namespace UI
         {
             Debug.Log("ONEnable");
             StartCoroutine(Init());
-            EventManager.Instance.StartListening(EventsType.SetUIInput,(x) =>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ClearUI((bool)x));
+            EventManager.Instance.StartListening(EventsType.SetUIInputAndDialogue,(x) => ClearUI((bool)x));
+            EventManager.Instance.StartListening(EventsType.SetUIInput,(x) => SetUIInput((bool)x));
         }
 
+        private void SetUIInput(bool _isActive)
+        {
+            isUIInput = _isActive; 
+        }
         private IEnumerator Init()
         {
             while (true)
@@ -135,13 +135,15 @@ namespace UI
         private void OnDisable()
         {
             EventManager.Instance.StopListening(EventsType.SetPlayerCam, (x) => player.SetInput((bool)x));
-            EventManager.Instance.StopListening(EventsType.SetUIInput,(x) =>ClearUI((bool)x));
+            EventManager.Instance.StopListening(EventsType.SetUIInputAndDialogue,(x) =>ClearUI((bool)x));
+            EventManager.Instance.StopListening(EventsType.SetUIInput,(x) => SetUIInput((bool)x));
         }
 
         private void Start()
         {
             EnabledAllScreens();
-            SetInputEvent(); 
+            SetInputEvent();
+            isUIInput = UIManager.Instance.IsUIInput; 
         }
 
         private void Update()
@@ -154,6 +156,7 @@ namespace UI
         /// </summary>
         private void ClearUI(bool _isActive)
         {
+            UIManager.Instance.IsUIInput = _isActive; 
             isUIInput = _isActive;
             EnabledScreens(ScreenType.Dialogue);
         }
@@ -446,7 +449,7 @@ namespace UI
 
         private void UIInput()
         {
-            if (isUIInput == false) return;
+            if (UIManager.Instance.IsUIInput == false) return;
             foreach(var _v in inputDic)
             {
                 // ESC 입력시 

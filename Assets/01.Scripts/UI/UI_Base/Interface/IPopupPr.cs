@@ -14,6 +14,7 @@ namespace UI.Base
         EventAlarm, // 알림창
         Interaction, // 상호작용 창 ( 아이템 주변 다가갔을 때 
         Shop, // 아이템 구매, 판매시 ㄴ
+        Tutorial, // 튜토리얼 안내창 
     }
     public interface IPopupPr
     {

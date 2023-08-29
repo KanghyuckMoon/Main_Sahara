@@ -24,7 +24,13 @@ namespace UI.Manager
 
         private int width, height;
 
+        private bool isUIInput;
 
+        public bool IsUIInput
+        {
+            get => isUIInput;
+            set => isUIInput = value;
+        }
         public TextKeySO TextKeySO
         {
             get

@@ -12,10 +12,8 @@ namespace Detect
 {
     public class BaseDetectItem : MonoBehaviour, IDetectItem
     {
-        private static Dictionary<string, bool> isSpawnDic = new Dictionary<string, bool>();
-        private static int nameKey;
-        [SerializeField] 
-        private string key;
+        private static Dictionary<int, bool> isSpawnDic = new Dictionary<int, bool>();
+        private static int index;
 
         public DetectItemType DetectItemType
         {
@@ -67,8 +65,14 @@ namespace Detect
 
         [SerializeField]
         protected bool isInitFalse = true;
-        
-        public List<Observer> Observers
+
+        [SerializeField]
+        private MeshRenderer outLineMeshRenderer;
+
+		[SerializeField]
+        private Material outlineMat;
+
+		public List<Observer> Observers
         {
             get
             {
@@ -92,25 +96,38 @@ namespace Detect
 
         protected bool isGetOut = false;
         private EffectObject effectObj;
-        
-        protected virtual void Awake()
-        {
-            settingEventAfter?.Invoke();
-            
-            if (isSpawnDic.TryGetValue(key, out bool _bool))
+		[SerializeField]
+		private int curIndex = 0;
+
+		[ContextMenu("SetIndex")]
+		public void SetIndex()
+		{
+			curIndex = index++;
+		}
+
+		protected virtual void Awake()
+		{
+			settingEventAfter?.Invoke();
+
+			if (isSpawnDic.TryGetValue(curIndex, out bool _bool))
+			{
+				if (_bool)
+				{
+					gameObject.SetActive(false);
+				}
+			}
+			upPos = targetModel.position;
+			targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
+			if (isInitFalse)
+			{
+				targetModel.gameObject.SetActive(false);
+			}
+            else
             {
-                if (_bool)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-            upPos = targetModel.position;
-            targetModel.position = new Vector3(targetModel.position.x, targetHeightTransform.position.y, targetModel.position.z);
-            if (isInitFalse)
-            {
-                targetModel.gameObject.SetActive(false);
-            }
-        }
+				outLineMeshRenderer = targetModel.GetComponentInChildren<MeshRenderer>();
+				outLineMeshRenderer.materials = CopyMaterialsAndAdd();
+			}
+		}
 
         [ContextMenu("GetOut")]
         public virtual void GetOut()
@@ -118,22 +135,29 @@ namespace Detect
             if (isGetOut)
             {
                 return;
-            }
-            getoutEventBefore?.Invoke();
+			}
+			getoutEventBefore?.Invoke();
             targetModel.gameObject.SetActive(true);
             isGetOut = true;
             Vector3 _movePos = upPos;
 			effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
-            targetModel.DOMove(_movePos,  heightUpTime);
+
+			if (!isInitFalse)
+			{
+				outLineMeshRenderer.materials = RemoveMateiral();
+			}
+
+			targetModel.DOMove(_movePos,  heightUpTime);
             targetTransform.DOShakePosition(heightUpTime, new Vector3(1,0,1) * shakeStrength).OnComplete(() =>
             {
 				effectObj.Pool();
                 gameObject.SetActive(false);
                 isGetOut = true;
                 getoutEventAfter?.Invoke();
-				if (!isSpawnDic.ContainsKey(key))
+
+				if (!isSpawnDic.ContainsKey(curIndex))
 				{
-					isSpawnDic.Add(key, true);
+					isSpawnDic.Add(curIndex, true);
 				}
 
 			});
@@ -148,16 +172,86 @@ namespace Detect
 				gameObject.SetActive(false);
 				isGetOut = true;
 				getoutEventAfter?.Invoke();
-                if(!isSpawnDic.ContainsKey(key))
+				if (!isSpawnDic.ContainsKey(curIndex))
                 {
-				    isSpawnDic.Add(key, true);
+				    isSpawnDic.Add(curIndex, true);
                 }
 			}
         }
 
+        private Material[] CopyMaterialsAndAdd()
+        {
+			Material[] materials = new Material[outLineMeshRenderer.materials.Length + 1];
+            int index = outLineMeshRenderer.materials.Length;
+            for(int i = 0; i < index; ++i)
+            {
+                materials[i] = outLineMeshRenderer.materials[i];
+			}
+            materials[index] = outlineMat;
+            return materials;
+		}
+
+        private Material[] RemoveMateiral()
+		{
+			Material[] materials = new Material[outLineMeshRenderer.materials.Length - 1];
+			int index = outLineMeshRenderer.materials.Length - 1;
+			for (int i = 0; i < index; ++i)
+			{
+				materials[i] = outLineMeshRenderer.materials[i];
+			}
+			//materials[index] = null;
+			return materials;
+		}
+
 #if UNITY_EDITOR
         
+        [SerializeField]
+        private bool isDebugRender = true;
+
+		[SerializeField]
+        private MeshFilter debugRenderer;
+
         private static int debugDotCount = 0;
+        
+
+        private void OnDrawGizmos()
+		{
+            if(!isDebugRender)
+            {
+                return;
+            }
+
+            if(targetModel == null || debugRenderer == null)
+            {
+                if(targetModel != null)
+                {
+                    debugRenderer = targetModel.GetComponentInChildren<MeshFilter>();
+				}
+                return;
+            }
+
+            Vector3 renderPos = Vector3.zero;
+            if(DetectItemType == DetectItemType.Slide)
+            {
+                renderPos = targetHeightTransform.transform.position;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+            }
+            else
+            {
+                renderPos = targetModel.transform.position;
+                if(debugRenderer.transform != targetModel.transform)
+                {
+                    renderPos += debugRenderer.transform.localPosition;
+                }
+			    renderPos.y = targetHeightTransform.position.y;
+                Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+            }
+
+
+
+		}
+
 
         [ContextMenu("DebugGetOut")]
         public void DebugGetOut()
@@ -205,25 +299,6 @@ namespace Detect
 
         public LayerMask debug_LayerMask;
         
-        
-        [ContextMenu("RandomName")]
-        public void RandomName()
-        {
-            try
-            {
-                var _prefeb = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-                //gameObject.name = _prefeb.name + nameKey++;
-                key = _prefeb.name + nameKey++;
-            }
-            catch
-            {
-                key = gameObject.name + nameKey++;
-            }
-
-            
-            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
-        }
-
         [ContextMenu("SetHeight")]
         public void SetHeight()
         {

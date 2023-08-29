@@ -14,7 +14,8 @@ namespace UI.Option
         private OptionData optionData; 
         
         public OptionData OptionData  => optionData; 
-        public VisualElement Parent => parent; 
+        public VisualElement Parent => parent;
+        public DropdownField Dropdown => optionBtnEntryView.DropDown; 
         public OptionBtnEntryPr()
         {
             var _pr = ConstructorManager.UIConstructorManager.Instance.GetProductionUI(typeof(OptionBtnEntryView));
