@@ -68,6 +68,7 @@ namespace UI
             {
                 quickSlotView.SlotList[i].SetItemData(InventoryManager.Instance.GetQuickSlotItem(i),true);
             }
+            //InventoryManager.Instance.PlayerWeaponModule.currentWeapon.GetComponent<
             //quickSlotView.ArrowSlot.SetItemData(InventoryManager.Instance.GetArrow());
 
 

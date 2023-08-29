@@ -15,9 +15,9 @@ namespace UI.Popup
 
         private IPopup curStopPopup;
 
-        private void Awake()
+        private void Awake()    
         {
-            popupTutorialScreenPr = GetComponent<PopupTutorialScreenPr>();
+            popupTutorialScreenPr = FindObjectOfType<PopupTutorialScreenPr>();
             popupTutorialDataSO.AddObserver(this);
         }
 
@@ -92,6 +92,7 @@ namespace UI.Popup
                         popupTutorialScreenPr.Active(false);
 
                         EventManager.Instance.TriggerEvent(EventsType.SetUIInput, true);
+                        yield return null; 
                         EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, false);
                         UIManager.Instance.ActiveCursor(false);
                         // UI ¿‘∑¬ ∏ÿ√·∞≈ «Æ∞Ì

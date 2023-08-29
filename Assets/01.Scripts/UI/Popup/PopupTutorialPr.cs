@@ -93,7 +93,7 @@ namespace UI.Popup
         public void Undo()
         {
             popupTutorialView.ParentElement.RemoveFromHierarchy();
-
+            popupTutorialView.ParentElement.style.display = DisplayStyle.None;
         }
 
 
