@@ -107,6 +107,11 @@ namespace CondinedModule
             jumpModule.Jump(power);
         }
 
+        public void SetAnimatorSpeed(float _speed)
+        {
+            Animator.speed = _speed;
+        }
+
         [ContextMenu("UIOn")]
         public void SetCam()
         {

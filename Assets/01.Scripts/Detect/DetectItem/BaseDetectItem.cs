@@ -235,7 +235,7 @@ namespace Detect
             {
                 renderPos = targetHeightTransform.transform.position;
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+                Gizmos.DrawMesh(debugRenderer.sharedMesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
             }
             else
             {
@@ -245,7 +245,7 @@ namespace Detect
                     renderPos += debugRenderer.transform.localPosition;
                 }
 			    renderPos.y = targetHeightTransform.position.y;
-                Gizmos.DrawMesh(debugRenderer.mesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
+                Gizmos.DrawMesh(debugRenderer.sharedMesh, renderPos, debugRenderer.transform.rotation, debugRenderer.transform.lossyScale);
             }
 
 
