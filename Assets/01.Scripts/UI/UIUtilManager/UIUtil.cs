@@ -86,9 +86,35 @@ namespace UI.UtilManager
         /// <param name="listView"></param>
         public static void FixListViewScrollingBug(ListView listView)
         {
+            
 #if UNITY_EDITOR
             var scroller = listView.Q<Scroller>();
             listView.RegisterCallback<WheelEvent>(@event =>
+            {
+                scroller.value += @event.delta.y * 100;
+                @event.StopPropagation();
+            });
+#else
+            var scroller = listView.Q<Scroller>();
+            listView.RegisterCallback<WheelEvent>(@event => {
+               scroller.value += @event.delta.y * 100;
+                @event.StopPropagation();
+            });
+#endif
+            //               scroller.value -=  @event.delta.y * 10000;
+
+        }
+        
+        /// <summary>
+        /// 스크롤뷰 스크롤 스피드 설정 
+        /// </summary>
+        /// <param name="scrollView"></param>
+        public static void FixScrollViewScrollingBug(ScrollView scrollView)
+        {
+            
+#if UNITY_EDITOR
+            var scroller = scrollView.Q<Scroller>();
+            scrollView.RegisterCallback<WheelEvent>(@event =>
             {
                 scroller.value += @event.delta.y * 100;
                 @event.StopPropagation();

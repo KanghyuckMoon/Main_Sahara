@@ -414,14 +414,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 3118421499958552675}
   head: {fileID: 6716791790417157774}
-  body: {fileID: 0}
-  correctionY: 0
-  correctionX: 0
-  correctionZ: 0
-  limitY: 20
-  limitX: 0
-  limitZ: 20
   rotationSpeed: 1
+  initVector: 0
+  maxRotationAngle: 0
+  desiredRotationEulerAngles: {x: 0, y: 0, z: 180}
 --- !u!1 &1780200848430274048
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +725,8 @@ GameObject:
   - component: {fileID: 3118421499958552675}
   - component: {fileID: 590726872}
   - component: {fileID: 6831960145793757954}
+  - component: {fileID: 5580052348622777253}
+  - component: {fileID: 7436174475883584555}
   m_Layer: 18
   m_Name: xb_Sr
   m_TagString: Untagged
@@ -752,7 +750,7 @@ Transform:
   - {fileID: 6516479242122247340}
   - {fileID: 3961951488477883046}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8569549290395265192
 Animator:
@@ -1025,6 +1023,42 @@ MonoBehaviour:
   superArmorMat: {fileID: 2100000, guid: d9434335538b68d40bee9e508f1ad94c, type: 2}
   originArmorMat: {fileID: 2100000, guid: 772621eeb504ae640b40cf095ec7c6d0, type: 2}
   renderer: {fileID: 6352364709499329591}
+--- !u!114 &5580052348622777253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3118421499958552680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db229456a81930f4584813f44c88d2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 3118421499958552675}
+  head: {fileID: 6716791790417157774}
+  rotationSpeed: 5
+  initVector: 0
+  maxRotationAngle: 40
+  desiredRotationEulerAngles: {x: 0, y: 90, z: -90}
+--- !u!114 &7436174475883584555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3118421499958552680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db229456a81930f4584813f44c88d2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 3118421499958552675}
+  head: {fileID: 6653013175508431298}
+  rotationSpeed: 3
+  initVector: 0
+  maxRotationAngle: 40
+  desiredRotationEulerAngles: {x: 0, y: 90, z: -120}
 --- !u!1 &3219875347953761325
 GameObject:
   m_ObjectHideFlags: 0

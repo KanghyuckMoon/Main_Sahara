@@ -32,6 +32,7 @@ public interface IPopup
                 InActiveTween();
                 yield return new WaitForSecondsRealtime(0.2f);
                 Undo();
+                OnInactiveEvt?.Invoke();
                 yield break;
             }
 

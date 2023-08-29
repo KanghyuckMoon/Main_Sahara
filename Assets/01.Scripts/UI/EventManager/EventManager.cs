@@ -16,8 +16,9 @@ namespace UI.EventManage
         SetCanDialogue, 
         UpdateInventoryUI,
         SetPlayerCam, // 플레이어 카메라 
-        SetUIInput, 
+        SetUIInputAndDialogue, 
         ActiveDeadCanvas,
+        SetUIInput, 
         ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>
