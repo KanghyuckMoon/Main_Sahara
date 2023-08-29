@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Effect;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Experimental.GlobalIllumination;
 using Utill.Pattern;
 using Sound;
+using TMPro;
 
 namespace Detect
 {
@@ -24,7 +26,13 @@ namespace Detect
         private float currentTimer = 0f;
         private float maxTimer = 0f;
 
-        public override void Detect()
+
+        [SerializeField]
+        private TextMeshProUGUI distanceValueText;
+		[SerializeField]
+		private Image underMaskImage;
+
+		public override void Detect()
         {
             base.Detect();
 
@@ -43,7 +51,8 @@ namespace Detect
                     pointLight.color = Color.red;
                 }
                 maxTimer = 0.3f;
-            }
+				SetTextIn();
+			}
             else if (radius > minDistance)
             {
                 LinearColor linearColor = default;
@@ -55,14 +64,17 @@ namespace Detect
                 float _timer = Mathf.Lerp(0.5f, 2f, _normalizedValue);
                 
                 maxTimer = _timer;
-            }
+                SetTextIn();
+
+			}
             else
             {
                 LinearColor linearColor = default;
                 linearColor.green = 1f;
                 pointLight.color = Color.green;
                 maxTimer = 100f;
-            }
+				SetTextOut();
+			}
 
             if (currentTimer > maxTimer)
             {
@@ -86,6 +98,28 @@ namespace Detect
             rotate.x = 0;
             rotate.z = 0;
 			return rotate;
+		}
+
+        private void SetTextOut()
+		{
+			distanceValueText.text = $"0.";
+            underMaskImage.fillAmount = Mathf.Lerp(underMaskImage.fillAmount, 0f, Time.deltaTime);
+		}
+
+        private void SetTextIn()
+		{
+            float underValue = 0f;
+			if ((targetItem.DetectItemType & DetectItemType.Metal) != 0)
+			{
+				underValue = Random.Range(0.4f, 0.5f);
+				underMaskImage.fillAmount = Mathf.Lerp(underMaskImage.fillAmount, underValue, Time.deltaTime); 
+			}
+			else if ((targetItem.DetectItemType & DetectItemType.Structure) != 0 || (targetItem.DetectItemType & DetectItemType.Creture) != 0)
+			{
+				underValue = Random.Range(0.9f, 1.0f);
+				underMaskImage.fillAmount = Mathf.Lerp(underMaskImage.fillAmount, underValue, Time.deltaTime);
+			}
+			distanceValueText.text = $"{minDistance.ToString("F1")}.";
 		}
 	}
 }
