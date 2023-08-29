@@ -6,6 +6,7 @@ using Module;
 using UnityEngine;
 using HitBox;
 using Pool;
+using UnityEngine.Serialization;
 using Utill.Addressable;
 using Weapon;
 
@@ -23,7 +24,7 @@ namespace Skill
         [SerializeField] private HitBoxAction hitBoxAction = new HitBoxAction();
 
         [SerializeField] private Mesh swordMesh;
-        [SerializeField] private Material mat;
+        [SerializeField] private Material swordMat;
 
         private MeshFilter meshFilter;
         private MeshRenderer meshRenderer;
@@ -34,33 +35,36 @@ namespace Skill
         {
             meshFilter = GetComponent<MeshFilter>();
             meshRenderer = GetComponent<MeshRenderer>();
+
+            originMesh = meshFilter.mesh;
+            originMat = meshRenderer.material;
         }
 
         public void Skills(AbMainModule _mainModule)
         {
             //transform.root.GetComponent<CharacterController>().Move(Vector3.forward * 10);
 
-            var sword = ObjectPoolManager.Instance.GetObject("Hajj_SkillSword");
+            //var sword = ObjectPoolManager.Instance.GetObject("Hajj_SkillSword");
 
             meshFilter.mesh = swordMesh;
+            meshRenderer.material = swordMat;
             
-            
-            sword.transform.SetParent(transform.parent);
-            sword.GetComponent<RememberPosition>().SetPos();
-            sword.SetActive(true);
+            //sword.transform.SetParent(transform.parent);
+            //sword.GetComponent<RememberPosition>().SetPos();
+            //sword.SetActive(true);
 
-            StartCoroutine(SetSwordOff(sword, animationClip.length));
+            StartCoroutine(SetSwordOff(animationClip.length));
 
             PlaySkillAnimation(_mainModule, animationClip);
             UseMana(_mainModule, usingMana);
             GetBuff(_mainModule);
         }
 
-        IEnumerator SetSwordOff(GameObject _sword, float _time)
+        IEnumerator SetSwordOff(float _time)
         {
             yield return new WaitForSeconds(_time);
-            _sword.SetActive(false);
-            ObjectPoolManager.Instance.RegisterObject("Hajj_SkillSword", _sword);
+            meshFilter.mesh = originMesh;
+            meshRenderer.material = originMat;
         }
 
         public HitBoxAction GetHitBoxAction()
