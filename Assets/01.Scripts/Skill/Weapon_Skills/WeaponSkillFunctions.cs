@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Buff;
@@ -5,6 +6,7 @@ using DG.Tweening.Plugins;
 using UnityEngine;
 using Module;
 using Data;
+using UI.EventManage;
 
 namespace Skill
 {
@@ -20,14 +22,20 @@ namespace Skill
         public List<BuffData> buffList = new List<BuffData>();
         //public List<BuffData> debuffList = new List<BuffData>();
 
+        protected void OnEnable()
+        {
+            EventManager.Instance.TriggerEvent(EventsType.SetQuickslotMana,usingMana);
+        }
+
         protected void PlaySkillAnimation(AbMainModule _mainModule, AnimationClip _animationClip, System.Action _action = null)
         {
+            
             _mainModule.AnimatorOverrideController[animationName] = _animationClip;
             //_mainModule.Animator.Play(animationName);
 
             _mainModule.SkillAnimAction = _action;
             _mainModule.Animator.SetBool(animationName, true);
-        }
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
         
         protected void UseMana(AbMainModule _mainModule, int _mana)
         {

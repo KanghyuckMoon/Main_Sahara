@@ -29,7 +29,7 @@ namespace UI.Popup
     }
 
     [CreateAssetMenu(menuName = "SO/UI/PopupTutorialDataSO")]
-    public class PopupTutorialDataSO : ScriptableObject, IObserble
+    public class PopupTutorialDataSO : ScriptableObject
     {
         private List<Observer> listeners = new List<Observer>();
         public List<Observer> Observers => listeners;

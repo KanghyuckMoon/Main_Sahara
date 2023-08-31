@@ -53,10 +53,10 @@ namespace UI.Popup
             popupTutorialView.SetDetail(TextManager.Instance.GetText(_tData.detailAddress));
             popupTutorialView.SetDetailImage(AddressablesManager.Instance.GetResource<Sprite>(_tData.detailImageAddress) );
         }
-
+    
         public void SetDetail(string _detailStr)
         {
-            popupTutorialView.SetDetail(_detailStr); 
+            popupTutorialView.SetDetail(TextManager.Instance.GetText(_detailStr)); 
         }
         public void SetDetailImage(string _detailStr)
         {
@@ -77,19 +77,31 @@ namespace UI.Popup
         {
             popupTutorialView.AddButtonEventToDic(_btnType, _callback);
         }
-        
+
+        public void SetButtonEvts()
+        {
+            popupTutorialView.AddButtonEvents(); 
+        }
+
+        private const string activeStr = "active_popupTuto";
+        private const string inactiveStr = "inactive_popupTuto";
         public void ActiveTween()
         {
+            // ½º¸£¸¤
+            parent.RemoveFromClassList(inactiveStr);
+            parent.AddToClassList(activeStr);
         }
 
         public void InActiveTween()
         {
+            parent.RemoveFromClassList(activeStr);
+            parent.AddToClassList(inactiveStr);
         }
 
         public void Undo()
         {
-            popupTutorialView.ParentElement.RemoveFromHierarchy();
-
+            parent.RemoveFromHierarchy();
+            //popupTutorialView.ParentElement.style.display = DisplayStyle.None;
         }
 
 

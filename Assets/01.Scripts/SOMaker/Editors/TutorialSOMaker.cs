@@ -12,13 +12,13 @@ using UnityEngine.Networking;
 public class TutorialSOMaker : MonoBehaviour
 {
     public AllPopupTutorialDataSO allPopupTutorialDataSO;
-    
+
     [ContextMenu("MakeTutorialSO")]
     public void MakeItemSO()
     {
         StartCoroutine(GetText());
     }
-    
+
     private IEnumerator GetText()
     {
         UnityWebRequest wwwItemSO = UnityWebRequest.Get(URL.TUTORIALSO);
@@ -35,11 +35,11 @@ public class TutorialSOMaker : MonoBehaviour
         {
             string[] column = row[i].Split('\t');
 
-            string _key = column[0]; 
+            string _key = column[0];
             string _title = column[1];
             string _page = column[2];
             string[] _imageId = column[3].Split(',');
-            string[] _detail = column[4].Split(','); 
+            string[] _detail = column[4].Split(',');
 
             PopupTutorialDataSO _asset = null;
             _asset = allPopupTutorialDataSO.popupTutorialDataSoList.Find(x => x.key == _key);
@@ -48,7 +48,7 @@ public class TutorialSOMaker : MonoBehaviour
             {
                 _asset = ScriptableObject.CreateInstance<PopupTutorialDataSO>();
 
-                AssetDatabase.CreateAsset(_asset, $"Assets/02.ScriptableObject/TutorialSO/{_key}_TutorialSO.asset");
+                AssetDatabase.CreateAsset(_asset, $"Assets/02.ScriptableObject/TutorialSO/{_key}.asset");
                 AssetDatabase.SaveAssets();
 
                 EditorUtility.FocusProjectWindow();
@@ -57,14 +57,15 @@ public class TutorialSOMaker : MonoBehaviour
 
                 allPopupTutorialDataSO.popupTutorialDataSoList.Add(_asset);
             }
+
             _asset.key = _key;
             _asset.titleAddress = _title;
             _asset.page = int.Parse(_page);
-            _asset.detailAddressList = _detail.ToList(); 
-            _asset.detailImageAddressList = _imageId.ToList(); 
+            _asset.detailAddressList = _detail.ToList();
+            _asset.detailImageAddressList = _imageId.ToList();
             //_asset.detailImageAddress = _imageId;
             //_asset.detailAddress = _detail;
-            
+
             AssetDatabase.SaveAssets();
 
             EditorUtility.FocusProjectWindow();
@@ -72,6 +73,8 @@ public class TutorialSOMaker : MonoBehaviour
 
             Selection.activeObject = _asset;
         }
+
+
     }
 }
 #endif

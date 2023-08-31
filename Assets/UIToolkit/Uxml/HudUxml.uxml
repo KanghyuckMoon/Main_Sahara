@@ -47,7 +47,12 @@
         </ui:VisualElement>
         <ui:VisualElement name="mid_panel" class="mid_panel" />
         <ui:VisualElement name="bottom_panel" class="bottom_panel">
-            <ui:VisualElement name="bottom_left_panel" style="flex-basis: 20%; flex-grow: 1;" />
+            <ui:VisualElement name="bottom_left_panel" style="flex-basis: 20%; flex-grow: 0; align-items: flex-start; justify-content: flex-end;">
+                <ui:VisualElement name="VisualElement" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/KatGrabowska/Untitled-3%20(1).svg?fileID=7388822144124034973&amp;guid=bd5f0d2465c9b564c9b150eb71d189bd&amp;type=3#Untitled-3 (1)&apos;); width: 80px; height: 80px; -unity-background-image-tint-color: rgb(255, 255, 255); overflow: hidden; -unity-background-scale-mode: stretch-to-fill;">
+                    <ui:VisualElement name="skill_image" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); width: 90px; height: 90px; background-image: url(&apos;project://database/Assets/KatGrabowska/100%20Flat%20Skills%20Icons/11.png?fileID=2800000&amp;guid=d74d8dd17f00d1e4ca321709f1ee431b&amp;type=3#11&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="mana_text" />
+            </ui:VisualElement>
             <ui:VisualElement name="bottom_mid_panel" class="bottom_mid_panel" style="flex-basis: 20%; flex-grow: 1;">
                 <ui:VisualElement name="skill_panel" class="skill_panel" style="display: none;">
                     <ui:Instance template="SkillIcon" name="SkillIcon" />

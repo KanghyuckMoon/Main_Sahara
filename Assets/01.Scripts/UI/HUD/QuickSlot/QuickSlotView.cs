@@ -19,12 +19,21 @@ namespace UI
             //quickslot_view,
             //quick_slot_parent,
             //select_effect,
+            skill_image, 
+        }
+
+        enum Quickslots
+        {
             quickslot_image_bot_temp,
             quickslot_image_bot,
             quickslot_image_mid,
             quickslot_image_top,
             quickslot_image_top_temp,
+        }
 
+        enum Labels
+        {
+            mana_text
         }
 
         private List<SlotItemPresenter> _slotList = new List<SlotItemPresenter>();
@@ -38,7 +47,9 @@ namespace UI
         public override void Cashing()
         {
             base.Cashing();
+            BindVisualElements(typeof(Quickslots));
             BindVisualElements(typeof(Elements));
+            BindLabels(typeof(Labels));
         }
 
         public override void Init()
@@ -48,13 +59,22 @@ namespace UI
             InitQuickSlotUIImage(); 
         }
 
+        public void SetSkillImage(Sprite _sprite)
+        {
+            GetVisualElement((int)Elements.skill_image).style.backgroundImage = new StyleBackground(_sprite);
+        }
+        public void SetManaText(int _mana)
+        {
+            GetLabel((int)Labels.mana_text).text = _mana.ToString(); 
+        }
+
         /// <summary>
         /// 퀵슬롯HUD UI 이미지 업데이트  
         /// </summary>
         public void InitQuickSlotUIImage()
         {
             int _idx = 0; 
-            foreach (var _elementEnum in Enum.GetValues(typeof(Elements)))
+            foreach (var _elementEnum in Enum.GetValues(typeof(Quickslots)))
             {
                 // 이미지 초기화 
                 _slotList.Add(new SlotItemPresenter(GetVisualElement((int)_elementEnum)));
@@ -78,13 +98,9 @@ namespace UI
 
         public void UpQuickslots()
         {
-            GetVisualElement((int)Elements.quickslot_image_top_temp).AddToClassList("");
+            GetVisualElement((int)Quickslots.quickslot_image_top_temp).AddToClassList("");
         }
         
-        public void DownQuickslots()
-        {
-            
-        }
         private void InitSlots()
         {
             int _index = 0; 

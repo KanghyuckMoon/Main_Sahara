@@ -29,4 +29,4 @@ namespace UI.Popup
             GetVisualElement((int)Elements.popup_parent).Add(_v);
         }
     }    
-}
+}   
