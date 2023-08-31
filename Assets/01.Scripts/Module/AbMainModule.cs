@@ -444,8 +444,15 @@ namespace Module
                 visualObject ??= transform.Find("Visual").GetComponent<GameObject>();
                 return visualObject;
             }
-        }
-        public RaycastHit SlopeHit
+		}
+		public Transform Root
+		{
+			get
+			{
+				return root;
+			}
+		}
+		public RaycastHit SlopeHit
 		{
 			get
 			{
@@ -620,7 +627,9 @@ namespace Module
         private float gravityScale = -9.8f;
         [SerializeField, Header("땅체크 사거리")] 
         public float groundOffset;
-        [SerializeField, Header("땅체크 크기")] 
+		[SerializeField, Header("땅체크 사거리 체크의 길이")]
+		public float groundDistance = 0.5f;
+		[SerializeField, Header("땅체크 크기")] 
         public float groundRadius = 0.2f;
         [SerializeField, Header("공격 받은 후의 시간")] 
         public float attackedTime = 0f;
@@ -658,7 +667,10 @@ namespace Module
         [SerializeField]
         private Transform model;
 
-        [SerializeField, Header("애니메이터")]
+		[SerializeField]
+		private Transform root;
+
+		[SerializeField, Header("애니메이터")]
         protected Animator animator;
 
         private SettingTime settingTime;
