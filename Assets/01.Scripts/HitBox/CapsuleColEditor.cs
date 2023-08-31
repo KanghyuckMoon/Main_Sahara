@@ -27,7 +27,8 @@ namespace HitBox
 				hitBoxDataSO = value;
 			}
 		}
-		private CapsuleCollider col;
+
+		public CapsuleCollider col;
 		public HitBoxDatasSO hitBoxDataSO;
 		public HitBoxData hitBoxData = new HitBoxData();
 		public GameObject swingEffectObj = null;
@@ -46,6 +47,7 @@ namespace HitBox
 		{
 			col = GetComponent<CapsuleCollider>();
 		}
+
 
 		private void Update()
 		{
@@ -105,6 +107,12 @@ namespace HitBox
 			Vector3 _result = _childObj.transform.localPosition;
 			DestroyImmediate(_childObj);
 			col.center = _result;
+		}
+
+		public void OffsetResetAndPositionZero()
+		{
+			col.center = Vector3.zero;
+			transform.position = Vector3.zero;
 		}
 	}
 }

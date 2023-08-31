@@ -16,6 +16,8 @@ public class AnimationClickLoggerWindow : EditorWindow
 	private MethodInfo animationWindowStateEventMethod;
 	private object lastAnimationWindowState;
 
+	private bool isUpdate;
+
 	[MenuItem("MoonTool/Animation Click Logger")]
 	public static void ShowWindow()
 	{
@@ -26,10 +28,27 @@ public class AnimationClickLoggerWindow : EditorWindow
 	{
 		hitboxDataSO = (HitBoxDatasSO)EditorGUILayout.ObjectField(hitboxDataSO, typeof(HitBoxDatasSO), false);
 		boxColEditor = (CapsuleColEditor)EditorGUILayout.ObjectField(boxColEditor, typeof(CapsuleColEditor), true);
+		isUpdate = EditorGUILayout.Toggle("Is Update", isUpdate);
 		if(hitboxDataSO != null)
 		{
 			boxColEditor.hitBoxDataSO = hitboxDataSO;
 		}
+
+		if(boxColEditor != null)
+		{
+			if(GUILayout.Button("OffsetPositionZero"))
+			{
+				boxColEditor.OffsetResetAndPositionZero();
+			}
+
+			if(GUILayout.Button("PositionToOffset"))
+			{
+				boxColEditor.PositionToOffset();
+			}
+		}
+		
+
+
 	}
 
 		private void OnEnable()
@@ -49,6 +68,11 @@ public class AnimationClickLoggerWindow : EditorWindow
 
 	private void CheckForAnimationFrameClick()
 	{
+		if(!isUpdate)
+		{
+			return;
+		}
+
 		if(hitboxDataSO == null || boxColEditor == null) 
 		{
 			return;
@@ -117,9 +141,16 @@ public class AnimationClickLoggerWindow : EditorWindow
 
 	private void ShowHitBox(string str)
 	{
-		Debug.Log(str);
-		HitBoxDataList hitBoxDataList = hitboxDataSO.hitBoxDataDic[str];
-		boxColEditor.SetHitBox(hitBoxDataList.hitBoxDataList[0]);
+		if(hitboxDataSO.hitBoxDataDic.ContainsKey(str))
+		{
+			Debug.Log(str);
+			HitBoxDataList hitBoxDataList = hitboxDataSO.hitBoxDataDic[str];
+			boxColEditor.SetHitBox(hitBoxDataList.hitBoxDataList[0]);
+		}
+		else
+		{
+			Debug.Log($"해당 SO에 키가 포함되어 있지 않음 : {str}");
+		}
 	}
 
 }
