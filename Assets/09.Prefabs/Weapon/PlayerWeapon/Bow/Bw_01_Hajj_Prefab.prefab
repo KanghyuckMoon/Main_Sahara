@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4406088139106917791}
   - component: {fileID: 4406088139106917473}
   - component: {fileID: -7840143464198578260}
+  - component: {fileID: 2889498977849449388}
   m_Layer: 0
   m_Name: Bw_01_Hajj_Prefab
   m_TagString: Untagged
@@ -116,10 +117,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54404e843729c814dbb466306e99a3fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 5bfddd0ead63e6149aad79b8784e7b8e, type: 2}
-  usingMana: 0
   hitBoxInAction: {fileID: 0}
+--- !u!114 &2889498977849449388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4406088139106917786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3f826c66d095c48834d8d646a8b865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 4406088139106917791}
+  mtrlOrg: {fileID: 2100000, guid: fd93a6b983a95594da145e5ff3cb10f2, type: 2}
+  mtrlDissolve: {fileID: 2100000, guid: 5efaaac3c221f944bbb1e19b5e6da564, type: 2}
+  mtrlPhase: {fileID: 0}
+  fadeTime: 2
