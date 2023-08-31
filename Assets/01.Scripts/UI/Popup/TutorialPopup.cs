@@ -24,7 +24,8 @@ namespace UI.Popup
         
         public void Receive()
         {
-            CreatePopupTimeStop(new PopupTutorialData(popupTutorialDataSO));
+            TutorialPopupEventManager.Instance.ActiveTutoPopup(popupTutorialDataSO.key, 
+                () => CreatePopupTimeStop(new PopupTutorialData(popupTutorialDataSO)) );;
         }
 
         public void CreatePopupTimeStop(PopupTutorialData _data = null)
@@ -91,8 +92,8 @@ namespace UI.Popup
                         
                         popupTutorialScreenPr.Active(false);
 
-                        EventManager.Instance.TriggerEvent(EventsType.SetUIInput, true);
                         yield return null; 
+                        EventManager.Instance.TriggerEvent(EventsType.SetUIInput, true);
                         EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, false);
                         UIManager.Instance.ActiveCursor(false);
                         // UI ¿‘∑¬ ∏ÿ√·∞≈ «Æ∞Ì

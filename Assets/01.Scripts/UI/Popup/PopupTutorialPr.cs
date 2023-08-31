@@ -82,18 +82,26 @@ namespace UI.Popup
         {
             popupTutorialView.AddButtonEvents(); 
         }
+
+        private const string activeStr = "active_popupTuto";
+        private const string inactiveStr = "inactive_popupTuto";
         public void ActiveTween()
         {
+            // ½º¸£¸¤
+            parent.RemoveFromClassList(inactiveStr);
+            parent.AddToClassList(activeStr);
         }
 
         public void InActiveTween()
         {
+            parent.RemoveFromClassList(activeStr);
+            parent.AddToClassList(inactiveStr);
         }
 
         public void Undo()
         {
-            popupTutorialView.ParentElement.RemoveFromHierarchy();
-            popupTutorialView.ParentElement.style.display = DisplayStyle.None;
+            parent.RemoveFromHierarchy();
+            //popupTutorialView.ParentElement.style.display = DisplayStyle.None;
         }
 
 

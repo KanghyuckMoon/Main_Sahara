@@ -157,7 +157,7 @@ public class InGameSceneSetting : MonoBehaviour
                 Debug.Log("Setting");
                 yield return null;
 		}
-		    GameEventManager.Instance.GetGameEvent("1.InitSceneLoadEnd");
+		    GameEventManager.Instance.GetGameEvent("1.InitSceneLoadEnd").Raise();
 		    StaticTime.EntierTime = 1f;
             Time.timeScale = 1;
             //GameManager.GamePlayerManager.Instance.IsPlaying = true;
