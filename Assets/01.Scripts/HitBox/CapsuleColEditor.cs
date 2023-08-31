@@ -88,7 +88,7 @@ namespace HitBox
 				Debug.LogError("SO ¾øÀ½");
 				return;
 			}
-			hitBoxDataSO.UploadHitBoxNoneCopy(hitBoxData);
+			hitBoxDataSO.UploadHitBox(hitBoxData);
 		}
 
 		[ContextMenu("PositionToOffset")]

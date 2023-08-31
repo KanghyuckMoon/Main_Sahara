@@ -100,10 +100,10 @@ namespace HitBox
 			{
 				return;
 			}
-			capsuleColEditor.hitBoxDataSO = debugHitBoxDataSO;
 			HitBoxData _hitBoxData = new HitBoxData();
 			_hitBoxData.hitBoxName = hitBoxName;
 			capsuleColEditor.SetHitBox(_hitBoxData);
+			capsuleColEditor.hitBoxDataSO = debugHitBoxDataSO;
 			capsuleColEditor.Upload();
 			
 			//Animator _animator = GetComponent<Animator>();
