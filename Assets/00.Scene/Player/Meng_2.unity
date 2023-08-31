@@ -11624,6 +11624,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4711018405348588, guid: 8afde97fb8209f946a65b4540bf4b391, type: 3}
   m_PrefabInstance: {fileID: 646340166}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &657687544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 657687545}
+  m_Layer: 0
+  m_Name: LeftPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &657687545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657687544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.26, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 543450652060252679}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &665880039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13316,6 +13347,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123434460}
   m_CullTransparentMesh: 1
+--- !u!1 &1148718832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1148718833}
+  m_Layer: 0
+  m_Name: RightPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1148718833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148718832}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.26, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 543450652060252679}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1158631055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17522,7 +17584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020049422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.36}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20333,6 +20395,8 @@ Transform:
   - {fileID: 274345274}
   - {fileID: 8344808533653592712}
   - {fileID: 870899476}
+  - {fileID: 657687545}
+  - {fileID: 1148718833}
   m_Father: {fileID: 0}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50835,6 +50899,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -19.8
   groundOffset: -0.12
+  groundDistance: 0.5
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -50850,6 +50915,7 @@ MonoBehaviour:
   raycastTarget: {fileID: 0}
   visualObject: {fileID: 1633266547312873092}
   model: {fileID: 0}
+  root: {fileID: 0}
   animator: {fileID: 3699875109437129947}
   jumpstrenght: 0
   leftFeet: {fileID: 0}
@@ -61256,6 +61322,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -9.8
   groundOffset: -0.25
+  groundDistance: 2
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -61268,13 +61335,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   maxSlope: 20
-  raycastTarget: {fileID: 0}
+  raycastTarget: {fileID: 2020049423}
   visualObject: {fileID: 8684461301367455794}
   model: {fileID: 8344808533653592712}
+  root: {fileID: 0}
   animator: {fileID: 0}
   jumpstrenght: 0
-  leftFeet: {fileID: 0}
-  rightFeet: {fileID: 0}
+  leftFeet: {fileID: 657687545}
+  rightFeet: {fileID: 1148718833}
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
@@ -63495,6 +63563,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0.12
+  groundDistance: 0.5
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -63510,6 +63579,7 @@ MonoBehaviour:
   raycastTarget: {fileID: 0}
   visualObject: {fileID: 4134121962426460321}
   model: {fileID: 7118074667325075235}
+  root: {fileID: 0}
   animator: {fileID: 6165384267577075601}
   jumpstrenght: 0
   leftFeet: {fileID: 4838895563263076570}
