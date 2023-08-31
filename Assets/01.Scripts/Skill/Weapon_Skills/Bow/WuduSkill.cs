@@ -19,7 +19,13 @@ namespace Skill
 
         public void Skills(AbMainModule _mainModule)
         {
-            
+            var skillObject = ObjectPoolManager.Instance.GetObject("Wudu_SkillEffect");
+            //skillObject.transform.SetParent(transform.root);
+            //skillObject.transform.localPosition = transform.root.position + new Vector3(2, 1, 0);
+            skillObject.GetComponent<Wudu_Projectile>().SetSubject(transform.root.gameObject, 1, 1);
+            skillObject.SetActive(true);
+
+            //Debug.Log(skillObject);
             
             PlaySkillAnimation(_mainModule, animationClip);
             UseMana(_mainModule, usingMana);
