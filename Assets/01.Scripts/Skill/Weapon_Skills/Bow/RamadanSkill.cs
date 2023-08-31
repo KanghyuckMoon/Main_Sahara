@@ -9,7 +9,7 @@ using Utill.Addressable;
 
 namespace Skill
 {
-    public class WuduSkill : WeaponSkillFunctions, IWeaponSkill
+    public class RamadanSkill : WeaponSkillFunctions, IWeaponSkill
     {
         [SerializeField]
         private AnimationClip animationClip;
@@ -19,13 +19,7 @@ namespace Skill
 
         public void Skills(AbMainModule _mainModule)
         {
-            var skillObject = ObjectPoolManager.Instance.GetObject("Wudu_SkillEffect");
-            //skillObject.transform.SetParent(transform.root);
-            //skillObject.transform.localPosition = transform.root.position + new Vector3(2, 1, 0);
-            skillObject.GetComponent<Wudu_Projectile>().SetSubject(transform.root.gameObject, 1, 1);
-            skillObject.SetActive(true);
-
-            //Debug.Log(skillObject);
+            //_mainModule.CharacterController.Move(new Vector3(0, 0, 4));
             
             PlaySkillAnimation(_mainModule, animationClip);
             UseMana(_mainModule, usingMana);
