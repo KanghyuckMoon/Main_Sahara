@@ -21,10 +21,10 @@ namespace Module
 {
     public class PhysicsModule : AbBaseModule
     {
-        private float rayDistance = 0.3f;
-        private ulong praviousHitBoxIndex = 0;
+        protected float rayDistance = 0.3f;
+        protected ulong praviousHitBoxIndex = 0;
 
-        private BuffModule BuffModule
+		protected BuffModule BuffModule
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Module
                 return buffModule;
             }
         }
-        private HitModule HitModule
+		protected HitModule HitModule
         {
             get
             {
@@ -40,7 +40,7 @@ namespace Module
                 return hitModule;
             }
         }
-        private StateModule StateModule
+		protected StateModule StateModule
         {
             get
             {
@@ -48,7 +48,7 @@ namespace Module
                 return stateModule;
             }
         }
-        private JumpModule JumpModule
+		protected JumpModule JumpModule
         {
             get
             {
@@ -56,17 +56,17 @@ namespace Module
                 return jumpModule;
             }
         }
-        private JumpModule jumpModule;
-        private HitModule hitModule;
-        private BuffModule buffModule;
-        private StateModule stateModule;
+        protected JumpModule jumpModule;
+        protected HitModule hitModule;
+        protected BuffModule buffModule;
+		protected StateModule stateModule;
 
-        private Vector3 _spherePosition;
+		protected Vector3 _spherePosition;
 
-        private string buffIconString = "_Icon";
-        private string buffEffectString = "_Effect";
+		protected string buffIconString = "_Icon";
+		protected string buffEffectString = "_Effect";
 
-        private Coroutine knockBackCoroutine;
+		protected Coroutine knockBackCoroutine;
         protected System.Action landAction;
 
         public PhysicsModule(AbMainModule _mainModule) : base(_mainModule)
@@ -324,8 +324,8 @@ namespace Module
             GroundCheack();
             Slope();
         }
-        private float previousAngle = 0;
-        private void Slope()
+		protected float previousAngle = 0;
+        protected virtual void Slope()
         {
             var _transform = mainModule.transform;
             var _position = _transform.position;
