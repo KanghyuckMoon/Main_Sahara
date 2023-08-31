@@ -23,10 +23,13 @@ namespace Skill
         [SerializeField] private HitBoxAction hitBoxAction = new HitBoxAction();
 
         private MeshRenderer meshRenderer;
+
+        private Disolve disolve;
         
         private void Start()
         {
             meshRenderer = GetComponent<MeshRenderer>();
+            disolve = GetComponent<Disolve>();
         }
 
         public void Skills(AbMainModule _mainModule)
@@ -45,6 +48,8 @@ namespace Skill
             sword.transform.SetParent(transform.parent);
             sword.GetComponent<RememberPosition>().SetPos();
             sword.SetActive(true);
+            sword.GetComponent<Disolve>().DoFade(0, 1, 1f);
+            disolve.DoFade(1, 0, 0.8f);
 
             effect.transform.localPosition = _mainModule.transform.position + new Vector3(0, 1, 0);
             effect.transform.SetParent(_mainModule.transform);
@@ -53,7 +58,7 @@ namespace Skill
             //effect2.transform.localPosition = transform.position;
             //effect2.SetActive(true);
 
-            meshRenderer.enabled = false;
+            //meshRenderer.enabled = false;
             
             PlaySkillAnimation(_mainModule, animationClip);
             UseMana(_mainModule, usingMana);
@@ -66,11 +71,16 @@ namespace Skill
         {
             yield return new WaitUntil(() => !_mainModule.Animator.GetBool("WeaponSkill"));
     
-            meshRenderer.enabled = true;
-            _sword.SetActive(false);
+            //meshRenderer.enabled = true;
+            _sword.GetComponent<Disolve>().DoFade(1, 0, 1f);
+            disolve.DoFade(0, 1, 0.8f);
             //transform.root.GetComponent<Animator>().speed
             
+            yield return new WaitForSeconds(0.1f);
+            _sword.SetActive(false);
+            
             ObjectPoolManager.Instance.RegisterObject("Hajj_SkillSword", _sword);
+            
             /*transform.localScale = new Vector3(0.24f, 0.24f,0.24f);
             meshFilter.mesh = originMesh;
             meshRenderer.material = originMat;*/

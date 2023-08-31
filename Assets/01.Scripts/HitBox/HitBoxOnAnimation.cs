@@ -84,36 +84,33 @@ namespace HitBox
 
 #if UNITY_EDITOR
 
-		private List<CapsuleColEditor> boxColEditorList = new List<CapsuleColEditor>();
-
 		[Header("DEBUGOPTION")]
 		public string hitBoxName = "";
 		
 		[SerializeField]
 		private HitBoxDatasSO debugHitBoxDataSO;
+		
+		[SerializeField]
+		private CapsuleColEditor capsuleColEditor;
 
 		[ContextMenu("AddEvent")]
 		public void AddEvent()
 		{
-			Delete();
 			if(hitBoxName is null)
 			{
 				return;
 			}
-			GameObject obj = new GameObject();
-			CapsuleColEditor _boxColEditor = obj.AddComponent<CapsuleColEditor>();
 			HitBoxData _hitBoxData = new HitBoxData();
 			_hitBoxData.hitBoxName = hitBoxName;
-			_boxColEditor.hitBoxDataSO = debugHitBoxDataSO;
-			_boxColEditor.SetHitBox(_hitBoxData);
-			_boxColEditor.Upload();
-			boxColEditorList.Add(_boxColEditor);
-
+			capsuleColEditor.SetHitBox(_hitBoxData);
+			capsuleColEditor.hitBoxDataSO = debugHitBoxDataSO;
+			capsuleColEditor.Upload();
+			
 			//Animator _animator = GetComponent<Animator>();
 			AnimationClip _animationClip = AnimationHitBoxEditor.GetAnimationWindowAnimationClip();
 			AnimationEvent e = new AnimationEvent();
 			e.functionName = "OnHitBox";
-			e.stringParameter = _boxColEditor.hitBoxData.hitBoxName;
+			e.stringParameter = capsuleColEditor.hitBoxData.hitBoxName;
 			e.time = AnimationHitBoxEditor.GetAnimationWindowTime();
 			AnimationEvent[] animationEvents = new AnimationEvent[_animationClip.events.Length + 1];
 			for(int i = 0; i < _animationClip.events.Length; ++i)
@@ -127,7 +124,6 @@ namespace HitBox
 		[ContextMenu("GetEvent")]
 		public void GetEvent()
 		{
-			Delete();
 			AnimationClip _animationClip = AnimationHitBoxEditor.GetAnimationWindowAnimationClip();
 			float _time = AnimationHitBoxEditor.GetAnimationWindowTime();
 			AnimationEvent _animationEvent = _animationClip.events.FirstOrDefault(x => x.time == _time);
@@ -138,27 +134,11 @@ namespace HitBox
 					HitBoxDataList hitBoxDataList = debugHitBoxDataSO.hitBoxDataDic[_animationEvent.stringParameter];
 					for (int i = 0; i < hitBoxDataList.hitBoxDataList.Count; ++i)
 					{
-						GameObject obj = new GameObject();
-						CapsuleColEditor boxColEditor = obj.AddComponent<CapsuleColEditor>();
-						boxColEditor.SetHitBox(hitBoxDataList.hitBoxDataList[i]);
-						boxColEditor.hitBoxDataSO = debugHitBoxDataSO;
-						boxColEditorList.Add(boxColEditor);
+						capsuleColEditor.SetHitBox(hitBoxDataList.hitBoxDataList[i]);
+						capsuleColEditor.hitBoxDataSO = debugHitBoxDataSO;
 					}
 				}
 			}
-		}
-
-		[ContextMenu("Delete")]
-		public void Delete()
-		{
-			if(boxColEditorList.Count > 0)
-			{ 
-				for(int i = 0; i < boxColEditorList.Count; ++i)
-				{
-					DestroyImmediate(boxColEditorList[i].gameObject);
-				}
-			}
-			boxColEditorList.Clear();
 		}
 
 		[ContextMenu("CheckFrame")]

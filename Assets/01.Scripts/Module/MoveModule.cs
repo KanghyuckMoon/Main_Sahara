@@ -46,6 +46,9 @@ namespace Module
             }
 		}
 
+        public float XRotation => xRotation;
+        public float ZRotation => zRotation;
+
         public float passiveSpeed = 0;
         public bool isCrawling;
         
@@ -55,6 +58,8 @@ namespace Module
         protected float rotationVelocity;
         protected float targetRotation;
         protected float rotation;
+        protected float xRotation;
+        protected float zRotation;
 
         protected float animationBlend;
         protected float currentSpeed;
@@ -99,12 +104,19 @@ namespace Module
 
             float _speed;
 
-            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? runSpeed - 1 : moveSpeed - 1;
+            if (!mainModule.isGround)
+            {
+				_targetSpeed = (mainModule.IsSprint ? runSpeed - 1 : moveSpeed - 1);
+			}
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking)
+            {
                 _targetSpeed = 0.0f;
+            }
 
             if (_targetSpeed == 0 && previousSpeed > 1.4f)
+            {
                 Animator.SetTrigger("IfStop");
+            }
 
             previousSpeed = _targetSpeed;
 
@@ -153,25 +165,31 @@ namespace Module
             {
                 if (!mainModule.Attacking || !mainModule.StrongAttacking || knockBackPower > 0f)
                 {
-                    if (mainModule.ObjDir != Vector2.zero)
-                    {
-                        //Debug.LogWarning($"Obj Rotation {rotation}, Time {mainModule.PersonalDeltaTime}", mainModule.gameObject);
-                        mainModule.transform.rotation = Quaternion.Euler(0, rotation, 0);
-                    }
 
-                    if (mainModule.LockOnTarget == null)
-                    {
-                        mainModule.transform.rotation = Quaternion.RotateTowards(mainModule.transform.rotation,
-                            Quaternion.Euler(0, rotation, 0), 5 * mainModule.PersonalDeltaTime);
-                        //Quaternion _qu = Quaternion.LookRotation(Quaternion.Euler(0.0f, rotation, 0.0f).eulerAngles, Vector3.up);
-                        //mainModule.transform.rotation =
-                        //    Quaternion.RotateTowards(mainModule.transform.rotation, _qu, 10 * mainModule.PersonalDeltaTime);
-                    }
-                    else
-                    {
-                        mainModule.transform.rotation =
-                            Quaternion.Euler(0.0f, mainModule.ObjRotation.eulerAngles.y, 0.0f);
-                    }
+                    if (mainModule.LockOnTarget != null)
+					{
+						mainModule.transform.rotation =
+							Quaternion.Euler(xRotation, mainModule.ObjRotation.eulerAngles.y, zRotation);
+
+						//Quaternion _qu = Quaternion.LookRotation(Quaternion.Euler(0.0f, rotation, 0.0f).eulerAngles, Vector3.up);
+						//mainModule.transform.rotation =
+						//    Quaternion.RotateTowards(mainModule.transform.rotation, _qu, 10 * mainModule.PersonalDeltaTime);
+					}
+					else
+					if (mainModule.ObjDir != Vector2.zero)
+					{
+						//Debug.LogWarning($"Obj Rotation {rotation}, Time {mainModule.PersonalDeltaTime}", mainModule.gameObject);
+						Quaternion curRotation = Quaternion.Euler(mainModule.transform.eulerAngles.x, rotation, mainModule.transform.eulerAngles.z);
+						Quaternion changeRotation = Quaternion.RotateTowards(curRotation, Quaternion.Euler(xRotation, rotation, mainModule.transform.eulerAngles.z), 150 * mainModule.PersonalDeltaTime);
+						changeRotation = Quaternion.RotateTowards(changeRotation, Quaternion.Euler(changeRotation.eulerAngles.x, changeRotation.eulerAngles.y, zRotation), 70 * mainModule.PersonalDeltaTime);
+						mainModule.transform.rotation = changeRotation;
+					}
+					else
+					{
+                        var changeRotation = Quaternion.RotateTowards(Quaternion.Euler(xRotation, mainModule.transform.eulerAngles.y, zRotation), Quaternion.Euler(xRotation, rotation, zRotation), 5 * mainModule.PersonalDeltaTime);
+                        //changeRotation = Quaternion.RotateTowards(changeRotation, Quaternion.Euler(xRotation, changeRotation.eulerAngles.y, zRotation), 50 * mainModule.PersonalDeltaTime);
+                        mainModule.transform.rotation = changeRotation;
+					}
                 }
             }
 
@@ -200,7 +218,7 @@ namespace Module
             }
             else
             {
-                _moveVector3 = Vector3.zero;
+                //_moveVector3 = Vector3.zero;
             }
 
             if (mainModule.IsSlope)
@@ -222,6 +240,7 @@ namespace Module
                     (mainModule.SlopeVector + new Vector3(0, _gravity, 0)) *
                     mainModule.PersonalDeltaTime);
             }
+
 
             #endregion
 
@@ -324,5 +343,16 @@ namespace Module
 
             Pool.ClassPoolManager.Instance.RegisterObject<MoveModule>(this);
         }
+
+        public void SetXRotation(float angle)
+        {
+            xRotation = angle;
+			//mainModule.Root.rotation = Quaternion.Euler(xRotation, 0, 0);
+		}
+		public void SetZRotation(float angle)
+		{
+			zRotation = angle;
+			//mainModule.Root.rotation = Quaternion.Euler(xRotation, 0, 0);
+		}
 	}
 }
