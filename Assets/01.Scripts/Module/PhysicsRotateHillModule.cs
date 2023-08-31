@@ -96,8 +96,7 @@ namespace Module
 				? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
 				: Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
 			mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
-
-
+			
 			var _slopeLimit = mainModule.CharacterController.slopeLimit;
 			mainModule.IsSlope = _angle <= _slopeLimit + 5f;
 
