@@ -33,7 +33,7 @@ namespace UI.Hud
             {
                 PresenterList.Add(quickSlotPresenter);
                 DataPresenterDic[HudType.statData].Add(quickSlotPresenter);
-            }
+            };
             base.OnEnable();
             quickSlotPresenter.OnEnable();
         }
