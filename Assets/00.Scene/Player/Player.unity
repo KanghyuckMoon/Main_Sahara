@@ -252,6 +252,8 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  isUseWeapon: 0
+  noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0
 --- !u!114 &39652
@@ -289,6 +291,7 @@ MonoBehaviour:
   hitBoxInAction: {fileID: 0}
   hitBoxName: 
   debugHitBoxDataSO: {fileID: 0}
+  capsuleColEditor: {fileID: 0}
 --- !u!114 &39654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +368,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -9.8
   groundOffset: -0.12
+  groundDistance: 0.5
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -380,6 +384,7 @@ MonoBehaviour:
   raycastTarget: {fileID: 1947980560}
   visualObject: {fileID: 1278221148}
   model: {fileID: 0}
+  root: {fileID: 0}
   animator: {fileID: 0}
   jumpstrenght: 0
   leftFeet: {fileID: 0}
@@ -412,8 +417,8 @@ CharacterController:
   serializedVersion: 3
   m_Height: 1.4
   m_Radius: 0.22
-  m_SlopeLimit: 40
-  m_StepOffset: 0.1
+  m_SlopeLimit: 25
+  m_StepOffset: 0.5
   m_SkinWidth: 0.1
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
@@ -1483,12 +1488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec02623ef0b56d489cd133348a65d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 947996894a91643418f664504e14c63c, type: 2}
-  usingMana: 0
 --- !u!114 &87211769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2817,12 +2822,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254ec7f35d162c7438b502205be10b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 41698531880324673, guid: 3adf98fdb8fb07d45b71c7308890cf56, type: 3}
-  usingMana: 0
 --- !u!114 &242544597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3422,12 +3427,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abdddbbc1d01b84887a76c3bed2c9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: -1127549396137376381, guid: 945cf314b67ba294db56cd97b642c603, type: 3}
-  usingMana: 100
 --- !u!114 &301217041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3693,12 +3698,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d8c46350dd7f04ea323bcbff747c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7634506225472288704, guid: 067f4f4f56ddc8a4196b173707e75f61, type: 3}
-  usingMana: 0
 --- !u!114 &337645800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4501,6 +4506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa28aaa4c7144cc4db653ee357c0c794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -4521,7 +4527,6 @@ MonoBehaviour:
     period: 1
     bufftype: 0
   animationClip: {fileID: -1127549396137376381, guid: 945cf314b67ba294db56cd97b642c603, type: 3}
-  usingMana: 100
 --- !u!114 &404152652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6506,12 +6511,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a280b80d28a4d2f4caabc885ba9efd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 1e7ba069f8f17be4c8326a9db73ec3f0, type: 2}
-  usingMana: 100
 --- !u!114 &645379667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7391,12 +7396,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704fa52d00fc795409e04b82de8aa928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 41698531880324673, guid: 3adf98fdb8fb07d45b71c7308890cf56, type: 3}
-  usingMana: 0
 --- !u!114 &751067438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8094,12 +8099,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae0044716a53924b9470654dea6199c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 621988743821468482, guid: 54e91c95412f1bc4585114ad2c4d4e79, type: 3}
-  usingMana: 0
 --- !u!114 &775697888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9168,6 +9173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d963e426e2c54942b5366bbadc42453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -9178,7 +9184,6 @@ MonoBehaviour:
     period: 2
     bufftype: 0
   animationClip: {fileID: 7400000, guid: a1ba567b38e5e4b40a6ad20e4fa72eb8, type: 2}
-  usingMana: 100
 --- !u!114 &855947445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10206,12 +10211,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5660d3daceb4643a443ea1822f9592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 947996894a91643418f664504e14c63c, type: 2}
-  usingMana: 0
 --- !u!114 &963855275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11220,12 +11225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f62c9e672ceb4c43aa63df82f664f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: b368b54e850d2f54685e40113368697e, type: 2}
-  usingMana: 100
 --- !u!114 &1044873939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11784,6 +11789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c1de00ba1d2b24f9e1f78dfa45503d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -15245,12 +15251,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adefbb6ee78a49344bb5a70b200030d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 8054657191847103693, guid: 1a725bbf2abe6f54cacf6cd7b97c5155, type: 3}
-  usingMana: 100
 --- !u!114 &1387559418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15431,12 +15437,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d963e426e2c54942b5366bbadc42453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 9278d69b5dace8f45ad4bc12b9fffa59, type: 2}
-  usingMana: 0
 --- !u!114 &1421842497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15593,12 +15599,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b293f6b3eb24c1448a15084e127d2de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 947996894a91643418f664504e14c63c, type: 2}
-  usingMana: 0
 --- !u!114 &1434675621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16087,12 +16093,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce50e01a517c6f43a64401506b768e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 648650ad1f4152b48b97630880b6f26b, type: 2}
-  usingMana: 100
 --- !u!114 &1496081553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16273,12 +16279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ba8898a1406bd4296878d32e68d7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 61d62970cb095db4b800e23763f2d85e, type: 2}
-  usingMana: 100
 --- !u!114 &1512547694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17555,6 +17561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d963e426e2c54942b5366bbadc42453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -17565,7 +17572,6 @@ MonoBehaviour:
     period: 2
     bufftype: 0
   animationClip: {fileID: 7400000, guid: a1ba567b38e5e4b40a6ad20e4fa72eb8, type: 2}
-  usingMana: 100
 --- !u!114 &1590924311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18517,12 +18523,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013044174f3a3dc40a505682f0ed5524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 1e1fc314c9f90b44f8eec7139e96056e, type: 2}
-  usingMana: 100
   hitBoxInAction: {fileID: 0}
   _skillEffectName: 
 --- !u!114 &1619731830
@@ -18806,14 +18812,13 @@ MonoBehaviour:
   projectileAddress: 
   objectName: Arrow
   objectData:
-    projectileName: Arrow
-    distinguishingName: arw1
+    animationEventName: 
+    projectileAddress: Arrow
     position: {x: -0.4773714, y: 0.02863412, z: 0.01035774}
     rotation: {x: -0.70156765, y: 0.7125799, z: -0.005298935, w: -0.0021308018}
     weaponHand: 1
     InitialDirection: {x: 0, y: 2, z: 100}
     speed: 160
-    projectileAddress: Arrow
     isParentOn: 1
     isSetHitBoxWhenSetProjectile: 1
   model: {fileID: 329918046}
@@ -19043,12 +19048,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8290a14cc80adb243b1d67f30d4e8bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 8054657191847103693, guid: 1a725bbf2abe6f54cacf6cd7b97c5155, type: 3}
-  usingMana: 100
 --- !u!114 &1649961709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22584,14 +22589,13 @@ MonoBehaviour:
   projectileAddress: 
   objectName: Arrow
   objectData:
-    projectileName: Arrow
-    distinguishingName: arw1
+    animationEventName: 
+    projectileAddress: Arrow
     position: {x: -0.47, y: 0.14, z: 0.027}
     rotation: {x: -0.019643148, y: 0.026176363, z: -0.79941344, w: 0.5998893}
     weaponHand: 1
     InitialDirection: {x: 0, y: 2, z: 100}
     speed: 160
-    projectileAddress: Arrow
     isParentOn: 1
     isSetHitBoxWhenSetProjectile: 1
   model: {fileID: 133688479}
@@ -22649,12 +22653,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de223e03687689947806f6202ff80358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 100
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400002, guid: 53742c0fa0f0a644abb73b4774fa6db7, type: 3}
-  usingMana: 100
 --- !u!114 &1761023304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23883,6 +23887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dadd528e05bcd441894124b79c61d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -25559,12 +25564,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd0a3cd3d349aa48aeae4f120f3097e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 947996894a91643418f664504e14c63c, type: 2}
-  usingMana: 0
 --- !u!114 &2001099906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26052,12 +26057,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec02623ef0b56d489cd133348a65d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingMana: 0
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
   buffList: []
   animationClip: {fileID: 7400000, guid: 947996894a91643418f664504e14c63c, type: 2}
-  usingMana: 0
 --- !u!114 &2047955928
 MonoBehaviour:
   m_ObjectHideFlags: 0

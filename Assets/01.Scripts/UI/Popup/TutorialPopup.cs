@@ -5,6 +5,8 @@ using TimeManager;
 using UI.EventManage;
 using UI.Production;
 using UnityEngine;
+using UI.Manager;
+using UnityEditor.PackageManager;
 
 namespace UI.Popup
 {
@@ -15,16 +17,17 @@ namespace UI.Popup
 
         private IPopup curStopPopup;
 
-        private void Awake()
+        private void Awake()    
         {
-            popupTutorialScreenPr = GetComponent<PopupTutorialScreenPr>();
+            popupTutorialScreenPr = FindObjectOfType<PopupTutorialScreenPr>();
             popupTutorialDataSO.AddObserver(this);
         }
 
         
         public void Receive()
         {
-            CreatePopupTimeStop(new PopupTutorialData(popupTutorialDataSO));
+            TutorialPopupEventManager.Instance.ActiveTutoPopup(popupTutorialDataSO.key, 
+                () => CreatePopupTimeStop(new PopupTutorialData(popupTutorialDataSO)) );;
         }
 
         public void CreatePopupTimeStop(PopupTutorialData _data = null)
@@ -41,56 +44,72 @@ namespace UI.Popup
             //UIMan.
             EventManager.Instance.TriggerEvent(EventsType.SetUIInput, false);
             EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, true);
+            EventManager.Instance.TriggerEvent(EventsType.IsCanNextDialogue, false);
             StaticTime.UITime = 0f;
-            //UIManager.Instance.ActiveCursor(true);
+            UIManager.Instance.ActiveCursor(true);
+            UIManager.Instance.ActiveHud(false);
             
             StartCoroutine(StayTimeStopPopupCo(_popupGetItemPr));
         }
 
+        [SerializeField]
+        int _idx = 0;
 
         private IEnumerator StayTimeStopPopupCo(PopupTutorialPr _popup)
         {
+            _idx = 0; 
             int _count = _popup.Data.page;
-            int _idx = 0;
             _popup.AddButtonEvt(PopupTutorialView.Buttons.left_button,() => ButtonEvt(false));
             _popup.AddButtonEvt(PopupTutorialView.Buttons.right_button,() => ButtonEvt(true));
-            
+            _popup.SetButtonEvts();
+         
+            _popup.ActiveButton(true, false);
+            _popup.ActiveGuideLabel(false);
+
             while (true)
             {
-                if (_count >= 2 && _idx + 1 < _count)
+                if (_count >= 2 && _idx < _count)
                 {
                     // 설명 페이지가 2장 이상이고 마지막 페이지가 아니라면  
                     if (_idx != 0)
                     {
-                        if (Input.GetKeyDown(KeyCode.RightArrow))
+                        if (Input.GetKeyDown(KeyCode.LeftArrow))
                             ButtonEvt(false);
+
                     }
 
                     if (_idx != _count)
                     {
-                        if (Input.GetKeyDown(KeyCode.LeftArrow))
+                        if (Input.GetKeyDown(KeyCode.RightArrow))
                             ButtonEvt(true);
                     }
-
-                    yield return null;
                 }
+                if(_idx +1 == _count) // 마지막 페이지라면 
+                {
+                    
+                    if (Input.GetKeyDown((KeyCode.Escape)))
+                    {
+                        StaticTime.UITime = 1f;
+                        popupTutorialScreenPr.Active(false);
+                        curStopPopup.InActiveTween();
+                        curStopPopup.Undo();
+                        
+                        popupTutorialScreenPr.Active(false);
 
+                        yield return null; 
+                        EventManager.Instance.TriggerEvent(EventsType.SetUIInput, true);
+                        EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, false);
+                        EventManager.Instance.TriggerEvent(EventsType.IsCanNextDialogue, true);
+                        UIManager.Instance.ActiveCursor(false);
+                        UIManager.Instance.ActiveHud(true);
+                        // UI 입력 멈춘거 풀고
+                        // UI 닫고 
+                        yield break;
+                    }
+                }
                 // Space를 누르세요 비활성화 
                 // ESC를 누르세요 활성화 
 
-                if (Input.GetKeyDown((KeyCode.Escape)))
-                {
-                    StaticTime.UITime = 1f;
-                    popupTutorialScreenPr.Active(false);
-                    curStopPopup.InActiveTween();
-                    curStopPopup.Undo();
-                    EventManager.Instance.TriggerEvent(EventsType.SetUIInput, true);
-                    EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, false);
-                    //UIManager.Instance.ActiveCursor(false);
-                    // UI 입력 멈춘거 풀고
-                    // UI 닫고 
-                    yield break;
-                }
 
                 yield return null;
             }

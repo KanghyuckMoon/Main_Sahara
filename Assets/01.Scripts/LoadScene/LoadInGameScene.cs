@@ -34,7 +34,7 @@ namespace LoadScene
         private IEnumerator  LoadingIngame()
         {
             yield return null;
-            var op = SceneManager.LoadSceneAsync("InGame");
+            var op = SceneManager.LoadSceneAsync("DemoScene");
             op.allowSceneActivation = false;
             float timer = 0.0f;
             while (!op.isDone)
