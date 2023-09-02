@@ -32,6 +32,7 @@ namespace HitBox
 		private HitBoxOnAnimation hitBoxOnAnimation;
 		private bool isSetting;
 		[SerializeField] private bool isStage;
+		private Coroutine coroutine;
 
 		private HitBoxOnAnimation HitBoxOnAnimation
 		{
@@ -71,7 +72,7 @@ namespace HitBox
 				}
 				else
 				{
-					SetEnable();	
+					SetEnable();
 				}
 			}
 		}
@@ -126,7 +127,11 @@ namespace HitBox
 		{
 			if (isSetHitbox)
 			{
-				StaticCoroutineManager.Instance.StartCoroutine(OnDisableCol());
+				if(coroutine != null)
+				{
+					StopCoroutine(coroutine);
+				}
+				coroutine = StaticCoroutineManager.Instance.StartCoroutine(OnDisableCol());
 			}
 		}
 
@@ -154,22 +159,27 @@ namespace HitBox
 		{
 			if (isSetHitbox)
 			{
-				foreach (var _col in inGameHitBoxeList)
-				{
-					try
-					{
-						_col.transform.SetParent(null);
-						_col.gameObject.SetActive(false);
-						Pool.HitBoxPoolManager.Instance.RegisterObject(_col);
-					}
-					catch (Exception e)
-					{
-						Debug.LogError(e);
-						break;
-					}
-				}
-				inGameHitBoxeList.Clear();
+				RemoveHitBoxs();
 			}
+		}
+
+		private void RemoveHitBoxs()
+		{
+			foreach (var _col in inGameHitBoxeList)
+			{
+				try
+				{
+					_col.transform.SetParent(null);
+					_col.gameObject.SetActive(false);
+					Pool.HitBoxPoolManager.Instance.RegisterObject(_col);
+				}
+				catch (Exception e)
+				{
+					Debug.LogError(e);
+					break;
+				}
+			}
+			inGameHitBoxeList.Clear();
 		}
 
 
@@ -181,6 +191,11 @@ namespace HitBox
 		public void OnHitBox(string _str)
 		{
 			isSetHitbox = false;
+			if (coroutine != null)
+			{
+				StopCoroutine(coroutine);
+			}
+			RemoveHitBoxs();
 			HitBoxDataList hitBoxDataList = hitBoxDataSO.GetHitboxList(_str);
 			if (hitBoxDataList is not null)
 			{
