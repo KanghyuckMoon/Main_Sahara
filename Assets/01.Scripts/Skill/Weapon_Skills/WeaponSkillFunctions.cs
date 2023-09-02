@@ -25,10 +25,16 @@ namespace Skill
 
         protected void OnEnable()
         {
-            EventManager.Instance.TriggerEvent(EventsType.SetQuickslotMana,usingMana);
-            EventManager.Instance.TriggerEvent(EventsType.SetQuickslotMana,skillIconString);
+            StartCoroutine(UpdateUI());
         }
 
+        private IEnumerator UpdateUI()
+        {
+            yield return new WaitForSeconds(0.1f);  
+            Debug.Log("@@업데이트");
+            EventManager.Instance.TriggerEvent(EventsType.SetQuickslotMana,usingMana);
+            EventManager.Instance.TriggerEvent(EventsType.SetHudSkillImage,skillIconString);
+        }
         protected void PlaySkillAnimation(AbMainModule _mainModule, AnimationClip _animationClip, System.Action _action = null)
         {
             

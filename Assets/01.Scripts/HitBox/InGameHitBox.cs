@@ -61,6 +61,7 @@ namespace HitBox
 		private bool isContactDir;
 		private Quaternion rotation;
 		private GameObject obj;
+		private Coroutine coroutine;
 
 		public void SetHitBox(GameObject _hitboxObj, ulong _index, HitBoxData _hitBoxData, GameObject _owner, string _tag, GameObject _parent = null, GameObject _swingEffectParent = null, HitBoxAction _hitBoxAction = null)
 		{
@@ -123,9 +124,14 @@ namespace HitBox
 				}
 			}
 
+			if(coroutine != null)
+			{
+				StopCoroutine(coroutine);
+			}
+
 			if(hitBoxData.deleteDelay > -0.5f)
 			{
-				StartCoroutine(DestroyHitBox());
+				coroutine = StartCoroutine(DestroyHitBox());
 			}
 		}
 
@@ -155,6 +161,7 @@ namespace HitBox
 			transform.SetParent(null);
 			obj.SetActive(false);
 			HitBoxPoolManager.Instance.RegisterObject(this);
+			Debug.Log("Destroy", gameObject);
 			//Pool.ObjectPoolManager.Instance.RegisterObject("HitBox", gameObject);
 		}
 		
