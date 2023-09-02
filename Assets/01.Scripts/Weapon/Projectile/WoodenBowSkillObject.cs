@@ -22,7 +22,7 @@ namespace Weapon
         private void Update()
         {
             if (isUse) return;
-            transform.position = Vector3.Lerp(targetObject.transform.position + pos, transform.position,
+            transform.localPosition = Vector3.Lerp(targetObject.transform.position + pos, transform.position,
                 Time.deltaTime * 5);
 
             transform.rotation =

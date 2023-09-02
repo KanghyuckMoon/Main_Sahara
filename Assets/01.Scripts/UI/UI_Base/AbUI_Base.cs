@@ -212,7 +212,7 @@ namespace UI.Base
                     elements[i] = GetElement(names[i]);
                     if (elements[i] == null)// names[i] 의 이름의 요소가 없으면 에러
                     {
-                       Debug.LogError($"지정된 이름의 요소가 없습니다");
+                       Debug.LogError($"{ names[i] } 지정된 이름의 요소가 없습니다");
                     } 
                      
                 }
