@@ -1456,6 +1456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -2575,8 +2576,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190008967}
-  m_LocalRotation: {x: 3.46872e-40, y: -8.5121366e-33, z: 0, w: 1}
-  m_LocalPosition: {x: 5.107282e-32, y: 1.5, z: -7.5}
+  m_LocalRotation: {x: 1e-45, y: -1e-45, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1e-44, y: 1.5, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3212,6 +3213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -4747,7 +4749,7 @@ Transform:
   - {fileID: 1617602945}
   - {fileID: 460347235}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &287760469
 GameObject:
@@ -5270,6 +5272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -7172,6 +7175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -7296,6 +7300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -7704,6 +7709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -8818,7 +8824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.107282e-32
+      value: 8e-45
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8834,11 +8840,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 3.46872e-40
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -8.5121366e-33
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 4632501980750910762, guid: 525d9cd57fd57344494ac5e256a5e7eb, type: 3}
       propertyPath: m_LocalRotation.z
@@ -17588,6 +17594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -19630,6 +19637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -20342,6 +20350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -20416,6 +20425,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983941410}
   m_Mesh: {fileID: -7102589008999902672, guid: e5ac173141c614140945a4070bb25ec7, type: 3}
+--- !u!1 &984474667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 984474669}
+  - component: {fileID: 984474668}
+  m_Layer: 0
+  m_Name: DemoSceneSetting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &984474668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984474667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdca83988fccf354391968279458bd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &984474669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984474667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 350.909, y: 2.4692569, z: 5.7067013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &984559951
 GameObject:
   m_ObjectHideFlags: 0
@@ -31076,6 +31129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -31861,6 +31915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -37189,6 +37244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -38330,6 +38386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -44710,6 +44767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -44977,6 +45035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -48129,6 +48188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -49886,6 +49946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -50310,6 +50371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -52854,6 +52916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -53610,6 +53673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 0
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -54092,6 +54156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -54857,6 +54922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -57049,6 +57115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
@@ -57352,6 +57419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingMana: 100
+  skillIconString: 
   animationName: WeaponSkill
   buffIconString: _Icon
   buffEffectString: _Effect
