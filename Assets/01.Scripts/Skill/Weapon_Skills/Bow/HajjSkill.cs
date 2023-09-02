@@ -14,7 +14,7 @@ namespace Skill
 {
     public class HajjSkill : WeaponSkillFunctions, IWeaponSkill
     {
-        [SerializeField]
+        [SerializeField]                    
         private AnimationClip animationClip;
         
         
@@ -30,7 +30,7 @@ namespace Skill
         {
             meshRenderer = GetComponent<MeshRenderer>();
             disolve = GetComponent<Disolve>();
-        }
+        }   
 
         public void Skills(AbMainModule _mainModule)
         {

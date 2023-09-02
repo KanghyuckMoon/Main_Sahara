@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,16 @@ namespace UI.Hud
         {
             base.ContructPresenters();
             PresenterList.Add(quickSlotPresenter);
+        }
+
+        private void Start()
+        {
+            quickSlotPresenter.Start(); 
+        }
+
+        private void OnDestroy()
+        {
+            quickSlotPresenter.OnDestroy(); 
         }
 
         protected override void OnDisable()

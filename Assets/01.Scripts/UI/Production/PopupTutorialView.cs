@@ -43,9 +43,9 @@ namespace UI.Production
         public override void Init()
         {
             base.Init();
-            AddButtonEventToDic(Buttons.left_button, null); 
-            AddButtonEventToDic(Buttons.right_button, null); 
-            AddButtonEvents();  
+            //AddButtonEventToDic(Buttons.left_button, null); 
+            //AddButtonEventToDic(Buttons.right_button, null); 
+            //AddButtonEvents();  
         }
 
         public void SetTitle(string _title)
@@ -66,7 +66,7 @@ namespace UI.Production
             ShowVisualElement(GetLabel((int)Labels.guide_label),_isActive);
         }
         
-        private void AddButtonEvents()
+        public void AddButtonEvents()
         {
             //AddButtonEvent<ClickEvent>((int)Buttons.graphics_button, callbackDic[Buttons.graphics_button]);
             AddButtonEvent<ClickEvent>((int)Buttons.left_button, callbackDic[Buttons.left_button]);
@@ -90,10 +90,12 @@ namespace UI.Production
         {
             if (_isLeft == true)
             {
-                ShowVisualElement(GetButton((int)Buttons.left_button), _isActive);
+                GetButton((int)Buttons.left_button).style.visibility = _isActive ? Visibility.Visible :Visibility.Hidden;
+                //ShowVisualElement(GetButton((int)Buttons.left_button), _isActive);
                 return; 
             }
-            ShowVisualElement(GetButton((int)Buttons.right_button), _isActive);
+            GetButton((int)Buttons.right_button).style.visibility = _isActive ? Visibility.Visible :Visibility.Hidden;
+            //ShowVisualElement(GetButton((int)Buttons.right_button), _isActive);
 
         }
 

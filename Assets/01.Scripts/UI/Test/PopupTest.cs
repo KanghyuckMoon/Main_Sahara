@@ -14,8 +14,9 @@ public class PopupTest : MonoBehaviour
     public ItemDataSO ItemDataSo;
     public QuestDataSO QuestDataSo; 
     public QuestDataSO ClearQuestDataSo;
-    public PopupTutorialDataSO tutorialDataSO; 
-    
+    public PopupTutorialDataSO tutorialDataSO;
+
+    public string popupTutorialStr; 
     public Transform trm;
 
     private void Update()
@@ -60,7 +61,8 @@ public class PopupTest : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            tutorialDataSO.Send();
+            //tutorialDataSO.Send();
+            GameEventManager.Instance.GetGameEvent(popupTutorialStr).Raise();
         }
         
         

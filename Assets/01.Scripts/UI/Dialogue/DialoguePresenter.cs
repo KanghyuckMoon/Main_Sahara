@@ -59,11 +59,13 @@ namespace UI.Dialogue
             dialogueView.Cashing();
             dialogueView.Init(); 
             EventManager.Instance.StartListening(EventsType.SetCanDialogue,(x) => isDialogue = (bool)x);
+            EventManager.Instance.StartListening(EventsType.IsCanNextDialogue,(x) => isCanNextDialogue = (bool)x);
         }
 
         private void OnDisable()
         {
             EventManager.Instance.StopListening(EventsType.SetCanDialogue,(x) => isDialogue = (bool)x);
+            EventManager.Instance.StopListening(EventsType.IsCanNextDialogue,(x) => isCanNextDialogue = (bool)x);
         }
 
         private void Awake()
@@ -179,6 +181,10 @@ namespace UI.Dialogue
                         int _count = int.Parse(_text[1]);
                         InventoryManager.Instance.AddItem(_code, _count);
                         return; 
+                    case "!TUTO":
+                        GameEventManager.Instance.GetGameEvent(fullText.Replace("\r","")).Raise();
+                        // 입력 막았다가 팝업 풀렸을 떄 입력 풀기 
+                        return; 
                 }
             }
 
@@ -228,7 +234,8 @@ namespace UI.Dialogue
             UIManager.Instance.ActiveCursor(false);// 커서 비활성화 
 
         }
-        
+
+        private bool isCanNextDialogue = true; 
         /// <summary>
         /// 대화 끝 다음 대화 넘어가는 거 체크 
         /// </summary>
@@ -239,24 +246,28 @@ namespace UI.Dialogue
 
             while (isDialogue == true)
             {
-                if(Input.GetKeyDown(KeyCode.F))
+                if (isCanNextDialogue == true)
                 {
-                    if (isTexting == true) // 텍스트가 진행중이었다면 
+                    if(Input.GetKeyDown(KeyCode.F))
                     {
-                        isTexting = false;  
-                        // 트윈 실행 
-                        dialogueView.Tween(true);
-//                        SetTextInstant(targetText);
-                        yield return null;
-                    }
-                    else
-                    {
-                        if(isSelecting == false)
+                        if (isTexting == true) // 텍스트가 진행중이었다면 
                         {
-                            NextDialogue(); 
+                            isTexting = false;  
+                            // 트윈 실행 
+                            dialogueView.Tween(true);
+//                        SetTextInstant(targetText);
+                            yield return null;
                         }
+                        else
+                        {
+                            if(isSelecting == false)
+                            {
+                                NextDialogue(); 
+                            }
                         
-                    }
+                        }
+                }
+              
 
                     //break; 
                 }

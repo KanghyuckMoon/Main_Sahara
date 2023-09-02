@@ -19,6 +19,9 @@ namespace UI.EventManage
         SetUIInputAndDialogue, 
         ActiveDeadCanvas,
         SetUIInput, 
+        SetQuickslotMana, 
+        SetHudSkillImage, 
+        IsCanNextDialogue, 
         ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>
@@ -27,10 +30,13 @@ namespace UI.EventManage
         private Dictionary<EventsType, Action> eventDictionary = new Dictionary<EventsType, Action>();
         private Dictionary<EventsType, Action<object>> eventParamDictionary = new Dictionary<EventsType, Action<object>>();
 
+        private Dictionary<EventsType, Func<object>> eventReturnDictionary = new Dictionary<EventsType, Func<object>>();
+
         private void Start()
         {
             StartListening(EventsType.ClearEvents, ClearEvents);
         }
+
 
         /// <summary>
         /// 이벤트 함수 등록하기 

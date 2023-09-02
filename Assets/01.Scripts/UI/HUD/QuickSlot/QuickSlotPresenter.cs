@@ -8,9 +8,23 @@ using Inventory;
 using UI.EventManage; 
 using Inventory;
 using UI.Inventory;
+using Skill;
+using Utill.Addressable;
+
 
 namespace UI
 {
+    public class ManaSkill
+    {
+        public ManaSkill(string _spriteAddress, int _mana)
+        {
+            this.spriteAddress = _spriteAddress;
+            this.mana = _mana; 
+        }
+        public string spriteAddress;
+        public int mana; 
+    }
+    
     [System.Serializable]
     public class QuickSlotPresenter : IUIFollower
     {
@@ -27,9 +41,11 @@ namespace UI
         private int maxIndex = 4, minIndex = 0;
         private bool isTargetTop;
 
+        [SerializeField]
+        private int mana; 
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set ; }
-       
+        
         public void OnDisable()
         {
             EventManager.Instance.StopListening(EventsType.UpdateQuickSlot, SetQuickSlot);
@@ -50,6 +66,29 @@ namespace UI
             UpdateUI(); 
         }
 
+        public void Start()
+        {
+            EventManager.Instance.StartListening(EventsType.SetQuickslotMana,(x) => SetMana((int)x));
+            EventManager.Instance.StartListening(EventsType.SetHudSkillImage,(x) => SetSkillImage((string)x));
+               }
+
+        private void SetMana(int _value)
+        {
+            mana = _value; 
+            quickSlotView.SetManaText(_value);
+            // 업데이트 UI 
+        }
+
+        private void SetSkillImage(string _spriteAddress)
+        {
+            var _sprite =  AddressablesManager.Instance.GetResource<Sprite>(_spriteAddress);
+            quickSlotView.SetSkillImage(_sprite);
+        }
+
+        public void OnDestroy()
+        {
+            
+        }
         public void Start(object _data)
         {
         }
@@ -68,6 +107,13 @@ namespace UI
             {
                 quickSlotView.SlotList[i].SetItemData(InventoryManager.Instance.GetQuickSlotItem(i),true);
             }
+
+            // 마나를 가져와야 해 
+            // 무기 스킬 펑션 클래스를 가져와 
+            // 굿 
+            // UI를 가져와서 데이터 업데이트 
+            // 내가 새롭게 쓰일때마다 
+            //int _mana = InventoryManager.Instance.PlayerWeaponModule.currentWeapon.GetComponent<WeaponSkillFunctions>().usingMana;
             //quickSlotView.ArrowSlot.SetItemData(InventoryManager.Instance.GetArrow());
 
 
@@ -178,6 +224,9 @@ namespace UI
             
             RemoveStyleClass(curSlotDic[GetClampIndex(curIndex+4)]);
             curSlotDic[GetClampIndex(curIndex+4)].AddToClassList(animateClassDic[4]);
+            
+            var _skillImage = AddressablesManager.Instance.GetResource<Sprite>(InventoryManager.Instance.GetCurrentQuickSlotItem().spriteKey);
+            quickSlotView.SetSkillImage(_skillImage);
         }
 
         private void RemoveStyleClass(VisualElement _v)
