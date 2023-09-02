@@ -25,7 +25,7 @@ namespace Skill
         {
             setPlayerMaterial ??= transform.root.GetComponentInChildren<SetPlayerMaterial>();
 
-            GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkillProjectile");
+            GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
             _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
             
             var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");

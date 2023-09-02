@@ -41,7 +41,10 @@ namespace Weapon
                     _effect.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                     _effect.SetActive(true);
 
+                    _effect.transform.LookAt(VARIABLE.transform);
+
                     transform.DOMove(VARIABLE.transform.position, 1f).SetEase(Ease.OutQuart);
+                    transform.LookAt(VARIABLE.transform);
                 }
             }
         }
@@ -58,7 +61,7 @@ namespace Weapon
             _transform.localScale = Vector3.zero;
             gameObject.SetActive(true);
 
-            transform.DOScale(1, 1f);
+            transform.DOScale(0.3f, 1f);
         }
     }
 }
