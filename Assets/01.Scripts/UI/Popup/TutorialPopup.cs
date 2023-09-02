@@ -5,7 +5,9 @@ using TimeManager;
 using UI.EventManage;
 using UI.Production;
 using UnityEngine;
-using UI.Manager; 
+using UI.Manager;
+using UnityEditor.PackageManager;
+
 namespace UI.Popup
 {
     public class TutorialPopup : MonoBehaviour, Observer
@@ -42,8 +44,10 @@ namespace UI.Popup
             //UIMan.
             EventManager.Instance.TriggerEvent(EventsType.SetUIInput, false);
             EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, true);
+            EventManager.Instance.TriggerEvent(EventsType.IsCanNextDialogue, false);
             StaticTime.UITime = 0f;
             UIManager.Instance.ActiveCursor(true);
+            UIManager.Instance.ActiveHud(false);
             
             StartCoroutine(StayTimeStopPopupCo(_popupGetItemPr));
         }
@@ -95,7 +99,9 @@ namespace UI.Popup
                         yield return null; 
                         EventManager.Instance.TriggerEvent(EventsType.SetUIInput, true);
                         EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, false);
+                        EventManager.Instance.TriggerEvent(EventsType.IsCanNextDialogue, true);
                         UIManager.Instance.ActiveCursor(false);
+                        UIManager.Instance.ActiveHud(true);
                         // UI ¿‘∑¬ ∏ÿ√·∞≈ «Æ∞Ì
                         // UI ¥›∞Ì 
                         yield break;

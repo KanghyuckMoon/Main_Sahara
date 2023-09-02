@@ -14,7 +14,8 @@ namespace Skill
     {
         [SerializeField]
         public int usingMana;
-        
+
+        public string skillIconString = ""; 
         public string animationName = "WeaponSkill";
         public string buffIconString = "_Icon";
         public string buffEffectString = "_Effect";
@@ -25,6 +26,7 @@ namespace Skill
         protected void OnEnable()
         {
             EventManager.Instance.TriggerEvent(EventsType.SetQuickslotMana,usingMana);
+            EventManager.Instance.TriggerEvent(EventsType.SetQuickslotMana,skillIconString);
         }
 
         protected void PlaySkillAnimation(AbMainModule _mainModule, AnimationClip _animationClip, System.Action _action = null)

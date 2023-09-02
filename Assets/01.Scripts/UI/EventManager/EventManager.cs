@@ -20,6 +20,8 @@ namespace UI.EventManage
         ActiveDeadCanvas,
         SetUIInput, 
         SetQuickslotMana, 
+        SetHudSkillImage, 
+        IsCanNextDialogue, 
         ClearEvents = 1000
     }
     public class EventManager : MonoSingleton<EventManager>

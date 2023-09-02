@@ -14,6 +14,17 @@ using Utill.Addressable;
 
 namespace UI
 {
+    public class ManaSkill
+    {
+        public ManaSkill(string _spriteAddress, int _mana)
+        {
+            this.spriteAddress = _spriteAddress;
+            this.mana = _mana; 
+        }
+        public string spriteAddress;
+        public int mana; 
+    }
+    
     [System.Serializable]
     public class QuickSlotPresenter : IUIFollower
     {
@@ -58,7 +69,8 @@ namespace UI
         public void Start()
         {
             EventManager.Instance.StartListening(EventsType.SetQuickslotMana,(x) => SetMana((int)x));
-        }
+            EventManager.Instance.StartListening(EventsType.SetHudSkillImage,(x) => SetSkillImage((string)x));
+               }
 
         private void SetMana(int _value)
         {
@@ -66,6 +78,13 @@ namespace UI
             quickSlotView.SetManaText(_value);
             // 업데이트 UI 
         }
+
+        private void SetSkillImage(string _spriteAddress)
+        {
+            var _sprite =  AddressablesManager.Instance.GetResource<Sprite>(_spriteAddress);
+            quickSlotView.SetSkillImage(_sprite);
+        }
+
         public void OnDestroy()
         {
             
