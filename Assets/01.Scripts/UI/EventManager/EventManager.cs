@@ -30,7 +30,6 @@ namespace UI.EventManage
         private Dictionary<EventsType, Action> eventDictionary = new Dictionary<EventsType, Action>();
         private Dictionary<EventsType, Action<object>> eventParamDictionary = new Dictionary<EventsType, Action<object>>();
 
-        private Dictionary<EventsType, Func<object>> eventReturnDictionary = new Dictionary<EventsType, Func<object>>();
 
         private void Start()
         {

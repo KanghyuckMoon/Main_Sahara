@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 using UI.Base;
 using UnityEngine.UIElements;
@@ -9,6 +10,7 @@ using UI.EventManage;
 using Inventory;
 using UI.Inventory;
 using Skill;
+using UnityEngine.Serialization;
 using Utill.Addressable;
 
 
@@ -41,14 +43,23 @@ namespace UI
         private int maxIndex = 4, minIndex = 0;
         private bool isTargetTop;
 
-        [SerializeField]
-        private int mana; 
+        [FormerlySerializedAs("mana")] [SerializeField]
+        private int curSkillMana; 
         // 프로퍼티 
         public UIDocument RootUIDocument { get; set ; }
-        
+
+        public void OnEnable()
+        {
+            Debug.Log("@@등록");
+            EventManager.Instance.StartListening(EventsType.SetQuickslotMana,(x) => SetMana((int)x));
+            EventManager.Instance.StartListening(EventsType.SetHudSkillImage,(x) => SetSkillImage((string)x));
+            EventManager.Instance.StartListening(EventsType.UpdateQuickSlot, SetQuickSlot);
+        }
         public void OnDisable()
         {
             EventManager.Instance.StopListening(EventsType.UpdateQuickSlot, SetQuickSlot);
+            EventManager.Instance.StopListening(EventsType.SetQuickslotMana,(x) => SetMana((int)x));
+            EventManager.Instance.StopListening(EventsType.SetHudSkillImage,(x) => SetSkillImage((string)x));
         }
         
         public void Awake()
@@ -60,7 +71,6 @@ namespace UI
             // 스타일 클래스 이름 초기화 
             InitAnimateClassDic(); 
             
-            EventManager.Instance.StartListening(EventsType.UpdateQuickSlot, SetQuickSlot);
 
             InitSlotDic(); 
             UpdateUI(); 
@@ -68,13 +78,21 @@ namespace UI
 
         public void Start()
         {
-            EventManager.Instance.StartListening(EventsType.SetQuickslotMana,(x) => SetMana((int)x));
-            EventManager.Instance.StartListening(EventsType.SetHudSkillImage,(x) => SetSkillImage((string)x));
+
                }
 
+        private void CheckCanUseSkill()
+        {
+            if (playerData.CurrentMana >= curSkillMana)
+            {
+                quickSlotView.NotActiveMana(false);
+                return; 
+            }
+            quickSlotView.NotActiveMana(true);
+        }
         private void SetMana(int _value)
         {
-            mana = _value; 
+            curSkillMana = _value; 
             quickSlotView.SetManaText(_value);
             // 업데이트 UI 
         }
@@ -89,8 +107,11 @@ namespace UI
         {
             
         }
+
+        private StatData playerData; 
         public void Start(object _data)
         {
+            playerData = _data as StatData;
         }
 
         private void InitSlotDic()
@@ -107,7 +128,7 @@ namespace UI
             {
                 quickSlotView.SlotList[i].SetItemData(InventoryManager.Instance.GetQuickSlotItem(i),true);
             }
-
+            CheckCanUseSkill();
             // 마나를 가져와야 해 
             // 무기 스킬 펑션 클래스를 가져와 
             // 굿 

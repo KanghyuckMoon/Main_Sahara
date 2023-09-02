@@ -20,6 +20,8 @@ namespace UI
             //quick_slot_parent,
             //select_effect,
             skill_image, 
+            mana_guage,
+            
         }
 
         enum Quickslots
@@ -59,6 +61,10 @@ namespace UI
             InitQuickSlotUIImage(); 
         }
 
+        public void NotActiveMana(bool _isActive)
+        {
+            ShowVisualElement(GetVisualElement((int)Elements.mana_guage),_isActive);
+        }
         public void SetSkillImage(Sprite _sprite)
         {
             GetVisualElement((int)Elements.skill_image).style.backgroundImage = new StyleBackground(_sprite);
