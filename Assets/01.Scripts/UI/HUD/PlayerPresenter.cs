@@ -10,12 +10,12 @@ namespace UI.Hud
         [SerializeField]
         private QuickSlotPresenter quickSlotPresenter;
 
-        protected override void ContructPresenters()
+        /*protected override void ContructPresenters()
         {
             base.ContructPresenters();
             PresenterList.Add(quickSlotPresenter);
             DataPresenterDic[HudType.statData].Add(quickSlotPresenter);
-        }
+        }*/
 
         private void Awake()
         {
@@ -29,15 +29,24 @@ namespace UI.Hud
 
         protected override void OnEnable()
         {
-            OnConstructorPresenters = () =>
-            {
-                PresenterList.Add(quickSlotPresenter);
-                DataPresenterDic[HudType.statData].Add(quickSlotPresenter);
-            };
+            Debug.Log("@@@@@OnEnable");
             base.OnEnable();
-            quickSlotPresenter.OnEnable();
+            Debug.Log("******OnEnable");
         }
 
+        public void OnEnableEvent()
+        {
+            Debug.Log("@@OnEnableEvent");
+            quickSlotPresenter.OnEnable();
+            
+        }
+        public void OnConstructorPresentEvent()
+        {
+            Debug.Log("@@OnConstructorPresentEvent");
+            PresenterList.Add(quickSlotPresenter);
+            DataPresenterDic[HudType.statData].Add(quickSlotPresenter);
+
+        }
         protected override void OnDisable()
         {
             base.OnDisable();

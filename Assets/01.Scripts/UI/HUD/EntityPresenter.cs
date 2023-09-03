@@ -8,6 +8,7 @@ using Data;
 using System;
 using UI.ActiveManager;
 using UI.Base;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -73,11 +74,13 @@ namespace UI
             }
         }
 
+        public UnityEvent OnEnableEvent = null; 
         protected virtual void OnEnable()
         {
             StartCoroutine(LateUpdateCo());
             Init();
             (UIActiveManager.Instance as IUIManager).Add(this);
+            OnEnableEvent.Invoke();
         }
 
 
@@ -168,14 +171,14 @@ namespace UI
             buffModule = null;
         }
 
-        public Action OnConstructorPresenters = null; 
+        public UnityEvent OnConstructorPresenters = null; 
         private void Init()
         {
             uiDocument ??= GetComponent<UIDocument>();
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
             //  hudElement.style.display = DisplayStyle.None;
             ContructPresenters();
-            OnConstructorPresenters?.Invoke();
+            OnConstructorPresenters.Invoke();
             AwakePresenters();
             StartCoroutine(InitCo());
         }

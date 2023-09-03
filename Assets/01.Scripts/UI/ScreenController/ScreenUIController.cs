@@ -93,8 +93,6 @@ namespace UI
         {
             uiCam = transform.parent.GetComponentInChildren<Camera>().gameObject; 
             uiCam.SetActive(false);
-            InitScreenPresenters();
-            SetNotInputEvent();
 
             if (UIManager.Instance.PlayerObject is null)
             {
@@ -141,6 +139,9 @@ namespace UI
 
         private void Start()
         {
+            InitScreenPresenters();
+            SetNotInputEvent();
+
             EnabledAllScreens();
             SetInputEvent();
             isUIInput = UIManager.Instance.IsUIInput; 
