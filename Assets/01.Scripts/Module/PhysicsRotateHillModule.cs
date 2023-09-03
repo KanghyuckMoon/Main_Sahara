@@ -129,7 +129,7 @@ namespace Module
 				float distance = _leftFootHit.point.y - _rightFootHit.point.y;
 				float _angle = -distance * Mathf.Rad2Deg;
 				MoveModule.SetZRotation(_angle);
-				Debug.Log($"{mainModule.gameObject.name} Y Distance {_angle}", mainModule.gameObject);
+				//Debug.Log($"{mainModule.gameObject.name} Y Distance {_angle}", mainModule.gameObject);
 			}
             else
 			{
