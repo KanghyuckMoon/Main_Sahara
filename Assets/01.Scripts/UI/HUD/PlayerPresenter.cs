@@ -14,9 +14,10 @@ namespace UI.Hud
         {
             base.ContructPresenters();
             PresenterList.Add(quickSlotPresenter);
+            DataPresenterDic[HudType.statData].Add(quickSlotPresenter);
         }
 
-        private void Start()
+        private void Awake()
         {
             quickSlotPresenter.Start(); 
         }
@@ -24,6 +25,17 @@ namespace UI.Hud
         private void OnDestroy()
         {
             quickSlotPresenter.OnDestroy(); 
+        }
+
+        protected override void OnEnable()
+        {
+            OnConstructorPresenters = () =>
+            {
+                PresenterList.Add(quickSlotPresenter);
+                DataPresenterDic[HudType.statData].Add(quickSlotPresenter);
+            };
+            base.OnEnable();
+            quickSlotPresenter.OnEnable();
         }
 
         protected override void OnDisable()

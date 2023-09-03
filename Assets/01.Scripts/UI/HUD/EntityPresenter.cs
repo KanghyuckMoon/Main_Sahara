@@ -50,7 +50,7 @@ namespace UI
         public UIDocument Root { get; set; }
         public UIDocument RootUIDocument => uiDocument;
         public List<IUIFollower> PresenterList => _presenterList;
-
+        public Dictionary<HudType, List<IUIFollower>> DataPresenterDic => _dataPresenterDic;
         private Transform Target
         {
             get
@@ -168,12 +168,14 @@ namespace UI
             buffModule = null;
         }
 
+        public Action OnConstructorPresenters = null; 
         private void Init()
         {
             uiDocument ??= GetComponent<UIDocument>();
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
             //  hudElement.style.display = DisplayStyle.None;
             ContructPresenters();
+            OnConstructorPresenters?.Invoke();
             AwakePresenters();
             StartCoroutine(InitCo());
         }
