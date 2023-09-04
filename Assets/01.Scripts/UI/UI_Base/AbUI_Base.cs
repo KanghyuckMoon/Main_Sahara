@@ -26,7 +26,7 @@ namespace UI.Base
         protected VisualElement rootElement;
 
         [SerializeField]
-        protected string parentElementName; // 자기 자신 이름 
+        public string parentElementName; // 자기 자신 이름 
         protected VisualElement parentElement; // 자기 자신 
 
         protected Dictionary<Type, List<VisualElement>> elementsDic = new Dictionary<Type, List<VisualElement>>(); // 모든 자식 요소들 
