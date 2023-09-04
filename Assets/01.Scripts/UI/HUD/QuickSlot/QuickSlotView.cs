@@ -21,6 +21,7 @@ namespace UI
             //select_effect,
             skill_image = 5, 
             mana_guage = 6,
+            bottom_left_panel = 7, 
             
         }
 
@@ -61,6 +62,10 @@ namespace UI
             InitQuickSlotUIImage(); 
         }
 
+        public void ActiveSkillIamge(bool _isActive)
+        {
+            ShowVisualElement(GetVisualElement((int)Elements.bottom_left_panel), _isActive);
+        }
         public void NotActiveMana(bool _isActive)
         {
             ShowVisualElement(GetVisualElement((int)Elements.mana_guage),_isActive);
@@ -79,6 +84,7 @@ namespace UI
         /// </summary>
         public void InitQuickSlotUIImage()
         {
+            _slotList.Clear();
             int _idx = 0; 
             foreach (var _elementEnum in Enum.GetValues(typeof(Quickslots)))
             {

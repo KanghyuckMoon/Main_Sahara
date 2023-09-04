@@ -28,7 +28,8 @@ namespace UI
     }
     
     [System.Serializable]
-    public class QuickSlotPresenter : IUIFollower
+    public class 
+    QuickSlotPresenter : IUIFollower
     {
  //       [SerializeField]
 //        private UIDocument uiDocument;
@@ -51,6 +52,7 @@ namespace UI
         public void OnEnable()
         {
             Debug.Log("@@등록");
+            // 현재 장착한 무기가 스킬있는건가 체크 
             EventManager.Instance.StartListening(EventsType.SetQuickslotMana,(x) => SetMana((int)x));
             EventManager.Instance.StartListening(EventsType.SetHudSkillImage,(x) => SetSkillImage((string)x));
             EventManager.Instance.StartListening(EventsType.UpdateQuickSlot, SetQuickSlot);
@@ -100,6 +102,16 @@ namespace UI
         {
             var _sprite =  AddressablesManager.Instance.GetResource<Sprite>(_spriteAddress);
             quickSlotView.SetSkillImage(_sprite);
+
+            if (_spriteAddress == "")
+            {
+                quickSlotView.ActiveSkillIamge(false);
+            }
+            else
+            {
+                quickSlotView.ActiveSkillIamge(true);
+
+            }
         }
 
         public void OnDestroy()
@@ -245,6 +257,16 @@ namespace UI
             RemoveStyleClass(curSlotDic[GetClampIndex(curIndex+4)]);
             curSlotDic[GetClampIndex(curIndex+4)].AddToClassList(animateClassDic[4]);
             
+            // 스킬 있는지 
+            /*var _itemData = InventoryManager.Instance.GetCurrentQuickSlotItem();
+            if (_itemData.itemType == ItemType.Weapon) // 무기만 스킬이 있기 때문에 무기일때만 활성화 
+            {
+                quickSlotView.ActiveSkillIamge(true);
+            }
+            else
+            {
+                quickSlotView.ActiveSkillIamge(false);
+            }*/
             //var _skillImage = AddressablesManager.Instance.GetResource<Sprite>(InventoryManager.Instance.GetCurrentQuickSlotItem().spriteKey);
             //quickSlotView.SetSkillImage(_skillImage);
         }

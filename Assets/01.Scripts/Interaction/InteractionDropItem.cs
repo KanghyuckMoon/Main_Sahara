@@ -42,7 +42,7 @@ namespace Interaction
 		{
 			get
 			{
-				return transform.position + new Vector3(0, 2, 0);
+				return transform.position + new Vector3(0, 0.5f, 0);
 			}
 		}
 
