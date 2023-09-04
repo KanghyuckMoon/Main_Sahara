@@ -34,7 +34,7 @@ namespace Interaction
 		{
 			get
 			{
-				return transform.position + new Vector3(0, 0.2f, 0);
+				return transform.position + new Vector3(0, -3.5f, 0);
 			}
 		}
 
