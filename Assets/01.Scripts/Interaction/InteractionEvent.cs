@@ -29,7 +29,13 @@ namespace Interaction
             }
         }
 
-        public Vector3 PopUpPos { get; }
+        public Vector3 PopUpPos 
+        { 
+            get
+            {
+                return transform.position + Vector3.up * 0.1f;
+            }
+        }
 
         public string ActionName
         {
