@@ -114,7 +114,8 @@ namespace UI
 
         private void SetUIInput(bool _isActive)
         {
-            isUIInput = _isActive; 
+            isUIInput = _isActive;
+            UIManager.Instance.IsUIInput = isUIInput; 
         }
         private IEnumerator Init()
         {
