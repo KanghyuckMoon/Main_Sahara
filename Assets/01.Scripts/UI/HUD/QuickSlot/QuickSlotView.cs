@@ -21,7 +21,7 @@ namespace UI
             //select_effect,
             skill_image = 5, 
             mana_guage = 6,
-            skill_image_parent = 7, 
+            bottom_left_panel = 7, 
             
         }
 
@@ -64,7 +64,7 @@ namespace UI
 
         public void ActiveSkillIamge(bool _isActive)
         {
-            ShowVisualElement(GetVisualElement((int)Elements.skill_image_parent), _isActive);
+            ShowVisualElement(GetVisualElement((int)Elements.bottom_left_panel), _isActive);
         }
         public void NotActiveMana(bool _isActive)
         {

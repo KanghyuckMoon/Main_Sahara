@@ -102,6 +102,16 @@ namespace UI
         {
             var _sprite =  AddressablesManager.Instance.GetResource<Sprite>(_spriteAddress);
             quickSlotView.SetSkillImage(_sprite);
+
+            if (_spriteAddress == "")
+            {
+                quickSlotView.ActiveSkillIamge(false);
+            }
+            else
+            {
+                quickSlotView.ActiveSkillIamge(true);
+
+            }
         }
 
         public void OnDestroy()
@@ -248,7 +258,7 @@ namespace UI
             curSlotDic[GetClampIndex(curIndex+4)].AddToClassList(animateClassDic[4]);
             
             // 스킬 있는지 
-            var _itemData = InventoryManager.Instance.GetCurrentQuickSlotItem();
+            /*var _itemData = InventoryManager.Instance.GetCurrentQuickSlotItem();
             if (_itemData.itemType == ItemType.Weapon) // 무기만 스킬이 있기 때문에 무기일때만 활성화 
             {
                 quickSlotView.ActiveSkillIamge(true);
@@ -256,7 +266,7 @@ namespace UI
             else
             {
                 quickSlotView.ActiveSkillIamge(false);
-            }
+            }*/
             //var _skillImage = AddressablesManager.Instance.GetResource<Sprite>(InventoryManager.Instance.GetCurrentQuickSlotItem().spriteKey);
             //quickSlotView.SetSkillImage(_skillImage);
         }

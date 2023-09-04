@@ -278,7 +278,7 @@ namespace UI.Inventory
         {
             for (int i = 0; i < _list.Count() ; i++)
             {
-                SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], _list.Count() - i -1);
+                SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
                 _slotIPr.SetSlotType(_itemType);
                 _slotIPr.SetEquipSlotType(_equipTypeArr);
 
