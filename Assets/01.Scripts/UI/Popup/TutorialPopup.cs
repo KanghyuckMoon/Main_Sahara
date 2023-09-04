@@ -6,7 +6,9 @@ using UI.EventManage;
 using UI.Production;
 using UnityEngine;
 using UI.Manager;
+#if UNITY_EDITOR
 using UnityEditor.PackageManager;
+#endif
 
 namespace UI.Popup
 {

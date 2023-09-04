@@ -120,8 +120,8 @@ namespace UI.UtilManager
                 @event.StopPropagation();
             });
 #else
-            var scroller = listView.Q<Scroller>();
-            listView.RegisterCallback<WheelEvent>(@event => {
+            var scroller = scrollView.Q<Scroller>();
+			scrollView.RegisterCallback<WheelEvent>(@event => {
                scroller.value += @event.delta.y * 100;
                 @event.StopPropagation();
             });
