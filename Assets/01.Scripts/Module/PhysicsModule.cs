@@ -394,7 +394,7 @@ namespace Module
         }
         private void FallDamage()
         {
-            if (JumpModule.gravityWeight <= -20)
+            if (JumpModule.gravityWeight <= -30)
             {
                 HitModule.GetHit(20);
             }
