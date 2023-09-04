@@ -95,19 +95,21 @@ namespace Module
 			previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance, mainModule.groundLayer)
 				? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
 				: Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
-			mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
+			//mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
 			
 			var _slopeLimit = mainModule.CharacterController.slopeLimit;
-			mainModule.IsSlope = _angle <= _slopeLimit + 5f;
+			mainModule.IsSlope = _angle <= _slopeLimit + 3f;
 
 
 			if (Vector3.Dot(forward, _rayNormal) > 0)
 			{
 				MoveModule.SetXRotation(_angle);
+				//MoveModule.SetZRotation(_angle);
 			}
 			else
 			{
 				MoveModule.SetXRotation(-_angle);
+				//MoveModule.SetZRotation(-_angle);
 			}
 
             ZRotationSlope(_rayNormal);
