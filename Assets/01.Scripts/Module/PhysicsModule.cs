@@ -347,7 +347,7 @@ namespace Module
 		            mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
 
 		            var _slopeLimit = mainModule.CharacterController.slopeLimit;
-		            mainModule.IsSlope = _angle <= _slopeLimit + 1.5f;
+		            mainModule.IsSlope = _angle <= _slopeLimit + 3f;
 
 		            mainModule.SlopeVector =
 			            new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z) * 5;

@@ -346,12 +346,12 @@ namespace Module
 
         public void SetXRotation(float angle)
         {
-            xRotation = Mathf.Lerp(xRotation, Mathf.Min(30, angle), Time.deltaTime * 5);
+            xRotation = Mathf.Lerp(xRotation, Mathf.Clamp(angle, -15, 15), Time.deltaTime * 2);
             //mainModule.Root.rotation = Quaternion.Euler(xRotation, 0, 0);
         }
 		public void SetZRotation(float angle)
 		{
-			zRotation = Mathf.Lerp(zRotation, Mathf.Min(30, angle), Time.deltaTime * 5);;
+			zRotation = Mathf.Lerp(zRotation, Mathf.Clamp(angle, -15, 15), Time.deltaTime * 2);;
 			//mainModule.Root.rotation = Quaternion.Euler(xRotation, 0, 0);
 		}
 	}
