@@ -86,6 +86,12 @@ namespace UI.Popup
                             ButtonEvt(true);
                     }
                 }
+                else
+                {
+                    _popup.InActiveBtns();
+                    _popup.ActiveGuideLabel(true);
+
+                }
                 if(_idx +1 == _count) // 마지막 페이지라면 
                 {
                     
