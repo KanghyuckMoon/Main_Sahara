@@ -19,8 +19,8 @@ namespace UI
             //quickslot_view,
             //quick_slot_parent,
             //select_effect,
-            skill_image, 
-            mana_guage,
+            skill_image = 5, 
+            mana_guage = 6,
             
         }
 

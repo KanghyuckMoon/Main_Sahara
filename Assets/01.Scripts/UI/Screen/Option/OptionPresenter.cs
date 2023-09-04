@@ -46,10 +46,15 @@ using Utill.Addressable;
 
         private void Awake()
         {
-            this.uiDocument = GetComponent<UIDocument>();
-            this.grahpicSetting = GetComponent<GraphicsSetting>();
-            this.soundSetting = GetComponent<SoundSetting>();
-
+            if (transform.childCount == 0)
+            {
+                Instantiate(AddressablesManager.Instance.GetResource<GameObject>("OptionSetting"),transform);
+                optionView.parentElementName = "option_screen";
+            }
+            this.uiDocument = GetComponentInChildren<UIDocument>();
+            this.grahpicSetting = GetComponentInChildren<GraphicsSetting>();
+            this.soundSetting = GetComponentInChildren<SoundSetting>();
+            
             optionDataSO = AddressablesManager.Instance.GetResource<OptionDataSO>("OptionDataSO");
 
         }

@@ -88,6 +88,10 @@ namespace GoogleSpreadSheet
 			UnityWebRequest wwwQUEST = UnityWebRequest.Get(URL.QUEST);
 			yield return wwwQUEST.SendWebRequest();
 			SetTextQUEST(wwwQUEST.downloadHandler.text);
+			
+			UnityWebRequest wwwINTERACTION = UnityWebRequest.Get(URL.INTERACTION);
+			yield return wwwINTERACTION.SendWebRequest();
+			SetTextINTERACTION(wwwINTERACTION.downloadHandler.text);
 			isInit = true;
 			
 #if UNITY_EDITOR
@@ -151,6 +155,18 @@ namespace GoogleSpreadSheet
 				string[] column = row[i].Split('\t');
 				textSO.AddTextData(column[0], column[1]);
 				textSO.AddTextData(column[2], column[3]);
+			}
+		}
+		
+		private void SetTextINTERACTION(string tsv)
+		{
+			string[] row = tsv.Split('\n');
+			int rowSize = row.Length;
+
+			for (int i = 1; i < rowSize; i++)
+			{
+				string[] column = row[i].Split('\t');
+				textSO.AddTextData(column[0], column[1]);
 			}
 		}
 	}
