@@ -70,7 +70,7 @@ namespace UI.Production
             }
             else
             {
-                _descLabel.text = "방향키 ←, → 을 통해 페이지를 넘기세요";
+                _descLabel.text = "방향키를 통해 페이지를 넘기세요";
             }
             //ShowVisualElement(GetLabel((int)Labels.guide_label),_isActive);
         }

@@ -21,6 +21,7 @@ namespace UI
             //select_effect,
             skill_image = 5, 
             mana_guage = 6,
+            skill_image_parent = 7, 
             
         }
 
@@ -61,6 +62,10 @@ namespace UI
             InitQuickSlotUIImage(); 
         }
 
+        public void ActiveSkillIamge(bool _isActive)
+        {
+            ShowVisualElement(GetVisualElement((int)Elements.skill_image_parent), _isActive);
+        }
         public void NotActiveMana(bool _isActive)
         {
             ShowVisualElement(GetVisualElement((int)Elements.mana_guage),_isActive);
