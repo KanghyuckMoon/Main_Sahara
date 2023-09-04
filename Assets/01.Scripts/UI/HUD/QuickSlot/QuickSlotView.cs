@@ -79,6 +79,7 @@ namespace UI
         /// </summary>
         public void InitQuickSlotUIImage()
         {
+            _slotList.Clear();
             int _idx = 0; 
             foreach (var _elementEnum in Enum.GetValues(typeof(Quickslots)))
             {

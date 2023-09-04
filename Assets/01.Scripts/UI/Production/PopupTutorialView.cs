@@ -63,7 +63,16 @@ namespace UI.Production
 
         public void ActiveGuideLabel(bool _isActive)
         {
-            ShowVisualElement(GetLabel((int)Labels.guide_label),_isActive);
+            Label _descLabel = GetLabel((int)Labels.guide_label);
+            if (_isActive == true)
+            {
+                _descLabel.text = "ESC를 눌러 창을 닫으세요";
+            }
+            else
+            {
+                _descLabel.text = "방향키 ←, → 을 통해 페이지를 넘기세요";
+            }
+            //ShowVisualElement(GetLabel((int)Labels.guide_label),_isActive);
         }
         
         public void AddButtonEvents()
