@@ -11,11 +11,13 @@ using UI.Production;
 using System.Linq;  
 using Inventory;
 using UI.EventAlarm;
-using UnityEditor;
 using Quest;
 using TimeManager;
 using UI.EventManage;
+#if UNITY_EDITOR
+using UnityEditor;
 using UnityEditor.PackageManager;
+#endif
 
 namespace UI.Popup
 {
