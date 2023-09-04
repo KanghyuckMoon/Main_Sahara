@@ -73,7 +73,6 @@ namespace UI
             
 
             InitSlotDic(); 
-            UpdateUI(); 
         }
 
         public void Start()
@@ -246,8 +245,8 @@ namespace UI
             RemoveStyleClass(curSlotDic[GetClampIndex(curIndex+4)]);
             curSlotDic[GetClampIndex(curIndex+4)].AddToClassList(animateClassDic[4]);
             
-            var _skillImage = AddressablesManager.Instance.GetResource<Sprite>(InventoryManager.Instance.GetCurrentQuickSlotItem().spriteKey);
-            quickSlotView.SetSkillImage(_skillImage);
+            //var _skillImage = AddressablesManager.Instance.GetResource<Sprite>(InventoryManager.Instance.GetCurrentQuickSlotItem().spriteKey);
+            //quickSlotView.SetSkillImage(_skillImage);
         }
 
         private void RemoveStyleClass(VisualElement _v)

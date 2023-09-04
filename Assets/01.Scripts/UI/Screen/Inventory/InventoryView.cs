@@ -276,7 +276,7 @@ namespace UI.Inventory
 
         private void AddEquipSlotsEvt(List<VisualElement> _list, ItemType _itemType,ItemType[] _equipTypeArr = null)
         {
-            for (int i = 0; i < _list.Count(); i++)
+            for (int i = _list.Count() -1; i  >=0 ; i--)
             {
                 SlotItemPresenter _slotIPr = new SlotItemPresenter(_list[i], i);
                 _slotIPr.SetSlotType(_itemType);

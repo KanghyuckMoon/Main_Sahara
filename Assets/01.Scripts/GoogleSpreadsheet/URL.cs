@@ -8,7 +8,8 @@ namespace GoogleSpreadSheet
         public const string MONSTER = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=247542014";
         public const string TALK = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=711764916";
         public const string QUEST = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=1239566566";
-
+        public const string INTERACTION = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=2094660010";
+        
         //SO
         public const string ITEMSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=136508589";
         public const string DROPITEMSO = "https://docs.google.com/spreadsheets/d/17mjkUcJ1Gdt0_Clu-UvRXANIpeFS-CPlOxyHaSYfpzw/export?format=tsv&gid=1391864184";
