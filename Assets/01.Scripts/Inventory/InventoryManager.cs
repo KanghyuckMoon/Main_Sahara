@@ -364,9 +364,10 @@ namespace Inventory
 
 						break;
 					}
-					SendEvent("QuestManager", null);
+					/*SendEvent("QuestManager", null);
 					SendEvent("PopupUIManager", _itemData);
 					inventorySO.itemDataList.Add(_itemData);
+					*/
 
 				}
 			}
