@@ -172,7 +172,8 @@ namespace Module
 			if (_projectileObjectData.isParentOn)
 			{
 				_projectile.transform.SetParent(isUseWeapon ? WhichHandToHold(_projectileObjectData.weaponHand) : noneUseWeaponTargetTrm);
-				_projectile.transform.localRotation = _projectileObjectData.rotation;
+                //Debug.LogError(_projectile.transform.parent.name + "미ㅏ넝류ㅏㅓㅗㅠ하ㅠ하먿람라");
+                _projectile.transform.localRotation = _projectileObjectData.rotation;
 				_projectile.transform.localPosition = _projectileObjectData.position;
 				_projectile.SetActive(true);
 			}

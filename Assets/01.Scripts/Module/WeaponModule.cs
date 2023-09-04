@@ -117,13 +117,15 @@ namespace Module
         {
             SetAnimation(animationName);
             mainModule.IsWeaponExist = false;
+            ProjectileGenerator.IsUseWeapon = false;
 
             if (currentWeapon != null)
             {
                 currentWeapon.SetActive(false);
                 ObjectPoolManager.Instance.RegisterObject(currentWeaponName, currentWeapon);
+                ProjectileGenerator.IsUseWeapon = false;
             }
-
+            
             if (weapon != null && weapon != "")
             {
                 GameObject _weapon = ObjectPoolManager.Instance.GetObject(weapon);
@@ -146,6 +148,8 @@ namespace Module
                 _hitBoxOnAnimation?.ChangeSO(BaseWeapon.HitBoxDataSO);
                 ProjectileGenerator?.ChangeSO(BaseWeapon.ProjectilePositionSO);
                 mainModule.GetComponent<AnimationOnEffect>().ChangeSO(BaseWeapon.AnimationEffectSO);
+
+                ProjectileGenerator.IsUseWeapon = true;
 
                 StatModule.SetAttackDamage(BaseWeapon.WeaponDataSO);
 
