@@ -23,8 +23,8 @@ namespace PassiveItem
         
         public void ApplyPassiveEffect()
         {
-            mainModule.CharacterController.slopeLimit = 120;
-            mainModule.CanCrawlTheWall = 1;
+            //mainModule.CharacterController.slopeLimit = 120;
+            //mainModule.CanCrawlTheWall = 1;
         }
 
         public void UpdateEffect()
@@ -44,7 +44,7 @@ namespace PassiveItem
         public void ClearPassiveEffect()
         {
             //moveModule.isCrawling = false;
-            mainModule.CharacterController.slopeLimit = 40;
+            //mainModule.CharacterController.slopeLimit = 40;
             mainModule.CanCrawlTheWall = 0;
         }
 

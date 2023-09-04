@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1887863556065748953}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: FishingRod_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,10 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228940b11a5efaa47a61687b4f4d0f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDataSO: {fileID: 11400000, guid: 5b5b075520225de46b0792c7eee7d849, type: 2}
+  itemDataSO: {fileID: 11400000, guid: ec6e80a7ead189e47bfb175b81f31fac, type: 2}
   count: 1
   rigid: {fileID: 4089796422897099533}
-  itemAddress: Cn_Po_OilPotionOfAttack
+  itemAddress: FishingRod
   targetObj: {fileID: 4089796422897099531}
   isJumping: 1
   getEvent:
@@ -95,10 +95,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4089796422897099531}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -112,8 +123,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4089796422897099531}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 1
   m_Height: 1
   m_Direction: 1
@@ -129,7 +149,8 @@ GameObject:
   - component: {fileID: 6463099576604192955}
   - component: {fileID: 5979190956556560903}
   - component: {fileID: 5979190956556560896}
-  m_Layer: 11
+  - component: {fileID: 4816418291742813508}
+  m_Layer: 0
   m_Name: fishing_rod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,3 +222,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4816418291742813508
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979190956556560897}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 4e7fb66486b7ef844b542ba9905b0942, type: 2}
