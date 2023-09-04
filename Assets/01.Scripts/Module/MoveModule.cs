@@ -265,7 +265,7 @@ namespace Module
                 var _slopRotation = Quaternion.FromToRotation(Vector3.up, _hitInfo.normal);
                 if (mainModule.ObjDir == Vector2.zero)
                 {
-                            _slopRotation = Quaternion.identity;
+                    _slopRotation = Quaternion.identity;
                     velocity = Vector3.zero;
                     return Vector3.zero;
                 }
@@ -297,7 +297,7 @@ namespace Module
                     mainModule.Gravity = -2f;
                 }
             }
-            if (mainModule.Gravity < 200)
+            if (mainModule.Gravity < 100)
             {
                 mainModule.Gravity += mainModule.GravityScale * mainModule.PersonalFixedDeltaTime * 2;
             }
@@ -346,12 +346,12 @@ namespace Module
 
         public void SetXRotation(float angle)
         {
-            xRotation = angle;
-			//mainModule.Root.rotation = Quaternion.Euler(xRotation, 0, 0);
-		}
+            xRotation = Mathf.Lerp(xRotation, Mathf.Min(30, angle), Time.deltaTime * 5);
+            //mainModule.Root.rotation = Quaternion.Euler(xRotation, 0, 0);
+        }
 		public void SetZRotation(float angle)
 		{
-			zRotation = angle;
+			zRotation = Mathf.Lerp(zRotation, Mathf.Min(30, angle), Time.deltaTime * 5);;
 			//mainModule.Root.rotation = Quaternion.Euler(xRotation, 0, 0);
 		}
 	}

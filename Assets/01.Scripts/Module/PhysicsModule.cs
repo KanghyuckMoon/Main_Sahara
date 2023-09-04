@@ -333,25 +333,34 @@ namespace Module
             var _ray = new Ray(_rayPos, Vector3.down);
             var _ray1 = new Ray(_rayPos, _transform.forward);
 
-            if (Physics.Raycast(_ray, out var _raycastHit, 0.5f, mainModule.groundLayer))
+
+            if (Physics.Raycast(_ray, out var _raycastHit, 10f, mainModule.groundLayer))
             {
-                var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
+	            if (mainModule.isGround)
+	            {
+		            var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
 
-                previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance, mainModule.groundLayer)
-                    ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
-                    : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
-                mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
+		            previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance,
+			            mainModule.groundLayer)
+			            ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
+			            : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
+		            mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
 
-                var _slopeLimit = mainModule.CharacterController.slopeLimit;
-                mainModule.IsSlope = _angle <= _slopeLimit + 5f;
+		            var _slopeLimit = mainModule.CharacterController.slopeLimit;
+		            mainModule.IsSlope = _angle <= _slopeLimit + 1.5f;
 
-                mainModule.SlopeVector =
-                    new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z) * 5;
+		            mainModule.SlopeVector =
+			            new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z) * 5;
+
+		            mainModule.isGround = mainModule.IsSlope;
+	            }
+	            else
+	            {
+		            mainModule.SlopeVector = Vector3.zero;
+		            mainModule.isGround = false;
+	            }
             }
-            else
-            {
-                mainModule.IsSlope = true;
-            }
+
             Debug.DrawRay(_rayPos, Vector3.down, Color.red);
         }
         public override void OnDrawGizmos()
@@ -372,7 +381,7 @@ namespace Module
                 landAction?.Invoke();
             }
 
-            mainModule.isGround = _isLand && mainModule.IsSlope;
+            mainModule.isGround = _isLand;
             if (mainModule.isGround)
             {
                 mainModule.lastGroundPos = mainModule.transform.position;
@@ -385,7 +394,7 @@ namespace Module
         }
         private void FallDamage()
         {
-            if (JumpModule.gravityWeight <= -50)
+            if (JumpModule.gravityWeight <= -20)
             {
                 HitModule.GetHit(20);
             }
