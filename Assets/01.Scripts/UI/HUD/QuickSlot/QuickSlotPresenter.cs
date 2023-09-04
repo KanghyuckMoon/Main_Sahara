@@ -73,7 +73,6 @@ namespace UI
             
 
             InitSlotDic(); 
-            UpdateUI(); 
         }
 
         public void Start()

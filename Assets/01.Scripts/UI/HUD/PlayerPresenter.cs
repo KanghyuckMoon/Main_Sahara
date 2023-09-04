@@ -29,22 +29,19 @@ namespace UI.Hud
 
         protected override void OnEnable()
         {
-            Debug.Log("@@@@@OnEnable");
             base.OnEnable();
-            Debug.Log("******OnEnable");
+            OnEnableEvent();
         }
 
         public void OnEnableEvent()
         {
-            Debug.Log("@@OnEnableEvent");
             quickSlotPresenter.OnEnable();
             
         }
         public void OnConstructorPresentEvent()
         {
-            Debug.Log("@@OnConstructorPresentEvent");
             PresenterList.Add(quickSlotPresenter);
-            DataPresenterDic[HudType.statData].Add(quickSlotPresenter);
+            _dataPresenterDic[HudType.statData].Add(quickSlotPresenter);
 
         }
         protected override void OnDisable()

@@ -44,7 +44,7 @@ namespace UI
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
 
-        private Dictionary<HudType, List<IUIFollower>>
+        public Dictionary<HudType, List<IUIFollower>>
             _dataPresenterDic = new Dictionary<HudType, List<IUIFollower>>(); // 데이터 타입, 프레젠터 
 
         // 프로퍼티 
@@ -182,6 +182,7 @@ namespace UI
             AwakePresenters();
             StartCoroutine(InitCo());
         }
+
 
         [ContextMenu("테스트")]
         public virtual void UpdateUI()
