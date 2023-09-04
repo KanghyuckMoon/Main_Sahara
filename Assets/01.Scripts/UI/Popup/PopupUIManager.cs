@@ -199,6 +199,7 @@ namespace UI.Popup
                     // 트윈끝났을 때 알림 
                     
                 }
+                Debug.Log("@@ 아이템 획득");
                 CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
             }
 
