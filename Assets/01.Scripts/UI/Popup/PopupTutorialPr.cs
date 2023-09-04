@@ -45,6 +45,12 @@ namespace UI.Popup
                 popupTutorialView.InitUIParent(parent);
             }*/
         }
+
+        public void InActiveBtns()
+        {
+            popupTutorialView.ActiveButton(true, false);
+            popupTutorialView.ActiveButton(false, false);
+        }
         public void SetData(object _data)
         {
             PopupTutorialData _tData = _data as PopupTutorialData;
