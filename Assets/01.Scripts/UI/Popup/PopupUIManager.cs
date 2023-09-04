@@ -11,11 +11,13 @@ using UI.Production;
 using System.Linq;  
 using Inventory;
 using UI.EventAlarm;
-using UnityEditor;
 using Quest;
 using TimeManager;
 using UI.EventManage;
+#if UNITY_EDITOR
+using UnityEditor;
 using UnityEditor.PackageManager;
+#endif
 
 namespace UI.Popup
 {
@@ -199,6 +201,7 @@ namespace UI.Popup
                     // 트윈끝났을 때 알림 
                     
                 }
+                Debug.Log("@@ 아이템 획득");
                 CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
             }
 
