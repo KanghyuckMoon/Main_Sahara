@@ -49,10 +49,10 @@ namespace UI.ParticleManger
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha8))
-            {
-                Play(ParticleType.Burst, new Vector2(500, 500), transform);
-            }
+            //if (Input.GetKeyDown(KeyCode.Alpha8))
+            //{
+                //Play(ParticleType.Burst, new Vector2(500, 500), transform);
+            //}
         }
 
         public UIParticle Play(ParticleType particleType, Vector2 _pos, Transform _parent, bool _isLoop = false)
