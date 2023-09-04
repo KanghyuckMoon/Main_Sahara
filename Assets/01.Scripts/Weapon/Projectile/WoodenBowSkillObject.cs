@@ -43,7 +43,7 @@ namespace Weapon
 
                     _effect.transform.LookAt(VARIABLE.transform);
 
-                    transform.DOMove(VARIABLE.transform.position + new Vector3(0, 0.4f, 0), 1f).SetEase(Ease.OutQuart);
+                    transform.DOMove(VARIABLE.transform.position, 1f).SetEase(Ease.OutQuart);
                     transform.LookAt(VARIABLE.transform);
                 }
             }

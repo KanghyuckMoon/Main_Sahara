@@ -17,11 +17,11 @@ namespace EventTransmit
 		public override void Awake()
 		{
 			base.Awake();
-			InventoryManager.Instance.InventoryEventTransmit += SendEvent;
-			QuestManager.Instance.QuestEventTransmit += SendEvent;
-			SaveManager.Instance.SaveEventTransmit += SendEvent;
-			StreamingManager.Instance.StreamingEventTransmit += SendEvent;
-			PopupUIManager.Instance.PopupEventTransmit += SendEvent; 
+			InventoryManager.Instance.InventoryEventTransmit = SendEvent;
+			QuestManager.Instance.QuestEventTransmit = SendEvent;
+			SaveManager.Instance.SaveEventTransmit = SendEvent;
+			StreamingManager.Instance.StreamingEventTransmit = SendEvent;
+			PopupUIManager.Instance.PopupEventTransmit = SendEvent; 
 		}
 
 		public void SendEvent(string _sender, string _recipient, object _obj)

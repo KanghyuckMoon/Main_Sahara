@@ -18,7 +18,7 @@ namespace UI
         enum Elements
         {
             hp_frame,
-            line 
+            //line 
         }
         enum ProgressBars
         {
@@ -27,8 +27,8 @@ namespace UI
         }
 
         // 프로퍼티 
-        public VisualElement AccentLine => GetVisualElement((int)Elements.line);
-        private StyleTranslate LineTrm => AccentLine.style.translate; 
+        //public VisualElement AccentLine => GetVisualElement((int)Elements.line);
+        //private StyleTranslate LineTrm => AccentLine.style.translate; 
         public override void Cashing()
         {
             base.Cashing();

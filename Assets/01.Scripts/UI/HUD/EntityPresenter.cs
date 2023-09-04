@@ -8,6 +8,7 @@ using Data;
 using System;
 using UI.ActiveManager;
 using UI.Base;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -43,7 +44,7 @@ namespace UI
 
         private List<IUIFollower> _presenterList = new List<IUIFollower>();
 
-        private Dictionary<HudType, List<IUIFollower>>
+        public Dictionary<HudType, List<IUIFollower>>
             _dataPresenterDic = new Dictionary<HudType, List<IUIFollower>>(); // 데이터 타입, 프레젠터 
 
         // 프로퍼티 
@@ -73,11 +74,13 @@ namespace UI
             }
         }
 
+        public UnityEvent OnEnableEvent = null; 
         protected virtual void OnEnable()
         {
             StartCoroutine(LateUpdateCo());
             Init();
             (UIActiveManager.Instance as IUIManager).Add(this);
+            OnEnableEvent.Invoke();
         }
 
 
@@ -168,17 +171,18 @@ namespace UI
             buffModule = null;
         }
 
-        public Action OnConstructorPresenters = null; 
+        public UnityEvent OnConstructorPresenters = null; 
         private void Init()
         {
             uiDocument ??= GetComponent<UIDocument>();
             hudElement = uiDocument.rootVisualElement.ElementAt(0);
             //  hudElement.style.display = DisplayStyle.None;
             ContructPresenters();
-            OnConstructorPresenters?.Invoke();
+            OnConstructorPresenters.Invoke();
             AwakePresenters();
             StartCoroutine(InitCo());
         }
+
 
         [ContextMenu("테스트")]
         public virtual void UpdateUI()

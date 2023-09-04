@@ -98,7 +98,7 @@ namespace UI.Popup
                         
                         popupTutorialScreenPr.Active(false);
 
-                        yield return null; 
+                        yield return new WaitForSeconds(0.1f); 
                         EventManager.Instance.TriggerEvent(EventsType.SetUIInput, true);
                         EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, false);
                         EventManager.Instance.TriggerEvent(EventsType.IsCanNextDialogue, true);
