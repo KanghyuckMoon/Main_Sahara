@@ -35,10 +35,12 @@ namespace UI.Popup
         public void ActiveTutoPopup(string _key, Action _callback, bool _isMustExe = false)
         {
             // 이미 한 번 실행 했으면 리턴 
-            if (popupTutorialDic.TryGetValue(_key, out bool _value) == true
-                && _isMustExe == false)
+            if (popupTutorialDic.TryGetValue(_key, out bool _value) == true)
             {
-                return; 
+                if (_value == true && _isMustExe == false)
+                {
+                    return; 
+                }
             }
             _callback?.Invoke();
             _value = true; 
