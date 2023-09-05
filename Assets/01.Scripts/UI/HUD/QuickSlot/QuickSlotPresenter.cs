@@ -95,6 +95,9 @@ namespace UI
         {
             curSkillMana = _value; 
             quickSlotView.SetManaText(_value);
+
+            float _percent = Mathf.Clamp( curSkillMana/playerData.CurrentMana, 0, 1); 
+            quickSlotView.SetManaGuage(_percent);
             // 업데이트 UI 
         }
 

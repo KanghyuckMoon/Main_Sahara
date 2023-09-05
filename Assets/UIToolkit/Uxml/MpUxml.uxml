@@ -1,13 +1,20 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UIToolkit/Uss/Slider.uss?fileID=7433441132597879392&amp;guid=4d4caa61570a49f49a00d4dbc1809e15&amp;type=3#Slider" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
+    <Style src="project://database/Assets/UIToolkit/Uss/Hud.uss?fileID=7433441132597879392&amp;guid=1841124dd9e19824ab71e01edca4d30f&amp;type=3#Hud" />
     <ui:VisualElement name="mp_view" style="width: 100%; height: 100%;">
         <ui:VisualElement name="mp_frame" style="justify-content: center; align-items: center; overflow: visible; width: 100%; height: 100%;">
             <ui:VisualElement name="frame" class="slider_frame" style="background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Make/HUD/PlayerMPDeco.png?fileID=2800000&amp;guid=76c4a9893b9e9c5468e6934a97eb18ba&amp;type=3#PlayerMPDeco&apos;); width: 103%; -unity-background-scale-mode: stretch-to-fill; height: 100%; display: none;" />
             <ui:VisualElement name="bar" class="bar_parent">
                 <ui:ProgressBar value="1" name="back_bar" high-value="1" class="mp_bar" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-bottom: 0; width: 100%; height: 100%; display: flex; align-items: stretch;" />
-                <ui:ProgressBar name="front_bar" value="1" high-value="1" class="front_bar mp_bar" style="display: flex; width: 100%; height: 100%; bottom: 100%;" />
+                <ui:ProgressBar name="front_bar" high-value="1" class="front_bar mp_bar" style="display: flex; width: 100%; height: 100%; bottom: 100%;" />
                 <ui:VisualElement name="border" class="border bar_border">
                     <ui:VisualElement style="height: 100%; width: 100%; background-image: url(&apos;project://database/Assets/14.Texture/43.UI/HUD/Now/HP_Border_bar%201.psd?fileID=21300000&amp;guid=8b71f931d4f1ae343b15f8dfbcb2216c&amp;type=3#HP_Border_bar 1&apos;); -unity-slice-left: 960; -unity-slice-right: 960; -unity-slice-scale: 0.3px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="text_parent" class="bar_border text_parent" style="flex-direction: row;">
+                    <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="cur_mp_text" class="font_base hpmp_text" />
+                    <ui:Label tabindex="-1" text="/" display-tooltip-when-elided="true" name="slash" class="font_base hpmp_text slash_text" />
+                    <ui:Label tabindex="-1" text="10" display-tooltip-when-elided="true" name="max_mp_text" class="font_base hpmp_text" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
