@@ -44,6 +44,7 @@ namespace UI
         {
             //    _hpView.SetBarUI(_entityData.hp);
             _mpView.SetBarUI((float)statData.CurrentMana/ statData.MaxMana);
+            _mpView.SetMpText(statData.CurrentMana, statData.MaxMana);
         }
         
         public void ActiveScreen(bool _isActive)

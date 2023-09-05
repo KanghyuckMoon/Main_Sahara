@@ -19,7 +19,7 @@ public class MPBall : MonoBehaviour
 
 	private GameObject target;
 	
-	public void SetMPBall(Vector3 startPos, Action<int> _mpAction, int _addMp, GameObject _target)
+	public void SetMPBall(Vector3 startPos, Func<int, bool> _mpAction, int _addMp, GameObject _target)
 	{
 		target = _target;
 		transform.rotation = Quaternion.identity;
@@ -28,7 +28,7 @@ public class MPBall : MonoBehaviour
 		StartCoroutine(MoveToTarget(startPos, _mpAction, _addMp));
 	}
 
-	private IEnumerator MoveToTarget(Vector3 startPos,  Action<int> _mpAction, int _addMp)
+	private IEnumerator MoveToTarget(Vector3 startPos,  Func<int, bool> _mpAction, int _addMp)
 	{
 
 		float startAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;

@@ -75,14 +75,14 @@ namespace UI.Popup
                     // 설명 페이지가 2장 이상이고 마지막 페이지가 아니라면  
                     if (_idx != 0)
                     {
-                        if (Input.GetKeyDown(KeyCode.LeftArrow))
+                        if (Input.GetKeyDown(KeyCode.A))
                             ButtonEvt(false);
 
                     }
 
                     if (_idx != _count)
                     {
-                        if (Input.GetKeyDown(KeyCode.RightArrow))
+                        if (Input.GetKeyDown(KeyCode.D))
                             ButtonEvt(true);
                     }
                 }
@@ -95,7 +95,7 @@ namespace UI.Popup
                 if(_idx +1 == _count) // 마지막 페이지라면 
                 {
                     
-                    if (Input.GetKeyDown((KeyCode.Escape)))
+                    if (Input.GetKeyDown((KeyCode.F)))
                     {
                         StaticTime.UITime = 1f;
                         popupTutorialScreenPr.Active(false);

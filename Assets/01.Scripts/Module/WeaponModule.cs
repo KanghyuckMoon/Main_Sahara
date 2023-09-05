@@ -179,17 +179,18 @@ namespace Module
                 Animator.SetTrigger("ChangeWeapon");
             }
         }
+
         private Transform WhichHandToHold(BaseWeapon _baseWeapon)
         {
-            //_baseWeapon.weaponHand
-            foreach(WeaponSpownObject _hand in WeaponRight)
+            foreach (WeaponSpownObject _hand in WeaponRight)
             {
-                    if (_hand.weaponHand == _baseWeapon.weaponHand)
+                if (_hand.weaponHand == _baseWeapon.weaponHand)
                     return _hand.transform;
             }
 
             return null;
         }
+
         private void SetAnimation(string animationName)
         {
             mainModule.CurrentAnimationLayer = animationName;
