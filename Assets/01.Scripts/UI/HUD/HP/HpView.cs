@@ -27,8 +27,8 @@ namespace UI
         }
         enum Labels
         {
-            max_mp_text,
-            cur_mp_text
+            max_hp_text,
+            cur_hp_text
         }
         // 프로퍼티 
         //public VisualElement AccentLine => GetVisualElement((int)Elements.line);
@@ -38,7 +38,7 @@ namespace UI
             base.Cashing();
             Bind<VisualElement>(typeof(Elements));
             Bind<ProgressBar>(typeof(ProgressBars));
-            BindLabels(typeof(Labels));
+            //BindLabels(typeof(Labels));
         }
 
         public override void Init()
@@ -88,8 +88,8 @@ namespace UI
         }
         public void SetMpText(float _curMp, float _maxMp)
         {
-            GetLabel((int)Labels.cur_mp_text).text = _curMp.ToString(); 
-            GetLabel((int)Labels.max_mp_text).text = _maxMp.ToString(); 
+            //GetLabel((int)Labels.cur_mp_text).text = _curMp.ToString(); 
+            //GetLabel((int)Labels.max_mp_text).text = _maxMp.ToString(); 
         }
     }
 
