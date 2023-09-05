@@ -25,7 +25,11 @@ namespace UI
             front_bar,
             back_bar
         }
-
+        enum Labels
+        {
+            max_hp_text,
+            cur_hp_text
+        }
         // 프로퍼티 
         //public VisualElement AccentLine => GetVisualElement((int)Elements.line);
         //private StyleTranslate LineTrm => AccentLine.style.translate; 
@@ -34,6 +38,7 @@ namespace UI
             base.Cashing();
             Bind<VisualElement>(typeof(Elements));
             Bind<ProgressBar>(typeof(ProgressBars));
+            //BindLabels(typeof(Labels));
         }
 
         public override void Init()
@@ -80,6 +85,11 @@ namespace UI
         {
         //      _frontBarView.Bar.value = endV;
             _frontBarView.Bar.style.display = _frontBarView.Bar.resolvedStyle.display == DisplayStyle.Flex ? DisplayStyle.None : DisplayStyle.Flex;
+        }
+        public void SetMpText(float _curMp, float _maxMp)
+        {
+            //GetLabel((int)Labels.cur_mp_text).text = _curMp.ToString(); 
+            //GetLabel((int)Labels.max_mp_text).text = _maxMp.ToString(); 
         }
     }
 

@@ -95,6 +95,9 @@ namespace UI
         {
             curSkillMana = _value; 
             quickSlotView.SetManaText(_value);
+
+            float _percent = Mathf.Clamp( curSkillMana/playerData.CurrentMana, 0, 1); 
+            quickSlotView.SetManaGuage(_percent);
             // 업데이트 UI 
         }
 
@@ -240,6 +243,7 @@ namespace UI
 
         private void SetQuickSlot()
         {
+        
             curIndex = InventoryManager.Instance.GetCurrentQuickSlotIndex();
             
             RemoveStyleClass(curSlotDic[GetClampIndex(curIndex)]);
@@ -257,6 +261,11 @@ namespace UI
             RemoveStyleClass(curSlotDic[GetClampIndex(curIndex+4)]);
             curSlotDic[GetClampIndex(curIndex+4)].AddToClassList(animateClassDic[4]);
             
+            // quickslot ui 에 뜨는 거 데이터대로 변경 
+            for (int i = 0; i < quickSlotView.SlotList.Count; i++)
+            {
+                quickSlotView.SlotList[i].SetItemData(InventoryManager.Instance.GetQuickSlotItem(i),true);
+            }
             // 스킬 있는지 
             /*var _itemData = InventoryManager.Instance.GetCurrentQuickSlotItem();
             if (_itemData.itemType == ItemType.Weapon) // 무기만 스킬이 있기 때문에 무기일때만 활성화 

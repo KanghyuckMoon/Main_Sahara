@@ -66,11 +66,11 @@ namespace UI.Production
             Label _descLabel = GetLabel((int)Labels.guide_label);
             if (_isActive == true)
             {
-                _descLabel.text = "ESC를 눌러 창을 닫으세요";
+                _descLabel.text = "F 키를 눌러 창을 닫으세요";
             }
             else
             {
-                _descLabel.text = "방향키를 통해 페이지를 넘기세요";
+                _descLabel.text = "A, D 키를 통해 페이지를 넘기세요";
             }
             //ShowVisualElement(GetLabel((int)Labels.guide_label),_isActive);
         }
