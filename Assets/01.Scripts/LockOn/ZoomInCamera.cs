@@ -145,7 +145,7 @@ namespace LockOn
             
             //if()
             
-            float _originSize = 40;
+            float _originSize = 50;
             float _targetSize = zoomInDataSO.ZoomInData[_key].value * _originSize;
 
             DOTween.To(
