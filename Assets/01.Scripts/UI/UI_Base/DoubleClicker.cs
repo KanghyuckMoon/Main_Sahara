@@ -26,4 +26,25 @@ namespace UI.Base
         }
     }
 
+    public class AltClicker : MouseManipulator
+    {
+        private Action OnClickCallback;
+
+        public AltClicker(Action _callback)
+        {
+            activators.Add(new ManipulatorActivationFilter
+                { clickCount = 1, button = MouseButton.LeftMouse, modifiers = EventModifiers.Alt });
+            this.OnClickCallback = _callback;
+        }
+
+        protected override void RegisterCallbacksOnTarget()
+        {
+            target.RegisterCallback<MouseDownEvent>((e) => OnClickCallback?.Invoke());
+        }
+
+        protected override void UnregisterCallbacksFromTarget()
+        {
+            target.RegisterCallback<MouseDownEvent>((e) => OnClickCallback?.Invoke());
+        }
+    }
 }

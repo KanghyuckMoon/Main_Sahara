@@ -135,6 +135,8 @@ using UI.Base;
                 accentItemCompo.InactiveAllModels();
                 inventoryView.SetItemText(null);
             }
+            EventManager.Instance.TriggerEvent(EventsType.UpdateQuickSlot);
+
         }
 
         public void UpdateUI()

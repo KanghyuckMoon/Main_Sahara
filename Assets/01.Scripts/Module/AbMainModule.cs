@@ -611,8 +611,6 @@ namespace Module
         private bool isConsecutiveWeapon;
         [SerializeField, Header("차지점프가 있는가")] 
         private bool isChargeJumpOn;
-        [Header("땅에 닿아있는가")] 
-        public bool isTouchGround;
 
         [SerializeField] public bool isFlameOn;
 

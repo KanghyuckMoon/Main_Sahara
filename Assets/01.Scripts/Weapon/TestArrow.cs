@@ -40,7 +40,6 @@ namespace Weapon
 
         protected override void OnEnable()
         {
-            gameObject.SetActive(true);
             trailRenderer.enabled = false;
             model.localEulerAngles = new Vector3(180,0,0);
             isFly = false;

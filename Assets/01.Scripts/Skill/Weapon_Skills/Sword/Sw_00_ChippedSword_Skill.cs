@@ -30,10 +30,8 @@ namespace Skill
 
         public void Skills(AbMainModule _mainModule)
         {
-            if (UseMana(_mainModule, -usingMana))
-            {
-                PlaySkillAnimation(_mainModule, animationClip);
-            }
+            UseMana(_mainModule, -usingMana);
+            PlaySkillAnimation(_mainModule, animationClip);
 
             //effect = ObjectPoolManager.Instance.GetObject(_skillEffectName);
             //effect.transform.SetParent(transform);
