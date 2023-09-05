@@ -49,7 +49,6 @@ namespace Skill
         {
             StatData _statData = _mainModule.GetComponent<StatData>();
 
-            _statData.ChargeMana(_mana);
             return _statData.ChargeMana(_mana);
             //_mainModule.GetComponent<StatData>().ChangeMana(_mana);
         }

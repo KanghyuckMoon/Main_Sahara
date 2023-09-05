@@ -94,6 +94,7 @@ namespace HitBox
 
 		public void SetEnable()
 		{
+			gameObject.SetActive(true);
 			if (!isInit)
 			{
 				index = StaticHitBoxIndex.GetHitBoxIndex();
