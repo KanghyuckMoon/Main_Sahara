@@ -103,6 +103,9 @@ namespace Detect
 		public void SetIndex()
 		{
 			curIndex = index++;
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+#endif
 		}
 
 		protected virtual void Awake()
