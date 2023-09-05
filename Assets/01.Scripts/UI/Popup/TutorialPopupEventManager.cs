@@ -43,7 +43,7 @@ namespace UI.Popup
                 }
             }
             _callback?.Invoke();
-            _value = true; 
+            popupTutorialDic[_key] = true; 
             // 여기서 실행하고 체크 
         }
     }
