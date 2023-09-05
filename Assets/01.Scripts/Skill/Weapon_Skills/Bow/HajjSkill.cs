@@ -30,41 +30,43 @@ namespace Skill
         {
             meshRenderer = GetComponent<MeshRenderer>();
             disolve = GetComponent<Disolve>();
-        }   
+        }
 
         public void Skills(AbMainModule _mainModule)
         {
-            //transform.root.GetComponent<CharacterController>().Move(Vector3.forward * 10);
+            if (UseMana(_mainModule, -usingMana))
+            {
+                //transform.root.GetComponent<CharacterController>().Move(Vector3.forward * 10);
 
-            var sword = ObjectPoolManager.Instance.GetObject("Hajj_SkillSword");
-            var effect = ObjectPoolManager.Instance.GetObject("Hajj_SkillEffect");
-            //var effect2 = ObjectPoolManager.Instance.GetObject("Hajj_SkillEffect_1");
+                var sword = ObjectPoolManager.Instance.GetObject("Hajj_SkillSword");
+                var effect = ObjectPoolManager.Instance.GetObject("Hajj_SkillEffect");
+                //var effect2 = ObjectPoolManager.Instance.GetObject("Hajj_SkillEffect_1");
 
-            //meshFilter.mesh = swordMesh;
-            //meshRenderer.material = swordMat;
-            
-            //transform.localScale = Vector3.one;
+                //meshFilter.mesh = swordMesh;
+                //meshRenderer.material = swordMat;
 
-            sword.transform.SetParent(transform.parent);
-            sword.GetComponent<RememberPosition>().SetPos();
-            sword.SetActive(true);
-            sword.GetComponent<Disolve>().DoFade(0, 1, 1f);
-            disolve.DoFade(1, 0, 0.8f);
+                //transform.localScale = Vector3.one;
 
-            effect.transform.localPosition = _mainModule.transform.position + new Vector3(0, 1, 0);
-            effect.transform.SetParent(_mainModule.transform);
-            effect.SetActive(true);
+                sword.transform.SetParent(transform.parent);
+                sword.GetComponent<RememberPosition>().SetPos();
+                sword.SetActive(true);
+                sword.GetComponent<Disolve>().DoFade(0, 1, 1f);
+                disolve.DoFade(1, 0, 0.8f);
 
-            //effect2.transform.localPosition = transform.position;
-            //effect2.SetActive(true);
+                effect.transform.localPosition = _mainModule.transform.position + new Vector3(0, 1, 0);
+                effect.transform.SetParent(_mainModule.transform);
+                effect.SetActive(true);
 
-            //meshRenderer.enabled = false;
-            
-            PlaySkillAnimation(_mainModule, animationClip);
-            UseMana(_mainModule, usingMana);
-            GetBuff(_mainModule);
-            
-            StartCoroutine(SetSwordOff(sword, animationClip.length, _mainModule));
+                //effect2.transform.localPosition = transform.position;
+                //effect2.SetActive(true);
+
+                //meshRenderer.enabled = false;
+
+                PlaySkillAnimation(_mainModule, animationClip);
+                GetBuff(_mainModule);
+
+                StartCoroutine(SetSwordOff(sword, animationClip.length, _mainModule));
+            }
         }
 
         IEnumerator SetSwordOff(GameObject _sword, float _time,AbMainModule _mainModule)

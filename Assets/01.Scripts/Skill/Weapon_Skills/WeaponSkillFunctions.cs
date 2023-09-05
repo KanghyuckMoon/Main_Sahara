@@ -45,11 +45,12 @@ namespace Skill
             _mainModule.Animator.SetBool(animationName, true);
         }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
         
-        protected void UseMana(AbMainModule _mainModule, int _mana)
+        protected bool UseMana(AbMainModule _mainModule, int _mana)
         {
             StatData _statData = _mainModule.GetComponent<StatData>();
 
             _statData.ChargeMana(_mana);
+            return _statData.ChargeMana(_mana);
             //_mainModule.GetComponent<StatData>().ChangeMana(_mana);
         }
 
