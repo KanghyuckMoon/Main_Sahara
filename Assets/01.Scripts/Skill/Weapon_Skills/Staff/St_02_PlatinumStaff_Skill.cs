@@ -13,9 +13,12 @@ namespace Skill
 
         public void Skills(AbMainModule _mainModule)
         {
-            UseMana(_mainModule, -usingMana);
-            PlaySkillAnimation(_mainModule, animationClip);
+            if (UseMana(_mainModule, -usingMana))
+            {
+                PlaySkillAnimation(_mainModule, animationClip);
+            }
         }
+
         public HitBoxAction GetHitBoxAction()
         {
             return null;
