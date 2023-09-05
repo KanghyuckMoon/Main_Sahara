@@ -142,7 +142,7 @@ Transform:
   - {fileID: 7118074666309013125}
   - {fileID: 6289230584526597940}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6165384266292577847
 Animator:
@@ -224,6 +224,7 @@ MonoBehaviour:
   hitBoxInAction: {fileID: 0}
   hitBoxName: Bite_1
   debugHitBoxDataSO: {fileID: 0}
+  capsuleColEditor: {fileID: 0}
 --- !u!114 &6165384266292577843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +375,7 @@ MonoBehaviour:
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0.12
+  groundDistance: 2
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -386,9 +388,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 132096
   maxSlope: 0
-  raycastTarget: {fileID: 0}
+  raycastTarget: {fileID: 6289230584526597940}
   visualObject: {fileID: 4134121960605059335}
   model: {fileID: 7118074666309013125}
+  root: {fileID: 0}
   animator: {fileID: 6165384266292577847}
   jumpstrenght: 0
   leftFeet: {fileID: 4838895564799215996}
