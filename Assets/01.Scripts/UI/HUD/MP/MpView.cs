@@ -24,11 +24,17 @@ namespace UI
             back_bar
         }
 
+        enum Labels
+        {
+            max_mp_text,
+            cur_mp_text
+        }
         public override void Cashing()
         {
             base.Cashing();
             Bind<VisualElement>(typeof(Elements));
             Bind<ProgressBar>(typeof(ProgressBars));
+            BindLabels(typeof(Labels));
         }
 
         public override void Init()
@@ -48,6 +54,12 @@ namespace UI
         {
             _frontBarView.SetSlider(v);
             _backBarView.SetSlider(v);
+        }
+
+        public void SetMpText(float _curMp, float _maxMp)
+        {
+            GetLabel((int)Labels.cur_mp_text).text = _curMp.ToString(); 
+            GetLabel((int)Labels.max_mp_text).text = _maxMp.ToString(); 
         }
     }
 

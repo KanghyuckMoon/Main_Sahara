@@ -66,6 +66,12 @@ namespace UI
         {
             ShowVisualElement(GetVisualElement((int)Elements.bottom_left_panel), _isActive);
         }
+
+        public void SetManaGuage(float _percent)
+        {
+            GetVisualElement((int)Elements.mana_guage).style.scale =
+                new StyleScale(new Scale(new Vector2(1, _percent)));
+        }
         public void NotActiveMana(bool _isActive)
         {
             ShowVisualElement(GetVisualElement((int)Elements.mana_guage),_isActive);
