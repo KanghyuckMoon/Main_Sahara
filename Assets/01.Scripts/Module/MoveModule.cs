@@ -299,7 +299,8 @@ namespace Module
             }
             if (mainModule.Gravity < 100)
             {
-                mainModule.Gravity += mainModule.GravityScale * mainModule.PersonalFixedDeltaTime * 2;
+                if (!mainModule.isTouchGround)
+                    mainModule.Gravity += mainModule.GravityScale * mainModule.PersonalFixedDeltaTime * 2;
             }
         }
 

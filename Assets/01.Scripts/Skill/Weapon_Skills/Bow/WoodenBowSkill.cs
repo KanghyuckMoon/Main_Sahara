@@ -23,19 +23,21 @@ namespace Skill
 
         public void Skills(AbMainModule _mainModule)
         {
-            setPlayerMaterial ??= transform.root.GetComponentInChildren<SetPlayerMaterial>();
+            if (UseMana(_mainModule, -usingMana))
+            {
+                setPlayerMaterial ??= transform.root.GetComponentInChildren<SetPlayerMaterial>();
 
-            GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
-            _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
-            
-            var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");
-            _effect.transform.position = transform.position;
-            _effect.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-            _effect.SetActive(true);
-            
-            PlaySkillAnimation(_mainModule, animationClip);
-            UseMana(_mainModule, usingMana);
-            GetBuff(_mainModule);
+                GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
+                _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
+
+                var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");
+                _effect.transform.position = transform.position;
+                _effect.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                _effect.SetActive(true);
+
+                PlaySkillAnimation(_mainModule, animationClip);
+                GetBuff(_mainModule);
+            }
         }
         public HitBoxAction GetHitBoxAction()
         {
