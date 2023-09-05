@@ -7,7 +7,7 @@ public class GameEventRaise : MonoBehaviour
     public GameEvent Event;
     
     // Update is called once per frame
-    void EventRaise()
+    public void EventRaise()
     {
         Event.Raise();
     }
