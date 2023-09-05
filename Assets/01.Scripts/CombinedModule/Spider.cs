@@ -41,10 +41,10 @@ namespace CondinedModule
             AddModuleWithPool<MoveModule>(ModuleType.Move);
             AddModuleWithPool<StatModule>(ModuleType.Stat);
             //AddModuleWithPool<CameraModule>(ModuleType.Camera, "CameraModule");
-            AddModuleWithPool<JumpModule>(ModuleType.Jump);
+            AddModuleWithPool<NoneAnimationJumpModule>(ModuleType.Jump);
             AddModuleWithPool<HpModule>(ModuleType.Hp);
             AddModuleWithPool<AnimationModule>(ModuleType.Animation);
-            AddModuleWithPool<PhysicsModule>(ModuleType.Physics);
+            AddModuleWithPool<PhysicsRotateHillModule>(ModuleType.Physics);
             AddModuleWithPool<UIModule>(ModuleType.UI, "HudUI");
             AddModuleWithPool<WeaponModule>(ModuleType.Weapon);
             AddModuleWithPool<HitModule>(ModuleType.Hit);
@@ -55,7 +55,7 @@ namespace CondinedModule
             AddModuleWithPool<BuffModule>(ModuleType.Buff);
 
             RaycastTarget ??= transform.Find("RayCastPoint");
-
+            //
             //visualObject ??= transform.Find("Visual")?.gameObject;
             Animator = GetComponent<Animator>();
             animatorOverrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);

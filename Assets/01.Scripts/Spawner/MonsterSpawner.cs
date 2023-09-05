@@ -44,6 +44,11 @@ namespace Spawner
 		public void SetIndex()
 		{
 			curIndex = index++;
+
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(this);
+#endif
+
 		}
 
 		public void OnEnable()
