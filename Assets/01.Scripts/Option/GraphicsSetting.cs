@@ -180,7 +180,7 @@ namespace Option
 
         public void SetFullscreen(int isFullscreen)
         {
-            Screen.fullScreen = isFullscreen == 0 ? false : true;
+            Screen.fullScreen = isFullscreen == 0 ? true :false;
             Debug.Log("전체 화면 여부 변경" +Screen.fullScreen);
         }
 
