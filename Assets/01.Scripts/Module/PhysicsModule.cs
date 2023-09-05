@@ -381,7 +381,6 @@ namespace Module
                 landAction?.Invoke();
             }
 
-            mainModule.isTouchGround = _isLand;
             mainModule.isGround = _isLand;
             if (mainModule.isGround)
             {
