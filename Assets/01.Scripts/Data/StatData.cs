@@ -262,22 +262,9 @@ namespace Data
             WalkSpeed = playerdata.walkingSpeed;
             RunSpeed = playerdata.runSpeed;
         }
-        public bool ChargeMana(int addMana)
+        public void ChargeMana(int addMana)
         {
-            if (addMana < 0)
-            {
-                if (CurrentMana >= -addMana)
-                {
-                    CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            
             CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
-            return true;
         }
 
         public int ChangeMana(int _mana)

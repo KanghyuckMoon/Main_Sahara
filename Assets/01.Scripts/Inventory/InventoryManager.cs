@@ -408,6 +408,12 @@ namespace Inventory
 			return true; 
 		}
 
+		public void RemoveQuickSlotItem(int _index)
+		{
+			inventorySO.quickSlot[_index] = null;
+
+		}
+
 		/// <summary>
 		/// 중복 장착 체크 
 		/// </summary>
@@ -620,7 +626,7 @@ namespace Inventory
 			{
 				ItemData _itemData = inventorySO.accessories[_index];
 				PlayerItemModule.RemovePassiveItem(_itemData.accessoriesItemType);
-				inventorySO.accessories[_index] = null;
+				inventorySO.accessories[_index] = new ItemData();
 			}
 		}
 

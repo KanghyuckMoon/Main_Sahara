@@ -58,6 +58,7 @@ namespace UI.Inventory
 
         private InventoryGridSlotsPr inventoryGridSlotsPr;
         private Dictionary<ItemType, Func<ItemData, int,bool>> slotCallbackDic = new Dictionary<ItemType, Func<ItemData, int,bool>>();
+        private Dictionary<ItemType, Action<int>> equipSlotRemoveCallbackDic = new Dictionary<ItemType, Action<int>>();
         private Action<ItemData> callback = null; 
         
         // 프로퍼티
@@ -283,7 +284,7 @@ namespace UI.Inventory
                 _slotIPr.SetEquipSlotType(_equipTypeArr);
 
                 AddEquipSlotEvt(_slotIPr, _itemType);
-            }
+            }   
         }
         
         private void AddEquipSlotEvt(SlotItemPresenter _slotPr,ItemType _itemType)
@@ -291,8 +292,15 @@ namespace UI.Inventory
             _slotPr.AddHoverEvent(() => inventoryGridSlotsPr.DescriptionPr.SetItemData(_slotPr.ItemData, // 마우스 위에 둘시 설명창 
                 _slotPr.WorldPos, _slotPr.ItemSize));
             _slotPr.AddOutEvent(() => inventoryGridSlotsPr.DescriptionPr.ActiveView(false)); // 마우스 위에서 떠날시 설명창 비활성화
-            _slotPr.AddDoubleClicker(() => Debug.Log("더블클릭"));
-            
+            _slotPr.AddAltClicker(() =>
+            {
+                if (_slotPr.ItemData == null) return; 
+                Debug.Log("더블클릭");
+                //inventoryGridSlotsPr.InvenPanelDic[_itemType].RemoveEquipSlotView(_slotPr);
+                equipSlotRemoveCallbackDic[_slotPr.ItemData.itemType]?.Invoke(_slotPr.Index);
+                _slotPr.ClearData();
+
+            });
             inventoryGridSlotsPr.InvenPanelDic[_itemType].AddEquipSlotView(_slotPr);
         }
         /// <summary>
@@ -466,7 +474,12 @@ namespace UI.Inventory
             this.slotCallbackDic.Add(ItemType.Equipment, (x1, x2) => InventoryManager.Instance.EquipEquipment(x2,x1));
             this.slotCallbackDic.Add(ItemType.Accessories , (x1, x2) => InventoryManager.Instance.EquipAccessories(x2,x1));
             
-            
+            this.equipSlotRemoveCallbackDic.Clear(); 
+
+            this.equipSlotRemoveCallbackDic.Add(ItemType.Weapon, (x1) => InventoryManager.Instance.RemoveQuickSlotItem(x1));
+            this.equipSlotRemoveCallbackDic.Add(ItemType.Equipment, (x1 ) => InventoryManager.Instance.RemoveEquipment(x1));
+            this.equipSlotRemoveCallbackDic.Add(ItemType.Accessories , (x1) => InventoryManager.Instance.RemoveAccessories(x1));
+
         }
 
         /// <summary>

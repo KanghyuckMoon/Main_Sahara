@@ -158,7 +158,11 @@ namespace UI.Inventory
             this.slotItemView.RemoveCurManipulator();
             this.slotItemView.AddManipulator(new DoubleClicker(_callback));
         }
-
+        public void AddAltClicker(Action _callback)
+        {
+            this.slotItemView.RemoveCurManipulator();
+            this.slotItemView.AddManipulator(new AltClicker(_callback));
+        }
         /// <summary>
         /// 드래거기능 추가
         /// </summary>

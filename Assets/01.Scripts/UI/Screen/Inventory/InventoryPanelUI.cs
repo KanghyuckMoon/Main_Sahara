@@ -53,6 +53,13 @@ namespace UI.Inventory
         {
             this.equipItemViewList.Add(_slotItemView);
         }
+        // 매니저에서 데이터 받아와서 
+        public void RemoveEquipSlotView(SlotItemPresenter _slotItemView)
+        {
+            if (_slotItemView == null) return; 
+            this.equipItemViewList.Remove(_slotItemView);
+        }
+
 
         public void RemoveSlotView()
         {
