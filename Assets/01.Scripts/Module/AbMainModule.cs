@@ -854,8 +854,13 @@ namespace Module
         }
 
         private void OnDrawGizmos()
-        {
-            if (Application.isPlaying)
+		{
+			if (!this.enabled)
+			{
+				return;
+			}
+
+			if (Application.isPlaying)
             {
                 foreach (AbBaseModule baseModule in moduleComponentsDic.Values)
                 {
