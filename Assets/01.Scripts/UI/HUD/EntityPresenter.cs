@@ -199,8 +199,8 @@ namespace UI
         private void UpdateUIActive()
         {
             if (uiModule == null) return;
-            hudElement.style.display = uiModule.IsRender ? DisplayStyle.Flex : DisplayStyle.None;
-            //hudElement.style.display  = DisplayStyle.None;
+                hudElement.style.display = uiModule.IsRender ? DisplayStyle.Flex : DisplayStyle.None;
+                //hudElement.style.display  = DisplayStyle.None;
         }
 
         /// <summary>
@@ -321,10 +321,19 @@ namespace UI
         //    }
         //}
 
+        /// <summary>
+        /// StateData 와
+        /// UIModule 모두 등록해둔 상황
+        /// UIModule은 적을 기준으로 거리에 따라 껐다 켯다 하기 위해 
+       /// 적과 플레이어를 구분 
+        /// </summary>
         public void Receive()
         {
             UpdateUI();
-            UpdateUIActive();
+            if( isPlayerHud == false)
+            {
+                UpdateUIActive();
+            }
         }
 
         public virtual void Execute()

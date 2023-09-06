@@ -23,6 +23,12 @@ namespace UI.Base
                 _label.text = x.newValue.ToString(); 
             });
         }
+
+        public void UpdateUI()
+        {
+            label.text = slider.value.ToString();
+
+        }
     }
     
 }
