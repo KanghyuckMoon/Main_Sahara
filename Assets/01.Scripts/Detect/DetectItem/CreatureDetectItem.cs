@@ -70,8 +70,11 @@ namespace Detect
         
         [SerializeField] 
         private string effectAddress;
-        
-        [SerializeField]
+
+		[SerializeField]
+		protected UnityEvent setEvent;
+
+		[SerializeField]
         protected UnityEvent getoutEventAfter;
         
         [SerializeField]
@@ -112,8 +115,13 @@ namespace Detect
             {
                 isGetOut = true;
                 gameObject.SetActive(false);
+
+			}
+            else
+            {
+                setEvent?.Invoke();
             }
-        }
+		}
 
         public void GetOut()
         {
@@ -131,29 +139,32 @@ namespace Detect
             if (isUseAlreadyCreature)
             {
                 _dropObj = creature;
-                _dropObj.SetActive(true);
             }
             else
             {
                 _dropObj = ObjectPoolManager.Instance.GetObject(objkey);
             }
-            _dropObj.transform.position = spawnTrm.position;
-            _dropObj.SetActive(true);
-            float _powerRight = Random.Range(-0.2f, 0.2f) * xzPower;
-            float _powerForward = Random.Range(-0.2f, 0.2f) * xzPower;
-            Vector3 _vec = Vector3.up * upPower + Vector3.right * _powerRight + Vector3.forward * _powerForward;
 
-            if (isEnemy)
-            {
-                var _mainModule = _dropObj.GetComponent<AbMainModule>();
-                _mainModule.attackedTime = 0f;
-                _mainModule.knockBackPower = upPower;
-                _mainModule.KnockBackVector = _vec.normalized;
-            }
-            else
-            {
-                _dropObj.GetComponentInChildren<Rigidbody>().AddForce(_vec, ForceMode.Impulse);   
-            }
+            if(_dropObj == null)
+			{
+				_dropObj.transform.position = spawnTrm.position;
+				_dropObj.SetActive(true);
+				float _powerRight = Random.Range(-0.2f, 0.2f) * xzPower;
+				float _powerForward = Random.Range(-0.2f, 0.2f) * xzPower;
+				Vector3 _vec = Vector3.up * upPower + Vector3.right * _powerRight + Vector3.forward * _powerForward;
+
+				if (isEnemy)
+				{
+					var _mainModule = _dropObj.GetComponent<AbMainModule>();
+					_mainModule.attackedTime = 0f;
+					_mainModule.knockBackPower = upPower;
+					_mainModule.KnockBackVector = _vec.normalized;
+				}
+				else
+				{
+					_dropObj.GetComponentInChildren<Rigidbody>().AddForce(_vec, ForceMode.Impulse);
+				}
+			}
             EffectManager.Instance.SetEffectDefault(effectAddress, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             isGetOut = true;
