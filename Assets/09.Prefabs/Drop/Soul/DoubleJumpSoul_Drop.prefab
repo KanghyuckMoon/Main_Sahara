@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7946923775046395817}
   - component: {fileID: 4045596184138038790}
   - component: {fileID: 2584630369952891875}
+  - component: {fileID: 5512517258487342853}
   m_Layer: 14
   m_Name: DoubleJumpSoul_Drop
   m_TagString: Untagged
@@ -55,7 +56,19 @@ MonoBehaviour:
   isJumping: 1
   getEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5512517258487342853}
+        m_TargetAssemblyTypeName: GameEventRaise, Utill.Event
+        m_MethodName: EventRaise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &4045596184138038790
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106,6 +119,19 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5512517258487342853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147793496472883844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e597c68bd13c5f34f81a961b641012c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 61f00af2576d1404ba7fa6542ce41586, type: 2}
 --- !u!1001 &4314352322033050170
 PrefabInstance:
   m_ObjectHideFlags: 0
