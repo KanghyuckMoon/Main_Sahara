@@ -9,6 +9,10 @@ namespace Skill
     {
         public void Skills(AbMainModule _mainModule)
         {
+            StateModule a = _mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+
+            a.RemoveState(State.SKILL);
+            return;
         }
 
         public HitBoxAction GetHitBoxAction()

@@ -833,6 +833,11 @@ namespace Module
 
         private void OnTriggerEnter(Collider other)
         {
+            if(!this.enabled)
+            {
+                return;
+            }
+
             foreach(AbBaseModule baseModule in moduleComponentsDic.Values)
             {
                 baseModule?.OnTriggerEnter(other);

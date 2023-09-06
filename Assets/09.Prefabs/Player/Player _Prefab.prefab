@@ -144,7 +144,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 72726882684786332}
   m_AABB:
     m_Center: {x: -0.08659353, y: -0.043144442, z: -0.5947662}
-    m_Extent: {x: 0.12655342, y: 0.10622614, z: 0.1066138}
+    m_Extent: {x: 0.52, y: 0.53, z: 0.38}
   m_DirtyAABB: 0
 --- !u!1 &118922279893466530
 GameObject:
@@ -553,7 +553,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256954467234053360}
-  m_LocalRotation: {x: -0, y: 0.9999145, z: -0, w: 0.013079435}
+  m_LocalRotation: {x: 0, y: 0.99991447, z: 0, w: 0.013080876}
   m_LocalPosition: {x: 356.117, y: 1.317, z: 67.657}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -568,8 +568,8 @@ Transform:
   - {fileID: 5900255644161844305}
   - {fileID: 4698856286803748577}
   m_Father: {fileID: 0}
-  m_RootOrder: 72
-  m_LocalEulerAnglesHint: {x: 0, y: 240.314, z: 0}
+  m_RootOrder: 90
+  m_LocalEulerAnglesHint: {x: 0, y: 178.501, z: 0}
 --- !u!95 &1457858946168304052
 Animator:
   serializedVersion: 5
@@ -659,6 +659,7 @@ MonoBehaviour:
   isDash: 0
   isConsecutiveWeapon: 0
   isChargeJumpOn: 0
+  isTouchGround: 0
   isFlameOn: 0
   attacking: 0
   strongAttacking: 0
@@ -666,7 +667,7 @@ MonoBehaviour:
   gravityScale: -9.8
   groundOffset: -0.25
   groundDistance: 2
-  groundRadius: 0.2
+  groundRadius: 0.27
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
   knockBackPower: 0
@@ -773,7 +774,7 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 4096
-  isUseWeapon: 0
+  isUseWeapon: 1
   noneUseWeaponTargetTrm: {fileID: 0}
   isUseHeight: 0
   height: 0

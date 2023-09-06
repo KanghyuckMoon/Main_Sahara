@@ -67,6 +67,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3208937497663925684}
   - component: {fileID: 3208937497663925683}
+  - component: {fileID: 2731607808242086525}
+  - component: {fileID: 6362663347941077621}
+  - component: {fileID: 2352151840653677745}
   m_Layer: 0
   m_Name: Bone.005_end
   m_TagString: Untagged
@@ -96,7 +99,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3208937497663925685}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
   m_Name: 
@@ -107,6 +110,71 @@ MonoBehaviour:
   isTimeIndexCange: 1
   isOnEnalbe: 1
   isStage: 0
+--- !u!54 &2731607808242086525
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937497663925685}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &6362663347941077621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937497663925685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 3208937498358750703}
+  attackMulti: 0.7
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &2352151840653677745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937497663925685}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0001, y: 0.004, z: 0.001}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3208937497712568653
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +222,7 @@ MonoBehaviour:
   effectName: BoomSandVFXSmall
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 132096
   body: {fileID: 3208937498753899973}
   otherFoot: {fileID: 3208937499074332207}
   speed: 5
@@ -350,6 +418,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3208937498157738118}
   - component: {fileID: 3208937498157738117}
+  - component: {fileID: 5085626601092134087}
+  - component: {fileID: 6298927836884756156}
+  - component: {fileID: 8280753553916205598}
   m_Layer: 0
   m_Name: Bone.008_end
   m_TagString: Untagged
@@ -379,7 +450,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3208937498157738119}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
   m_Name: 
@@ -390,6 +461,71 @@ MonoBehaviour:
   isTimeIndexCange: 1
   isOnEnalbe: 1
   isStage: 0
+--- !u!54 &5085626601092134087
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937498157738119}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &6298927836884756156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937498157738119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 3208937498358750703}
+  attackMulti: 0.7
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &8280753553916205598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937498157738119}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0001, y: 0.004, z: 0.001}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3208937498294769017
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +605,7 @@ MonoBehaviour:
   effectName: BoomSandVFXSmall
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 132096
   body: {fileID: 3208937498753899973}
   otherFoot: {fileID: 3208937499364657016}
   speed: 5
@@ -639,6 +775,7 @@ MonoBehaviour:
   isDash: 0
   isConsecutiveWeapon: 0
   isChargeJumpOn: 0
+  isTouchGround: 0
   isFlameOn: 0
   attacking: 0
   strongAttacking: 0
@@ -1243,6 +1380,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3208937498973473385}
   - component: {fileID: 3208937498973473384}
+  - component: {fileID: 1846545213114482145}
+  - component: {fileID: 7768727504476983016}
+  - component: {fileID: 1557135423211839455}
   m_Layer: 0
   m_Name: Bone.002_end
   m_TagString: Untagged
@@ -1272,7 +1412,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3208937498973473386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
   m_Name: 
@@ -1283,6 +1423,71 @@ MonoBehaviour:
   isTimeIndexCange: 1
   isOnEnalbe: 1
   isStage: 0
+--- !u!54 &1846545213114482145
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937498973473386}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &7768727504476983016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937498973473386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 3208937498358750703}
+  attackMulti: 0.7
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &1557135423211839455
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937498973473386}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0001, y: 0.004, z: 0.001}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3208937498988338121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1568,7 @@ MonoBehaviour:
   effectName: BoomSandVFXSmall
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 132096
   body: {fileID: 3208937498753899973}
   otherFoot: {fileID: 3208937497712568651}
   speed: 5
@@ -1606,7 +1811,7 @@ MonoBehaviour:
   effectName: BoomSandVFXSmall
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 132096
   body: {fileID: 3208937498753899973}
   otherFoot: {fileID: 3208937498323192667}
   speed: 5
@@ -1656,6 +1861,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3208937499602172463}
   - component: {fileID: 3208937499602172462}
+  - component: {fileID: 5705218993087020764}
+  - component: {fileID: 6766637563995193349}
+  - component: {fileID: 7005228924429452828}
   m_Layer: 0
   m_Name: Bone.011_end
   m_TagString: Untagged
@@ -1685,7 +1893,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3208937499602172448}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69ec42e5e2be13247946cfccc3032944, type: 3}
   m_Name: 
@@ -1696,6 +1904,71 @@ MonoBehaviour:
   isTimeIndexCange: 1
   isOnEnalbe: 1
   isStage: 0
+--- !u!54 &5705218993087020764
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937499602172448}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &6766637563995193349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937499602172448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ae0af54e0685a47b29a4497b81489d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainModule: {fileID: 3208937498358750703}
+  attackMulti: 0.7
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &7005228924429452828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208937499602172448}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0001, y: 0.004, z: 0.001}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3208937499665474754
 GameObject:
   m_ObjectHideFlags: 0
