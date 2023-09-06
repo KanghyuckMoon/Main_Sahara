@@ -29,6 +29,9 @@ namespace Skill
 
                 GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
                 _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
+                _skillProjectile.GetComponent<HitBoxOnProjectile>().SetOwner(transform.root.gameObject);
+                _skillProjectile.tag = _mainModule.tag;
+                _skillProjectile.GetComponent<HitBoxOnProjectile>().SetEnable();
 
                 var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");
                 _effect.transform.position = transform.position;
