@@ -69,7 +69,7 @@ namespace Module
         public void UseWeaponSkill()
         {
             if (!CheakWeaponSkill()) return;
-            StateModule.AddState(State.SKILL);
+            //StateModule.AddState(State.SKILL);
             weaponSkill.Skills(mainModule);
         }
 
