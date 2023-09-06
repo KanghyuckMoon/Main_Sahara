@@ -123,6 +123,7 @@ namespace Module {
                 case 0:
                     if (equipItem.TryGetValue(ItemType.HELMET, out var _obj))
                     {
+                        if(equipItem[ItemType.HELMET] == null) return; 
                         EquipingItem _equipingItem = equipItem[ItemType.HELMET].GetComponent<EquipingItem>();
                         equipItem[ItemType.HELMET].SetActive(false);
                         equipItem[ItemType.HELMET] = null;
@@ -131,6 +132,7 @@ namespace Module {
                     }
                     else
                     {
+                        if(equipItem[ItemType.EAR] == null) return; 
                         EquipingItem _equipingItem = equipItem[ItemType.EAR].GetComponent<EquipingItem>();
                         equipItem[ItemType.EAR].SetActive(false);
                         equipItem[ItemType.EAR] = null;
@@ -140,6 +142,7 @@ namespace Module {
                     break;
                 
                 case 1:
+                    if(equipItem[ItemType.SHOULDER] == null) return; 
                     EquipingItem _equipingItem2 = equipItem[ItemType.SHOULDER].GetComponent<EquipingItem>();
                     equipItem[ItemType.SHOULDER].SetActive(false);
                     equipItem[ItemType.SHOULDER] = null;
@@ -147,6 +150,7 @@ namespace Module {
                     ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem2.gameObject);
                     break;
                 case 2:
+                    if(equipItem[ItemType.WRIST] == null) return; 
                     EquipingItem _equipingItem3 = equipItem[ItemType.WRIST].GetComponent<EquipingItem>();
                     equipItem[ItemType.WRIST].SetActive(false);
                     equipItem[ItemType.WRIST] = null;
@@ -154,6 +158,7 @@ namespace Module {
                     ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem3.gameObject);
                     break;
                 case 3:
+                    if(equipItem[ItemType.BACK] == null) return; 
                     EquipingItem _equipingItem4 = equipItem[ItemType.BACK].GetComponent<EquipingItem>();
                     equipItem[ItemType.BACK].SetActive(false);
                     equipItem[ItemType.BACK] = null;
