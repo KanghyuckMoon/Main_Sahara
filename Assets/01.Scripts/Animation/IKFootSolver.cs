@@ -21,7 +21,7 @@ public class IKFootSolver : MonoBehaviour
     Vector3 oldNormal, currentNormal, newNormal;
     float lerp;
 
-    private void Start()
+    private void OnEnable()
     {
         footSpacingX = transform.localPosition.x;
         footSpacingZ = transform.localPosition.z;
