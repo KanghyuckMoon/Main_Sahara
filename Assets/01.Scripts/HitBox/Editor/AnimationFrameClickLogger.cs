@@ -45,6 +45,11 @@ public class AnimationClickLoggerWindow : EditorWindow
 			{
 				boxColEditor.PositionToOffset();
 			}
+
+			if(GUILayout.Button("Save Access"))
+			{
+				UnityEditor.EditorUtility.SetDirty(hitboxDataSO);
+			}
 		}
 		
 

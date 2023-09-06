@@ -27,8 +27,24 @@ namespace Module
 		
 		protected virtual void OnTriggerEnter(Collider other)
 		{
-			PhysicsModule _physicsModule = mainModule.GetModuleComponent<PhysicsModule>(ModuleType.Physics);
-			_physicsModule.OnTriggerEnter(other, this, hitEvent);
+			if(mainModule == null)
+			{
+				return;
+			}
+
+			if(!mainModule.enabled)
+			{
+				return;
+			}
+
+			foreach (string _tagName in mainModule.HitCollider)
+			{
+				if (other.CompareTag(_tagName) && !mainModule.IsDead)
+				{
+					PhysicsModule _physicsModule = mainModule.GetModuleComponent<PhysicsModule>(ModuleType.Physics);
+					_physicsModule.OnTriggerEnter(other, this, hitEvent);
+				}
+			}
 		}
 		
 		public void TimeSlow(float _additionTime)
