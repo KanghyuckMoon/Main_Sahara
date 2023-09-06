@@ -12653,6 +12653,81 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 770608cf425f44448a4bd00112ba4f61, type: 3}
+--- !u!1 &1106981731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1106981732}
+  - component: {fileID: 1106981734}
+  - component: {fileID: 1106981733}
+  m_Layer: 0
+  m_Name: TutoPopup (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1106981732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106981731}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1972501860902482062}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1106981733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106981731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2538dc1c633ddfa43805da15513c066f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: ebb4417410222b24a97df5bbf64f2cf5, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1106981734}
+        m_TargetAssemblyTypeName: UI.Popup.TutorialPopup, UI.Popup
+        m_MethodName: Receive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1106981734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106981731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5902f2575b169449a17e04092bf753d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTutorialDataSO: {fileID: 11400000, guid: 7bf3e1146872ff24481ae964a2813225, type: 2}
+  _idx: 0
 --- !u!1001 &1131345391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15472,12 +15547,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8878095818356380041, guid: 452540cf194a1fb4182b58b03c064089, type: 3}
+      propertyPath: popupTutorialDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 86c417e4d143cbd4eb82fce64684ee9b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6146197331551896419, guid: 452540cf194a1fb4182b58b03c064089, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1534250593}
+    - targetCorrespondingSourceObject: {fileID: 6146197331551896419, guid: 452540cf194a1fb4182b58b03c064089, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1106981732}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452540cf194a1fb4182b58b03c064089, type: 3}
 --- !u!4 &1972501860902482062 stripped
