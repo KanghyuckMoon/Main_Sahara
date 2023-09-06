@@ -47,7 +47,7 @@ namespace Module
 			var _ray = new Ray(_rayPos, -_transform.up);
 			var _ray2 = new Ray(_rayPos, -Vector3.up);
 
-			if (Physics.Raycast(_ray, out var _raycastHit, 20f, mainModule.groundLayer))
+			if (Physics.Raycast(_ray, out var _raycastHit, 1.4f, mainModule.groundLayer))
 			{
                 float _distance = _raycastHit.distance;
 				if(mainModule.groundDistance > _distance) 
@@ -65,7 +65,7 @@ namespace Module
 				//float tiltAngle = Mathf.Rad2Deg * Mathf.Atan2(_raycastHit.normal.x, _raycastHit.normal.z);
 				//MoveModule.SetZRotation(tiltAngle);
 			}
-			else if(Physics.Raycast(_ray2, out var _raycastHit2, 20f, mainModule.groundLayer))
+			else if(Physics.Raycast(_ray2, out var _raycastHit2, 1.4f, mainModule.groundLayer))
 			{
 				float _distance = _raycastHit2.distance;
 				if (mainModule.groundDistance > _distance)
