@@ -97,7 +97,7 @@ namespace Module {
             pastItemString = _itemString;
         }
 
-        private void TakeOffItem(ItemType _itemType)
+        public void TakeOffItem(ItemType _itemType)
         {
             try
             {
@@ -114,6 +114,54 @@ namespace Module {
                 
             }
             //equipPositions[_itemType] = equipPositions[_itemType].transform.parent.gameObject;
+        }
+
+        public void TakeOffItem(int _num)
+        {
+            switch (_num)
+            {
+                case 0:
+                    if (equipItem.TryGetValue(ItemType.HELMET, out var _obj))
+                    {
+                        EquipingItem _equipingItem = equipItem[ItemType.HELMET].GetComponent<EquipingItem>();
+                        equipItem[ItemType.HELMET].SetActive(false);
+                        equipItem[ItemType.HELMET] = null;
+                        ApplyItemStats(_equipingItem, -1);
+                        ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem.gameObject);
+                    }
+                    else
+                    {
+                        EquipingItem _equipingItem = equipItem[ItemType.EAR].GetComponent<EquipingItem>();
+                        equipItem[ItemType.EAR].SetActive(false);
+                        equipItem[ItemType.EAR] = null;
+                        ApplyItemStats(_equipingItem, -1);
+                        ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem.gameObject);
+                    }
+                    break;
+                
+                case 1:
+                    EquipingItem _equipingItem2 = equipItem[ItemType.SHOULDER].GetComponent<EquipingItem>();
+                    equipItem[ItemType.SHOULDER].SetActive(false);
+                    equipItem[ItemType.SHOULDER] = null;
+                    ApplyItemStats(_equipingItem2, -1);
+                    ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem2.gameObject);
+                    break;
+                case 2:
+                    EquipingItem _equipingItem3 = equipItem[ItemType.WRIST].GetComponent<EquipingItem>();
+                    equipItem[ItemType.WRIST].SetActive(false);
+                    equipItem[ItemType.WRIST] = null;
+                    ApplyItemStats(_equipingItem3, -1);
+                    ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem3.gameObject);
+                    break;
+                case 3:
+                    EquipingItem _equipingItem4 = equipItem[ItemType.BACK].GetComponent<EquipingItem>();
+                    equipItem[ItemType.BACK].SetActive(false);
+                    equipItem[ItemType.BACK] = null;
+                    ApplyItemStats(_equipingItem4, -1);
+                    ObjectPoolManager.Instance.RegisterObject(pastItemString, _equipingItem4.gameObject);
+                    break;
+            
+            }
         }
 
         private void TakeOnItem(string _itemString, EquipingItem _equipingItem)
