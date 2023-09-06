@@ -368,7 +368,7 @@ namespace UI.Inventory
                 if (_isSuccessed == true)
                 {
                     UpdateEquipUI(inventoryGridSlotsPr.CurItemType);
-                    Check(_closedSlot, true); 
+                    //Check(_closedSlot, true); 
                     // 사운드 재생
                     UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
 
