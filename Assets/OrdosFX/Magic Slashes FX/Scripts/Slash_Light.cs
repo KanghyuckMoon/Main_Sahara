@@ -5,7 +5,7 @@ using UnityEngine;
 public class Slash_Light : MonoBehaviour
 {
     public AnimationCurve LightCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    public Gradient LightColor = new Gradient();
+    //public Gradient LightColor = new Gradient();
     public float GraphTimeMultiplier = 1, GraphIntensityMultiplier = 1;
     public bool IsLoop;
 
