@@ -14,6 +14,7 @@ namespace CondinedModule
             _playerModule.transform.position = new Vector3(356f, 2f, 67.6f);// _playerModule.lastGroundPos;
             Restore(_playerModule);
             StaticTime.EntierTime = 1f;
+            UI.Manager.UIManager.Instance.ActiveCursor(false);
         }
     }
 

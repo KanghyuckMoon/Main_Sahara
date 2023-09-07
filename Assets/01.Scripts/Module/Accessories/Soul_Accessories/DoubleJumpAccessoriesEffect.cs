@@ -43,13 +43,12 @@ namespace PassiveItem
 
         public void UpdateEffect()
         {
-            if (!mainModule.IsChargeJumpOn && !mainModule.isGround && isPlayer)
+            if (!mainModule.IsChargeJumpOn && !mainModule.isTouchGround && isPlayer)
             {
                 if (mainModule.IsJump)
                 {
                     if (count > 0)
                     {
-                        Debug.LogError("´þÆàÆàÁ¡Àú¸Ü");
                         Jumping();
                         stateModule.AddState(State.JUMP);
                         count--;

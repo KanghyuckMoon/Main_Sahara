@@ -180,7 +180,9 @@ using UI.Base;
             if (_isActive == true)
             {
                 curRadioButton = _rType;
-            }
+                      inventoryView.SetInventoryTitleName(_rType);
+        }
+
             AnimateSlot(_eType, _isActive);
         }
 

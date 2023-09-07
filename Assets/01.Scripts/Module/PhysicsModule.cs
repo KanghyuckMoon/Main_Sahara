@@ -333,7 +333,6 @@ namespace Module
             var _ray = new Ray(_rayPos, Vector3.down);
             var _ray1 = new Ray(_rayPos, _transform.forward);
 
-
             if (Physics.Raycast(_ray, out var _raycastHit, 10f, mainModule.groundLayer))
             {
 	            if (mainModule.isGround)

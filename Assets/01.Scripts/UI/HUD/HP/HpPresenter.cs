@@ -54,7 +54,7 @@ namespace UI
             maxHp = statData.MaxHp;
             //    _hpView.SetBarUI(_entityData.hp)  ;
             _hpView.SetBarUI(_hp);
-            //_hpView.SetMpText(statData.CurrentHp, statData.MaxHp);
+            _hpView.SetHpText(statData.CurrentHp, statData.MaxHp);
 
         }
 

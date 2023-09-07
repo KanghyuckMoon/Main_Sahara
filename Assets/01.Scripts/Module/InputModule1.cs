@@ -38,8 +38,11 @@ namespace Module
 			{
 				if (mainModule.CanConsecutiveAttack && mainModule.IsConsecutiveWeapon)
 					if (Input.GetMouseButton(0))
+					{
 						mainModule.Animator.SetTrigger("ConsecutiveAttack");
-				
+						StateModule.AddState(State.ATTACK);
+					}
+
 				if (Input.GetMouseButtonUp(0))
 				{
 					mainModule.Attacking = false;
@@ -88,6 +91,8 @@ namespace Module
 		private void InputJump()
 		{
 			//if (!(mainModule.StopOrNot >= 1)) return;
+			
+			if(StateModule.CheckState(State.ATTACK, State.SKILL)) return;
 
 			var _inputup = InputManager.Instance.CheckKey("Jump");
 			

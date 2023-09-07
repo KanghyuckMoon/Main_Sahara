@@ -15,6 +15,7 @@ namespace Skill
         {
             if (UseMana(_mainModule, -usingMana))
             {
+                _mainModule.GetModuleComponent<StateModule>(ModuleType.State).AddState(State.SKILL);
                 PlaySkillAnimation(_mainModule, animationClip);
             }
         }

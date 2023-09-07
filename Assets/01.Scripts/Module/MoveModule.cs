@@ -108,7 +108,7 @@ namespace Module
             {
 				_targetSpeed = (mainModule.IsSprint ? runSpeed - 1 : moveSpeed - 1);
 			}
-            if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking)
+            if (mainModule.ObjDir == Vector2.zero || StateModule.CheckState(State.ATTACK) || mainModule.StrongAttacking)
             {
                 _targetSpeed = 0.0f;
             }
@@ -123,7 +123,7 @@ namespace Module
             var velocity = mainModule.CharacterController.velocity;
             var currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
 
-            _targetSpeed *= mainModule.StopOrNot;
+            //_targetSpeed *= mainModule.StopOrNot;
 
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset) // && mainModule.objDir != Vector2.up)
@@ -230,8 +230,8 @@ namespace Module
                 }
                 else
                 {
-                    mainModule.CharacterController.Move((_moveVector3 + new Vector3(0, _gravity, 0)) *
-                                                        mainModule.PersonalDeltaTime);
+                    mainModule.CharacterController.Move((_moveVector3 + new Vector3(0, _gravity, 0)) * mainModule.PersonalDeltaTime);
+                    //mainModule.CharacterController.SimpleMove(_moveVector3);
                 }
             }
             else
