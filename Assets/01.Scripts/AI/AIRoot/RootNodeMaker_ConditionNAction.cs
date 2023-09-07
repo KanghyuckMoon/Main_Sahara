@@ -640,19 +640,20 @@ namespace AI
 
         private bool isGetAroundPos = false;
         private Vector3 aroundPos = Vector3.zero;
+        private float originMoveTime = 0f;
         private void AroundOriginPos()
         {
             if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
             {
                 if (isGetAroundPos)
-                {
-                    Vector2 _aroundPosXZ = new Vector2(aroundPos.x, aroundPos.z);
+				{
+					Vector2 _aroundPosXZ = new Vector2(aroundPos.x, aroundPos.z);
                     Vector2 _transformPosXZ = new Vector2(Position.x, Position.z);
-                    if (Vector2.SqrMagnitude(_aroundPosXZ - _transformPosXZ) < 0.2f)
+                    if ((Vector2.SqrMagnitude(_aroundPosXZ - _transformPosXZ) < 0.2f))
                     {
                         isGetAroundPos = false;
-                    }
-                    Vector3 vec = Vector3.zero;
+					}
+					Vector3 vec = Vector3.zero;
                     vec = aroundPos - Position;
                     vec.y = 0;
                     vec = vec.normalized;
@@ -680,12 +681,14 @@ namespace AI
             if (aiModule.MainModule.CanMove && !aiModule.MainModule.Attacking && !aiModule.MainModule.StrongAttacking)
             {
                 if (isGetAroundPos)
-                {
-                    Vector2 _aroundPosXZ = new Vector2(aroundPos.x, aroundPos.z);
+				{
+					originMoveTime += Time.deltaTime;
+					Vector2 _aroundPosXZ = new Vector2(aroundPos.x, aroundPos.z);
                     Vector2 _transformPosXZ = new Vector2(Position.x, Position.z);
-                    if (Vector2.SqrMagnitude(_aroundPosXZ - _transformPosXZ) < 0.2f)
+                    if (Vector2.SqrMagnitude(_aroundPosXZ - _transformPosXZ) < 0.2f || originMoveTime > 3f)
                     {
-                        isGetAroundPos = false;
+                        originMoveTime = 0f;
+						isGetAroundPos = false;
                         return;
                     }
 

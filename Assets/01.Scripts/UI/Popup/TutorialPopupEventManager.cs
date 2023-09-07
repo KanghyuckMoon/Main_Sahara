@@ -22,8 +22,12 @@ namespace UI.Popup
             allTutorialPopupDataSO ??= AddressablesManager.Instance.GetResource<AllPopupTutorialDataSO>("AllPopupTutorialDataSO");
             foreach (var _popupTuto in allTutorialPopupDataSO.popupTutorialDataSoList)
             {
-                popupTutorialDic.Add(_popupTuto.key,false);
+                if(!popupTutorialDic.ContainsKey(_popupTuto.key))
+                {
+                    popupTutorialDic.Add(_popupTuto.key,false);
+                }
             }
+            //
         }
         
         /// <summary>

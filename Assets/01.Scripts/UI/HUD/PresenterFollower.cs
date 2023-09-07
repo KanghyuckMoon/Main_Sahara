@@ -77,7 +77,7 @@ namespace UI
             // UI가 오브젝트 중앙에 오도록 width /2 를 더해준다 
             float width = element.contentRect.width;
             // UI 높이, 거리에 맞게 더해준다 
-            float height = element.contentRect.height + (bounds.extents.y *2 * 100) * l;
+            float height = element.contentRect.height + (bounds.extents.y *2 * 30) * l;
             //height = element.contentRect.height; 
             //Debug.Log("Renderer Exteneds" + bounds.extents);
             // Don't set scale to 0 or a negative number.
