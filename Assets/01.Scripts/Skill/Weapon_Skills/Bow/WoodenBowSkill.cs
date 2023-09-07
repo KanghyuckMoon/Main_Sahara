@@ -25,6 +25,7 @@ namespace Skill
         {
             if (UseMana(_mainModule, -usingMana))
             {
+                _mainModule.GetModuleComponent<StateModule>(ModuleType.State).AddState(State.SKILL);
                 setPlayerMaterial ??= transform.root.GetComponentInChildren<SetPlayerMaterial>();
 
                 GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
@@ -39,7 +40,7 @@ namespace Skill
                 _effect.SetActive(true);
 
                 PlaySkillAnimation(_mainModule, animationClip);
-                GetBuff(_mainModule);
+                //GetBuff(_mainModule);
             }
         }
         public HitBoxAction GetHitBoxAction()
