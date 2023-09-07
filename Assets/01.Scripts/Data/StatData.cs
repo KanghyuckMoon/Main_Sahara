@@ -269,15 +269,19 @@ namespace Data
                 if (CurrentMana >= -addMana)
                 {
                     CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
+                    return true;
                 }
                 else
                 {
                     return false;
                 }
             }
-            
-            CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
-            return true;
+
+            else
+            {
+                CurrentMana = (CurrentMana + addMana) >= MaxMana ? MaxMana : CurrentMana + addMana;
+                return true;
+            }
         }
 
         public int ChangeMana(int _mana)
