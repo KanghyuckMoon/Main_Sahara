@@ -148,8 +148,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 20.2453, y: 3, z: 7.952817}
+  m_Center: {x: 0.5689351, y: 0, z: 2.6394994}
 --- !u!1 &1943355195644085563
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: MetalDetect0
   detectItemType: 4
   targetHeightTransform: {fileID: 3586581138351678175}
   targetTransform: {fileID: 4154175058775805879}
@@ -245,6 +244,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isInitFalse: 1
+  outLineMeshRenderer: {fileID: 0}
+  outlineMat: {fileID: 0}
+  curIndex: 0
+  isDebugRender: 1
+  debugRenderer: {fileID: 6314077561562609556}
   debug_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -438,6 +442,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4656860665410062286}
   m_SourcePrefab: {fileID: 100100000, guid: 19a8dc4d9d96bd14ea85b0c0e39387a3, type: 3}
+--- !u!33 &6314077561562609556 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -5754084199372789682, guid: 19a8dc4d9d96bd14ea85b0c0e39387a3, type: 3}
+  m_PrefabInstance: {fileID: 7459507989436063706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6921970521961347121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 19a8dc4d9d96bd14ea85b0c0e39387a3, type: 3}
