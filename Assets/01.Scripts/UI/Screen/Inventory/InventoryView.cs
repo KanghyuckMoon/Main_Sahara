@@ -12,6 +12,7 @@ using Utill.Addressable;
 using UI.Base;
 using UI.UtilManager;
 
+using RadioButtons = UI.Inventory.InventoryGridSlotsView.RadioButtons;
 namespace UI.Inventory
 {
 
@@ -47,7 +48,7 @@ namespace UI.Inventory
         {
             item_title_label,
             item_detail_label,
-               
+            title_label
         }
 
         #endregion
@@ -133,7 +134,42 @@ namespace UI.Inventory
             }
             return _isActive; 
         }
-        
+
+        public void SetInventoryTitleName(RadioButtons _itemType)
+        {
+            string _titleName = ""; 
+            switch (_itemType)
+            {
+                case RadioButtons.weapon_button:
+                    _titleName = "인벤토리 : 무기";
+                    break;
+                case RadioButtons.consumation_button:
+                    _titleName = "인벤토리 : 소비";
+                    break;
+                case RadioButtons.armor_button:
+                    _titleName = "인벤토리 : 장비";
+                    break;
+                case RadioButtons.accessories_button:
+                    _titleName = "인벤토리 : 소울";
+                    break;
+                case RadioButtons.material_button:
+                    _titleName = "인벤토리 : 기타";
+                    break;
+                case RadioButtons.valuable_button:
+                    _titleName = "인벤토리 : 귀중";
+                    break;
+                case RadioButtons.marker_button:
+                    _titleName = "인벤토리 : 마커";
+                    break;
+            }
+
+            GetLabel((int)Labels.title_label).text = _titleName; 
+
+        }
+
+        private void SetInventoryTItleName(ItemType _itemType)
+        {
+        }
 
         public void AddSlotClickEvent(Action<ItemData> _callback)
         {

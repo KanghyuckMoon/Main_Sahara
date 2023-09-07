@@ -95,9 +95,9 @@
         <ui:VisualElement name="contents" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%;">
             <ui:VisualElement name="Header" class="header" style="flex-direction: row; justify-content: space-between; padding-top: 1.3%;">
                 <ui:VisualElement style="position: relative; flex-direction: row; align-items: center;">
-                    <ui:VisualElement name="background" style="position: absolute; width: 412px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/Item%20background2.png?fileID=2800000&amp;guid=ad4489d98512a5342af9270662946bc0&amp;type=3#Item background2&apos;); -unity-background-scale-mode: stretch-to-fill; top: -13px; left: -16px;" />
+                    <ui:VisualElement name="background" style="position: absolute; width: 594px; height: 100px; background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/Item%20background2.png?fileID=2800000&amp;guid=ad4489d98512a5342af9270662946bc0&amp;type=3#Item background2&apos;); -unity-background-scale-mode: stretch-to-fill; top: -13px; left: -16px;" />
                     <ui:VisualElement name="icon_image" style="background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/Inventory.png?fileID=2800000&amp;guid=05e222b4c879d604989dd3352e3d6b59&amp;type=3#Inventory&apos;); -unity-background-scale-mode: scale-to-fit; width: 50px; height: 50px;" />
-                    <ui:Label text="ITEM" display-tooltip-when-elided="true" name="title_label" class="title_label font_base" style="border-bottom-width: 0; color: rgb(152, 137, 96); font-size: 50px;" />
+                    <ui:Label text="인벤토리 : 소비" display-tooltip-when-elided="true" name="title_label" class="title_label font_base" style="border-bottom-width: 0; color: rgb(152, 137, 96); font-size: 40px; -unity-font-style: bold;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="money_box" style="flex-direction: row; display: none;">
                     <ui:Label display-tooltip-when-elided="true" name="text" class="font_base" style="font-size: 40px; color: rgb(224, 224, 224); -unity-text-align: upper-center; -unity-font-style: normal;" />
@@ -112,20 +112,36 @@
                         <ui:VisualElement name="contents" picking-mode="Ignore" style="width: 100%; height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 30px; display: flex;">
                             <ui:VisualElement name="inventory_select" picking-mode="Ignore" class="inventory_select" style="display: flex;">
                                 <ui:VisualElement name="top_line" picking-mode="Ignore" class="category_topline" />
-                                <ui:RadioButtonGroup label="Radio Button Group" name="inventory_select_group" value="-1" picking-mode="Ignore" class="item__list-buttonGroup inventory_select_group">
-                                    <ui:RadioButton label="Radio Button" name="weapon_button" value="true" class="inven_button" style="display: flex;" />
-                                    <ui:RadioButton label="Radio Button" name="armor_button" class="inven_button" />
-                                    <ui:RadioButton label="Radio Button" name="consumation_button" class="inven_button" />
-                                    <ui:RadioButton label="Radio Button" name="accessories_button" class="inven_button" />
-                                    <ui:RadioButton label="Radio Button" name="material_button" class="inven_button" />
-                                    <ui:RadioButton label="Radio Button" name="valuable_button" class="inven_button" />
-                                    <ui:RadioButton label="Radio Button" name="marker_button" class="inven_button" />
+                                <ui:RadioButtonGroup label="Radio Button Group" name="inventory_select_group" value="-1" picking-mode="Ignore" class="item__list-buttonGroup inventory_select_group" style="overflow: visible;">
+                                    <ui:RadioButton label="Radio Button" name="weapon_button" value="true" class="inven_button" style="overflow: visible;">
+                                        <ui:Label tabindex="-1" text="무기" display-tooltip-when-elided="true" name="inventory_category_text" class="font_base inventory_category_text" style="display: flex;" />
+                                    </ui:RadioButton>
+                                    <ui:RadioButton label="Radio Button" name="armor_button" class="inven_button">
+                                        <ui:Label tabindex="-1" text="장비" display-tooltip-when-elided="true" name="inventory_category_text" class="font_base inventory_category_text" style="display: flex;" />
+                                    </ui:RadioButton>
+                                    <ui:RadioButton label="Radio Button" name="consumation_button" class="inven_button">
+                                        <ui:Label tabindex="-1" text="소비" display-tooltip-when-elided="true" name="inventory_category_text" class="font_base inventory_category_text" style="display: flex;" />
+                                    </ui:RadioButton>
+                                    <ui:RadioButton label="Radio Button" name="accessories_button" class="inven_button">
+                                        <ui:Label tabindex="-1" text="소울" display-tooltip-when-elided="true" name="inventory_category_text" class="font_base inventory_category_text" style="display: flex;" />
+                                    </ui:RadioButton>
+                                    <ui:RadioButton label="Radio Button" name="material_button" class="inven_button">
+                                        <ui:Label tabindex="-1" text="기타" display-tooltip-when-elided="true" name="inventory_category_text" class="font_base inventory_category_text" style="display: flex;" />
+                                    </ui:RadioButton>
+                                    <ui:RadioButton label="Radio Button" name="valuable_button" class="inven_button">
+                                        <ui:Label tabindex="-1" text="귀중" display-tooltip-when-elided="true" name="inventory_category_text" class="font_base inventory_category_text" style="display: flex;" />
+                                    </ui:RadioButton>
+                                    <ui:RadioButton label="Radio Button" name="marker_button" class="inven_button">
+                                        <ui:Label tabindex="-1" text="마커" display-tooltip-when-elided="true" name="inventory_category_text" class="font_base inventory_category_text" style="display: flex;" />
+                                    </ui:RadioButton>
                                 </ui:RadioButtonGroup>
                                 <ui:VisualElement name="bot_line" picking-mode="Ignore" class="category_botline" />
-                                <ui:VisualElement picking-mode="Ignore" name="accent_pattern" class="accent_pattern">
-                                    <ui:VisualElement name="top_pattern" picking-mode="Ignore" style="width: 70px; height: 55px; position: absolute; bottom: 80%; background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;);" />
-                                    <ui:VisualElement picking-mode="Ignore" style="height: 100%; width: 100%;" />
-                                    <ui:VisualElement name="bot_pattern" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;); width: 70px; height: 55px; -unity-background-scale-mode: scale-and-crop; rotate: 180deg; position: absolute; top: 80%;" />
+                                <ui:VisualElement name="category_parent" picking-mode="Ignore" class="inventory_select_group" style="width: 100%; position: absolute; height: 80%; padding-left: 8px;">
+                                    <ui:VisualElement picking-mode="Ignore" name="accent_pattern" class="accent_pattern" style="translate: -2px 0; width: 80px; align-items: center; position: relative; left: auto; top: auto;">
+                                        <ui:VisualElement name="top_pattern" picking-mode="Ignore" style="width: 80px; height: 70px; background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;); -unity-background-scale-mode: scale-and-crop; bottom: 30px; -unity-background-image-tint-color: rgb(241, 227, 217); scale: 0.7 0.7;" />
+                                        <ui:VisualElement picking-mode="Ignore" style="height: 100%; width: 100%;" />
+                                        <ui:VisualElement name="bot_pattern" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/14.Texture/43.UI/Inventory/select%20pattern.png?fileID=2800000&amp;guid=f1799a2bb84ce804c9d18fe3a6c64f01&amp;type=3#select pattern&apos;); width: 80px; height: 70px; -unity-background-scale-mode: scale-and-crop; rotate: 180deg; bottom: -30px; scale: 0.7 0.7; -unity-background-image-tint-color: rgb(241, 228, 217);" />
+                                    </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:ScrollView name="inventory_scroll_panel" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" mode="Vertical" vertical-page-size="1000" vertical-scroller-visibility="Hidden" mouse-wheel-scroll-size="200" class="item__grid-panel inventory_scroll_panel" style="height: 100%; display: flex; padding-top: 3%;">
