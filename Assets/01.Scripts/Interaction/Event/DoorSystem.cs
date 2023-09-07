@@ -58,6 +58,7 @@ namespace Interaction
 		[SerializeField] private string needItem;
 		[SerializeField] private Transform movingPosition;
 		[SerializeField] private float movingDelay = 1f;
+		[SerializeField] private GameObject effectObject;
 		private bool isOpen;
 
 		public void Interaction()
@@ -76,7 +77,8 @@ namespace Interaction
 		private void Open()
 		{
 			isOpen = true;
-			transform.DOMove(movingPosition.position, movingDelay);
+			effectObject.SetActive(true);
+			transform.DOMove(movingPosition.position, movingDelay).OnComplete(() => effectObject.SetActive(false));
 		}
 	}
 }

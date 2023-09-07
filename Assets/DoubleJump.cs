@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoubleJump : StateMachineBehaviour
 {
-    private float a = 0.6f;
+    private float a = 0.3f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

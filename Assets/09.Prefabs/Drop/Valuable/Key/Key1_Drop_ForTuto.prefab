@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 6885213269395708159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8203167264367636766}
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   itemDataSO: {fileID: 11400000, guid: 721dea6b4c7c29b479b7c8dc77c86da6, type: 2}
   count: 1
   rigid: {fileID: 7324253567244252285}
-  itemAddress: TreasureMap1
+  itemAddress: Key1
   targetObj: {fileID: 6885213269395708159}
   isJumping: 1
   getEvent:
@@ -115,9 +115,9 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
+  m_Radius: 6
+  m_Height: 20
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7689598182109959713
 MonoBehaviour:
@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: 823ae80e94ec5b04b80dae4c1bcd68fb, type: 2}
+  str: 
+  isStr: 0
 --- !u!1001 &8355049865073900391
 PrefabInstance:
   m_ObjectHideFlags: 0

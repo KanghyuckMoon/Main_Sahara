@@ -14,7 +14,8 @@ public class Jump_Start : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
-        delay = 0.1f;
+        delay = 0.14f;
+        mainModule.StopOrNot = 0.5f;
         isJump = false;
     }
 
@@ -28,6 +29,7 @@ public class Jump_Start : StateMachineBehaviour
 
             if (delay >= 0) return;
             animator.SetBool("CanLand", true);
+            mainModule.StopOrNot = 1;
             isJump = true;
         }
     }
