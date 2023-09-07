@@ -158,7 +158,7 @@ namespace UI.Inventory
             Rect _lastSlot =
                 GetRBtn(InventoryGridSlotsView.RadioButtons.marker_button).worldBound;
 
-            categoryLength = (_lastSlot.x - _firstSlot.x + 80) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
+            categoryLength = (_lastSlot.x - _firstSlot.x + 88) / Enum.GetValues(typeof(InventoryGridSlotsView.RadioButtons)).Length;
         }
         /// <summary>
         ///  카테고리 강조 패턴 위치 설정 

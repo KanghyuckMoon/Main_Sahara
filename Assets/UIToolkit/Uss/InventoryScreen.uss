@@ -350,6 +350,9 @@
 .inven_button {
     transition-property: scale;
     transition-duration: 0.2s;
+    width: 80px;
+    height: 70px;
+    overflow: visible;
 }
 
 .inven_button .unity-radio-button__checkmark-background {
@@ -382,6 +385,8 @@
 
 .inven_button:hover {
     scale: 1.1 1.1;
+    width: 80px;
+    height: 70px;
 }
 
 #marker_button .unity-radio-button__checkmark-background {
@@ -445,7 +450,7 @@
     transition-property: left;
     transition-duration: 0.2s;
     top: 0;
-    left: -2px;
+    left: 0;
     translate: 25px 0;
 }
 
@@ -568,4 +573,23 @@
 
 .pants #background_deco {
     background-image: url('project://database/Assets/14.Texture/43.UI/Inventory/quickslot_image/free-icon-buckle-11069801.png?fileID=2800000&guid=772345128ff7515409313e4d282758db&type=3#free-icon-buckle-11069801');
+}
+
+.inventory_category_text {
+    width: 100%;
+    display: flex;
+    -unity-text-align: middle-center;
+    top: 90%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#inventory_select_group > .unity-base-field__input {
+    overflow: visible;
 }

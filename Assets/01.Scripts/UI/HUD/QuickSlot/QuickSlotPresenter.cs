@@ -103,8 +103,7 @@ namespace UI
 
         private void SetSkillImage(string _spriteAddress)
         {
-            var _sprite =  AddressablesManager.Instance.GetResource<Sprite>(_spriteAddress);
-            quickSlotView.SetSkillImage(_sprite);
+         
 
             if (_spriteAddress == "")
             {
@@ -113,7 +112,8 @@ namespace UI
             else
             {
                 quickSlotView.ActiveSkillIamge(true);
-
+                var _sprite =  AddressablesManager.Instance.GetResource<Sprite>(_spriteAddress);
+                quickSlotView.SetSkillImage(_sprite);
             }
         }
 
