@@ -38,7 +38,7 @@ namespace UI
             base.Cashing();
             Bind<VisualElement>(typeof(Elements));
             Bind<ProgressBar>(typeof(ProgressBars));
-            //BindLabels(typeof(Labels));
+            BindLabels(typeof(Labels));
         }
 
         public override void Init()
@@ -86,10 +86,10 @@ namespace UI
         //      _frontBarView.Bar.value = endV;
             _frontBarView.Bar.style.display = _frontBarView.Bar.resolvedStyle.display == DisplayStyle.Flex ? DisplayStyle.None : DisplayStyle.Flex;
         }
-        public void SetMpText(float _curMp, float _maxMp)
+        public void SetHpText(float _curHp, float _maxHp)
         {
-            //GetLabel((int)Labels.cur_mp_text).text = _curMp.ToString(); 
-            //GetLabel((int)Labels.max_mp_text).text = _maxMp.ToString(); 
+            GetLabel((int)Labels.cur_hp_text).text = _curHp.ToString(); 
+            GetLabel((int)Labels.max_hp_text).text = _maxHp.ToString(); 
         }
     }
 
