@@ -30,6 +30,7 @@ namespace UI.Production
         }   
 
         private bool isStackable; // 셀수 있냐 
+        private List<Manipulator> manipulatorList = new List<Manipulator>(); 
         private Manipulator curManipulator;
         private const string selectStr = "active_select";
         private const string activeBorderStr = "active_slot_border";
@@ -66,15 +67,22 @@ namespace UI.Production
         
         public void AddManipulator(MouseManipulator _manipulator)
         {
-            this.curManipulator = _manipulator; 
+            //this.curManipulator = _manipulator; 
+            manipulatorList.Add(_manipulator);
             GetVisualElement((int)Elements.item).AddManipulator(_manipulator);
         }
 
-        public void RemoveCurManipulator()
+        public void ClearManipulator()
         {
-            if (curManipulator == null) return; 
-            GetVisualElement((int)Elements.item).AddManipulator(curManipulator);
-            this.curManipulator = null;
+            //if (curManipulator == null) return; 
+            //GetVisualElement((int)Elements.item).AddManipulator(curManipulator);
+            //this.curManipulator = null;
+
+            foreach (var _manipulator in manipulatorList)
+            {
+                GetVisualElement((int)Elements.item).RemoveManipulator(_manipulator);
+            }
+            manipulatorList.Clear();
         }
 
         private Action mouseOverEvt = null;

@@ -32,7 +32,9 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:Instance template="MpUxml" name="MpUxml" style="bottom: 21px; height: 60px; width: 80%; left: 4px;" />
+                    <ui:Instance template="MpUxml" name="MpUxml" style="bottom: 21px; height: 60px; width: 80%; left: 4px;">
+                        <AttributeOverrides element-name="front_bar" value="2.61" />
+                    </ui:Instance>
                     <ui:VisualElement name="MpUxml" style="height: 60px; min-height: 0; bottom: 15px; display: none;">
                         <Style src="project://database/Assets/UIToolkit/Uss/Slider.uss?fileID=7433441132597879392&amp;guid=4d4caa61570a49f49a00d4dbc1809e15&amp;type=3#Slider" />
                         <ui:VisualElement name="mp_view" style="width: 100%; height: 100%;">
@@ -54,13 +56,16 @@
         <ui:VisualElement name="mid_panel" class="mid_panel" />
         <ui:VisualElement name="bottom_panel" class="bottom_panel">
             <ui:VisualElement name="quickslot_view" class="bottom_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
-                <ui:VisualElement name="bottom_left_panel" style="flex-basis: 20%; flex-grow: 0; align-items: flex-start; justify-content: flex-end; align-self: auto; padding-bottom: 100px;">
-                    <ui:VisualElement name="skill_image_parent" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/KatGrabowska/Untitled-3%20(1).svg?fileID=7388822144124034973&amp;guid=bd5f0d2465c9b564c9b150eb71d189bd&amp;type=3#Untitled-3 (1)&apos;); width: 90px; height: 90px; -unity-background-image-tint-color: rgb(255, 255, 255); overflow: hidden; -unity-background-scale-mode: stretch-to-fill; opacity: 0.9;">
-                        <ui:VisualElement name="skill_image" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); width: 90px; height: 90px; background-image: url(&apos;project://database/Assets/KatGrabowska/100%20Flat%20Skills%20Icons/11_Sword_Skillicon.png?fileID=2800000&amp;guid=d74d8dd17f00d1e4ca321709f1ee431b&amp;type=3#11_Sword_Skillicon&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="bottom_left_panel" style="flex-basis: 20%; flex-grow: 0; align-items: flex-start; justify-content: flex-end; align-self: auto; padding-bottom: 0;">
+                    <ui:VisualElement name="skill_image_parent" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/KatGrabowska/Untitled-3%20(1).svg?fileID=7388822144124034973&amp;guid=bd5f0d2465c9b564c9b150eb71d189bd&amp;type=3#Untitled-3 (1)&apos;); width: 60px; height: 60px; -unity-background-image-tint-color: rgb(255, 255, 255); overflow: hidden; -unity-background-scale-mode: stretch-to-fill; opacity: 0.9; display: flex; background-color: rgba(255, 124, 124, 0);">
+                        <ui:VisualElement name="skill_image" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); width: 60px; height: 60px; background-image: url(&apos;project://database/Assets/KatGrabowska/100%20Flat%20Skills%20Icons/11_Sword_Skillicon.png?fileID=2800000&amp;guid=d74d8dd17f00d1e4ca321709f1ee431b&amp;type=3#11_Sword_Skillicon&apos;); -unity-background-scale-mode: scale-to-fit;" />
                         <ui:VisualElement name="mana_guage" class="mana_guage" />
                     </ui:VisualElement>
-                    <ui:Label tabindex="-1" text="20" display-tooltip-when-elided="true" name="mana_text" class="font_base" style="font-size: 25px; -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 0.5px; color: rgb(255, 255, 255); text-shadow: 1.2px 0.8px 0 rgb(0, 0, 0); position: absolute; bottom: 90px; left: 55px;" />
-                    <ui:Label tabindex="-1" text="Q" display-tooltip-when-elided="true" name="skill_key" class="font_base" style="position: absolute; font-size: 35px; -unity-font-style: bold; -unity-text-outline-color: rgb(255, 255, 255); text-shadow: 1.5px 1.5px 0 rgb(0, 0, 0); bottom: 89px; left: -3px;" />
+                    <ui:Label tabindex="-1" text="20" display-tooltip-when-elided="true" name="mana_text" class="font_base" style="font-size: 35px; -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 0.5px; color: rgb(255, 255, 255); text-shadow: 1.2px 0.8px 0 rgb(0, 0, 0); position: absolute; bottom: 87px; left: 48px; -unity-font-style: bold; display: none;" />
+                    <ui:VisualElement style="background-color: rgba(0, 0, 0, 0.84); width: 59px; height: 25px; flex-direction: row; align-items: center; align-self: auto;">
+                        <ui:Label tabindex="-1" text="Q/" display-tooltip-when-elided="true" name="skill_key" class="font_base" style="position: relative; font-size: 20px; -unity-font-style: bold; -unity-text-outline-color: rgb(255, 255, 255); text-shadow: 1.5px 1.5px 0 rgb(0, 0, 0); display: flex; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: middle-left;" />
+                        <ui:Label tabindex="-1" text="20" display-tooltip-when-elided="true" name="mana_text" class="font_base" style="font-size: 20px; -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 0.5px; color: rgb(255, 255, 255); text-shadow: 1.2px 0.8px 0 rgb(0, 0, 0); position: relative; -unity-font-style: bold; display: flex; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: middle-center;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="bottom_mid_panel" class="bottom_mid_panel" style="flex-basis: 20%; flex-grow: 1;">
                     <ui:VisualElement name="skill_panel" class="skill_panel" style="display: none;">

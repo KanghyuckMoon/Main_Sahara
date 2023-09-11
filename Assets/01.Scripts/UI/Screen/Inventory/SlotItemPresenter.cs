@@ -155,12 +155,12 @@ namespace UI.Inventory
         }
         public void AddDoubleClicker(Action _callback)
         {
-            this.slotItemView.RemoveCurManipulator();
+            //this.slotItemView.RemoveCurManipulator();
             this.slotItemView.AddManipulator(new DoubleClicker(_callback));
         }
         public void AddAltClicker(Action _callback)
         {
-            this.slotItemView.RemoveCurManipulator();
+            //this.slotItemView.RemoveCurManipulator();
             this.slotItemView.AddManipulator(new AltClicker(_callback));
         }
         /// <summary>

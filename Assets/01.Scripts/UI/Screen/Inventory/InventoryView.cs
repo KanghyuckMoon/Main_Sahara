@@ -95,6 +95,9 @@ namespace UI.Inventory
                 SetItemText(x.ItemData);
                 callback?.Invoke(x.ItemData);
             });
+            inventoryGridSlotsPr.AddDoubleClickEvent(() => { }
+                // 장착 
+                );
             //inventoryGridSlotsPr.AddClickEvent(SetItemText);
             // 슬롯 생성 
             inventoryGridSlotsPr.Init();
@@ -422,6 +425,109 @@ namespace UI.Inventory
 
             }
             ActiveDragItem(false);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        }
+
+        /// <summary>
+        /// 장비템 장착 
+        /// </summary>
+        private void EquipEquipment(List<SlotItemPresenter> _targetList)
+        {
+            SlotItemPresenter _targetSlot = null; 
+            if (_targetList.Count > 0)
+            {
+                // 남은 칸 이씅면 
+                bool _isEmptySlot = false;
+                foreach (var _target in _targetList)
+                {
+                    // 여기로 장착 
+                    if (_target.ItemData.equipmentType == dragItemPresenter.ItemData.equipmentType)
+                    {
+                        _targetSlot = _target; 
+                        if(_target.ItemData == null ||
+                           string.IsNullOrEmpty(_target.ItemData.key))
+                        {
+                            _isEmptySlot = true; 
+                            // 데이터 적용 
+                            slotCallbackDic[_target.ItemData.itemType]?.Invoke(dragItemPresenter.ItemData, _target.Index);
+                            UpdateEquipUI(); // UI 업데이트
+                            UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
+                            break;
+                        }
+                    }
+                         
+                }
+                
+                // 빈칸이 없으면 있는 거 장착해제 하고 
+                // 현재꺼 장착 
+                if (_isEmptySlot == false && _targetSlot != null)
+                {
+                    // 장착 해제
+                    equipSlotRemoveCallbackDic[_targetSlot.ItemData.itemType]?.Invoke(_targetSlot.Index);
+                    
+                    // 장착
+                    slotCallbackDic[_targetSlot.ItemData.itemType]?.Invoke(dragItemPresenter.ItemData, _targetSlot.Index); 
+                    UpdateEquipUI(); // UI 업데이트
+                    UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
+                }
+            }
+        }
+        private void Equip()
+        {
+            SlotItemPresenter _targetSlot = null; 
+            // 현재 패널의 장착 슬롯 가져오고 
+            List<SlotItemPresenter> _targetList = inventoryGridSlotsPr.CurInvenPanel.equipItemViewList; 
+            
+            // 장비 패널이면 
+            if (inventoryGridSlotsPr.CurItemType == ItemType.Equipment)
+            {
+                // 장비 타입 데이터 맞는 걸로 찾기 
+                EquipEquipment(_targetList); 
+            }
+
+            // 장착 슬롯 count가 0 보다 큰지 확인하고 
+            if (_targetList.Count > 0)
+            {
+                // 남은 칸 이씅면 
+                bool _isEmptySlot = false; 
+                foreach (var _target in _targetList)
+                {
+                    // 여기로 장착 
+                    if (_target.ItemData.itemType == dragItemPresenter.ItemData.itemType &&  _target.ItemData == null || string.IsNullOrEmpty(_target.ItemData.key))
+                    {
+                        _targetSlot = _target; 
+                        _isEmptySlot = true;
+                        // 데이터 적용 
+                        slotCallbackDic[_target.ItemData.itemType]?.Invoke(dragItemPresenter.ItemData, _target.Index); 
+                        UpdateEquipUI(); // UI 업데이트
+                        UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
+                        break; 
+                    }
+                }
+
+                // 빈칸이 없으면 있는 거 장착해제 하고 
+                // 현재꺼 장착 
+                if (_isEmptySlot == false)
+                {
+                    // 장착 해제
+                    _targetSlot = _targetList[0];
+                    equipSlotRemoveCallbackDic[_targetSlot.ItemData.itemType]?.Invoke(_targetSlot.Index);
+                    
+                    // 장착
+                    slotCallbackDic[_targetSlot.ItemData.itemType]?.Invoke(dragItemPresenter.ItemData, _targetSlot.Index); 
+                    UpdateEquipUI(); // UI 업데이트
+                    UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
+                }
+                // 장착 칸이 없으면 리턴 
+                if (_targetList.Count == 0)
+                {
+                    return; 
+                }
+                
+            }
+            // 남은 칸이 있는지 확인하고 
+            // 남은 칸이 없으면 서로 바꾸기 
+            // 목표 칸 찾고 
+            // 장착 이벤트 실행 
         }
 
         private void RemoveItemData(SlotItemPresenter slot)
