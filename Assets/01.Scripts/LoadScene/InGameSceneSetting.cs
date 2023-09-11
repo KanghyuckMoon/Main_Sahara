@@ -11,6 +11,7 @@ using Pool;
 using Streaming;
 using UI.Manager;
 using TimeManager;
+using HitBox;
 
 public class InGameSceneSetting : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class InGameSceneSetting : MonoBehaviour
             }
 
             isLoading = true;
+
+            HitBoxPoolManager.Instance.Clear();
             UpdateManager.UpdateManager.Clear();
             AddressablesManager.Instance.LodedSceneClear();
             ClassPoolManager.Instance.Clear();

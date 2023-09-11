@@ -41,7 +41,7 @@ using UI.Base;
         private void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>();
-            inventoryCam = GameObject.FindWithTag("InventoryCam").GetComponent<Camera>();
+            //inventoryCam = GameObject.FindWithTag("InventoryCam").GetComponent<Camera>();
 
             inventoryView.InitUIDocument(uiDocument);
             accentItemCompo = new AccentItemCompo();
@@ -128,11 +128,11 @@ using UI.Base;
         public override  void ActiveView(bool _isActive)
         {
             base.ActiveView(_isActive); 
-            inventoryCam.gameObject.SetActive(_isActive); // 인벤토리 활성화시에만 카메라 활성화 
+            //inventoryCam.gameObject.SetActive(_isActive); // 인벤토리 활성화시에만 카메라 활성화 
             inventoryView.ActiveScreen(_isActive);
             if (_isActive == false)
             {
-                accentItemCompo.InactiveAllModels();
+                //accentItemCompo.InactiveAllModels();
                 inventoryView.SetItemText(null);
             }
             EventManager.Instance.TriggerEvent(EventsType.UpdateQuickSlot);
@@ -181,7 +181,7 @@ using UI.Base;
             {
                 curRadioButton = _rType;
                       inventoryView.SetInventoryTitleName(_rType);
-        }
+            }
 
             AnimateSlot(_eType, _isActive);
         }

@@ -152,6 +152,7 @@ namespace UI.Inventory
                         UIUtilManager.Instance.PlayUISound(UISoundType.Click);
                     });
 
+                
                 _slotPr.AddHoverEvent(() =>
                 {
                     _slotPr.SlotItemView.ActiveBorder(true);
@@ -166,6 +167,9 @@ namespace UI.Inventory
                     descriptionPresenter.ActiveView(false);
                 }); // 마우스 위에서 떠날시 설명창 비활성화
 
+                //  더블 클릭 이벤트 추가 
+                _slotPr.AddDoubleClicker(() => doubleClickEvent?.Invoke(_slotPr));
+                
                 _invenPanelDic[_iType].AddSlotView(_slotPr); // 패널에 슬롯 뷰 추가 
                 this.inventoryGridSlotsView.SetParent(_itemType, _slotPr.Parent);
             }
@@ -188,6 +192,12 @@ namespace UI.Inventory
         {
             this.isClicker = true;
             this.clickCallback = _callback;
+        }
+
+        private Action<SlotItemPresenter> doubleClickEvent = null; 
+        public void AddDoubleClickEvent(Action<SlotItemPresenter> _callback)
+        {
+            doubleClickEvent = _callback; 
         }
     }
 }
