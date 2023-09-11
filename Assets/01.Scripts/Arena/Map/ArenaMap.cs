@@ -146,11 +146,18 @@ namespace Arena
             {
                 map.SetActive(isActive);
                 GetEndTriggerList().ForEach((x) => x.gameObject.SetActive(true));
-                particle.Play();
+
+                if (particle != null)
+				{
+                    particle.Play();
+				}
             }
             else
             {
-                particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                if(particle != null)
+				{
+                    particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+				}
                 if (_isImme == false)
                 {
                     yield return new WaitForSeconds(1f);

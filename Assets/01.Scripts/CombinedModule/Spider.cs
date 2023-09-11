@@ -77,7 +77,7 @@ namespace CondinedModule
             CharacterController = null;
             RaycastTarget = null;
             Animator = null;
-            moduleComponentsDic.Clear();
+            moduleComponentsDic?.Clear();
         }
     }
 }

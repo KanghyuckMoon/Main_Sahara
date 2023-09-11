@@ -8,6 +8,7 @@ using System.Linq;
 using UI.ActiveManager;
 using Utill.Pattern;
 using Module;
+using GameManager;
 
 namespace Interaction
 {
@@ -59,14 +60,20 @@ namespace Interaction
 			{
 				return;
 			}
-			GetNearObject();
-			//UpdateUI();
-			InputInteraction();
+			if (GamePlayerManager.Instance.IsPlaying)
+			{
+				GetNearObject();
+				//UpdateUI();
+				InputInteraction();
+			}
 		}
 
 		private void LateUpdate()
 		{
-			SetInteractionData(); 
+			if(GamePlayerManager.Instance.IsPlaying)
+			{
+				SetInteractionData(); 
+			}
 		}
 
 		/// <summary>

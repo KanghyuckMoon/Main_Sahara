@@ -16,25 +16,16 @@ namespace LoadScene
 {
     public class LoadInGameScene : MonoBehaviour
     {
-        // Start is called before the first frame update
         void Start()
         {
-            //UpdateManager.UpdateManager.Clear();
-            //AddressablesManager.Instance.LodedSceneClear();
-            //ClassPoolManager.Instance.Clear();
-            //ObjectPoolManager.Instance.Clear();
-            //System.GC.Collect(); 
-            //UIManager.Instance.Init();
-            //StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
-            //SceneManager.LoadScene("TipScene", LoadSceneMode.Additive);
-            //SceneManager.LoadScene("InGame");
+            GameManager.GamePlayerManager.Instance.IsPlaying = false;
             StartCoroutine(LoadingIngame());
         }
         
         private IEnumerator  LoadingIngame()
         {
             yield return null;
-            var op = SceneManager.LoadSceneAsync("DemoScene");
+            var op = SceneManager.LoadSceneAsync("InGame");
             op.allowSceneActivation = false;
             float timer = 0.0f;
             while (!op.isDone)
