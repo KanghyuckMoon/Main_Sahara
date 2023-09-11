@@ -19,12 +19,14 @@ public class Idle : StateMachineBehaviour
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
+        stateModule.RemoveState(State.ATTACK);
+        stateModule.RemoveState(State.SKILL);
         
         mainModule.SetActiveAnimatorRoot(0);
         
         //mainModule.CanMove = true;
         
-        _half = 0.65f;//stateInfo.length - (stateInfo.length / 9);
+        _half = 0f;//stateInfo.length - (stateInfo.length / 9);
         current = 0;
 
         isUp = true;
