@@ -95,7 +95,7 @@ namespace UI.Inventory
                 SetItemText(x.ItemData);
                 callback?.Invoke(x.ItemData);
             });
-            inventoryGridSlotsPr.AddDoubleClickEvent(() => { }
+            inventoryGridSlotsPr.AddDoubleClickEvent(Equip
                 // 장착 
                 );
             //inventoryGridSlotsPr.AddClickEvent(SetItemText);
@@ -430,7 +430,7 @@ namespace UI.Inventory
         /// <summary>
         /// 장비템 장착 
         /// </summary>
-        private void EquipEquipment(List<SlotItemPresenter> _targetList)
+        private void EquipEquipment(List<SlotItemPresenter> _targetList, SlotItemPresenter _slotPr)
         {
             SlotItemPresenter _targetSlot = null; 
             if (_targetList.Count > 0)
@@ -440,7 +440,7 @@ namespace UI.Inventory
                 foreach (var _target in _targetList)
                 {
                     // 여기로 장착 
-                    if (_target.ItemData.equipmentType == dragItemPresenter.ItemData.equipmentType)
+                    if (_target.ItemData.equipmentType == _slotPr.ItemData.equipmentType)
                     {
                         _targetSlot = _target; 
                         if(_target.ItemData == null ||
@@ -448,7 +448,7 @@ namespace UI.Inventory
                         {
                             _isEmptySlot = true; 
                             // 데이터 적용 
-                            slotCallbackDic[_target.ItemData.itemType]?.Invoke(dragItemPresenter.ItemData, _target.Index);
+                            slotCallbackDic[_target.SlotType]?.Invoke(_slotPr.ItemData, _target.Index);
                             UpdateEquipUI(); // UI 업데이트
                             UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
                             break;
@@ -471,7 +471,7 @@ namespace UI.Inventory
                 }
             }
         }
-        private void Equip()
+        private void Equip(SlotItemPresenter _slotPr)
         {
             SlotItemPresenter _targetSlot = null; 
             // 현재 패널의 장착 슬롯 가져오고 
@@ -481,7 +481,7 @@ namespace UI.Inventory
             if (inventoryGridSlotsPr.CurItemType == ItemType.Equipment)
             {
                 // 장비 타입 데이터 맞는 걸로 찾기 
-                EquipEquipment(_targetList); 
+                EquipEquipment(_targetList,_slotPr); 
             }
 
             // 장착 슬롯 count가 0 보다 큰지 확인하고 
@@ -492,12 +492,12 @@ namespace UI.Inventory
                 foreach (var _target in _targetList)
                 {
                     // 여기로 장착 
-                    if (_target.ItemData.itemType == dragItemPresenter.ItemData.itemType &&  _target.ItemData == null || string.IsNullOrEmpty(_target.ItemData.key))
+                    if (  _target.ItemData == null || string.IsNullOrEmpty(_target.ItemData.key))
                     {
                         _targetSlot = _target; 
                         _isEmptySlot = true;
                         // 데이터 적용 
-                        slotCallbackDic[_target.ItemData.itemType]?.Invoke(dragItemPresenter.ItemData, _target.Index); 
+                        slotCallbackDic[_target.SlotType]?.Invoke(_slotPr.ItemData, _target.Index); 
                         UpdateEquipUI(); // UI 업데이트
                         UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
                         break; 
@@ -513,7 +513,7 @@ namespace UI.Inventory
                     equipSlotRemoveCallbackDic[_targetSlot.ItemData.itemType]?.Invoke(_targetSlot.Index);
                     
                     // 장착
-                    slotCallbackDic[_targetSlot.ItemData.itemType]?.Invoke(dragItemPresenter.ItemData, _targetSlot.Index); 
+                    slotCallbackDic[_targetSlot.ItemData.itemType]?.Invoke(_slotPr.ItemData, _targetSlot.Index); 
                     UpdateEquipUI(); // UI 업데이트
                     UIUtilManager.Instance.PlayUISound(UISoundType.EquipItem);
                 }
