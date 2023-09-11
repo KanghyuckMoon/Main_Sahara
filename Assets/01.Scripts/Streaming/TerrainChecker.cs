@@ -28,6 +28,10 @@ namespace Streaming
         [ContextMenu("RemoveTerrain")]
         private void RemoveTerrain()
         {
+            if(gameObject == null)
+			{
+                return;
+			}
             TerrainManager.Instance.DisableTerrain(gameObject.name);
         }
     }

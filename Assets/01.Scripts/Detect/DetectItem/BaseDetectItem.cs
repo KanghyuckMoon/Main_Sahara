@@ -54,8 +54,7 @@ namespace Detect
 
         protected Vector3 upPos;
 
-        [SerializeField]
-        protected UnityEvent getoutEventBefore;
+        public UnityEvent getoutEventBefore;
         
         [FormerlySerializedAs("getoutEvent")] [SerializeField]
         protected UnityEvent getoutEventAfter;

@@ -11,18 +11,26 @@ namespace UI.Base
         private Action OnClickCallback; 
         public DoubleClicker(Action _callback)
         {
-            activators.Add(new ManipulatorActivationFilter { clickCount = 1, button = MouseButton.LeftMouse });
+            activators.Add(new ManipulatorActivationFilter { clickCount = 2, button = MouseButton.LeftMouse });
             this.OnClickCallback = _callback; 
         }
 
         protected override void RegisterCallbacksOnTarget()
         {
-            target.RegisterCallback<MouseDownEvent>((e) =>OnClickCallback?.Invoke());
+            target.RegisterCallback<MouseDownEvent>(DoubleClick);
         }
 
         protected override void UnregisterCallbacksFromTarget()
         {
-            target.RegisterCallback<MouseDownEvent>((e) =>OnClickCallback?.Invoke());
+            target.RegisterCallback<MouseDownEvent>(DoubleClick);
+        }
+
+        private void DoubleClick(MouseDownEvent _mouseDownEvent)
+        {
+            if (_mouseDownEvent.clickCount == 2)
+            {
+                OnClickCallback?.Invoke();
+            }
         }
     }
 
@@ -39,12 +47,20 @@ namespace UI.Base
 
         protected override void RegisterCallbacksOnTarget()
         {
-            target.RegisterCallback<MouseDownEvent>((e) => OnClickCallback?.Invoke());
+            target.RegisterCallback<MouseDownEvent>(AltClick);
         }
 
         protected override void UnregisterCallbacksFromTarget()
         {
-            target.RegisterCallback<MouseDownEvent>((e) => OnClickCallback?.Invoke());
+            target.RegisterCallback<MouseDownEvent>(AltClick);
+        }
+        
+        private void AltClick(MouseDownEvent _mouseDownEvent)
+        {
+            if ((_mouseDownEvent.modifiers & EventModifiers.Alt) != 0)
+            {
+                OnClickCallback?.Invoke();
+            }
         }
     }
 }

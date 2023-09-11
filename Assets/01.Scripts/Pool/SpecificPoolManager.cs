@@ -16,6 +16,10 @@ namespace Pool
         private const string key = "HitBox";
         public void Clear()
 		{
+            while(gameObjectQueue.Count > 0)
+			{
+                Destroy(gameObjectQueue.Dequeue());
+            }
             gameObjectQueue.Clear();
         }
 
@@ -39,9 +43,16 @@ namespace Pool
 
         public void RegisterObject(T _obj)
         {
-            _obj.transform.SetParent(null);
-            SceneManager.MoveGameObjectToScene(_obj.gameObject, SceneManager.GetActiveScene());
-            gameObjectQueue.Enqueue(_obj);
+            if(GameManager.GamePlayerManager.Instance.IsPlaying)
+            {
+                _obj.transform.SetParent(null);
+                SceneManager.MoveGameObjectToScene(_obj.gameObject, SceneManager.GetActiveScene());
+                gameObjectQueue.Enqueue(_obj);
+            }
+            else
+            {
+                Destroy(_obj.gameObject);
+            }
         }
 
         public void CreateObject(int count = 1)

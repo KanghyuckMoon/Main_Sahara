@@ -252,15 +252,15 @@ namespace Module
             Vector3 _targetDirection = new Vector3(mainModule.ObjDir.x, mainModule.ObjDir.y, 0);
             mainModule.CharacterController.Move(_targetDirection* mainModule.PersonalDeltaTime);
         }
-        // ReSharper disable Unity.PerformanceAnalysis
+        
         protected Vector3 VelocityOnSlope(Vector3 velocity, Vector3 dir)
         {
             var position = mainModule.transform.position;
             Vector3 _rayPos = new Vector3(position.x, position.y + mainModule.groundOffset,
                 position.z);
-            var _ray = new Ray(_rayPos, Vector3.down);
+            var _ray = new Ray(_rayPos, Vector3.down);  
 
-            if (Physics.Raycast(_ray, out RaycastHit _hitInfo, 0.2f))
+            if (Physics.Raycast(_ray, out RaycastHit _hitInfo, 1f))
             {
                 var _slopRotation = Quaternion.FromToRotation(Vector3.up, _hitInfo.normal);
                 if (mainModule.ObjDir == Vector2.zero)
@@ -297,11 +297,10 @@ namespace Module
                     mainModule.Gravity = -2f;
                 }
             }
-            if (mainModule.Gravity < 100)
-            {
-                if (!mainModule.isTouchGround)
-                    mainModule.Gravity += mainModule.GravityScale * mainModule.PersonalFixedDeltaTime * 2;
-            }
+
+            if (!(mainModule.Gravity < 100)) return;
+            if (!mainModule.isTouchGround)
+                mainModule.Gravity += mainModule.GravityScale * mainModule.PersonalFixedDeltaTime * 2;
         }
 
         public override void FixedUpdate()

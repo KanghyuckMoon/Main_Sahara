@@ -7,12 +7,19 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Pool
 {
-    public class ObjectPoolManager : Singleton<ObjectPoolManager>
+    public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
     {
         private Dictionary<string, Queue<GameObject>> gameObjectQueueDic = new Dictionary<string, Queue<GameObject>>();
 
         public void Clear()
 		{
+            foreach(var q in gameObjectQueueDic)
+			{
+                while(q.Value.Count > 0)
+				{
+                    Destroy(q.Value.Dequeue());
+                }
+			}
             gameObjectQueueDic.Clear();
             //PoolParentManager.Instance.Clear();
         }
