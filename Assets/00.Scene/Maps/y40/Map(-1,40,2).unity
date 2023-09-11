@@ -1483,6 +1483,106 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 718555131595661623, guid: 99487a8f88218b24c8ed721b307a5b6f, type: 3}
   m_PrefabInstance: {fileID: 259558855}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &279346167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 279346168}
+  - component: {fileID: 279346169}
+  - component: {fileID: 279346170}
+  - component: {fileID: 279346171}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &279346168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279346167}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.04280727, y: 0.9963873, z: 0.046304014, w: 0.056884494}
+  m_LocalPosition: {x: -3.1, y: 4086.6, z: 238.24}
+  m_LocalScale: {x: 1, y: 1, z: 1.8866}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 325513910}
+  m_LocalEulerAnglesHint: {x: -5.014, y: -186.764, z: 5.217}
+--- !u!65 &279346169
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279346167}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15, y: 15, z: 15}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &279346170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279346167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3552eb27f5fceec42a1d3fcaa3462f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 279346171}
+        m_TargetAssemblyTypeName: Module.Talk.TalkObject, Talk
+        m_MethodName: Talk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isOnlyOne: 1
+--- !u!114 &279346171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279346167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f0195f9c06795458688589f7e6c564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkCode: T00000010
+  authorCode: A00000010
+  endTalkEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &288947427 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
@@ -1548,6 +1648,7 @@ Transform:
   - {fileID: 436900228}
   - {fileID: 874518679}
   - {fileID: 1134021844}
+  - {fileID: 279346168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &337374721
