@@ -122,6 +122,10 @@ namespace Pool
         private void CreateObject(string key, int count = 1)
         {
             GameObject prefeb = PrefebManager.Instance.GetPrefebDic<GameObject>(key);
+            if (prefeb == null)
+            {
+                Debug.Log($"Null Prefeab : ${key}");
+            }
             for (int i = 0; i < count; ++i)
             {
                 GameObject obj = GameObject.Instantiate(prefeb, null);

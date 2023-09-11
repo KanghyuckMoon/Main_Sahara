@@ -6,6 +6,8 @@ using UnityEngine;
 using HitBox;
 using Pool;
 using Utill.Addressable;
+using Player;
+using Weapon;
 
 namespace Skill
 {
@@ -20,10 +22,25 @@ namespace Skill
         public void Skills(AbMainModule _mainModule)
         {
             //_mainModule.CharacterController.Move(new Vector3(0, 0, 4));
+            if (!UseMana(_mainModule, usingMana)) return;
             
+            
+            _mainModule.GetModuleComponent<StateModule>(ModuleType.State).AddState(State.SKILL);
+
+            GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
+            _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
+            _skillProjectile.GetComponent<HitBoxOnProjectile>().SetOwner(transform.root.gameObject);
+            _skillProjectile.tag = _mainModule.tag;
+            _skillProjectile.GetComponent<HitBoxOnProjectile>().SetEnable();
+
+            var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");
+            _effect.transform.position = transform.position;
+            _effect.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            _effect.SetActive(true);
+
             PlaySkillAnimation(_mainModule, animationClip);
-            UseMana(_mainModule, usingMana);
-            GetBuff(_mainModule);
+
+            //GetBuff(_mainModule);
         }
         public HitBoxAction GetHitBoxAction()
         {

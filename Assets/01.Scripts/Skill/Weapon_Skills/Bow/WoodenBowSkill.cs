@@ -26,7 +26,6 @@ namespace Skill
             if (UseMana(_mainModule, -usingMana))
             {
                 _mainModule.GetModuleComponent<StateModule>(ModuleType.State).AddState(State.SKILL);
-                setPlayerMaterial ??= transform.root.GetComponentInChildren<SetPlayerMaterial>();
 
                 GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
                 _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
