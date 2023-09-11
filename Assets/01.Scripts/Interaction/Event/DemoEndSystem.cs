@@ -73,7 +73,7 @@ namespace Interaction
 
 		private void MoveDemoEndScene()
 		{
-			SceneManager.LoadScene("DemoEndScene");
+			SceneManager.LoadScene("LoadingSceneInGame");
 		}
 	}
 }

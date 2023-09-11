@@ -41,7 +41,7 @@ using UI.Base;
         private void Awake()
         {
             uiDocument ??= GetComponent<UIDocument>();
-            inventoryCam = GameObject.FindWithTag("InventoryCam").GetComponent<Camera>();
+            //inventoryCam = GameObject.FindWithTag("InventoryCam").GetComponent<Camera>();
 
             inventoryView.InitUIDocument(uiDocument);
             accentItemCompo = new AccentItemCompo();
