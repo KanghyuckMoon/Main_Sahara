@@ -168,7 +168,7 @@ namespace UI.Inventory
                 }); // 마우스 위에서 떠날시 설명창 비활성화
 
                 //  더블 클릭 이벤트 추가 
-                _slotPr.AddDoubleClicker(() => doubleClickEvent?.Invoke(_slotPr));
+                _slotPr.AddAltClicker(() => doubleClickEvent?.Invoke(_slotPr));
                 
                 _invenPanelDic[_iType].AddSlotView(_slotPr); // 패널에 슬롯 뷰 추가 
                 this.inventoryGridSlotsView.SetParent(_itemType, _slotPr.Parent);
