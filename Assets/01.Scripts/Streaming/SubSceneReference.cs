@@ -9,7 +9,7 @@ namespace Streaming
 	public class SubSceneReference : MonoBehaviour
 	{
 #if UNITY_EDITOR
-		List<UnityEditor.SceneAsset> sceneAssetList;
+		public List<UnityEditor.SceneAsset> sceneAssetList;
 
 		[ContextMenu("AssetToNameList")]
 		public void AssetToNameList()
