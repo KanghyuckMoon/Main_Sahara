@@ -182,6 +182,7 @@ namespace Streaming
 			viewerPosition = viewer.position;
 			originChunkCoordX = Mathf.RoundToInt(viewerPosition.x / chunkSize);
 			originChunkCoordY = Mathf.RoundToInt(viewerPosition.y / chunkSize);
+			originChunkCoordY = (int)Mathf.Clamp(originChunkCoordY, 39, 40);
 			originChunkCoordZ = Mathf.RoundToInt(viewerPosition.z / chunkSize);
 			//viewerPosition = defaultPosition;
 			InitSubScene();
@@ -256,6 +257,8 @@ namespace Streaming
 				originChunkCoordX = _currentChunkCoordX;
 				originChunkCoordY = _currentChunkCoordY;
 				originChunkCoordZ = _currentChunkCoordZ;
+
+				originChunkCoordY = (int)Mathf.Clamp(originChunkCoordY, 39, 40);
 
 				//Physics.RebuildBroadphaseRegions(new Bounds(new Vector3(_currentChunkCoordX, _currentChunkCoordY, _currentChunkCoordZ) * 100,Vector3.one * 200), 5);
 				StartCoroutine(UpdateChunk());

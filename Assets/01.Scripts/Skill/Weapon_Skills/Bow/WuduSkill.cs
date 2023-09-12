@@ -17,19 +17,28 @@ namespace Skill
         [SerializeField] private HitBoxInAction hitBoxInAction;
         [SerializeField] private HitBoxAction hitBoxAction = new HitBoxAction();
 
+        private bool isBallOn = false;
+
+        private GameObject skillObject;
+
         public void Skills(AbMainModule _mainModule)
         {
-            var skillObject = ObjectPoolManager.Instance.GetObject("Wudu_SkillEffect");
-            //skillObject.transform.SetParent(transform.root);
-            //skillObject.transform.localPosition = transform.root.position + new Vector3(2, 1, 0);
-            skillObject.GetComponent<Wudu_Projectile>().SetSubject(transform.root.gameObject, 1, 1);
-            skillObject.SetActive(true);
+            if (isBallOn) return;
+            if (UseMana(_mainModule, -usingMana))
+            {
+                skillObject = ObjectPoolManager.Instance.GetObject("Wudu_SkillEffect");
+                skillObject.GetComponent<HitBoxOnProjectile>().SetOwner(transform.root.gameObject);
+                skillObject.tag = _mainModule.tag;
+                skillObject.GetComponent<HitBoxOnProjectile>().SetEnable();
+                skillObject.GetComponent<Wudu_Projectile>().SetSubject(transform.root.gameObject, 1, 1);
+                skillObject.SetActive(true);
 
-            //Debug.Log(skillObject);
-            
-            PlaySkillAnimation(_mainModule, animationClip);
-            UseMana(_mainModule, usingMana);
-            GetBuff(_mainModule);
+                isBallOn = true;
+
+                Invoke(nameof(BallOff), 10f);
+
+                PlaySkillAnimation(_mainModule, animationClip);
+            }
         }
         public HitBoxAction GetHitBoxAction()
         {
@@ -46,6 +55,14 @@ namespace Skill
             //GameObject obj = ObjectPoolManager.Instance.GetObject("FireEffect_1");
             //obj.SetActive(true);
             //obj.transform.position = transform.position;
+        }
+
+        public void BallOff()
+        {
+            skillObject.SetActive(false);
+            ObjectPoolManager.Instance.RegisterObject("Wudu_SkillEffect", skillObject);
+            
+            isBallOn = false;
         }
     }
 }
