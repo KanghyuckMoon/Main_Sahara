@@ -186,13 +186,13 @@ namespace Module
 		{
 			_inGameHitBox.HitBoxAction?.Invoke(HitBoxActionType.Hit);
 
-			mainModule.SettingTime.SetTime(0.18f, 0f);
+			mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0f);
 
 			var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
 
 			if (_settingTime is not null)
 			{
-				_settingTime.SetTime(0.18f, 0f);
+				_settingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0f);
 			}
 		}
 
@@ -335,15 +335,17 @@ namespace Module
 
             if (Physics.Raycast(_ray, out var _raycastHit, 10f, mainModule.groundLayer))
             {
-	            if (mainModule.isGround)
+	            if (mainModule.isTouchGround)
 	            {
 		            var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
 
+		            Debug.Log(_angle);
+		            
 		            previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance,
 			            mainModule.groundLayer)
 			            ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
 			            : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
-		            mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
+		            //mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
 
 		            var _slopeLimit = mainModule.CharacterController.slopeLimit;
 		            mainModule.IsSlope = _angle <= _slopeLimit + 3f;

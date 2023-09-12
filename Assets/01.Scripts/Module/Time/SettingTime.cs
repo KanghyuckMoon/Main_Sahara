@@ -36,6 +36,8 @@ namespace Module
 
         public void SetTime(float _duration, float _slowvalue)
         {
+            Debug.Log(transform.name + ": 타임세팅 : " + _duration + _slowvalue);
+            if (_duration <= 0) return;
             durationTime = _duration;
             
             isRunning = true;
