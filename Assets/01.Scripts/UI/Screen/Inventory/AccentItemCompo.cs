@@ -131,7 +131,7 @@ namespace UI.Inventory
 
         public void ActiveModel(string _key)
         {
-            //InactiveAllModels();
+            InactiveAllModels();
             InactiveCurModel(); 
             // 모델이 존재하면 
             if(modelDic.TryGetValue(_key, out GameObject _obj)== true)
