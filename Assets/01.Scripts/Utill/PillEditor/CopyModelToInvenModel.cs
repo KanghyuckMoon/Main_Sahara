@@ -9,7 +9,7 @@ public class CopyModelToInvenModel : EditorWindow
     static CopyModelToInvenModel exampleWindow;
 
     private List<GameObject> objectsToCopy = new List<GameObject>();
-    private string targetFolderPath = "Assets/TargetFolder/";
+    private string targetFolderPath = "Assets/09.Prefabs/InvenModel/";
     
     [MenuItem("PillTool/CopyModelToInvenModel")]
     static void Open()

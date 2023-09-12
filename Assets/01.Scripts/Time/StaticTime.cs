@@ -61,6 +61,7 @@ namespace TimeManager
 			set
 			{
 				playerTime = value;
+				Debug.Log(PlayerTime + playerTime);
 				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
@@ -98,6 +99,7 @@ namespace TimeManager
 			set
 			{
 				entierTime = value;
+				Debug.Log("@@@@@@@@@@@@EntireTime" + entierTime);
 				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
@@ -110,6 +112,7 @@ namespace TimeManager
 			set
 			{
 				uiTime = value;
+				Debug.Log("UITIime" + uiTime);
 				StaticTime.Instance.GetIObserble().Send();
 			}
 		}
