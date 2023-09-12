@@ -24,6 +24,7 @@ namespace Skill
 
         public void Skills(AbMainModule _mainModule)
         {
+            if (!UseMana(_mainModule, usingMana)) return;
             setPlayerMaterial ??= transform.root.GetComponentInChildren<SetPlayerMaterial>();
 
             var _effect = ObjectPoolManager.Instance.GetObject("Salah_SkillEffect_Aura");
@@ -39,8 +40,6 @@ namespace Skill
             
             setPlayerMaterial.SetMaterials(playerReinnforceMat);
             PlaySkillAnimation(_mainModule, animationClip);
-            UseMana(_mainModule, usingMana);
-            GetBuff(_mainModule);
         }
         public HitBoxAction GetHitBoxAction()
         {

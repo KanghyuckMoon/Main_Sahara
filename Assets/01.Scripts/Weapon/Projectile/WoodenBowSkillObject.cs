@@ -13,6 +13,8 @@ namespace Weapon
         [SerializeField] private float radius = 9;
         private GameObject targetObject;
 
+        private Transform target;
+
         private string tagName;
 
         private bool isUse = false;
@@ -21,6 +23,15 @@ namespace Weapon
 
         private void Update()
         {
+            if (isUse)
+            {
+                transform.position = Vector3.LerpUnclamped(transform.position, target.position, Time.deltaTime);
+                
+                Vector3 directionVec = target.position - transform.position;
+                Quaternion qua = Quaternion.LookRotation(directionVec);
+                transform.rotation = Quaternion.Slerp(transform.rotation, qua, Time.deltaTime * 2f);
+            }
+            
             if (isUse) return;
             transform.localPosition = Vector3.Lerp(targetObject.transform.position + pos, transform.position,
                 Time.deltaTime * 5);
@@ -34,17 +45,18 @@ namespace Weapon
             {
                 if (VARIABLE.CompareTag(tagName))
                 {
-                    isUse = true;
-
                     var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");
                     _effect.transform.position = transform.position;
                     _effect.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                     _effect.SetActive(true);
 
-                    _effect.transform.LookAt(VARIABLE.transform);
+                    target = VARIABLE.transform;
+                    isUse = true;
+                    
+                    //_effect.transform.LookAt(VARIABLE.bounds.center);
 
-                    transform.DOMove(VARIABLE.transform.position, 1f).SetEase(Ease.OutQuart);
-                    transform.LookAt(VARIABLE.transform);
+                    //transform.DOMove(VARIABLE.bounds.center, .8f).SetEase(Ease.OutQuart);
+                    //transform.LookAt(VARIABLE.bounds.center);
                 }
             }
         }

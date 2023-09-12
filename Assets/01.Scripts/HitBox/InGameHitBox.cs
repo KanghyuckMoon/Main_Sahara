@@ -73,6 +73,7 @@ namespace HitBox
 			col ??= GetComponent<CapsuleCollider>();
 			hitBoxData = _hitBoxData;
 			isContactDir = hitBoxData.isContactDirection;
+			Debug.Log(_owner);
 			transform.position = _owner.transform.position;
 			transform.eulerAngles = _hitBoxData.rotation + _owner.transform.eulerAngles;
 			transform.localScale = Vector3.one;
