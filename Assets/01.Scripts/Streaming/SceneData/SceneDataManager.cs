@@ -24,7 +24,7 @@ namespace Streaming
 		}
 		private Dictionary<string, SceneData> sceneDataDic = new Dictionary<string, SceneData>();
 		private SceneAddressSO sceneAddressSO = null;
-		private void Start()
+		private void Awake()
 		{
 			sceneAddressSO = AddressablesManager.Instance.GetResource<SceneAddressSO>("SceneAddressSO");
 			foreach (string _sceneName in sceneAddressSO.sceneAddressList)
