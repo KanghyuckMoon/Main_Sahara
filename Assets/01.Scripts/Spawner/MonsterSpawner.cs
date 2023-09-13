@@ -5,6 +5,8 @@ using Utill.Addressable;
 using Utill.Pattern;
 using Pool;
 using Streaming;
+using UpdateManager;
+using Effect;
 
 namespace Spawner
 {
@@ -26,7 +28,7 @@ namespace Spawner
 		mc_Or,
 	}
 
-	public class MonsterSpawner : MonoBehaviour
+	public class MonsterSpawner : MonoBehaviour, IRadiusCheck
 	{
 		private static Dictionary<int, bool> isSpawnDic = new Dictionary<int, bool>();
 
@@ -51,7 +53,11 @@ namespace Spawner
 
 		}
 
-		public void OnEnable()
+		//public void OnEnable()
+		//{
+		//}
+
+		private void Spawn()
 		{
 			if (isSpawnDic.TryGetValue(curIndex, out bool _bool))
 			{
@@ -69,7 +75,7 @@ namespace Spawner
 				isSpawnDic.Add(curIndex, true);
 				GameObject obj = ObjectPoolManager.Instance.GetObject(enemyAddress.ToString());
 				ObjectClassCycle objectClassCycle = obj.GetComponentInChildren<ObjectClassCycle>();
-				if(objectClassCycle is not null)
+				if (objectClassCycle is not null)
 				{
 					objectClassCycle.TargetObject = obj;
 					ObjectSceneChecker _objectSceneChecker = ClassPoolManager.Instance.GetClass<ObjectSceneChecker>();
@@ -84,8 +90,19 @@ namespace Spawner
 				obj.transform.position = transform.position;
 				obj.transform.rotation = transform.rotation;
 				obj.SetActive(true);
+				EffectManager.Instance.SetEffectDefault("BoomSandVFX", transform.position, Quaternion.identity);
 			}
+			gameObject.SetActive(false);
 		}
 
+		public void Add()
+		{
+			Spawn();
+		}
+
+		public void Remove()
+		{
+
+		}
 	}
 }

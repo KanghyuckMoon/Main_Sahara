@@ -13,7 +13,7 @@ using HitBox;
 
 namespace Module
 {
-    public abstract class AbMainModule : MonoBehaviour, IUpdateObj, IObserble
+    public abstract class AbMainModule : MonoBehaviour, IUpdateObj, IObserble, IRadiusCheck
     {
         //메인 모듈에서 지금 오브젝트가 가지고 있는 모든 모듈을 가지고 와야해
         //그건 풀링 할때 각각의 모듈을 밑에 복합데이터에 넣어주는 형식으로 한다. 메인모듈에 넣어준다.
@@ -765,7 +765,10 @@ namespace Module
                 baseModule?.Awake();
                 baseModule?.OnEnable();
             }
-            UpdateManager.UpdateManager.Add(this);
+            if (player)
+            {
+                UpdateManager.UpdateManager.Add(this);
+            }
 		}
 
         public virtual void OnDisable()
@@ -775,7 +778,10 @@ namespace Module
             {
                 baseModule?.OnDisable();
             }
-            UpdateManager.UpdateManager.Remove(this);
+            if(player)
+			{
+                UpdateManager.UpdateManager.Remove(this);
+			}
             moduleComponentsDic.Clear();
         }
 
@@ -917,5 +923,15 @@ namespace Module
         {
             skillAnimAction?.Invoke();
         }
-    }
+
+		public void Add()
+        {
+            UpdateManager.UpdateManager.Add(this);
+        }
+
+		public void Remove()
+        {
+            UpdateManager.UpdateManager.Remove(this);
+        }
+	}
 }

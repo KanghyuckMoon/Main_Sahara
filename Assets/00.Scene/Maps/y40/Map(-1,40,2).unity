@@ -1516,6 +1516,7 @@ GameObject:
   - component: {fileID: 279346169}
   - component: {fileID: 279346170}
   - component: {fileID: 279346171}
+  - component: {fileID: 279346172}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1603,7 +1604,32 @@ MonoBehaviour:
   authorCode: A00000010
   endTalkEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 279346172}
+        m_TargetAssemblyTypeName: CondinedModule.InvokeEndTalk, CondinedModule
+        m_MethodName: NpcEndTalk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &279346172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279346167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb60ec1bd8052cf4e8e7fe6634eab13c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcType: 1
 --- !u!114 &288947427 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
