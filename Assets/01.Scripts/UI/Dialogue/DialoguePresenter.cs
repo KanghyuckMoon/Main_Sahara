@@ -411,13 +411,29 @@ namespace UI.Dialogue
             throw new NotImplementedException();
         }
 
+        public bool testBool = true; 
+        public bool testBool2 = true; 
+        [ContextMenu("테스트")]
+        public void Test()
+        {
+            StaticTime.UITime = testBool ? 0f : 1f;
+            EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, testBool);
+            EventManager.Instance.TriggerEvent(EventsType.SetUIInputAndDialogue, ! testBool);
+        }
+        [ContextMenu("테스트2")]
+
+        public void Test2()
+        {
+            ActiveView(testBool2); 
+        }
+
         public override void ActiveView(bool _isActive)
         {
             isDialogue = _isActive;
             dialogueView.ActiveViewS(_isActive);
-            StaticTime.UITime = _isActive ? 0f : 1f;
-            EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, _isActive);
-            EventManager.Instance.TriggerEvent(EventsType.SetUIInputAndDialogue, ! _isActive);
+            //StaticTime.UITime = _isActive ? 0f : 1f;
+            //EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, _isActive);
+            //EventManager.Instance.TriggerEvent(EventsType.SetUIInputAndDialogue, ! _isActive);
             //UIManager.Instance.ActiveCursor(_isActive); 
 
             if (_isActive == false)

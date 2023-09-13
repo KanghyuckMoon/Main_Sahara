@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907429654649595828}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.193, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -220,12 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 4735684078681382983}
   head: {fileID: 8438008502113563291}
-  correctionY: 90
-  correctionX: 0
-  correctionZ: 0
-  limitY: 35
-  limitX: 0
-  limitZ: 0
   rotationSpeed: 1
   initVector: 0
   maxRotationAngle: 0
@@ -525,12 +519,14 @@ MonoBehaviour:
   isDash: 0
   isConsecutiveWeapon: 0
   isChargeJumpOn: 0
+  isTouchGround: 0
   isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0.12
+  groundDistance: 0.5
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -543,9 +539,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 132096
   maxSlope: 0
-  raycastTarget: {fileID: 0}
+  raycastTarget: {fileID: 7876226409945090951}
   visualObject: {fileID: 3271871461113048959}
   model: {fileID: 8574612850565081341}
+  root: {fileID: 0}
   animator: {fileID: 4735684078681382991}
   jumpstrenght: 0
   leftFeet: {fileID: 6273631000345063172}
@@ -592,6 +589,7 @@ MonoBehaviour:
   hitBoxInAction: {fileID: 0}
   hitBoxName: Bite_1
   debugHitBoxDataSO: {fileID: 0}
+  capsuleColEditor: {fileID: 0}
 --- !u!114 &4735684078681382987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,12 +720,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainModule: {fileID: 4735684078681382983}
   head: {fileID: 8438008502113563291}
-  correctionY: 90
-  correctionX: 0
-  correctionZ: 0
-  limitY: 35
-  limitX: 0
-  limitZ: 0
   rotationSpeed: 5
   initVector: 0
   maxRotationAngle: 45
