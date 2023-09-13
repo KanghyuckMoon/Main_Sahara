@@ -23,20 +23,15 @@ namespace Skill
         {
             //_mainModule.CharacterController.Move(new Vector3(0, 0, 4));
             if (!UseMana(_mainModule, usingMana)) return;
+            
+            
+            _mainModule.GetModuleComponent<StateModule>(ModuleType.State).AddState(State.SKILL);
 
-
-            for (int i = 0; i < 3; i++)
-            {
-                _mainModule.GetModuleComponent<StateModule>(ModuleType.State).AddState(State.SKILL);
-
-                GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
-                _skillProjectile.GetComponent<WoodenBowSkillObject>()
-                    .SetInfo(transform.root.gameObject, "Enemy", new Vector3(-1 + i, 2, 0));
-                _skillProjectile.GetComponent<HitBoxOnProjectile>().SetOwner(transform.root.gameObject);
-                _skillProjectile.tag = _mainModule.tag;
-                _skillProjectile.GetComponent<HitBoxOnProjectile>().SetEnable();
-            }
-
+            GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
+            _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
+            _skillProjectile.GetComponent<HitBoxOnProjectile>().SetOwner(transform.root.gameObject);
+            _skillProjectile.tag = _mainModule.tag;
+            _skillProjectile.GetComponent<HitBoxOnProjectile>().SetEnable();
 
             var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");
             _effect.transform.position = transform.position;

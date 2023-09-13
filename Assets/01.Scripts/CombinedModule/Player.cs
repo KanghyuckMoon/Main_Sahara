@@ -34,10 +34,10 @@ namespace CondinedModule
             moduleComponentsDic = new();
             CharacterController = GetComponent<CharacterController>();
             //footRotate = GetComponentInParent<csHomebrewIK>();
-            AddModuleWithPool<CameraModule>(ModuleType.Camera);
             AddModuleWithPool<InputModule>(ModuleType.Input);
             AddModuleWithPool<MoveModule>(ModuleType.Move);
             AddModuleWithPool<StatModule>(ModuleType.Stat);
+            AddModuleWithPool<CameraModule>(ModuleType.Camera);
             AddModuleWithPool<JumpModule>(ModuleType.Jump);
             AddModuleWithPool<HpModule>(ModuleType.Hp);
             AddModuleWithPool<AnimationModule>(ModuleType.Animation);

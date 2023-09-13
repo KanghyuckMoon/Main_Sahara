@@ -431,9 +431,9 @@ namespace UI.Dialogue
         {
             isDialogue = _isActive;
             dialogueView.ActiveViewS(_isActive);
-            //StaticTime.UITime = _isActive ? 0f : 1f;
-            //EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, _isActive);
-            //EventManager.Instance.TriggerEvent(EventsType.SetUIInputAndDialogue, ! _isActive);
+            StaticTime.UITime = _isActive ? 0f : 1f;
+            EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, _isActive);
+            EventManager.Instance.TriggerEvent(EventsType.SetUIInputAndDialogue, ! _isActive);
             //UIManager.Instance.ActiveCursor(_isActive); 
 
             if (_isActive == false)

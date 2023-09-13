@@ -98,7 +98,7 @@ namespace  UI.Option
             BindVisualElements(typeof(Elements));
         }
 
-        private Dictionary<Elements,OptionBtnEntryPr> optionBtnEntryPrList = new Dictionary<Elements, OptionBtnEntryPr>(); 
+        private Dictionary<Elements,OptionDropdownEntryPr> optionBtnEntryPrList = new Dictionary<Elements, OptionDropdownEntryPr>(); 
         
         public override void Init()
         {
@@ -121,7 +121,7 @@ namespace  UI.Option
                 var a= GetVisualElement((int)_panel).Query<VisualElement>(className:optionModifyStr);
                 foreach (var bar in a.ToList())
                 {
-                    optionBtnEntryPrList.Add((Elements)_panel, new OptionBtnEntryPr(bar));
+                    optionBtnEntryPrList.Add((Elements)_panel, new OptionDropdownEntryPr(bar));
                     //리스트에서 각각의 요소 가져오기 
                     
 

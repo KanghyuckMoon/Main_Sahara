@@ -355,7 +355,7 @@ namespace Inventory
             }
 
             ItemData _originItemData = allItemDataSO.GetItemData(_itemKey);
-            if (_originItemData.stackble)
+                if (_originItemData.stackble)
             {
                 List<ItemData> _itemDatas = inventorySO.itemDataList.FindAll(x => x.key == _itemKey);
                 for (int i = 0; i < _itemDatas.Count; ++i)

@@ -140,8 +140,8 @@ namespace Spawner
 			EnemyDead _enemyDead = obj.GetComponent<EnemyDead>();
 			_enemyDead.AddObserver(this);
 			enemyDeadList.Add(_enemyDead);
-
-			obj.transform.position = _spawnPos;// + new Vector3(0,0,0);
+			
+			obj.transform.position = _spawnPos + new Vector3(0,-2,0);
             var _module = obj.GetComponent<AbMainModule>();
             _module.attackedTime = 0f;
             _module.knockBackVector = Vector3.up;

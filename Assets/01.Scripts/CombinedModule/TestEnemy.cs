@@ -56,8 +56,7 @@ namespace CondinedModule
             AddModuleWithPool<JumpModule>(ModuleType.Jump);
             AddModuleWithPool<HpModule>(ModuleType.Hp);
             AddModuleWithPool<AnimationModule>(ModuleType.Animation);
-            //AddModuleWithPool<PhysicsModule>(ModuleType.Physics);
-            AddModuleWithPool<PhysicsRotateHillModule>(ModuleType.Physics);
+            AddModuleWithPool<PhysicsModule>(ModuleType.Physics);
             switch (hudType)
             {
                 case HUDType.Default:

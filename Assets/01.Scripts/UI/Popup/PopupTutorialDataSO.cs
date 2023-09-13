@@ -11,6 +11,7 @@ namespace UI.Popup
     {
         public PopupTutorialData(PopupTutorialDataSO _dataSO, int _idx = 0)
         {
+            key = _dataSO.key; 
             titleAddress = _dataSO.titleAddress;
             detailAddress = _dataSO.detailAddressList[_idx];
             detailImageAddress = _dataSO.detailImageAddressList[_idx];
@@ -19,6 +20,8 @@ namespace UI.Popup
             detailAddressList = _dataSO.detailAddressList;
             detailImageAddressList = _dataSO.detailImageAddressList; 
         }
+
+        public string key; 
         public string titleAddress;
         public string detailAddress;
         public string detailImageAddress; 

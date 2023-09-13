@@ -186,13 +186,13 @@ namespace Module
 		{
 			_inGameHitBox.HitBoxAction?.Invoke(HitBoxActionType.Hit);
 
-			mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0f);
+			mainModule.SettingTime.SetTime(0.18f, 0f);
 
 			var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
 
 			if (_settingTime is not null)
 			{
-				_settingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0f);
+				_settingTime.SetTime(0.18f, 0f);
 			}
 		}
 
@@ -331,30 +331,25 @@ namespace Module
             var _position = _transform.position;
             var _rayPos = new Vector3(_position.x, _position.y - mainModule.groundOffset, _position.z);
             var _ray = new Ray(_rayPos, Vector3.down);
-            //var _ray1 = new Ray(_rayPos, _transform.forward);
+            var _ray1 = new Ray(_rayPos, _transform.forward);
 
             if (Physics.Raycast(_ray, out var _raycastHit, 10f, mainModule.groundLayer))
             {
-	            if (mainModule.isTouchGround)
+	            if (mainModule.isGround)
 	            {
 		            var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
 
-		            Debug.Log(mainModule.name + " 현재 각도: " + _angle);
-		            
-		            /*previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance,
+		            previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance,
 			            mainModule.groundLayer)
 			            ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
-			            : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);*/
-		            //mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
+			            : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
+		            mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
 
 		            var _slopeLimit = mainModule.CharacterController.slopeLimit;
 		            mainModule.IsSlope = _angle <= _slopeLimit + 3f;
 
-		            Vector3 slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, _raycastHit.normal), _raycastHit.normal).normalized;
-		            mainModule.SlopeVector = slopeDirection * 5;
-		            
-		            /*mainModule.SlopeVector =
-			            new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z) * 5;*/
+		            mainModule.SlopeVector =
+			            new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z) * 5;
 
 		            mainModule.isGround = mainModule.IsSlope;
 	            }
@@ -377,7 +372,7 @@ namespace Module
             _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
                 mainModule.transform.position.z);
             bool _isLand = Physics.CheckSphere(_spherePosition, mainModule.GroundCheckRadius, mainModule.groundLayer,
-	            QueryTriggerInteraction.Ignore);
+                QueryTriggerInteraction.Ignore);
 
             if (!mainModule.isGround && _isLand)
             {
