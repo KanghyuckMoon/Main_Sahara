@@ -331,7 +331,7 @@ namespace Module
             var _position = _transform.position;
             var _rayPos = new Vector3(_position.x, _position.y - mainModule.groundOffset, _position.z);
             var _ray = new Ray(_rayPos, Vector3.down);
-            var _ray1 = new Ray(_rayPos, _transform.forward);
+            //var _ray1 = new Ray(_rayPos, _transform.forward);
 
             if (Physics.Raycast(_ray, out var _raycastHit, 10f, mainModule.groundLayer))
             {
@@ -339,19 +339,22 @@ namespace Module
 	            {
 		            var _angle = Vector3.Angle(Vector3.up, _raycastHit.normal);
 
-		            Debug.Log(_angle);
+		            Debug.Log(mainModule.name + " 현재 각도: " + _angle);
 		            
-		            previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance,
+		            /*previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance,
 			            mainModule.groundLayer)
 			            ? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
-			            : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
+			            : Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);*/
 		            //mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
 
 		            var _slopeLimit = mainModule.CharacterController.slopeLimit;
 		            mainModule.IsSlope = _angle <= _slopeLimit + 3f;
 
-		            mainModule.SlopeVector =
-			            new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z) * 5;
+		            Vector3 slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, _raycastHit.normal), _raycastHit.normal).normalized;
+		            mainModule.SlopeVector = slopeDirection * 5;
+		            
+		            /*mainModule.SlopeVector =
+			            new Vector3(_raycastHit.normal.x, 0, _raycastHit.normal.z) * 5;*/
 
 		            mainModule.isGround = mainModule.IsSlope;
 	            }
@@ -374,7 +377,7 @@ namespace Module
             _spherePosition = new Vector3(mainModule.transform.position.x, mainModule.transform.position.y - mainModule.groundOffset,
                 mainModule.transform.position.z);
             bool _isLand = Physics.CheckSphere(_spherePosition, mainModule.GroundCheckRadius, mainModule.groundLayer,
-                QueryTriggerInteraction.Ignore);
+	            QueryTriggerInteraction.Ignore);
 
             if (!mainModule.isGround && _isLand)
             {
