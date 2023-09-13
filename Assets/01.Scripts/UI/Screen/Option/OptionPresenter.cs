@@ -106,7 +106,7 @@ using Utill.Addressable;
             optionEntryCallbackDic2[OptionType.BackgroundVolume] = soundSetting .ApplySettingSound;
             optionEntryCallbackDic2[OptionType.EffVolume] = soundSetting .ApplySettingSound;
             optionEntryCallbackDic2[OptionType.EnvironmentVolume] = soundSetting .ApplySettingSound;
-            //SetButtonEvents(); 
+            SetButtonEvents(); 
 
     
             CreateEntry();
@@ -243,7 +243,7 @@ using Utill.Addressable;
             }
         }
 
-        private void CreateTutoEntry()
+        /*private void CreateTutoEntry()
         {
             VisualElement _parent = optionView.HelpPanel;
             var _allTutoSO = readMoreTutorialSetting.AllPopupTutorialDataSo;
@@ -276,7 +276,7 @@ using Utill.Addressable;
             // Dropdown 요소 적용 
             // _optionData.dropdownList
                     
-        }
+        }*/
         
         /// <summary>
         /// 생성한거 데이터 넣어주기 
