@@ -24,6 +24,15 @@ namespace Module
             }
         }
 
+        protected CameraModule CameraModule
+        {
+            get
+            {
+                cameraModule ??= mainModule.GetModuleComponent<CameraModule>(ModuleType.Camera);
+                return cameraModule;
+            }
+        }
+
         protected StatData StatData
 		{
             get
@@ -74,7 +83,10 @@ namespace Module
         protected StatData statData;
         protected Vector3 currentDirection;
         protected StateModule stateModule;
+        protected CameraModule cameraModule;
         protected static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
+        
+        private Vector3 groundNormal;
 
         public MoveModule(AbMainModule _mainModule) : base(_mainModule)
         {
@@ -92,6 +104,8 @@ namespace Module
             mainModule = _mainModule;
         }
 
+        Vector3 moveDirection;
+        private float moveSpeedToUse;
         /// <summary>
         /// 유기체의 움직임 + 회전. 모든 움직임을 제어한다. 점프제외
         /// </summary>
@@ -106,8 +120,9 @@ namespace Module
 
             if (!mainModule.isGround)
             {
-				_targetSpeed = (mainModule.IsSprint ? runSpeed - 1 : moveSpeed - 1);
-			}
+                _targetSpeed = (mainModule.IsSprint ? runSpeed - 1 : moveSpeed - 1);
+            }
+
             if (mainModule.ObjDir == Vector2.zero || StateModule.CheckState(State.ATTACK) || mainModule.StrongAttacking)
             {
                 _targetSpeed = 0.0f;
@@ -146,9 +161,36 @@ namespace Module
 
             #region 이동 관련 부분
 
-            var _targetDirection = new Vector3(mainModule.ObjDir.x, 0, mainModule.ObjDir.y);
+            moveSpeedToUse = _speed;
+            //var _targetDirection = new Vector3(, 0, );
 
-            var _rotate = mainModule.transform.eulerAngles;
+            if (CameraModule != null)
+            {
+                //Vector3 _cameraRotation = mainModule.ObjRotation.eulerAngles;
+                //CameraModule.CurrentCamera.transform.right
+                
+                Vector3 cameraForward = Vector3.ProjectOnPlane(mainModule.ObjRotation * Vector3.forward, Vector3.up)
+                    .normalized;
+                Vector3 cameraRight = Vector3.ProjectOnPlane(mainModule.ObjRotation * Vector3.right, Vector3.up)
+                    .normalized;
+                moveDirection =
+                    (cameraForward * mainModule.ObjDir.y + cameraRight * mainModule.ObjDir.x).normalized;
+            }
+
+            // 캐릭터 회전
+            if (moveDirection != Vector3.zero)
+            {
+                Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+                mainModule.transform.rotation = Quaternion.Slerp(mainModule.transform.rotation, newRotation,
+                    10 * mainModule.PersonalDeltaTime);
+            }
+
+            // 공중에 있는 경우 중력 적용
+            moveDirection.y = -mainModule.GroundAngle / 45f;
+            //moveSpeedToUse = moveSpeed / 2.0f; // 공중에서의 이동 속도 감소
+
+
+            /*var _rotate = mainModule.transform.eulerAngles;
             var _dir = _targetDirection.normalized;
             var _gravity = mainModule.Gravity;
             Vector3 _moveValue;
@@ -192,8 +234,9 @@ namespace Module
 					}
                 }
             }
+            */
 
-            var _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
+            /*var _direction = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward; //
 
             _direction = VelocityOnSlope(_direction, _targetDirection);
 
@@ -239,11 +282,21 @@ namespace Module
                 mainModule.CharacterController.Move(
                     (mainModule.SlopeVector + new Vector3(0, _gravity, 0)) *
                     mainModule.PersonalDeltaTime);
+            }*/
+
+            Physics.Raycast(mainModule.transform.position - new Vector3(0 , mainModule.groundOffset, 0), Vector3.down, out RaycastHit hit, 1.6f, mainModule.groundLayer);
+            if (mainModule.isGround)
+            {
+                groundNormal = hit.normal;
             }
 
-
+            mainModule.CharacterController.Move((moveDirection * moveSpeedToUse + new Vector3(0,mainModule.Gravity,0)) * mainModule.PersonalDeltaTime);
+            Debug.Log("중력값: " + mainModule.Gravity);
+            //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
+            
             #endregion
 
+            //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
 
@@ -294,7 +347,7 @@ namespace Module
             {
                 if (mainModule.Gravity < 0.0f)
                 {
-                    mainModule.Gravity = -2f;
+                    mainModule.Gravity = 0f;
                 }
             }
 
@@ -306,6 +359,17 @@ namespace Module
         public override void FixedUpdate()
         {
             Gravity();
+
+            /*Vector3 targetVelocity =
+                (Quaternion.FromToRotation(mainModule.transform.up, groundNormal) * moveDirection).normalized *
+                moveSpeed;
+            Vector3 velocity = mainModule.CharacterController.velocity;
+            Vector3 velocityChange = (targetVelocity - velocity);
+            velocityChange.x = Mathf.Clamp(velocityChange.x, -Mathf.Infinity, Mathf.Infinity);
+            velocityChange.z = Mathf.Clamp(velocityChange.z, -Mathf.Infinity, Mathf.Infinity);
+            velocityChange.y = 0;
+
+            mainModule.CharacterController.Move(velocityChange * mainModule.PersonalDeltaTime);*/
         }
 
         public override void Update()

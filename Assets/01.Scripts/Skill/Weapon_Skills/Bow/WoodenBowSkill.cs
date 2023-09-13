@@ -28,7 +28,8 @@ namespace Skill
                 _mainModule.GetModuleComponent<StateModule>(ModuleType.State).AddState(State.SKILL);
 
                 GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
-                _skillProjectile.GetComponent<WoodenBowSkillObject>().SetInfo(transform.root.gameObject, "Enemy");
+                _skillProjectile.GetComponent<WoodenBowSkillObject>()
+                    .SetInfo(transform.root.gameObject, "Enemy", new Vector3(0, 2, 0));
                 _skillProjectile.GetComponent<HitBoxOnProjectile>().SetOwner(transform.root.gameObject);
                 _skillProjectile.tag = _mainModule.tag;
                 _skillProjectile.GetComponent<HitBoxOnProjectile>().SetEnable();

@@ -12,11 +12,11 @@ namespace Module
     {
 	    public GameObject CurrentCamera { get; private set; }
 
-	    CinemachineVirtualCamera FollawVCam
+	    CinemachineFreeLook FollawVCam
         {
             get
             {
-                follawVCam ??= GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();
+                follawVCam ??= GameObject.Find("PlayerFollowCam").GetComponent<CinemachineFreeLook>();
                 return follawVCam;
             }
         }
@@ -38,7 +38,7 @@ namespace Module
         }
         
 
-        public CinemachineVirtualCamera follawVCam;
+        public CinemachineFreeLook follawVCam;
         public CinemachineVirtualCamera groupVCam;
         public CinemachineVirtualCamera zoomVCam;
         public CinemachineVirtualCamera zoomVCam_Lock;
@@ -116,12 +116,12 @@ namespace Module
         public override void Start()
         {
             //camInstance = PlayerFollowCamera.Instance;
-            follawVCam = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
+            follawVCam = GameObject.Find("PlayerFollowCamera").GetComponent<CinemachineFreeLook>();//camInstance.GetComponent<CinemachineVirtualCamera>();
             groupVCam = GameObject.Find("GroupCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
             zoomVCam = GameObject.Find("ZoomCam").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
             zoomVCam_Lock = GameObject.Find("ZoomCam_Lock").GetComponent<CinemachineVirtualCamera>();//camInstance.GetComponent<CinemachineVirtualCamera>();
 
-            followCamNoise = follawVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            followCamNoise = follawVCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
             groupCamNoise = groupVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             zoomCamNoise = zoomVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
@@ -141,9 +141,11 @@ namespace Module
 
         public override void LateUpdate()
         {
+	        
+	        
             if (FollawVCam.gameObject.activeSelf)
             {
-                mainModule.ObjRotation = FollawVCam.transform.rotation;
+	            mainModule.ObjRotation = FollawVCam.GetRig(0).State.RawOrientation;//FollawVCam.LookAt.rotation;
                 CurrentCamera = FollawVCam.gameObject;
                 //return;
             }
