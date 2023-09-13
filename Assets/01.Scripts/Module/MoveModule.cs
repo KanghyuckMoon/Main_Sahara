@@ -106,6 +106,7 @@ namespace Module
 
         Vector3 moveDirection;
         private float moveSpeedToUse;
+
         /// <summary>
         /// 유기체의 움직임 + 회전. 모든 움직임을 제어한다. 점프제외
         /// </summary>
@@ -164,16 +165,16 @@ namespace Module
             moveSpeedToUse = _speed;
             //var _targetDirection = new Vector3(, 0, );
 
-                //Vector3 _cameraRotation = mainModule.ObjRotation.eulerAngles;
-                //CameraModule.CurrentCamera.transform.right
-                
-                Vector3 cameraForward = Vector3.ProjectOnPlane(mainModule.ObjRotation * Vector3.forward, Vector3.up)
-                    .normalized;
-                Vector3 cameraRight = Vector3.ProjectOnPlane(mainModule.ObjRotation * Vector3.right, Vector3.up)
-                    .normalized;
-                moveDirection =
-                    (cameraForward * mainModule.ObjDir.y + cameraRight * mainModule.ObjDir.x).normalized;
-            
+            //Vector3 _cameraRotation = mainModule.ObjRotation.eulerAngles;
+            //CameraModule.CurrentCamera.transform.right
+
+            Vector3 cameraForward = Vector3.ProjectOnPlane(mainModule.ObjRotation * Vector3.forward, Vector3.up)
+                .normalized;
+            Vector3 cameraRight = Vector3.ProjectOnPlane(mainModule.ObjRotation * Vector3.right, Vector3.up)
+                .normalized;
+            moveDirection =
+                (cameraForward * mainModule.ObjDir.y + cameraRight * mainModule.ObjDir.x).normalized;
+
 
             // 캐릭터 회전
             if (moveDirection != Vector3.zero)
@@ -282,16 +283,19 @@ namespace Module
                     mainModule.PersonalDeltaTime);
             }*/
 
-            Physics.Raycast(mainModule.transform.position - new Vector3(0 , mainModule.groundOffset, 0), Vector3.down, out RaycastHit hit, 1.6f, mainModule.groundLayer);
+            Physics.Raycast(mainModule.transform.position - new Vector3(0, mainModule.groundOffset, 0), Vector3.down,
+                out RaycastHit hit, 1.6f, mainModule.groundLayer);
             if (mainModule.isGround)
             {
                 groundNormal = hit.normal;
             }
 
-            mainModule.CharacterController.Move((moveDirection * moveSpeedToUse + new Vector3(0,mainModule.Gravity,0)) * mainModule.PersonalDeltaTime);
+            mainModule.CharacterController.Move(
+                (moveDirection * moveSpeedToUse + new Vector3(0, mainModule.Gravity, 0)) *
+                mainModule.PersonalDeltaTime);
             Debug.Log("중력값: " + mainModule.Gravity);
             //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
-            
+
             #endregion
 
             //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
