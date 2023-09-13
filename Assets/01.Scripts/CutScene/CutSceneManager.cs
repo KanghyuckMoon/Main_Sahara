@@ -113,6 +113,7 @@ namespace CutScene
             
             SettingParameterCutSceneData(_cutSceneData);
             StaticTime.EntierTime = 0f;
+            Debug.Log("@@@@@@@@@@@@@@NextCutScene EntireTime0");
 
             if (index == 0)
 			{
@@ -238,6 +239,7 @@ namespace CutScene
         }
         public void NextCutScene()
         {
+        Debug.Log("@@@@@@@@@@@@@@NextCutScene");
             if (cutSceneDataList.cutSceneDataList[index].afterEventObj != null)
             {
                 cutSceneDataList.cutSceneDataList[index].afterEventObj?.Invoke();
@@ -271,6 +273,7 @@ namespace CutScene
                 if (cutSceneDataList is null)
                 {
                     ResetCam();
+                    Debug.Log("@@@@@@@@@@@@@@NextCutScene EntireTime1");
                     StaticTime.EntierTime = 1f;
                     return;
                 }
@@ -284,6 +287,7 @@ namespace CutScene
                 {
                     ResetCam();
                     TalkModuleCutSceneOff();
+                    Debug.Log("@@@@@@@@@@@@@@NextCutScene EntireTime2");
                     StaticTime.EntierTime = 1f;
                     return;
                 }
@@ -295,6 +299,7 @@ namespace CutScene
 		{
             while(!talkModule.IsEndTalk)
 			{
+                Debug.Log("WaitEndTalk");
                 yield return null;
             }
             
