@@ -164,8 +164,6 @@ namespace Module
             moveSpeedToUse = _speed;
             //var _targetDirection = new Vector3(, 0, );
 
-            if (CameraModule != null)
-            {
                 //Vector3 _cameraRotation = mainModule.ObjRotation.eulerAngles;
                 //CameraModule.CurrentCamera.transform.right
                 
@@ -175,7 +173,7 @@ namespace Module
                     .normalized;
                 moveDirection =
                     (cameraForward * mainModule.ObjDir.y + cameraRight * mainModule.ObjDir.x).normalized;
-            }
+            
 
             // 캐릭터 회전
             if (moveDirection != Vector3.zero)
