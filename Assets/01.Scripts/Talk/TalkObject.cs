@@ -67,6 +67,8 @@ namespace Module.Talk
 			{
 				Logging.Log("대화 가능");
 
+				PlayerObj.Player.gameObject.GetComponent<AbMainModule>().ObjDir = Vector2.zero;
+
 				//대화
 				GetText();
 				isEndTalk = false;
