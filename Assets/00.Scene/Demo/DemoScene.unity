@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 31533.715, g: 2560.5237, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 31406.77, g: 2563.7327, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2218,6 +2218,8 @@ GameObject:
   m_Component:
   - component: {fileID: 76341170}
   - component: {fileID: 76341169}
+  - component: {fileID: 76341172}
+  - component: {fileID: 76341171}
   m_Layer: 0
   m_Name: SoloTalk_AboutCeiling
   m_TagString: Untagged
@@ -2261,6 +2263,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 123
   m_LocalEulerAnglesHint: {x: 0, y: 25.01, z: 0}
+--- !u!114 &76341171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76341168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f0195f9c06795458688589f7e6c564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkCode: 
+  authorCode: 
+  endTalkEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &76341172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76341168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3552eb27f5fceec42a1d3fcaa3462f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76341171}
+        m_TargetAssemblyTypeName: Module.Talk.TalkObject, Talk
+        m_MethodName: Talk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isOnlyOne: 1
 --- !u!1001 &85005477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11635,6 +11682,8 @@ GameObject:
   m_Component:
   - component: {fileID: 482538413}
   - component: {fileID: 482538412}
+  - component: {fileID: 482538415}
+  - component: {fileID: 482538414}
   m_Layer: 14
   m_Name: SoloTalk_AboutNextRoad
   m_TagString: Untagged
@@ -11678,6 +11727,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 124
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &482538414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482538411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f0195f9c06795458688589f7e6c564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkCode: 
+  authorCode: 
+  endTalkEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &482538415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482538411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3552eb27f5fceec42a1d3fcaa3462f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76341171}
+        m_TargetAssemblyTypeName: Module.Talk.TalkObject, Talk
+        m_MethodName: Talk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isOnlyOne: 1
 --- !u!1 &491747096
 GameObject:
   m_ObjectHideFlags: 0
@@ -16339,6 +16433,8 @@ GameObject:
   m_Component:
   - component: {fileID: 787266940}
   - component: {fileID: 787266939}
+  - component: {fileID: 787266942}
+  - component: {fileID: 787266941}
   m_Layer: 0
   m_Name: SoloTalk_GameStart
   m_TagString: Untagged
@@ -16382,6 +16478,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &787266941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787266938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f0195f9c06795458688589f7e6c564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkCode: 
+  authorCode: 
+  endTalkEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &787266942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787266938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3552eb27f5fceec42a1d3fcaa3462f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76341171}
+        m_TargetAssemblyTypeName: Module.Talk.TalkObject, Talk
+        m_MethodName: Talk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isOnlyOne: 1
 --- !u!4 &788300802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5348689146394202128, guid: aa3ea4a9ec1a00348899fe95117d9e24, type: 3}
@@ -21955,6 +22096,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1405718704}
   - component: {fileID: 1405718703}
+  - component: {fileID: 1405718706}
+  - component: {fileID: 1405718705}
   m_Layer: 0
   m_Name: SoloTalk_AboutRooms
   m_TagString: Untagged
@@ -21998,6 +22141,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 110
   m_LocalEulerAnglesHint: {x: 0, y: -26.791, z: 0}
+--- !u!114 &1405718705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405718702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f0195f9c06795458688589f7e6c564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkCode: 
+  authorCode: 
+  endTalkEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1405718706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405718702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3552eb27f5fceec42a1d3fcaa3462f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76341171}
+        m_TargetAssemblyTypeName: Module.Talk.TalkObject, Talk
+        m_MethodName: Talk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isOnlyOne: 1
 --- !u!1001 &1406028960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28660,6 +28848,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1743552012}
   - component: {fileID: 1743552011}
+  - component: {fileID: 1743552014}
+  - component: {fileID: 1743552013}
   m_Layer: 14
   m_Name: SoloTalk_AboutSword
   m_TagString: Untagged
@@ -28703,6 +28893,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1743552013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743552010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f0195f9c06795458688589f7e6c564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkCode: 
+  authorCode: 
+  endTalkEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1743552014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743552010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3552eb27f5fceec42a1d3fcaa3462f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76341171}
+        m_TargetAssemblyTypeName: Module.Talk.TalkObject, Talk
+        m_MethodName: Talk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isOnlyOne: 1
 --- !u!1001 &1757336586
 PrefabInstance:
   m_ObjectHideFlags: 0
