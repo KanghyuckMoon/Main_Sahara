@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Option;
 using UI.Base;
-using UI.Production;
+ using UI.Popup;
+ using UI.Production;
 using UnityEngine;
  using UnityEngine.UI;
  using UnityEngine.UIElements;
@@ -13,6 +14,23 @@ using Utill.Addressable;
 
  namespace UI.Option
 {
+    public class ReadMoreTutorialSetting : MonoBehaviour
+    {
+        private AllPopupTutorialDataSO allPopupTutorialDataSO;
+
+        public AllPopupTutorialDataSO AllPopupTutorialDataSo => allPopupTutorialDataSO; 
+        private void Awake()
+        {
+            allPopupTutorialDataSO =
+                AddressablesManager.Instance.GetResource<AllPopupTutorialDataSO>("AllPopupTutorialDataSO");
+        }
+        public void ActiveTutorialPopup(string _key)
+        {
+            //PopupTutorialDataSO popupTutorialDataSo; 
+            //popupTutorialDataSo.Send();
+            GameEventManager.Instance.GetGameEvent(_key).Raise();
+        }
+    }
     public interface IOptionEntry
     {
         public OptionData OptionData { get;  }
@@ -23,7 +41,8 @@ using Utill.Addressable;
     {
         // 데이터 관련 
         private GraphicsSetting grahpicSetting;
-        private SoundSetting soundSetting; 
+        private SoundSetting soundSetting;
+        private ReadMoreTutorialSetting readMoreTutorialSetting;
         
         private UIDocument uiDocument;
 
@@ -34,8 +53,9 @@ using Utill.Addressable;
         private OptionDataSO optionDataSO; 
         private Dictionary<OptionType, Action<int>> optionEntryCallbackDic = new Dictionary<OptionType, Action<int>>();
         private Dictionary<OptionType, Action> optionEntryCallbackDic2 = new Dictionary<OptionType, Action>();
-
-        private OptionBtnEntryPr a; 
+        private Dictionary<string, Action> optionEntryCallbackDic3 = new Dictionary<string, Action>();
+        
+        private OptionDropdownEntryPr a; 
         private Action onActiveScreen = null;
         public Action OnActiveScreen
         {
@@ -59,6 +79,18 @@ using Utill.Addressable;
 
         }
 
+        /// <summary>
+        /// 튜토리얼 도움 버튼 이벤트 
+        /// </summary>
+        private void SetButtonEvents()
+        {
+            var _list = readMoreTutorialSetting.AllPopupTutorialDataSo.popupTutorialDataSoList;
+            foreach (var _popupTutoSO in  _list)
+            {
+                optionEntryCallbackDic3.Add(_popupTutoSO.key,() => readMoreTutorialSetting.ActiveTutorialPopup(_popupTutoSO.key));
+            }   
+        }
+        
         private void Start()
         {
 //            soundSetting.InitSlider();
@@ -74,10 +106,11 @@ using Utill.Addressable;
             optionEntryCallbackDic2[OptionType.BackgroundVolume] = soundSetting .ApplySettingSound;
             optionEntryCallbackDic2[OptionType.EffVolume] = soundSetting .ApplySettingSound;
             optionEntryCallbackDic2[OptionType.EnvironmentVolume] = soundSetting .ApplySettingSound;
+            //SetButtonEvents(); 
 
+    
             CreateEntry();
-            ConnectUIAndData(); 
-            
+            ConnectUIAndData();
             
             GetDropdown(OptionType.Resolution).index = grahpicSetting.currentResolutionIndex; 
             GetDropdown(OptionType.AntiAliasing).index = grahpicSetting.antiAliasingIdx; 
@@ -93,7 +126,7 @@ using Utill.Addressable;
             try
             {
                 var _findEntry= optionEntryList.Find((x) => x.OptionData.optionType == _optionType) ;
-                OptionBtnEntryPr _dropdownPr = _findEntry as OptionBtnEntryPr;
+                OptionDropdownEntryPr _dropdownPr = _findEntry as OptionDropdownEntryPr;
                 _dropdown = _dropdownPr.Dropdown;
 
             }
@@ -189,7 +222,7 @@ using Utill.Addressable;
                 switch (_optionData.optionModifyType)
                 {
                     case OptionModifyType.Dropdown:
-                        OptionBtnEntryPr _entryPr = new OptionBtnEntryPr();
+                        OptionDropdownEntryPr _entryPr = new OptionDropdownEntryPr();
                         _parent.Add(_entryPr.Parent);
                         SetOptionEntryData(_entryPr,_optionData); 
                         optionEntryList.Add(_entryPr);
@@ -200,10 +233,51 @@ using Utill.Addressable;
                         SetOptionEntryData(_barEntryPr, _optionData);
                         optionEntryList.Add(_barEntryPr);
                         break;
+                    /*case OptionModifyType.Button:
+                        OptionBtnEntryPr _btnEntryPr = new OptionBtnEntryPr(); 
+                        _parent .Add(_btnEntryPr.Parent);
+                        SetOptionEntryData(_btnEntryPr,_optionData);
+                        optionEntryList.Add(_btnEntryPr);
+                        break;*/
                 }
             }
         }
 
+        private void CreateTutoEntry()
+        {
+            VisualElement _parent = optionView.HelpPanel;
+            var _allTutoSO = readMoreTutorialSetting.AllPopupTutorialDataSo;
+            for (int i = 0; i < _allTutoSO.popupTutorialDataSoList.Count; i++)
+            {
+                PopupTutorialData _data = new PopupTutorialData(_allTutoSO.popupTutorialDataSoList[i]);
+                OptionBtnEntryPr _btnEntryPr = new OptionBtnEntryPr(); 
+                _parent .Add(_btnEntryPr.Parent);
+                SetOptionEntryData(_btnEntryPr,_data);
+                optionEntryList.Add(_btnEntryPr);
+            }
+
+        }
+
+        /// <summary>
+        /// 생성한거 데이터 넣어주기 
+        /// </summary>
+        private void SetOptionEntryData(OptionBtnEntryPr _pr, PopupTutorialData _optionData)
+        {
+            KeyValuePair<string, Action> _callback = new KeyValuePair<string,Action>(); 
+            _callback = optionEntryCallbackDic3.First(x => x.Key == _optionData.key);
+            if (_callback.Equals(new KeyValuePair<OptionType,Action>()) == false)
+            {
+                _pr.SetData(_callback.Value,_optionData.titleAddress);
+            }
+            // 설정 이름 설정
+            //_optionData.name
+            // OptionType으로 함수 적용 
+            //_optionData.optionType
+            // Dropdown 요소 적용 
+            // _optionData.dropdownList
+                    
+        }
+        
         /// <summary>
         /// 생성한거 데이터 넣어주기 
         /// </summary>
@@ -227,7 +301,7 @@ using Utill.Addressable;
         /// <summary>
         /// 생성한거 데이터 넣어주기 
         /// </summary>
-        private void SetOptionEntryData(OptionBtnEntryPr _pr, OptionData _optionData)
+        private void SetOptionEntryData(OptionDropdownEntryPr _pr, OptionData _optionData)
         {
             KeyValuePair<OptionType, Action<int>> _callback = new KeyValuePair<OptionType,Action<int>>(); 
             _callback = optionEntryCallbackDic.First(x => x.Key == _optionData.optionType);

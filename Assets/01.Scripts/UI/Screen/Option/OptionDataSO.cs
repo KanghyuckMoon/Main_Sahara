@@ -10,7 +10,8 @@ namespace UI.Option
     public enum OptionModifyType
     {
         Dropdown,
-        Bar 
+        Bar,
+        Button, 
     }
 
     public enum OptionType
@@ -27,7 +28,9 @@ namespace UI.Option
         ShadowQuality, 
         RefreshRate, 
         AntiAliasing,
-        IsFullScreen, 
+        IsFullScreen,
+        // 도움
+        
         /*
          * 여서 옵션 타입 모든 옵션마다 정해두고
          * OptionPresenter에서 OptionType을 키로
@@ -54,6 +57,7 @@ namespace UI.Option
     {   
         public OptionType optionType;
         public OptionModifyType optionModifyType;
+        public string optionTypeStr; 
         public string name;
         [Space(10)]
         public string defaultDropdownStr; // 기본 드롭다운 값 
