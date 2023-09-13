@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &548257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2966795048426957152, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+  m_PrefabInstance: {fileID: 2056342997}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &18137751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739247848103222742, guid: 702fb59a5ceb2224aa18b01044aae201, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3739247848103222742, guid: 702fb59a5ceb2224aa18b01044aae201, type: 3}
       propertyPath: m_LocalPosition.x
@@ -202,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815127704031, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815127704031, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -261,16 +272,24 @@ PrefabInstance:
       value: MetalDetect58
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
+      propertyPath: curIndex
+      value: 517
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 30554808}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -675,13 +694,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117858812}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 172.8, y: 4034.7, z: -202.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &117858815
 MonoBehaviour:
@@ -710,7 +729,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1083277970894470068, guid: 5e9730759c07c4345833bd5bc43d66a8, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1083277970894470068, guid: 5e9730759c07c4345833bd5bc43d66a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -779,7 +798,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 663100262174202353, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: m_Mesh
@@ -791,7 +810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815127704031, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815127704031, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -850,16 +869,24 @@ PrefabInstance:
       value: MetalDetect57
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
+      propertyPath: curIndex
+      value: 514
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 212106695}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -877,11 +904,6 @@ PrefabInstance:
 --- !u!33 &212106695 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 663100262174202353, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
-  m_PrefabInstance: {fileID: 212106694}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &212106696 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8995082815127704031, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
   m_PrefabInstance: {fileID: 212106694}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &212106697 stripped
@@ -1076,7 +1098,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1095,16 +1117,24 @@ PrefabInstance:
       value: MetalDetect34
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 269357550}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -1112,7 +1142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 38
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1186,11 +1216,6 @@ PrefabInstance:
 --- !u!33 &269357550 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 269357549}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &269357551 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 269357549}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &290538411
@@ -1539,7 +1564,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1558,16 +1583,24 @@ PrefabInstance:
       value: MetalDetect70
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 482
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 329630349}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -1575,7 +1608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 40
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1651,11 +1684,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 329630348}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &329630350 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 329630348}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &329630351 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -1667,13 +1695,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &371429655
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 168.72081
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4036.5317
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -226.7943
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9974879
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.07083809
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -8.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523573035651611437, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428620587743900192, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: curIndex
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573716069605222809, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
+      propertyPath: m_Name
+      value: xc_Kr_BigFire_Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b08e55fd07a1e25489a703c04f51ebd7, type: 3}
 --- !u!1001 &373396254
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1692,16 +1785,24 @@ PrefabInstance:
       value: MetalDetect35
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 373396255}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -1709,7 +1810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 33
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1783,11 +1884,6 @@ PrefabInstance:
 --- !u!33 &373396255 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 373396254}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &373396256 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 373396254}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &373396257 stripped
@@ -1976,7 +2072,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 81c8662f6814ea947b18fa3e8319dc61, type: 3}
       propertyPath: m_RootOrder
-      value: 43
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81c8662f6814ea947b18fa3e8319dc61, type: 3}
       propertyPath: m_LocalScale.x
@@ -2042,6 +2138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Var1_LOD0 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 81c8662f6814ea947b18fa3e8319dc61, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2072,12 +2172,20 @@ PrefabInstance:
       value: MetalDetect39
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478519318037, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
+      propertyPath: curIndex
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989332478519318037, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
     - target: {fileID: 2989332478519318037, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989332478519318037, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478519318037, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -2093,7 +2201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478976249981, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
       propertyPath: m_RootOrder
-      value: 35
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478976249981, guid: 2ecc781860061dc478f44586e51a8ed8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2150,7 +2258,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2169,16 +2277,24 @@ PrefabInstance:
       value: MetalDetect64
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 499
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 464356723}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -2186,7 +2302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 44
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2260,11 +2376,6 @@ PrefabInstance:
 --- !u!33 &464356723 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 464356722}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &464356724 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 464356722}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &464356725 stripped
@@ -2809,7 +2920,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2828,16 +2939,24 @@ PrefabInstance:
       value: MetalDetect63
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 501766362}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -2845,7 +2964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2919,11 +3038,6 @@ PrefabInstance:
 --- !u!33 &501766362 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 501766361}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &501766363 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 501766361}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &501766364 stripped
@@ -3108,7 +3222,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3127,16 +3241,24 @@ PrefabInstance:
       value: MetalDetect62
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 476
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 519856040}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -3144,7 +3266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3220,11 +3342,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 519856039}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &519856041 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 519856039}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &519856042 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -3242,7 +3359,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3261,16 +3378,24 @@ PrefabInstance:
       value: MetalDetect60
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 498
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 533134284}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -3278,7 +3403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3352,11 +3477,6 @@ PrefabInstance:
 --- !u!33 &533134284 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 533134283}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &533134285 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 533134283}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &533134286 stripped
@@ -3741,20 +3861,32 @@ PrefabInstance:
       value: MetalDetect59
       objectReference: {fileID: 0}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: curIndex
+      value: 509
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1514072615}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: effectAddress
+      value: SandUpVFXWeakShake
+      objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739564, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_Name
       value: TreasureMap18_Chest_Detect
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3818,20 +3950,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2076478687}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: curIndex
+      value: 485
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 643503541}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: effectAddress
+      value: SandUpVFXWeakShake
+      objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739564, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_Name
       value: Marker10_Chest_Detect
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3889,7 +4033,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3908,16 +4052,24 @@ PrefabInstance:
       value: MetalDetect68
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 513
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 646663119}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -3925,7 +4077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 32
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4001,11 +4153,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 646663118}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &646663120 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 646663118}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &646663121 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -4027,7 +4174,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4185965014382110728, guid: a5f6c0247c836064788a3f431c260b12, type: 3}
       propertyPath: m_RootOrder
-      value: 51
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 4185965014382110728, guid: a5f6c0247c836064788a3f431c260b12, type: 3}
       propertyPath: m_LocalScale.x
@@ -4094,13 +4241,25 @@ PrefabInstance:
       value: MetalDetect67
       objectReference: {fileID: 0}
     - target: {fileID: 4590606463054788545, guid: a5f6c0247c836064788a3f431c260b12, type: 3}
+      propertyPath: curIndex
+      value: 484
+      objectReference: {fileID: 0}
+    - target: {fileID: 4590606463054788545, guid: a5f6c0247c836064788a3f431c260b12, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
     - target: {fileID: 4590606463054788545, guid: a5f6c0247c836064788a3f431c260b12, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4590606463054788545, guid: a5f6c0247c836064788a3f431c260b12, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 660548673}
+    - target: {fileID: 4590606463054788545, guid: a5f6c0247c836064788a3f431c260b12, type: 3}
+      propertyPath: effectAddress
+      value: SandUpVFXWeakShake
+      objectReference: {fileID: 0}
     - target: {fileID: 6057637417368670251, guid: a5f6c0247c836064788a3f431c260b12, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4308,7 +4467,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4327,16 +4486,24 @@ PrefabInstance:
       value: MetalDetect40
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 507
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 711933118}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -4344,7 +4511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4418,11 +4585,6 @@ PrefabInstance:
 --- !u!33 &711933118 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 711933117}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &711933119 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 711933117}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &711933120 stripped
@@ -5132,7 +5294,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5151,16 +5313,24 @@ PrefabInstance:
       value: MetalDetect38
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 487
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 800067282}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -5168,7 +5338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 27
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5244,11 +5414,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 800067281}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &800067283 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 800067281}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &800067284 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -5260,6 +5425,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &858174442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 858174444}
+  - component: {fileID: 858174443}
+  m_Layer: 0
+  m_Name: StaticObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &858174443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858174442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdf6c616326c4aaeb610b335fbb67fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useDefaultBackgroundColor: 0
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4278235647
+  useDefaultTextColor: 0
+  textColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  font: {fileID: 0}
+  fontSize: 12
+  fontStyle: 0
+  alignment: 0
+  textDropShadow: 0
+--- !u!4 &858174444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858174442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &888959678
 Mesh:
   m_ObjectHideFlags: 0
@@ -5441,7 +5663,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5460,16 +5682,24 @@ PrefabInstance:
       value: MetalDetect73
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 478
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 986136309}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -5477,7 +5707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 48
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5553,11 +5783,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 986136308}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &986136310 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 986136308}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &986136311 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -5575,7 +5800,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5594,16 +5819,24 @@ PrefabInstance:
       value: MetalDetect69
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 503
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1039462950}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -5611,7 +5844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 50
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5687,11 +5920,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1039462949}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1039462951 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1039462949}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1039462952 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -5713,7 +5941,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5316476485727637154, guid: fb68b57e5016cb843a5a5e7cd53b9f40, type: 3}
       propertyPath: m_RootOrder
-      value: 31
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 5316476485727637154, guid: fb68b57e5016cb843a5a5e7cd53b9f40, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5754,6 +5982,10 @@ PrefabInstance:
     - target: {fileID: 5316476485727637154, guid: fb68b57e5016cb843a5a5e7cd53b9f40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350033621859759399, guid: fb68b57e5016cb843a5a5e7cd53b9f40, type: 3}
+      propertyPath: curIndex
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 7713898347788359374, guid: fb68b57e5016cb843a5a5e7cd53b9f40, type: 3}
       propertyPath: m_Name
@@ -5935,7 +6167,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5954,16 +6186,24 @@ PrefabInstance:
       value: MetalDetect43
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 492
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1085758869}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -5971,7 +6211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6047,11 +6287,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1085758868}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1085758870 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1085758868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1085758871 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -6063,13 +6298,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1119907563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119907565}
+  - component: {fileID: 1119907564}
+  m_Layer: 0
+  m_Name: Monster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &1119907564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119907563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdf6c616326c4aaeb610b335fbb67fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useDefaultBackgroundColor: 0
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4282133687
+  useDefaultTextColor: 0
+  textColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  font: {fileID: 0}
+  fontSize: 12
+  fontStyle: 0
+  alignment: 0
+  textDropShadow: 0
+--- !u!4 &1119907565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119907563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 55
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1134068962
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6088,16 +6380,24 @@ PrefabInstance:
       value: MetalDetect42
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 491
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1134068963}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -6105,7 +6405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6181,11 +6481,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1134068962}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1134068964 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1134068962}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1134068965 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -6203,7 +6498,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6222,16 +6517,24 @@ PrefabInstance:
       value: MetalDetect36
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 510
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1138759244}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -6239,7 +6542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6313,11 +6616,6 @@ PrefabInstance:
 --- !u!33 &1138759244 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1138759243}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1138759245 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1138759243}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1138759246 stripped
@@ -7395,45 +7693,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190845829}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1450666442}
-  - {fileID: 269357551}
-  - {fileID: 2056342999}
-  - {fileID: 329630350}
-  - {fileID: 1683246435}
-  - {fileID: 1958987470}
-  - {fileID: 1039462951}
-  - {fileID: 986136310}
-  - {fileID: 2035461232}
-  - {fileID: 464356724}
-  - {fileID: 2073398415}
-  - {fileID: 373396256}
-  - {fileID: 646663120}
-  - {fileID: 519856041}
-  - {fileID: 1239042323}
-  - {fileID: 1402595929}
-  - {fileID: 800067283}
-  - {fileID: 1220813920}
-  - {fileID: 1138759245}
-  - {fileID: 711933119}
-  - {fileID: 1662497825}
-  - {fileID: 212106696}
-  - {fileID: 1610424893}
-  - {fileID: 1256287741}
-  - {fileID: 2084266600}
-  - {fileID: 1528563470}
-  - {fileID: 501766363}
-  - {fileID: 1554473004}
-  - {fileID: 2074608012}
-  - {fileID: 1085758870}
-  - {fileID: 533134285}
-  - {fileID: 1134068964}
+  m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1190845831
 MonoBehaviour:
@@ -7477,13 +7743,57 @@ MonoBehaviour:
   - {fileID: 1085758871}
   - {fileID: 533134286}
   - {fileID: 1134068965}
+  - {fileID: 548257}
+--- !u!1 &1192739379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2822279365658417516, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+  m_PrefabInstance: {fileID: 2056342997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1192739382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3197855411882181593, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+  m_PrefabInstance: {fileID: 2056342997}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192739379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e5f2dd198614b4684c866f238781af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1192739383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192739379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246a01631240ca34bac9816ae29f6a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1192739382}
+        m_TargetAssemblyTypeName: SunSpawner, Spawner
+        m_MethodName: SpawnAndPool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1220813918
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7502,16 +7812,24 @@ PrefabInstance:
       value: MetalDetect66
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 490
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1220813919}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -7595,11 +7913,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1220813918}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1220813920 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1220813918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1220813921 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -7628,20 +7941,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1055377110}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: curIndex
+      value: 502
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1235244070}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: effectAddress
+      value: SandUpVFXWeakShake
+      objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739564, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_Name
       value: Marker9_Chest_Detect
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7699,7 +8024,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7718,16 +8043,24 @@ PrefabInstance:
       value: MetalDetect44
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 477
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1239042322}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -7735,7 +8068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7811,11 +8144,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1239042321}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1239042323 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1239042321}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1239042324 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -7833,7 +8161,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7852,16 +8180,24 @@ PrefabInstance:
       value: MetalDetect41
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 493
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1256287740}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -7869,7 +8205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7945,11 +8281,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1256287739}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1256287741 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1256287739}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1256287742 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -8002,13 +8333,25 @@ PrefabInstance:
       value: MetalDetect37
       objectReference: {fileID: 0}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: curIndex
+      value: 504
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1925008066}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: effectAddress
+      value: SandUpVFXWeakShake
+      objectReference: {fileID: 0}
     - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: debug_LayerMask.m_Bits
       value: 132096
@@ -8023,7 +8366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_RootOrder
-      value: 49
+      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739565, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_LocalScale.x
@@ -8459,7 +8802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739247848103222742, guid: 702fb59a5ceb2224aa18b01044aae201, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 3739247848103222742, guid: 702fb59a5ceb2224aa18b01044aae201, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8512,7 +8855,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8531,16 +8874,24 @@ PrefabInstance:
       value: MetalDetect53
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 511
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1402595928}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -8548,7 +8899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8624,11 +8975,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1402595927}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1402595929 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1402595927}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1402595930 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -8646,7 +8992,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8665,16 +9011,24 @@ PrefabInstance:
       value: MetalDetect52
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 516
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1450666441}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -8682,7 +9036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 37
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8758,11 +9112,63 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1450666440}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1450666442 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1450666440}
+--- !u!1 &1486539278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1486539280}
+  - component: {fileID: 1486539279}
+  m_Layer: 0
+  m_Name: Gimik
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &1486539279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486539278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdf6c616326c4aaeb610b335fbb67fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useDefaultBackgroundColor: 0
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4278212863
+  useDefaultTextColor: 0
+  textColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  font: {fileID: 0}
+  fontSize: 12
+  fontStyle: 0
+  alignment: 0
+  textDropShadow: 0
+--- !u!4 &1486539280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486539278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1514072615 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 2731910323261944380, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
@@ -9124,7 +9530,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9143,16 +9549,24 @@ PrefabInstance:
       value: MetalDetect49
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 515
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1528563469}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -9160,7 +9574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9234,11 +9648,6 @@ PrefabInstance:
 --- !u!33 &1528563469 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1528563468}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1528563470 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1528563468}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1528563471 stripped
@@ -9382,7 +9791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7361031519425501212, guid: a48606379f1e1904b8e621aa686a739e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7361031519425501212, guid: a48606379f1e1904b8e621aa686a739e, type: 3}
       propertyPath: m_LocalScale.x
@@ -9459,7 +9868,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9478,16 +9887,24 @@ PrefabInstance:
       value: MetalDetect51
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 475
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1554473003}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -9495,7 +9912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9571,11 +9988,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1554473002}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1554473004 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1554473002}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1554473005 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -9593,7 +10005,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9612,16 +10024,24 @@ PrefabInstance:
       value: MetalDetect50
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 488
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1610424892}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -9629,7 +10049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9703,11 +10123,6 @@ PrefabInstance:
 --- !u!33 &1610424892 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1610424891}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1610424893 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1610424891}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1610424894 stripped
@@ -10077,7 +10492,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10096,16 +10511,24 @@ PrefabInstance:
       value: MetalDetect48
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 481
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1662497824}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -10113,7 +10536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10189,11 +10612,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1662497823}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1662497825 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1662497823}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1662497826 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -10211,7 +10629,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10230,16 +10648,24 @@ PrefabInstance:
       value: MetalDetect47
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 501
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1683246434}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -10247,7 +10673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 41
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10321,11 +10747,6 @@ PrefabInstance:
 --- !u!33 &1683246434 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1683246433}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1683246435 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1683246433}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1683246436 stripped
@@ -10689,7 +11110,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4154175058775805879, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
       propertyPath: m_RootOrder
-      value: 45
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 4154175058775805879, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
       propertyPath: m_LocalScale.x
@@ -10752,13 +11173,25 @@ PrefabInstance:
       value: MetalDetect46
       objectReference: {fileID: 0}
     - target: {fileID: 4324596341978550398, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
+      propertyPath: curIndex
+      value: 486
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324596341978550398, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
     - target: {fileID: 4324596341978550398, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324596341978550398, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1745669273}
+    - target: {fileID: 4324596341978550398, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
+      propertyPath: effectAddress
+      value: SandUpVFXWeakShake
+      objectReference: {fileID: 0}
     - target: {fileID: 4483809258441046401, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
       propertyPath: m_Name
       value: Zeolite_18
@@ -10982,7 +11415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815127704031, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: m_RootOrder
-      value: 36
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815127704031, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11041,16 +11474,24 @@ PrefabInstance:
       value: MetalDetect65
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
+      propertyPath: curIndex
+      value: 508
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1803251753}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 8995082815610296247, guid: b2a6f1e6afd8c7a45a75262563f2f8ec, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -11245,6 +11686,120 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1833455442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1833455444}
+  - component: {fileID: 1833455443}
+  m_Layer: 0
+  m_Name: EventObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &1833455443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833455442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdf6c616326c4aaeb610b335fbb67fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useDefaultBackgroundColor: 0
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4294936064
+  useDefaultTextColor: 0
+  textColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  font: {fileID: 0}
+  fontSize: 12
+  fontStyle: 0
+  alignment: 0
+  textDropShadow: 0
+--- !u!4 &1833455444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833455442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1917860989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1917860991}
+  - component: {fileID: 1917860990}
+  m_Layer: 0
+  m_Name: EffectObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &1917860990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917860989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdf6c616326c4aaeb610b335fbb67fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useDefaultBackgroundColor: 0
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4278255567
+  useDefaultTextColor: 0
+  textColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  font: {fileID: 0}
+  fontSize: 12
+  fontStyle: 0
+  alignment: 0
+  textDropShadow: 0
+--- !u!4 &1917860991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917860989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1925008066 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 2731910323261944380, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
@@ -11640,13 +12195,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947816980}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1958987468
 PrefabInstance:
@@ -11654,7 +12209,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11673,16 +12228,24 @@ PrefabInstance:
       value: MetalDetect56
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 489
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 1958987469}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -11690,7 +12253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 42
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11764,11 +12327,6 @@ PrefabInstance:
 --- !u!33 &1958987469 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 1958987468}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1958987470 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 1958987468}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1958987471 stripped
@@ -12062,16 +12620,24 @@ PrefabInstance:
       value: MetalDetect54
       objectReference: {fileID: 0}
     - target: {fileID: 3230531361999909012, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: curIndex
+      value: 494
+      objectReference: {fileID: 0}
+    - target: {fileID: 3230531361999909012, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3230531361999909012, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3230531361999909012, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 2022145581}
     - target: {fileID: 3230531361999909012, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3230531361999909012, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -12079,7 +12645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3230531362180511484, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 3230531362180511484, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12201,7 +12767,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12220,16 +12786,24 @@ PrefabInstance:
       value: MetalDetect72
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 495
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 2035461231}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -12237,7 +12811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 47
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12311,11 +12885,6 @@ PrefabInstance:
 --- !u!33 &2035461231 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 2035461230}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2035461232 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 2035461230}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2035461233 stripped
@@ -12500,11 +13069,39 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 513013632373375338, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: m_Height
+      value: 2.0701072
+      objectReference: {fileID: 0}
+    - target: {fileID: 513013632373375338, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: m_Radius
+      value: 0.47299203
+      objectReference: {fileID: 0}
+    - target: {fileID: 513013632373375338, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: m_Center.x
+      value: 1.4506581
+      objectReference: {fileID: 0}
+    - target: {fileID: 513013632373375338, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: m_Center.y
+      value: -3.444945
+      objectReference: {fileID: 0}
+    - target: {fileID: 513013632373375338, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: m_Center.z
+      value: 0.058870897
+      objectReference: {fileID: 0}
+    - target: {fileID: 513013632373375338, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822279365658417516, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: m_Name
+      value: BigSunSpawner
+      objectReference: {fileID: 0}
     - target: {fileID: 2966795047701589768, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
       propertyPath: m_RootOrder
-      value: 39
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2966795047701589768, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12555,16 +13152,28 @@ PrefabInstance:
       value: MetalDetect71
       objectReference: {fileID: 0}
     - target: {fileID: 2966795048426957152, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: curIndex
+      value: 479
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966795048426957152, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 2966795048426957152, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: isInitFalse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966795048426957152, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2966795048426957152, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 2056342998}
     - target: {fileID: 2966795048426957152, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 2966795048426957152, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -12574,6 +13183,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.4765625
       objectReference: {fileID: 0}
+    - target: {fileID: 2966795048798283572, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 45.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197855411882181593, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: enemyAddress
+      value: xc_Kr_BigFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197855411882181593, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      propertyPath: objectDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c47896491a83e14e952c773ee3fe558, type: 2}
     - target: {fileID: 6686462698065028902, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -12581,16 +13202,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2822279365658417516, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1192739383}
   m_SourcePrefab: {fileID: 100100000, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
 --- !u!33 &2056342998 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 6686462698065028902, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
-  m_PrefabInstance: {fileID: 2056342997}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2056342999 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2966795047701589768, guid: 5920e699aff9180478cb4cd014c87ced, type: 3}
   m_PrefabInstance: {fileID: 2056342997}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &2062197479
@@ -12793,12 +13412,20 @@ PrefabInstance:
       value: MetalDetect61
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478519318037, guid: ae8949bb2a7f43f4bbea74abbb91ed67, type: 3}
+      propertyPath: curIndex
+      value: 497
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989332478519318037, guid: ae8949bb2a7f43f4bbea74abbb91ed67, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
     - target: {fileID: 2989332478519318037, guid: ae8949bb2a7f43f4bbea74abbb91ed67, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989332478519318037, guid: ae8949bb2a7f43f4bbea74abbb91ed67, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478519318037, guid: ae8949bb2a7f43f4bbea74abbb91ed67, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -12814,7 +13441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478976249981, guid: ae8949bb2a7f43f4bbea74abbb91ed67, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 2989332478976249981, guid: ae8949bb2a7f43f4bbea74abbb91ed67, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12871,7 +13498,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12890,16 +13517,24 @@ PrefabInstance:
       value: MetalDetect45
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 496
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 2073398414}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -12907,7 +13542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 34
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12983,11 +13618,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 2073398413}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2073398415 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 2073398413}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2073398416 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -13005,7 +13635,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13024,16 +13654,24 @@ PrefabInstance:
       value: MetalDetect33
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 506
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 2074608011}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -13041,7 +13679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13115,11 +13753,6 @@ PrefabInstance:
 --- !u!33 &2074608011 stripped
 MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 2074608010}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2074608012 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 2074608010}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2074608013 stripped
@@ -13304,7 +13937,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1190845830}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3986170063462448098, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13323,16 +13956,24 @@ PrefabInstance:
       value: MetalDetect32
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: curIndex
+      value: 483
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
+    - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
+      propertyPath: heightUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debugRenderer
       value: 
       objectReference: {fileID: 2084266599}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: effectAddress
-      value: SandUpVFX
+      value: SandUpVFXWeakShake
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: debug_LayerMask.m_Bits
@@ -13340,7 +13981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13416,11 +14057,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 8563644657741998282, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
   m_PrefabInstance: {fileID: 2084266598}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2084266600 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3986170063810854284, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
-  m_PrefabInstance: {fileID: 2084266598}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2084266601 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3986170063462448100, guid: 865b5fe6ee67e624d8beb7a48991a9c7, type: 3}
@@ -13432,27 +14068,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41847b4e6662e8f4da4e9cc0e1464fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1660057539 &9223372036854775807
-SceneRoots:
-  m_ObjectHideFlags: 0
-  m_Roots:
-  - {fileID: 1947816982}
-  - {fileID: 195290425}
-  - {fileID: 117858814}
-  - {fileID: 1530291661}
-  - {fileID: 2022145577}
-  - {fileID: 607729452}
-  - {fileID: 1235244069}
-  - {fileID: 643503540}
-  - {fileID: 18137751}
-  - {fileID: 2071654022}
-  - {fileID: 1397587431}
-  - {fileID: 460617591}
-  - {fileID: 1803251752}
-  - {fileID: 413018221}
-  - {fileID: 1745669272}
-  - {fileID: 30554807}
-  - {fileID: 1265272869}
-  - {fileID: 660548672}
-  - {fileID: 1190845830}
-  - {fileID: 1051855340}

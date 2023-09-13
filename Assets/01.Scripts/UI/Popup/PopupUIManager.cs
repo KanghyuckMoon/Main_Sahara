@@ -36,6 +36,7 @@ namespace UI.Popup
     {
         private PopupEventTransmit popupEventTransmit;
         
+        [SerializeField]
         private Transform popupParent;
 
         private PopupHudPr popupHudPr;
@@ -65,7 +66,7 @@ namespace UI.Popup
                     {
                         popupParent = _uiParent.transform.Find("PopupScreens");
                     }
-                    SetPresenters(); 
+                    //SetPresenters(); 
                 }
 
                 return popupParent;
@@ -230,8 +231,9 @@ namespace UI.Popup
         {
             CreatePopup<PopupGetItemPr>(PopupType.GetItem, _itemData);
         }
-        private void Init()
+        public void Init()
         {
+            popupParent = null; 
             GameObject _parent = GameObject.FindWithTag("UIParent");
             if (_parent == null)
             {
@@ -239,13 +241,14 @@ namespace UI.Popup
                 return;
             } 
             popupParent = _parent.transform.Find("PopupScreens");
-            SetPresenters();
+            StartCoroutine((InitPopupParent()));
 
         }
 
         private void SetPresenters()
         {
             popupPrList.Clear();
+            
             popupHudPr = PopupParent.GetComponentInChildren<PopupHudPr>();
             eventAlarmScreenPr = PopupParent.GetComponentInChildren<EventAlarmScreenPresenter>();
             interactionScreenPr = PopupParent.GetComponentInChildren<InteractionScreenPr>(); 
@@ -261,6 +264,28 @@ namespace UI.Popup
             popupPrList.Add(popupTutorialScreenPr); 
         }
 
+        private IEnumerator InitPopupParent()
+        {
+            while (true)
+            {
+                if (popupParent == null)
+                {
+                    GameObject _uiParent = GameObject.FindWithTag("UIParent");
+                    if (_uiParent != null)
+                    {
+                        popupParent = _uiParent.transform.Find("PopupScreens");
+                    }
+
+                    yield return null; 
+                }
+                else
+                {
+                    SetPresenters();
+                    yield break;
+                }
+            }
+            
+        }
     }
 
 }

@@ -227,7 +227,7 @@ namespace Module.Talk
 			//DialoguePresenter.SetTexts(talkDataSO.defaultAutherCodeList[_index], talkDataSO.defaultTalkCodeList[_index]);
 		}
 
-		private void EndTalk()
+		public void EndTalk()
 		{
 			isEndTalk = true;
 			isTalking = false;

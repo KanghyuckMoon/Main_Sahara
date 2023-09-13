@@ -61,7 +61,7 @@ namespace LockOn
             if (Input.GetKeyDown(KeyCode.T) &&
                 !stateModule.CheckState(State.CHARGE))
 			{
-                //SetLockOn();
+                SetLockOn();
             }
 		}
 

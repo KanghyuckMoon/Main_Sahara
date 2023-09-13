@@ -2397,6 +2397,7 @@ MonoBehaviour:
   hitBoxInAction: {fileID: 0}
   hitBoxName: GroundAttack1
   debugHitBoxDataSO: {fileID: 0}
+  capsuleColEditor: {fileID: 0}
 --- !u!114 &2226814159445434817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2539,12 +2540,14 @@ MonoBehaviour:
   isDash: 0
   isConsecutiveWeapon: 0
   isChargeJumpOn: 0
+  isTouchGround: 0
   isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -0.1
   groundOffset: -0.4
+  groundDistance: 0.5
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -2557,9 +2560,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 132096
   maxSlope: 0
-  raycastTarget: {fileID: 0}
+  raycastTarget: {fileID: 2392865061332028773}
   visualObject: {fileID: 4136733436468098978}
   model: {fileID: 682487080495784542}
+  root: {fileID: 0}
   animator: {fileID: 2226814159445434827}
   jumpstrenght: 0
   leftFeet: {fileID: 5043874493017710281}
@@ -3920,7 +3924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7771776612233429959}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.88, z: 0}
+  m_LocalPosition: {x: 0, y: 1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -12,6 +12,9 @@ using Streaming;
 using UI.Manager;
 using TimeManager;
 using HitBox;
+using UI.EventManage;
+using UI.Popup;
+using UI.PublicManager;
 
 public class InGameSceneSetting : MonoBehaviour
 {
@@ -32,7 +35,10 @@ public class InGameSceneSetting : MonoBehaviour
             ClassPoolManager.Instance.Clear();
             ObjectPoolManager.Instance.Clear();
             System.GC.Collect(); 
+            EventManager.Instance.TriggerEvent(EventsType.ClearEvents);
+            PublicUIManager.Instance.Init(); 
             UIManager.Instance.Init();
+            PopupUIManager.Instance.Init();
             StartCoroutine(LoadingScene());
             //StaticCoroutineManager.Instance.InstanceDoCoroutine(LoadingScene());
             //SceneManager.LoadScene("InGame");

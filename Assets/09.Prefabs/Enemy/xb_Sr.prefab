@@ -697,7 +697,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2619524423836216691}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.69, z: 0}
+  m_LocalPosition: {x: 0, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -750,7 +750,7 @@ Transform:
   - {fileID: 6516479242122247340}
   - {fileID: 3961951488477883046}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8569549290395265192
 Animator:
@@ -854,6 +854,7 @@ MonoBehaviour:
   hitBoxInAction: {fileID: 0}
   hitBoxName: DashAttack
   debugHitBoxDataSO: {fileID: 0}
+  capsuleColEditor: {fileID: 0}
 --- !u!114 &3118421499958552676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,12 +955,14 @@ MonoBehaviour:
   isDash: 0
   isConsecutiveWeapon: 0
   isChargeJumpOn: 0
+  isTouchGround: 0
   isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0
+  groundDistance: 0.5
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -972,9 +975,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 132096
   maxSlope: 0
-  raycastTarget: {fileID: 0}
+  raycastTarget: {fileID: 3961951488477883046}
   visualObject: {fileID: 8555797986667170653}
   model: {fileID: 6516479242122247340}
+  root: {fileID: 0}
   animator: {fileID: 8569549290395265192}
   jumpstrenght: 0
   leftFeet: {fileID: 6805045675213099922}

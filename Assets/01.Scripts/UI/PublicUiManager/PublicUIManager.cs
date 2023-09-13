@@ -33,7 +33,32 @@ namespace UI.PublicManager
             }
         }
 
+        public void Init()
+        {
+            screenUIController = null;
+            StartCoroutine(InitScreenController());
+        }
 
+        private IEnumerator InitScreenController()
+        {
+            while (true)
+            {
+                if (screenUIController == null)
+                {
+                    GameObject _parent = GameObject.FindWithTag("UIParent");
+                    if (_parent is not null)
+                    {
+                        screenUIController = _parent.GetComponentInChildren<IUIController>();
+                    }
+                    yield return null; 
+                }
+                else
+                {
+                    yield break;
+                }
+            }
+
+        }
         public void ActiveOptionPr(bool _isActive)
         {
             ScreenUIController.ActiveScreen(Keys.OptionUI);

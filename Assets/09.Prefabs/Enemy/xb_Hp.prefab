@@ -614,7 +614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251748820523283800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.14, z: 0}
+  m_LocalPosition: {x: 0, y: 0.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -671,7 +671,7 @@ Transform:
   - {fileID: 978887844183624322}
   - {fileID: 7136220566118728268}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5345158356665591429
 Animator:
@@ -753,6 +753,7 @@ MonoBehaviour:
   hitBoxInAction: {fileID: 0}
   hitBoxName: GroundAttack1
   debugHitBoxDataSO: {fileID: 0}
+  capsuleColEditor: {fileID: 0}
 --- !u!114 &5345158356665591439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,12 +896,14 @@ MonoBehaviour:
   isDash: 0
   isConsecutiveWeapon: 0
   isChargeJumpOn: 0
+  isTouchGround: 0
   isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -0.1
   groundOffset: -0.4
+  groundDistance: 0.5
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -916,6 +919,7 @@ MonoBehaviour:
   raycastTarget: {fileID: 0}
   visualObject: {fileID: 7899959976664510700}
   model: {fileID: 6751534626200872208}
+  root: {fileID: 0}
   animator: {fileID: 5345158356665591429}
   jumpstrenght: 0
   leftFeet: {fileID: 1240068496116947335}

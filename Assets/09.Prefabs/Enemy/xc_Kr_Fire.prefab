@@ -87,7 +87,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545264722820992427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.591, z: 0}
+  m_LocalPosition: {x: 0, y: 0.038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1644,6 +1644,7 @@ MonoBehaviour:
   hitBoxInAction: {fileID: 0}
   hitBoxName: JumpAttack0
   debugHitBoxDataSO: {fileID: 0}
+  capsuleColEditor: {fileID: 0}
 --- !u!114 &2670562217599034945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,12 +1745,14 @@ MonoBehaviour:
   isDash: 0
   isConsecutiveWeapon: 0
   isChargeJumpOn: 0
+  isTouchGround: 0
   isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -9.8
   groundOffset: 0
+  groundDistance: 0.5
   groundRadius: 0.2
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -1762,9 +1765,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 132096
   maxSlope: 0
-  raycastTarget: {fileID: 0}
+  raycastTarget: {fileID: 4518063679329822201}
   visualObject: {fileID: 2534940286479682690}
   model: {fileID: 3794945222221765327}
+  root: {fileID: 0}
   animator: {fileID: 2670562217599034949}
   jumpstrenght: 0
   leftFeet: {fileID: 7643545743871187951}
