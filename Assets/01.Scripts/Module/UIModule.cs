@@ -29,14 +29,6 @@ namespace Module
             set
             {
                 isRender = value;
-                if(isRender)
-                {
-                    StaticCoroutineManager.Instance.InstanceDoCoroutine(GetUI());
-                }
-                else
-                {
-                    StaticCoroutineManager.Instance.InstanceDoCoroutine(IRegisterUI());
-                }
                 Send();
             }
 
@@ -135,7 +127,7 @@ namespace Module
 		public override void OnEnable()
 		{
 			base.OnEnable();
-            //StaticCoroutineManager.Instance.InstanceDoCoroutine(GetUI());
+            StaticCoroutineManager.Instance.InstanceDoCoroutine(GetUI());
         }
 
 		public override void OnDisable()

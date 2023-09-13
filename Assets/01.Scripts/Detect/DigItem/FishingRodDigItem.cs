@@ -16,7 +16,7 @@ public class FishingRodDigItem : BaseDigItem
 
 		protected override void OnEnable()
     {
-        var _detectAnimationAction = transform.root.GetComponentInChildren<DetectAnimationAction>();
+        var _detectAnimationAction = transform.root.GetComponentInParent<DetectAnimationAction>();
         if (_detectAnimationAction is not null)
         {
             Debug.Log("Success");
@@ -38,7 +38,7 @@ public class FishingRodDigItem : BaseDigItem
     public void FishingCheck()
     {
         GetNearObject();
-        var playerAnimator = transform.root.GetComponentInChildren<Animator>();
+        var playerAnimator =  transform.root.GetComponentInParent<Animator>();
         if(targetItem is not null)
         {
             Debug.Log("GetOut");

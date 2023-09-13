@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Main Camera (1) Blends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: PlayerFollowCamera
+  - m_From: PlayerCam
     m_To: ZoomCam
     m_Blend:
       m_Style: 6
@@ -25,7 +25,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: ZoomCam
-    m_To: PlayerFollowCamera
+    m_To: PlayerCam
     m_Blend:
       m_Style: 7
       m_Time: 0.45
@@ -139,7 +139,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 0
   - m_From: GroupCam
-    m_To: PlayerFollowCamera
+    m_To: PlayerCam
     m_Blend:
       m_Style: 1
       m_Time: 0.5
@@ -167,7 +167,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-  - m_From: PlayerFollowCamera
+  - m_From: PlayerCam
     m_To: GroupCam
     m_Blend:
       m_Style: 1
@@ -254,7 +254,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-  - m_From: PlayerFollowCamera
+  - m_From: PlayerCam
     m_To: TargetCam
     m_Blend:
       m_Style: 1
@@ -283,7 +283,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-  - m_From: PlayerFollowCamera
+  - m_From: PlayerCam
     m_To: TargetCam2
     m_Blend:
       m_Style: 1
@@ -313,7 +313,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 0
   - m_From: TargetCam
-    m_To: PlayerFollowCamera
+    m_To: PlayerCam
     m_Blend:
       m_Style: 1
       m_Time: 0.3
@@ -342,7 +342,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 0
   - m_From: TargetCam2
-    m_To: PlayerFollowCamera
+    m_To: PlayerCam
     m_Blend:
       m_Style: 1
       m_Time: 0.3

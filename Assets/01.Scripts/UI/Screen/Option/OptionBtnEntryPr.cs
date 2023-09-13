@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI.Popup;
 using UI.Production;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,7 +16,6 @@ namespace UI.Option
         
         public OptionData OptionData  => optionData; 
         public VisualElement Parent => parent;
-        public DropdownField Dropdown => optionBtnEntryView.DropDown; 
         public OptionBtnEntryPr()
         {
             var _pr = ConstructorManager.UIConstructorManager.Instance.GetProductionUI(typeof(OptionBtnEntryView));
@@ -37,25 +37,14 @@ namespace UI.Option
         // OptionData 받아두고 
         // OptionType으로 찾고 
         // 가져와서 
-        public void SetData(Action<int> _callback, string _nameAddress, List<string> dropdownList, OptionData _optionData)
+        public void SetData(Action _callback, string _name)
         {
-            this.optionData = _optionData; 
+            //this.optionData = _optionData; 
             //string _name  = TextMan
-            optionBtnEntryView.SetName(_nameAddress);
-            optionBtnEntryView.SetDropdown(dropdownList);
+            optionBtnEntryView.SetName(_name);
+            optionBtnEntryView.AddButtonEvent(_callback);
             // 드롭다운 값이 변경될 때 
-            optionBtnEntryView.SetDropdownEvent(_callback);
-            optionBtnEntryView.DropDown.index =
-                _optionData.dropdownList.IndexOf(_optionData
-                    .defaultDropdownStr);
-            /*optionBtnEntryView.AddButtonEventToDic(OptionBtnEntryView.Buttons.left_button, () =>
-            {
-                _callback?.Invoke(-1);
-            });
-            optionBtnEntryView.AddButtonEventToDic(OptionBtnEntryView.Buttons.right_button,() =>
-            {
-                _callback?.Invoke(+1);
-            });*/
+
         }
 
     }

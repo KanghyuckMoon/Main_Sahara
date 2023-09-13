@@ -542,18 +542,6 @@ namespace Module
             }
         }
 
-        public float GroundAngle
-        {
-            get
-            {
-                return groundAngle;
-            }
-            set
-            {
-                groundAngle = value;
-            }
-        }
-
         #endregion
 
         #region 변수
@@ -586,9 +574,6 @@ namespace Module
         private float moveSpeed;
         [SerializeField, Header("달리기중?")] 
         private bool isSprint;
-
-        [Space] [SerializeField, Header("달리기중?")]
-        private float groundAngle;
 
         //물리 관련은 최적화를 위해 Public을 사용
         [Space]
