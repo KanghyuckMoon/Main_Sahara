@@ -27,6 +27,7 @@ namespace Skill
             if (UseMana(_mainModule, -usingMana))
             {
                 skillObject = ObjectPoolManager.Instance.GetObject("Wudu_SkillEffect");
+                skillObject.transform.localPosition = Vector3.zero;
                 skillObject.GetComponent<HitBoxOnProjectile>().SetOwner(transform.root.gameObject);
                 skillObject.tag = _mainModule.tag;
                 skillObject.GetComponent<HitBoxOnProjectile>().SetEnable();

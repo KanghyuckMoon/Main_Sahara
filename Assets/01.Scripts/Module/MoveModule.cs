@@ -176,19 +176,25 @@ namespace Module
                 (cameraForward * mainModule.ObjDir.y + cameraRight * mainModule.ObjDir.x).normalized;
 
 
-            // 캐릭터 회전
-            if (moveDirection != Vector3.zero)
+            if (mainModule.IsCharging)
             {
-                Quaternion newRotation = Quaternion.LookRotation(moveDirection);
-                mainModule.transform.rotation = Quaternion.Slerp(mainModule.transform.rotation, newRotation,
-                    10 * mainModule.PersonalDeltaTime);
+                mainModule.transform.rotation = Quaternion.Euler(xRotation, mainModule.ObjRotation.eulerAngles.y, zRotation);
+            }
+            else
+            {
+                // 캐릭터 회전
+                if (moveDirection != Vector3.zero)
+                {
+                    Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+                    newRotation = Quaternion.Euler(xRotation, newRotation.eulerAngles.y, zRotation);
+                    mainModule.transform.rotation = Quaternion.Slerp(mainModule.transform.rotation, newRotation,
+                        10 * mainModule.PersonalDeltaTime);
+                }
             }
 
             // 공중에 있는 경우 중력 적용
             moveDirection.y = -mainModule.GroundAngle / 45f;
             //moveSpeedToUse = moveSpeed / 2.0f; // 공중에서의 이동 속도 감소
-
-
             /*var _rotate = mainModule.transform.eulerAngles;
             var _dir = _targetDirection.normalized;
             var _gravity = mainModule.Gravity;
@@ -290,9 +296,46 @@ namespace Module
                 groundNormal = hit.normal;
             }
 
-            mainModule.CharacterController.Move(
-                (moveDirection * moveSpeedToUse + new Vector3(0, mainModule.Gravity, 0)) *
-                mainModule.PersonalDeltaTime);
+            mainModule.attackedTime += mainModule.PersonalDeltaTime;
+            var _decreaseKnockBackValue = -3 * mainModule.attackedTime * mainModule.attackedTime;
+            knockBackPower = _decreaseKnockBackValue + mainModule.knockBackPower;
+            var _knockBackVector = knockBackPower * mainModule.knockBackVector;
+
+            if (knockBackPower <= 0f)
+            {
+                mainModule.knockBackPower = 0f;
+                mainModule.KnockBackVector = Vector3.zero;
+                _knockBackVector = Vector3.zero;
+            }
+            
+            if (knockBackPower > 0f)
+            {
+                mainModule.CharacterController.Move((_knockBackVector + new Vector3(0, mainModule.Gravity, 0)) *
+                                                    mainModule.PersonalDeltaTime);
+            }
+            else
+            {
+                if (mainModule.isTouchGround)
+                {
+                    if (!mainModule.IsSlope)
+                    {
+                        mainModule.CharacterController.Move(((mainModule.SlopeVector.normalized * 2)+ new Vector3(0, mainModule.Gravity, 0)) * mainModule.PersonalDeltaTime);
+                    }
+                    else
+                    {
+                        mainModule.CharacterController.Move(
+                            (moveDirection * moveSpeedToUse + new Vector3(0, mainModule.Gravity, 0)) *
+                            mainModule.PersonalDeltaTime);
+                    }
+                }
+                else
+                {
+                    mainModule.CharacterController.Move(
+                        (moveDirection * moveSpeedToUse + new Vector3(0, mainModule.Gravity, 0)) *
+                        mainModule.PersonalDeltaTime);
+                }
+            }
+
             Debug.Log("중력값: " + mainModule.Gravity);
             //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
 
