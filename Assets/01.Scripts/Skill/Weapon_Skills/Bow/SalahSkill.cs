@@ -22,6 +22,7 @@ namespace Skill
 
         private SetPlayerMaterial setPlayerMaterial;
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public void Skills(AbMainModule _mainModule)
         {
             if (!UseMana(_mainModule, usingMana)) return;
@@ -40,7 +41,7 @@ namespace Skill
             
             setPlayerMaterial.SetMaterials(playerReinnforceMat);
 
-            StartCoroutine(ResetEffect(_effect, _barrier));
+            Invoke(nameof(ResetEffect), 10);
             PlaySkillAnimation(_mainModule, animationClip);
         }
         public HitBoxAction GetHitBoxAction()
@@ -60,10 +61,9 @@ namespace Skill
             //obj.transform.position = transform.position;
         }
 
-        IEnumerator ResetEffect(GameObject _barrier, GameObject _effect)
+        private void ResetEffect(GameObject _barrier, GameObject _effect)
         {
-            yield return new WaitForSeconds(10f);
-            
+            Debug.LogError("없어졌다" + gameObject.name);
             setPlayerMaterial.ResetMaterials();
             ObjectPoolManager.Instance.RegisterObject("Salah_SkillEffect", _barrier);
             ObjectPoolManager.Instance.RegisterObject("Salah_SkillEffect_Aura", _effect);

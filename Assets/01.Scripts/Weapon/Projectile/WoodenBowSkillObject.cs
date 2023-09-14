@@ -25,7 +25,7 @@ namespace Weapon
         {
             if (isUse)
             {
-                transform.position = Vector3.LerpUnclamped(transform.position, target.position, Time.deltaTime);
+                transform.position = Vector3.LerpUnclamped(transform.position, target.position + new Vector3(0, 0.2f, 0), Time.deltaTime);
                 
                 Vector3 directionVec = target.position - transform.position;
                 Quaternion qua = Quaternion.LookRotation(directionVec);
@@ -80,6 +80,7 @@ namespace Weapon
         {
             if (other.CompareTag(tagName))
             {
+                //Debug.LogError("面倒  面倒  面倒  面倒");
                 ObjectPoolManager.Instance.RegisterObject("WoodenBowSkill_Arrow", gameObject);
             }
         }
