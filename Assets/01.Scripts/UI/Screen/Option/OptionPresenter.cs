@@ -14,23 +14,7 @@ using Utill.Addressable;
 
  namespace UI.Option
 {
-    public class ReadMoreTutorialSetting : MonoBehaviour
-    {
-        private AllPopupTutorialDataSO allPopupTutorialDataSO;
 
-        public AllPopupTutorialDataSO AllPopupTutorialDataSo => allPopupTutorialDataSO; 
-        private void Awake()
-        {
-            allPopupTutorialDataSO =
-                AddressablesManager.Instance.GetResource<AllPopupTutorialDataSO>("AllPopupTutorialDataSO");
-        }
-        public void ActiveTutorialPopup(string _key)
-        {
-            //PopupTutorialDataSO popupTutorialDataSo; 
-            //popupTutorialDataSo.Send();
-            GameEventManager.Instance.GetGameEvent(_key).Raise();
-        }
-    }
     public interface IOptionEntry
     {
         public OptionData OptionData { get;  }
@@ -74,6 +58,7 @@ using Utill.Addressable;
             this.uiDocument = GetComponentInChildren<UIDocument>();
             this.grahpicSetting = GetComponentInChildren<GraphicsSetting>();
             this.soundSetting = GetComponentInChildren<SoundSetting>();
+            this.readMoreTutorialSetting = GetComponentInChildren<ReadMoreTutorialSetting>(); 
             
             optionDataSO = AddressablesManager.Instance.GetResource<OptionDataSO>("OptionDataSO");
 
@@ -87,10 +72,17 @@ using Utill.Addressable;
             var _list = readMoreTutorialSetting.AllPopupTutorialDataSo.popupTutorialDataSoList;
             foreach (var _popupTutoSO in  _list)
             {
-                optionEntryCallbackDic3.Add(_popupTutoSO.key,() => readMoreTutorialSetting.ActiveTutorialPopup(_popupTutoSO.key));
+                optionEntryCallbackDic3.Add(_popupTutoSO.key,() => ActiveTuto((_popupTutoSO.key)) );
             }   
         }
-        
+
+        private void ActiveTuto(string _key)
+        {
+            readMoreTutorialSetting.ActiveTutorialPopup(_key);
+            Debug.LogError("@@@@@@@@@Active TuTO");
+        }
+
+
         private void Start()
         {
 //            soundSetting.InitSlider();
@@ -106,9 +98,9 @@ using Utill.Addressable;
             optionEntryCallbackDic2[OptionType.BackgroundVolume] = soundSetting .ApplySettingSound;
             optionEntryCallbackDic2[OptionType.EffVolume] = soundSetting .ApplySettingSound;
             optionEntryCallbackDic2[OptionType.EnvironmentVolume] = soundSetting .ApplySettingSound;
-            SetButtonEvents(); 
+            SetButtonEvents();
 
-    
+            CreateTutoEntry(); 
             CreateEntry();
             ConnectUIAndData();
             
@@ -243,7 +235,7 @@ using Utill.Addressable;
             }
         }
 
-        /*private void CreateTutoEntry()
+        private void CreateTutoEntry()
         {
             VisualElement _parent = optionView.HelpPanel;
             var _allTutoSO = readMoreTutorialSetting.AllPopupTutorialDataSo;
@@ -253,7 +245,7 @@ using Utill.Addressable;
                 OptionBtnEntryPr _btnEntryPr = new OptionBtnEntryPr(); 
                 _parent .Add(_btnEntryPr.Parent);
                 SetOptionEntryData(_btnEntryPr,_data);
-                optionEntryList.Add(_btnEntryPr);
+                //optionEntryList.Add(_btnEntryPr);
             }
 
         }
@@ -276,7 +268,7 @@ using Utill.Addressable;
             // Dropdown 요소 적용 
             // _optionData.dropdownList
                     
-        }*/
+        }
         
         /// <summary>
         /// 생성한거 데이터 넣어주기 

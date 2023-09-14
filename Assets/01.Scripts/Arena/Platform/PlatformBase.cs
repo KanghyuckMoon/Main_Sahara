@@ -170,7 +170,7 @@ namespace Arena
 
         protected virtual void OnDisable()
         {
-            DOTween.KillAll(); 
+            DOTween.Kill(this); 
             UpdateManager.UpdateManager.Remove(this);
         }
 
@@ -203,7 +203,7 @@ namespace Arena
         {
             // 플랫폼 주변에 파티클 
             // 밑으로 내려가기 
-            DOTween.KillAll(); 
+            DOTween.Kill(this); 
             landPlatform.IsObjectOn(true); 
             StartCoroutine(landPlatform.CheckPos());
         }

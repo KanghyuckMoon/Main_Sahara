@@ -80,7 +80,7 @@ namespace UI.Loading
 
         public void StopTween()
         {
-            DOTween.KillAll();
+            DOTween.Kill(this); 
         }
 
         public List<VisualElement> GetDecos()
