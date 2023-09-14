@@ -1509,6 +1509,7 @@ GameObject:
   - component: {fileID: 279346170}
   - component: {fileID: 279346171}
   - component: {fileID: 279346172}
+  - component: {fileID: 279346173}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1609,6 +1610,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 279346173}
+        m_TargetAssemblyTypeName: CondinedModule.InvokePathFromTalkModule, CondinedModule
+        m_MethodName: InvokePath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &279346172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1622,6 +1635,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 1
+--- !u!114 &279346173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279346167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d722b39214882894991208ddc8c92808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcType: 1
+  pathIndex: 0
 --- !u!114 &288947427 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
@@ -1824,8 +1851,16 @@ PrefabInstance:
       value: NaviSO
       objectReference: {fileID: 0}
     - target: {fileID: 3557596318192012552, guid: 84643ac7108e4b14aae7d55fc9d88a70, type: 3}
+      propertyPath: groundOffset
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557596318192012552, guid: 84643ac7108e4b14aae7d55fc9d88a70, type: 3}
       propertyPath: groundRadius
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557596318192012552, guid: 84643ac7108e4b14aae7d55fc9d88a70, type: 3}
+      propertyPath: groundDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4104809822023089124, guid: 84643ac7108e4b14aae7d55fc9d88a70, type: 3}
       propertyPath: m_Intensity
@@ -4954,15 +4989,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526210748043143353, guid: 2535ff90fa16b7c4480baa99ff7a2b90, type: 3}
       propertyPath: m_Waypoints.Array.data[3].position.x
-      value: -143.28926
+      value: -128.45578
       objectReference: {fileID: 0}
     - target: {fileID: 7526210748043143353, guid: 2535ff90fa16b7c4480baa99ff7a2b90, type: 3}
       propertyPath: m_Waypoints.Array.data[3].position.y
-      value: 2.532952
+      value: 2.5329509
       objectReference: {fileID: 0}
     - target: {fileID: 7526210748043143353, guid: 2535ff90fa16b7c4480baa99ff7a2b90, type: 3}
       propertyPath: m_Waypoints.Array.data[3].position.z
-      value: 219.66405
+      value: 213.91203
       objectReference: {fileID: 0}
     - target: {fileID: 7526210748043143355, guid: 2535ff90fa16b7c4480baa99ff7a2b90, type: 3}
       propertyPath: m_Name
