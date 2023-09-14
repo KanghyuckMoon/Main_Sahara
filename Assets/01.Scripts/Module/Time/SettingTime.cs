@@ -28,7 +28,7 @@ namespace Module
                // Debug.LogError(durationTime);
             }
 
-            if(durationTime < 0 && isRunning)
+            if(durationTime <= 0 && isRunning)
             {//Debug.LogError("skadjf");
                 ResetTime();
             }
