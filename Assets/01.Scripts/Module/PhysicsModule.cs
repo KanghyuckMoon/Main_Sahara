@@ -186,13 +186,13 @@ namespace Module
 		{
 			_inGameHitBox.HitBoxAction?.Invoke(HitBoxActionType.Hit);
 
-			mainModule.SettingTime.SetTime(0.18f, 0f);
+			mainModule.SettingTime.SetTime(_inGameHitBox.HitBoxData.hitStunDelay, 0f);
 
 			var _settingTime = _inGameHitBox.Owner.GetComponent<SettingTime>();
 
 			if (_settingTime is not null)
 			{
-				_settingTime.SetTime(0.18f, 0f);
+				_settingTime.SetTime(_inGameHitBox.HitBoxData.attackStunDelay, 0f);
 			}
 		}
 
