@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4920815058896915778}
   - component: {fileID: 182130106788565281}
   - component: {fileID: 7268321927307822782}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Worm_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 18902207683227182}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2986983309107901814}
   - component: {fileID: 2571791961088784359}
-  m_Layer: 27
+  - component: {fileID: -6053086776353637074}
+  m_Layer: 28
   m_Name: mc_Or_Spawner
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -163,6 +164,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAddress: 13
   objectDataSO: {fileID: 11400000, guid: 95c8ed87f58b27e498fdaab1133e6067, type: 2}
+  curIndex: 0
+--- !u!65 &-6053086776353637074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2480147276954341243}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2933456215269773130
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3048427310046213910}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: mc_Or
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -206,7 +229,7 @@ GameObject:
   - component: {fileID: 5847496708265917466}
   - component: {fileID: 2374589819897370267}
   - component: {fileID: 6178014438281093690}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Worm_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -290,7 +313,7 @@ GameObject:
   - component: {fileID: 333287857431520427}
   - component: {fileID: 78504672536045513}
   - component: {fileID: 6183083800309883893}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Worm_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -374,7 +397,7 @@ GameObject:
   - component: {fileID: 2654617749741079536}
   - component: {fileID: 7512001690164729698}
   - component: {fileID: 2509837641083134823}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Worm_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -456,7 +479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3969220663891933921}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +513,7 @@ GameObject:
   - component: {fileID: 6877415345069595890}
   - component: {fileID: 7753936349476001724}
   - component: {fileID: 1414855018087889909}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Worm_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -574,7 +597,7 @@ GameObject:
   - component: {fileID: 6480750995821966151}
   - component: {fileID: 1208864731022701037}
   - component: {fileID: 7421682329389990677}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Worm_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -658,7 +681,7 @@ GameObject:
   - component: {fileID: 8697752940281980138}
   - component: {fileID: 4156873486865354133}
   - component: {fileID: 500603539989786016}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Enemy_d
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +764,7 @@ GameObject:
   - component: {fileID: 8746879570492173848}
   - component: {fileID: 7475319731029883993}
   - component: {fileID: 3970345785403795233}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Head
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -825,7 +848,7 @@ GameObject:
   - component: {fileID: 6462236073441858289}
   - component: {fileID: 2703882662311976343}
   - component: {fileID: 7032241315399592925}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Worm_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -909,7 +932,7 @@ GameObject:
   - component: {fileID: 1050713050120153050}
   - component: {fileID: 3224095851080454407}
   - component: {fileID: 5373836394482694145}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Worm_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -993,7 +1016,7 @@ GameObject:
   - component: {fileID: 9056550327438627173}
   - component: {fileID: 4116444411141340795}
   - component: {fileID: 3805730144688890796}
-  m_Layer: 27
+  m_Layer: 28
   m_Name: Boss_Enemy_c
   m_TagString: Untagged
   m_Icon: {fileID: 0}

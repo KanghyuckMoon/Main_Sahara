@@ -10,14 +10,14 @@ namespace LockOn
     public class LockOnCamera : MonoBehaviour
     {
         [SerializeField]
-        public CinemachineVirtualCamera currentCamera;
+        public GameObject currentCamera;
 
         [SerializeField]
         private Transform player;
         [SerializeField]
         private ThirdPersonCameraController thirdPersonCameraController;
         [SerializeField]
-        private CinemachineVirtualCamera playerCam;
+        private CinemachineFreeLook playerCam;
         [SerializeField]
         private CinemachineVirtualCamera groupCam;
         [SerializeField]
@@ -52,7 +52,7 @@ namespace LockOn
 
         public void Start()
         {
-            currentCamera = playerCam;
+            currentCamera = playerCam.gameObject;
             stateModule = playerModule.GetModuleComponent<StateModule>(ModuleType.State);
         }
 
@@ -61,7 +61,7 @@ namespace LockOn
             if (Input.GetKeyDown(KeyCode.T) &&
                 !stateModule.CheckState(State.CHARGE))
 			{
-                SetLockOn();
+                //SetLockOn();
             }
 		}
 
@@ -79,7 +79,7 @@ namespace LockOn
                 groupCam.gameObject.SetActive(false);
 
                 //thirdPersonCameraController.cameraY = player.eulerAngles.y;    
-                currentCamera = playerCam;
+                currentCamera = playerCam.gameObject;
 
                 playerModule.LockOnTarget = null;
                 playerModule.LockOn = false;
@@ -128,7 +128,7 @@ namespace LockOn
                     groupCam.gameObject.SetActive(true);
                     playerCam.gameObject.SetActive(false);
 
-                    currentCamera = groupCam;
+                    currentCamera = groupCam.gameObject;
 
                     playerModule.LockOnTarget = target;
                     playerModule.LockOn = true;

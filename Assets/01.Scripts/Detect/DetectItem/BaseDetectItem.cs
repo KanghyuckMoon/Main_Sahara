@@ -137,10 +137,10 @@ namespace Detect
             if (isGetOut)
             {
                 return;
-            }
-            isGetOut = true;
-            getoutEventBefore?.Invoke();
+			}
+			getoutEventBefore?.Invoke();
             targetModel.gameObject.SetActive(true);
+            isGetOut = true;
             Vector3 _movePos = upPos;
 			effectObj = EffectManager.Instance.SetAndGetEffectDefault( effectAddress, targetEffectTrm.position, Quaternion.identity);
 

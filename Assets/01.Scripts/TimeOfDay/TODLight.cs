@@ -132,6 +132,8 @@ namespace TimeOfDay
             todSO.isNight = false;
             sun.shadows = LightShadows.Soft;
             moon.shadows = LightShadows.None;
+            sun.gameObject.SetActive(true);
+            moon.gameObject.SetActive(false);
             sunLensFlare.enabled = true;
             moonLensFlare.enabled = false;
         }
@@ -142,6 +144,8 @@ namespace TimeOfDay
             todSO.isNight = true;
             sun.shadows = LightShadows.Soft;
             moon.shadows = LightShadows.None;
+            moon.gameObject.SetActive(true);
+            sun.gameObject.SetActive(false);
             sunLensFlare.enabled = false;
             moonLensFlare.enabled = true;
         }

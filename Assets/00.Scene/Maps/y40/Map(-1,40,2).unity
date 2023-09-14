@@ -421,10 +421,6 @@ PrefabInstance:
       value: MetalDetect462
       objectReference: {fileID: 0}
     - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
-      propertyPath: curIndex
-      value: 907
-      objectReference: {fileID: 0}
-    - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
@@ -1516,6 +1512,7 @@ GameObject:
   - component: {fileID: 279346169}
   - component: {fileID: 279346170}
   - component: {fileID: 279346171}
+  - component: {fileID: 279346172}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1603,7 +1600,32 @@ MonoBehaviour:
   authorCode: A00000010
   endTalkEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 279346172}
+        m_TargetAssemblyTypeName: CondinedModule.InvokeEndTalk, CondinedModule
+        m_MethodName: NpcEndTalk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &279346172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279346167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb60ec1bd8052cf4e8e7fe6634eab13c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcType: 1
 --- !u!114 &288947427 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
@@ -2116,10 +2138,6 @@ PrefabInstance:
     - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
       propertyPath: key
       value: MetalDetect462
-      objectReference: {fileID: 0}
-    - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
-      propertyPath: curIndex
-      value: 908
       objectReference: {fileID: 0}
     - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
       propertyPath: outlineMat
@@ -2905,10 +2923,6 @@ PrefabInstance:
       value: MetalDetect240
       objectReference: {fileID: 0}
     - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
-      propertyPath: curIndex
-      value: 678
-      objectReference: {fileID: 0}
-    - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
@@ -3563,10 +3577,6 @@ PrefabInstance:
       value: MetalDetect223
       objectReference: {fileID: 0}
     - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
-      propertyPath: curIndex
-      value: 671
-      objectReference: {fileID: 0}
-    - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
@@ -3710,10 +3720,6 @@ PrefabInstance:
     - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
       propertyPath: key
       value: MetalDetect240
-      objectReference: {fileID: 0}
-    - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
-      propertyPath: curIndex
-      value: 674
       objectReference: {fileID: 0}
     - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
       propertyPath: outlineMat
@@ -5137,7 +5143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4158143292796685224, guid: 859e9f623d8592947846ff15df7b1228, type: 3}
       propertyPath: curIndex
-      value: 44
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 7014034882650117977, guid: 859e9f623d8592947846ff15df7b1228, type: 3}
       propertyPath: m_Name
@@ -5247,10 +5253,6 @@ PrefabInstance:
     - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
       propertyPath: key
       value: MetalDetect462
-      objectReference: {fileID: 0}
-    - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
-      propertyPath: curIndex
-      value: 909
       objectReference: {fileID: 0}
     - target: {fileID: 6862984308617422577, guid: c827a07a11b211845acecd33e0055c85, type: 3}
       propertyPath: outlineMat
@@ -5781,10 +5783,6 @@ PrefabInstance:
       value: MetalDetect224
       objectReference: {fileID: 0}
     - target: {fileID: 1775302689561335115, guid: c004328ff4e47f34f8a45709eba5ed8e, type: 3}
-      propertyPath: curIndex
-      value: 670
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775302689561335115, guid: c004328ff4e47f34f8a45709eba5ed8e, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
@@ -6226,10 +6224,6 @@ PrefabInstance:
       value: MetalDetect233
       objectReference: {fileID: 0}
     - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
-      propertyPath: curIndex
-      value: 676
-      objectReference: {fileID: 0}
-    - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
@@ -6478,10 +6472,6 @@ PrefabInstance:
     - target: {fileID: 5723743457107863413, guid: 10e4d16de6949ae49b88fdc1106cab72, type: 3}
       propertyPath: key
       value: MetalDetect230
-      objectReference: {fileID: 0}
-    - target: {fileID: 5723743457107863413, guid: 10e4d16de6949ae49b88fdc1106cab72, type: 3}
-      propertyPath: curIndex
-      value: 673
       objectReference: {fileID: 0}
     - target: {fileID: 5723743457107863413, guid: 10e4d16de6949ae49b88fdc1106cab72, type: 3}
       propertyPath: outlineMat
@@ -7098,10 +7088,6 @@ PrefabInstance:
       value: MetalDetect105
       objectReference: {fileID: 0}
     - target: {fileID: 3230531361999909012, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
-      propertyPath: curIndex
-      value: 669
-      objectReference: {fileID: 0}
-    - target: {fileID: 3230531361999909012, guid: c1c0cd7c06c4fd44aada419c55980a8b, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
@@ -7517,10 +7503,6 @@ PrefabInstance:
       value: MetalDetect231
       objectReference: {fileID: 0}
     - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
-      propertyPath: curIndex
-      value: 672
-      objectReference: {fileID: 0}
-    - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
       propertyPath: outlineMat
       value: 
       objectReference: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
@@ -7685,10 +7667,6 @@ PrefabInstance:
     - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
       propertyPath: key
       value: MetalDetect229
-      objectReference: {fileID: 0}
-    - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
-      propertyPath: curIndex
-      value: 677
       objectReference: {fileID: 0}
     - target: {fileID: 7943773490167445317, guid: e2206333c6fb79d46be34a2843c5558a, type: 3}
       propertyPath: outlineMat
@@ -7882,10 +7860,6 @@ PrefabInstance:
     - target: {fileID: 4324596341978550398, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
       propertyPath: key
       value: MetalDetect232
-      objectReference: {fileID: 0}
-    - target: {fileID: 4324596341978550398, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
-      propertyPath: curIndex
-      value: 675
       objectReference: {fileID: 0}
     - target: {fileID: 4324596341978550398, guid: 6e9b550df834b684e950ccad8ca9ede6, type: 3}
       propertyPath: outlineMat
@@ -8226,7 +8200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4158143292796685224, guid: 859e9f623d8592947846ff15df7b1228, type: 3}
       propertyPath: curIndex
-      value: 43
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 7014034882650117977, guid: 859e9f623d8592947846ff15df7b1228, type: 3}
       propertyPath: m_Name
@@ -8396,7 +8370,7 @@ MonoBehaviour:
   isInitFalse: 1
   outLineMeshRenderer: {fileID: 0}
   outlineMat: {fileID: 2100000, guid: eceec84d20ee70a4f88505635f49aac7, type: 2}
-  curIndex: 910
+  curIndex: 0
   isDebugRender: 1
   debugRenderer: {fileID: 649656090}
   debug_LayerMask:

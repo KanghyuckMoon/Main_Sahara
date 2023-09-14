@@ -39,12 +39,6 @@ public class SunSpawner : MonoBehaviour
 	        }
         }
 
-    public void SpawnAndPool()
-    {
-        Spawn();
-        Pool();
-    }
-
         public void Spawn()
 		{
 			EffectManager.Instance.SetEffectDefault(spawnEffectAddress, spawnPosition.position, Quaternion.identity);

@@ -152,7 +152,7 @@ namespace UI.Base
 
         public void StopTween()
         {
-            DOTween.KillAll();
+            DOTween.Kill(this); 
         }
         /// <summary>
         /// 닷트윈을 통한 움직임 (현재 포지션 + _pos) 

@@ -18,7 +18,6 @@ namespace Weapon
             transform.SetParent(null);
             player ??= PlayerObj.Player.transform;
             Vector3 _dir = (player.position + _pos) - transform.position;
-            rigidbody.velocity = Vector3.zero;
             rigidbody.AddForce(_dir.normalized * objectData.speed, ForceMode.Impulse);
         }
     }

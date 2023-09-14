@@ -119,13 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea431b5573bd5e43a8df7e1c79a9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainHitBoxDataSO: {fileID: 0}
-  subHitBoxDataSO: {fileID: 0}
+  hitBoxDataSO: {fileID: 11400000, guid: e338ad7ac86172141a01da9f3eb518f9, type: 2}
   waeponHandle: {fileID: 0}
   hitBoxInAction: {fileID: 0}
   hitBoxName: Bite_1
-  debugHitBoxDataSO: {fileID: 0}
-  capsuleColEditor: {fileID: 0}
 --- !u!114 &6754391553308261363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,14 +267,12 @@ MonoBehaviour:
   isDash: 0
   isConsecutiveWeapon: 0
   isChargeJumpOn: 0
-  isTouchGround: 0
   isFlameOn: 0
   attacking: 0
   strongAttacking: 0
   gravity: 0
   gravityScale: -15
   groundOffset: -3.5
-  groundDistance: 0.5
   groundRadius: 5
   attackedTime: 0
   knockBackVector: {x: 0, y: 0, z: 0}
@@ -293,7 +288,6 @@ MonoBehaviour:
   raycastTarget: {fileID: 0}
   visualObject: {fileID: 3561477603513676999}
   model: {fileID: 7708975320941916997}
-  root: {fileID: 0}
   animator: {fileID: 6754391553308261367}
   jumpstrenght: 0
   leftFeet: {fileID: 5410097379844207804}
@@ -301,7 +295,6 @@ MonoBehaviour:
   back: {fileID: 0}
   animatorOverrideController: {fileID: 0}
   frontInput: 0
-  lastGroundPos: {x: 0, y: 0, z: 0}
   ignoreHitType: 0
   aiSOAddress: xa_Nm_Stone_AISO
   pathHarver: {fileID: 0}
@@ -1331,7 +1324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7336003428089512040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.263, z: 0}
+  m_LocalPosition: {x: 0, y: 0.345, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
