@@ -42,7 +42,9 @@ namespace UI.Production
         private Action clickCallback; 
         public void AddButtonEvent(Action _callback)
         {
-            clickCallback = _callback; 
+         //   clickCallback = _callback; 
+        // AddButtonEventToDic(Buttons.select_button, _callback);
+         AddButtonEvent<ClickEvent>((int)Buttons.select_button ,_callback);
         }
 
         public OptionBtnEntryView()
