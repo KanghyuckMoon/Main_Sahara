@@ -39,6 +39,8 @@ namespace Skill
             _barrier.SetActive(true);
             
             setPlayerMaterial.SetMaterials(playerReinnforceMat);
+
+            StartCoroutine(ResetEffect(_effect, _barrier));
             PlaySkillAnimation(_mainModule, animationClip);
         }
         public HitBoxAction GetHitBoxAction()
@@ -56,6 +58,17 @@ namespace Skill
             //GameObject obj = ObjectPoolManager.Instance.GetObject("FireEffect_1");
             //obj.SetActive(true);
             //obj.transform.position = transform.position;
+        }
+
+        IEnumerator ResetEffect(GameObject _barrier, GameObject _effect)
+        {
+            yield return new WaitForSeconds(10f);
+            
+            setPlayerMaterial.ResetMaterials();
+            ObjectPoolManager.Instance.RegisterObject("Salah_SkillEffect", _barrier);
+            ObjectPoolManager.Instance.RegisterObject("Salah_SkillEffect_Aura", _effect);
+            _barrier.SetActive(false);
+            _effect.SetActive(false);
         }
     }
 }

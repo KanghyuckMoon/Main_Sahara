@@ -80,15 +80,15 @@ namespace LockOn
         {
             int _weight = _isOn > 0 ? -10 : 10;
             bool _on = _isOn > 0;
-            
-            lockOnCamera.currentCamera.gameObject.SetActive(!_on);
-            ThirdPersonCameraController _thirdPersonCameraController =
-                lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>();
 
-            if (_thirdPersonCameraController.enabled)
+            lockOnCamera.currentCamera.gameObject.SetActive(!_on);
+            //ThirdPersonCameraController _thirdPersonCameraController =
+            //lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>();
+
+            if (lockOnCamera.currentCamera.name == "PlayerFollowCamera")
                 zoomInCam.SetActive(_on);
             else zoomInCam_Lock.SetActive(_on);
-            
+
             if (_on)
             {
                 //if (_thirdPersonCameraController.enabled)
@@ -106,7 +106,7 @@ namespace LockOn
                     lockOn_ZoomCameraController.enabled = false;*/
                 }
 
-                if (_thirdPersonCameraController.enabled)
+                if (lockOnCamera.currentCamera.name == "PlayerFollowCamera")
                 {
                     mainModule.LockOnTarget = zoomInTarget;
                     originTarget = null;
@@ -114,7 +114,8 @@ namespace LockOn
                 else
                 {
                     originTarget = mainModule.LockOnTarget;
-                    cinemachineVirtualCamera.m_LookAt = _thirdPersonCameraController.GetComponent<CinemachineVirtualCamera>().m_LookAt;
+                    cinemachineVirtualCamera.m_LookAt =
+                        lockOnCamera.currentCamera.GetComponent<CinemachineVirtualCamera>().m_LookAt;
                 }
             }
             else
@@ -147,6 +148,8 @@ namespace LockOn
             
             float _originSize = 50;
             float _targetSize = zoomInDataSO.ZoomInData[_key].value * _originSize;
+            
+            
 
             DOTween.To(
                 () => _originSize, (x2) => lockOnCamera.currentCamera.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = x2, _targetSize, zoomInDataSO.ZoomInData[_key].duration_Zoom

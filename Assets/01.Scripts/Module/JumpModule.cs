@@ -61,7 +61,7 @@ namespace Module
             animator = mainModule.GetModuleComponent<AnimationModule>(ModuleType.Animation).animator;
             jumpHeight = mainModule.StatData.Jump;
             jumpDelay = 0.36f;
-            antiFallTime = 0.16f;
+            antiFallTime = 0.25f;
         }
 
         public override void FixedUpdate()
@@ -107,10 +107,8 @@ namespace Module
                 {
                     if (mainModule.IsChargeJumpOn) return;
                     Animator.SetBool("Jump", true);
-                    return;
                 }
-
-                if (mainModule.IsJump && calculatedTime <= 0.0f)
+                else if (mainModule.IsJump && calculatedTime <= 0.0f)
                 {
                     Animator.SetBool("Jump", true);
                     jumpAction?.Invoke();
@@ -150,7 +148,7 @@ namespace Module
             //if (mainModule.IsChargeJumpOn) return;
             if (_value == 0) _value = JumpHeight;
             onJump = false;
-            mainModule.Gravity = Mathf.Sqrt(_value * -2.2f * _GravityScale);
+            mainModule.Gravity = Mathf.Sqrt(_value * -1.7f * _GravityScale);
             Animator.SetBool("Jump", true);
         }
 
