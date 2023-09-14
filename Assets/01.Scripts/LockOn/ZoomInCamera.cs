@@ -149,12 +149,12 @@ namespace LockOn
             float _targetSize = zoomInDataSO.ZoomInData[_key].value * _originSize;
 
             DOTween.To(
-                () => _originSize, (x2) => lockOnCamera.currentCamera.m_Lens.FieldOfView = x2, _targetSize, zoomInDataSO.ZoomInData[_key].duration_Zoom
+                () => _originSize, (x2) => lockOnCamera.currentCamera.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = x2, _targetSize, zoomInDataSO.ZoomInData[_key].duration_Zoom
             ).OnComplete(() =>
             {
 
                 DOTween.To(
-                    () => _targetSize, (x2) => lockOnCamera.currentCamera.m_Lens.FieldOfView = x2, _originSize, zoomInDataSO.ZoomInData[_key].duration_Back
+                    () => _targetSize, (x2) => lockOnCamera.currentCamera.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = x2, _originSize, zoomInDataSO.ZoomInData[_key].duration_Back
                 );
             });
         }

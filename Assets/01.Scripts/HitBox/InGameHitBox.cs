@@ -69,18 +69,24 @@ namespace HitBox
 			
 			index = _index;
 			obj.tag = _tag;
-			owner = _owner;
+			if(_owner != null)
+			{
+				owner = _owner;
+			}
+			else
+			{
+				owner = gameObject;
+			}
 			col ??= GetComponent<CapsuleCollider>();
 			hitBoxData = _hitBoxData;
 			isContactDir = hitBoxData.isContactDirection;
-			Debug.Log(_owner);
-			transform.position = _owner.transform.position;
-			transform.eulerAngles = _hitBoxData.rotation + _owner.transform.eulerAngles;
+			transform.position = owner.transform.position;
+			transform.eulerAngles = _hitBoxData.rotation + owner.transform.eulerAngles;
 			transform.localScale = Vector3.one;
 			col.center = _hitBoxData.offset;
 			col.radius = _hitBoxData.radius;
 			col.height = _hitBoxData.height;
-			rotation = _owner.transform.rotation;
+			rotation = owner.transform.rotation;
 			hitBoxAction = _hitBoxAction;
 			
 			if (hitBoxData.childization)
