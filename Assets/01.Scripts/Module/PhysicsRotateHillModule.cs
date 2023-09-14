@@ -47,6 +47,47 @@ namespace Module
 			var _ray = new Ray(_rayPos, -_transform.up);
 			var _ray2 = new Ray(_rayPos, -Vector3.up);
 
+			#region 원래 있던 경사체크
+
+			var _transform1 = mainModule.transform;
+			var _position1 = _transform1.position;
+			var _rayPos1 = new Vector3(_position1.x, _position1.y - mainModule.groundOffset, _position1.z);
+			var _ray1 = new Ray(_rayPos1, Vector3.down);
+
+			if (Physics.Raycast(_ray1, out var _raycastHit1, 1f, mainModule.groundLayer))
+			{
+				if (mainModule.isTouchGround)
+				{
+					var _angle = Vector3.Angle(Vector3.up, _raycastHit1.normal);
+
+					/*previousAngle = Physics.Raycast(_ray1, out var _raycastHit1, rayDistance,
+						mainModule.groundLayer)
+						? Mathf.Lerp(previousAngle, _angle, 5 * mainModule.PersonalDeltaTime)
+						: Mathf.Lerp(previousAngle, 0, 5 * mainModule.PersonalDeltaTime);
+					mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);*/
+
+					var _slopeLimit = mainModule.CharacterController.slopeLimit;
+					mainModule.IsSlope = _angle <= _slopeLimit + 3f;
+
+					mainModule.SlopeVector =
+						new Vector3(_raycastHit1.normal.x, -_angle / 90f, _raycastHit1.normal.z) * 5;
+
+					mainModule.isGround = mainModule.IsSlope;
+					Debug.Log("각도: " + _angle);
+					Debug.Log("경사각: " + mainModule.IsSlope);
+				}
+				else
+				{
+					mainModule.SlopeVector = Vector3.zero;
+					mainModule.isGround = false;
+				}
+			}
+
+			Debug.DrawRay(_rayPos, Vector3.down, Color.red);
+
+			#endregion
+			
+
 			if (Physics.Raycast(_ray, out var _raycastHit, 1.4f, mainModule.groundLayer))
 			{
 				mainModule.GroundAngle = Vector3.Angle(Vector3.up, _raycastHit.normal);

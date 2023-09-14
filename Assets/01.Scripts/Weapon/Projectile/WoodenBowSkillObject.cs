@@ -75,5 +75,13 @@ namespace Weapon
 
             transform.DOScale(0.3f, 1f);
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag(tagName))
+            {
+                ObjectPoolManager.Instance.RegisterObject("WoodenBowSkill_Arrow", gameObject);
+            }
+        }
     }
 }

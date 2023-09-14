@@ -21,10 +21,13 @@ namespace Skill
 
         private SetPlayerMaterial setPlayerMaterial;
 
+        private bool arrowOn = false;
+
         public void Skills(AbMainModule _mainModule)
         {
             if (UseMana(_mainModule, -usingMana))
             {
+                if (arrowOn) return;
                 _mainModule.GetModuleComponent<StateModule>(ModuleType.State).AddState(State.SKILL);
 
                 GameObject _skillProjectile = ObjectPoolManager.Instance.GetObject("WoodenBowSkill_Arrow");
@@ -33,6 +36,8 @@ namespace Skill
                 _skillProjectile.tag = _mainModule.tag;
                 _skillProjectile.GetComponent<HitBoxOnProjectile>().SetEnable();
 
+                arrowOn = true;
+                
                 var _effect = ObjectPoolManager.Instance.GetObject("WoodenBow_SkillEffectShot");
                 _effect.transform.position = transform.position;
                 _effect.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
