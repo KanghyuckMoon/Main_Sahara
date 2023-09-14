@@ -43,15 +43,15 @@ namespace PassiveItem
 
         public void UpdateEffect()
         {
-            if (!mainModule.IsChargeJumpOn && !mainModule.isTouchGround && isPlayer)
+            if (!mainModule.isTouchGround && isPlayer)
             {
-                if (mainModule.IsJump)
+                if (mainModule.IsJump && mainModule.StopOrNot >= 1f)
                 {
                     if (count > 0)
                     {
-                        Jumping();
                         stateModule.AddState(State.JUMP);
                         count--;
+                        Jumping();
                     }
                 }
             }
@@ -95,18 +95,11 @@ namespace PassiveItem
         private void Jumping()
         {
             mainModule.jumpstrenght = 0;
-            
-            if (!mainModule.isGround)
-            {
-                Debug.LogError("점프 더블더블");
-                mainModule.Animator.SetBool("DoubleJump", true);
-                jumpModule.Jump();
-            }
-            else
-            {
-                mainModule.Animator.SetBool("Jump", true);
-                //jumpModule.Jump();
-            }
+
+            if (mainModule.isTouchGround) return;
+            Debug.LogError("점프 더블더블");
+            mainModule.Animator.SetBool("DoubleJump", true);
+            jumpModule.Jump();
         }
     }
 }

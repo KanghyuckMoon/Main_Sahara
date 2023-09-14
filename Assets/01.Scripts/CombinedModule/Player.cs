@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -142,6 +143,11 @@ namespace CondinedModule
             RaycastTarget = null;
             Animator = null;
             moduleComponentsDic.Clear();
+        }
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            Debug.LogError("위치 정보 : " + hit.point);
         }
     }
 }
