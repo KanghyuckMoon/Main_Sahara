@@ -72,10 +72,17 @@ using Utill.Addressable;
             var _list = readMoreTutorialSetting.AllPopupTutorialDataSo.popupTutorialDataSoList;
             foreach (var _popupTutoSO in  _list)
             {
-                optionEntryCallbackDic3.Add(_popupTutoSO.key,() => readMoreTutorialSetting.ActiveTutorialPopup(_popupTutoSO.key));
+                optionEntryCallbackDic3.Add(_popupTutoSO.key,() => ActiveTuto((_popupTutoSO.key)) );
             }   
         }
-        
+
+        private void ActiveTuto(string _key)
+        {
+            readMoreTutorialSetting.ActiveTutorialPopup(_key);
+            Debug.LogError("@@@@@@@@@Active TuTO");
+        }
+
+
         private void Start()
         {
 //            soundSetting.InitSlider();
@@ -238,7 +245,7 @@ using Utill.Addressable;
                 OptionBtnEntryPr _btnEntryPr = new OptionBtnEntryPr(); 
                 _parent .Add(_btnEntryPr.Parent);
                 SetOptionEntryData(_btnEntryPr,_data);
-                optionEntryList.Add(_btnEntryPr);
+                //optionEntryList.Add(_btnEntryPr);
             }
 
         }

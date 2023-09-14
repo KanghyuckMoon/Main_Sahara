@@ -80,7 +80,7 @@ namespace UI.ConstructorManager
             shopPopupView = new UIConstructor<ShopPopupView>("ShopPopupEntry");
             popupGetNewitemConstructor = new UIConstructor<PopupGetNewitemView>("PopupGetNewitemEntry");
             optionDropdownEntryConstructor = new UIConstructor<OptionDropEntryView>("OptionDropdownEntry");
-            optionBarEntryConstructor = new UIConstructor<OptionBarEntryView>("OptionButtonEntry");
+            optionBarEntryConstructor = new UIConstructor<OptionBarEntryView>("OptionBarEntry");
             optionButtonConstructor = new UIConstructor<OptionBtnEntryView>("OptionBtnEntry");
             tutorialPopupConstructor = new UIConstructor<PopupTutorialView>("TutorialPopup"); 
             
