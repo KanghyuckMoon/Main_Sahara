@@ -130,7 +130,7 @@ namespace HitBox
 			{
 				if(coroutine != null)
 				{
-					StopCoroutine(coroutine);
+					StaticCoroutineManager.Instance.StopCoroutine(coroutine);
 				}
 				coroutine = StaticCoroutineManager.Instance.StartCoroutine(OnDisableCol());
 			}
