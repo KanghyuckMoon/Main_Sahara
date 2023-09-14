@@ -30,7 +30,7 @@ namespace UI.ConstructorManager
         private UIConstructor<PopupGetNewitemView> popupGetNewitemConstructor; 
         private UIConstructor<OptionDropEntryView> optionDropdownEntryConstructor;
         private UIConstructor<OptionBarEntryView> optionBarEntryConstructor; 
-        //private UIConstructor<OptionBtnEntryView> optionButtonConstructor; 
+        private UIConstructor<OptionBtnEntryView> optionButtonConstructor; 
         private UIConstructor<PopupTutorialView> tutorialPopupConstructor; 
         
     //        private  UIConstructor<popupPr>
@@ -79,9 +79,9 @@ namespace UI.ConstructorManager
             interacftionPopupView = new UIConstructor<InteracftionPopupView>("InteractionEntry");
             shopPopupView = new UIConstructor<ShopPopupView>("ShopPopupEntry");
             popupGetNewitemConstructor = new UIConstructor<PopupGetNewitemView>("PopupGetNewitemEntry");
-            optionDropdownEntryConstructor = new UIConstructor<OptionDropEntryView>("OptionButtonEntry");
-            optionBarEntryConstructor = new UIConstructor<OptionBarEntryView>("OptionDropdownEntry");
-            //optionButtonConstructor = new UIConstructor<OptionBtnEntryView>("OptionBtnEntry");
+            optionDropdownEntryConstructor = new UIConstructor<OptionDropEntryView>("OptionDropdownEntry");
+            optionBarEntryConstructor = new UIConstructor<OptionBarEntryView>("OptionButtonEntry");
+            optionButtonConstructor = new UIConstructor<OptionBtnEntryView>("OptionBtnEntry");
             tutorialPopupConstructor = new UIConstructor<PopupTutorialView>("TutorialPopup"); 
             
             
@@ -99,7 +99,7 @@ namespace UI.ConstructorManager
             uiConstructorDic.Add(typeof(PopupGetNewitemView), popupGetNewitemConstructor);
             uiConstructorDic.Add(typeof(OptionDropEntryView), optionDropdownEntryConstructor);
             uiConstructorDic.Add(typeof(OptionBarEntryView), optionBarEntryConstructor);
-            //uiConstructorDic.Add(typeof(OptionBtnEntryView), optionButtonConstructor);
+            uiConstructorDic.Add(typeof(OptionBtnEntryView), optionButtonConstructor);
             uiConstructorDic.Add(typeof(PopupTutorialView), tutorialPopupConstructor);
             
         }
