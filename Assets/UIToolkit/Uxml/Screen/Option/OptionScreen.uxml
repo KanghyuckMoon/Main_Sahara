@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/UIToolkit/Uss/Base.uss?fileID=7433441132597879392&amp;guid=094426a9c3bcf214f9068fac7a7e6e0f&amp;type=3#Base" />
     <Style src="project://database/Assets/UIToolkit/Uss/Option.uss?fileID=7433441132597879392&amp;guid=74af02d65dd8fae4da27c45fa897fced&amp;type=3#Option" />
     <Style src="project://database/Assets/UIToolkit/Uss/dropdownTest.uss?fileID=7433441132597879392&amp;guid=730d3165cb7436f4da8feb053836e885&amp;type=3#dropdownTest" />
-    <Gradient direction="vertical" left-color="#100E08FF" right-color="#3A311AFF" focusable="true" name="option_screen" class="screen center_align" style="justify-content: center; display: none;">
+    <Gradient direction="vertical" left-color="#100E08FF" right-color="#3A311AFF" focusable="true" name="option_screen" class="screen center_align" style="justify-content: center; display: flex;">
         <ui:VisualElement name="background" style="background-color: rgb(30, 26, 14); width: 80%; height: 80%;">
             <ui:VisualElement name="border" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; padding-left: 3%; padding-right: 3%; padding-top: 2%; padding-bottom: 2%;">
                 <ui:VisualElement name="top_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 10%; align-items: center; margin-bottom: 15px;">
@@ -17,7 +17,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="bottom_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 90%;">
                     <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" name="option_scroll_view" mouse-wheel-scroll-size="1000" style="width: 100%; height: 100%;">
-                        <ui:VisualElement name="graphics_panel" class="option_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;">
+                        <ui:VisualElement name="graphics_panel" class="option_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; display: none;">
                             <ui:VisualElement name="option_button_modify" class="option_modify" style="display: none;">
                                 <ui:VisualElement name="hover_image" picking-mode="Ignore" class="border_base option_modify_hover" style="background-color: rgb(0, 0, 0);" />
                                 <ui:VisualElement name="background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center; align-items: center;">
@@ -43,25 +43,25 @@
                         </ui:VisualElement>
                         <ui:VisualElement name="sound_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; display: none;" />
                         <ui:VisualElement name="gameinfo_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; display: none;" />
-                        <ui:VisualElement name="help_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; display: none;">
-                            <ui:VisualElement name="key_entry" class="key_entry">
+                        <ui:VisualElement name="help_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; display: flex;">
+                            <ui:VisualElement name="key_entry" class="key_entry" style="display: flex;">
                                 <ui:Label tabindex="-1" text="W,A,S,D / 방향키" display-tooltip-when-elided="true" name="key" class="font_base option_name_label" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                                 <ui:Label tabindex="-1" text="이동" display-tooltip-when-elided="true" name="key_description" class="font_base option_name_label" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                             </ui:VisualElement>
-                            <ui:VisualElement name="key_entry" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 80px; width: 100%; flex-direction: row; justify-content: space-around; align-self: auto; align-items: center;">
+                            <ui:VisualElement name="key_entry" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 80px; width: 100%; flex-direction: row; justify-content: space-around; align-self: auto; align-items: center; display: flex;">
                                 <ui:Label tabindex="-1" text="Shift" display-tooltip-when-elided="true" name="key" class="font_base option_name_label" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                                 <ui:Label tabindex="-1" text="달리기" display-tooltip-when-elided="true" name="key_description" class="font_base option_name_label" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                             </ui:VisualElement>
-                            <ui:VisualElement name="key_entry" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 80px; width: 100%; flex-direction: row; justify-content: space-around; align-self: auto; align-items: center;">
+                            <ui:VisualElement name="key_entry" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 80px; width: 100%; flex-direction: row; justify-content: space-around; align-self: auto; align-items: center; display: flex;">
                                 <ui:Label tabindex="-1" text="Space Bar" display-tooltip-when-elided="true" name="key" class="font_base option_name_label" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                                 <ui:Label tabindex="-1" text="점프" display-tooltip-when-elided="true" name="key_description" class="option_name_label font_base" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                             </ui:VisualElement>
                             <ui:VisualElement name="line" class="line" style="display: flex; height: 30px; width: 100%; -unity-background-scale-mode: stretch-to-fill;" />
-                            <ui:VisualElement name="key_entry" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 80px; width: 100%; flex-direction: row; justify-content: space-around; align-self: auto; align-items: center;">
+                            <ui:VisualElement name="key_entry" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 80px; width: 100%; flex-direction: row; justify-content: space-around; align-self: auto; align-items: center; display: flex;">
                                 <ui:Label tabindex="-1" text="Q" display-tooltip-when-elided="true" name="key" class="font_base option_name_label" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                                 <ui:Label tabindex="-1" text="스킬" display-tooltip-when-elided="true" name="key_description" class="option_name_label font_base" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                             </ui:VisualElement>
-                            <ui:VisualElement name="key_entry" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 80px; width: 100%; flex-direction: row; justify-content: space-around; align-self: auto; align-items: center;">
+                            <ui:VisualElement name="key_entry" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 80px; width: 100%; flex-direction: row; justify-content: space-around; align-self: auto; align-items: center; display: flex;">
                                 <ui:Label tabindex="-1" text="1,2,3,4,5 / 마우스 휠" display-tooltip-when-elided="true" name="key" class="font_base option_name_label" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                                 <ui:Label tabindex="-1" text="무기 변경" display-tooltip-when-elided="true" name="key_description" class="option_name_label font_base" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                             </ui:VisualElement>
@@ -88,6 +88,7 @@
                                 <ui:Label tabindex="-1" text="일시 정지" display-tooltip-when-elided="true" name="key_description" class="font_base option_name_label" style="height: 100%; width: 100px; -unity-text-align: middle-center;" />
                             </ui:VisualElement>
                             <ui:VisualElement name="line" class="line" style="display: flex; height: 30px; width: 100%; -unity-background-scale-mode: stretch-to-fill;" />
+                            <ui:Label tabindex="-1" text="튜토리얼 다시 보기" display-tooltip-when-elided="true" class="font_base" style="font-size: 28px; display: flex; -unity-text-align: upper-center; position: absolute; top: 102%; width: 100%; margin-bottom: 20px; background-image: url(&apos;project://database/Assets/01.Scripts/UI/TEST%201/MidGrad.png?fileID=2800000&amp;guid=83c76b0c2f2eeb846920e6007e453757&amp;type=3#MidGrad&apos;); -unity-background-image-tint-color: rgba(115, 98, 46, 0.2); padding-bottom: 9px;" />
                         </ui:VisualElement>
                     </ui:ScrollView>
                 </ui:VisualElement>

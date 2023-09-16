@@ -1,6 +1,57 @@
 .option_panel {
 }
 
+.select_button_label {
+    scale: 0.5 1;
+    font-size: 25px;
+    color: rgb(26, 26, 26);
+}
+
+.option_select_button {
+    width: 100px;
+    height: 55%;
+    background-color: rgb(176, 172, 166);
+    border-left-color: rgb(123, 116, 95);
+    border-right-color: rgb(123, 116, 95);
+    border-top-color: rgb(123, 116, 95);
+    border-bottom-color: rgb(123, 116, 95);
+    border-left-width: 0.75px;
+    border-right-width: 0.75px;
+    border-top-width: 1.5px;
+    border-bottom-width: 1.5px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    scale: 2 1;
+    transition-duration: 0.2s;
+}
+
+.option_select_button:hover {
+    width: 100px;
+    height: 55%;
+    background-color: rgba(56, 47, 25, 0.46);
+    border-left-color: rgb(123, 116, 95);
+    border-right-color: rgb(123, 116, 95);
+    border-top-color: rgb(123, 116, 95);
+    border-bottom-color: rgb(123, 116, 95);
+    border-left-width: 0.75px;
+    border-right-width: 0.75px;
+    border-top-width: 1.5px;
+    border-bottom-width: 1.5px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    scale: 2 1;
+    transition-duration: 0.2s;
+    color: rgb(203, 198, 198);
+}
+
+.option_select_button:hover #select_button_label {
+    color: rgba(224, 224, 224, 255);
+}
+
 .option_modify_hover {
     opacity: 0;
     width: 100%;
@@ -140,6 +191,7 @@
 .unity-base-slider > .unity-base-field__label {
     display: none;
 }
+
 :root {
     --unity-metrics-single_line-height: 500px;
 }
