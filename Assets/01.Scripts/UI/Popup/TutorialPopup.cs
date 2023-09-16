@@ -31,8 +31,13 @@ namespace UI.Popup
             TutorialPopupEventManager.Instance.ActiveTutoPopup(popupTutorialDataSO.key, 
                 () => CreatePopupTimeStop(new PopupTutorialData(popupTutorialDataSO)) );;
         }
+        public void ActiveOptionPopup()
+        {
+            TutorialPopupEventManager.Instance.ActiveTutoPopup(popupTutorialDataSO.key, 
+                () => CreatePopupTimeStop(new PopupTutorialData(popupTutorialDataSO),true),true );
+        }
 
-        public void CreatePopupTimeStop(PopupTutorialData _data = null)
+        public void CreatePopupTimeStop(PopupTutorialData _data = null, bool _isActiveCurosr = false)
         {
             PopupTutorialPr _popupGetItemPr = new PopupTutorialPr();
             curStopPopup = _popupGetItemPr;
@@ -51,13 +56,13 @@ namespace UI.Popup
             UIManager.Instance.ActiveCursor(true);
             UIManager.Instance.ActiveHud(false);
             
-            StartCoroutine(StayTimeStopPopupCo(_popupGetItemPr));
+            StartCoroutine(StayTimeStopPopupCo(_popupGetItemPr,_isActiveCurosr));
         }
 
         [SerializeField]
         int _idx = 0;
 
-        private IEnumerator StayTimeStopPopupCo(PopupTutorialPr _popup)
+        private IEnumerator StayTimeStopPopupCo(PopupTutorialPr _popup, bool _isActiveCurosr = false)
         {
             _idx = 0; 
             int _count = _popup.Data.page;
@@ -108,7 +113,10 @@ namespace UI.Popup
                         EventManager.Instance.TriggerEvent(EventsType.SetUIInput, true);
                         EventManager.Instance.TriggerEvent(EventsType.SetPlayerCam, false);
                         EventManager.Instance.TriggerEvent(EventsType.IsCanNextDialogue, true);
-                        UIManager.Instance.ActiveCursor(false);
+                        if (_isActiveCurosr == false)
+                        {
+                            UIManager.Instance.ActiveCursor(false);
+                        }
                         UIManager.Instance.ActiveHud(true);
                         // UI ¿‘∑¬ ∏ÿ√·∞≈ «Æ∞Ì
                         // UI ¥›∞Ì 
