@@ -28,7 +28,7 @@ namespace UI.Option
         {
             //PopupTutorialDataSO popupTutorialDataSo; 
             //popupTutorialDataSo.Send();
-            GameEventManager.Instance.GetGameEvent(_key).Raise();
+            GameEventManager.Instance.GetGameEvent(_key+"_option").Raise();
         }
     }
 }

@@ -20,8 +20,6 @@ namespace Spawner
 
 		[SerializeField]
 		private string lodAddress;
-		[SerializeField]
-		private ObjectDataSO objectDataSO;
 		
 		[SerializeField]
 		private bool isNotEnable;
