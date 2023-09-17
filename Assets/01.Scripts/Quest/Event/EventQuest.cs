@@ -15,6 +15,11 @@ namespace Quest
         
         public void QuestSet()
         {
+            if(string.IsNullOrEmpty(questKey))
+			{
+                return;
+			}
+
             switch (setQuestState)
             {
                 case QuestState.Disable:
