@@ -46,45 +46,10 @@ public class SetInvenModelPivot : EditorWindow
             return;
 
         GameObject prefabInstance = GameObject.Instantiate(prefab); 
-        prefabInstance.name = prefab.name;
+        prefabInstance.name = "Model";
 
-        #region  Mesh체크 
-        // Calculate the middleY
-        MeshFilter meshFilter = prefabInstance.GetComponent<MeshFilter>();
-
-        if (meshFilter == null)
-        {
-            Debug.LogWarning("Prefab doesn't have a MeshFilter component: " + prefab.name);
-            return;
-        }
-
-        Mesh mesh = meshFilter.sharedMesh;
-
-        if (mesh == null)
-        {
-            Debug.LogWarning("Mesh not found for prefab: " + prefab.name);
-            return;
-        }
-
-        Vector3[] vertices = mesh.vertices;
-        float highestY = float.MinValue;
-        float lowestY = float.MaxValue; 
-        
-        foreach (Vector3 vertex in vertices)
-        {
-            highestY = Mathf.Max(highestY, vertex.y);
-            lowestY = Mathf.Min(lowestY, vertex.y); 
-        }
-
-        //float middleY = -highestY;
-       // float middleY = (highestY - lowestY) /2;
-
-        float middleY = Mathf.Abs(prefabInstance.transform.GetComponent<MeshRenderer>().bounds.center.y); 
-        Debug.Log(middleY);
-        Debug.Log((highestY - lowestY) /2);
-        #endregion
-     
-
+        float middleY = Mathf.Abs(prefabInstance.transform.GetComponent<MeshRenderer>().bounds.center.y);
+        Debug.Log(prefabInstance.transform.GetComponent<MeshRenderer>().bounds.size);
         // Update the y position of the prefab
         Vector3 newPosition = prefabInstance .transform.position;
         newPosition.y += middleY;
@@ -102,9 +67,9 @@ public class SetInvenModelPivot : EditorWindow
         prefabInstance.transform.SetParent(parentObject.transform);
     
 
-        string prefabPath = AssetDatabase.GetAssetPath(prefab).Replace(prefab.name+".prefab", "");
+        string prefabPath = AssetDatabase.GetAssetPath(prefab).Replace(prefab.name+".prefab", "ModifyPivot/");
         string parentFolderPath = prefabPath + parentObject.name + ".prefab";
-        string modelFolderPath = prefabPath + prefabInstance.name +"_copy" + ".prefab";
+        string modelFolderPath = prefabPath + prefab.name + ".prefab";
 
         //GameObject _prefab = PrefabUtility.SaveAsPrefabAsset(parentObject, folderPath);
         // Make the current object a child of the parent object
@@ -112,10 +77,10 @@ public class SetInvenModelPivot : EditorWindow
 
 
         GameObject _newPrefab = PrefabUtility.SaveAsPrefabAsset(parentObject , modelFolderPath);
-        string _folderPath = AssetDatabase.GetAssetPath(prefab).Replace(prefab.name + ".prefab", prefab.name + "_copy.prefab");
+        //string _folderPath = AssetDatabase.GetAssetPath(prefab).Replace(prefab.name + ".prefab", prefab.name + "_copy.prefab");
         DestroyImmediate(parentObject);
-        Debug.Log(_folderPath);
-        PrefabUtility.SaveAsPrefabAsset(_newPrefab, _folderPath);
+        //Debug.Log(_folderPath);
+        //PrefabUtility.SaveAsPrefabAsset(_newPrefab, _folderPath);
         AssetDatabase.SaveAssets();
         // Save changes to the prefab
         AssetDatabase.Refresh();
