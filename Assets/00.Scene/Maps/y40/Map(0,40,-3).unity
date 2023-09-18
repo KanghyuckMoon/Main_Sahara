@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 393.17828, g: 230.57645, b: 103.38713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1701,6 +1701,34 @@ PrefabInstance:
       propertyPath: debug_LayerMask.m_Bits
       value: 132096
       objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 786760888}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuestSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Quest.EventQuest, Quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943773490167445317, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      propertyPath: getoutEventBefore.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7943773491161739564, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       propertyPath: m_Name
       value: ' Treasure_Chest_Detect_16'
@@ -1771,28 +1799,30 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7943773491161739564, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 786760886}
+      addedObject: {fileID: 1278514330}
+    - targetCorrespondingSourceObject: {fileID: 7943773490167445314, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 786760888}
   m_SourcePrefab: {fileID: 100100000, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
---- !u!1 &786760885 stripped
+--- !u!1 &786760887 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7943773491161739564, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7943773490167445314, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
   m_PrefabInstance: {fileID: 786760884}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &786760886
+--- !u!114 &786760888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786760885}
+  m_GameObject: {fileID: 786760887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f24fab427b8eed44bbcb1f62d104245, type: 3}
+  m_Script: {fileID: 11500000, guid: f9445ee14af04cf46be450b287c2e3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questKey: EVQM_16
-  isInvert: 0
-  noneIncludeDiscoverable: 0
+  questKey: ZT_16
+  setQuestState: 4
 --- !u!1001 &856572895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3014,6 +3044,26 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 1310111769748772576, guid: c827a07a11b211845acecd33e0055c85, type: 3}
   m_PrefabInstance: {fileID: 1211678056}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1278514328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7943773491161739564, guid: 5c1800a6410b0b64caf131171f6d0c5a, type: 3}
+  m_PrefabInstance: {fileID: 786760884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1278514330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278514328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f24fab427b8eed44bbcb1f62d104245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questKey: EVQM_16
+  isInvert: 0
+  noneIncludeDiscoverable: 0
 --- !u!1001 &1297930096
 PrefabInstance:
   m_ObjectHideFlags: 0
