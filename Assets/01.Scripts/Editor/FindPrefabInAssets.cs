@@ -4,7 +4,7 @@ using UnityEngine;
 public class FindPrefabInAssets : EditorWindow
 {
     private GameObject selectedObject;
-    private string searchFolder = "Assets/09.Prefabs/Model/Item"; // 원하는 폴더 경로로 설정
+    private string searchFolder = "Assets/09.Prefabs/InvenModel"; // 원하는 폴더 경로로 설정
 
     [MenuItem("Custom Tools/Find Prefab In Assets")]
     public static void ShowWindow()
