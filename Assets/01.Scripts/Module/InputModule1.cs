@@ -40,7 +40,7 @@ namespace Module
 					if (Input.GetMouseButton(0))
 					{
 						mainModule.Animator.SetTrigger("ConsecutiveAttack");
-						StateModule.AddState(State.ATTACK);
+						//StateModule.AddState(State.ATTACK);
 					}
 
 				if (Input.GetMouseButtonUp(0))
@@ -55,11 +55,11 @@ namespace Module
 				{
 					if (Input.GetMouseButtonDown(0))
 					{
+						mainModule.Attacking = true;
 						mainModule.SetAnimationLayerOn(0,0);
 						
-						StateModule.AddState(State.ATTACK);
+						//StateModule.AddState(State.ATTACK);
 						StateModule.AddState(State.CHARGE);
-						mainModule.Attacking = true;
 					}
 				}
 			}

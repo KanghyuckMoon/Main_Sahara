@@ -176,7 +176,7 @@ namespace Module
                 (cameraForward * mainModule.ObjDir.y + cameraRight * mainModule.ObjDir.x).normalized;
 
 
-            if (mainModule.IsCharging)
+            if (mainModule.LockOnTarget != null)
             {
                 mainModule.transform.rotation = Quaternion.Euler(xRotation, mainModule.ObjRotation.eulerAngles.y, zRotation);
             }
@@ -185,10 +185,13 @@ namespace Module
                 // 캐릭터 회전
                 if (moveDirection != Vector3.zero)
                 {
-                    Quaternion newRotation = Quaternion.LookRotation(moveDirection);
-                    newRotation = Quaternion.Euler(xRotation, newRotation.eulerAngles.y, zRotation);
-                    mainModule.transform.rotation = Quaternion.Slerp(mainModule.transform.rotation, newRotation,
-                        10 * mainModule.PersonalDeltaTime);
+                    if (!mainModule.Attacking)
+                    {
+                        Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+                        newRotation = Quaternion.Euler(xRotation, newRotation.eulerAngles.y, zRotation);
+                        mainModule.transform.rotation = Quaternion.Slerp(mainModule.transform.rotation, newRotation,
+                            10 * mainModule.PersonalDeltaTime);
+                    }
                 }
             }
 

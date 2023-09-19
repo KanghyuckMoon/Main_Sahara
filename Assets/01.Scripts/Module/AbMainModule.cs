@@ -130,7 +130,7 @@ namespace Module
                     new Vector3(transform.position.x, transform.position.y + CharacterController.radius - 0.02f,
                         transform.position.z);
 
-                return Physics.CheckSphere(castOrigin, CharacterController.radius, groundLayer);
+                return Physics.CheckSphere(castOrigin, CharacterController.radius, groundLayer) && IsSlope;
             }
         }
 

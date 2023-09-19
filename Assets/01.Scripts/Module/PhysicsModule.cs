@@ -349,10 +349,6 @@ namespace Module
 
 		            mainModule.SlopeVector =
 			            new Vector3(_raycastHit.normal.x, -_raycastHit.normal.y, _raycastHit.normal.z) * 5;
-
-		            //mainModule.IsGround = mainModule.IsSlope;
-		            Debug.Log("각도: " + _angle);
-		            Debug.Log("경사각: " + mainModule.IsSlope);
 	            }
 	            else
 	            {
