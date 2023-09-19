@@ -55,9 +55,11 @@ namespace Interaction
 		[SerializeField] private string nameKey = "M00000010";
 		[SerializeField] private float power = 10f;
 		[SerializeField] private string effectAddress;
+		[SerializeField] private UnityEngine.Events.UnityEvent unityEvent;
 
 		public void Interaction()
 		{
+			unityEvent?.Invoke();
 			PlayerObj.Player.transform.SetParent(transform);
 			var module = PlayerObj.Player.GetComponent<AbMainModule>();
 			module.CharacterController.enabled = false;

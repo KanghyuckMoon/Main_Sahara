@@ -59,6 +59,7 @@ namespace Interaction
 		[SerializeField] private Transform movingPosition;
 		[SerializeField] private float movingDelay = 1f;
 		[SerializeField] private GameObject effectObject;
+		[SerializeField] private UnityEngine.Events.UnityEvent unityEvent;
 		private bool isOpen;
 
 		public void Interaction()
@@ -78,6 +79,7 @@ namespace Interaction
 		{
 			isOpen = true;
 			effectObject.SetActive(true);
+			unityEvent?.Invoke();
 			transform.DOMove(movingPosition.position, movingDelay).OnComplete(() => effectObject.SetActive(false));
 		}
 	}

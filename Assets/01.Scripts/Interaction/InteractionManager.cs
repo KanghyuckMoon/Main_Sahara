@@ -90,6 +90,7 @@ namespace Interaction
 				if (dir.sqrMagnitude < minimumDistance)
 				{
 					var component = col.gameObject.GetComponent<IInteractionItem>();
+					//	Debug.Log($"Interaction : {col.gameObject.name}", col.gameObject);
 					if (!component.Enabled)
 					{
 						_interactionObj = null;
