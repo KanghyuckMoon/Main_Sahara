@@ -17,6 +17,7 @@ public class Landing : StateMachineBehaviour
         _mainModule.Gravity = 0;
 
         animator.SetBool("CanLand", false);
+        animator.SetBool("DoubleJump", false);
         //_mainModule.MoveSpeed = 0;
         //_mainModule.canMove = false;
     }

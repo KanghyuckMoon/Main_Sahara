@@ -82,6 +82,7 @@ namespace Weapon
             {
                 //Debug.LogError("面倒  面倒  面倒  面倒");
                 ObjectPoolManager.Instance.RegisterObject("WoodenBowSkill_Arrow", gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

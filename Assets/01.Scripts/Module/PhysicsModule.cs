@@ -152,7 +152,6 @@ namespace Module
 					}
                 }
             }
-
         }
         
         private void HitEffectAndFeedBack(Collider other, InGameHitBox _inGameHitBox, UnityEvent hitEvent)
@@ -349,25 +348,20 @@ namespace Module
 		            mainModule.IsSlope = _angle <= _slopeLimit + 3f;
 
 		            mainModule.SlopeVector =
-			            new Vector3(_raycastHit.normal.x, -_angle / 90f, _raycastHit.normal.z) * 5;
+			            new Vector3(_raycastHit.normal.x, -_raycastHit.normal.y, _raycastHit.normal.z) * 5;
 
-		            mainModule.isGround = mainModule.IsSlope;
+		            //mainModule.IsGround = mainModule.IsSlope;
 		            Debug.Log("각도: " + _angle);
 		            Debug.Log("경사각: " + mainModule.IsSlope);
 	            }
 	            else
 	            {
 		            mainModule.SlopeVector = Vector3.zero;
-		            mainModule.isGround = false;
+		            //mainModule.IsGround = false;
 	            }
             }
 
-            Debug.DrawRay(_rayPos, Vector3.down, Color.red);
-        }
-        public override void OnDrawGizmos()
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(_spherePosition, mainModule.GroundCheckRadius);
+            //Debug.DrawRay(_rayPos, Vector3.down, Color.red);
         }
         private void GroundCheack()
         {
@@ -376,7 +370,7 @@ namespace Module
             bool _isLand = Physics.CheckSphere(_spherePosition, mainModule.GroundCheckRadius, mainModule.groundLayer,
                 QueryTriggerInteraction.Ignore);
 
-            if (!mainModule.isGround && _isLand)
+            if (!mainModule.IsGround && _isLand)
             {
                 FallDamage();
                 landAction?.Invoke();
@@ -384,7 +378,7 @@ namespace Module
 
             mainModule.isTouchGround = _isLand;
             //mainModule.isGround = _isLand;
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 mainModule.lastGroundPos = mainModule.transform.position;
             }

@@ -66,24 +66,14 @@ namespace Module
 
         public override void FixedUpdate()
         {
-            JumpCheack();
-            Weight();
+            //JumpCheack();
+            //Weight();
         }
 
         public override void Update()
         {
+            OnJump();
             //Delay();
-        }
-
-        void Delay()
-        {
-            if (onJump)
-            {
-                if (currentDelay <= 0)
-                    Jump();
-                else
-                    currentDelay -= mainModule.PersonalDeltaTime;
-            }
         }
 
         void Weight()
@@ -92,9 +82,33 @@ namespace Module
                 gravityWeight = mainModule.Gravity;
         }
 
+        private void OnJump()
+        {
+            if (mainModule.IsGround)
+            {
+                Animator.SetBool("FreeFall", false);
+
+                if (mainModule.IsJump)
+                {
+                    Animator.SetBool("Jump", true);
+                    jumpAction?.Invoke();
+                }
+            }
+
+            else
+            {
+                if (!Animator.GetBool("Jump") && !Animator.GetBool("DoubleJump"))
+                    Animator.SetBool("FreeFall", true);
+                else
+                {
+                    Animator.SetBool("FreeFall", false);
+                }
+            }
+        }
+
         protected virtual void JumpCheack()
         {
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 calculatedFallTime = antiFallTime;
 
@@ -133,8 +147,6 @@ namespace Module
 
                 mainModule.IsJump = false;
             }
-
-            //if()
         }
 
         public void Jumping(float _delay)
@@ -149,7 +161,7 @@ namespace Module
             if (_value == 0) _value = JumpHeight;
             onJump = false;
             mainModule.Gravity = Mathf.Sqrt(_value * -1.7f * _GravityScale);
-            Animator.SetBool("Jump", true);
+            //Animator.SetBool("Jump", true);
         }
 
         public override void OnDisable()

@@ -119,7 +119,7 @@ namespace Module
 
             float _speed;
 
-            if (!mainModule.isGround)
+            if (!mainModule.IsGround)
             {
                 _targetSpeed = (mainModule.IsSprint ? runSpeed - 1 : moveSpeed - 1);
             }
@@ -291,7 +291,7 @@ namespace Module
 
             Physics.Raycast(mainModule.transform.position - new Vector3(0, mainModule.groundOffset, 0), Vector3.down,
                 out RaycastHit hit, 1.6f, mainModule.groundLayer);
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 groundNormal = hit.normal;
             }
@@ -341,7 +341,6 @@ namespace Module
 
             #endregion
 
-            //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
 
@@ -388,7 +387,7 @@ namespace Module
         /// </summary>
         private void Gravity()
         {
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 if (mainModule.Gravity < 0.0f)
                 {

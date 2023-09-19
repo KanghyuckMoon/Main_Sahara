@@ -147,7 +147,7 @@ namespace CondinedModule
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            Debug.LogError("위치 정보 : " + hit.point);
+            //Debug.LogError("위치 정보 : " + hit.point);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Module
     {
         protected override void JumpCheack()
         {
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 calculatedFallTime = antiFallTime;
 

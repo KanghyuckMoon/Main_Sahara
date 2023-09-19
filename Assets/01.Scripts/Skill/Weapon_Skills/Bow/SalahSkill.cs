@@ -20,6 +20,9 @@ namespace Skill
         [SerializeField] private HitBoxInAction hitBoxInAction;
         [SerializeField] private HitBoxAction hitBoxAction = new HitBoxAction();
 
+        private GameObject effect;
+        private GameObject barrier;
+
         private SetPlayerMaterial setPlayerMaterial;
 
         // ReSharper disable Unity.PerformanceAnalysis
@@ -28,16 +31,16 @@ namespace Skill
             if (!UseMana(_mainModule, usingMana)) return;
             setPlayerMaterial ??= transform.root.GetComponentInChildren<SetPlayerMaterial>();
 
-            var _effect = ObjectPoolManager.Instance.GetObject("Salah_SkillEffect_Aura");
-            var _barrier = ObjectPoolManager.Instance.GetObject("Salah_SkillEffect");
+            effect = ObjectPoolManager.Instance.GetObject("Salah_SkillEffect_Aura");
+            barrier = ObjectPoolManager.Instance.GetObject("Salah_SkillEffect");
 
-            _effect.transform.SetParent(transform.root);
-            _effect.transform.localPosition = new Vector3(0, 0.1f, 0);
-            _effect.SetActive(true);
+            effect.transform.SetParent(transform.root);
+            effect.transform.localPosition = new Vector3(0, 0.1f, 0);
+            effect.SetActive(true);
             
-            _barrier.transform.SetParent(transform.root);
-            _barrier.transform.localPosition = new Vector3(0, 1f, 0);
-            _barrier.SetActive(true);
+            barrier.transform.SetParent(transform.root);
+            barrier.transform.localPosition = new Vector3(0, 1f, 0);
+            barrier.SetActive(true);
             
             setPlayerMaterial.SetMaterials(playerReinnforceMat);
 
@@ -61,14 +64,14 @@ namespace Skill
             //obj.transform.position = transform.position;
         }
 
-        private void ResetEffect(GameObject _barrier, GameObject _effect)
+        private void ResetEffect()
         {
             Debug.LogError("없어졌다" + gameObject.name);
             setPlayerMaterial.ResetMaterials();
-            ObjectPoolManager.Instance.RegisterObject("Salah_SkillEffect", _barrier);
-            ObjectPoolManager.Instance.RegisterObject("Salah_SkillEffect_Aura", _effect);
-            _barrier.SetActive(false);
-            _effect.SetActive(false);
+            ObjectPoolManager.Instance.RegisterObject("Salah_SkillEffect", barrier);
+            ObjectPoolManager.Instance.RegisterObject("Salah_SkillEffect_Aura", effect);
+            barrier.SetActive(false);
+            effect.SetActive(false);
         }
     }
 }
