@@ -12,12 +12,16 @@ public class Landing : StateMachineBehaviour
     [SerializeField]
     private float delay = 0.5f;
 
+    private float delay1;
+    
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= _mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         _mainModule.StopOrNot = 0;
         _mainModule.Gravity = 0;
+
+        delay1 = delay;
 
         animator.SetBool("CanLand", false);
         animator.SetBool("DoubleJump", false);
@@ -27,8 +31,8 @@ public class Landing : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(delay < 1){
-            delay += Time.deltaTime;
+        if(delay1 > 0){
+            delay1 -= Time.deltaTime;
         }
         else
         {
