@@ -119,7 +119,7 @@ namespace Module
 
             float _speed;
 
-            if (!mainModule.isGround)
+            if (!mainModule.IsGround)
             {
                 _targetSpeed = (mainModule.IsSprint ? runSpeed - 1 : moveSpeed - 1);
             }
@@ -139,7 +139,8 @@ namespace Module
             var velocity = mainModule.CharacterController.velocity;
             var currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
 
-            //_targetSpeed *= mainModule.StopOrNot;
+            Debug.Log(mainModule.name + " 가속도 계산: " + mainModule.StopOrNot);
+            _targetSpeed *= mainModule.StopOrNot;
 
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset) // && mainModule.objDir != Vector2.up)
@@ -176,7 +177,7 @@ namespace Module
                 (cameraForward * mainModule.ObjDir.y + cameraRight * mainModule.ObjDir.x).normalized;
 
 
-            if (mainModule.IsCharging)
+            if (mainModule.LockOnTarget != null)
             {
                 mainModule.transform.rotation = Quaternion.Euler(xRotation, mainModule.ObjRotation.eulerAngles.y, zRotation);
             }
@@ -185,10 +186,13 @@ namespace Module
                 // 캐릭터 회전
                 if (moveDirection != Vector3.zero)
                 {
-                    Quaternion newRotation = Quaternion.LookRotation(moveDirection);
-                    newRotation = Quaternion.Euler(xRotation, newRotation.eulerAngles.y, zRotation);
-                    mainModule.transform.rotation = Quaternion.Slerp(mainModule.transform.rotation, newRotation,
-                        10 * mainModule.PersonalDeltaTime);
+                    if (!mainModule.Attacking)
+                    {
+                        Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+                        newRotation = Quaternion.Euler(xRotation, newRotation.eulerAngles.y, zRotation);
+                        mainModule.transform.rotation = Quaternion.Slerp(mainModule.transform.rotation, newRotation,
+                            10 * mainModule.PersonalDeltaTime);
+                    }
                 }
             }
 
@@ -291,7 +295,7 @@ namespace Module
 
             Physics.Raycast(mainModule.transform.position - new Vector3(0, mainModule.groundOffset, 0), Vector3.down,
                 out RaycastHit hit, 1.6f, mainModule.groundLayer);
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 groundNormal = hit.normal;
             }
@@ -336,12 +340,11 @@ namespace Module
                 }
             }
 
-            Debug.Log("중력값: " + mainModule.Gravity);
+            //Debug.Log("중력값: " + mainModule.Gravity);
             //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
 
             #endregion
 
-            //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
             Animator.SetFloat(MoveSpeed, animationBlend);
         }
 
@@ -388,11 +391,11 @@ namespace Module
         /// </summary>
         private void Gravity()
         {
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 if (mainModule.Gravity < 0.0f)
                 {
-                    mainModule.Gravity = 0f;
+                    //mainModule.Gravity = 0f;
                 }
             }
 

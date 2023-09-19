@@ -10,6 +10,7 @@ using Pool;
 using TimeManager;
 using System;
 using HitBox;
+using UnityEngine.Serialization;
 
 namespace Module
 {
@@ -63,7 +64,6 @@ namespace Module
                 objDir = value;
             }
         }
-
         public Vector3 ObjDirection
         {
             get
@@ -121,6 +121,19 @@ namespace Module
 
             }
         }
+
+        public bool IsGround
+        {
+            get
+            {
+                Vector3 castOrigin =
+                    new Vector3(transform.position.x, transform.position.y + CharacterController.radius - 0.05f,
+                        transform.position.z);
+
+                return Physics.CheckSphere(castOrigin, CharacterController.radius, groundLayer) && IsSlope;
+            }
+        }
+
         public bool IsSprint
         {
             get
@@ -156,7 +169,17 @@ namespace Module
             get => isSlope;
             set => isSlope = value;
         }
-
+        private bool IsSliding{
+            get{
+                Debug.DrawRay(transform.position, Vector3.down*2f, Color.blue);
+                if(characterController.isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit slopeHit, 2f)){
+                    hitPointNormal = slopeHit.normal;
+                    return Vector3.Angle(hitPointNormal, Vector3.up)>characterController.slopeLimit;
+                }else{
+                    return false;
+                }
+            }
+        }
         public int CanCrawlTheWall
         {
             get => canCrawlTheWall;
@@ -591,9 +614,8 @@ namespace Module
         private float groundAngle;
 
         //물리 관련은 최적화를 위해 Public을 사용
-        [Space]
-        [SerializeField, Header("공중인가?")] 
-        public bool isGround; 
+        [FormerlySerializedAs("isGround")] [Space] [SerializeField, Header("공중인가?")]
+        private bool isGround;
         [SerializeField, Header("점프했나?")] 
         private bool isJump;
         [SerializeField, Header("떨어졌나?")] 
@@ -710,7 +732,8 @@ namespace Module
         public AnimatorOverrideController animatorOverrideController;
 
         [HideInInspector] public bool frontInput;
-
+        
+        private Vector3 hitPointNormal;
         private string currentAnimationLayer;
         #endregion
 

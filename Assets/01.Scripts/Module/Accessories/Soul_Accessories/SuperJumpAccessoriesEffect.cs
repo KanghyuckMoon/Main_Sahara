@@ -31,10 +31,10 @@ namespace PassiveItem
         
         public void UpdateEffect()
         {
-            if (!mainModule.isGround) return;
+            if (!mainModule.IsGround) return;
             if (Input.GetKey(KeyCode.Space))
             {
-                Debug.LogError("Â÷Â¡Â÷Â¡Â÷Â¡");
+                Debug.LogError("??¢®??¢®??¢®");
                 stateModule.AddState(State.JUMP);
                 jumpStrength += Time.deltaTime;
                 mainModule.Animator.SetBool("ChargeJump", true);

@@ -19,7 +19,7 @@ public class Idle : StateMachineBehaviour
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
-        stateModule.RemoveState(State.ATTACK);
+        //stateModule.RemoveState(State.ATTACK);
         stateModule.RemoveState(State.SKILL);
         
         mainModule.SetActiveAnimatorRoot(0);
@@ -27,7 +27,7 @@ public class Idle : StateMachineBehaviour
         //mainModule.CanMove = true;
         
         _half = 0f;//stateInfo.length - (stateInfo.length / 9);
-        current = 0.7f;
+        current = 0.9f;
 
         isUp = true;
         //mainModule.CanConsecutiveAttack = false;

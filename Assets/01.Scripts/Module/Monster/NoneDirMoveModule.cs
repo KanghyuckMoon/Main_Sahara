@@ -140,7 +140,7 @@ namespace Module
         /// </summary>
         private void Gravity()
         {
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 if (mainModule.Gravity < 0.0f)
                 {

@@ -15,7 +15,7 @@ namespace Module
 
             float _speed;
 
-            if (!mainModule.isGround) _targetSpeed = mainModule.IsSprint ? runSpeed - 2 : moveSpeed - 2;
+            if (!mainModule.IsGround) _targetSpeed = mainModule.IsSprint ? runSpeed - 2 : moveSpeed - 2;
             if (mainModule.ObjDir == Vector2.zero || mainModule.Attacking || mainModule.StrongAttacking)
                 _targetSpeed = 0.0f;
 

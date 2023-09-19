@@ -311,11 +311,11 @@ namespace AI
         }
         private bool GroundCondition() //Make
         {
-            return aiModule.MainModule.isGround;
+            return aiModule.MainModule.IsGround;
         }
         private bool NotGroundCondition() //Make
         {
-            return !aiModule.MainModule.isGround;
+            return !aiModule.MainModule.IsGround;
         }
         private bool CheckHPPercent50Condition() //Make
         {

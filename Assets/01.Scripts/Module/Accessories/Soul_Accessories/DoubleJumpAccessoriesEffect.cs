@@ -65,13 +65,13 @@ namespace PassiveItem
                 }*/
             }
             
-            if (!mainModule.isGround)
+            if (!mainModule.IsGround)
             {
                 air = true;
             }
 
             if (!air) return;
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
                 Land();
         }
 
@@ -97,7 +97,6 @@ namespace PassiveItem
             mainModule.jumpstrenght = 0;
 
             if (mainModule.isTouchGround) return;
-            Debug.LogError("점프 더블더블");
             mainModule.Animator.SetBool("DoubleJump", true);
             jumpModule.Jump();
         }

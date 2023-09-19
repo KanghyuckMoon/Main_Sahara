@@ -40,7 +40,7 @@ namespace Weapon
 
         protected override void OnEnable()
         {
-            Debug.LogError("け聪绢た夫公圃备菩びっ第っぉ府ちぬ " + gameObject);
+            //Debug.LogError("け聪绢た夫公圃备菩びっ第っぉ府ちぬ " + gameObject);
             gameObject.SetActive(true);
             trailRenderer.enabled = false;
             model.localEulerAngles = new Vector3(180,0,0);

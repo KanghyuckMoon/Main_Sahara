@@ -42,7 +42,7 @@ namespace Module
         protected float antiFallTime;
         protected float calculatedFallTime;
 
-        protected bool onJump;
+        public bool onJump = true;
         
         protected System.Action jumpAction;
 
@@ -66,24 +66,14 @@ namespace Module
 
         public override void FixedUpdate()
         {
-            JumpCheack();
-            Weight();
+            //JumpCheack();
+            //Weight();
         }
 
         public override void Update()
         {
+            OnJump();
             //Delay();
-        }
-
-        void Delay()
-        {
-            if (onJump)
-            {
-                if (currentDelay <= 0)
-                    Jump();
-                else
-                    currentDelay -= mainModule.PersonalDeltaTime;
-            }
         }
 
         void Weight()
@@ -92,16 +82,52 @@ namespace Module
                 gravityWeight = mainModule.Gravity;
         }
 
+        private void OnJump()
+        {
+            if (mainModule.IsGround)
+            {
+                calculatedFallTime = antiFallTime;
+                Animator.SetBool("FreeFall", false);
+
+                if (mainModule.IsJump)
+                {
+                    Animator.SetBool("Jump", true);
+                    jumpAction?.Invoke();
+                }
+                if (calculatedTime > 0.0f)
+                    calculatedTime -= mainModule.PersonalDeltaTime;
+            }
+
+            else
+            {
+                calculatedTime = jumpDelay;
+
+                if (calculatedFallTime >= 0.0f)
+                {
+                    calculatedFallTime -= mainModule.PersonalDeltaTime;
+                }
+                else
+                {
+                    if (!Animator.GetBool("Jump") && !Animator.GetBool("DoubleJump"))
+                        Animator.SetBool("FreeFall", true);
+                    else
+                    {
+                        Animator.SetBool("FreeFall", false);
+                    }
+                }
+            }
+        }
+
         protected virtual void JumpCheack()
         {
-            if (mainModule.isGround)
+            if (mainModule.IsGround)
             {
                 calculatedFallTime = antiFallTime;
 
                 Animator.SetBool("FreeFall", false);
                 Animator.SetBool("Jump", false);
 
-                if (mainModule.Gravity < 0) mainModule.Gravity = -4.5f;
+                if (mainModule.Gravity < 0 && onJump) mainModule.Gravity = 0f;
                 
                 if (mainModule.frontInput)
                 {
@@ -133,8 +159,6 @@ namespace Module
 
                 mainModule.IsJump = false;
             }
-
-            //if()
         }
 
         public void Jumping(float _delay)
@@ -148,8 +172,8 @@ namespace Module
             //if (mainModule.IsChargeJumpOn) return;
             if (_value == 0) _value = JumpHeight;
             onJump = false;
-            mainModule.Gravity = Mathf.Sqrt(_value * -1.7f * _GravityScale);
-            Animator.SetBool("Jump", true);
+            mainModule.Gravity = Mathf.Sqrt(_value * -2f * _GravityScale);
+            //Animator.SetBool("Jump", true);
         }
 
         public override void OnDisable()
