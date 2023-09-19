@@ -9,6 +9,9 @@ public class Landing : StateMachineBehaviour
     private AbMainModule _mainModule;
     private StateModule stateModule;
 
+    [SerializeField]
+    private float delay = 0.5f;
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _mainModule ??= animator.GetComponent<AbMainModule>();
@@ -24,8 +27,8 @@ public class Landing : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(_mainModule.StopOrNot < 1){
-            _mainModule.StopOrNot += Time.deltaTime * 2;
+        if(delay < 1){
+            delay += Time.deltaTime;
         }
         else
         {

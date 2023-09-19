@@ -37,6 +37,8 @@ namespace ForTheTest
 
         private Cinemachine3rdPersonFollow followCam; // so we can manipulate the 'camera side' property dynamically
 
+        public bool isCameraUseThisComp = true;
+
         // current camera rotation values
         [SerializeField] private float cameraX = 0f;
         [SerializeField] public float cameraY = 0f;
@@ -51,18 +53,21 @@ namespace ForTheTest
 
         private void Start()
         {
-            if (vcam == null)
+            if (isCameraUseThisComp)
             {
-                // try to grab the vcam from this object
-                vcam = GetComponent<CinemachineVirtualCamera>();
+                if (vcam == null)
+                {
+                    // try to grab the vcam from this object
+                    vcam = GetComponent<CinemachineVirtualCamera>();
 
-                Transform _player = GameObject.Find("Player").transform.Find("Target");
-                vcam.LookAt = _player;
-                vcam.Follow = _player;
-            }
-            else
-            {
-                Debug.Log("Need to connect your 3rd person vcam to the CameraController!");
+                    Transform _player = GameObject.Find("Player").transform.Find("Target");
+                    vcam.LookAt = _player;
+                    vcam.Follow = _player;
+                }
+                else
+                {
+                    Debug.Log("Need to connect your 3rd person vcam to the CameraController!");
+                }
             }
         }
 
@@ -83,81 +88,88 @@ namespace ForTheTest
 
         private void Update()
         {
-            if(Camera.main == null)
+            
+            if (isCameraUseThisComp)
             {
-                return;
-            }
-
-            // make sure we have a handle to the follow component
-            if (followCam == null)
-            {
-                followCam = vcam.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-            }
-
-            if (!isUIOn)
-            {
-
-                cameraInputHorizontal = -Input.GetAxis("Mouse X");
-                cameraInputVertical = Input.GetAxis("Mouse Y");
-
-                if (allowCameraToggle)
+                if (Camera.main == null)
                 {
-                    var side = Input.GetButtonDown("CameraSide");
-                    if (side)
+                    return;
+                }
+
+                // make sure we have a handle to the follow component
+                if (followCam == null)
+                {
+                    followCam = vcam.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+                }
+
+                if (!isUIOn)
+                {
+
+                    cameraInputHorizontal = -Input.GetAxis("Mouse X");
+                    cameraInputVertical = Input.GetAxis("Mouse Y");
+
+                    if (allowCameraToggle)
                     {
-                        doCameraSideToggle = true;
+                        var side = Input.GetButtonDown("CameraSide");
+                        if (side)
+                        {
+                            doCameraSideToggle = true;
+                        }
+
+                        if (doCameraSideToggle)
+                        {
+                            sideToggleTime = 0f;
+                            //cameraSide = followCam.CameraSide;
+                            if (cameraSide > 0.1)
+                            {
+                                desiredCameraSide = 0f;
+                            }
+                            else
+                            {
+                                desiredCameraSide = 1f;
+                            }
+
+                            doCameraSideToggle = false;
+                        }
+
+                        //followCam.CameraSide = Mathf.Lerp(cameraSide, desiredCameraSide, sideToggleTime);
+                        sideToggleTime += cameraSideToggleSpeed * Time.deltaTime;
+
                     }
 
-                    if (doCameraSideToggle)
+                    Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.blue, 1.0f);
+                    Debug.DrawRay(invisibleCameraOrigin.position, invisibleCameraOrigin.forward, Color.red, 1.0f);
+
+                    if (invisibleCameraOrigin != null)
                     {
-                        sideToggleTime = 0f;
-                        //cameraSide = followCam.CameraSide;
-                        if (cameraSide > 0.1)
+                        if (invertHorizontal)
                         {
-                            desiredCameraSide = 0f;
+                            cameraX -= cameraVerticalRotationMultiplier * cameraInputVertical;
                         }
                         else
                         {
-                            desiredCameraSide = 1f;
+                            cameraX += cameraVerticalRotationMultiplier * cameraInputVertical;
                         }
 
-                        doCameraSideToggle = false;
-                    }
+                        if (invertVertical)
+                        {
+                            cameraY -= cameraHorizontalRotationMultiplier * cameraInputHorizontal;
+                        }
+                        else
+                        {
+                            cameraY += cameraHorizontalRotationMultiplier * cameraInputHorizontal;
+                        }
 
-                    //followCam.CameraSide = Mathf.Lerp(cameraSide, desiredCameraSide, sideToggleTime);
-                    sideToggleTime += cameraSideToggleSpeed * Time.deltaTime;
+                        cameraX = Mathf.Clamp(cameraX, verticalRotateMin, verticalRotateMax);
 
-                }
-
-                Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.blue, 1.0f);
-                Debug.DrawRay(invisibleCameraOrigin.position, invisibleCameraOrigin.forward, Color.red, 1.0f);
-
-                if (invisibleCameraOrigin != null)
-                {
-                    if (invertHorizontal)
-                    {
-                        cameraX -= cameraVerticalRotationMultiplier * cameraInputVertical;
-                    }
-                    else
-                    {
-                        cameraX += cameraVerticalRotationMultiplier * cameraInputVertical;
-                    }
-
-                    if (invertVertical)
-                    {
-                        cameraY -= cameraHorizontalRotationMultiplier * cameraInputHorizontal;
-                    }
-                    else
-                    {
-                        cameraY += cameraHorizontalRotationMultiplier * cameraInputHorizontal;
-                    }
-
-                    cameraX = Mathf.Clamp(cameraX, verticalRotateMin, verticalRotateMax);
-
-                    //invisibleCameraOrigin.eulerAngles = Vector3.Lerp(invisibleCameraOrigin.eulerAngles,
+                        //invisibleCameraOrigin.eulerAngles = Vector3.Lerp(invisibleCameraOrigin.eulerAngles,
                         //new Vector3(-cameraX, -cameraY, 0.0f), 0.1f);
-                    invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
+                        invisibleCameraOrigin.eulerAngles = new Vector3(-cameraX, -cameraY, 0.0f);
+                    }
                 }
+            }
+            else
+            {
             }
         }
 

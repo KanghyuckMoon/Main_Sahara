@@ -139,7 +139,8 @@ namespace Module
             var velocity = mainModule.CharacterController.velocity;
             var currentSpeed = new Vector3(velocity.x, 0, velocity.z).magnitude;
 
-            //_targetSpeed *= mainModule.StopOrNot;
+            Debug.Log(mainModule.name + " 가속도 계산: " + mainModule.StopOrNot);
+            _targetSpeed *= mainModule.StopOrNot;
 
             if (currentSpeed > (_targetSpeed + _lockOnspeed) + speedOffset ||
                 currentSpeed < (_targetSpeed + _lockOnspeed) - speedOffset) // && mainModule.objDir != Vector2.up)

@@ -108,6 +108,7 @@ namespace LockOn
 
                 if (lockOnCamera.currentCamera.name == "PlayerFollowCamera")
                 {
+                    Debug.LogError(zoomInTarget.name + ": " + mainModule.name);
                     mainModule.LockOnTarget = zoomInTarget;
                     originTarget = null;
                 }
