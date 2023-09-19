@@ -78,16 +78,19 @@ namespace CondinedModule
             bool _isOn = _on > 0;
             Animator.applyRootMotion = _isOn;
         }
+        
+        private Tweener tweener;
 
         public override void SetAnimationLayerOn(int _on, float _duration)
         {
             int animationIndex = Animator.GetLayerIndex(CurrentAnimationLayer);
 
+            tweener?.Kill();
             if (_duration is > 0 and < 1)
             {
                 float _a = Animator.GetLayerWeight(animationIndex);
 
-                DOTween.To(
+                tweener = DOTween.To(
                     () => _a, (x) => Animator.SetLayerWeight(animationIndex, x), _on, _duration);
             }
 

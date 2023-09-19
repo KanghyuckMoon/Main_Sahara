@@ -15,7 +15,7 @@ public class Jump_Start : StateMachineBehaviour
     {
         mainModule ??= animator.GetComponent<AbMainModule>();
         delay = 0.4f;
-        mainModule.StopOrNot = 0.5f;
+        mainModule.StopOrNot = 0.7f;
         isJump = false;
     }
 

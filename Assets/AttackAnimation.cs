@@ -18,6 +18,7 @@ public class AttackAnimation : StateMachineBehaviour
         stateModule ??= mainModule.GetModuleComponent<StateModule>(ModuleType.State);
         animator.SetBool("IsCombo", true);
         
+        mainModule.SetAnimationLayerOn(0, 0f);
         mainModule.SetConsecutiveAttack(0);
         mainModule.SetActiveAnimatorRoot(1);
 
@@ -37,5 +38,6 @@ public class AttackAnimation : StateMachineBehaviour
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
         stateModule.RemoveState(State.ATTACK);
+        mainModule.SetAnimationLayerOn(1, 0.5f);
     }
 }

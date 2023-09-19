@@ -33,6 +33,8 @@ public class Hit : StateMachineBehaviour
     //    mainModule.StrongAttacking = false;
         mainModule.IsHit = false;
         mainModule.CanMove = true;
+
+        mainModule.StopOrNot = 0;
         
         animator.GetComponent<ProjectileGenerator>()?.MoveProjectile();
         stateModule.RemoveTypeState(State.ATTACK);
