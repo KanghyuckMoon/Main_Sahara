@@ -140,6 +140,7 @@ namespace UI.Inventory
                 curActiveModel.SetActive(true);
 
                 curActiveModelData = modelTrmDic[_key];
+                modelRot = curActiveModelData.rotation.eulerAngles;
             }
 
             

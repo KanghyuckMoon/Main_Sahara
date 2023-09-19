@@ -86,6 +86,13 @@ using UI.Base;
             inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.accessories_button,
                 (x) => ChangeCategory(InventoryGridSlotsView.RadioButtons.accessories_button,
                     InventoryView.Elements.accessoire_equip_panel, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.material_button, (x) =>
+                UpdateTitleName(InventoryGridSlotsView.RadioButtons.material_button, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.valuable_button, (x) =>
+                UpdateTitleName(InventoryGridSlotsView.RadioButtons.valuable_button, x));
+            inventoryView.AddButtonEvt(InventoryGridSlotsView.RadioButtons.marker_button, (x) =>
+                UpdateTitleName(InventoryGridSlotsView.RadioButtons.marker_button, x));
+            
 
 
             EventManager.Instance.StartListening(EventsType.UpdateInventoryUI, UpdateUI);
@@ -183,13 +190,25 @@ using UI.Base;
                     
             }
 
+            UpdateTitleName(_rType, _isActive);
+ 
+
+            AnimateSlot(_eType, _isActive);
+        }
+
+        /// <summary>
+        /// 인벤토리 상단 타이틀 텍스트 업데이트
+        /// 인벤토리 : 무기 << 
+        /// </summary>
+        /// <param name="_rType"></param>
+        /// <param name="_isActive"></param>
+        private void UpdateTitleName(InventoryGridSlotsView.RadioButtons _rType,bool _isActive)
+        {
             if (_isActive == true)
             {
                 curRadioButton = _rType;
-                      inventoryView.SetInventoryTitleName(_rType);
+                inventoryView.SetInventoryTitleName(_rType);
             }
-
-            AnimateSlot(_eType, _isActive);
         }
 
         private void AnimateSlot(InventoryView.Elements _type, bool _isActive)
