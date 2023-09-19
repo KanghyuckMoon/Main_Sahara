@@ -122,6 +122,12 @@ using UI.Base;
             {
                 UpdateUI();
             }
+            else
+            {
+                accentItemCompo.InactiveAllModels();
+                inventoryView.SetItemText(null);
+            }
+
             return _isActive;
         }
 
