@@ -48,11 +48,22 @@ public class SetInvenModelPivot : EditorWindow
         GameObject prefabInstance = GameObject.Instantiate(prefab); 
         prefabInstance.name = "Model";
 
-        float middleY = Mathf.Abs(prefabInstance.transform.GetComponent<MeshRenderer>().bounds.center.y);
-        Debug.Log(prefabInstance.transform.GetComponent<MeshRenderer>().bounds.size);
+        MeshRenderer[] _targetMeshRenderer = prefabInstance.transform.GetComponentsInChildren<MeshRenderer>();
+        MeshRenderer _targetMeshRdr = null; 
+        float _checkSizeY = float.MinValue; 
+        foreach (var _targetMR in _targetMeshRenderer)
+        {
+            if (_checkSizeY < _targetMR.bounds.size.y)
+            {
+                _checkSizeY = _targetMR.bounds.size.y;
+                _targetMeshRdr = _targetMR;
+            }
+        }
+        Debug.LogWarning(_targetMeshRdr.bounds.center);
+        float middleY = Mathf.Abs(_targetMeshRdr.bounds.center.y);
         // Update the y position of the prefab
         Vector3 newPosition = prefabInstance .transform.position;
-        newPosition.y += middleY;
+        newPosition.y += -middleY;
         prefabInstance .transform.position = newPosition;
 
         // Create a parent object
@@ -61,13 +72,18 @@ public class SetInvenModelPivot : EditorWindow
         
         // Set the parent object's y position to middleY
         Vector3 parentPosition = parentObject.transform.position;
-        parentPosition.y = -middleY;
+        parentPosition.y = middleY;
         parentObject.transform.position = parentPosition;
 
-        prefabInstance.transform.SetParent(parentObject.transform);
+        prefabInstance.transform.SetParent(parentObject.transform,false);
     
 
         string prefabPath = AssetDatabase.GetAssetPath(prefab).Replace(prefab.name+".prefab", "ModifyPivot/");
+        if (AssetDatabase.IsValidFolder(prefabPath) == false)
+        {
+            AssetDatabase.CreateFolder(prefabPath.Replace("/ModifyPivot/",""),
+                "ModifyPivot");
+        }
         string parentFolderPath = prefabPath + parentObject.name + ".prefab";
         string modelFolderPath = prefabPath + prefab.name + ".prefab";
 
