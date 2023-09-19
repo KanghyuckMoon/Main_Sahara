@@ -25,7 +25,7 @@ public class Landing : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(_mainModule.StopOrNot < 1){
-            _mainModule.StopOrNot += Time.deltaTime * 10;
+            _mainModule.StopOrNot += Time.deltaTime * 2;
         }
         else
         {

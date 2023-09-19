@@ -104,7 +104,7 @@ namespace Module
 
 	        var _transform = mainModule.transform;
 	        var _ray = new Ray(_rayPos, -_transform.up);
-	        Physics.SphereCast(_ray, 0.31f, out _hit, 1.4f, mainModule.groundLayer);
+	        Physics.SphereCast(_ray, 0.33f, out _hit, 1.45f, mainModule.groundLayer);
 	        //mainModule.Animator.SetFloat("GrounDegree", previousAngle * mainModule.CanCrawlTheWall);
 
 

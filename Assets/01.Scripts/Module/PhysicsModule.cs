@@ -391,7 +391,8 @@ namespace Module
                 HitModule.GetHit(20);
             }
 
-            mainModule.Gravity = 0;
+            //mainModule.Gravity = 0;
+            JumpModule.onJump = true;
             JumpModule.gravityWeight = 0;
         }
 

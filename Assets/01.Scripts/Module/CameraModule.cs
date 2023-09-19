@@ -16,7 +16,7 @@ namespace Module
         {
             get
             {
-                follawVCam ??= GameObject.Find("PlayerFollowCam").GetComponent<CinemachineFreeLook>();
+                follawVCam ??= GameObject.Find("PlayerFollowCamra").GetComponent<CinemachineFreeLook>();
                 return follawVCam;
             }
         }

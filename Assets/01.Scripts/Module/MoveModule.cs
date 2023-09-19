@@ -339,7 +339,7 @@ namespace Module
                 }
             }
 
-            Debug.Log("중력값: " + mainModule.Gravity);
+            //Debug.Log("중력값: " + mainModule.Gravity);
             //mainModule.CharacterController.Move(moveDirection * moveSpeedToUse * mainModule.PersonalDeltaTime);
 
             #endregion
@@ -394,7 +394,7 @@ namespace Module
             {
                 if (mainModule.Gravity < 0.0f)
                 {
-                    mainModule.Gravity = 0f;
+                    //mainModule.Gravity = 0f;
                 }
             }
 
