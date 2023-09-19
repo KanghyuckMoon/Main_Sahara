@@ -93,10 +93,10 @@ namespace UI
         }
         private void SetMana(int _value)
         {
-            curSkillMana = _value; 
+                curSkillMana = _value; 
             quickSlotView.SetManaText(_value);
-
-            float _percent = Mathf.Clamp( curSkillMana/playerData.CurrentMana, 0, 1); 
+    
+            float _percent = Mathf.Clamp( (float)playerData.CurrentMana/curSkillMana, 0, 1); 
             quickSlotView.SetManaGuage(_percent);
             // 업데이트 UI 
         }
