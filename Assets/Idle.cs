@@ -27,7 +27,7 @@ public class Idle : StateMachineBehaviour
         
         //mainModule.CanMove = true;
         
-        _half = 0.3f;//stateInfo.length - (stateInfo.length / 9);
+        _half = 0.38f;//stateInfo.length - (stateInfo.length / 9);
         current = 0f;
 
         isUp = true;
