@@ -75,6 +75,7 @@ namespace UI
             
 
             InitSlotDic(); 
+            SetSkillImage("");
         }
 
         public void Start()
