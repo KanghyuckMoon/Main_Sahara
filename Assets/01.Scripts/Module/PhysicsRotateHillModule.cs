@@ -53,7 +53,7 @@ namespace Module
 			
 			if (Physics.SphereCast(_ray, 0.31f,out var _raycastHit, 1.4f, mainModule.groundLayer))
 			{
-				mainModule.GroundAngle = Vector3.Angle(Vector3.up, _raycastHit.normal);
+				//mainModule.GroundAngle = Vector3.Angle(Vector3.up, _raycastHit.normal);
 				Debug.Log(mainModule.name + " 현재 각도: ");
 				
                 float _distance = _raycastHit.distance;
