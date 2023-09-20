@@ -43,8 +43,8 @@ public class CameraLocationTracker : MonoBehaviour {
 			else {
 				cameraLoc = lastCamLoc;
 			}
-			if(DebugReport)
-				Debug.Log ("The currently tracked Camera is located at: " + cameraLoc);
+			//if(DebugReport)
+				//Debug.Log ("The currently tracked Camera is located at: " + cameraLoc);
 		}
 		#endif
 		if(Application.isPlaying) {
@@ -65,8 +65,8 @@ public class CameraLocationTracker : MonoBehaviour {
 				cameraTransform = CameraToTrack.transform;
 			if(CameraToTrack && Time.timeSinceLevelLoad < 2)
 				Aspect = CameraToTrack.GetComponent<Camera>().aspect;
-			if(DebugReport)
-				Debug.Log ("The currently tracked Camera is located at: " + cameraLoc);
+			//if(DebugReport)
+				//Debug.Log ("The currently tracked Camera is located at: " + cameraLoc);
 		}
 
 		frameCount ++;

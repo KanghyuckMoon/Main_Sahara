@@ -148,7 +148,7 @@ public class AnimationClickLoggerWindow : EditorWindow
 	{
 		if(hitboxDataSO.hitBoxDataDic.ContainsKey(str))
 		{
-			Debug.Log(str);
+			//Debug.Log(str);
 			HitBoxDataList hitBoxDataList = hitboxDataSO.hitBoxDataDic[str];
 			boxColEditor.SetHitBox(hitBoxDataList.hitBoxDataList[0]);
 		}

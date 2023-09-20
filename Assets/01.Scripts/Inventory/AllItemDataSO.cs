@@ -22,7 +22,7 @@ namespace Inventory
 				}
 				catch (Exception e)
 				{
-					Debug.Log("ItemdataKey Same" + itemDataSOList[i].key);
+					//Debug.Log("ItemdataKey Same" + itemDataSOList[i].key);
 					throw;
 				}
 			}
