@@ -7,7 +7,7 @@ namespace Detect
 	public class MultipleDetect : MonoBehaviour
 	{
 		[SerializeField] private List<BaseDetectItem> baseDetectItems = new List<BaseDetectItem>();
-
+		private bool isUse;
 		private void Start()
 		{
 			foreach (var item in baseDetectItems)
@@ -18,13 +18,17 @@ namespace Detect
 
 		public void AllGetOut()
 		{
-			foreach(var item in baseDetectItems)
+			if(isUse)
+			{
+				return;
+			}
+			isUse = true;
+			foreach (var item in baseDetectItems)
 			{
 				if(item.IsGetOut)
 				{
 					continue;
 				}
-				item.IsGetOut = true;
 				item.GetOut();
 			}
 		}
