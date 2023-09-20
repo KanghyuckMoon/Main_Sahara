@@ -92,7 +92,7 @@ namespace Module
 		{
 			//if (!(mainModule.StopOrNot >= 1)) return;
 			
-			if(StateModule.CheckState(State.ATTACK, State.SKILL)) return;
+			if(StateModule.CheckState(State.ATTACK, State.SKILL, State.CHARGE)) return;
 
 			var _inputup = InputManager.Instance.CheckKey("Jump");
 			

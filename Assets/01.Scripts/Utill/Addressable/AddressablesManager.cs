@@ -176,6 +176,7 @@ namespace Utill.Addressable
 
 							_handle.Completed += (x) =>
 							{
+								Debug.Log($"Load Scene Addressable Complete {_loadSceneData.name}");
 								notCompleteCount--;
 								sceneInstanceDic.Add(_loadSceneData.name, _handle);
 								_loadSceneData.action?.Invoke(x);
@@ -213,7 +214,10 @@ namespace Utill.Addressable
 
 		public void UnLoadSceneAsync(string _name)
 		{
-			unLoadMessageQueue.Enqueue(_name);
+			if (loadedScene.Contains(_name))
+			{
+				unLoadMessageQueue.Enqueue(_name);
+			}
 		}
 
 		/// <summary>
@@ -232,7 +236,7 @@ namespace Utill.Addressable
 					{
 						if (sceneInstanceDic.ContainsKey(_name))
 						{
-
+							Debug.Log($"Load Scene UnAddressable {_name}");
 							var _handle = Addressables.UnloadSceneAsync(sceneInstanceDic[_name]);
 							Addressables.Release(sceneInstanceDic[_name]);
 							sceneInstanceDic.Remove(_name);
