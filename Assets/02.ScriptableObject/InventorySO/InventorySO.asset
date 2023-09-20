@@ -13,7 +13,79 @@ MonoBehaviour:
   m_Name: InventorySO
   m_EditorClassIdentifier: 
   money: 0
-  itemDataList: []
+  itemDataList:
+  - key: Key1
+    count: 1
+    price: 100
+    nameKey: I00000170
+    explanationKey: R00000170
+    spriteKey: Key_Sprite
+    iconKey: Key_Sprite
+    stackble: 0
+    stackMax: 1
+    itemType: 6
+    consumptionType: 0
+    prefebkey: null
+    modelkey: "Key_InvenModel\r"
+    animationLayer: null
+    dropItemPrefebKey: Key1_Drop
+    accessoriesItemType: 15
+    equipmentType: 0
+    isSlot: 0
+  - key: Sw_00_ChippedSword
+    count: 1
+    price: 100
+    nameKey: I00000010
+    explanationKey: R00000010
+    spriteKey: Sw_00_ChippedSword_Sprite
+    iconKey: Sw_00_ChippedSword_Icon
+    stackble: 0
+    stackMax: 1
+    itemType: 0
+    consumptionType: 0
+    prefebkey: Sw_00_ChippedSword_Prefab
+    modelkey: "Sw_00_ChippedSword_InvenModel\r"
+    animationLayer: Sword
+    dropItemPrefebKey: Sw_00_ChippedSword_Drop
+    accessoriesItemType: 15
+    equipmentType: 0
+    isSlot: 1
+  - key: FishingRod
+    count: 1
+    price: 100
+    nameKey: I00000123
+    explanationKey: R00000123
+    spriteKey: FishingRod_Sprite
+    iconKey: FishingRod_Icon
+    stackble: 0
+    stackMax: 1
+    itemType: 0
+    consumptionType: 0
+    prefebkey: FishingRod_Prefab
+    modelkey: "FishingRod_InvenModel\r"
+    animationLayer: null
+    dropItemPrefebKey: FishingRod_Drop
+    accessoriesItemType: 15
+    equipmentType: 0
+    isSlot: 0
+  - key: DoubleJumpSoul
+    count: 1
+    price: 100
+    nameKey: I00000127
+    explanationKey: R00000127
+    spriteKey: DoubleJumpSoul_Sprite
+    iconKey: DoubleJumpSoul_Sprite
+    stackble: 0
+    stackMax: 1
+    itemType: 4
+    consumptionType: 0
+    prefebkey: null
+    modelkey: "DoubleJumpSoul_InvenModel\r"
+    animationLayer: null
+    dropItemPrefebKey: DoubleJumpSoul_Drop
+    accessoriesItemType: 2
+    equipmentType: 0
+    isSlot: 0
   quickSlot:
   - key: 
     count: 0
@@ -23,7 +95,7 @@ MonoBehaviour:
     spriteKey: 
     iconKey: 
     stackble: 0
-    stackMax: 64
+    stackMax: 0
     itemType: 0
     consumptionType: 0
     prefebkey: 
@@ -32,7 +104,7 @@ MonoBehaviour:
     dropItemPrefebKey: 
     accessoriesItemType: 0
     equipmentType: 0
-    isSlot: 1
+    isSlot: 0
   - key: 
     count: 0
     price: 0
@@ -41,25 +113,7 @@ MonoBehaviour:
     spriteKey: 
     iconKey: 
     stackble: 0
-    stackMax: 64
-    itemType: 0
-    consumptionType: 0
-    prefebkey: St_00_ShabbyStaff_Prefab
-    modelkey: 
-    animationLayer: Staff
-    dropItemPrefebKey: 
-    accessoriesItemType: 0
-    equipmentType: 0
-    isSlot: 1
-  - key: 
-    count: 0
-    price: 0
-    nameKey: 
-    explanationKey: 
-    spriteKey: 
-    iconKey: 
-    stackble: 0
-    stackMax: 64
+    stackMax: 0
     itemType: 0
     consumptionType: 0
     prefebkey: 
@@ -68,7 +122,7 @@ MonoBehaviour:
     dropItemPrefebKey: 
     accessoriesItemType: 0
     equipmentType: 0
-    isSlot: 1
+    isSlot: 0
   - key: 
     count: 0
     price: 0
@@ -77,25 +131,7 @@ MonoBehaviour:
     spriteKey: 
     iconKey: 
     stackble: 0
-    stackMax: 64
-    itemType: 0
-    consumptionType: 0
-    prefebkey: Bw_00_WoodenBow_Prefab
-    modelkey: 
-    animationLayer: Bow
-    dropItemPrefebKey: 
-    accessoriesItemType: 0
-    equipmentType: 0
-    isSlot: 1
-  - key: 
-    count: 0
-    price: 0
-    nameKey: 
-    explanationKey: 
-    spriteKey: 
-    iconKey: 
-    stackble: 0
-    stackMax: 64
+    stackMax: 0
     itemType: 0
     consumptionType: 0
     prefebkey: 
@@ -104,7 +140,43 @@ MonoBehaviour:
     dropItemPrefebKey: 
     accessoriesItemType: 0
     equipmentType: 0
-    isSlot: 1
+    isSlot: 0
+  - key: 
+    count: 0
+    price: 0
+    nameKey: 
+    explanationKey: 
+    spriteKey: 
+    iconKey: 
+    stackble: 0
+    stackMax: 0
+    itemType: 0
+    consumptionType: 0
+    prefebkey: 
+    modelkey: 
+    animationLayer: 
+    dropItemPrefebKey: 
+    accessoriesItemType: 0
+    equipmentType: 0
+    isSlot: 0
+  - key: 
+    count: 0
+    price: 0
+    nameKey: 
+    explanationKey: 
+    spriteKey: 
+    iconKey: 
+    stackble: 0
+    stackMax: 0
+    itemType: 0
+    consumptionType: 0
+    prefebkey: 
+    modelkey: 
+    animationLayer: 
+    dropItemPrefebKey: 
+    accessoriesItemType: 0
+    equipmentType: 0
+    isSlot: 0
   equipments:
   - key: 
     count: 0
@@ -187,7 +259,7 @@ MonoBehaviour:
     spriteKey: 
     iconKey: 
     stackble: 0
-    stackMax: 64
+    stackMax: 0
     itemType: 0
     consumptionType: 0
     prefebkey: 
@@ -196,7 +268,7 @@ MonoBehaviour:
     dropItemPrefebKey: 
     accessoriesItemType: 0
     equipmentType: 0
-    isSlot: 1
+    isSlot: 0
   - key: 
     count: 0
     price: 0
@@ -205,7 +277,7 @@ MonoBehaviour:
     spriteKey: 
     iconKey: 
     stackble: 0
-    stackMax: 64
+    stackMax: 0
     itemType: 0
     consumptionType: 0
     prefebkey: 
@@ -214,7 +286,7 @@ MonoBehaviour:
     dropItemPrefebKey: 
     accessoriesItemType: 0
     equipmentType: 0
-    isSlot: 1
+    isSlot: 0
   - key: 
     count: 0
     price: 0
@@ -223,7 +295,7 @@ MonoBehaviour:
     spriteKey: 
     iconKey: 
     stackble: 0
-    stackMax: 64
+    stackMax: 0
     itemType: 0
     consumptionType: 0
     prefebkey: 
@@ -232,7 +304,7 @@ MonoBehaviour:
     dropItemPrefebKey: 
     accessoriesItemType: 0
     equipmentType: 0
-    isSlot: 1
+    isSlot: 0
   skills:
   - key: 
     count: 0
