@@ -25,7 +25,9 @@ namespace Skill
 
         protected void OnEnable()
         {
-            StartCoroutine(UpdateUI());
+            if (transform.root.GetComponent<AbMainModule>())
+                if (transform.root.GetComponent<AbMainModule>().player)
+                    StartCoroutine(UpdateUI());
         }
 
         private IEnumerator UpdateUI()

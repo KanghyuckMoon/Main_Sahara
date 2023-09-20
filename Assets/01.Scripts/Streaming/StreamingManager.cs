@@ -317,10 +317,10 @@ namespace Streaming
 		/// <param name="_viewedChunkCoord"></param>
 		private void LoadSubScene(Vector3 _viewedChunkCoord)
 		{
-			if (!CheckCurrentlyActhive(chunkDictionary[_viewedChunkCoord].SceneName))
-			{
-				chunkDictionary[_viewedChunkCoord].LoadScene();
-			}
+			chunkDictionary[_viewedChunkCoord].LoadScene();
+			//if (!CheckCurrentlyActhive(chunkDictionary[_viewedChunkCoord].SceneName))
+			//{
+			//}
 		}
 		
 		
@@ -330,10 +330,10 @@ namespace Streaming
 		/// <param name="_viewedChunkCoord"></param>
 		private void UnLoadSubSceneNoneCheck(Vector3 _viewedChunkCoord)
 		{
-			if (CheckCurrentlyActhive(chunkDictionary[_viewedChunkCoord].SceneName))
-			{
-				chunkDictionary[_viewedChunkCoord].UnLoadSceneNoneCheck();
-			}
+			chunkDictionary[_viewedChunkCoord].UnLoadSceneNoneCheck();
+			//if (CheckCurrentlyActhive(chunkDictionary[_viewedChunkCoord].SceneName))
+			//{
+			//}
 		}
 	}
 

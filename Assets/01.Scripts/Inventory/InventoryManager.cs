@@ -646,6 +646,20 @@ namespace Inventory
             return true;
         }
 
+        public void ReSetPassiveItem(ItemData _itemData)
+        {
+            if(_itemData == null)
+			{
+                return;
+			}
+
+            if(_itemData.accessoriesItemType == AccessoriesItemType.HpUp)
+			{
+                return;
+			}
+            PlayerItemModule.SetPassiveItem(_itemData.accessoriesItemType);
+        }
+
         private void CheckSameAccessories(ItemData _data)
         {
             for (int i = 0; i < inventorySO.accessories.Length; i++)
