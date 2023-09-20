@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using HitBox;
 using UnityEngine;
 using Weapon;
 using Pool;
+using UnityEngine.Rendering;
 
 namespace Module
 {
@@ -121,10 +123,17 @@ namespace Module
                 return;
         
             Vector3 _vec;
+
+            Vector3 _direction = cameraModule.CurrentCamera.transform.forward;
+
+            if (cameraModule.CurrentCamera.GetComponent<CinemachineFreeLook>())
+            {
+                _direction = cameraModule.CurrentCamera.GetComponent<CinemachineFreeLook>().GetRig(0).transform.forward;
+            }
             
             if(mainModule.player)
             {
-                Ray _ray = new Ray(cameraModule.CurrentCamera.transform.position, cameraModule.CurrentCamera.transform.forward);
+                Ray _ray = new Ray(cameraModule.CurrentCamera.transform.position, _direction);
                 RaycastHit _raycastHit;
 
                 if (Physics.Raycast(_ray, out _raycastHit, 80, targetLayerMask))
@@ -134,7 +143,7 @@ namespace Module
                 }
                 else
                 {
-                    _vec = cameraModule.CurrentCamera.transform.position + cameraModule.CurrentCamera.transform.forward * 100f;
+                    _vec = cameraModule.CurrentCamera.transform.position + _direction * 100f;
                 }
             }
             else
