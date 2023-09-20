@@ -21,6 +21,6 @@ public class SortBtn
 
 	private void OnClickSortBtn()
 	{
-		Debug.Log("click btn");
+		//Debug.Log("click btn");
 	}
 }

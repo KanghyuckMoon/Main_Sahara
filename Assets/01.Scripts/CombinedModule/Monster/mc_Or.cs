@@ -40,7 +40,7 @@ namespace CondinedModule
 
         protected void OnEnable()
         {
-            Debug.Log("@@@OnEnable");
+            //Debug.Log("@@@OnEnable");
             moduleComponentsDic ??= new();
             CharacterController = GetComponent<CharacterController>();
             StopOrNot = 1;

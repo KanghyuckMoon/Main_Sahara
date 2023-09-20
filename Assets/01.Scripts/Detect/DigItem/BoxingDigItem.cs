@@ -19,7 +19,7 @@ namespace Detect
             GetNearObject();
             if(targetItem is not null)
             {
-                Debug.Log("GetOut");
+                //Debug.Log("GetOut");
                 targetItem.GetOut();
                 Vector3 addtionPos = transform.right * vectorPos.x + transform.up * vectorPos.y + transform.forward * vectorPos.z; 
                 

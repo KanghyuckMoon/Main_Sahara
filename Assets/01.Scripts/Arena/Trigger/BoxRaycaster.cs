@@ -58,7 +58,7 @@ namespace Arena
 
             int i = 0;
             while (i < hitColliders.Length) {
-                Debug.Log ("Hit : " + hitColliders [i].name);
+                //Debug.Log ("Hit : " + hitColliders [i].name);
                 i++;
             }
 
@@ -73,7 +73,7 @@ namespace Arena
 
             int i = 0;
             while (i < hitColliders.Length) {
-                Debug.Log ("Hit : " + hitColliders [i].name);
+                //Debug.Log ("Hit : " + hitColliders [i].name);
                 i++;
             }
 

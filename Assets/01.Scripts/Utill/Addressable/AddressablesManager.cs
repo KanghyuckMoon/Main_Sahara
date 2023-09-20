@@ -146,6 +146,10 @@ namespace Utill.Addressable
 		/// <param name="_action"></param>
 		public void LoadSceneAsync(string _name, LoadSceneMode _loadSceneMode, System.Action<AsyncOperationHandle<SceneInstance>> _action)
 		{
+			if(loadedScene.Contains(_name))
+			{
+				return;
+			}
 			LoadSceneData loadSceneData = new LoadSceneData();
 			loadSceneData.name = _name;
 			loadSceneData.loadSceneMode = _loadSceneMode;
@@ -160,18 +164,27 @@ namespace Utill.Addressable
 			{
 				if (loadMessageQueue.Count > 0)
 				{
-					LoadSceneData _loadSceneData = loadMessageQueue.Dequeue();
-					if (!loadedScene.Contains(_loadSceneData.name))
+					try
 					{
-						notCompleteCount++;
-						loadedScene.Add(_loadSceneData.name);
-						var _handle = Addressables.LoadSceneAsync(_loadSceneData.name, _loadSceneData.loadSceneMode);
-						_handle.Completed += (x) =>
+						LoadSceneData _loadSceneData = loadMessageQueue.Dequeue();
+						if (!loadedScene.Contains(_loadSceneData.name))
 						{
-							notCompleteCount--;
-							sceneInstanceDic.Add(_loadSceneData.name, _handle);
-							_loadSceneData.action?.Invoke(x);
-						};
+							notCompleteCount++;
+							loadedScene.Add(_loadSceneData.name);
+							Debug.Log($"Load Scene Addressable {_loadSceneData.name}");
+							var _handle = Addressables.LoadSceneAsync(_loadSceneData.name, _loadSceneData.loadSceneMode);
+
+							_handle.Completed += (x) =>
+							{
+								notCompleteCount--;
+								sceneInstanceDic.Add(_loadSceneData.name, _handle);
+								_loadSceneData.action?.Invoke(x);
+							};
+						}
+					}
+					catch
+					{
+						loadMessageQueue.Dequeue();
 					}
 				}
 				yield return null;

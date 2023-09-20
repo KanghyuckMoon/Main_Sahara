@@ -20,7 +20,7 @@ namespace ForTheTest
         {
             if (other.CompareTag("Player_Weapon") && hitDelay)
             {
-                Debug.Log("맞았엉! 히히 히히 히ㅣㅎ");
+                //Debug.Log("맞았엉! 히히 히히 히ㅣㅎ");
                 transform.DOShakePosition(0.15f, 0.5f, 180, 160);
                 StartCoroutine(DelayHit());
             }

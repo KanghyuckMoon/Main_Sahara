@@ -54,7 +54,7 @@ namespace Detect
             GetNearObject();
             if(targetItem is not null)
             {
-                Debug.Log("GetOut");
+                //Debug.Log("GetOut");
                 targetItem.GetOut();
             }
         }
@@ -64,7 +64,7 @@ namespace Detect
             var _detectAnimationAction = transform.GetComponentInParent<DetectAnimationAction>();
             if (_detectAnimationAction is not null)
             {
-                Debug.Log("Success");
+                //Debug.Log("Success");
                 _detectAnimationAction.ChangeAction(Dig);
             }
         }
@@ -77,7 +77,7 @@ namespace Detect
                 GetNearObject();
                 if(targetItem is not null)
                 {
-                    Debug.Log("GetOut");
+                    //Debug.Log("GetOut");
                     targetItem.GetOut();
                 }
             }

@@ -12,7 +12,7 @@ public class SceneDebug : MonoSingleton<SceneDebug>
     {
         if (Input.GetKeyDown(KeyCode.Y))
 		{
-            SceneManager.LoadScene("DeadScene");
+            //SceneManager.LoadScene("DeadScene");
 		}
     }
 }

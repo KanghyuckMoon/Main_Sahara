@@ -35,7 +35,7 @@ public class Jump_Start : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         float remainingTime = stateInfo.length * (1 - stateInfo.normalizedTime);
-        Debug.Log($"Jump LIndex {layerIndex} {remainingTime}");
+        //Debug.Log($"Jump LIndex {layerIndex} {remainingTime}");
         animator.SetBool("Jump", false);
     }
 }
