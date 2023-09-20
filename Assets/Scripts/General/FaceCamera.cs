@@ -20,7 +20,7 @@ public class FaceCamera : MonoBehaviour {
 		angle = 90-angle;
 		angle = angle/90;
 		if(DebugReport)
-			Debug.Log (cameraDir + "is the camera location, normalized Angle to camera is " +angle);
+			//Debug.Log (cameraDir + "is the camera location, normalized Angle to camera is " +angle);
 		angle = Mathf.Clamp01((angle*1.5f)-.5f);
 
 		transform.localScale = new Vector3(1f,1f+angle*.375f,1f);

@@ -38,7 +38,7 @@ public class ShovelDigItem : BaseDigItem
         {
             if(_targetObj is not null)
             {
-                Debug.Log("GetOut");
+                //Debug.Log("GetOut");
                 _targetObj.GetOut();
             }   
         }

@@ -24,10 +24,10 @@ namespace HitBox
         
         public void AddMana(Collider other)
         {
-            Debug.Log(12);
+            //Debug.Log(12);
                 if (other.CompareTag(hitTagName))
                 {
-                    Debug.Log(1);
+                    //Debug.Log(1);
                     InGameHitBox _inGameHitBox = other.GetComponent<InGameHitBox>();
                     if (_inGameHitBox is null) return;
                     if (_inGameHitBox.GetIndex() == praviousHitBoxIndex) return;

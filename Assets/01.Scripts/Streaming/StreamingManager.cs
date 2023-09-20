@@ -14,10 +14,6 @@ namespace Streaming
 	public delegate void StreamingEventTransmit(string _sender, string _recipient, object _obj);
 	public class StreamingManager : MonoSingleton<StreamingManager>, Observer
 	{
-		public class BoolStruct
-        {
-			public bool value;
-        }
 
 		public struct SceneStreamingJob : IJob
 		{
@@ -99,27 +95,10 @@ namespace Streaming
 			}
 		}
 
-		public bool IsLoadEnd()
-		{
-			SetSceneDic();
-			Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
-			SubSceneObj _subSceneObj = chunkDictionary[_currentPos];
-			if (_subSceneObj.IsActiveScene())
-				{
-					return true;
-				}
-				else
-				{
-					_subSceneObj.LoadScene();
-					return false;
-				}
-		}
-
 		private StreamingEventTransmit streamingEventTransmit = default;
 
 		[SerializeField] private GameObject loadingCanvas;
 		
-		//[SerializeField]
 		private Transform viewer = null;
 
 		[SerializeField]
@@ -131,8 +110,7 @@ namespace Streaming
 		private SubSceneReference subSceneReference;
 		public Dictionary<Vector3, SubSceneObj> chunkDictionary = new Dictionary<Vector3, SubSceneObj>(); //æ¿ µ•¿Ã≈Õ µÒº≈≥ ∏Æ
 		public Dictionary<string, LODMaker> lodDictionary = new Dictionary<string, LODMaker>(); //LOD µ•¿Ã≈Õ µÒº≈≥ ∏Æ
-		public Dictionary<string, BoolStruct> sceneActiveCheckDic = new Dictionary<string, BoolStruct>();
-
+		
 		private Vector3 viewerPosition;
 		private int originChunkCoordX;
 		private int originChunkCoordY;
@@ -260,21 +238,10 @@ namespace Streaming
 
 				originChunkCoordY = (int)Mathf.Clamp(originChunkCoordY, 39, 40);
 
-				//Physics.RebuildBroadphaseRegions(new Bounds(new Vector3(_currentChunkCoordX, _currentChunkCoordY, _currentChunkCoordZ) * 100,Vector3.one * 200), 5);
 				StartCoroutine(UpdateChunk());
-				//streamingEventTransmit.Invoke("StreamingManager", "SaveManager", null);
 			}
 		}
 
-		private void InitChunkLegacy()
-		{
-			foreach (var _obj in chunkDictionary)
-			{
-				LoadSubScene(_obj.Key);
-			}
-			isSceneSetting = true;
-		}
-		
 		
 		private IEnumerator InitChunk()
 		{
@@ -292,15 +259,6 @@ namespace Streaming
 				{
 					yield return null;
 				}
-				
-				//if (TerrainManager.Instance.CheckTerrain(currentScene.SceneName))
-				//{
-				//	Debug.Log("Success Current Scene");
-				//}
-				//else
-				//{
-				//	Debug.Log("Check Current Scene");
-				//}
 			}
 
 			isCurrentSceneSetting = true;
@@ -341,18 +299,6 @@ namespace Streaming
 
 		private IEnumerator UpdateChunk()
 		{
-			//foreach (var _sceneObj in StreamingManager.Instance.chunkDictionary)
-			//{
-			//	Vector3 _currentPos = new Vector3(originChunkCoordX, originChunkCoordY, originChunkCoordZ);
-			//	if (Vector3.Distance(_currentPos, _sceneObj.Key) < StreamingManager.chunksVisibleInViewDst)
-			//	{
-			//		StreamingManager.Instance.LoadSubScene(_sceneObj.Key);	
-			//	}
-			//	else
-			//	{
-			//		StreamingManager.Instance.UnLoadSubSceneNoneCheck(_sceneObj.Key);	
-			//	}
-			//}
 			SceneStreamingJob _sceneStreamingJob = new SceneStreamingJob()
 			{
 				originChunkCoordX = this.originChunkCoordX,
@@ -389,52 +335,6 @@ namespace Streaming
 				chunkDictionary[_viewedChunkCoord].UnLoadSceneNoneCheck();
 			}
 		}
-
-		/// <summary>
-		/// Check Currently Acthive Scene from Build Index
-		/// </summary>
-		/// <param name="buildIndex"></param>
-		/// <returns></returns>
-		public bool CheckCurrentlyActhive(string _sceneName)
-		{
-			if (sceneActiveCheckDic.TryGetValue(_sceneName, out var _bool))
-            {
-				return _bool.value;
-			}
-			return	false;
-		}
-
-		public void SetSceneDic()
-		{
-			foreach(var _obj in sceneActiveCheckDic)
-			{
-				_obj.Value.value = false;
-			}
-            for (int i = 0; i < SceneManager.sceneCount; ++i)
-			{
-				Scene _scene = SceneManager.GetSceneAt(i);
-				string _name = _scene.name;
-				if (sceneActiveCheckDic.TryGetValue(_name, out var _bool))
-                {
-					sceneActiveCheckDic[_name].value = _scene.isLoaded;
-				}
-				else
-                {
-					BoolStruct _boolStruct = new BoolStruct();
-					_boolStruct.value = _scene.isLoaded;
-					sceneActiveCheckDic.Add(SceneManager.GetSceneAt(i).name, _boolStruct);
-                }
-			}
-		}
-
-		public LODMaker GetLODMaker(string _sceneName)
-        {
-			if (lodDictionary.TryGetValue(_sceneName, out var _lodmaker))
-            {
-				return _lodmaker;
-            }
-			return null;
-        }
 	}
 
 }

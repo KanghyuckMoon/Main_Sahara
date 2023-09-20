@@ -27,7 +27,7 @@ public class DoubleJump : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         float remainingTime = stateInfo.length * (1 - stateInfo.normalizedTime);
-        Debug.Log($"DoubleJump LIndex {layerIndex} {remainingTime}");
+        //Debug.Log($"DoubleJump LIndex {layerIndex} {remainingTime}");
         //animator.SetBool("DoubleJump", false);
     }
 }

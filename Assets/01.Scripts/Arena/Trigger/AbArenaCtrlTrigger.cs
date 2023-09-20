@@ -33,7 +33,7 @@ namespace Arena
         [ContextMenu("활성화")]
         public void Interact()
         {
-            Debug.Log("@@ 투기장 트리거 활성화");
+            //Debug.Log("@@ 투기장 트리거 활성화");
             if (isStartArena == true)
             {
                 activeTriggerEvent?.Invoke();

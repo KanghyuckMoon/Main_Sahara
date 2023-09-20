@@ -65,7 +65,7 @@ namespace Arena
             while (true)
             {
                 yield return new WaitForSeconds(1f); 
-                Debug.Log("RIgid Velocity" + rigid.velocity);
+                //Debug.Log("RIgid Velocity" + rigid.velocity);
                 if (rigid.velocity.sqrMagnitude > 0) yield return null;
                 
                 originPos = targetTrm.localPosition;
@@ -87,7 +87,7 @@ namespace Arena
                 {
                     isCollision = false;
                     isTrigger = true; 
-                    Debug.Log("OnArena");
+                    //Debug.Log("OnArena");
                     Interact();
                 }
             }

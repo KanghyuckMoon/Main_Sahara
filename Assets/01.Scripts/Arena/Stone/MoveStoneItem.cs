@@ -112,7 +112,7 @@ namespace Arena
         {
             if (other.CompareTag("Player_Weapon"))
             {
-                Debug.Log("플레이어 웨폰 충돌" + other.name);
+                //Debug.Log("플레이어 웨폰 충돌" + other.name);
             }
         }
     }
