@@ -93,9 +93,21 @@ namespace LockOn
             {
                 //if (_thirdPersonCameraController.enabled)
                 {
-                    thirdPersonCameraController.cameraY =
-                        lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>().cameraY;
-                    lockOn_ZoomCameraController.cameraY = -lockOnCamera.currentCamera.transform.eulerAngles.y;
+                    if (!lockOnCamera.currentCamera.GetComponent<CinemachineFreeLook>())
+                    {
+                        thirdPersonCameraController.cameraY =
+                            lockOnCamera.currentCamera.GetComponent<ThirdPersonCameraController>().cameraY;
+                        lockOn_ZoomCameraController.cameraY = -lockOnCamera.currentCamera.transform.eulerAngles.y;
+                    }
+                    else
+                    {
+                        thirdPersonCameraController.cameraY = -lockOnCamera.currentCamera
+                            .GetComponent<CinemachineFreeLook>().m_XAxis.Value;
+                        lockOn_ZoomCameraController.cameraY = -lockOnCamera.currentCamera
+                            .GetComponent<CinemachineFreeLook>().m_XAxis.Value;
+                        
+                    }
+                    
                     //Debug.LogError(lockOnCamera.currentCamera.transform.rotation.y);
 
                 }
