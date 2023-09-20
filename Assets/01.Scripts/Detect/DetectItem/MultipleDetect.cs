@@ -20,6 +20,11 @@ namespace Detect
 		{
 			foreach(var item in baseDetectItems)
 			{
+				if(item.IsGetOut)
+				{
+					continue;
+				}
+				item.IsGetOut = true;
 				item.GetOut();
 			}
 		}
