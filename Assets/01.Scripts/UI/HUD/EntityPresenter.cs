@@ -198,6 +198,7 @@ namespace UI
         /// </summary>
         private void UpdateUIActive()
         {
+            Debug.Log("HUD 활성화" + transform.root.name);
             if (uiModule == null) return;
                 hudElement.style.display = uiModule.IsRender ? DisplayStyle.Flex : DisplayStyle.None;
                 //hudElement.style.display  = DisplayStyle.None;

@@ -100,7 +100,7 @@ using UI.Base;
 
         private void OnDisable()
         {
-            EventManager.Instance.StopListening(EventsType.UpdateInventoryUI, UpdateUI);
+                EventManager.Instance.StopListening(EventsType.UpdateInventoryUI, UpdateUI);
         }
 
         void Start()
