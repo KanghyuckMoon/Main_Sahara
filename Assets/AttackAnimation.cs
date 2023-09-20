@@ -38,6 +38,6 @@ public class AttackAnimation : StateMachineBehaviour
         mainModule.Attacking = false;
         mainModule.StrongAttacking = false;
         //stateModule.RemoveState(State.ATTACK);
-        mainModule.SetAnimationLayerOn(1, 0.5f);
+        mainModule.SetAnimationLayerOn(1, 0.3f);
     }
 }
