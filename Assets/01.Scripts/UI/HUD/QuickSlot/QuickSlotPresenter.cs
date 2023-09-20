@@ -80,8 +80,8 @@ namespace UI
 
         public void Start()
         {
-
-               }
+    
+        }
 
         private void CheckCanUseSkill()
         {
@@ -104,8 +104,8 @@ namespace UI
 
         private void SetSkillImage(string _spriteAddress)
         {
-         
-
+            Debug.LogError("스킬 세팅");
+    
             if (_spriteAddress == "")
             {
                 quickSlotView.ActiveSkillIamge(false);
