@@ -165,6 +165,18 @@ namespace Detect
 					_dropObj.GetComponentInChildren<Rigidbody>().AddForce(_vec, ForceMode.Impulse);
 				}
 			}
+            else if(isEnemy)
+            {
+                _dropObj.transform.position = spawnTrm.position;
+                _dropObj.SetActive(true);
+                float _powerRight = Random.Range(-0.2f, 0.2f) * xzPower;
+                float _powerForward = Random.Range(-0.2f, 0.2f) * xzPower;
+                Vector3 _vec = Vector3.up * upPower + Vector3.right * _powerRight + Vector3.forward * _powerForward;
+                var _mainModule = _dropObj.GetComponent<AbMainModule>();
+                _mainModule.attackedTime = 0f;
+                _mainModule.knockBackPower = upPower;
+                _mainModule.KnockBackVector = _vec.normalized;
+            }
             EffectManager.Instance.SetEffectDefault(effectAddress, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             isGetOut = true;
