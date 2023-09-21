@@ -98,7 +98,7 @@ namespace PassiveItem
 
             if (mainModule.isTouchGround) return;
             mainModule.Animator.SetBool("DoubleJump", true);
-            jumpModule.Jump();
+            jumpModule.Jump(6);
         }
     }
 }
