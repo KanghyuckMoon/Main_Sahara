@@ -87,7 +87,7 @@ namespace Spawner
 					_objectSceneChecker.ObjectClassCycle = objectClassCycle;
 					objectClassCycle.AddObjectClass(_objectSceneChecker);
 				}
-				obj.transform.position = transform.position + Vector3.up * 1;
+				obj.transform.position = transform.position + Vector3.up * 2;
 				obj.transform.rotation = transform.rotation;
 				obj.SetActive(true);
 				EffectManager.Instance.SetEffectDefault("BoomSandVFX", transform.position, Quaternion.identity);
